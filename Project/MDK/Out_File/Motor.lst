@@ -1,0 +1,196 @@
+C251 COMPILER V5.60.0,  Motor                                                              10/01/26  18:27:31  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE Motor
+OBJECT MODULE PLACED IN .\Out_File\Motor.obj
+COMPILER INVOKED BY: C:\mmddk5\C251\BIN\C251.EXE ..\CODE\Motor.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Librar
+                    -ies\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) DE
+                    -BUG PRINT(.\Out_File\Motor.lst) TABS(2) OBJECT(.\Out_File\Motor.obj) 
+
+stmt  level    source
+
+    1          /*
+    2           * Motor.c
+    3           *
+    4           *  Created on: 2025年9月27日
+    5           *      Author: CYM
+    6           */
+    7          #include "Motor.h"
+    8          
+    9          motor Motor_L;
+   10          motor Motor_R;
+   11          //-------------------------------------------------------------------------------------------------------
+             -------------
+   12          // 函数简介     电机初始化
+   13          // 参数说明
+   14          // 返回参数     void
+   15          // 使用示例
+   16          // 备注信息
+   17          //-------------------------------------------------------------------------------------------------------
+             -------------
+   18          void Motor_Init(void)
+   19          {   
+   20   1          gpio_mode(MotorL_TurnGPIO,GPO_PP);
+   21   1          gpio_mode(MotorR_TurnGPIO,GPO_PP);
+   22   1          pwm_init(MotorL_PWM, 10000, 0);
+   23   1          pwm_init(MotorR_PWM, 10000, 0);
+   24   1          Motor_L.Total_Encoder = 0;
+   25   1          Motor_R.Total_Encoder = 0;
+   26   1      }
+   27          
+   28          //-------------------------------------------------------------------------------------------------------
+             -------------
+   29          // 函数简介     设置左电机速度
+   30          // 参数说明     dir         方向 1为正，0为负
+   31          // 参数说明     speed         速度(最高为9999)
+   32          // 返回参数     void
+   33          // 使用示例     MotorL_SetSpeedAndDir(1, 780);// 设置左电机正向，速度为780
+   34          // 备注信息
+   35          //-------------------------------------------------------------------------------------------------------
+             -------------
+   36          void MotorL_SetSpeedAndDir(int8 dir, int32 speed)
+   37          {
+   38   1          if(speed > 9999 || dir > 1)  //速度限幅
+   39   1          {
+   40   2              speed = 3000;
+   41   2              Motor_L.Target_Speed = speed;
+   42   2              return;
+   43   2          }
+   44   1          if( dir == 1 )  //判断正反转
+   45   1          {
+   46   2              
+   47   2              pwm_duty(MotorL_PWM, speed);//正转
+   48   2              Motor_L.Target_Speed = speed;
+   49   2          }
+   50   1          if(dir == 0)
+   51   1          {
+   52   2               pwm_duty(MotorL_PWM, 0);//停车
+   53   2          }
+C251 COMPILER V5.60.0,  Motor                                                              10/01/26  18:27:31  PAGE 2   
+
+   54   1      }
+   55          
+   56          //-------------------------------------------------------------------------------------------------------
+             -------------
+   57          // 函数简介     设置右电机速度
+   58          // 参数说明     dir         方向 1为正，0为负
+   59          // 参数说明     speed         速度
+   60          // 返回参数     void
+   61          // 使用示例     MotorR_SetSpeedAndDir(1, 780);// 设置右电机正向，速度为780
+   62          // 备注信息
+   63          //-------------------------------------------------------------------------------------------------------
+             -------------
+   64          void MotorR_SetSpeedAndDir(int8 dir, int32 speed)
+   65          {
+   66   1          if(speed > 9999 || dir > 1)  //速度限幅
+   67   1          {
+   68   2              speed = 3000;
+   69   2              Motor_R.Target_Speed = speed;
+   70   2              return;
+   71   2          }
+   72   1          if( dir == 1 )  //判断正反转
+   73   1          {
+   74   2              pwm_duty(MotorR_PWM, speed);    //正转
+   75   2          }
+   76   1          else
+   77   1          {
+   78   2              pwm_duty(MotorR_PWM, speed * -1);
+   79   2          }
+   80   1          Motor_R.Target_Speed = speed;
+   81   1      
+   82   1      }
+   83          
+   84          //-------------------------------------------------------------------------------------------------------
+             -------------
+   85          // 函数简介     失能电机
+   86          // 参数说明
+   87          // 返回参数     void
+   88          // 使用示例
+   89          // 备注信息
+   90          //-------------------------------------------------------------------------------------------------------
+             -------------
+   91          void Motor_Stop(void)
+   92          {
+   93   1          pwm_duty(MotorL_PWM, 0);
+   94   1          pwm_duty(MotorR_PWM, 0);
+   95   1      }
+   96          
+   97          //-------------------------------------------------------------------------------------------------------
+             -------------
+   98          // 函数简介     编码器初始化
+   99          // 参数说明
+  100          // 返回参数     void
+  101          // 使用示例
+  102          // 备注信息
+  103          //-------------------------------------------------------------------------------------------------------
+             -------------
+  104          void Encoder_Init(void)
+  105          {
+  106   1          //左编码器
+  107   1          ctimer_count_init(MotorL_Decode);
+  108   1          //右编码器
+  109   1          ctimer_count_init(MotorR_Decode);
+  110   1      }
+  111          
+  112          //-------------------------------------------------------------------------------------------------------
+             -------------
+C251 COMPILER V5.60.0,  Motor                                                              10/01/26  18:27:31  PAGE 3   
+
+  113          // 函数简介     更新编码器数值
+  114          // 参数说明
+  115          // 返回参数     void
+  116          // 使用示例
+  117          // 备注信息
+  118          //-------------------------------------------------------------------------------------------------------
+             -------------
+  119          void Encoder_Date_Get(void)
+  120          {
+  121   1          
+  122   1        if(MotorL_Dir == 1)
+  123   1          {
+  124   2          Motor_L.Encoder_Raw = ctimer_count_read(MotorL_Decode) * -1;
+  125   2          }
+  126   1          else
+  127   1          {
+  128   2          Motor_L.Encoder_Raw = ctimer_count_read(MotorL_Decode);
+  129   2          }
+  130   1          ctimer_count_clean(MotorL_Decode);
+  131   1          Motor_L.Encoder_Speed=Motor_L.Encoder_Raw*0.8 + Motor_L.Encoder_Speed*0.2;
+  132   1          Motor_L.Total_Encoder+=Motor_L.Encoder_Raw;
+  133   1      
+  134   1        if(MotorR_Dir == 1)
+  135   1          {
+  136   2          Motor_R.Encoder_Raw = ctimer_count_read(MotorR_Decode);
+  137   2          }
+  138   1          else
+  139   1          {
+  140   2          Motor_R.Encoder_Raw = ctimer_count_read(MotorR_Decode) * -1;
+  141   2          }
+  142   1          ctimer_count_clean(MotorR_Decode);
+  143   1          Motor_R.Encoder_Speed=Motor_R.Encoder_Raw*0.8 + Motor_R.Encoder_Speed*0.2;
+  144   1          Motor_R.Total_Encoder+=Motor_R.Encoder_Raw;
+  145   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       441     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =        28          1
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

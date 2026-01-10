@@ -1,0 +1,348 @@
+C251 COMPILER V5.60.0,  ADCinductance                                                      10/01/26  20:24:33  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE ADCinductance
+OBJECT MODULE PLACED IN .\Out_File\ADCinductance.obj
+COMPILER INVOKED BY: C:\mmddk5\C251\BIN\C251.EXE ..\CODE\ADCinductance.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\.
+                    -.\Libraries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER
+                    -\src) DEBUG PRINT(.\Out_File\ADCinductance.lst) TABS(2) OBJECT(.\Out_File\ADCinductance.obj) 
+
+stmt  level    source
+
+    1          /*
+    2           * ADCinductance.c
+    3           *
+    4           *  Created on: 2025年9月27日
+    5           *      Author: CYM
+    6           */
+    7          
+    8          
+    9          #include "headfile.h"
+   10          
+   11          #define AD_Val_max 4095
+   12          #define N 5
+   13          #define NUM 5
+   14          
+   15          ADC_inductance ADC;
+   16          extern Flag_t element_Flag;
+   17          float ADC_Value[NUM][5]={{0},{0},{0},{0},{0}} , ADCTemp , adc_Sum[NUM];
+   18          float ADC_Aver[NUM], ADC_last[NUM] = {0};
+   19          float RAW[NUM];                             /* ADC处理后的原始值 */
+   20          float MAX[NUM] = {100,100,100,100,100};     /* 最大值 */
+   21          float Err_last = 0.0;                       /* 差比和算法的偏差值 */
+   22          int16 Limit = 100;
+   23          float Middle_Adc;
+   24          
+   25          /*-------------------------------------------------------------------------------------------------------
+             -------------
+   26           * 函数简介     电磁初始化
+   27           * 参数说明
+   28           * 返回参数     void
+   29           * 使用示例
+   30           * 备注信息
+   31           *-------------------------------------------------------------------------------------------------------
+             -------------*/
+   32          void ADCinductance_init(void)
+   33          {
+   34   1          adc_init(ADC_P05, ADC_12BIT);
+   35   1          adc_init(ADC_P14, ADC_12BIT);
+   36   1          adc_init(ADC_P15, ADC_12BIT);
+   37   1          adc_init(ADC_P17, ADC_12BIT);
+   38   1      }
+   39          
+   40          /*-------------------------------------------------------------------------------------------------------
+             -------------
+   41           * 函数简介     读取电磁
+   42           * 参数说明
+   43           * 返回参数     void
+   44           * 使用示例
+   45           * 备注信息
+   46           *-------------------------------------------------------------------------------------------------------
+             -------------*/
+   47          void read_AD(void)
+   48          {
+   49   1          int i, j, k;
+   50   1          float ADC_Convert[4] = {0};
+   51   1          float ADC_Sum[4] = {0};
+   52   1      
+   53   1          /* ************* 4 个通道，各采 4 次 ************* */
+C251 COMPILER V5.60.0,  ADCinductance                                                      10/01/26  20:24:33  PAGE 2   
+
+   54   1          for(i = 0; i < 4; i++)
+   55   1          {
+   56   2              ADC_Value[0][i] = adc_once(ADC_P05, ADC_12BIT);
+   57   2              ADC_Value[1][i] = adc_once(ADC_P14, ADC_12BIT);
+   58   2              ADC_Value[2][i] = adc_once(ADC_P15, ADC_12BIT);
+   59   2              ADC_Value[3][i] = adc_once(ADC_P17, ADC_12BIT);
+   60   2          }
+   61   1      
+   62   1          /* ************* 4 通道分别排序（4 个数） ************* */
+   63   1          for(i = 0; i < 4; i++)
+   64   1          {
+   65   2              for(j = 0; j < 3; j++)
+   66   2              {
+   67   3                  for(k = 0; k < 3 - j; k++)
+   68   3                  {
+   69   4                      if(ADC_Value[i][k] > ADC_Value[i][k+1])
+   70   4                      {
+   71   5                          ADCTemp = ADC_Value[i][k];
+   72   5                          ADC_Value[i][k] = ADC_Value[i][k+1];
+   73   5                          ADC_Value[i][k+1] = ADCTemp;
+   74   5                      }
+   75   4                  }
+   76   3              }
+   77   2          }
+   78   1      
+   79   1          /* ************* 取排序后的中间两个值求平均 ************* */
+   80   1          for(i = 0; i < 4; i++)
+   81   1          {
+   82   2              adc_Sum[i] = ADC_Value[i][1] + ADC_Value[i][2];
+   83   2              ADC_Aver[i] = adc_Sum[i] / 2.0f;
+   84   2          }
+   85   1      
+   86   1          /* ************* 覆盖到最后一个元素（保持你的逻辑） ************* */
+   87   1          for(i = 0; i < 4; i++)
+   88   1          {
+   89   2              ADC_Value[i][3] = ADC_Aver[i];
+   90   2          }
+   91   1      
+   92   1          /* ************* 滑动覆盖 ************* */
+   93   1          for(i = 0; i < 3; i++)
+   94   1          {
+   95   2              for(j = 0; j < 4; j++)
+   96   2              {
+   97   3                  ADC_Value[j][i] = ADC_Value[j][i+1];
+   98   3              }
+   99   2          }
+  100   1      
+  101   1          /* ************* 再次求和 ************* */
+  102   1          for(i = 0; i < 3; i++)
+  103   1          {
+  104   2              for(j = 0; j < 4; j++)
+  105   2              {
+  106   3                  ADC_Sum[j] += ADC_Value[j][i];
+  107   3              }
+  108   2          }
+  109   1      
+  110   1          /* ************* 求平均 + 限幅 ************* */
+  111   1          for(i = 0; i < 4; i++)
+  112   1          {
+  113   2              ADC_Aver[i] = ADC_Sum[i] / 3.0f;
+  114   2              RAW[i] = ADC_Aver[i];
+  115   2      
+  116   2              if(ADC_Aver[i] > MAX[i])
+  117   2                  ADC_Aver[i] = MAX[i];
+  118   2      
+  119   2              ADC_Sum[i] = 0;
+C251 COMPILER V5.60.0,  ADCinductance                                                      10/01/26  20:24:33  PAGE 3   
+
+  120   2          }
+  121   1      
+  122   1          /* ************* 归一化处理 ************* */
+  123   1          for(i = 0; i < 4; i++)
+  124   1          {
+  125   2              ADC_Convert[i] = 100.0f * ADC_Aver[i] / MAX[i];
+  126   2          }
+  127   1      
+  128   1          ADC.ADC1 = ADC_Convert[0];
+  129   1          ADC.ADC2 = ADC_Convert[1];
+  130   1          ADC.ADC3 = ADC_Convert[2];
+  131   1          ADC.ADC4 = ADC_Convert[3];
+  132   1      
+  133   1          /* ************* 差比和（原来是通道 5 和通道 1，这里改成通道 4 和通道 1） ************* */
+  134   1          /* 防止除零：当两侧电感和太小时，认为误差为0 */
+  135   1          if ((ADC.ADC4 + ADC.ADC1) > 5.0f)
+  136   1          {
+  137   2              ADC.ADC_Err = Limit * (ADC.ADC4 - ADC.ADC1) / (ADC.ADC4 + ADC.ADC1);
+  138   2          }
+  139   1          else
+  140   1          {
+  141   2              ADC.ADC_Err = 0.0f;  /* 信号太弱，无法判断方向 */
+  142   2          }
+  143   1      }
+  144          
+  145          
+  146          /*-------------------------------------------------------------------------------------------------------
+             -------------
+  147           * 函数简介     检测是否进入圆环
+  148           * 参数说明     无
+  149           * 返回参数     uint8_t (1 = 检测到圆环, 0 = 否)
+  150           * 使用示例     if (isRingDetected()) { ... }
+  151           * 备注信息     基于电磁传感器特征判断圆环入口/出口，使用状态机和计数器防抖
+  152           *-------------------------------------------------------------------------------------------------------
+             -------------*/
+  153          
+  154          /* 圆环检测阈值（可根据实际调参） */
+  155          #define RING_SIDE_HIGH_TH       95.0f   /* 单侧传感器高阈值 */
+  156          #define RING_SIDE_LOW_TH        80.0f   /* 另一侧传感器低阈值 */
+  157          #define RING_MIDDLE_TH          60.0f   /* 中间传感器阈值 */
+  158          #define RING_CONFIRM_CNT        3       /* 连续检测次数确认 */
+  159          #define RING_EXIT_CONFIRM_CNT   5       /* 出环确认次数 */
+  160          
+  161          /* 圆环状态枚举 */
+  162          typedef enum {
+  163              RING_STATE_NONE = 0,    /* 未检测到圆环 */
+  164              RING_STATE_ENTER_L,     /* 检测到左侧入环特征 */
+  165              RING_STATE_ENTER_R,     /* 检测到右侧入环特征 */
+  166              RING_STATE_IN_RING,     /* 正在环内行驶 */
+  167              RING_STATE_EXIT         /* 检测到出环特征 */
+  168          } RingState_t;
+  169          
+  170          static RingState_t ring_state = RING_STATE_NONE;
+  171          static uint8 ring_enter_cnt = 0;    /* 入环检测计数器 */
+  172          static uint8 ring_exit_cnt = 0;     /* 出环检测计数器 */
+  173          
+  174          uint8 isRingDetected(void)
+  175          {
+  176   1          float middle_sum;
+  177   1          uint8 left_high, right_high;
+  178   1          uint8 left_low, right_low;
+  179   1          uint8 middle_valid;
+  180   1      
+  181   1          /* 计算中间传感器均值 */
+  182   1          middle_sum = (ADC.ADC2 + ADC.ADC3) / 2.0f;
+  183   1      
+C251 COMPILER V5.60.0,  ADCinductance                                                      10/01/26  20:24:33  PAGE 4   
+
+  184   1          /* 判断各传感器状态 */
+  185   1          left_high   = (ADC.ADC1 >= RING_SIDE_HIGH_TH) ? 1 : 0;
+  186   1          right_high  = (ADC.ADC4 >= RING_SIDE_HIGH_TH) ? 1 : 0;
+  187   1          left_low    = (ADC.ADC1 <= RING_SIDE_LOW_TH)  ? 1 : 0;
+  188   1          right_low   = (ADC.ADC4 <= RING_SIDE_LOW_TH)  ? 1 : 0;
+  189   1          middle_valid = (middle_sum >= RING_MIDDLE_TH) ? 1 : 0;
+  190   1      
+  191   1          /************ 状态机处理 ***********/
+  192   1          switch (ring_state)
+  193   1          {
+  194   2              case RING_STATE_NONE:
+  195   2                  /* 检测入环特征：一侧很强，另一侧较弱，中间有信号 */
+  196   2                  /* 右侧入环（右侧传感器先检测到强信号） */
+  197   2                  if (right_high && left_low && middle_valid)
+  198   2                  {
+  199   3                      ring_enter_cnt++;
+  200   3                      if (ring_enter_cnt >= RING_CONFIRM_CNT)
+  201   3                      {
+  202   4                          ring_state = RING_STATE_ENTER_R;
+  203   4                          element_Flag.in_island_flag = 1;
+  204   4                          element_Flag.in_island_cnt++;
+  205   4                          element_Flag.island_dir = 1;    /* 右环 */
+  206   4                          element_Flag.island_stage = 0;  /* 重置阶段 */
+  207   4                          ring_enter_cnt = 0;
+  208   4                      }
+  209   3                  }
+  210   2                  /* 左侧入环（左侧传感器先检测到强信号） */
+  211   2                  else if (left_high && right_low && middle_valid)
+  212   2                  {
+  213   3                      ring_enter_cnt++;
+  214   3                      if (ring_enter_cnt >= RING_CONFIRM_CNT)
+  215   3                      {
+  216   4                          ring_state = RING_STATE_ENTER_L;
+  217   4                          element_Flag.in_island_flag = 1;
+  218   4                          element_Flag.in_island_cnt++;
+  219   4                          element_Flag.island_dir = 0;    /* 左环 */
+  220   4                          element_Flag.island_stage = 0;  /* 重置阶段 */
+  221   4                          ring_enter_cnt = 0;
+  222   4                      }
+  223   3                  }
+  224   2                  else
+  225   2                  {
+  226   3                      /* 未检测到特征，计数器衰减 */
+  227   3                      if (ring_enter_cnt > 0)
+  228   3                      {
+  229   4                          ring_enter_cnt--;
+  230   4                      }
+  231   3                  }
+  232   2                  break;
+  233   2      
+  234   2              case RING_STATE_ENTER_R:
+  235   2              case RING_STATE_ENTER_L:
+  236   2                  /* 进入环内状态，等待入环动作完成 */
+  237   2                  if (element_Flag.in_island_flag == 0)
+  238   2                  {
+  239   3                      /* 入环动作完成，切换到环内状态 */
+  240   3                      ring_state = RING_STATE_IN_RING;
+  241   3                  }
+  242   2                  break;
+  243   2      
+  244   2              case RING_STATE_IN_RING:
+  245   2                  /* 检测出环特征：与入环相反的一侧出现强信号 */
+  246   2                  /* 左侧出环 */
+  247   2                  if (left_high && right_low && middle_valid)
+  248   2                  {
+  249   3                      ring_exit_cnt++;
+C251 COMPILER V5.60.0,  ADCinductance                                                      10/01/26  20:24:33  PAGE 5   
+
+  250   3                      if (ring_exit_cnt >= RING_EXIT_CONFIRM_CNT)
+  251   3                      {
+  252   4                          ring_state = RING_STATE_EXIT;
+  253   4                          element_Flag.out_island_flag = 1;
+  254   4                          element_Flag.out_island_cnt++;
+  255   4                          element_Flag.out_island_stage = 0;  /* 重置出环阶段 */
+  256   4                          ring_exit_cnt = 0;
+  257   4                      }
+  258   3                  }
+  259   2                  /* 右侧出环 */
+  260   2                  else if (right_high && left_low && middle_valid)
+  261   2                  {
+  262   3                      ring_exit_cnt++;
+  263   3                      if (ring_exit_cnt >= RING_EXIT_CONFIRM_CNT)
+  264   3                      {
+  265   4                          ring_state = RING_STATE_EXIT;
+  266   4                          element_Flag.out_island_flag = 1;
+  267   4                          element_Flag.out_island_cnt++;
+  268   4                          element_Flag.out_island_stage = 0;  /* 重置出环阶段 */
+  269   4                          ring_exit_cnt = 0;
+  270   4                      }
+  271   3                  }
+  272   2                  else
+  273   2                  {
+  274   3                      if (ring_exit_cnt > 0)
+  275   3                      {
+  276   4                          ring_exit_cnt--;
+  277   4                      }
+  278   3                  }
+  279   2                  break;
+  280   2      
+  281   2              case RING_STATE_EXIT:
+  282   2                  /* 出环动作完成后复位状态 */
+  283   2                  if (element_Flag.out_island_flag == 0)
+  284   2                  {
+  285   3                      ring_state = RING_STATE_NONE;
+  286   3                      ring_enter_cnt = 0;
+  287   3                      ring_exit_cnt = 0;
+  288   3                  }
+  289   2                  break;
+  290   2      
+  291   2              default:
+  292   2                  ring_state = RING_STATE_NONE;
+  293   2                  break;
+  294   2          }
+  295   1      
+  296   1          return (ring_state != RING_STATE_NONE) ? 1 : 0;
+  297   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =      1235     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =       242         32
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+C251 COMPILER V5.60.0,  ADCinductance                                                      10/01/26  20:24:33  PAGE 6   
+
+  hconst size          =       214     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

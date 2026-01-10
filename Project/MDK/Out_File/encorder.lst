@@ -1,0 +1,86 @@
+C251 COMPILER V5.60.0,  encorder                                                           04/01/25  12:11:17  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE encorder
+OBJECT MODULE PLACED IN .\Out_File\encorder.obj
+COMPILER INVOKED BY: D:\mdk5\C251\BIN\C251.EXE encorder.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libraries\lib
+                    -raries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) DEBUG PRI
+                    -NT(.\Out_File\encorder.lst) TABS(2) OBJECT(.\Out_File\encorder.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          #include "encoder.h"
+    3          int16 encoder_left = 0; 
+    4          int16 encoder_right = 0;
+    5          void main()
+    6          {
+    7   1        
+    8   1      sys_clk = 30000000; 
+    9   1      board_init();                                     //sys_clk可选值:33177600, 30000000, 27000000. 24000000, 22118400, 2000000
+             -0, 18432000, 12000000, 11059200, 6000000, 5529600。
+   10   1      ctimer_count_init(pulse_left);                        
+   11   1      ctimer_count_init(pulse_right);                 //设置系统频率，此频率需要跟STC-ISP软件中的 <输入用户程序运行时的
+             -IRC频率>选项的频率一致。
+   12   1      ips114_clear(WHITE);                        //如果频率设置不对，将会导致串口的数据不正常,PWM的工作不正常等等。
+   13   1                                                  //设置系统频率为30MHz
+   14   1                  
+   15   1                    //初始化寄存器
+   16   1        while(1)
+   17   1        {     
+   18   2            encoder_left = ctimer_count_read(pulse_left);
+   19   2                if(DIR_left == 1)
+   20   2                {
+   21   3                encoder_left = -encoder_left;
+   22   3                }
+   23   2                else
+   24   2                {
+   25   3                encoder_left = encoder_left;
+*** WARNING C138 IN LINE 25 OF encorder.c: expression with possibly no effect
+   26   3                }
+   27   2                ctimer_count_clean(pulse_left);
+   28   2              
+   29   2              encoder_right = ctimer_count_read(pulse_right);
+   30   2              if(DIR_right == 1)
+   31   2                {
+   32   3              encoder_right = -encoder_right;
+   33   3                }
+   34   2                else
+   35   2                {
+   36   3                encoder_right = encoder_right;
+*** WARNING C138 IN LINE 36 OF encorder.c: expression with possibly no effect
+   37   3                }
+   38   2                ctimer_count_clean(pulse_right);
+   39   2              ips114_showstr_simspi(0, 0, "encoder_left = ");   ips114_showint16(8*16, 0, encoder_left);
+   40   2              ips114_showstr_simspi(0, 1, "encoder_right = ");  ips114_showint16(8*16, 1, encoder_right);  
+   41   2              
+   42   2        } 
+   43   1      }
+*** WARNING C177 IN LINE 21 OF encorder.c: unreachable code
+*** WARNING C177 IN LINE 32 OF encorder.c: unreachable code
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       134     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+C251 COMPILER V5.60.0,  encorder                                                           04/01/25  12:11:17  PAGE 2   
+
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         4     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        45     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  4 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,163 @@
+C251 COMPILER V5.60.0,  inductance                                                         20/11/25  20:49:34  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE inductance
+OBJECT MODULE PLACED IN .\Out_File\inductance.obj
+COMPILER INVOKED BY: C:\mmddk5\C251\BIN\C251.EXE inductance.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libraries
+                    -\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) DEBUG
+                    - PRINT(.\Out_File\inductance.lst) TABS(2) OBJECT(.\Out_File\inductance.obj) 
+
+stmt  level    source
+
+    1          #include "headfile.h"
+    2          #include "inductance.h"
+    3          
+    4          uint16   L1,L2,R1,R2;
+    5          uint16   L1_num_nor,L2_num_nor,R1_num_nor,R2_num_nor;
+    6          uint16   L1_final,L2_final,R1_final,R2_final,R_final;
+    7          uint16  min_num = 0;  //归一化电感最大值,左一、左二、右一、右二
+    8          uint16  max_num=100;    //归一化电感最小值
+    9          float position,side_dif,side_sum;
+   10          float p = 142.0;   //根据不同电感值调整 
+   11          extern encoder_right;
+   12          /**
+   13            * @brief  电感采集初始化函数                 
+   14            * @param   无
+   15            * @param   无
+   16            * @retval  无         
+   17            */
+   18          void Adinductance_init() //ADC初始化
+   19          {
+   20   1         //adc_init(ADC_P04 , ADC_SYSclk_DIV_4);//左一电感
+   21   1         adc_init(ADC_P15 , ADC_SYSclk_DIV_4);//左二电感
+   22   1         adc_init(ADC_P16 , ADC_SYSclk_DIV_4);//右一电感
+   23   1         adc_init(ADC_P17 , ADC_SYSclk_DIV_4);//右二电感
+   24   1      //   adc_init(ADC_P14 , ADC_SYSclk_DIV_2);//左三电感
+   25   1      //   adc_init(ADC_P02 , ADC_SYSclk_DIV_2);//右三电感
+   26   1      //   adc_init(ADC_P06 , ADC_SYSclk_DIV_2);//中间电感
+   27   1      }
+   28          
+   29          /**@brief   ADC均值滤波
+   30           * @param   adcn     选择ADC通道
+   31           * @param   resolution 分辨率
+   32           * @param       count      均值滤波次数
+   33           * @return    uint16     转换的ADC值
+   34           */
+   35          uint16 ADC_average_filter (ADCN_enum adcn, ADCRES_enum resolution, uint8 count)
+   36          {
+   37   1        uint8 i;
+   38   1        int32 sum;
+   39   1        sum = 0;
+   40   1        for(i=0; i<count; i++)
+   41   1        {
+   42   2          sum += adc_once(adcn, resolution);  //累加
+   43   2        }
+   44   1        return sum/count;  //求平均
+   45   1      }
+   46          
+   47          /**
+   48            * @brief   取极值滤波函数               
+   49            * @param   读取到的电感数组
+   50            * @param   无
+   51            * @retval  返回去除极值后的平均值        
+   52            */
+   53           /*int16 ADC_Del_MaxMin_Average_Filter(int16 *ADC) //去掉最大值和最小值（传进来的是数组，存储的是电感值）
+   54          {
+   55              uint8 i; 
+   56              int16 max= 0,min= 0;  //定义极值以及和
+   57              uint16 sum = 0; 
+C251 COMPILER V5.60.0,  inductance                                                         20/11/25  20:49:34  PAGE 2   
+
+   58          
+   59              max = ADC[0]; //初始化最小值和最大值
+   60              min = ADC[0];
+   61          
+   62              for(i=0;i<sizeof(ADC);i++) // sizeof(ADC)是传进来的电感数组的长度
+   63              {
+   64                  if(max<ADC[i])  max = ADC[i];  //找出最大的电感
+   65                  if(min>ADC[i])  min = ADC[i];  //找出最小的电感
+   66                  sum += ADC[i];  //累加
+   67              }
+   68              
+   69              return (sum-max-min)/(sizeof(ADC)-2);       //将去极值的值传回原函数
+   70          } */
+   71          void ADC_Final_Read_Deal()
+   72          {
+   73   1        //L1 = ADC_average_filter(ADC_P04,ADC_11BIT,FILTER_N);
+   74   1        L2 = ADC_average_filter(ADC_P15,ADC_8BIT,FILTER_N);
+   75   1        R1 = ADC_average_filter(ADC_P16,ADC_8BIT,FILTER_N);
+   76   1        R2 = ADC_average_filter(ADC_P17,ADC_8BIT,FILTER_N);
+   77   1        normalize_date();
+   78   1        R1_final = ADC_Limit(R1_num_nor,ADC_MAX,ADC_MIN);
+   79   1        R2_final = ADC_Limit(R2_num_nor,ADC_MAX,ADC_MIN);
+   80   1        L1_final = ADC_Limit(L1_num_nor,ADC_MAX,ADC_MIN);
+   81   1        L2_final =3 * ADC_Limit(L2_num_nor,ADC_MAX,ADC_MIN);
+   82   1        R_final = (R1_final + R2_final) / 2;
+   83   1      }
+   84          void normalize_date() //归一化
+   85          {
+   86   1        //L1_num_nor = normalize(L1);
+   87   1        L2_num_nor = normalize(L2);
+   88   1        R1_num_nor = normalize(R1);
+   89   1        R2_num_nor = normalize(R2);
+   90   1      }
+   91          
+   92          
+   93          uint16 normalize(uint16 L_num)
+   94          {
+   95   1      L_num = 100 * (L_num - min_num)/ (max_num-min_num);
+   96   1        return L_num;
+   97   1      }
+   98          
+   99          void ADC_count()
+  100          {
+  101   1      side_dif = L2_final - R_final;
+  102   1      side_sum = L2_final + R_final;
+  103   1      position = p * (side_dif /side_sum);
+  104   1      }
+  105          void adc_show()
+  106          {
+  107   1      //ips114_showint16_simspi(0,0,L1);
+  108   1      ips114_showint16_simspi(0,1,L2_final);
+  109   1      ips114_showint16_simspi(0,2,R1_final);
+  110   1      ips114_showint16_simspi(0,3,R_final);
+  111   1      ips114_showfloat_simspi(0,4,position,2,3);
+  112   1      ips114_showint16_simspi(0,5,encoder_right);
+  113   1      ips114_showint16_simspi(0,6,(L2_final+R_final)/2);
+  114   1      }
+  115          
+  116          int16 ADC_Limit(int16 in_adc,int8 max,int8 min)
+  117          {
+  118   1        uint16 Adc_Input;
+  119   1        Adc_Input = in_adc;
+  120   1        if(Adc_Input >= max)       Adc_Input = max;
+  121   1        else if(Adc_Input <= min)  Adc_Input = min;
+  122   1        return Adc_Input;
+  123   1      }
+C251 COMPILER V5.60.0,  inductance                                                         20/11/25  20:49:34  PAGE 3   
+
+  124          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       467     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =        46          6
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        20     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
