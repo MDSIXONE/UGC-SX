@@ -1,4 +1,4 @@
----@class TalenTreeButtun_C:UUserWidget
+﻿---@class TalenTreeButtun_C:UUserWidget
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field Button_0 UButton
 --Edit Below--
@@ -22,13 +22,13 @@ function TalenTreeButtun:LuaInit()
 end
 
 function TalenTreeButtun:Button_0_OnClicked()
-    --ugcprint("[TalenTreeButtun] 天赋树按钮被点击")
+    -- Log this action.
     
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI then
         pc.MMainUI:ToggleTalentTree()
     else
-        --ugcprint("[TalenTreeButtun] 错误：无法获取 MMainUI")
+        -- Log this action.
     end
 end
 

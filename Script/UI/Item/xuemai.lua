@@ -1,4 +1,4 @@
----@class xuemai_C:UUserWidget
+﻿---@class xuemai_C:UUserWidget
 ---@field Image_0 UImage
 ---@field Image_1 UImage
 ---@field XUEMAIBUTTUN UButton
@@ -26,13 +26,13 @@ function xuemai:OnToggleClicked()
 	self.bBloodlineEnabled = not self.bBloodlineEnabled
 	self:UpdateImages()
 
-	-- 通过MMainUI显示提示
+	-- Related UI logic.
 	local pc = UGCGameSystem.GetLocalPlayerController()
 	if pc and pc.MMainUI and pc.MMainUI.ShowTip then
 		if self.bBloodlineEnabled then
-			pc.MMainUI:ShowTip("血脉已开启")
+			pc.MMainUI:ShowTip("琛€鑴夊凡寮€鍚?)
 		else
-			pc.MMainUI:ShowTip("血脉已关闭")
+			pc.MMainUI:ShowTip("琛€鑴夊凡鍏抽棴")
 		end
 	end
 

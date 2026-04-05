@@ -1,4 +1,4 @@
----@class taskblank_C:UUserWidget
+﻿---@class taskblank_C:UUserWidget
 ---@field Button_0 UButton
 ---@field Image_1 UImage
 --Edit Below--
@@ -24,17 +24,17 @@ function taskblank:LuaInit()
 end
 
 function taskblank:OnButtonClicked()
-    -- 隐藏自己
+    -- Related UI logic.
     self:SetVisibility(ESlateVisibility.Collapsed)
-    -- 打开TASK面板
+    -- Related UI logic.
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.TASK then
         pc.MMainUI.TASK:SetVisibility(ESlateVisibility.Visible)
-        -- 刷新任务列表
+        -- Related UI logic.
         if pc.MMainUI.TASK.RefreshTaskUI then
             pc.MMainUI.TASK:RefreshTaskUI()
         end
-        -- 隐藏主控制面板和技能面板
+        -- Related UI logic.
         local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
         if MainControlPanel then
             UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)

@@ -10,10 +10,11 @@ local TASK = { bInitDoOnce = false }
 
 local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 
--- 浠诲姟鐘舵€佹枃鏈?local TASK_STATUS_TEXT = {
-    [0] = "鏈畬鎴?,
-    [1] = "鍙鍙?,
-    [2] = "宸查鍙?
+-- Configuration table used by this widget.
+local TASK_STATUS_TEXT = {
+    [0] = "閺堫亜鐣幋?,
+    [1] = "閸欘垶顣崣?,
+    [2] = "瀹告煡顣崣?
 }
 
 function TASK:Construct()
@@ -23,7 +24,7 @@ function TASK:Construct()
     if self.Button_cancel then
         self.Button_cancel.OnClicked:Add(self.OnCancelClicked, self)
     end
-    -- 缁戝畾椤电鎸夐挳
+    -- Guard condition before running this branch.
     if self.Button_0 then
         self.Button_0.OnClicked:Add(function() self:SwitchPage(0) end, self)
     end
@@ -42,45 +43,46 @@ function TASK:LuaInit()
     self.bInitDoOnce = true
 end
 
--- 鍒囨崲椤电
+-- Switch page.
 function TASK:SwitchPage(pageIndex)
     if self.CurrentPage == pageIndex then return end
     self.CurrentPage = pageIndex
-    -- ugcprint("[TASK] 鍒囨崲鍒伴〉绛? " .. tostring(pageIndex))
+    -- Refresh UI to match current data state.
     self:RefreshTaskUI()
 end
 
---- 鍒锋柊浠诲姟UI锛氭牴鎹綋鍓嶉〉绛捐繃婊や换鍔★紝鍔ㄦ€佸垱寤篢askslot
+--- Refresh task ui.
 function TASK:RefreshTaskUI()
     if not self.WrapBox_0 then
-        -- ugcprint("[TASK] 閿欒锛歐rapBox_0 涓嶅瓨鍦?)
+        -- Exit early when requirements are not met.
         return
     end
     self.WrapBox_0:ClearChildren()
 
     local playerState = self:GetLocalPlayerState()
     if not playerState or not playerState.GetTaskStatus then
-        -- ugcprint("[TASK] 閿欒锛氭棤娉曡幏鍙朠layerState鎴朑etTaskStatus")
+        -- Exit early when requirements are not met.
         return
     end
 
     local SlotClass = UGCObjectUtility.LoadClass(UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/Taskslot.Taskslot_C'))
     if not SlotClass then
-        -- ugcprint("[TASK] 閿欒锛氭棤娉曞姞杞絋askslot绫?)
+        -- Exit early when requirements are not met.
         return
     end
 
     local PlayerController = UGCGameSystem.GetLocalPlayerController()
     if not PlayerController then return end
 
-    -- 閬嶅巻鎵€鏈変换鍔￠厤缃紝鎸塸age杩囨护
+    -- Local helper value for this logic block.
     local allTasks = UGCGameData.GetAllTaskConfig()
     if not allTasks then
-        -- ugcprint("[TASK] 閿欒锛氭棤娉曡幏鍙栦换鍔￠厤缃〃")
+        -- Exit early when requirements are not met.
         return
     end
 
-    -- 鏀堕泦褰撳墠椤电鐨勪换鍔″苟鎸夎鍚嶆帓搴?    local pageTasks = {}
+    -- Configuration table used by this widget.
+    local pageTasks = {}
     for rowName, taskConfig in pairs(allTasks) do
         local taskPage = taskConfig.page or 0
         if taskPage == self.CurrentPage then
@@ -100,12 +102,12 @@ function TASK:RefreshTaskUI()
             self.WrapBox_0:AddChild(slot)
 
             if slot.TextBlock_taskdetail then
-                local desc = taskConfig.taskdetail or taskConfig.taskname or ("浠诲姟" .. tostring(i))
+                local desc = taskConfig.taskdetail or taskConfig.taskname or ("娴犺濮? .. tostring(i))
                 slot.TextBlock_taskdetail:SetText(tostring(desc))
             end
 
             if slot.TextBlock_buttun then
-                slot.TextBlock_buttun:SetText(TASK_STATUS_TEXT[taskStatus] or "鏈煡")
+                slot.TextBlock_buttun:SetText(TASK_STATUS_TEXT[taskStatus] or "閺堫亞鐓?)
             end
 
             if slot.Button_0 then
@@ -117,14 +119,15 @@ function TASK:RefreshTaskUI()
             end
 
             count = count + 1
-            -- ugcprint("[TASK] 鍒涘缓浠诲姟妲戒綅 " .. i .. ", 椤电: " .. tostring(self.CurrentPage) .. ", 鐘舵€? " .. tostring(taskStatus))
+            -- Keep this section consistent with the original UI flow.
         end
     end
-    -- ugcprint("[TASK] 椤电 " .. tostring(self.CurrentPage) .. " 鍏?" .. count .. " 涓换鍔?)
+    -- Keep this section consistent with the original UI flow.
 end
 
---- 浠诲姟妲戒綅鎸夐挳鐐瑰嚮锛氶鍙栧鍔?function TASK:OnTaskSlotClicked(taskRowIndex)
-    -- ugcprint("[TASK] 鐐瑰嚮棰嗗彇浠诲姟 " .. tostring(taskRowIndex))
+-- Handle task slot button click.
+function TASK:OnTaskSlotClicked(taskRowIndex)
+    -- Local helper value for this logic block.
     local playerState = self:GetLocalPlayerState()
     if not playerState then return end
 

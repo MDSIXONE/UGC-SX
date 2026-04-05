@@ -1,4 +1,4 @@
----@class chuansong_C:UUserWidget
+﻿---@class chuansong_C:UUserWidget
 ---@field CanvasPanel_0 UCanvasPanel
 ---@field fuben1 UButton
 ---@field fuben1_Text UTextBlock
@@ -18,7 +18,7 @@
 --Edit Below--
 local chuansong = { bInitDoOnce = false, bFullScreenActive = false }
 
--- 隐藏所有控件
+-- Related UI logic.
 function chuansong:HideAllButtons()
 	if self.fuben1 then self.fuben1:SetVisibility(ESlateVisibility.Collapsed) end
 	if self.fuben1_Text then self.fuben1_Text:SetVisibility(ESlateVisibility.Collapsed) end
@@ -38,7 +38,7 @@ function chuansong:HideAllButtons()
 	if self.CanvasPanel_0 then self.CanvasPanel_0:SetVisibility(ESlateVisibility.Collapsed) end
 end
 
--- 显示所有控件
+-- Related UI logic.
 function chuansong:ShowAllButtons()
 	if self.fuben1 then self.fuben1:SetVisibility(ESlateVisibility.Visible) end
 	if self.fuben1_Text then self.fuben1_Text:SetVisibility(ESlateVisibility.Visible) end
@@ -59,7 +59,7 @@ function chuansong:ShowAllButtons()
     self:EnterFullScreen()
 end
 
--- 进入全屏：隐藏主控UI、射击UI与技能面板
+-- Related UI logic.
 function chuansong:EnterFullScreen()
     if self.bFullScreenActive then
         return
@@ -78,7 +78,7 @@ function chuansong:EnterFullScreen()
     end
 end
 
--- 退出全屏：恢复主控UI、射击UI与技能面板
+-- Related UI logic.
 function chuansong:ExitFullScreen()
     if not self.bFullScreenActive then
         return
@@ -99,7 +99,7 @@ end
 
 function chuansong:Construct()
 	self:LuaInit();
-	-- 初始化时隐藏所有按钮
+	-- Related UI logic.
 	self:HideAllButtons()
 end
 
@@ -126,56 +126,56 @@ function chuansong:LuaInit()
 	self.fuben4.OnClicked:Add(self.fuben4_OnClicked, self);
 	self.fuben5.OnClicked:Add(self.fuben5_OnClicked, self);
 	self.fuben6.OnClicked:Add(self.fuben6_OnClicked, self);
-	-- 绑定取消按钮事件
+	-- Related UI logic.
 	if self.fuben_cansel then
 		self.fuben_cansel.Button_Levels2_3.OnClicked:Add(self.fuben_cancel_OnClicked, self);
 	end
 	-- [Editor Generated Lua] BindingEvent End;
 end
 
--- 通用传送函数 - 通过 RPC 发送到服务器执行
--- @param x 目标位置 X 坐标
--- @param y 目标位置 Y 坐标
--- @param z 目标位置 Z 坐标
--- @param yaw 目标朝向角度（可选，不传则不改变朝向）
+-- Related UI logic.
+-- Related UI logic.
+-- Related UI logic.
+-- Related UI logic.
+-- Related UI logic.
 function chuansong:TeleportToLocation(x, y, z, yaw)
-    --ugcprint("chuansong: TeleportToLocation 开始")
-    --ugcprint("chuansong: 目标位置 X=" .. x .. " Y=" .. y .. " Z=" .. z .. " Yaw=" .. tostring(yaw or "无"))
+    -- Log this action.
+    -- Log this action.
     
     local ok, err = pcall(function()
-        -- 获取本地玩家控制器
+        -- Related UI logic.
         local PlayerController = UGCGameSystem.GetLocalPlayerController()
         if not PlayerController then
-            --ugcprint("chuansong: 错误 - 无法获取 PlayerController")
+            -- Log this action.
             return
         end
         
-        -- 通过 RPC 调用服务器传送
-        --ugcprint("chuansong: 调用 Server_TeleportPlayer RPC")
+        -- Related UI logic.
+        -- Log this action.
         if yaw then
             UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_TeleportPlayer", x, y, z, yaw)
         else
             UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_TeleportPlayer", x, y, z)
         end
-        --ugcprint("chuansong: 已发送传送请求到服务器")
+        -- Log this action.
     end)
     
     if not ok then
-        --ugcprint("chuansong: 发送传送请求失败: " .. tostring(err))
+        -- Log this action.
     end
     
-    -- 传送后隐藏传送界面
+    -- Related UI logic.
     self:HideAllButtons()
     self:ExitFullScreen()
     
-    -- 显示传送按钮
+    -- Related UI logic.
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.chuansongbuttun then
         pc.MMainUI.chuansongbuttun:SetVisibility(ESlateVisibility.Visible)
     end
 end
 
--- 显示提示信息
+-- Related UI logic.
 function chuansong:ShowTip(text)
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.ShowTip then
@@ -183,7 +183,7 @@ function chuansong:ShowTip(text)
     end
 end
 
--- 获取玩家转生次数
+-- Related UI logic.
 function chuansong:GetPlayerRebirthCount()
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc then
@@ -195,7 +195,7 @@ function chuansong:GetPlayerRebirthCount()
     return 0
 end
 
--- 获取玩家等级
+-- Related UI logic.
 function chuansong:GetPlayerLevel()
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc then
@@ -207,16 +207,16 @@ function chuansong:GetPlayerLevel()
     return 1
 end
 
--- 检查传送条件（转生+等级）
+-- Related UI logic.
 function chuansong:CheckRequirement(requiredRebirth, requiredLevel)
     local rebirthCount = self:GetPlayerRebirthCount()
     if rebirthCount < requiredRebirth then
-        self:ShowTip("转生次数不足，需要转生" .. requiredRebirth .. "次")
+        self:ShowTip("杞敓娆℃暟涓嶈冻锛岄渶瑕佽浆鐢? .. requiredRebirth .. "娆?)
         return false
     end
     local level = self:GetPlayerLevel()
     if level < requiredLevel then
-        self:ShowTip("等级不足，需要" .. requiredLevel .. "级")
+        self:ShowTip("绛夌骇涓嶈冻锛岄渶瑕? .. requiredLevel .. "绾?)
         return false
     end
     return true
@@ -252,20 +252,20 @@ function chuansong:fuben6_OnClicked()
     -- self:TeleportToLocation(18670.0, 24520.0, 200.0)
 end
 
--- 添加取消按钮点击事件处理
+-- Related UI logic.
 function chuansong:fuben_cancel_OnClicked()
-	--ugcprint("chuansong: 取消按钮被点击")
-	-- 隐藏所有按钮
+	-- Log this action.
+	-- Related UI logic.
 	self:HideAllButtons()
     self:ExitFullScreen()
 	
-	-- 通过 PlayerController 获取 MMainUI（因为这些是兄弟组件，不是父子关系）
+	-- Related UI logic.
 	local pc = UGCGameSystem.GetLocalPlayerController()
 	if pc and pc.MMainUI and pc.MMainUI.chuansongbuttun then
-		--ugcprint("chuansong: 找到 MMainUI，显示传送按钮")
+		-- Log this action.
 		pc.MMainUI.chuansongbuttun:SetVisibility(ESlateVisibility.Visible)
 	else
-		--ugcprint("chuansong: 错误 - 无法找到 MMainUI")
+		-- Log this action.
 	end
 end
 

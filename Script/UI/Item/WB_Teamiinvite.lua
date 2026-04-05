@@ -91,38 +91,38 @@ function WB_Teamiinvite:SetInviteData(playerKey, isJoinRequest)
 end
 
 function WB_Teamiinvite:Construct()
-	-- ugcprint("[WB_Teamiinvite] Construct 琚皟鐢?)
+	-- Log this action.
 
 	if self.sure then
 		self.sure.OnClicked:Add(self.OnSureClicked, self)
-		-- ugcprint("[WB_Teamiinvite] sure 鎸夐挳缁戝畾鎴愬姛")
+		-- Log this action.
 	end
 
 	if self.reject then
 		self.reject.OnClicked:Add(self.OnRejectClicked, self)
-		-- ugcprint("[WB_Teamiinvite] reject 鎸夐挳缁戝畾鎴愬姛")
+		-- Log this action.
 	end
 
 	if self.cancel then
 		self.cancel.OnClicked:Add(self.OnCancelClicked, self)
-		-- ugcprint("[WB_Teamiinvite] cancel 鎸夐挳缁戝畾鎴愬姛")
+		-- Log this action.
 	end
 
 	self:InitInviteAvatar()
 	self:UpdateInviteDetailText()
 end
 
--- 鐐瑰嚮 sure锛氬悓鎰?
+-- Related UI logic.
 function WB_Teamiinvite:OnSureClicked()
-	-- ugcprint("[WB_Teamiinvite] sure 琚偣鍑? InviterPlayerKey=" .. tostring(self.InviterPlayerKey) .. ", IsJoinRequest=" .. tostring(self.IsJoinRequest))
+	-- Log this action.
 
 	local PC = UGCGameSystem.GetLocalPlayerController()
 	if PC and self.InviterPlayerKey then
 		if self.IsJoinRequest then
-			-- 闃熼暱鍚屾剰鐢宠鍏ラ槦
+			-- Related UI logic.
 			UnrealNetwork.CallUnrealRPC(PC, PC, "Server_AcceptJoinRequest", self.InviterPlayerKey)
 		else
-			-- 琚個璇疯€呭悓鎰忛個璇?
+			-- Related UI logic.
 			UnrealNetwork.CallUnrealRPC(PC, PC, "Server_RespondTeamInvite", self.InviterPlayerKey, true)
 			if PC.MMainUI and PC.MMainUI.ShowTip then
 				PC.MMainUI:ShowTip("宸插姞鍏ラ槦浼?)
@@ -133,19 +133,19 @@ function WB_Teamiinvite:OnSureClicked()
 	self:RemoveFromParent()
 end
 
--- 鐐瑰嚮 reject锛氭嫆缁?
+-- Related UI logic.
 function WB_Teamiinvite:OnRejectClicked()
-	-- ugcprint("[WB_Teamiinvite] reject 琚偣鍑? InviterPlayerKey=" .. tostring(self.InviterPlayerKey) .. ", IsJoinRequest=" .. tostring(self.IsJoinRequest))
+	-- Log this action.
 
 	local PC = UGCGameSystem.GetLocalPlayerController()
 	if PC and self.InviterPlayerKey then
 		if self.IsJoinRequest then
-			-- 闃熼暱鎷掔粷鐢宠鍏ラ槦锛屼笉闇€瑕侀澶栧鐞?
+			-- Related UI logic.
 			if PC.MMainUI and PC.MMainUI.ShowTip then
 				PC.MMainUI:ShowTip("宸叉嫆缁?)
 			end
 		else
-			-- 琚個璇疯€呮嫆缁濋個璇?
+			-- Related UI logic.
 			UnrealNetwork.CallUnrealRPC(PC, PC, "Server_RespondTeamInvite", self.InviterPlayerKey, false)
 			if PC.MMainUI and PC.MMainUI.ShowTip then
 				PC.MMainUI:ShowTip("宸叉嫆缁?)
@@ -156,9 +156,9 @@ function WB_Teamiinvite:OnRejectClicked()
 	self:RemoveFromParent()
 end
 
--- 鐐瑰嚮 cancel锛氬叧闂璘I锛堜笉鍥炲锛?
+-- Related UI logic.
 function WB_Teamiinvite:OnCancelClicked()
-	-- ugcprint("[WB_Teamiinvite] cancel 琚偣鍑伙紝鍏抽棴UI")
+	-- Log this action.
 	self:RemoveFromParent()
 end
 

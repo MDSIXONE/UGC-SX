@@ -15,70 +15,70 @@
 --Edit Below--
 local jiange = { bInitDoOnce = false }
 
--- 7绾у崌绾ц矾绾块厤缃?
+-- Configuration table used by this widget.
 local SWORD_LEVELS = {
     {
-        name = "鍟告湀瀵掗攱",
+        name = "閸熷憡婀€鐎垫帡鏀?,
         skill = "bailangjian",
         icon = "bailangjian",
         atkPercent = 100,
         upgradeCost = 1,
-        detail = "浣╂埓鍚庡鍔犳渶澶ф敾鍑诲姏100%",
-        skillDesc = "鐙肩兢鍟告湀锛屽墤鍏夊鏈堜笅瀵掗湝锛岄攱鍒╅毦鎸°€傛瘡绉掑悜鍓嶆柟鍙戝皠涓€鏋氶鍓戯紝浼ゅ涓烘敾鍑诲姏鐨?00%",
+        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插100%",
+        skillDesc = "閻欒偐鍏㈤崯鍛婃箑閿涘苯澧ら崗澶婎洤閺堝牅绗呯€垫帡婀濋敍宀勬敱閸掆晠姣﹂幐掳鈧倹鐦＄粔鎺戞倻閸撳秵鏌熼崣鎴濈殸娑撯偓閺嬫岸顥ｉ崜鎴礉娴笺倕顔婃稉鐑樻暰閸戣濮忛惃?00%",
     },
     {
-        name = "骞藉啣姣掑墤",
+        name = "楠炶棄鍟ｅВ鎺戝ⅳ",
         skill = "kuishejian",
         icon = "kuishejian",
         atkPercent = 200,
         upgradeCost = 2,
-        detail = "浣╂埓鍚庡鍔犳渶澶ф敾鍑诲姏200%",
-        skillDesc = "姣掕泧濡傚菇鍐ユ潃鎵嬶紝鍓戝垉鑷甫鍓ф瘨銆傛瘡绉掑悜鍓嶆柟鍙戝皠涓€鏋氶鍓戯紝浼ゅ涓烘敾鍑诲姏鐨?00%",
+        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插200%",
+        skillDesc = "濮ｆ帟娉ф俊鍌氳弴閸愩儲娼冮幍瀣剁礉閸撴垵鍨夐懛顏勭敨閸撗勭槰閵嗗倹鐦＄粔鎺戞倻閸撳秵鏌熼崣鎴濈殸娑撯偓閺嬫岸顥ｉ崜鎴礉娴笺倕顔婃稉鐑樻暰閸戣濮忛惃?00%",
     },
     {
-        name = "鐧借檸闇滈瓌鍓?,
+        name = "閻у€熸闂囨粓鐡岄崜?,
         skill = "baihujian",
         icon = "baihujian",
         atkPercent = 200,
         upgradeCost = 3,
-        detail = "浣╂埓鍚庡鍔犳渶澶ф敾鍑诲姏200%",
-        skillDesc = "鐧借檸鍑濈巹鍐颁箣鍔涳紝涓绘潃浼愶紝钑村惈鏃犲敖瀵掑啲涔嬫皵銆傛瘡绉掑悜鍓嶆柟鍙戝皠涓€鏋氶鍓戯紝浼ゅ涓烘敾鍑诲姏鐨?00%",
+        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插200%",
+        skillDesc = "閻у€熸閸戞繄宸归崘棰佺閸旀冻绱濇稉缁樻絻娴兼劧绱濋拺鏉戞儓閺冪姴鏁栫€垫帒鍟叉稊瀣毜閵嗗倹鐦＄粔鎺戞倻閸撳秵鏌熼崣鎴濈殸娑撯偓閺嬫岸顥ｉ崜鎴礉娴笺倕顔婃稉鐑樻暰閸戣濮忛惃?00%",
     },
     {
-        name = "鐧芥辰鐮撮偑鍓?,
+        name = "閻ц姤杈伴惍鎾亼閸?,
         skill = "bifangjian",
         icon = "baizejian",
         atkPercent = 300,
         upgradeCost = 4,
-        detail = "浣╂埓鍚庡鍔犳渶澶ф敾鍑诲姏300%",
-        skillDesc = "鐧芥辰鐭ユ檽涓囩墿锛屽彲鐮撮櫎涓€鍒囧够璞″拰閭銆傛瘡绉掑悜鍓嶆柟鍙戝皠涓€鏋氶鍓戯紝浼ゅ涓烘敾鍑诲姏鐨?00%",
+        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插300%",
+        skillDesc = "閻ц姤杈伴惌銉︽娑撳洨澧块敍灞藉讲閻挳娅庢稉鈧崚鍥у鐠炩€虫嫲闁亞顨ら妴鍌涚槨缁夋帒鎮滈崜宥嗘煙閸欐垵鐨犳稉鈧弸姘额棧閸撴埊绱濇导銈咁唺娑撶儤鏁鹃崙璇插閻?00%",
     },
     {
-        name = "楹掗簾闀囧ぉ鍓?,
+        name = "妤规帡绨鹃梹鍥с亯閸?,
         skill = "qilingjian",
         icon = "qilingjian",
         atkPercent = 400,
         upgradeCost = 5,
-        detail = "浣╂埓鍚庡鍔犳渶澶ф敾鍑诲姏400%",
-        skillDesc = "楹掗簾涓虹憺鍏戒箣棣栵紝钑村惈娴戝帤澶у湴涔嬪姏銆傛瘡绉掑悜鍓嶆柟鍙戝皠涓€鏋氶鍓戯紝浼ゅ涓烘敾鍑诲姏鐨?00%",
+        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插400%",
+        skillDesc = "妤规帡绨炬稉铏规喓閸忔垝绠ｆ＃鏍电礉閽戞潙鎯堝ù鎴濆袱婢堆冩勾娑斿濮忛妴鍌涚槨缁夋帒鎮滈崜宥嗘煙閸欐垵鐨犳稉鈧弸姘额棧閸撴埊绱濇导銈咁唺娑撶儤鏁鹃崙璇插閻?00%",
     },
     {
-        name = "鍑ゅ嚢娑呮鍓?,
+        name = "閸戙倕鍤㈠☉鍛潏閸?,
         skill = "zhuquejian",
         icon = "fenhuanjian",
         atkPercent = 500,
         upgradeCost = 10,
-        detail = "浣╂埓鍚庡鍔犳渶澶ф敾鍑诲姏500%",
-        skillDesc = "鍑ゅ嚢鎺屾帶娑呮涔嬬伀锛屾繏姝绘椂娴寸伀閲嶇敓銆傛瘡绉掑悜鍓嶆柟鍙戝皠涓€鏋氶鍓戯紝浼ゅ涓烘敾鍑诲姏鐨?00%",
+        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插500%",
+        skillDesc = "閸戙倕鍤㈤幒灞惧付濞戝懏顫堟稊瀣紑閿涘本绻忓缁樻濞村浼€闁插秶鏁撻妴鍌涚槨缁夋帒鎮滈崜宥嗘煙閸欐垵鐨犳稉鈧弸姘额棧閸撴埊绱濇导銈咁唺娑撶儤鏁鹃崙璇插閻?00%",
     },
     {
-        name = "绁為緳鑻嶇┕鍓?,
+        name = "缁佺偤绶抽懟宥団敃閸?,
         skill = "shenlongjian",
         icon = "shenlongjian",
         atkPercent = 1000,
         upgradeCost = 0,
-        detail = "浣╂埓鍚庡鍔犳渶澶ф敾鍑诲姏1000%",
-        skillDesc = "铻嶅悎杩滃彜绁為緳榄傞瓌涓庢硶鍒欙紝鎷ユ湁姣佺伃澶╁湴涔嬪姏銆傛瘡绉掑悜鍓嶆柟鍙戝皠涓€鏋氶鍓戯紝浼ゅ涓烘敾鍑诲姏鐨?000%",
+        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插1000%",
+        skillDesc = "閾诲秴鎮庢潻婊冨綔缁佺偤绶虫鍌炵搶娑撳孩纭堕崚娆欑礉閹枫儲婀佸В浣轰純婢垛晛婀存稊瀣閵嗗倹鐦＄粔鎺戞倻閸撳秵鏌熼崣鎴濈殸娑撯偓閺嬫岸顥ｉ崜鎴礉娴笺倕顔婃稉鐑樻暰閸戣濮忛惃?000%",
     },
 }
 local MAX_LEVEL = #SWORD_LEVELS
@@ -86,19 +86,19 @@ local MAX_LEVEL = #SWORD_LEVELS
 function jiange:Construct()
     self:LuaInit()
     self.CurrentLevel = 1
-    self.UpgradeProgress = 0  -- 褰撳墠鍗囩骇杩涘害锛?~100
+    self.UpgradeProgress = 0 -- 
     self.IsWearing = false
     self.ForgeConsumePending = false
 
-    -- 浠嶱C璇诲彇瀛樻。鏁版嵁
+    -- Acquire local player references.
     local PC = UGCGameSystem.GetLocalPlayerController()
     if PC and PC.SavedJiangeLevel then
         self.CurrentLevel = PC.SavedJiangeLevel or 1
         self.UpgradeProgress = PC.SavedJiangeProgress or 0
-        -- ugcprint("[jiange] 璇诲彇瀛樻。: level=" .. tostring(self.CurrentLevel) .. ", progress=" .. tostring(self.UpgradeProgress))
+        -- Keep this section consistent with the original UI flow.
     end
 
-    if self.weartip then self.weartip:SetText("绌挎埓") end
+    if self.weartip then self.weartip:SetText("缁屾寧鍩?) end
     self:UpdateSwordDisplay()
     self:UpdateProgressBar()
     self:UpdateCostDisplay()
@@ -154,7 +154,7 @@ function jiange:GetIconPath(level)
     return UGCGameSystem.GetUGCResourcesFullPath('PNG/shenjian/' .. cfg.icon .. '.' .. cfg.icon)
 end
 
--- 鏇存柊绁炲墤鍥剧墖銆佸悕瀛椼€佸睘鎬с€佹妧鑳芥樉绀?
+-- Update sword display.
 function jiange:UpdateSwordDisplay()
     local cfg = SWORD_LEVELS[self.CurrentLevel]
     if not cfg then return end
@@ -186,7 +186,7 @@ function jiange:UpdateProgressBar()
     end
 end
 
--- 鑾峰彇鏈湴鐜╁閿婚€犵煶鏁伴噺锛堣櫄鎷熺墿鍝両D=5666锛?
+-- Get forge stone count.
 function jiange:GetForgeStoneCount()
     local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
     if not VIM then
@@ -204,15 +204,15 @@ function jiange:GetForgeStoneCount()
     return tonumber(count) or 0
 end
 
--- 鏇存柊閿婚€犵煶鏁伴噺鏄剧ず
+-- Update cost display.
 function jiange:UpdateCostDisplay()
-    -- 褰撳墠鎷ユ湁鐨勯敾閫犵煶鏁伴噺
+    -- Guard condition before running this branch.
     if self.TextBlock_current then
         local count = self:GetForgeStoneCount()
         self.TextBlock_current:SetText(tostring(count))
     end
 
-    -- 鍗囩骇闇€瑕佺殑鏁伴噺锛堟瘡娆″浐瀹氭秷鑰?涓級
+    -- Guard condition before running this branch.
     if self.TextBlock_need then
         if self.CurrentLevel < MAX_LEVEL then
             self.TextBlock_need:SetText("1")
@@ -238,13 +238,13 @@ function jiange:SetForgeConsumePending(pending)
 end
 
 function jiange:ApplyForgeProgress()
-    -- 闅忔満澧炲姞0.1%~1%杩涘害锛堢敤鏁存暟杩愮畻閬垮厤娴偣璇樊锛屽崟浣?.1%锛?
-    local addTenths = math.random(1, 10)  -- 1~10 浠ｈ〃 0.1%~1.0%
+    -- Local helper value for this logic block.
+    local addTenths = math.random(1, 10) -- Generate random value.
     self.UpgradeProgress = self.UpgradeProgress + addTenths / 10
 
-    local tipText = string.format("閿婚€犺繘搴?+%.1f%%", addTenths / 10)
+    local tipText = string.format("闁垮鈧姾绻樻惔?+%.1f%%", addTenths / 10)
 
-    -- 妫€鏌ユ槸鍚︽弧100%
+    -- Guard condition before running this branch.
     if self.UpgradeProgress >= 100 then
         self.UpgradeProgress = 0
 
@@ -258,7 +258,7 @@ function jiange:ApplyForgeProgress()
             self:ApplyAtkBonus(true)
         end
 
-        tipText = "鍗囩骇鎴愬姛"
+        tipText = "閸楀洨楠囬幋鎰"
     end
 
     self:UpdateProgressBar()
@@ -277,7 +277,7 @@ function jiange:OnForgeConsumeResult(success, remainCount, tipText)
         if tipText and tipText ~= "" then
             self:ShowTipViaMain(tipText)
         else
-            self:ShowTipViaMain("閿婚€犵煶娑堣€楀け璐ワ紝璇风◢鍚庨噸璇?)
+            self:ShowTipViaMain("闁垮鈧姷鐓跺☉鍫ｂ偓妤€銇戠拹銉礉鐠囬鈼㈤崥搴ㄥ櫢鐠?)
         end
         self:RefreshCostDisplayDelayed(0.2)
         return
@@ -295,7 +295,7 @@ function jiange:ApplySkill(isWear)
     UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_SetJiangeSkill", skillPath, isWear)
 end
 
--- 閫氳繃RPC璁剧疆绁炲墤鏀诲嚮鍔涘姞鎴愮櫨鍒嗘瘮
+-- Apply atk bonus.
 function jiange:ApplyAtkBonus(isWear)
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if not PlayerState then return end
@@ -313,46 +313,46 @@ function jiange:OnWearClicked()
         self:ApplySkill(false)
         self:ApplyAtkBonus(false)
         self.IsWearing = false
-        if self.weartip then self.weartip:SetText("绌挎埓") end
-        self:ShowTipViaMain("宸插嵏涓?)
+        if self.weartip then self.weartip:SetText("缁屾寧鍩?) end
+        self:ShowTipViaMain("瀹告彃宓忔稉?)
     else
         self:ApplySkill(true)
         self:ApplyAtkBonus(true)
         self.IsWearing = true
-        if self.weartip then self.weartip:SetText("鍗镐笅") end
-        self:ShowTipViaMain("宸茬┛鎴?)
+        if self.weartip then self.weartip:SetText("閸楅晲绗?) end
+        self:ShowTipViaMain("瀹歌尙鈹涢幋?)
     end
 end
 
 function jiange:OnLevelUpClicked()
     if self.CurrentLevel >= MAX_LEVEL then return end
     if self.ForgeConsumePending then
-        self:ShowTipViaMain("姝ｅ湪閿婚€犱腑锛岃绋嶅€?)
+        self:ShowTipViaMain("濮濓絽婀柨濠氣偓鐘辫厬閿涘矁顕粙宥呪偓?)
         return
     end
 
-    -- 姣忔娑堣€?涓敾閫犵煶
+    -- Local helper value for this logic block.
     local cost = 1
 
-    -- 妫€鏌ラ敾閫犵煶鏄惁瓒冲
+    -- Local helper value for this logic block.
     local count = self:GetForgeStoneCount()
-    -- ugcprint("[jiange] 閿婚€犵煶鏁伴噺: " .. tostring(count) .. ", 闇€瑕? " .. tostring(cost))
+    -- Guard condition before running this branch.
     if count < cost then
-        self:ShowTipViaMain("閿婚€犵煶涓嶈冻")
+        self:ShowTipViaMain("闁垮鈧姷鐓舵稉宥堝喕")
         return
     end
 
-    -- 閫氳繃RPC鍦ㄦ湇鍔＄娑堣€楅敾閫犵煶
+    -- Local helper value for this logic block.
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if not PlayerState then
-        self:ShowTipViaMain("鏃犳硶杩炴帴鏈嶅姟绔?)
+        self:ShowTipViaMain("閺冪姵纭舵潻鐐村复閺堝秴濮熺粩?)
         return
     end
 
     self:SetForgeConsumePending(true)
     UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_RemoveVirtualItem", 5666, cost)
 
-    -- 闃叉鍋跺彂鍥炶皟涓㈠け瀵艰嚧鎸夐挳閿佹锛屽仛涓€娆″厹搴曡В閿佷笌鍒锋柊
+    -- Delay execution until dependent data is ready.
     UGCGameSystem.SetTimer(self, function()
         if self and self.ForgeConsumePending then
             self:SetForgeConsumePending(false)
@@ -371,7 +371,7 @@ end
 function jiange:Destruct()
 end
 
--- 浠庢湇鍔＄鍚屾鐨勫瓨妗ｆ暟鎹姞杞?
+-- Load saved data.
 function jiange:LoadSavedData(level, progress)
     -- ugcprint("[jiange] LoadSavedData: level=" .. tostring(level) .. ", progress=" .. tostring(progress))
     self.CurrentLevel = level or 1
@@ -381,7 +381,7 @@ function jiange:LoadSavedData(level, progress)
     self:UpdateCostDisplay()
 end
 
--- 閫氱煡鏈嶅姟绔繚瀛樼鍓戞暟鎹?
+-- Save to server.
 function jiange:SaveToServer()
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if PlayerState then

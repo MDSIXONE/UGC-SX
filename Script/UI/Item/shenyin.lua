@@ -57,16 +57,17 @@ local ButtonBorderMap = {
     { button = "Button_6", border = "Border_6", image = "Image_6", skill = "hongse",  icon = "Image_fenghuang" },
     { button = "Button_7", border = "Border_7", image = "Image_7", skill = "jinse",   icon = "Image_shenlong" },
 }
--- 姣忎釜Button鎸夊搧璐ㄧ殑浠嬬粛鏂囨湰锛堝搧璐?~5锛?local DetailTexts = {
-    bailang  = { "鐧界嫾", "闇滅墮鐧界嫾", "瀵掗攱鍟哥嫾", "鏋佸闇滈瓊路鐧界嫾", "澶╃┕鍑涘奖路鍣湀鎴樼嫾" },
-    Button_2 = { "闈掕泧", "骞藉奖闈掕泧", "姣掑奖骞借泧", "鑻嶆笂骞藉奖路闈掕泧", "涓囨瘨鍐ュ奖路鍣瓊榫欒泧" },
-    Button_3 = { "钃濊檸", "闆烽钃濊檸", "娌ч浄鎴樿檸", "娌ф簾闆峰暩路鎴樿檸", "涔濋渼闀囧渤路瑁傜┖澶╄檸" },
-    Button_4 = { "鐧芥辰", "绱洔鐧芥辰", "鏄熷鐧芥辰", "绱澶╁惎路鐧芥辰", "楦胯挋铏氬路涓囩伒绁炴辰" },
-    Button_5 = { "楹掗簾", "鐐庤楹掗簾", "鐒氬ぉ鐟為簾", "鐐庣嫳闀囦笘路楹掗簾", "澶彜娲崚路涓囧吔绁栭簾" },
-    Button_6 = { "鍑ゅ嚢", "璧ょ劙鍑ゅ嚢", "鐑伀鍑伴笩", "鐒氬ぉ娑呮路鐏嚢", "涔濆ぉ姘哥儸路涓嶆绁炲嚢" },
-    Button_7 = { "绁為緳", "鍌蹭笘閲戦緳", "绌瑰ぉ鑻嶉緳", "瀵板畤闀囦笘路閲戦緳", "娣锋矊鍏冨路涓囬緳涔嬬" },
+-- Configuration table used by this widget.
+local DetailTexts = {
+    bailang  = { "閻х晫瀚?, "闂囨粎澧惂鐣屽", "鐎垫帡鏀遍崯鍝ュ", "閺嬩礁顧侀棁婊堢搳璺惂鐣屽", "婢垛晝鈹曢崙娑樺璺崳顒佹箑閹存瀚? },
+    Button_2 = { "闂堟帟娉?, "楠炶棄濂栭棃鎺曟厂", "濮ｆ帒濂栭獮鍊熸厂", "閼诲秵绗傞獮钘夊璺棃鎺曟厂", "娑撳洦鐦ㄩ崘銉ュ璺崳顒勭搳姒瑨娉? },
+    Button_3 = { "閽冩繆妾?, "闂嗙兘顥撻拑婵婃", "濞屟囨祫閹存妾?, "濞屟勭熬闂嗗嘲鏆╄矾閹存妾?, "娑旀繈娓奸梹鍥ф袱璺憗鍌溾敄婢垛晞妾? },
+    Button_4 = { "閻ц姤杈?, "缁鳖偅娲旈惂鑺ヨ景", "閺勭喎顕ラ惂鑺ヨ景", "缁鳖偄顔忔径鈺佹儙璺惂鑺ヨ景", "妤﹁儻鎸嬮搹姘暔璺稉鍥╀紥缁佺偞杈? },
+    Button_5 = { "妤规帡绨?, "閻愬氦顫楁ス鎺楃熬", "閻掓艾銇夐悷鐐虹熬", "閻愬海瀚抽梹鍥︾瑯璺ス鎺楃熬", "婢额亜褰滃ú顏囧礆璺稉鍥у悢缁佹牠绨? },
+    Button_6 = { "閸戙倕鍤?, "鐠с倗鍔欓崙銈呭殺", "閻戭剛浼€閸戜即绗?, "閻掓艾銇夊☉鍛潏璺悘顐㈠殺", "娑旀繂銇夊鍝ュ劯璺稉宥嗩劥缁佺偛鍤? },
+    Button_7 = { "缁佺偤绶?, "閸岃弓绗橀柌鎴︾烦", "缁岀懓銇夐懟宥夌烦", "鐎垫澘鐣ら梹鍥︾瑯璺柌鎴︾烦", "濞ｉ攱鐭婇崗鍐潗璺稉鍥烦娑斿顨? },
 }
--- 姣忎釜绁炲奖鎸夊搧璐ㄥ搴旂殑鍥剧墖鍚嶏紙鍝佽川1~5锛?-- 鍥剧墖璺緞鏍煎紡: PNG/shenyin/XXX.XXX
+-- Configuration table used by this widget.
 local DetailImages = {
     bailang  = { "bailang1", "bailang2", "bailang3", "bailang4", "bailang5" },
     Button_2 = { "qingshe1", "qingshe2", "qingshe3", "qingshe4", "qingshe5" },
@@ -76,7 +77,7 @@ local DetailImages = {
     Button_6 = { "fenghuang1", "fenghuang2", "fenghuang3", "fenghuang4", "fenghuang5" },
     Button_7 = { "shenlong1", "shenlong2", "shenlong3", "shenlong4", "shenlong5" },
 }
--- 姣忎釜Button鐨勫悶鍣€嶇巼閰嶇疆: {鍩虹鍊嶇巼, 100绾у€嶇巼}
+-- Configuration table used by this widget.
 local EcexpConfig = {
     bailang  = { base = 100,  max = 200 },
     Button_2 = { base = 200,  max = 400 },
@@ -86,7 +87,8 @@ local EcexpConfig = {
     Button_6 = { base = 750,  max = 1500 },
     Button_7 = { base = 1000, max = 2000 },
 }
--- 姣忎釜绁炲奖瀵瑰簲鐨勫崌绾?鍗囧搧鏉愭枡鍥剧墖鍚嶏紙璺緞: PNG/shenjian/XXX.XXX锛?local ItemImages = {
+-- Configuration table used by this widget.
+local ItemImages = {
     bailang  = "sp1",
     Button_2 = "sp2",
     Button_3 = "sp3",
@@ -95,7 +97,7 @@ local EcexpConfig = {
     Button_6 = "sp6",
     Button_7 = "sp7",
 }
--- 姣忎釜绁炲奖瀵瑰簲鐨勮櫄鎷熺墿鍝両D锛堢鐗囷級
+-- Configuration table used by this widget.
 local ItemVirtualIDs = {
     bailang  = 5001,
     Button_2 = 5002,
@@ -105,14 +107,15 @@ local ItemVirtualIDs = {
     Button_6 = 5006,
     Button_7 = 5007,
 }
--- 姣忎釜绁炲奖鐨勬妧鑳戒粙缁?local SkillDescriptions = {
-    bailang  = "姣?绉掑悜鍛ㄥ洿鐨勪袱涓晫浜洪檷涓嬬鍏藉▉鍘嬶紝閫犳垚鏈€澶х敓鍛藉姏40%鐨勪激瀹?,
-    Button_2 = "姣?绉掑悜鍛ㄥ洿鐨勪袱涓晫浜洪檷涓嬬鍏藉▉鍘嬶紝閫犳垚鏈€澶х敓鍛藉姏80%鐨勪激瀹?,
-    Button_3 = "姣?绉掑悜鍛ㄥ洿鐨勪袱涓晫浜洪檷涓嬬鍏藉▉鍘嬶紝閫犳垚鏈€澶х敓鍛藉姏120%鐨勪激瀹?,
-    Button_4 = "姣?绉掑悜鍛ㄥ洿鐨勪袱涓晫浜洪檷涓嬬鍏藉▉鍘嬶紝閫犳垚鏈€澶х敓鍛藉姏160%鐨勪激瀹?,
-    Button_5 = "姣?绉掑悜鍛ㄥ洿鐨勪袱涓晫浜洪檷涓嬬鍏藉▉鍘嬶紝閫犳垚鏈€澶х敓鍛藉姏200%鐨勪激瀹?,
-    Button_6 = "姣?绉掑悜鍛ㄥ洿鐨勪袱涓晫浜洪檷涓嬬鍏藉▉鍘嬶紝閫犳垚鏈€澶х敓鍛藉姏300%鐨勪激瀹?,
-    Button_7 = "姣?绉掑悜鍛ㄥ洿鐨勪袱涓晫浜洪檷涓嬬鍏藉▉鍘嬶紝閫犳垚鏈€澶х敓鍛藉姏500%鐨勪激瀹?,
+-- Configuration table used by this widget.
+local SkillDescriptions = {
+    bailang  = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊40%閻ㄥ嫪婵€鐎?,
+    Button_2 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊80%閻ㄥ嫪婵€鐎?,
+    Button_3 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊120%閻ㄥ嫪婵€鐎?,
+    Button_4 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊160%閻ㄥ嫪婵€鐎?,
+    Button_5 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊200%閻ㄥ嫪婵€鐎?,
+    Button_6 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊300%閻ㄥ嫪婵€鐎?,
+    Button_7 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊500%閻ㄥ嫪婵€鐎?,
 }
 local STATE_UNLOCK = "unlock"
 local STATE_UNWEAR = "unwear"
@@ -122,9 +125,10 @@ local MAX_LEVEL = 100
 function shenyin:Construct()
     self:LuaInit()
     self.SlotStates = {}
-    self.SlotLevels = {}    -- 绛夌骇 1~100
-    self.SlotQualities = {} -- 鍝佽川 1~5
-    -- 鍒濆鍖栫櫧鐙硷紙榛樿宸茶В閿佹湭绌挎埓锛?    self.SlotStates["bailang"] = STATE_UNWEAR
+    self.SlotLevels = {} -- 
+    self.SlotQualities = {} -- 
+    -- Keep this section consistent with the original UI flow.
+    self.SlotStates["bailang"] = STATE_UNWEAR
     self.SlotLevels["bailang"] = 1
     self.SlotQualities["bailang"] = 1
     for _, pair in ipairs(ButtonBorderMap) do
@@ -136,7 +140,7 @@ function shenyin:Construct()
     self.CurrentWearing = nil
     self.CurrentEcexpBonus = 0
 
-    -- 浠嶱C璇诲彇瀛樻。鏁版嵁
+    -- Acquire local player references.
     local PC = UGCGameSystem.GetLocalPlayerController()
     if PC and PC.SavedShenyinData and PC.SavedShenyinData ~= "" then
         self:LoadSavedData(PC.SavedShenyinData)
@@ -155,7 +159,8 @@ function shenyin:Construct()
     if self.detail then self.detail:SetText("") end
     if self.level then self.level:SetText("") end
     self:SetVisibility(1)
-    -- 鐩戝惉铏氭嫙鐗╁搧鏁伴噺鍙樺寲锛屽強鏃跺埛鏂扮鐗囨樉绀?    local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
+    -- Local helper value for this logic block.
+    local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
     if VIM then
         VIM.OnItemNumUpdatedDelegate:Add(self.OnItemNumUpdated, self)
     end
@@ -171,11 +176,12 @@ function shenyin:Show()
     if SkillPanel then
         UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
     end
-    -- 鍒锋柊鎵€鏈夊浘鏍囬鑹茬姸鎬?    self:RefreshAllIconColors()
-    -- 姣忔鎵撳紑榛樿閫変腑鐧界嫾
+    -- Refresh UI to match current data state.
+    self:RefreshAllIconColors()
+    -- Execute the next UI update step.
     self:OnSlotButtonClicked("bailang")
 end
--- 璁剧疆UImage鐨凚rush鐫€鑹诧紙TintColor锛変负鐧借壊
+-- Set icon brush white.
 function shenyin:SetIconBrushWhite(imageWidget)
     if not imageWidget then return end
     local brush = imageWidget:GetBrush()
@@ -185,7 +191,8 @@ function shenyin:SetIconBrushWhite(imageWidget)
         imageWidget:SetBrush(brush)
     end
 end
--- 鍒锋柊鎵€鏈夌褰卞浘鏍囩殑棰滆壊锛堝凡瑙ｉ攣=鐧借壊锛屾湭瑙ｉ攣=淇濇寔榛樿鐏拌壊锛?function shenyin:RefreshAllIconColors()
+-- Refresh all icon colors.
+function shenyin:RefreshAllIconColors()
     for _, pair in ipairs(ButtonBorderMap) do
         if pair.icon and self[pair.icon] then
             local state = self.SlotStates[pair.button]
@@ -214,23 +221,27 @@ function shenyin:LuaInit()
     if self.AddLevel then self.AddLevel.OnClicked:Add(self.OnAddLevelClicked, self) end
     if self.Addquality then self.Addquality.OnClicked:Add(self.OnAddQualityClicked, self) end
 end
--- 鑾峰彇褰撳墠閫変腑鎸夐挳鐨勫悶鍣€嶇巼锛堟寜绛夌骇绾挎€ф彃鍊硷細1绾?base锛?00绾?max锛?function shenyin:GetEcexpBonus(buttonName)
+-- Get ecexp bonus.
+function shenyin:GetEcexpBonus(buttonName)
     local cfg = EcexpConfig[buttonName]
     if not cfg then return 0 end
     local lv = self.SlotLevels[buttonName] or 1
     if lv >= MAX_LEVEL then
         return cfg.max
     end
-    -- 1绾?base, 100绾?max, 绾挎€ф彃鍊?    local bonus = cfg.base + (cfg.max - cfg.base) * (lv - 1) / (MAX_LEVEL - 1)
+    -- Local helper value for this logic block.
+    local bonus = cfg.base + (cfg.max - cfg.base) * (lv - 1) / (MAX_LEVEL - 1)
     return math.floor(bonus)
 end
--- 鑾峰彇鍝佽川瀵瑰簲鐨勫悕瀛?function shenyin:GetDetailText(buttonName)
+-- Get detail text.
+function shenyin:GetDetailText(buttonName)
     local texts = DetailTexts[buttonName]
     if not texts then return "" end
     local quality = self.SlotQualities[buttonName] or 1
     return texts[quality] or texts[#texts]
 end
--- 鏇存柊璇︽儏鍥剧墖锛堟牴鎹綋鍓嶉€変腑鐨勭褰卞拰鍝佽川锛?function shenyin:UpdateDetailImage(buttonName)
+-- Update detail image.
+function shenyin:UpdateDetailImage(buttonName)
     if not self.image_detail then return end
     local images = DetailImages[buttonName]
     if not images then return end
@@ -242,7 +253,8 @@ end
         self.image_detail:SetBrushFromTexture(texture)
     end
 end
--- 鑾峰彇鎶€鑳借矾寰勶紙鏍规嵁鍝佽川锛?function shenyin:GetSkillPath(skillName, quality)
+-- Get skill path.
+function shenyin:GetSkillPath(skillName, quality)
     quality = quality or 1
     if quality <= 1 then
         return UGCGameSystem.GetUGCResourcesFullPath('Asset/Blueprint/Prefabs/Skills/shenyin/' .. skillName .. '.' .. skillName .. '_C')
@@ -251,7 +263,8 @@ end
     end
 end
 function shenyin:GetPairByButton(buttonName)
-    -- 鐧界嫾鐗规畩澶勭悊锛堟病鏈夋寜閽?杈规鎺т欢锛?    if buttonName == "bailang" then
+    -- Guard condition before running this branch.
+    if buttonName == "bailang" then
         return { button = "bailang", border = nil, image = nil, skill = "baise" }
     end
     for _, pair in ipairs(ButtonBorderMap) do
@@ -270,7 +283,7 @@ function shenyin:OnSlotButtonClicked(buttonName)
     self:UpdateInfoDisplay(buttonName)
     self:UpdateActionButtons()
 end
--- 鏇存柊鍗囩骇/鍗囧搧鏉愭枡鍥剧墖
+-- Update item images.
 function shenyin:UpdateItemImages(buttonName)
     local imgName = ItemImages[buttonName]
     if not imgName then return end
@@ -287,20 +300,20 @@ function shenyin:UpdateItemImages(buttonName)
             self.Image_itemnumb:SetBrushFromTexture(texture)
         end
     end
-    -- 鏇存柊纰庣墖鏁伴噺鏄剧ず
+    -- Guard condition before running this branch.
     if self.itemnumb then
         local virtualID = ItemVirtualIDs[buttonName]
         if virtualID then
             local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
             if VIM then
                 local count = VIM:GetItemNum(virtualID) or 0
-                -- 鍑忓幓鏈湴棰勬墸鏁伴噺
+                -- Local helper value for this logic block.
                 local pending = (self.PendingCost and self.PendingCost[virtualID]) or 0
                 local displayCount = math.max(count - pending, 0)
                 -- ugcprint("[shenyin] GetItemNum: virtualID=" .. tostring(virtualID) .. ", count=" .. tostring(count) .. ", pending=" .. tostring(pending) .. ", display=" .. tostring(displayCount))
                 self.itemnumb:SetText(tostring(displayCount))
             else
-                -- ugcprint("[shenyin] 閿欒锛氭棤娉曡幏鍙朧irtualItemManager")
+                -- Initialize displayed label text.
                 self.itemnumb:SetText("0")
             end
         else
@@ -308,13 +321,13 @@ function shenyin:UpdateItemImages(buttonName)
         end
     end
 end
--- 鏇存柊淇℃伅鏄剧ず锛堝綋鍓嶇瓑绾с€佷笅涓€绛夌骇銆佸悶鍣€嶇巼銆佹妧鑳戒粙缁嶏級
+-- Update info display.
 function shenyin:UpdateInfoDisplay(buttonName)
     local state = self.SlotStates[buttonName]
     local lv = self.SlotLevels[buttonName] or 1
     local cfg = EcexpConfig[buttonName]
 
-    -- 褰撳墠绛夌骇
+    -- Guard condition before running this branch.
     if self.TextBlock_currentlevel then
         if state == STATE_UNLOCK then
             self.TextBlock_currentlevel:SetText("--")
@@ -323,7 +336,7 @@ function shenyin:UpdateInfoDisplay(buttonName)
         end
     end
 
-    -- 涓嬩竴绛夌骇
+    -- Guard condition before running this branch.
     if self.TextBlock_nextlevel then
         if state == STATE_UNLOCK or lv >= MAX_LEVEL then
             self.TextBlock_nextlevel:SetText("--")
@@ -332,7 +345,7 @@ function shenyin:UpdateInfoDisplay(buttonName)
         end
     end
 
-    -- 褰撳墠绛夌骇鍚炲櫖鍊嶇巼
+    -- Guard condition before running this branch.
     if self.TextBlock_currentshhuxing then
         if state == STATE_UNLOCK or not cfg then
             self.TextBlock_currentshhuxing:SetText("--")
@@ -342,19 +355,20 @@ function shenyin:UpdateInfoDisplay(buttonName)
         end
     end
 
-    -- 涓嬩竴绛夌骇鍚炲櫖鍊嶇巼
+    -- Guard condition before running this branch.
     if self.TextBlock_nextlevelshuxing then
         if state == STATE_UNLOCK or not cfg or lv >= MAX_LEVEL then
             self.TextBlock_nextlevelshuxing:SetText("--")
         else
-            -- 涓存椂璁＄畻涓嬩竴绾х殑鍊嶇巼
+            -- Local helper value for this logic block.
             local nextBonus = cfg.base + (cfg.max - cfg.base) * lv / (MAX_LEVEL - 1)
             nextBonus = math.floor(nextBonus)
             self.TextBlock_nextlevelshuxing:SetText(tostring(nextBonus) .. "%")
         end
     end
 
-    -- 鎶€鑳戒粙缁?    if self.TextBlock_jieshao then
+    -- Guard condition before running this branch.
+    if self.TextBlock_jieshao then
         local desc = SkillDescriptions[buttonName]
         if desc then
             self.TextBlock_jieshao:SetText(desc)
@@ -377,12 +391,13 @@ function shenyin:UpdateActionButtons()
     if self.remove then
         self.remove:SetVisibility(state == STATE_WEAR and 0 or 1)
     end
-    -- 宸茶В閿佷笖鏈弧绾ф椂鏄剧ず鍗囩骇鎸夐挳
+    -- Guard condition before running this branch.
     if self.AddLevel then
         local canLevel = (state ~= STATE_UNLOCK) and (lv < MAX_LEVEL)
         self.AddLevel:SetVisibility(canLevel and 0 or 1)
     end
-    -- 宸茶В閿佷笖鏈弧鍝佽川鏃舵樉绀哄崌鍝佹寜閽?    if self.Addquality then
+    -- Guard condition before running this branch.
+    if self.Addquality then
         local canQuality = (state ~= STATE_UNLOCK) and (quality < MAX_QUALITY)
         self.Addquality:SetVisibility(canQuality and 0 or 1)
     end
@@ -399,7 +414,7 @@ function shenyin:UpdateLevelDisplay()
         end
     end
 end
--- 閫氳繃RPC鍦ㄦ湇鍔＄娣诲姞/绉婚櫎琚姩鎶€鑳?+ 澧炲噺Ecexp
+-- Apply skill.
 function shenyin:ApplySkill(skillName, isWear, quality)
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if not PlayerState then return end
@@ -407,32 +422,35 @@ function shenyin:ApplySkill(skillName, isWear, quality)
     -- ugcprint("[shenyin] ApplySkill: skill=" .. tostring(skillName) .. ", quality=" .. tostring(quality) .. ", isWear=" .. tostring(isWear) .. ", path=" .. tostring(skillPath))
     UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_SetShenyingSkill", skillPath, isWear)
 end
--- 閫氳繃RPC璁剧疆绁炲奖涓存椂Ecexp锛堢洿鎺ヨ缃€硷紝涓嶆槸鍔犲噺锛?function shenyin:ApplyEcexp(amount)
+-- Apply ecexp.
+function shenyin:ApplyEcexp(amount)
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if not PlayerState then return end
     -- ugcprint("[shenyin] SetShenyinEcexp: " .. tostring(amount))
     UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_SetShenyinEcexp", amount)
 end
--- 瑙ｉ攣
+-- Handle unlock button click.
 function shenyin:OnUnlockClicked()
     if not self.SelectedButton then return end
     local pair = self:GetPairByButton(self.SelectedButton)
     if not pair then return end
-    -- 瑙ｉ攣闇€瑕佹秷鑰?00涓鐗?    local virtualID = ItemVirtualIDs[self.SelectedButton]
+    -- Local helper value for this logic block.
+    local virtualID = ItemVirtualIDs[self.SelectedButton]
     if virtualID then
         local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
         if VIM then
             local count = VIM:GetItemNum(virtualID) or 0
             local pending = (self.PendingCost and self.PendingCost[virtualID]) or 0
             if count - pending < 100 then
-                self:ShowTip("纰庣墖涓嶈冻锛岃В閿侀渶瑕?00涓鐗?)
+                self:ShowTip("绾板海澧栨稉宥堝喕閿涘矁袙闁夸線娓剁憰?00娑擃亞顣抽悧?)
                 return
             end
         end
-        -- 鏈湴棰勬墸
+        -- Keep this section consistent with the original UI flow.
         self.PendingCost = self.PendingCost or {}
         self.PendingCost[virtualID] = (self.PendingCost[virtualID] or 0) + 100
-        -- 閫氳繃RPC鍦ㄦ湇鍔＄娑堣€楃鐗?        local PlayerState = UGCGameSystem.GetLocalPlayerState()
+        -- Get player state.
+        local PlayerState = UGCGameSystem.GetLocalPlayerState()
         if PlayerState then
             UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_RemoveVirtualItem", virtualID, 100)
         end
@@ -442,9 +460,9 @@ function shenyin:OnUnlockClicked()
         self[pair.border]:SetVisibility(0)
         self[pair.border]:SetBrushColor({R = 0, G = 0, B = 0, A = 0})
     end
-    -- 瑙ｉ攣鍚庢妸瀵瑰簲鍥剧墖鐨凚rush鐫€鑹茶涓虹櫧鑹?FFFFFFFF)
+    -- Guard condition before running this branch.
     if pair.icon and self[pair.icon] then
-        -- ugcprint("[shenyin] OnUnlockClicked: 璁剧疆Brush TintColor涓虹櫧鑹? icon=" .. tostring(pair.icon))
+        -- Execute the next UI update step.
         self:SetIconBrushWhite(self[pair.icon])
     end
     self:UpdateActionButtons()
@@ -453,12 +471,12 @@ function shenyin:OnUnlockClicked()
     self:UpdateLevelDisplay()
     self:SaveToServer()
 end
--- 绌挎埓
+-- Handle wear button click.
 function shenyin:OnWearClicked()
     if not self.SelectedButton then return end
     local pair = self:GetPairByButton(self.SelectedButton)
     if not pair then return end
-    -- 鍗镐笅鏃х殑锛圲I鐘舵€侊級
+    -- Guard condition before running this branch.
     if self.CurrentWearing and self.CurrentWearing ~= self.SelectedButton then
         local oldPair = self:GetPairByButton(self.CurrentWearing)
         if oldPair then
@@ -474,13 +492,14 @@ function shenyin:OnWearClicked()
         self[pair.border]:SetVisibility(0)
         self[pair.border]:SetBrushColor({R = 1, G = 1, B = 0, A = 1})
     end
-    -- 搴旂敤鎶€鑳斤紙鍝佽川鍐冲畾璺緞锛?    self:ApplySkill(pair.skill, true, self.SlotQualities[self.SelectedButton])
-    -- 璁剧疆绁炲奖涓存椂Ecexp
+    -- Execute the next UI update step.
+    self:ApplySkill(pair.skill, true, self.SlotQualities[self.SelectedButton])
+    -- Keep this section consistent with the original UI flow.
     self.CurrentEcexpBonus = self:GetEcexpBonus(self.SelectedButton)
     self:ApplyEcexp(self.CurrentEcexpBonus)
     self:UpdateActionButtons()
     self:SaveToServer()
-    self:ShowTip("宸茬┛鎴?)
+    self:ShowTip("瀹歌尙鈹涢幋?)
 end
 function shenyin:OnRemoveClicked()
     if not self.SelectedButton then return end
@@ -493,43 +512,47 @@ function shenyin:OnRemoveClicked()
     if self[pair.border] then
         self[pair.border]:SetBrushColor({R = 0, G = 0, B = 0, A = 0})
     end
-    -- 绉婚櫎鎶€鑳?    self:ApplySkill(pair.skill, false, self.SlotQualities[self.SelectedButton])
-    -- 娓呴櫎绁炲奖涓存椂Ecexp
+    -- Execute the next UI update step.
+    self:ApplySkill(pair.skill, false, self.SlotQualities[self.SelectedButton])
+    -- Keep this section consistent with the original UI flow.
     self.CurrentEcexpBonus = 0
     self:ApplyEcexp(0)
     self:UpdateActionButtons()
     self:SaveToServer()
-    self:ShowTip("宸插嵏涓?)
+    self:ShowTip("瀹告彃宓忔稉?)
 end
--- 鍙崌绛夌骇锛岀┛鎴翠腑鍒欐洿鏂癊cexp鍔犳垚
+-- Handle add level button click.
 function shenyin:OnAddLevelClicked()
     if not self.SelectedButton then return end
     local state = self.SlotStates[self.SelectedButton]
     if state == STATE_UNLOCK then return end
     local lv = self.SlotLevels[self.SelectedButton] or 1
     if lv >= MAX_LEVEL then return end
-    -- 妫€鏌ョ鐗囨槸鍚﹁冻澶燂紙鍗囩骇娑堣€?涓級
+    -- Local helper value for this logic block.
     local virtualID = ItemVirtualIDs[self.SelectedButton]
     if virtualID then
         local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
         if VIM then
             local count = VIM:GetItemNum(virtualID) or 0
-            -- 鍔犱笂鏈湴棰勬墸鏁伴噺鍋氬垽鏂?            local pending = (self.PendingCost and self.PendingCost[virtualID]) or 0
+            -- Local helper value for this logic block.
+            local pending = (self.PendingCost and self.PendingCost[virtualID]) or 0
             if count - pending < 1 then
-                self:ShowTip("纰庣墖涓嶈冻")
+                self:ShowTip("绾板海澧栨稉宥堝喕")
                 return
             end
         end
-        -- 鏈湴棰勬墸
+        -- Keep this section consistent with the original UI flow.
         self.PendingCost = self.PendingCost or {}
         self.PendingCost[virtualID] = (self.PendingCost[virtualID] or 0) + 1
-        -- 閫氳繃RPC鍦ㄦ湇鍔＄娑堣€楃鐗?        local PlayerState = UGCGameSystem.GetLocalPlayerState()
+        -- Get player state.
+        local PlayerState = UGCGameSystem.GetLocalPlayerState()
         if PlayerState then
             UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_RemoveVirtualItem", virtualID, 1)
         end
     end
     self.SlotLevels[self.SelectedButton] = lv + 1
-    -- 濡傛灉姝ｅ湪绌挎埓锛屾鏌cexp鏄惁鍥犲埌100绾ц€屽彉鍖?    if state == STATE_WEAR then
+    -- Guard condition before running this branch.
+    if state == STATE_WEAR then
         local newBonus = self:GetEcexpBonus(self.SelectedButton)
         if newBonus ~= self.CurrentEcexpBonus then
             self.CurrentEcexpBonus = newBonus
@@ -541,16 +564,16 @@ function shenyin:OnAddLevelClicked()
     self:UpdateItemImages(self.SelectedButton)
     self:UpdateActionButtons()
     self:SaveToServer()
-    self:ShowTip("鍗囩骇鎴愬姛")
+    self:ShowTip("閸楀洨楠囬幋鎰")
 end
--- 鍗囧搧璐紝鏀瑰彉鎶€鑳借矾寰勫拰detail鍚嶅瓧
+-- Handle add quality button click.
 function shenyin:OnAddQualityClicked()
     if not self.SelectedButton then return end
     local state = self.SlotStates[self.SelectedButton]
     if state == STATE_UNLOCK then return end
     local quality = self.SlotQualities[self.SelectedButton] or 1
     if quality >= MAX_QUALITY then return end
-    -- 妫€鏌ョ鐗囨槸鍚﹁冻澶燂紙杩涢樁娑堣€?00涓級
+    -- Local helper value for this logic block.
     local virtualID = ItemVirtualIDs[self.SelectedButton]
     if virtualID then
         local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
@@ -558,14 +581,15 @@ function shenyin:OnAddQualityClicked()
             local count = VIM:GetItemNum(virtualID) or 0
             local pending = (self.PendingCost and self.PendingCost[virtualID]) or 0
             if count - pending < 100 then
-                self:ShowTip("纰庣墖涓嶈冻")
+                self:ShowTip("绾板海澧栨稉宥堝喕")
                 return
             end
         end
-        -- 鏈湴棰勬墸
+        -- Keep this section consistent with the original UI flow.
         self.PendingCost = self.PendingCost or {}
         self.PendingCost[virtualID] = (self.PendingCost[virtualID] or 0) + 100
-        -- 閫氳繃RPC鍦ㄦ湇鍔＄娑堣€楃鐗?        local PlayerState = UGCGameSystem.GetLocalPlayerState()
+        -- Get player state.
+        local PlayerState = UGCGameSystem.GetLocalPlayerState()
         if PlayerState then
             UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_RemoveVirtualItem", virtualID, 100)
         end
@@ -573,10 +597,12 @@ function shenyin:OnAddQualityClicked()
     local pair = self:GetPairByButton(self.SelectedButton)
     if not pair then return end
     self.SlotQualities[self.SelectedButton] = quality + 1
-    -- 濡傛灉姝ｅ湪绌挎埓锛岄噸鏂板簲鐢ㄦ柊鍝佽川鎶€鑳?    if state == STATE_WEAR then
+    -- Guard condition before running this branch.
+    if state == STATE_WEAR then
         self:ApplySkill(pair.skill, true, quality + 1)
     end
-    -- 鍒锋柊detail鍚嶅瓧鍜屽浘鐗?    if self.detail then
+    -- Guard condition before running this branch.
+    if self.detail then
         self.detail:SetText(self:GetDetailText(self.SelectedButton))
     end
     self:UpdateDetailImage(self.SelectedButton)
@@ -584,7 +610,7 @@ function shenyin:OnAddQualityClicked()
     self:UpdateItemImages(self.SelectedButton)
     self:UpdateActionButtons()
     self:SaveToServer()
-    self:ShowTip("杩涢樁鎴愬姛")
+    self:ShowTip("鏉╂盯妯侀幋鎰")
 end
 function shenyin:OnCancelClicked()
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
@@ -598,15 +624,15 @@ function shenyin:OnCancelClicked()
     end
     self:SetVisibility(2)
 end
--- 搴忓垪鍖栫褰辨暟鎹负瀛楃涓诧細button:state:level:quality;button:state:level:quality;...
+-- Serialize data.
 function shenyin:SerializeData()
     local parts = {}
-    -- 鐧界嫾
+    -- Local helper value for this logic block.
     local s = self.SlotStates["bailang"] or STATE_UNWEAR
     local l = self.SlotLevels["bailang"] or 1
     local q = self.SlotQualities["bailang"] or 1
     table.insert(parts, "bailang:" .. s .. ":" .. tostring(l) .. ":" .. tostring(q))
-    -- 鍏朵粬绁炲奖
+    -- Iterate through related data or widgets.
     for _, pair in ipairs(ButtonBorderMap) do
         local st = self.SlotStates[pair.button] or STATE_UNLOCK
         local lv = self.SlotLevels[pair.button] or 1
@@ -616,7 +642,8 @@ function shenyin:SerializeData()
     return table.concat(parts, ";")
 end
 
--- 鍙嶅簭鍒楀寲瀛楃涓叉仮澶嶇褰辨暟鎹?function shenyin:DeserializeData(dataStr)
+-- Deserialize data.
+function shenyin:DeserializeData(dataStr)
     if not dataStr or dataStr == "" then return end
     for entry in string.gmatch(dataStr, "([^;]+)") do
         local btn, st, lv, qu = string.match(entry, "([^:]+):([^:]+):([^:]+):([^:]+)")
@@ -626,15 +653,17 @@ end
             self.SlotQualities[btn] = tonumber(qu) or 1
         end
     end
-    -- ugcprint("[shenyin] DeserializeData 瀹屾垚")
+    -- Keep this section consistent with the original UI flow.
 end
 
--- 浠庢湇鍔＄鍚屾鐨勫瓨妗ｆ暟鎹姞杞?function shenyin:LoadSavedData(dataStr)
+-- Load saved data.
+function shenyin:LoadSavedData(dataStr)
     -- ugcprint("[shenyin] LoadSavedData: " .. tostring(dataStr))
     self:DeserializeData(dataStr)
 end
 
--- 閫氱煡鏈嶅姟绔繚瀛樼褰辨暟鎹?function shenyin:SaveToServer()
+-- Save to server.
+function shenyin:SaveToServer()
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if PlayerState then
         local dataStr = self:SerializeData()
@@ -644,19 +673,22 @@ end
 end
 
 function shenyin:Destruct()
-    -- 绉婚櫎铏氭嫙鐗╁搧鏁伴噺鍙樺寲鐩戝惉
+    -- Local helper value for this logic block.
     local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
     if VIM then
         VIM.OnItemNumUpdatedDelegate:Remove(self.OnItemNumUpdated, self)
     end
 end
--- 铏氭嫙鐗╁搧鏁伴噺鍙樺寲鍥炶皟锛屽埛鏂板綋鍓嶉€変腑绁炲奖鐨勭鐗囨暟閲?function shenyin:OnItemNumUpdated()
-    -- 鏈嶅姟绔暟閲忓凡鍚屾锛屾竻闄ゆ湰鍦伴鎵?    self.PendingCost = {}
+-- Handle item num updated event.
+function shenyin:OnItemNumUpdated()
+    -- Keep this section consistent with the original UI flow.
+    self.PendingCost = {}
     if self.SelectedButton then
         self:UpdateItemImages(self.SelectedButton)
     end
 end
--- 鏄剧ず鎻愮ず淇℃伅锛堥€氳繃MMainUI锛?function shenyin:ShowTip(text)
+-- Show tip.
+function shenyin:ShowTip(text)
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.ShowTip then
         pc.MMainUI:ShowTip(text)

@@ -8,7 +8,7 @@
 --Edit Below--
 local TalentTip = { bInitDoOnce = false }
 
--- 当前选择的天赋等级
+-- Handle the talent flow.
 TalentTip.CurrentTalentLevel = 0
 
 function TalentTip:Construct()
@@ -21,35 +21,35 @@ function TalentTip:LuaInit()
     end
     self.bInitDoOnce = true
     
-    -- 绑定确认按钮 (General_SecondLevelButton_1_C)
+    -- Bind the button event.
     if self.Talent_sure then
-        -- 尝试多种可能的按钮名称
+        -- Related UI logic.
         if self.Talent_sure.Button_0 then
             self.Talent_sure.Button_0.OnClicked:Add(self.OnSureClicked, self)
-            --ugcprint("[TalentTip] 确认按钮绑定成功 (Button_0)")
+            -- Log the success state.
         elseif self.Talent_sure.Button_Levels2_1 then
             self.Talent_sure.Button_Levels2_1.OnClicked:Add(self.OnSureClicked, self)
-            --ugcprint("[TalentTip] 确认按钮绑定成功 (Button_Levels2_1)")
+            -- Log the success state.
         else
-            --ugcprint("[TalentTip] 警告：确认按钮内部按钮不存在")
+            -- Log this action.
         end
     end
     
-    -- 绑定取消按钮 (General_SecondLevelButton_3_C)
+    -- Bind the button event.
     if self.Talent_Cancel then
         if self.Talent_Cancel.Button_Levels2_3 then
             self.Talent_Cancel.Button_Levels2_3.OnClicked:Add(self.OnCancelClicked, self)
-            --ugcprint("[TalentTip] 取消按钮绑定成功 (Button_Levels2_3)")
+            -- Log the success state.
         elseif self.Talent_Cancel.fuben_cancel then
             self.Talent_Cancel.fuben_cancel.OnClicked:Add(self.OnCancelClicked, self)
-            --ugcprint("[TalentTip] 取消按钮绑定成功 (fuben_cancel)")
+            -- Log the success state.
         else
-            --ugcprint("[TalentTip] 警告：取消按钮内部按钮不存在")
+            -- Log this action.
         end
     end
 end
 
--- 设置显示内容
+-- Related UI logic.
 function TalentTip:SetTalentInfo(level)
     self.CurrentTalentLevel = level
     
@@ -62,18 +62,18 @@ function TalentTip:SetTalentInfo(level)
     end
 end
 
--- 确认按钮点击
+-- Handle the confirm action.
 function TalentTip:OnSureClicked()
-    --ugcprint("[TalentTip] 确认解锁 Speed" .. self.CurrentTalentLevel)
+    -- Log this action.
     
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if not playerState then
-        --ugcprint("[TalentTip] 错误：无法获取玩家数据")
+        -- Log the error state.
         return
     end
     
-    -- 通过 RPC 调用服务器解锁天赋
-    --ugcprint("[TalentTip] 发送天赋解锁请求到服务器")
+    -- Handle the talent flow.
+    -- Log that the request was sent to the server.
     UnrealNetwork.CallUnrealRPC(
         playerState,
         playerState,
@@ -82,14 +82,14 @@ function TalentTip:OnSureClicked()
         self.CurrentTalentLevel
     )
     
-    -- 隐藏提示框
+    -- Show the tip message.
     self:SetVisibility(ESlateVisibility.Collapsed)
 end
 
--- 取消按钮点击
+-- Handle the cancel action.
 function TalentTip:OnCancelClicked()
-    --ugcprint("[TalentTip] 取消")
+    -- Log this action.
     self:SetVisibility(ESlateVisibility.Collapsed)
 end
 
-return TalentTip
+return TalentTip

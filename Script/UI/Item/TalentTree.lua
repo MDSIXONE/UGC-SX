@@ -1,4 +1,4 @@
----@class TalentTree_C:UUserWidget
+﻿---@class TalentTree_C:UUserWidget
 ---@field Attack UNewButton
 ---@field canPointcount UTextBlock
 ---@field HF UNewButton
@@ -20,86 +20,83 @@
 ---@field ZD UNewButton
 --Edit Below--
 local TalentTree = { bInitDoOnce = false }
--- 天赋类型枚举
+-- Related UI logic.
 local TALENT_TYPE = {
     NONE = 0,
-    HP = 1,           -- 生命加成 (Hp按钮)
-    ATTACK = 2,       -- 攻击加成 (Attack按钮)
-    MAGIC = 3,        -- 魔法加成 (Hp2按钮)
-    SPEED = 4,        -- 移速加成 (Speed按钮)
-    ACCURACY = 5,     -- 准度加成 (ZD按钮)
-    HIP_FIRE = 6,     -- 腰射加成 (YaoShe按钮)
-    SKILL_HASTE = 7,  -- 技能急速 (Sikll按钮)
-    HP_REGEN = 8,     -- 生命恢复 (HF按钮)
-    FIRE_RATE = 9,    -- 射速加成 (SS按钮)
+    HP = 1,           -- 鐢熷懡鍔犳垚 (Hp鎸夐挳)
+    ATTACK = 2,       -- 鏀诲嚮鍔犳垚 (Attack鎸夐挳)
+    MAGIC = 3,        -- 榄旀硶鍔犳垚 (Hp2鎸夐挳)
+    SPEED = 4,        -- 绉婚€熷姞鎴?(Speed鎸夐挳)
+    ACCURACY = 5,     -- 鍑嗗害鍔犳垚 (ZD鎸夐挳)
+    HIP_FIRE = 6,     -- 鑵板皠鍔犳垚 (YaoShe鎸夐挳)
+    SKILL_HASTE = 7,  -- 鎶€鑳芥€ラ€?(Sikll鎸夐挳)
+    HP_REGEN = 8,     -- 鐢熷懡鎭㈠ (HF鎸夐挳)
+    FIRE_RATE = 9,    -- 灏勯€熷姞鎴?(SS鎸夐挳)
 }
--- 天赋配置表
--- cost: 升级所需天赋点
--- maxLevel: 最大等级
--- desc: 描述
--- buffPath: 对应的buff路径 (用于buff类型天赋)
+-- Related UI logic.
+-- Related UI logic.
 local TALENT_CONFIG = {
     [TALENT_TYPE.HP] = {
-        name = "生命加成",
+        name = "鐢熷懡鍔犳垚",
         cost = 1,
         maxLevel = 1000,
-        desc = "每次升级增加最大生命3%",
+        desc = "姣忔鍗囩骇澧炲姞鏈€澶х敓鍛?%",
         dataField = "PlayerTalent1",
     },
     [TALENT_TYPE.ATTACK] = {
-        name = "攻击加成",
+        name = "鏀诲嚮鍔犳垚",
         cost = 1,
         maxLevel = 1000,
-        desc = "每次升级增加最大攻击1%",
+        desc = "姣忔鍗囩骇澧炲姞鏈€澶ф敾鍑?%",
         dataField = "PlayerTalent2",
     },
     [TALENT_TYPE.MAGIC] = {
-        name = "魔法加成",
+        name = "榄旀硶鍔犳垚",
         cost = 1,
         maxLevel = 1000,
-        desc = "每次升级增加最大魔法2%",
+        desc = "姣忔鍗囩骇澧炲姞鏈€澶ч瓟娉?%",
         dataField = "PlayerTalent3",
     },
     [TALENT_TYPE.SPEED] = {
-        name = "移速加成",
+        name = "绉婚€熷姞鎴?,
         cost = 3,
         maxLevel = 50,
-        desc = "每次升级增加1%移动速度",
+        desc = "姣忔鍗囩骇澧炲姞1%绉诲姩閫熷害",
         dataField = "PlayerTalent4",
     },
     [TALENT_TYPE.ACCURACY] = {
-        name = "准度加成",
+        name = "鍑嗗害鍔犳垚",
         cost = 3,
         maxLevel = 100,
-        desc = "每次升级水平、垂直后坐力-0.01",
+        desc = "姣忔鍗囩骇姘村钩銆佸瀭鐩村悗鍧愬姏-0.01",
         dataField = "PlayerTalent5",
     },
     [TALENT_TYPE.HIP_FIRE] = {
-        name = "腰射加成",
+        name = "鑵板皠鍔犳垚",
         cost = 3,
         maxLevel = 100,
-        desc = "每次升级连发散射-0.01",
+        desc = "姣忔鍗囩骇杩炲彂鏁ｅ皠-0.01",
         dataField = "PlayerTalent6",
     },
     [TALENT_TYPE.SKILL_HASTE] = {
-        name = "技能急速",
+        name = "鎶€鑳芥€ラ€?,
         cost = 5,
         maxLevel = 100,
-        desc = "每次升级技能急速+0.01",
+        desc = "姣忔鍗囩骇鎶€鑳芥€ラ€?0.01",
         dataField = "PlayerTalent7",
     },
     [TALENT_TYPE.HP_REGEN] = {
-        name = "生命恢复",
+        name = "鐢熷懡鎭㈠",
         cost = 5,
         maxLevel = 100,
-        desc = "每次升级每秒恢复最大生命0.001",
+        desc = "姣忔鍗囩骇姣忕鎭㈠鏈€澶х敓鍛?.001",
         dataField = "PlayerTalent8",
     },
     [TALENT_TYPE.FIRE_RATE] = {
-        name = "射速加成",
+        name = "灏勯€熷姞鎴?,
         cost = 5,
         maxLevel = 50,
-        desc = "每次升级射击间隔-0.01",
+        desc = "姣忔鍗囩骇灏勫嚮闂撮殧-0.01",
         dataField = "PlayerTalent9",
     },
 }
@@ -111,85 +108,82 @@ function TalentTree:LuaInit()
         return
     end
     self.bInitDoOnce = true
-    --ugcprint("[TalentTree] LuaInit 开始")
+    -- Log this action.
     
-    -- 当前选中的天赋类型
-    self.CurrentTalentType = TALENT_TYPE.NONE
+    -- Related UI logic.
     
-    -- 隐藏详情控件
+    -- Related UI logic.
     self:HideDetailControls()
     
-    -- 绑定按钮事件
-    -- 天赋1: 生命加成 - Hp按钮
+    -- Related UI logic.
+    -- Related UI logic.
     if self.Hp then
         self.Hp.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.HP) end, self)
-        --ugcprint("[TalentTree] Hp(生命加成) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 天赋2: 攻击加成 - Attack按钮
+    -- Related UI logic.
     if self.Attack then
         self.Attack.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.ATTACK) end, self)
-        --ugcprint("[TalentTree] Attack(攻击加成) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 天赋3: 魔法加成 - Hp2按钮
+    -- Related UI logic.
     if self.Hp2 then
         self.Hp2.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.MAGIC) end, self)
-        --ugcprint("[TalentTree] Hp2(魔法加成) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 天赋4: 移速加成 - Speed按钮
+    -- Related UI logic.
     if self.Speed then
         self.Speed.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.SPEED) end, self)
-        --ugcprint("[TalentTree] Speed(移速加成) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 天赋5: 准度加成 - ZD按钮
+    -- Related UI logic.
     if self.ZD then
         self.ZD.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.ACCURACY) end, self)
-        --ugcprint("[TalentTree] ZD(准度加成) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 天赋6: 腰射加成 - YaoShe按钮
+    -- Related UI logic.
     if self.YaoShe then
         self.YaoShe.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.HIP_FIRE) end, self)
-        --ugcprint("[TalentTree] YaoShe(腰射加成) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 天赋7: 技能急速 - Sikll按钮
+    -- Related UI logic.
     if self.Sikll then
         self.Sikll.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.SKILL_HASTE) end, self)
-        --ugcprint("[TalentTree] Sikll(技能急速) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 天赋8: 生命恢复 - HF按钮
+    -- Related UI logic.
     if self.HF then
         self.HF.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.HP_REGEN) end, self)
-        --ugcprint("[TalentTree] HF(生命恢复) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 天赋9: 射速加成 - SS按钮
+    -- Related UI logic.
     if self.SS then
         self.SS.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.FIRE_RATE) end, self)
-        --ugcprint("[TalentTree] SS(射速加成) 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 确认和取消按钮
-    if self.Talent_Sure then
+    -- Related UI logic.
         self.Talent_Sure.OnClicked:Add(self.OnSureClicked, self)
-        --ugcprint("[TalentTree] Talent_Sure 按钮绑定成功")
+        -- Log this action.
     end
     if self.Talent_cancel then
         self.Talent_cancel.OnClicked:Add(self.OnCancelClicked, self)
-        --ugcprint("[TalentTree] Talent_cancel 按钮绑定成功")
+        -- Log this action.
     end
     
-    -- 初始化显示
-    self:UpdateTalentPointText()
+    -- Related UI logic.
     
-    --ugcprint("[TalentTree] LuaInit 完成")
+    -- Log this action.
 end
--- 隐藏详情控件
+-- Related UI logic.
 function TalentTree:HideDetailControls()
     if self.Talent_name then
         self.Talent_name:SetVisibility(ESlateVisibility.Collapsed)
@@ -207,19 +201,19 @@ function TalentTree:HideDetailControls()
         self.canPointcount:SetVisibility(ESlateVisibility.Collapsed)
     end
 end
--- 显示详情控件
+-- Related UI logic.
 function TalentTree:ShowDetailControls(talentType)
     local config = TALENT_CONFIG[talentType]
     if not config then return end
     
-    -- 显示天赋名称
+    -- Related UI logic.
     if self.Talent_name then
         self.Talent_name:SetText(config.name)
         self.Talent_name:SetVisibility(ESlateVisibility.Visible)
     end
     
     if self.introduce_Text then
-        local costText = "需要" .. config.cost .. "点天赋点升级\n" .. config.desc
+        local costText = "闇€瑕? .. config.cost .. "鐐瑰ぉ璧嬬偣鍗囩骇\n" .. config.desc
         self.introduce_Text:SetText(costText)
         self.introduce_Text:SetVisibility(ESlateVisibility.Visible)
     end
@@ -229,15 +223,13 @@ function TalentTree:ShowDetailControls(talentType)
     if self.Talent_Sure then
         self.Talent_Sure:SetVisibility(ESlateVisibility.Visible)
     end
-    -- 显示当前等级/最大等级
-    if self.canPointcount then
+    -- Related UI logic.
         local currentLevel = self:GetTalentLevel(talentType)
-        self.canPointcount:SetText("当前等级: " .. currentLevel .. "/" .. config.maxLevel)
+        self.canPointcount:SetText("褰撳墠绛夌骇: " .. currentLevel .. "/" .. config.maxLevel)
         self.canPointcount:SetVisibility(ESlateVisibility.Visible)
     end
 end
--- 获取剩余天赋点
-function TalentTree:GetRemainingTalentPoints()
+-- Related UI logic.
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         if playerState.GameData and playerState.GameData.PlayerTalentPoints ~= nil then
@@ -248,8 +240,7 @@ function TalentTree:GetRemainingTalentPoints()
     end
     return 0
 end
--- 获取某天赋当前等级
-function TalentTree:GetTalentLevel(talentType)
+-- Related UI logic.
     local config = TALENT_CONFIG[talentType]
     if not config then return 0 end
     
@@ -259,94 +250,92 @@ function TalentTree:GetTalentLevel(talentType)
     end
     return 0
 end
--- 更新天赋点显示
-function TalentTree:UpdateTalentPointText()
+-- Related UI logic.
     if self.TalentPoint_Text then
         local points = self:GetRemainingTalentPoints()
-        self.TalentPoint_Text:SetText("剩余天赋点: " .. tostring(points))
+        self.TalentPoint_Text:SetText("鍓╀綑澶╄祴鐐? " .. tostring(points))
     end
 end
--- 点击天赋按钮
+-- Related UI logic.
 function TalentTree:OnTalentClicked(talentType)
     local config = TALENT_CONFIG[talentType]
     if config then
-        --ugcprint("[TalentTree] " .. config.name .. " 被点击")
+        -- Log this action.
     end
     self:ToggleTalentDetail(talentType)
 end
--- 切换天赋详情显示
+-- Related UI logic.
 function TalentTree:ToggleTalentDetail(talentType)
     if self.CurrentTalentType == talentType then
-        -- 再次点击同一个，隐藏详情
+        -- Related UI logic.
         self:HideDetailControls()
         self.CurrentTalentType = TALENT_TYPE.NONE
-        --ugcprint("[TalentTree] 隐藏详情")
+        -- Log this action.
     else
-        -- 点击不同的，显示新的详情
+        -- Related UI logic.
         self:HideDetailControls()
         self.CurrentTalentType = talentType
         self:ShowDetailControls(talentType)
         local config = TALENT_CONFIG[talentType]
         if config then
-            --ugcprint("[TalentTree] 显示 " .. config.name .. " 详情")
+            -- Log this action.
         end
     end
 end
--- 确认加点
+-- Related UI logic.
 function TalentTree:OnSureClicked()
-    --ugcprint("[TalentTree] ========== OnSureClicked 开始 ==========")
+    -- Log this action.
     
     if self.CurrentTalentType == TALENT_TYPE.NONE then
-        --ugcprint("[TalentTree] 错误：未选择天赋")
+        -- Log this action.
         return
     end
     
     local config = TALENT_CONFIG[self.CurrentTalentType]
     if not config then
-        --ugcprint("[TalentTree] 错误：天赋配置不存在，类型: " .. tostring(self.CurrentTalentType))
+        -- Log this action.
         return
     end
     
-    --ugcprint("[TalentTree] 选中天赋: " .. config.name .. " (类型: " .. self.CurrentTalentType .. ")")
-    --ugcprint("[TalentTree] 天赋配置 - 消耗: " .. config.cost .. ", 最大等级: " .. config.maxLevel)
+    -- Log this action.
+    -- Log this action.
     
-    -- 检查天赋点是否足够
+    -- Related UI logic.
     local remainingPoints = self:GetRemainingTalentPoints()
-    --ugcprint("[TalentTree] 当前天赋点: " .. remainingPoints .. ", 需要: " .. config.cost)
+    -- Log this action.
     if remainingPoints < config.cost then
-        --ugcprint("[TalentTree] 错误：天赋点不足")
+        -- Log this action.
         return
     end
     
-    -- 检查是否已满级
+    -- Related UI logic.
     local currentLevel = self:GetTalentLevel(self.CurrentTalentType)
-    --ugcprint("[TalentTree] 当前等级: " .. currentLevel .. ", 最大等级: " .. config.maxLevel)
+    -- Log this action.
     if currentLevel >= config.maxLevel then
-        --ugcprint("[TalentTree] 错误：该天赋已满级")
+        -- Log this action.
         return
     end
     
-    -- 发送加点请求到服务器
-    local playerState = UGCGameSystem.GetLocalPlayerState()
-    --ugcprint("[TalentTree] 获取PlayerState: " .. tostring(playerState))
+    -- Related UI logic.
+    -- Log this action.
     if playerState then
-        --ugcprint("[TalentTree] 发送RPC请求: Server_AddTalentPointNew, 参数: " .. self.CurrentTalentType)
+        -- Log this action.
         UnrealNetwork.CallUnrealRPC(
             playerState,
             playerState,
             "Server_AddTalentPointNew",
             self.CurrentTalentType
         )
-        --ugcprint("[TalentTree] RPC请求已发送")
+        -- Log this action.
     else
-        --ugcprint("[TalentTree] 错误：无法获取PlayerState")
+        -- Log this action.
     end
     
-    --ugcprint("[TalentTree] ========== OnSureClicked 完成 ==========")
+    -- Log this action.
 end
--- 关闭界面
+-- Related UI logic.
 function TalentTree:OnCancelClicked()
-    --ugcprint("[TalentTree] 关闭天赋树")
+    -- Log this action.
     self:SetVisibility(ESlateVisibility.Collapsed)
     self:HideDetailControls()
     self.CurrentTalentType = TALENT_TYPE.NONE
@@ -360,11 +349,10 @@ function TalentTree:OnCancelClicked()
         UGCWidgetManagerSystem.SubWidgetHiddenLayer(SkillPanel)
     end
 end
--- 刷新界面（外部调用）
+-- Related UI logic.
 function TalentTree:RefreshUI()
     self:UpdateTalentPointText()
-    -- 如果正在显示某个天赋详情，也刷新它
-    if self.CurrentTalentType ~= TALENT_TYPE.NONE then
+    -- Related UI logic.
         self:ShowDetailControls(self.CurrentTalentType)
     end
 end

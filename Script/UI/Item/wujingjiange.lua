@@ -42,13 +42,13 @@
 --Edit Below--
 local wujingjiange = { bInitDoOnce = false, bFullScreenLayerApplied = false }
 
--- 灞傜骇濂栧姳閰嶇疆锛氬眰鏁?-> 濂栧姳鏁伴噺
+-- Configuration table used by this widget.
 local FLOOR_REWARD_CONFIG = {
     [100] = 100, [200] = 200, [300] = 300, [400] = 400, [500] = 500,
     [600] = 600, [700] = 700, [800] = 800, [900] = 900, [1000] = 1000,
 }
 
--- 灞傜骇瀵瑰簲鐨剆tate鎺т欢鍚?
+-- Configuration table used by this widget.
 local FLOOR_STATE_MAP = {
     [100] = "state100", [200] = "state200", [300] = "state300", [400] = "state400", [500] = "state500",
     [600] = "state600", [700] = "state700", [800] = "state800", [900] = "state900", [1000] = "state1000",
@@ -104,16 +104,16 @@ function wujingjiange:LuaInit()
     if self.cancel then
         self.cancel.OnClicked:Add(self.OnCancelClicked, self)
     end
-    -- 缁戝畾姣忔棩棰嗗彇鎸夐挳
+    -- Guard condition before running this branch.
     if self.get1 then
         self.get1.OnClicked:Add(self.OnGet1Clicked, self)
     end
-    -- 缁戝畾灞傜骇濂栧姳棰嗗彇鎸夐挳
+    -- Guard condition before running this branch.
     if self.get2 then
         self.get2.OnClicked:Add(self.OnGet2Clicked, self)
     end
 
-    -- 缁戝畾灞傜骇鎸夐挳锛圔utton_0~Button_11瀵瑰簲涓嶅悓灞傜骇濂栧姳閫夋嫨锛?
+    -- Keep this section consistent with the original UI flow.
     self.SelectedFloor = 100
     local buttonFloorMap = {
         {btn = "Button_0", floor = 100},
@@ -133,7 +133,7 @@ function wujingjiange:LuaInit()
         if btn then
             btn.OnClicked:Add(function()
                 self.SelectedFloor = floor
-                -- ugcprint("[wujingjiange] 閫変腑灞傜骇: " .. tostring(floor))
+                -- Refresh UI to match current data state.
                 self:RefreshRewardStates()
             end, self)
         end
@@ -147,10 +147,10 @@ function wujingjiange:Show()
     self:ApplyFullScreenLayer()
 end
 
--- 鏇存柊灞傛暟鏄剧ず
+-- Update floor text.
 function wujingjiange:UpdateFloorText()
     if not self.cengshu then
-        -- ugcprint("[wujingjiange] cengshu 鎺т欢涓嶅瓨鍦?)
+        -- Exit early when requirements are not met.
         return
     end
 
@@ -160,7 +160,7 @@ function wujingjiange:UpdateFloorText()
         floor = (PC.JiangeFloor or 0) + 1
     end
     self.cengshu:SetText(tostring(floor))
-    -- ugcprint("[wujingjiange] 灞傛暟鏄剧ず: " .. tostring(floor))
+    -- Keep this section consistent with the original UI flow.
 end
 
 function wujingjiange:OnCancelClicked()
@@ -171,24 +171,24 @@ end
 function wujingjiange:OnStartClicked()
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then
-        -- ugcprint("[wujingjiange] PC涓簄il")
+        -- Exit early when requirements are not met.
         return
     end
 
-    -- 妫€娴嬪苟鍗镐笅绁炲墤銆佺褰卞拰琛€鑴夛紙鐩存帴鎵ц鍗镐笅閫昏緫锛屼笉璧版寜閽洖璋冿級
+    -- Local helper value for this logic block.
     local needTip = false
     if PC.MMainUI then
-        -- 鍗镐笅绁炲墤
+        -- Local helper value for this logic block.
         local jiangeUI = PC.MMainUI.jiange
         if jiangeUI and jiangeUI.IsWearing then
             jiangeUI:ApplySkill(false)
             jiangeUI:ApplyAtkBonus(false)
             jiangeUI.IsWearing = false
-            if jiangeUI.weartip then jiangeUI.weartip:SetText("绌挎埓") end
-            -- ugcprint("[wujingjiange] 宸茶嚜鍔ㄥ嵏涓嬬鍓?)
+            if jiangeUI.weartip then jiangeUI.weartip:SetText("缁屾寧鍩?) end
+            -- Keep this section consistent with the original UI flow.
             needTip = true
         end
-        -- 鍗镐笅绁炲奖
+        -- Local helper value for this logic block.
         local shenyinUI = PC.MMainUI.shenyin
         if shenyinUI and shenyinUI.CurrentWearing then
             local wearingBtn = shenyinUI.CurrentWearing
@@ -203,11 +203,11 @@ function wujingjiange:OnStartClicked()
                 shenyinUI.CurrentEcexpBonus = 0
                 shenyinUI:ApplyEcexp(0)
             end
-            -- ugcprint("[wujingjiange] 宸茶嚜鍔ㄥ嵏涓嬬褰?)
+            -- Keep this section consistent with the original UI flow.
             needTip = true
         end
 
-        -- 鍗镐笅琛€鑴夛紙鍚屾鏈湴鎸夐挳鏄剧ず锛?
+        -- Local helper value for this logic block.
         local playerState = UGCGameSystem.GetLocalPlayerState()
         local bloodlineEnabled = false
         if playerState then
@@ -228,72 +228,72 @@ function wujingjiange:OnStartClicked()
                 end
             end
 
-            -- ugcprint("[wujingjiange] 宸茶嚜鍔ㄥ嵏涓嬭鑴?)
+            -- Keep this section consistent with the original UI flow.
             needTip = true
         end
     end
 
     if needTip then
-        -- 寮瑰嚭鎻愮ず锛岀瓑2绉掓彁绀烘秷澶卞悗鍐嶄紶閫?
+        -- Guard condition before running this branch.
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("鎸戞垬鍓戦榿涓€傘€傘€傜鍓戙€佺褰变笌琛€鑴夊凡琚鐢?)
+            PC.MMainUI:ShowTip("閹告垶鍨崜鎴︽娑擃厹鈧倶鈧倶鈧倻顨ｉ崜鎴欌偓浣侯殻瑜板彉绗岀悰鈧懘澶婂嚒鐞氼偆顩﹂悽?)
         end
         UGCTimerUtility.CreateLuaTimer(2.0, function()
             self:DoEnterJiange(PC)
         end, false, "WujingJiange_DelayEnter")
     else
-        -- 娌℃湁闇€瑕佸嵏涓嬬殑锛岀洿鎺ヨ繘鍏?
+        -- Execute the next UI update step.
         self:DoEnterJiange(PC)
     end
 end
 
--- 瀹為檯鎵ц浼犻€佽繘鍏ュ墤闃佺殑閫昏緫
+-- Do enter jiange.
 function wujingjiange:DoEnterJiange(PC)
     if not PC then return end
-    -- ugcprint("[wujingjiange] 寮€濮嬩紶閫?)
-    -- 閫氳繃RPC璋冪敤鏈嶅姟绔紶閫?
+    -- Keep this section consistent with the original UI flow.
+    -- Keep this section consistent with the original UI flow.
     UnrealNetwork.CallUnrealRPC(PC, PC, "Server_TeleportPlayer", 268737.21875, 238584.484375, 1118.539795)
-    -- 闅愯棌wujingjiange闈㈡澘
+    -- Configure initial widget visibility.
     self:SetVisibility(2)
 
-    -- 鎭㈠鍏ㄥ睆閬尅锛圫how鏃跺姞鐨勶級
+    -- Execute the next UI update step.
     self:ReleaseFullScreenLayer()
 
-    -- 鐩存帴鍒囨崲鍒癑iangeUI
+    -- Execute the next UI update step.
     self:SwitchToJiangeUI(PC)
 end
 
--- 闅愯棌MMainUI锛屽垱寤哄苟鏄剧ずJiangeUI
+-- Switch to jiange ui.
 function wujingjiange:SwitchToJiangeUI(PC)
     if not PC then return end
 
-    -- 闅愯棌MMainUI
+    -- Guard condition before running this branch.
     if PC.MMainUI then
         PC.MMainUI:SetVisibility(ESlateVisibility.Collapsed)
-        -- ugcprint("[wujingjiange] MMainUI 宸查殣钘?)
+        -- Continue applying initial visibility settings.
     end
 
-    -- 鍒涘缓JiangeUI锛堝鏋滆繕娌″垱寤鸿繃锛?
+    -- Guard condition before running this branch.
     if not PC.JiangeUI then
         local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
         local jiangeUI = UGCGameData.GetUI(PC, "JiangeUI")
         if jiangeUI then
             PC.JiangeUI = jiangeUI
             jiangeUI:AddToViewport(1100)
-            -- ugcprint("[wujingjiange] JiangeUI 宸插垱寤哄苟娣诲姞鍒拌鍙?)
+            -- Keep this section consistent with the original UI flow.
         else
-            -- ugcprint("[wujingjiange] 閿欒锛氭棤娉曞垱寤?JiangeUI")
+            -- Keep this section consistent with the original UI flow.
         end
     else
         PC.JiangeUI:SetVisibility(ESlateVisibility.Visible)
         if PC.JiangeUI.UpdateFloorText then
             PC.JiangeUI:UpdateFloorText()
         end
-        -- ugcprint("[wujingjiange] JiangeUI 宸叉仮澶嶆樉绀?)
+        -- Keep this section consistent with the original UI flow.
     end
 end
 
--- 瑙ｆ瀽宸查鍙栫殑灞傜骇璁板綍
+-- Parse claimed floors.
 function wujingjiange:ParseClaimedFloors()
     local PC = UGCGameSystem.GetLocalPlayerController()
     local str = PC and PC.JiangeClaimedFloors or ""
@@ -307,7 +307,7 @@ function wujingjiange:ParseClaimedFloors()
     return claimed
 end
 
--- 鍒锋柊鎵€鏈夊鍔辩姸鎬佹樉绀?
+-- Refresh reward states.
 function wujingjiange:RefreshRewardStates()
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return end
@@ -315,108 +315,108 @@ function wujingjiange:RefreshRewardStates()
     local playerFloor = PC.JiangeFloor or 0
     local claimed = self:ParseClaimedFloors()
 
-    -- 鏇存柊姣忎釜灞傜骇鐨剆tate鏂囨湰
+    -- Iterate through related data or widgets.
     for floor, stateName in pairs(FLOOR_STATE_MAP) do
         local stateWidget = self[stateName]
         if stateWidget then
             if claimed[floor] then
-                stateWidget:SetText("宸查鍙?)
+                stateWidget:SetText("瀹告煡顣崣?)
             elseif playerFloor >= floor then
-                stateWidget:SetText("鍙鍙?)
+                stateWidget:SetText("閸欘垶顣崣?)
             else
-                stateWidget:SetText(tostring(floor) .. "灞?)
+                stateWidget:SetText(tostring(floor) .. "鐏?)
             end
         end
     end
 
-    -- 鏇存柊姣忔棩棰嗗彇鏄剧ず
+    -- Local helper value for this logic block.
     local dailyAmount = PC.JiangeDailyAmount or 1
     if self.day then
         self.day:SetText(tostring(dailyAmount) .. "*")
     end
 
-    -- ugcprint("[wujingjiange] 濂栧姳鐘舵€佸凡鍒锋柊, 灞傛暟=" .. tostring(playerFloor) .. ", 姣忔棩=" .. tostring(dailyAmount))
+    -- Keep this section consistent with the original UI flow.
 end
 
--- 姣忔棩棰嗗彇鎸夐挳锛坓et1锛?
+-- Handle get1 button click.
 function wujingjiange:OnGet1Clicked()
-    -- ugcprint("[wujingjiange] get1 姣忔棩棰嗗彇鎸夐挳鐐瑰嚮")
+    -- Acquire local player references.
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return end
 
-    -- 闃叉缃戠粶寤惰繜鏈熼棿閲嶅鐐瑰嚮
+    -- Guard condition before running this branch.
     if self.DailyClaimPending then
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("棰嗗彇璇锋眰澶勭悊涓?..")
+            PC.MMainUI:ShowTip("妫板棗褰囩拠閿嬬湴婢跺嫮鎮婃稉?..")
         end
         return
     end
 
-    -- 妫€鏌ヤ粖澶╂槸鍚﹀凡棰?
+    -- Local helper value for this logic block.
     local today = os.date("%Y-%m-%d")
     local lastDate = PC.JiangeDailyClaimDate or ""
     if lastDate == today then
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("浠婂ぉ宸茬粡棰嗗彇杩囦簡")
+            PC.MMainUI:ShowTip("娴犲﹤銇夊鑼病妫板棗褰囨潻鍥︾啊")
         end
-        -- ugcprint("[wujingjiange] 浠婂ぉ宸查鍙栬繃姣忔棩濂栧姳")
+        -- Exit early when requirements are not met.
         return
     end
 
-    -- 璋冪敤鏈嶅姟绔鍙?
+    -- Local helper value for this logic block.
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         self.DailyClaimPending = true
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_ClaimJiangeDailyReward")
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("棰嗗彇璇锋眰宸插彂閫?)
+            PC.MMainUI:ShowTip("妫板棗褰囩拠閿嬬湴瀹告彃褰傞柅?)
         end
-        -- ugcprint("[wujingjiange] 鍙戦€佹瘡鏃ラ鍙栬姹?)
+        -- Keep this section consistent with the original UI flow.
     else
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("棰嗗彇澶辫触锛岃绋嶅悗閲嶈瘯")
+            PC.MMainUI:ShowTip("妫板棗褰囨径杈Е閿涘矁顕粙宥呮倵闁插秷鐦?)
         end
     end
 end
 
--- 灞傜骇濂栧姳棰嗗彇鎸夐挳锛坓et2锛?
+-- Handle get2 button click.
 function wujingjiange:OnGet2Clicked()
     local targetFloor = self.SelectedFloor or 100
-    -- ugcprint("[wujingjiange] get2 灞傜骇濂栧姳鎸夐挳鐐瑰嚮, 閫変腑灞?" .. tostring(targetFloor))
+    -- Acquire local player references.
 
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return end
 
     local playerFloor = PC.JiangeFloor or 0
 
-    -- 妫€鏌ユ槸鍚﹁揪鍒拌灞?
+    -- Guard condition before running this branch.
     if playerFloor < targetFloor then
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("鏈揪鍒? .. tostring(targetFloor) .. "灞?)
+            PC.MMainUI:ShowTip("閺堫亣鎻崚? .. tostring(targetFloor) .. "鐏?)
         end
-        -- ugcprint("[wujingjiange] 灞傛暟涓嶈冻: " .. tostring(playerFloor) .. "/" .. tostring(targetFloor))
+        -- Exit early when requirements are not met.
         return
     end
 
-    -- 妫€鏌ユ槸鍚﹀凡棰嗗彇
+    -- Local helper value for this logic block.
     local claimed = self:ParseClaimedFloors()
     if claimed[targetFloor] then
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("璇ュ眰濂栧姳宸查鍙?)
+            PC.MMainUI:ShowTip("鐠囥儱鐪版總鏍уС瀹告煡顣崣?)
         end
-        -- ugcprint("[wujingjiange] 璇ュ眰濂栧姳宸查鍙? " .. tostring(targetFloor))
+        -- Exit early when requirements are not met.
         return
     end
 
-    -- 璋冪敤鏈嶅姟绔鍙?
+    -- Local helper value for this logic block.
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         local rewardAmount = FLOOR_REWARD_CONFIG[targetFloor] or 0
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_ClaimJiangeFloorReward", targetFloor)
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip(tostring(targetFloor) .. "灞傚鍔遍鍙栨垚鍔燂紒鑾峰緱 " .. tostring(rewardAmount) .. " 涓?)
+            PC.MMainUI:ShowTip(tostring(targetFloor) .. "鐏炲倸顨涢崝閬嶎暙閸欐牗鍨氶崝鐕傜磼閼惧嘲绶?" .. tostring(rewardAmount) .. " 娑?)
         end
-        -- ugcprint("[wujingjiange] 鍙戦€佸眰绾у鍔遍鍙栬姹? " .. tostring(targetFloor))
+        -- Keep this section consistent with the original UI flow.
     end
 end
 

@@ -28,136 +28,136 @@ function ConfirmPurchase_UIBP:LuaInit()
     end
     self.bInitDoOnce = true
     
-    -- 绑定按钮事件
+    -- Bind the button event.
     self.sure.OnPressed:Add(self.OnConfirmClick, self)
     self.cancel.OnPressed:Add(self.OnCancelClick, self)
     self.switchto1.OnPressed:Add(self.OnSwitchTo1Click, self)
     self.Switchto2.OnPressed:Add(self.OnSwitchTo2Click, self)
     
-    -- 初始化 WidgetSwitcher 显示第一个页面
+    -- Initialize the UI UI.
     if self.WidgetSwitcher_0 then
         self.WidgetSwitcher_0:SetActiveWidgetIndex(0)
     end
     
-    --ugcprint("[ConfirmPurchase_UIBP] 初始化完成")
+    -- Log the initialization state.
 end
 
----设置购买信息
----@param info table 购买信息表
+-- Related UI logic.
+-- Related UI logic.
 function ConfirmPurchase_UIBP:SetPurchaseInfo(info)
     self.PurchaseInfo = info
     
-    --[[ugcprint(string.format("[ConfirmPurchase_UIBP] 设置购买信息 - 商品ID:%d, 物品ID:%d, 价格:%d", 
+    -- Log this action.
         info.ProductID, info.ItemID, info.Price))]]
-    --[[ugcprint(string.format("[ConfirmPurchase_UIBP] 限购信息 - 类型:%d, 限购:%d, 已购:%d, 剩余:%d", 
+    -- Log this action.
         info.LimitType, info.PurchaseLimit, info.PurchasedTimes, info.RemainingTimes))]]
     
-    -- 更新UI显示
+    -- Update the UI UI state.
     if self.detail then
         local detailText = string.format("确认花费 %d 绿洲币购买 %s？", info.Price, info.ItemName or "物品")
         
-        -- 如果有限购，显示限购信息
+        -- Related UI logic.
         if info.LimitType ~= 0 then
             detailText = detailText .. string.format("\n\n限购次数：%d/%d (剩余 %d 次)", 
                 info.PurchasedTimes, info.PurchaseLimit, info.RemainingTimes)
         end
         
         self.detail:SetText(detailText)
-        --[[        --ugcprint(string.format("[ConfirmPurchase_UIBP] 显示文本: %s", detailText))]]
+        -- Log this action.
     end
 end
 
----确认按钮点击
+-- Handle the confirm action.
 function ConfirmPurchase_UIBP:OnConfirmClick()
-    --ugcprint("[ConfirmPurchase_UIBP] 点击确认按钮")
+    -- Log this action.
     
-    -- 获取当前页面索引
+    -- Get the required UI reference.
     local currentIndex = 0
     if self.WidgetSwitcher_0 then
         currentIndex = self.WidgetSwitcher_0:GetActiveWidgetIndex()
     end
     
-    --[[    --ugcprint(string.format("[ConfirmPurchase_UIBP] 当前页面索引: %d", currentIndex))]]
+    -- Log this action.
     
-    -- 根据页面索引决定购买哪个商品
+    -- Related UI logic.
     local productID = currentIndex == 0 and self.ProductID_Page1 or self.ProductID_Page2
     
-    --[[    --ugcprint(string.format("[ConfirmPurchase_UIBP] 购买商品ID: %d", productID))]]
+    -- Log this action.
     
-    -- 执行购买逻辑
+    -- Related UI logic.
     self:PurchaseProduct(productID)
     
-    -- 关闭界面
+    -- Related UI logic.
     self:RemoveFromParent()
 end
 
----取消按钮点击
+-- Handle the cancel action.
 function ConfirmPurchase_UIBP:OnCancelClick()
-    --ugcprint("[ConfirmPurchase_UIBP] 点击取消按钮")
+    -- Log this action.
     
-    -- 关闭界面
+    -- Related UI logic.
     self:RemoveFromParent()
 end
 
----切换到第一个页面
+-- Related UI logic.
 function ConfirmPurchase_UIBP:OnSwitchTo1Click()
-    --ugcprint("[ConfirmPurchase_UIBP] 切换到页面1")
+    -- Log this action.
     
     if self.WidgetSwitcher_0 then
         self.WidgetSwitcher_0:SetActiveWidgetIndex(0)
     end
 end
 
----切换到第二个页面
+-- Related UI logic.
 function ConfirmPurchase_UIBP:OnSwitchTo2Click()
-    --ugcprint("[ConfirmPurchase_UIBP] 切换到页面2")
+    -- Log this action.
     
     if self.WidgetSwitcher_0 then
         self.WidgetSwitcher_0:SetActiveWidgetIndex(1)
     end
 end
 
----购买商品
----@param productID number 商品ID
+-- Related UI logic.
+-- Related UI logic.
 function ConfirmPurchase_UIBP:PurchaseProduct(productID)
-    --[[    --ugcprint(string.format("[ConfirmPurchase_UIBP] 开始购买商品 - ProductID: %d", productID))]]
+    -- Log this action.
     
-    -- 获取 CommodityOperationManager
+    -- Get the required UI reference.
     local CommodityOperationManager = UGCGamePartSystem.CommodityOperationManager.GetGlobalActor()
     if not CommodityOperationManager then
-        --ugcprint("[ConfirmPurchase_UIBP] 错误：无法获取 CommodityOperationManager")
+        -- Log the error state.
         return
     end
     
-    -- 获取商品配置
+    -- Get the required UI reference.
     local ProductData = CommodityOperationManager:GetProductData(productID)
     if not ProductData then
-        --[[        --ugcprint(string.format("[ConfirmPurchase_UIBP] 错误：无法获取商品配置，ProductID: %d", productID))]]
+        -- Log the error state.
         return
     end
     
-    -- 获取 VirtualItemManager
+    -- Get the required UI reference.
     local VirtualItemManager = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
     if not VirtualItemManager then
-        --ugcprint("[ConfirmPurchase_UIBP] 错误：无法获取 VirtualItemManager")
+        -- Log the error state.
         return
     end
     
-    -- 获取物品配置
+    -- Get the required UI reference.
     local ObjectData = VirtualItemManager:GetItemData(ProductData.ItemID)
     if not ObjectData then
-        --ugcprint("[ConfirmPurchase_UIBP] 错误：无法获取物品配置")
+        -- Log the error state.
         return
     end
     
-    -- 调用系统购买接口（会自动扣币和发货）
-    --[[    --ugcprint(string.format("[ConfirmPurchase_UIBP] 调用购买接口 - ProductID:%d", productID))]]
+    -- Related UI logic.
+    -- Log this action.
     local PromiseFuture = UGCCommoditySystem.BuyUGCCommodity2(productID, ObjectData.ItemIcon, ObjectData.ItemDesc, 1)
     
     if PromiseFuture ~= nil then
         PromiseFuture:Then(
             function (Result)
-                --ugcprint("[ConfirmPurchase_UIBP] 系统购买确认界面已打开")
+                -- Log this action.
                 local UI = Result:Get()
                 if UI and UI.ConfirmationOperationDelegate then
                     UI.ConfirmationOperationDelegate:Add(self.OnPurchaseComplete, self)
@@ -165,18 +165,18 @@ function ConfirmPurchase_UIBP:PurchaseProduct(productID)
             end
         )
     else
-        --ugcprint("[ConfirmPurchase_UIBP] 错误：无法打开购买确认界面")
+        -- Log the error state.
     end
 end
 
----购买完成回调
+-- Related UI logic.
 function ConfirmPurchase_UIBP:OnPurchaseComplete(bConfirmed)
-    --[[    --ugcprint(string.format("[ConfirmPurchase_UIBP] 购买完成回调 - 确认:%s", tostring(bConfirmed)))]]
+    -- Log this action.
     
     if bConfirmed then
-        --ugcprint("[ConfirmPurchase_UIBP] 购买成功！系统已自动扣除绿洲币并发放物品")
+        -- Log the success state.
     else
-        --ugcprint("[ConfirmPurchase_UIBP] 购买已取消")
+        -- Log this action.
     end
 end
 

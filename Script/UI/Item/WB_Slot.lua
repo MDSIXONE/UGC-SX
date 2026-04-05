@@ -6,78 +6,78 @@
 --Edit Below--
 local WB_Slot = { bInitDoOnce = false } 
 
--- 寮曞叆UGCGameData
+-- Local helper value for this logic block.
 local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 
 function WB_Slot:Construct()
-	--ugcprint("[WB_Slot] Construct 琚皟鐢?)
+	-- Keep this section consistent with the original UI flow.
 	
-	-- 鍒濆鍖栧疄渚嬪彉閲?
+	-- Keep this section consistent with the original UI flow.
 	self.RecipeData = nil
 	
-	-- 闅愯棌Image_1锛堥粯璁ら殣钘忥紝鍙湁鍙悎鎴愭椂鎵嶆樉绀猴級
+	-- Guard condition before running this branch.
 	if self.Image_1 then
 		self.Image_1:SetVisibility(2)  -- 2 = Hidden
 	end
 	
-	-- 妫€鏌ユ槸鍚︿负鏄剧ず妯″紡
+	-- Guard condition before running this branch.
 	if self.IsDisplayMode then
-		--ugcprint("[WB_Slot] 鏄剧ず妯″紡锛屽姞杞芥樉绀烘暟鎹?)
+		-- Execute the next UI update step.
 		self:LoadDisplayData()
 		return
 	end
 	
-	-- 濡傛灉澶栭儴璁剧疆浜哛ecipeID锛屼娇鐢ㄥ閮ㄧ殑
+	-- Guard condition before running this branch.
 	if self.RecipeID then
-		--ugcprint("[WB_Slot] 浣跨敤閰嶆柟ID: " .. tostring(self.RecipeID))
+		-- Initialize widget state and bindings.
 		
 		self:LuaInit()
 		
-		-- 鏍规嵁妯″紡鍔犺浇涓嶅悓鐨勯厤鏂规暟鎹?
+		-- Guard condition before running this branch.
 		if self.IsFenjieMode then
 			self:LoadFenjieData(self.RecipeID)
 		else
 			self:LoadRecipeData(self.RecipeID)
 		end
 		
-		-- 璁剧疆鐗╁搧鍥炬爣
+		-- Execute the next UI update step.
 		self:SetItemIcon()
 		
-		-- 鏇存柊鐗╁搧鏁伴噺鏄剧ず
+		-- Execute the next UI update step.
 		self:UpdateItemCount()
 	else
-		--ugcprint("[WB_Slot] 璀﹀憡锛氭湭璁剧疆RecipeID")
+		-- Keep this section consistent with the original UI flow.
 	end
 end
 
--- 鍔犺浇閰嶆柟鏁版嵁
+-- Load recipe data.
 function WB_Slot:LoadRecipeData(recipeID)
-	-- ugcprint("[WB_Slot] 寮€濮嬪姞杞介厤鏂规暟鎹紝閰嶆柟ID: " .. tostring(recipeID))
+	-- Local helper value for this logic block.
 	
-	-- 浠庨厤鏂硅〃璇诲彇閰嶆柟
+	-- Local helper value for this logic block.
 	local recipeConfig = UGCGameData.GetRecipeConfig(recipeID)
 	if recipeConfig then
-		-- ugcprint("[WB_Slot] 閰嶆柟鍔犺浇鎴愬姛")
+		-- Iterate through related data or widgets.
 		
-		-- 鎵撳嵃閰嶆柟琛ㄧ殑鎵€鏈夊瓧娈碉紙鍏抽敭璋冭瘯淇℃伅锛?
-		-- ugcprint("[WB_Slot] ===== 閰嶆柟琛ㄥ瓧娈?=====")
+		-- Iterate through related data or widgets.
+		-- Iterate through related data or widgets.
 		for key, value in pairs(recipeConfig) do
 			-- ugcprint("[WB_Slot]   " .. tostring(key) .. " = " .. tostring(value))
 		end
-		-- ugcprint("[WB_Slot] ===== 瀛楁鎵撳嵃缁撴潫 =====")
+		-- Local helper value for this logic block.
 		
-		-- 浠庨厤鏂硅〃鑾峰彇铏氭嫙杈撳嚭鐗╁搧ID
-		local virtualOutputItemID = recipeConfig["铏氭嫙鐗╁搧ID"]
-		-- ugcprint("[WB_Slot] 铏氭嫙杈撳嚭鐗╁搧ID: " .. tostring(virtualOutputItemID))
+		-- Local helper value for this logic block.
+		local virtualOutputItemID = recipeConfig["閾忔碍瀚欓悧鈺佹惂ID"]
+		-- Local helper value for this logic block.
 		
-		-- 璇诲彇杈撳嚭鏉愭枡鏁伴噺
-		local outputCount = recipeConfig["鏁伴噺"] or recipeConfig["杈撳嚭鏉愭枡锛堟暟閲忥級"] or 1
-		-- ugcprint("[WB_Slot] 杈撳嚭鏉愭枡鏁伴噺: " .. tostring(outputCount))
+		-- Local helper value for this logic block.
+		local outputCount = recipeConfig["閺佷即鍣?] or recipeConfig["鏉堟挸鍤弶鎰灐閿涘牊鏆熼柌蹇ョ礆"] or 1
+		-- Local helper value for this logic block.
 		
-		-- 璇诲彇鍚堟垚閰嶆柟鏁扮粍
-		local craftRecipeArray = recipeConfig["鍚堟垚閰嶆柟"]
+		-- Local helper value for this logic block.
+		local craftRecipeArray = recipeConfig["閸氬牊鍨氶柊宥嗘煙"]
 		if not craftRecipeArray then
-			-- ugcprint("[WB_Slot] 閿欒锛氭湭鎵惧埌'鍚堟垚閰嶆柟'瀛楁锛佽妫€鏌ヤ笂闈㈡墦鍗扮殑瀛楁鍚?)
+			-- Keep this section consistent with the original UI flow.
 			self.RecipeData = {
 				InputItemID = nil,
 				InputCount = 0,
@@ -89,38 +89,38 @@ function WB_Slot:LoadRecipeData(recipeID)
 			return
 		end
 		
-		-- ugcprint("[WB_Slot] 鎵惧埌鍚堟垚閰嶆柟鏁扮粍锛屾潗鏂欐暟閲? " .. tostring(#craftRecipeArray))
+		-- Configuration table used by this widget.
 		
-		-- 瀛樺偍鎵€鏈夎緭鍏ユ潗鏂?
+		-- Configuration table used by this widget.
 		local inputMaterials = {}
 		
-		-- 閬嶅巻鍚堟垚閰嶆柟鏁扮粍锛坢aterial鏄疷E userdata锛?
+		-- Iterate through related data or widgets.
 		for i = 1, #craftRecipeArray do
 			local material = craftRecipeArray[i]
 			if material then
-				-- ugcprint("[WB_Slot] 鏉愭枡 " .. i .. " 绫诲瀷: " .. type(material))
+				-- Keep this section consistent with the original UI flow.
 				
-				-- 鐢╬call + 鏂规嫭鍙疯闂畊serdata瀛楁
-				local ok, virtualInputItemID = pcall(function() return material["鏉愭枡铏氭嫙鐗╁搧ID"] end)
-				local ok2, inputCount = pcall(function() return material["鎵€闇€鏁伴噺"] end)
+				-- Keep this section consistent with the original UI flow.
+				local ok, virtualInputItemID = pcall(function() return material["閺夋劖鏋￠搹姘珯閻椻晛鎼D"] end)
+				local ok2, inputCount = pcall(function() return material["閹碘偓闂団偓閺佷即鍣?] end)
 				
 				if not ok then
-					-- ugcprint("[WB_Slot] 鏉愭枡 " .. i .. " 璁块棶鏉愭枡铏氭嫙鐗╁搧ID澶辫触: " .. tostring(virtualInputItemID))
+					-- Keep this section consistent with the original UI flow.
 					virtualInputItemID = nil
 				end
 				if not ok2 then
-					-- ugcprint("[WB_Slot] 鏉愭枡 " .. i .. " 璁块棶鎵€闇€鏁伴噺澶辫触: " .. tostring(inputCount))
+					-- Keep this section consistent with the original UI flow.
 					inputCount = nil
 				end
 				
-				-- ugcprint("[WB_Slot] 鏉愭枡 " .. i .. " - 铏氭嫙ID: " .. tostring(virtualInputItemID) .. ", 鏁伴噺: " .. tostring(inputCount))
+				-- Guard condition before running this branch.
 				
-				-- 浣跨敤鏄犲皠琛ㄥ皢铏氭嫙鐗╁搧ID杞崲涓哄疄闄呯墿鍝両D
+				-- Guard condition before running this branch.
 				if virtualInputItemID then
 					local inputMapping = UGCGameData.GetItemMapping(virtualInputItemID)
 					if inputMapping and inputMapping["ClassicItemID"] then
 						local realInputItemID = inputMapping["ClassicItemID"]
-						-- ugcprint("[WB_Slot] 鏉愭枡 " .. i .. " 鏄犲皠鍚庣殑鐪熷疄ID: " .. tostring(realInputItemID))
+						-- Keep this section consistent with the original UI flow.
 						
 						table.insert(inputMaterials, {
 							VirtualItemID = virtualInputItemID,
@@ -128,29 +128,29 @@ function WB_Slot:LoadRecipeData(recipeID)
 							Count = inputCount
 						})
 					else
-						-- ugcprint("[WB_Slot] 璀﹀憡锛氭潗鏂?" .. i .. " 鏈壘鍒版槧灏?)
+						-- Keep this section consistent with the original UI flow.
 					end
 				else
-					-- ugcprint("[WB_Slot] 璀﹀憡锛氭潗鏂?" .. i .. " virtualInputItemID涓簄il")
+					-- Keep this section consistent with the original UI flow.
 				end
 			else
-				-- ugcprint("[WB_Slot] 璀﹀憡锛氭潗鏂?" .. i .. " 涓簄il")
+				-- Keep this section consistent with the original UI flow.
 			end
 		end
 		
-		-- ugcprint("[WB_Slot] 瑙ｆ瀽瀹屾垚锛屾湁鏁堟潗鏂欐暟閲? " .. tostring(#inputMaterials))
+		-- Local helper value for this logic block.
 		
-		-- 浣跨敤鏄犲皠琛ㄥ皢铏氭嫙杈撳嚭鐗╁搧ID杞崲涓哄疄闄呯墿鍝両D
+		-- Local helper value for this logic block.
 		local realOutputItemID = nil
 		if virtualOutputItemID then
 			local outputMapping = UGCGameData.GetItemMapping(virtualOutputItemID)
 			if outputMapping and outputMapping["ClassicItemID"] then
 				realOutputItemID = outputMapping["ClassicItemID"]
-				-- ugcprint("[WB_Slot] 鏄犲皠鍚庣殑杈撳嚭鐗╁搧ID: " .. tostring(realOutputItemID))
+				-- Keep this section consistent with the original UI flow.
 			end
 		end
 		
-		-- 鏋勫缓閰嶆柟鏁版嵁
+		-- Local helper value for this logic block.
 		local firstMaterial = inputMaterials[1]
 		self.RecipeData = {
 			InputItemID = firstMaterial and firstMaterial.RealItemID or nil,
@@ -163,7 +163,7 @@ function WB_Slot:LoadRecipeData(recipeID)
 			InputMaterials = inputMaterials
 		}
 	else
-		-- ugcprint("[WB_Slot] 閿欒锛氭湭鎵惧埌閰嶆柟锛岄厤鏂笽D: " .. tostring(recipeID))
+		-- Keep this section consistent with the original UI flow.
 		self.RecipeData = {
 			InputItemID = nil,
 			InputCount = 0,
@@ -174,36 +174,36 @@ function WB_Slot:LoadRecipeData(recipeID)
 		}
 	end
 	
-	-- ugcprint("[WB_Slot] 閰嶆柟鏁版嵁鍔犺浇瀹屾垚, InputMaterials鏁伴噺: " .. tostring(self.RecipeData and #self.RecipeData.InputMaterials or "nil"))
+	-- Keep this section consistent with the original UI flow.
 end
 
--- 鍔犺浇鍒嗚В閰嶆柟鏁版嵁
+-- Load fenjie data.
 function WB_Slot:LoadFenjieData(recipeID)
-	-- ugcprint("[WB_Slot] 寮€濮嬪姞杞藉垎瑙ｆ暟鎹紝閰嶆柟ID: " .. tostring(recipeID))
+	-- Local helper value for this logic block.
 	
 	local fenjieConfig = UGCGameData.GetFenjieConfig(recipeID)
 	if fenjieConfig then
-		-- ugcprint("[WB_Slot] 鍒嗚В閰嶆柟鍔犺浇鎴愬姛")
+		-- Iterate through related data or widgets.
 		
-		-- 鎵撳嵃鍒嗚В琛ㄧ殑鎵€鏈夊瓧娈?
-		-- ugcprint("[WB_Slot] ===== 鍒嗚В琛ㄥ瓧娈?=====")
+		-- Iterate through related data or widgets.
+		-- Iterate through related data or widgets.
 		for key, value in pairs(fenjieConfig) do
 			-- ugcprint("[WB_Slot]   " .. tostring(key) .. " = " .. tostring(value))
 		end
-		-- ugcprint("[WB_Slot] ===== 瀛楁鎵撳嵃缁撴潫 =====")
+		-- Local helper value for this logic block.
 		
-		-- 浠庡垎瑙ｈ〃鑾峰彇铏氭嫙杈撳嚭鐗╁搧ID锛堝垎瑙ｇ殑杈撳叆鐗╁搧锛屽嵆瑕佽鍒嗚В鐨勭墿鍝侊級
-		local virtualOutputItemID = fenjieConfig["铏氭嫙鐗╁搧ID"]
-		-- ugcprint("[WB_Slot] 铏氭嫙鐗╁搧ID: " .. tostring(virtualOutputItemID))
+		-- Local helper value for this logic block.
+		local virtualOutputItemID = fenjieConfig["閾忔碍瀚欓悧鈺佹惂ID"]
+		-- Local helper value for this logic block.
 		
-		-- 璇诲彇鏁伴噺
-		local outputCount = fenjieConfig["鏁伴噺"] or 1
-		-- ugcprint("[WB_Slot] 鏁伴噺: " .. tostring(outputCount))
+		-- Local helper value for this logic block.
+		local outputCount = fenjieConfig["閺佷即鍣?] or 1
+		-- Local helper value for this logic block.
 		
-		-- 璇诲彇鍒嗚В閰嶆柟鏁扮粍锛堝垎瑙ｅ悗寰楀埌鐨勬潗鏂欙級
-		local fenjieRecipeArray = fenjieConfig["鍚堟垚閰嶆柟"] or fenjieConfig["鍒嗚В閰嶆柟"]
+		-- Local helper value for this logic block.
+		local fenjieRecipeArray = fenjieConfig["閸氬牊鍨氶柊宥嗘煙"] or fenjieConfig["閸掑棜袙闁板秵鏌?]
 		if not fenjieRecipeArray then
-			-- ugcprint("[WB_Slot] 閿欒锛氭湭鎵惧埌鍒嗚В閰嶆柟瀛楁锛佽妫€鏌ヤ笂闈㈡墦鍗扮殑瀛楁鍚?)
+			-- Keep this section consistent with the original UI flow.
 			self.RecipeData = {
 				InputItemID = nil,
 				InputCount = 0,
@@ -216,21 +216,21 @@ function WB_Slot:LoadFenjieData(recipeID)
 			return
 		end
 		
-		-- ugcprint("[WB_Slot] 鎵惧埌鍒嗚В閰嶆柟鏁扮粍锛屾潗鏂欐暟閲? " .. tostring(#fenjieRecipeArray))
+		-- Configuration table used by this widget.
 		
-		-- 瀛樺偍鎵€鏈夎緭鍑烘潗鏂欙紙鍒嗚В鍚庤幏寰楃殑涓滆タ锛?
+		-- Configuration table used by this widget.
 		local outputMaterials = {}
 		
 		for i = 1, #fenjieRecipeArray do
 			local material = fenjieRecipeArray[i]
 			if material then
-				local ok, virtualItemID = pcall(function() return material["鏉愭枡铏氭嫙鐗╁搧ID"] end)
-				local ok2, count = pcall(function() return material["鎵€闇€鏁伴噺"] end)
+				local ok, virtualItemID = pcall(function() return material["閺夋劖鏋￠搹姘珯閻椻晛鎼D"] end)
+				local ok2, count = pcall(function() return material["閹碘偓闂団偓閺佷即鍣?] end)
 				
 				if not ok then virtualItemID = nil end
 				if not ok2 then count = nil end
 				
-				-- ugcprint("[WB_Slot] 鍒嗚В浜у嚭 " .. i .. " - 铏氭嫙ID: " .. tostring(virtualItemID) .. ", 鏁伴噺: " .. tostring(count))
+				-- Guard condition before running this branch.
 				
 				if virtualItemID then
 					local mapping = UGCGameData.GetItemMapping(virtualItemID)
@@ -246,7 +246,7 @@ function WB_Slot:LoadFenjieData(recipeID)
 			end
 		end
 		
-		-- 鏄犲皠琚垎瑙ｇ墿鍝佺殑鐪熷疄ID
+		-- Local helper value for this logic block.
 		local realOutputItemID = nil
 		if virtualOutputItemID then
 			local outputMapping = UGCGameData.GetItemMapping(virtualOutputItemID)
@@ -255,7 +255,7 @@ function WB_Slot:LoadFenjieData(recipeID)
 			end
 		end
 		
-		-- 鍒嗚В妯″紡涓嬶細InputMaterials = 闇€瑕佹秷鑰楃殑鐗╁搧锛堣鍒嗚В鐨勶級锛孫utputMaterials = 鍒嗚В鍚庤幏寰楃殑
+		-- Keep this section consistent with the original UI flow.
 		self.RecipeData = {
 			InputItemID = realOutputItemID,
 			InputCount = outputCount,
@@ -273,7 +273,7 @@ function WB_Slot:LoadFenjieData(recipeID)
 			IsFenjie = true
 		}
 	else
-		-- ugcprint("[WB_Slot] 閿欒锛氭湭鎵惧埌鍒嗚В閰嶆柟锛孖D: " .. tostring(recipeID))
+		-- Keep this section consistent with the original UI flow.
 		self.RecipeData = {
 			InputItemID = nil,
 			InputCount = 0,
@@ -285,7 +285,7 @@ function WB_Slot:LoadFenjieData(recipeID)
 		}
 	end
 	
-	-- ugcprint("[WB_Slot] 鍒嗚В鏁版嵁鍔犺浇瀹屾垚")
+	-- Keep this section consistent with the original UI flow.
 end
 
 -- [Editor Generated Lua] function define Begin:
@@ -294,24 +294,24 @@ function WB_Slot:LuaInit()
 		return
 	end
 	self.bInitDoOnce = true
-	--ugcprint("[WB_Slot] LuaInit 寮€濮嬬粦瀹氫簨浠?)
+	-- Guard condition before running this branch.
 	
-	-- 缁戝畾鎸夐挳鐐瑰嚮浜嬩欢
+	-- Guard condition before running this branch.
 	if self.Button_0 and not self.IsDisplayMode then
 		self.Button_0.OnPressed:Add(self.OnButtonClicked, self)
-		--ugcprint("[WB_Slot] Button_0 鐐瑰嚮浜嬩欢缁戝畾鎴愬姛")
+		-- Continue registering UI interaction callbacks.
 	elseif self.IsDisplayMode then
-		--ugcprint("[WB_Slot] 鏄剧ず妯″紡锛岃烦杩囨寜閽粦瀹?)
+		-- Guard condition before running this branch.
 		if self.Button_0 then
 			self.Button_0:SetIsEnabled(false)
 		end
 	else
-		--ugcprint("[WB_Slot] 璀﹀憡锛氭湭鎵惧埌 Button_0")
+		-- Keep this section consistent with the original UI flow.
 	end
 end
 -- [Editor Generated Lua] function define End;
 
--- 璁剧疆鐗╁搧鍥炬爣
+-- Set item icon.
 function WB_Slot:SetItemIcon()
 	if not self.RecipeData then
 		return
@@ -322,13 +322,13 @@ function WB_Slot:SetItemIcon()
 		return
 	end
 	
-	-- 浠庣墿鍝佽〃鑾峰彇鐗╁搧閰嶇疆
+	-- Local helper value for this logic block.
 	local itemConfig = UGCGameData.GetItemConfig(virtualOutputItemID)
 	if not itemConfig then
 		return
 	end
 	
-	-- 鑾峰彇灏廼con璺緞
+	-- Local helper value for this logic block.
 	local iconPath = itemConfig["ItemSmallIcon"]
 	if not iconPath then
 		return
@@ -338,7 +338,7 @@ function WB_Slot:SetItemIcon()
 		return
 	end
 	
-	-- 浣跨敤UGCObjectUtility.GetPathBySoftObjectPath浠嶴oftObjectPath鑾峰彇璺緞瀛楃涓?
+	-- Local helper value for this logic block.
 	local pathString = UGCObjectUtility.GetPathBySoftObjectPath(iconPath)
 	
 	if pathString and pathString ~= "" then
@@ -349,7 +349,7 @@ function WB_Slot:SetItemIcon()
 	end
 end
 
--- 鏇存柊鐗╁搧鏁伴噺鏄剧ず
+-- Update item count.
 function WB_Slot:UpdateItemCount()
 	if not self.TextBlock_0 then
 		return
@@ -363,16 +363,16 @@ function WB_Slot:UpdateItemCount()
 		return
 	end
 	
-	-- 鏄剧ず杈撳嚭鏁伴噺
+	-- Local helper value for this logic block.
 	local countText = "x" .. tostring(self.RecipeData.OutputCount)
 	self.TextBlock_0:SetText(countText)
 	
-	-- 璁剧疆涓虹櫧鑹?
+	-- Local helper value for this logic block.
 	local whiteColor = UGCObjectUtility.NewStruct("SlateColor")
 	whiteColor.SpecifiedColor = UGCObjectUtility.NewStruct("LinearColor", 1, 1, 1, 1)
 	self.TextBlock_0:SetColorAndOpacity(whiteColor)
 	
-	-- 妫€鏌ユ墍鏈夋潗鏂欐槸鍚﹀厖瓒?
+	-- Local helper value for this logic block.
 	local canCraft = true
 	local PlayerController = UGCGameSystem.GetLocalPlayerController()
 	
@@ -388,7 +388,7 @@ function WB_Slot:UpdateItemCount()
 		canCraft = false
 	end
 	
-	-- 鏍规嵁鏄惁鍙悎鎴愭樉绀烘垨闅愯棌Image_1
+	-- Guard condition before running this branch.
 	if self.Image_1 then
 		if canCraft then
 			self.Image_1:SetVisibility(0)  -- 0 = Visible
@@ -398,40 +398,40 @@ function WB_Slot:UpdateItemCount()
 	end
 end
 
--- 鎸夐挳鐐瑰嚮浜嬩欢
+-- Handle button button click.
 function WB_Slot:OnButtonClicked()
-	--ugcprint("[WB_Slot] 鎸夐挳琚偣鍑?)
+	-- Guard condition before running this branch.
 	
 	if not self.RecipeData then
-		--ugcprint("[WB_Slot] 閿欒锛氶厤鏂规暟鎹负绌?)
+		-- Exit early when requirements are not met.
 		return
 	end
 	
 	local PlayerController = UGCGameSystem.GetLocalPlayerController()
 	if not PlayerController then
-		--ugcprint("[WB_Slot] 閿欒锛氳幏鍙栫帺瀹舵帶鍒跺櫒澶辫触")
+		-- Exit early when requirements are not met.
 		return
 	end
 	
-	-- 鏌ユ壘鐖剁骇 WB_Inventory 骞惰皟鐢?ShowCraftDetails
+	-- Guard condition before running this branch.
 	if PlayerController.MMainUI and PlayerController.MMainUI.WB_Inventory then
-		--ugcprint("[WB_Slot] 璋冪敤 WB_Inventory 鏄剧ず璇︽儏锛岄厤鏂笽D: " .. tostring(self.RecipeData.RecipeID))
+		-- Keep this section consistent with the original UI flow.
 		PlayerController.MMainUI.WB_Inventory:ShowCraftDetails(self.RecipeData)
 	else
-		--ugcprint("[WB_Slot] 閿欒锛氭壘涓嶅埌 WB_Inventory UI")
+		-- Keep this section consistent with the original UI flow.
 	end
 end
 
 function WB_Slot:Tick(MyGeometry, InDeltaTime)
-	-- 姣忓抚鏇存柊鐗╁搧鏁伴噺鏄剧ず鍜孖mage_1鐘舵€?
+	-- Guard condition before running this branch.
 	if self.RecipeData then
 		self:UpdateItemCount()
 	end
 end
 
--- 鍔犺浇鏄剧ず鏁版嵁锛堢敤浜庤鎯呮樉绀猴級
+-- Load display data.
 function WB_Slot:LoadDisplayData()
-	-- 杩欎釜鍑芥暟鐣欑┖锛岀敱WB_Slot_2澶勭悊
+	-- Keep this section consistent with the original UI flow.
 end
 
 return WB_Slot

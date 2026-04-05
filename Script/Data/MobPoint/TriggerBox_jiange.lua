@@ -1,7 +1,7 @@
 ﻿---@class TriggerBox_jiange_C:TriggerBox
 ---@field SpawnerManagers ULuaArrayHelper<AActor>
 --Edit Below--
--- 鏃犲敖鍓戦榿瑙﹀彂鐩掞細鐜╁杩涘叆鍚庡欢杩?绉掑惎鍔ㄥ埛鎬紝绂诲紑鏆傚仠娓呴櫎+閲嶇疆灞傛暟
+-- Endless Sword Pavilion trigger box: start spawning after a 4 second delay when a player enters, and pause/clear/reset when everyone leaves.
 local TriggerBox_jiange = {}
 
 function TriggerBox_jiange:ReceiveBeginPlay()
@@ -18,7 +18,7 @@ function TriggerBox_jiange:LuaInit()
 
     self.CollisionComponent.OnComponentBeginOverlap:Add(self.OnBeginOverlap, self)
     self.CollisionComponent.OnComponentEndOverlap:Add(self.OnEndOverlap, self)
-    -- ugcprint("[TriggerBox_jiange] 鍒濆鍖栧畬鎴愶紝纰版挒浜嬩欢宸茬粦瀹?)
+    -- Log that collision events have been bound.
 end
 
 function TriggerBox_jiange:GetPlayerCount()
@@ -32,18 +32,18 @@ function TriggerBox_jiange:OnBeginOverlap(OverlappedComponent, OtherActor, Other
 
     self.PlayersInZone[tostring(OtherActor)] = OtherActor
     local count = self:GetPlayerCount()
-    -- ugcprint("[TriggerBox_jiange] 鐜╁杩涘叆锛屽綋鍓嶇帺瀹舵暟: " .. count)
+    -- Log the player count after entry.
 
     if count == 1 and not self.bSpawnerStarted then
-        -- ugcprint("[TriggerBox_jiange] 绗竴涓帺瀹惰繘鍏ワ紝4绉掑悗鍚姩鍒锋€?)
+        -- Start spawning 4 seconds after the first player enters.
         self.bSpawnerStarted = true
         local this = self
         UGCGameSystem.SetTimer(this, function()
             if this:GetPlayerCount() > 0 then
-                -- ugcprint("[TriggerBox_jiange] 寤惰繜4绉掑埌锛屽惎鍔ㄥ埛鎬?)
+                -- Start spawning after the delay if players are still inside.
                 this:StartAllSpawners()
             else
-                -- ugcprint("[TriggerBox_jiange] 寤惰繜4绉掑埌锛屼絾鐜╁宸茬寮€锛屽彇娑堝埛鎬?)
+                -- Cancel spawning if everyone has already left.
                 this.bSpawnerStarted = false
             end
         end, 4.0, false)
@@ -52,58 +52,58 @@ end
 
 function TriggerBox_jiange:StartAllSpawners()
     if not self.SpawnerManagers then
-        -- ugcprint("[TriggerBox_jiange] 閿欒锛歋pawnerManagers 涓簄il")
+        -- Error: SpawnerManagers is nil.
         return
     end
 
     local count = self.SpawnerManagers:Num()
-    -- ugcprint("[TriggerBox_jiange] 寮€濮嬪惎鍔?SpawnerManagers锛屾暟閲? " .. count)
+    -- Log the number of spawner managers to start.
     for i = 1, count do
         local spawner = self.SpawnerManagers:Get(i)
-        -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " = " .. tostring(spawner))
+        -- Log the current spawner reference.
         if spawner then
-            -- 鍏堟敞鍐孫wnerTriggerBox锛堟渶閲嶈锛屾斁鏈€鍓嶉潰锛?
+            -- Set OwnerTriggerBox first so the spawner can call back correctly.
             spawner.OwnerTriggerBox = self
 
-            -- 鍏堝惎鍔ㄥ埛鎬紙鍏抽敭閫昏緫鏀惧湪璋冭瘯涔嬪墠锛岄槻姝㈣皟璇曞穿婧冨鑷村埛鎬笉鍚姩锛?
+            -- Start the spawner before the debug probes to avoid masking startup issues.
             local startOk, startErr = pcall(function()
                 spawner:ResetSpawnerManager(true)
                 spawner:StartSpawnerManager()
                 spawner:ResumeSpawnerManager()
             end)
             if startOk then
-                -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " 鍚姩瀹屾垚")
+                -- Log that the spawner started successfully.
             else
-                -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " 鍚姩澶辫触: " .. tostring(startErr))
+                -- Log that the spawner failed to start.
             end
 
-            -- 璋冭瘯淇℃伅锛堝叏閮╬call鍖呰９锛屼笉褰卞搷涓婚€昏緫锛?
+            -- Debug output is wrapped in pcall so it does not affect the main flow.
             pcall(function()
                 local className = spawner:GetClass() and spawner:GetClass():GetName() or "unknown"
-                -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " 绫诲悕: " .. className)
+                -- Log the spawner class name.
             end)
 
             pcall(function()
                 if spawner.SpawnPoints then
                     local spCount = spawner.SpawnPoints:Num()
-                    -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " SpawnPoints鏁伴噺: " .. spCount)
+                    -- Log the number of spawn points.
                 else
-                    -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " SpawnPoints涓簄il")
+                    -- Log that SpawnPoints is nil.
                 end
             end)
 
             pcall(function()
                 if spawner.WaveConfigs then
-                    -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " WaveConfigs鏁伴噺: " .. spawner.WaveConfigs:Num())
+                    -- Log the number of wave configs.
                 else
-                    -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " WaveConfigs涓簄il")
+                    -- Log that WaveConfigs is nil.
                 end
             end)
 
             pcall(function()
-                -- ugcprint("[TriggerBox_jiange] SpawnerManager " .. i .. " 灞炴€у垪琛?")
+                -- Log the spawner properties for debugging.
                 for k, v in pairs(spawner) do
-                    -- ugcprint("[TriggerBox_jiange]   " .. tostring(k) .. " = " .. tostring(v))
+                    -- Log key-value pairs for the spawner.
                 end
             end)
         end
@@ -115,10 +115,10 @@ function TriggerBox_jiange:OnEndOverlap(OverlappedComponent, OtherActor, OtherCo
 
     self.PlayersInZone[tostring(OtherActor)] = nil
     local count = self:GetPlayerCount()
-    -- ugcprint("[TriggerBox_jiange] 鐜╁绂诲紑锛屽墿浣欑帺瀹舵暟: " .. count)
+    -- Log the player count after exit.
 
     if count == 0 and self.bSpawnerStarted then
-        -- ugcprint("[TriggerBox_jiange] 鎵€鏈夌帺瀹剁寮€锛屽仠姝㈠埛鎬苟閲嶇疆灞傛暟")
+        -- Stop spawning and reset the floor when everyone leaves.
         self.bSpawnerStarted = false
         if self.SpawnerManagers then
             local num = self.SpawnerManagers:Num()
@@ -134,7 +134,7 @@ function TriggerBox_jiange:OnEndOverlap(OverlappedComponent, OtherActor, OtherCo
                 end
             end
         end
-        -- 閲嶇疆灞傛暟涓哄瓨妗ｆ渶楂樺眰+1
+        -- Reset the floor to the saved highest floor plus one.
         local GLQjiange = require("Script.Data.MobPoint.GLQjiange")
         if GLQjiange then
             local savedFloor = 0
@@ -149,9 +149,9 @@ function TriggerBox_jiange:OnEndOverlap(OverlappedComponent, OtherActor, OtherCo
                 end
             end
             GLQjiange.CurrentFloor = savedFloor + 1
-            -- ugcprint("[TriggerBox_jiange] 灞傛暟閲嶇疆涓哄瓨妗ｆ渶楂樺眰+1: " .. GLQjiange.CurrentFloor)
+            -- Log the reset floor value.
         end
-        -- 閲嶇疆spawner鐨勫垵濮嬪寲鏍囪锛屼笅娆¤繘鍏ラ噸鏂拌鍙栧瓨妗?
+        -- Clear spawner initialization flags so they re-read saved data next time.
         if self.SpawnerManagers then
             local num = self.SpawnerManagers:Num()
             for i = 1, num do
@@ -165,9 +165,9 @@ function TriggerBox_jiange:OnEndOverlap(OverlappedComponent, OtherActor, OtherCo
     end
 end
 
--- GLQjiange鍥炶皟锛氶€氱煡鍖哄煙鍐呯帺瀹跺脊缁撶畻UI
+-- Callback from GLQjiange: notify players in the zone to show the settlement UI.
 function TriggerBox_jiange:NotifyLevelComplete(levelNum)
-    -- ugcprint("[TriggerBox_jiange] 绗?" .. tostring(levelNum) .. " 灞傚畬鎴愶紝閫氱煡鐜╁寮圭粨绠桿I")
+    -- Log that the current floor is complete.
 
     local playerCount = 0
     for actorKey, pawn in pairs(self.PlayersInZone or {}) do
@@ -176,15 +176,14 @@ function TriggerBox_jiange:NotifyLevelComplete(levelNum)
             local PC = UGCGameSystem.GetPlayerControllerByPlayerPawn(pawn)
             if PC then
                 PC.CurrentTriggerBox = self
-                -- ugcprint("[TriggerBox_jiange] 鍙戦€丷PC Client_ShowTaSettlementUI, levelNum=" .. tostring(levelNum))
+                -- Send the settlement UI RPC to this player.
                 UnrealNetwork.CallUnrealRPC(PC, PC, "Client_ShowTaSettlementUI", levelNum)
             end
         end
     end
 
-    -- 濡傛灉PlayersInZone涓虹┖锛岄€氱煡鎵€鏈夌帺瀹?
+    -- If the zone is empty, notify all players.
     if playerCount == 0 then
-        -- ugcprint("[TriggerBox_jiange] PlayersInZone涓虹┖锛岄€氱煡鎵€鏈夌帺瀹?)
         local allPCs = UGCGameSystem.GetAllPlayerController()
         if allPCs then
             for _, pc in pairs(allPCs) do
@@ -195,9 +194,9 @@ function TriggerBox_jiange:NotifyLevelComplete(levelNum)
     end
 end
 
--- 鐜╁鐐瑰嚮缁х画鍚庯紝鎭㈠鍒锋€?
+-- Resume spawning after the player confirms the settlement.
 function TriggerBox_jiange:ResumeSpawning()
-    -- ugcprint("[TriggerBox_jiange] 鎭㈠鍒锋€?)
+    -- Resume all spawner managers.
     if self.SpawnerManagers then
         local count = self.SpawnerManagers:Num()
         for i = 1, count do

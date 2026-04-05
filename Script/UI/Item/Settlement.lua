@@ -6,14 +6,14 @@
 --Edit Below--
 local Settlement = { bInitDoOnce = false }
 
--- 寮曞叆UGCGameData
+-- Local helper value for this logic block.
 local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 
 function Settlement:Construct()
-	-- ugcprint("[Settlement] Construct 琚皟鐢?)
+	-- Initialize widget state and bindings.
 	self:LuaInit()
 	
-	-- 鍒涘缓濂栧姳鐗╁搧妲戒綅
+	-- Execute the next UI update step.
 	self:CreateRewardSlots()
 end
 
@@ -23,75 +23,75 @@ function Settlement:LuaInit()
 	end
 	self.bInitDoOnce = true
 	
-	-- ugcprint("[Settlement] LuaInit 瀹屾垚")
+	-- Guard condition before running this branch.
 	
-	-- 缁戝畾 sure 鎸夐挳鐐瑰嚮浜嬩欢
+	-- Guard condition before running this branch.
 	if self.sure then
 		self.sure.OnClicked:Add(self.OnSureButtonClicked, self)
-		-- ugcprint("[Settlement] sure 鎸夐挳鐐瑰嚮浜嬩欢缁戝畾鎴愬姛")
+		-- Continue registering UI interaction callbacks.
 	else
-		-- ugcprint("[Settlement] 閿欒锛歴ure 鎸夐挳涓嶅瓨鍦?)
+		-- Keep this section consistent with the original UI flow.
 	end
 end
 
--- 鍒涘缓濂栧姳鐗╁搧妲戒綅
+-- Create reward slots.
 function Settlement:CreateRewardSlots()
-	-- ugcprint("[Settlement] 寮€濮嬪垱寤哄鍔辩墿鍝佹Ы浣?)
+	-- Local helper value for this logic block.
 	local matchRewardVirtualID = 5666
 	
 	if not self.UniformGridPanel_1 then
-		-- ugcprint("[Settlement] 閿欒锛歎niformGridPanel_1 涓嶅瓨鍦?)
+		-- Exit early when requirements are not met.
 		return
 	end
 	
-	-- 娓呯┖闈㈡澘
+	-- Keep this section consistent with the original UI flow.
 	self.UniformGridPanel_1:ClearChildren()
 	
-	-- 璋冭瘯锛氭墦鍗版暟鎹〃璺緞
-	-- ugcprint("[Settlement] 濂栧姳琛ㄨ矾寰? " .. tostring(UGCGameData.FubenrewordTablePath))
+	-- Local helper value for this logic block.
+	-- Local helper value for this logic block.
 	
-	-- 璇诲彇濂栧姳鏁版嵁琛?
+	-- Local helper value for this logic block.
 	local allRewards = UGCGameData.GetAllFubenreword()
 	if not allRewards then
-		-- ugcprint("[Settlement] 閿欒锛氭棤娉曡鍙栧壇鏈鍔辫〃")
+		-- Exit early when requirements are not met.
 		-- ugcprint("[Settlement] allRewards = " .. tostring(allRewards))
 		return
 	end
 	
-	-- ugcprint("[Settlement] 鎴愬姛璇诲彇鍓湰濂栧姳琛?)
-	-- ugcprint("[Settlement] 濂栧姳鏁版嵁绫诲瀷: " .. type(allRewards))
+	-- Local helper value for this logic block.
+	-- Local helper value for this logic block.
 	
-	-- 鍔犺浇 WB_Slot_2 绫?
+	-- Local helper value for this logic block.
 	local SlotClass = UGCObjectUtility.LoadClass(UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/WB_Slot_2.WB_Slot_2_C'))
 	if not SlotClass then
-		-- ugcprint("[Settlement] 閿欒锛氭棤娉曞姞杞?WB_Slot_2 绫?)
+		-- Exit early when requirements are not met.
 		return
 	end
 	
-	-- 鑾峰彇鐜╁鎺у埗鍣?
+	-- Acquire local player references.
 	local PlayerController = UGCGameSystem.GetLocalPlayerController()
 	if not PlayerController then
-		-- ugcprint("[Settlement] 閿欒锛氭棤娉曡幏鍙栫帺瀹舵帶鍒跺櫒")
+		-- Exit early when requirements are not met.
 		return
 	end
 
-	-- 鍖归厤缁撶畻鍥哄畾灞曠ず閿婚€犵煶锛堣櫄鎷熺墿鍝両D=5666锛夛紝鏁伴噺娌跨敤濂栧姳琛ㄦ€诲拰
+	-- Local helper value for this logic block.
 	local totalRewardCount = 0
 	for _, rewardData in pairs(allRewards) do
-		local itemCount = math.floor(tonumber(rewardData["鏁伴噺"]) or 0)
+		local itemCount = math.floor(tonumber(rewardData["閺佷即鍣?]) or 0)
 		if itemCount > 0 then
 			totalRewardCount = totalRewardCount + itemCount
 		end
 	end
 
 	if totalRewardCount <= 0 then
-		-- ugcprint("[Settlement] 璀﹀憡锛氬鍔辫〃鏁伴噺涓?锛屼笉灞曠ず濂栧姳妲戒綅")
+		-- Exit early when requirements are not met.
 		return
 	end
 
 	local slotWidget = UserWidget.NewWidgetObjectBP(PlayerController, SlotClass)
 	if not slotWidget then
-		-- ugcprint("[Settlement] 閿欒锛氭棤娉曞垱寤烘Ы浣嶅疄渚?)
+		-- Exit early when requirements are not met.
 		return
 	end
 
@@ -109,30 +109,30 @@ function Settlement:CreateRewardSlots()
 		gridSlot:SetColumn(0)
 		gridSlot:SetHorizontalAlignment(2)
 		gridSlot:SetVerticalAlignment(2)
-		-- ugcprint("[Settlement] 濂栧姳妲戒綅宸叉坊鍔? 铏氭嫙ID=" .. tostring(matchRewardVirtualID) .. ", 鏁伴噺=" .. tostring(totalRewardCount))
+		-- Keep this section consistent with the original UI flow.
 	else
-		-- ugcprint("[Settlement] 閿欒锛欰ddChildToUniformGrid 杩斿洖 nil")
+		-- Keep this section consistent with the original UI flow.
 	end
 
-	-- ugcprint("[Settlement] 濂栧姳鐗╁搧妲戒綅鍒涘缓瀹屾垚")
+	-- Keep this section consistent with the original UI flow.
 end
 
--- sure 鎸夐挳鐐瑰嚮浜嬩欢
+-- Handle sure button button click.
 function Settlement:OnSureButtonClicked()
-	-- ugcprint("[Settlement] sure 鎸夐挳琚偣鍑伙紝鍑嗗鍙戞斁濂栧姳骞惰繘鍏ョ粨绠?)
+	-- Acquire local player references.
 	
-	-- 閫氳繃鏈嶅姟鍣≧PC鍙戞斁濂栧姳
+	-- Acquire local player references.
 	local PlayerController = UGCGameSystem.GetLocalPlayerController()
 	if PlayerController then
-		-- ugcprint("[Settlement] 璋冪敤鏈嶅姟鍣≧PC鍙戞斁濂栧姳")
+		-- Keep this section consistent with the original UI flow.
 		UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_GiveRewards")
 	end
 	
-	-- 鍏抽棴 Settlement UI
+	-- Execute the next UI update step.
 	self:RemoveFromParent()
-	-- ugcprint("[Settlement] Settlement UI 宸插叧闂?)
+	-- Guard condition before running this branch.
 	
-	-- 閫氱煡 LevelReward 杩涘叆缁撶畻
+	-- Guard condition before running this branch.
 	if self.OnSureClicked then
 		self.OnSureClicked()
 	end

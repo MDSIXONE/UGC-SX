@@ -8,7 +8,7 @@
 local ta_settlement = { bInitDoOnce = false }
 
 function ta_settlement:Construct()
-    -- ugcprint("[ta_settlement] Construct 琚皟鐢?)
+    -- Initialize widget state and bindings.
     self:LuaInit()
     self:CreateRewardSlots()
 end
@@ -19,26 +19,26 @@ function ta_settlement:LuaInit()
 
     if self.sure then
         self.sure.OnClicked:Add(self.OnSureClicked, self)
-        -- ugcprint("[ta_settlement] sure 鎸夐挳缁戝畾鎴愬姛")
+        -- Continue registering UI interaction callbacks.
     end
 
     if self.quit then
         self.quit.OnClicked:Add(self.OnQuitClicked, self)
-        -- ugcprint("[ta_settlement] quit 鎸夐挳缁戝畾鎴愬姛")
+        -- Continue registering UI interaction callbacks.
     end
 
     local levelNum = self.DisplayLevelNum or 1
     if self.settlementtip then
-        self.settlementtip:SetText("鎭枩閫氳繃绗? .. tostring(levelNum) .. "灞傦紝鑾峰緱濂栧姳濡備笅")
+        self.settlementtip:SetText("閹厼鏋╅柅姘崇箖缁? .. tostring(levelNum) .. "鐏炲偊绱濋懢宄扮繁婵傛牕濮虫俊鍌欑瑓")
     end
 end
 
--- 鍒涘缓濂栧姳鐗╁搧妲戒綅锛堝浐瀹氭樉绀?涓敾閫犵煶锛?
+-- Create reward slots.
 function ta_settlement:CreateRewardSlots()
-    -- ugcprint("[ta_settlement] 寮€濮嬪垱寤哄鍔辩墿鍝佹Ы浣嶏紙閿婚€犵煶x1锛?)
+    -- Guard condition before running this branch.
 
     if not self.UniformGridPanel_1 then
-        -- ugcprint("[ta_settlement] 閿欒锛歎niformGridPanel_1 涓嶅瓨鍦?)
+        -- Exit early when requirements are not met.
         return
     end
 
@@ -46,17 +46,17 @@ function ta_settlement:CreateRewardSlots()
 
     local SlotClass = UGCObjectUtility.LoadClass(UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/WB_Slot_2.WB_Slot_2_C'))
     if not SlotClass then
-        -- ugcprint("[ta_settlement] 閿欒锛氭棤娉曞姞杞?WB_Slot_2 绫?)
+        -- Exit early when requirements are not met.
         return
     end
 
     local PlayerController = UGCGameSystem.GetLocalPlayerController()
     if not PlayerController then
-        -- ugcprint("[ta_settlement] 閿欒锛氭棤娉曡幏鍙栫帺瀹舵帶鍒跺櫒")
+        -- Exit early when requirements are not met.
         return
     end
 
-    -- 鍥哄畾濂栧姳锛?涓敾閫犵煶锛堣櫄鎷熺墿鍝両D=5666锛?
+    -- Local helper value for this logic block.
     local slotWidget = UserWidget.NewWidgetObjectBP(PlayerController, SlotClass)
     if slotWidget then
         slotWidget.DisplayItemID = 5666
@@ -73,80 +73,80 @@ function ta_settlement:CreateRewardSlots()
         end
     end
 
-    -- ugcprint("[ta_settlement] 濂栧姳妲戒綅鍒涘缓瀹屾垚锛氶敾閫犵煶x1")
+    -- Keep this section consistent with the original UI flow.
 end
 
--- sure鎸夐挳锛氶鍙栧鍔卞苟缁х画涓嬩竴鍏?
+-- Handle sure button click.
 function ta_settlement:OnSureClicked()
-    -- ugcprint("[ta_settlement] sure 琚偣鍑伙紝棰嗗彇濂栧姳骞剁户缁笅涓€鍏?)
+    -- Configure initial widget visibility.
     self:SetVisibility(2) -- Collapsed
 
     local PC = UGCGameSystem.GetLocalPlayerController()
     if PC then
-        -- 鍙戞斁1涓敾閫犵煶濂栧姳
+        -- Local helper value for this logic block.
         local PS = UGCGameSystem.GetLocalPlayerState()
         if PS then
             UnrealNetwork.CallUnrealRPC(PS, PS, "Server_GiveTaReward")
         end
         UnrealNetwork.CallUnrealRPC(PC, PC, "Server_ResumeTriggerBoxSpawning")
-        -- 寤惰繜鍒锋柊jiange閿婚€犵煶鏁伴噺鏄剧ず
+        -- Execute the next UI update step.
         self:DelayRefreshJiange(PC)
     end
 end
 
--- quit鎸夐挳锛氶鍙栧鍔憋紝閫€鍑猴紝浼犻€佸洖鍑虹敓鐐癸紝鎭㈠涓荤晫闈?
+-- Handle quit button click.
 function ta_settlement:OnQuitClicked()
-    -- ugcprint("[ta_settlement] quit 琚偣鍑伙紝棰嗗彇濂栧姳骞朵紶閫佸洖鍑虹敓鐐?)
+    -- Configure initial widget visibility.
     self:SetVisibility(2) -- Collapsed
 
-    -- 鍙戞斁1涓敾閫犵煶濂栧姳
+    -- Local helper value for this logic block.
     local PS = UGCGameSystem.GetLocalPlayerState()
     if PS then
         UnrealNetwork.CallUnrealRPC(PS, PS, "Server_GiveTaReward")
     end
 
-    -- 鑾峰彇PC锛堝绉嶆柟寮忓皾璇曪級
+    -- Local helper value for this logic block.
     local PC = self:GetOwningPlayer()
     if not PC then
-        -- ugcprint("[ta_settlement] GetOwningPlayer 杩斿洖nil锛屽皾璇旼etLocalPlayerController")
+        -- Acquire local player references.
         PC = UGCGameSystem.GetLocalPlayerController()
     end
     if not PC then
-        -- ugcprint("[ta_settlement] GetLocalPlayerController 杩斿洖nil锛屽皾璇曢€氳繃Pawn鑾峰彇")
+        -- Local helper value for this logic block.
         local Pawn = UGCGameSystem.GetLocalPlayerPawn()
         if Pawn then
             PC = Pawn:GetController()
         end
     end
     if not PC then
-        -- ugcprint("[ta_settlement] 閿欒锛氭棤娉曡幏鍙朠C")
+        -- Exit early when requirements are not met.
         return
     end
 
-    -- ugcprint("[ta_settlement] PC鑾峰彇鎴愬姛锛屽彂閫佷紶閫丷PC")
-    -- 浼犻€佸洖涓诲煄锛堜娇鐢≧PC锛岀湡鏈哄吋瀹癸級
+    -- Keep this section consistent with the original UI flow.
+    -- Keep this section consistent with the original UI flow.
     UnrealNetwork.CallUnrealRPC(PC, PC, "Server_TeleportPlayer", 19053.320312, 50346.1875, 535.063049)
 
-    -- 淇濆瓨鍓戦榿灞傛暟
+    -- Local helper value for this logic block.
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if PlayerState then
         PlayerState:DataSave()
     end
 
-    -- 浠庤鍙ｅ畬鍏ㄧЩ闄iangeUI锛岄伩鍏嶆嫤鎴Щ鍔ㄦ憞鏉嗚緭鍏?
+    -- Guard condition before running this branch.
     if PC.JiangeUI then
         PC.JiangeUI:RemoveFromParent()
         PC.JiangeUI = nil
-        -- ugcprint("[ta_settlement] JiangeUI 宸蹭粠瑙嗗彛绉婚櫎")
+        -- Keep this section consistent with the original UI flow.
     end
     if PC.MMainUI then
         PC.MMainUI:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
     end
 
-    -- ugcprint("[ta_settlement] 浼犻€佸畬鎴愶紝涓荤晫闈㈠凡鎭㈠")
+    -- Keep this section consistent with the original UI flow.
 end
 
--- 寤惰繜鍒锋柊jiange閿婚€犵煶鏁伴噺鏄剧ず
+-- Delay refresh jiange.
 function ta_settlement:DelayRefreshJiange(PC)
     UGCTimerUtility.CreateLuaTimer(
         0.5,
@@ -154,7 +154,7 @@ function ta_settlement:DelayRefreshJiange(PC)
             if PC and PC.MMainUI and PC.MMainUI.jiange then
                 if PC.MMainUI.jiange.UpdateCostDisplay then
                     PC.MMainUI.jiange:UpdateCostDisplay()
-                    -- ugcprint("[ta_settlement] jiange閿婚€犵煶鏁伴噺宸插埛鏂?)
+                    -- Keep this section consistent with the original UI flow.
                 end
             end
         end,

@@ -1,37 +1,37 @@
 ﻿---@class GLQjiange_C:BP_UGCMobSpawnerManager_C
 --Edit Below--
--- 鏃犲敖鍓戦榿鍒锋€鐞嗗櫒锛堝弬鑰?MOBGLQ 妯″紡锛?
+-- Endless Sword Pavilion mob spawner manager for the MOBGLQ mode.
 local GLQjiange = {}
 
--- 鍏ㄥ眬灞傛暟锛堟墍鏈夌帺瀹跺叡浜級
+-- Shared floor number across all players.
 GLQjiange.CurrentFloor = 1
 
--- mob鏁版嵁琛ㄨ矾寰?
+-- Mob table path.
 local MobTablePath = UGCGameSystem.GetUGCResourcesFullPath('Asset/Data/Table/mob.mob')
 
 function GLQjiange:ReceiveBeginPlay()
     GLQjiange.SuperClass.ReceiveBeginPlay(self)
     self:InitData()
-    -- ugcprint("[GLQjiange] ReceiveBeginPlay 鍒濆鍖栨垚鍔?)
+    -- Log successful initialization.
 
-    -- 璋冭瘯淇℃伅锛堝叏閮╬call鍖呰９锛?
+    -- Debug output is wrapped in pcall to avoid affecting gameplay.
     pcall(function()
         local className = self:GetClass() and self:GetClass():GetName() or "unknown"
-        -- ugcprint("[GLQjiange] 鑷韩绫诲悕: " .. className)
+        -- Log the class name.
     end)
 
     pcall(function()
         if self.SpawnPoints then
-            -- ugcprint("[GLQjiange] SpawnPoints鏁伴噺: " .. self.SpawnPoints:Num())
+            -- Log the number of spawn points.
         else
-            -- ugcprint("[GLQjiange] SpawnPoints涓簄il锛堟湭閰嶇疆鍒锋€偣锛?)
+            -- Log that SpawnPoints is nil and no spawn points are configured.
         end
     end)
 
     pcall(function()
-        -- ugcprint("[GLQjiange] 鑷韩灞炴€у垪琛?")
+        -- Log the object's own properties.
         for k, v in pairs(self) do
-            -- ugcprint("[GLQjiange]   " .. tostring(k) .. " = " .. tostring(v))
+            -- Log key-value pairs for debugging.
         end
     end)
 end
@@ -40,7 +40,7 @@ function GLQjiange:InitData()
     if self.bDataInited then return end
     self.bDataInited = true
 
-    -- 浠庡瓨妗ｈ鍙栨渶楂樺眰鏁帮紝浠庝笅涓€灞傚紑濮?
+    -- Read the saved highest floor and start from the next floor.
     local savedFloor = 0
     local allPCs = UGCGameSystem.GetAllPlayerController()
     if allPCs then
@@ -56,25 +56,25 @@ function GLQjiange:InitData()
 
     self.MobSpawnTimerIndex = 0
     self.MobSpawnedThisWave = false
-    -- ugcprint("[GLQjiange] InitData 瀹屾垚锛岃捣濮嬪眰=" .. GLQjiange.CurrentFloor)
+    -- Log the starting floor after initialization.
 end
 
--- 鏍规嵁灞傛暟鑾峰彇鎬墿閰嶇疆
+-- Get the mob configuration for the given floor.
 function GLQjiange:GetMobConfig(floor)
     local config = UGCGameSystem.GetTableDataByRowName(MobTablePath, tostring(floor))
     if config then
-        -- ugcprint("[GLQjiange] 璇诲彇鍒扮" .. floor .. "灞傞厤缃? HP=" .. tostring(config.mobhp) .. ", AT=" .. tostring(config.mobat))
+        -- Log the loaded floor configuration.
     else
-        -- ugcprint("[GLQjiange] 鏈壘鍒扮" .. floor .. "灞傞厤缃紝浣跨敤榛樿缂╂斁")
+        -- Log that no configuration was found and defaults will be used.
     end
     return config
 end
 
--- 鎬墿鍒峰嚭浜嬩欢
+-- Handle the mob spawn event.
 function GLQjiange:OnMobSpawn(Mob)
     self:InitData()
     self.MobSpawnedThisWave = true
-    -- ugcprint("[GLQjiange] 鎬墿鍒峰嚭: " .. tostring(Mob))
+    -- Log the spawned mob.
 
     local floor = GLQjiange.CurrentFloor or 1
     local config = self:GetMobConfig(floor)
@@ -88,59 +88,58 @@ function GLQjiange:OnMobSpawn(Mob)
 
     if Mob then
         Mob.MobAttack = at
-        -- ugcprint("[GLQjiange] 璁剧疆鎬墿鏀诲嚮鍔? " .. tostring(at))
+        -- Set the mob attack value.
 
         self.MobSpawnTimerIndex = (self.MobSpawnTimerIndex or 0) + 1
         local timerName = "GLQjiange_SetHP_" .. tostring(self.MobSpawnTimerIndex)
         local mobRef = Mob
         UGCTimerUtility.CreateLuaTimer(0.2, function()
-            -- ugcprint("[GLQjiange] 寤惰繜鍥炶皟锛岃缃€墿灞炴€? timer=" .. timerName)
+            -- Delay the attribute update slightly to ensure the mob exists.
             local ok, err = pcall(function()
                 UGCAttributeSystem.SetGameAttributeValue(mobRef, 'HealthMax', hp)
                 UGCAttributeSystem.SetGameAttributeValue(mobRef, 'Health', hp)
             end)
             if ok then
-                -- ugcprint("[GLQjiange] 璁剧疆鎴愬姛: HP=" .. tostring(hp))
+                -- Log that the HP update succeeded.
             else
-                -- ugcprint("[GLQjiange] 璁剧疆澶辫触: " .. tostring(err))
+                -- Log that the HP update failed.
             end
         end, false, timerName)
     end
 end
 
--- 鎵€鏈夋€墿姝讳骸
+-- Handle the all-mobs-dead event.
 function GLQjiange:OnAllMobDie()
     self:InitData()
 
-    -- 鍏抽敭淇濇姢锛氬鏋滄湰娉㈡病鏈夋€墿鐢熸垚杩囷紝蹇界暐锛堥槻姝㈢┖娉㈡棤闄愬惊鐜級
+    -- Skip this callback if no mob was spawned in the current wave.
     if not self.MobSpawnedThisWave then
-        -- ugcprint("[GLQjiange] 鏈尝鏈敓鎴愯繃鎬墿锛屽拷鐣nAllMobDie锛堟鏌ヨ摑鍥維pawnPoints閰嶇疆锛?)
         return
     end
 
-    -- ugcprint("[GLQjiange] 绗?" .. GLQjiange.CurrentFloor .. " 灞傛€墿鍏ㄧ伃")
+    -- Log that the current floor has been cleared.
     self.MobSpawnedThisWave = false
     self.IsPausedForSettlement = true
 
-    -- 淇濆瓨鏈€楂樺眰鏁板埌鐜╁瀛樻。
+    -- Save the highest floor to player storage.
     self:SaveFloorRecord(GLQjiange.CurrentFloor)
 
-    -- 閫氱煡 TriggerBox 寮圭粨绠桿I锛堝弬鑰?example MOBGLQ 妯″紡锛?
+    -- Notify the trigger box to open the settlement UI.
     if self.OwnerTriggerBox and self.OwnerTriggerBox.NotifyLevelComplete then
         self.OwnerTriggerBox:NotifyLevelComplete(GLQjiange.CurrentFloor)
     else
-        -- ugcprint("[GLQjiange] 璀﹀憡锛歄wnerTriggerBox 涓嶅瓨鍦紝鑷姩缁х画涓嬩竴灞?)
+        -- If the trigger box is missing, continue to the next floor automatically.
         self:ResumeAfterSettlement()
     end
 end
 
--- 鐜╁鐐瑰嚮缁х画鍚庯紝鍗囧眰骞堕噸鏂板埛鎬?
+-- Resume spawning after the player confirms the settlement.
 function GLQjiange:ResumeAfterSettlement()
     GLQjiange.CurrentFloor = GLQjiange.CurrentFloor + 1
-    -- ugcprint("[GLQjiange] 缁撶畻瀹屾垚锛屽紑濮嬬 " .. GLQjiange.CurrentFloor .. " 灞?)
+    -- Log the next floor after settlement.
     self.IsPausedForSettlement = false
 
-    -- 閫氱煡瀹㈡埛绔洿鏂板眰鏁版樉绀?
+    -- Notify clients to refresh the displayed floor.
     self:NotifyFloorUpdate()
 
     self:ResetSpawnerManager(true)
@@ -148,11 +147,11 @@ function GLQjiange:ResumeAfterSettlement()
     UGCGameSystem.SetTimer(this, function()
         this:StartSpawnerManager()
         this:ResumeSpawnerManager()
-        -- ugcprint("[GLQjiange] 绗?" .. GLQjiange.CurrentFloor .. " 灞傚埛鎬凡鍚姩")
+        -- Log that spawning has resumed on the next floor.
     end, 0.5, false)
 end
 
--- 淇濆瓨鏈€楂樺眰鏁板埌鎵€鏈夊尯鍩熷唴鐜╁鐨勫瓨妗?
+-- Save the highest floor to every player's storage.
 function GLQjiange:SaveFloorRecord(floor)
     local allPCs = UGCGameSystem.GetAllPlayerController()
     if not allPCs then return end
@@ -162,23 +161,22 @@ function GLQjiange:SaveFloorRecord(floor)
             local oldFloor = playerState.GameData.PlayerJiangeFloor or 0
             if floor > oldFloor then
                 playerState.GameData.PlayerJiangeFloor = floor
-                -- ugcprint("[GLQjiange] 鐜╁鏈€楂樺眰鏁版洿鏂? " .. oldFloor .. " -> " .. floor)
                 if playerState.DataSave then
                     playerState:DataSave()
                 end
-                -- 鏇存柊闂叧灞傛暟鎺掕姒?
+                -- Update the dungeon floor ranking.
                 if playerState.UpdateJiangeFloorRank then
                     playerState:UpdateJiangeFloorRank()
                 end
             end
         end
-        -- 閫氱煡瀹㈡埛绔洿鏂板眰鏁版樉绀?
+        -- Notify the client to refresh the floor display.
         UnrealNetwork.CallUnrealRPC(pc, pc, "Client_UpdateJiangeFloor", floor)
     end
 end
 
--- 閫氱煡瀹㈡埛绔洿鏂板眰鏁版樉绀猴紙閫氳繃RPC锛?
--- JiangeFloor 瀛樼殑鏄?宸插畬鎴愮殑鏈€楂樺眰鏁?锛屽鎴风鏄剧ず鏃?+1 琛ㄧず"涓嬩竴灞傝鎵撶殑"
+-- Notify clients to refresh the floor display through RPC.
+-- JiangeFloor stores the highest cleared floor, and the client shows +1 as the next floor to challenge.
 function GLQjiange:NotifyFloorUpdate()
     local allPlayers = UGCGameSystem.GetAllPlayerController()
     if not allPlayers then return end

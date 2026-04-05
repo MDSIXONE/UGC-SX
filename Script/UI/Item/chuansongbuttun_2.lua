@@ -1,4 +1,4 @@
----@class chuansongbuttun_2_C:UUserWidget
+﻿---@class chuansongbuttun_2_C:UUserWidget
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field CanvasPanel_0 UCanvasPanel
 ---@field chuansong_buttun UButton
@@ -37,16 +37,16 @@ function chuansongbuttun:LuaInit()
 end
 
 function chuansongbuttun:chuansong_buttun_OnClicked()
-	--ugcprint("chuansongbuttun_2: 按钮被点击")
+	-- Log this action.
 
-	-- 通过 PlayerController 获取 MMainUI
+	-- Related UI logic.
 	local pc = UGCGameSystem.GetLocalPlayerController()
 	if pc and pc.MMainUI then
-		--ugcprint("chuansongbuttun_2: 找到 MMainUI，显示传送界面")
+		-- Log this action.
 		pc.MMainUI.chuansong_2:ShowAllButtons()
 		self:SetVisibility(ESlateVisibility.Collapsed)
 	else
-		--ugcprint("chuansongbuttun_2: 错误 - 无法找到 MMainUI")
+		-- Log this action.
 	end
 end
 

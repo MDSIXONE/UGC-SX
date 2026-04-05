@@ -2,23 +2,23 @@
 --Edit Below--
 local bx_1 = {}
 
-local BACKPACK_ITEM_ID = 8310173  -- 鑳屽寘鐗╁搧ID
-local GIFT_PACK_ID = 322          -- 瀵瑰簲绀煎寘ID
+local BACKPACK_ITEM_ID = 8310173  -- Backpack item ID.
+local GIFT_PACK_ID = 322          -- Matching gift pack ID.
 
 function bx_1:CanUseV2()
     return true
 end
 
 function bx_1:OnUseV2()
-    -- ugcprint("[bx_2] OnUseV2 瑙﹀彂")
+    -- Log the use callback.
     local BackpackComp = UGCItemSystemV2.GetOwnBackpackComponent(self)
-    -- if not BackpackComp then ugcprint("[bx_2] 閿欒锛氭棤娉曡幏鍙朆ackpackComponent") return end
+    -- Return early if the backpack component is missing.
     local PlayerController = BackpackComp:GetOwner()
-    -- if not PlayerController then ugcprint("[bx_2] 閿欒锛氭棤娉曡幏鍙朠layerController") return end
+    -- Return early if the player controller is missing.
 
     local ownedCount = UGCBackpackSystemV2.GetItemCountV2(PlayerController, BACKPACK_ITEM_ID)
-    -- ugcprint("[bx_2] 褰撳墠瀹濈鏁伴噺: " .. tostring(ownedCount))
-    -- if not ownedCount or ownedCount <= 0 then ugcprint("[bx_2] 娌℃湁瀹濈鍙敤") return end
+    -- Log the current box count.
+    -- Return early if no box is available.
 
     UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Client_ShowBaoxiangNumchoose", BACKPACK_ITEM_ID, ownedCount, GIFT_PACK_ID)
 end

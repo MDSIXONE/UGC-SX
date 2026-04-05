@@ -36,16 +36,16 @@ local function GetValidPawnByPC(PC)
 end
 
 function WB_Team:Construct()
-	-- ugcprint("[WB_Team] Construct 琚皟鐢?)
+	-- Initialize widget state and bindings.
 	self:LuaInit()
 
-	-- 缁戝畾鍏抽棴鎸夐挳
+	-- Guard condition before running this branch.
 	if self.Button_0 then
 		self.Button_0.OnClicked:Add(self.OnCloseClicked, self)
-		-- ugcprint("[WB_Team] Button_0 鍏抽棴鎸夐挳缁戝畾鎴愬姛")
+		-- Continue registering UI interaction callbacks.
 	end
 
-	-- 寤惰繜5绉掑垱寤虹帺瀹舵Ы浣嶏紝绛夋墍鏈夌帺瀹禤awn鐢熸垚
+	-- Keep this section consistent with the original UI flow.
 	UGCTimerUtility.CreateLuaTimer(
 		5.0,
 		function()
@@ -61,10 +61,10 @@ function WB_Team:LuaInit()
 		return
 	end
 	self.bInitDoOnce = true
-	-- ugcprint("[WB_Team] LuaInit 瀹屾垚")
+	-- Keep this section consistent with the original UI flow.
 end
 
--- 鍏ㄥ睆鏄剧ず闃熶紞鐣岄潰锛堝弬鑰?shenyin锛?
+-- Show.
 function WB_Team:Show()
 	self:SetVisibility(ESlateVisibility.Visible)
 
@@ -98,7 +98,7 @@ function WB_Team:Show()
 		self:CreatePlayerSlots()
 	end
 
-	-- 鎵撳紑鐣岄潰鍚庢寔缁交閲忓埛鏂帮紝閬垮厤闃熶紞鍙樻洿鏃跺繀椤诲叧寮€鐣岄潰鎵嶆洿鏂?
+	-- Guard condition before running this branch.
 	if not self.AutoRefreshTimer then
 		self.AutoRefreshTimer = UGCTimerUtility.CreateLuaTimer(
 			1.0,
@@ -113,7 +113,7 @@ function WB_Team:Show()
 	end
 end
 
--- 鍏抽棴闃熶紞鐣岄潰骞舵仮澶嶈闅愯棌鐨勪富鐣岄潰灞?
+-- Hide.
 function WB_Team:Hide()
 	if self.AutoRefreshTimer then
 		UGCTimerUtility.RemoveLuaTimer(self.AutoRefreshTimer)
@@ -144,44 +144,44 @@ function WB_Team:Hide()
 	self:SetVisibility(ESlateVisibility.Collapsed)
 end
 
--- 鍔ㄦ€佸垱寤虹帺瀹舵Ы浣?
+-- Create player slots.
 function WB_Team:CreatePlayerSlots(bSkipServerRequest)
-	-- ugcprint("[WB_Team] 寮€濮嬪垱寤虹帺瀹舵Ы浣?)
+	-- Guard condition before running this branch.
 
 	if not self.WrapBox_0 then
-		-- ugcprint("[WB_Team] 閿欒锛氭湭鎵惧埌WrapBox_0")
+		-- Exit early when requirements are not met.
 		return
 	end
 	self.WrapBox_0:ClearChildren()
 
-	-- 浣跨敤 GetAllPlayerController 鑾峰彇鐜╁鍒楄〃锛堟瘮浠呬緷璧?Pawn 鏇寸ǔ瀹氾級
+	-- Local helper value for this logic block.
 	local AllPCs = UGCGameSystem.GetAllPlayerController()
 	local PlayerCount = CountTableItems(AllPCs)
 	if not AllPCs or PlayerCount == 0 then
-		-- ugcprint("[WB_Team] 娌℃湁鎵惧埌鐜╁鎺у埗鍣?)
+		-- Exit early when requirements are not met.
 		return
 	end
 
-	-- ugcprint("[WB_Team] 鐜╁鎺у埗鍣ㄦ暟閲? " .. tostring(PlayerCount))
+	-- Local helper value for this logic block.
 
 	local SlotClass = UGCObjectUtility.LoadClass(UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/WB_TeamSlot.WB_TeamSlot_C'))
 	if not SlotClass then
-		-- ugcprint("[WB_Team] 閿欒锛氭棤娉曞姞杞絎B_TeamSlot绫?)
+		-- Exit early when requirements are not met.
 		return
 	end
 
 	local PlayerController = UGCGameSystem.GetLocalPlayerController()
 	if not PlayerController then
-		-- ugcprint("[WB_Team] 閿欒锛氭棤娉曡幏鍙栫帺瀹舵帶鍒跺櫒")
+		-- Exit early when requirements are not met.
 		return
 	end
 
-	-- 瀹㈡埛绔姹傛湇鍔＄鍚屾鍏ㄤ綋鐜╁鏁版嵁锛堣閬垮鎴风浠呰兘鑾峰彇鑷韩PC鐨勯檺鍒讹級
+	-- Guard condition before running this branch.
 	if not bSkipServerRequest then
 		UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_RequestTeamPanelPlayers")
 	end
 
-	-- 鑾峰彇鏈湴鐜╁鐨?PlayerKey 鍜?TeamID
+	-- Local helper value for this logic block.
 	local LocalPawn = GetValidPawnByPC(PlayerController)
 	local LocalPlayerKey = -1
 	local LocalTeamID = -1
@@ -193,16 +193,16 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 	elseif PlayerController.PlayerState and PlayerController.PlayerState.TeamID then
 		LocalTeamID = PlayerController.PlayerState.TeamID
 	end
-	-- ugcprint("[WB_Team] 鏈湴鐜╁ PlayerKey: " .. tostring(LocalPlayerKey) .. ", TeamID: " .. tostring(LocalTeamID))
+	-- Keep this section consistent with the original UI flow.
 
-	self.SlotWidgets = {}  -- 淇濆瓨妲戒綅寮曠敤锛宬ey=PlayerKey
+	self.SlotWidgets = {} -- 
 	local AddedPlayerKeys = {}
 
-	-- 浼樺厛浣跨敤鏈嶅姟绔悓姝ョ殑鍏ㄤ綋鐜╁鍒楄〃
+	-- Local helper value for this logic block.
 	local TeamPanelPlayerData = PlayerController.TeamPanelPlayerData
 	local TeamPanelCount = CountTableItems(TeamPanelPlayerData)
 	if TeamPanelCount > 0 then
-		-- ugcprint("[WB_Team] 浣跨敤鏈嶅姟绔悓姝ョ帺瀹跺垪琛紝鏁伴噺: " .. tostring(TeamPanelCount))
+		-- Configuration table used by this widget.
 
 		local TeamMemberCountMap = {}
 		for _, data in pairs(TeamPanelPlayerData) do
@@ -223,7 +223,7 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 
 					local playerName = data.PlayerName
 					if not playerName or playerName == "" then
-						playerName = "鏈煡鐜╁"
+						playerName = "閺堫亞鐓￠悳鈺侇啀"
 					end
 
 					local iconUrl = data.IconUrl or ""
@@ -267,11 +267,11 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 			end
 		end
 
-		-- ugcprint("[WB_Team] 鐜╁妲戒綅鍒涘缓瀹屾垚")
+		-- Exit early when requirements are not met.
 		return
 	end
 
-	-- ugcprint("[WB_Team] 鏈嶅姟绔帺瀹跺垪琛ㄤ负绌猴紝浣跨敤鏈湴鍙鐜╁鍏滃簳")
+	-- Local helper value for this logic block.
 
 	local localTeamCount = 0
 	if LocalTeamID >= 0 then
@@ -296,7 +296,7 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 					playerName = PlayerState.PlayerName
 				end
 				if not playerName or playerName == "" then
-					playerName = "鏈煡鐜╁"
+					playerName = "閺堫亞鐓￠悳鈺侇啀"
 				end
 
 				local iconUrl = ""
@@ -336,7 +336,7 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 				if slotWidget then
 					self.WrapBox_0:AddChild(slotWidget)
 
-					-- 鍒ゆ柇璇ョ帺瀹舵槸鍚︽槸闃熼暱
+					-- Local helper value for this logic block.
 					local isCaptain = false
 					if PlayerController.TeamCaptainPlayerKey and PlayerController.TeamCaptainPlayerKey == playerKey then
 						isCaptain = true
@@ -344,7 +344,7 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 
 					slotWidget:SetPlayerInfo(playerName, iconUrl, playerKey, isSelf, sameTeam, isCaptain, combatPower)
 
-					-- 鏍规嵁闃熼暱鐘舵€佽缃纭殑鎸夐挳
+					-- Guard condition before running this branch.
 					if sameTeam and not isSelf then
 						if PlayerController.bIsTeamCaptain then
 							slotWidget:SetState("kick")
@@ -373,10 +373,10 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 		end
 	end
 
-	-- ugcprint("[WB_Team] 鐜╁妲戒綅鍒涘缓瀹屾垚")
+	-- Keep this section consistent with the original UI flow.
 end
 
--- 鏇存柊鎸囧畾鐜╁妲戒綅鐨勭姸鎬?
+-- Update slot state.
 function WB_Team:UpdateSlotState(targetPlayerKey, state)
 	-- ugcprint("[WB_Team] UpdateSlotState: PlayerKey=" .. tostring(targetPlayerKey) .. ", state=" .. tostring(state))
 	if self.SlotWidgets and self.SlotWidgets[targetPlayerKey] then
@@ -384,9 +384,9 @@ function WB_Team:UpdateSlotState(targetPlayerKey, state)
 	end
 end
 
--- 鍏抽棴鎸夐挳鐐瑰嚮
+-- Handle close button click.
 function WB_Team:OnCloseClicked()
-	-- ugcprint("[WB_Team] 鍏抽棴鎸夐挳琚偣鍑?)
+	-- Execute the next UI update step.
 	self:Hide()
 end
 

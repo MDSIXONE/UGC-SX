@@ -22,7 +22,7 @@
 --Edit Below--
 local FriendList = { bInitDoOnce = false }
 
--- 姣忎釜妲戒綅瀵瑰簲鐨勬帶浠舵槧灏?
+-- Related UI logic.
 local SLOT_CONFIG = {
     [1] = { canvas = "CanvasPanel_1team", image = "Image_1team", name = "name1", bar = "ProgressBar_1team" },
     [2] = { canvas = "CanvasPanel_2team", image = "Image_2team", name = "name2", bar = "ProgressBar_2team" },
@@ -32,17 +32,17 @@ local SLOT_CONFIG = {
 
 function FriendList:Construct()
     self:LuaInit()
-    -- 鍏堥殣钘忔墍鏈夋Ы浣?
+    -- Related UI logic.
     for i = 1, 4 do
         local cfg = SLOT_CONFIG[i]
         if self[cfg.canvas] then
             self[cfg.canvas]:SetVisibility(ESlateVisibility.Collapsed)
         end
     end
-    -- 寤惰繜鍚姩鍒锋柊锛堢瓑鐜╁鏁版嵁灏辩华锛?
+    -- Related UI logic.
     UGCTimerUtility.CreateLuaTimer(2.0, function()
         self:RefreshTeamInfo()
-        -- 姣忕鍒锋柊琛€鏉?
+        -- Related UI logic.
         self.UpdateTimer = UGCTimerUtility.CreateLuaTimer(1.0, function()
             self:UpdateHealthBars()
         end, true, "FriendList_UpdateHP")
@@ -54,7 +54,7 @@ function FriendList:LuaInit()
     self.bInitDoOnce = true
 end
 
--- 鑾峰彇鍚岄槦鐜╁鍒楄〃锛堟帓闄よ嚜宸憋級
+-- Related UI logic.
 function FriendList:GetTeamPlayers()
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return {} end
@@ -80,7 +80,7 @@ function FriendList:GetTeamPlayers()
     return players
 end
 
--- 鍒锋柊闃熶紞淇℃伅锛堝悕瀛?+ 鍒濆琛€鏉?+ 鏄剧ず/闅愯棌妲戒綅锛?
+-- Related UI logic.
 function FriendList:RefreshTeamInfo()
     local players = self:GetTeamPlayers()
     self.TeamPawns = {}
@@ -96,7 +96,7 @@ function FriendList:RefreshTeamInfo()
             if self[cfg.name] then
                 self[cfg.name]:SetText(playerData.name)
             end
-            -- 璁剧疆鍒濆琛€鏉?
+            -- Related UI logic.
             self:UpdateSlotHealth(i)
         else
             self.TeamPawns[i] = nil
@@ -105,10 +105,10 @@ function FriendList:RefreshTeamInfo()
             end
         end
     end
-    -- ugcprint("[FriendList] 闃熶紞鍒锋柊瀹屾垚锛岄槦鍙嬫暟閲? " .. tostring(#players))
+    -- Log this action.
 end
 
--- 鏇存柊鍗曚釜妲戒綅琛€鏉?
+-- Related UI logic.
 function FriendList:UpdateSlotHealth(index)
     local cfg = SLOT_CONFIG[index]
     local pawn = self.TeamPawns and self.TeamPawns[index]
@@ -129,7 +129,7 @@ function FriendList:UpdateSlotHealth(index)
     end
 end
 
--- 姣忕鏇存柊鎵€鏈夎鏉?
+-- Related UI logic.
 function FriendList:UpdateHealthBars()
     for i = 1, 4 do
         self:UpdateSlotHealth(i)

@@ -1,4 +1,4 @@
----@class addexp_C:UUserWidget
+﻿---@class addexp_C:UUserWidget
 ---@field Image_1 UImage
 ---@field Image_2 UImage
 ---@field TUNSHIBUTTUN UButton
@@ -30,13 +30,13 @@ function addexp:OnToggleClicked()
 	self.bDirectExpEnabled = not self.bDirectExpEnabled
 	self:UpdateImages()
 
-	-- 通过MMainUI显示提示
+	-- Related UI logic.
 	local pc = UGCGameSystem.GetLocalPlayerController()
 	if pc and pc.MMainUI and pc.MMainUI.ShowTip then
 		if self.bDirectExpEnabled then
-			pc.MMainUI:ShowTip("吞噬模式已关闭")
+			pc.MMainUI:ShowTip("鍚炲櫖妯″紡宸插叧闂?)
 		else
-			pc.MMainUI:ShowTip("吞噬模式已开启")
+			pc.MMainUI:ShowTip("鍚炲櫖妯″紡宸插紑鍚?)
 		end
 	end
 

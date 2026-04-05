@@ -5,7 +5,7 @@
 local shoucong =
 {
     bInitDoOnce = false;
-    ProductID = 9000601; -- 鍟嗗搧ID
+    ProductID = 9000601; -- 
 }
 
 function shoucong:Construct()
@@ -13,61 +13,63 @@ function shoucong:Construct()
 end
 
 function shoucong:OnClick()
-    --ugcprint("[shoucong] 鎸夐挳琚偣鍑?)
+    -- Local helper value for this logic block.
     
-    -- 鑾峰彇 CommodityOperationManager
+    -- Local helper value for this logic block.
     local CommodityOperationManager = UGCGamePartSystem.CommodityOperationManager.GetGlobalActor()
     if not CommodityOperationManager then
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曡幏鍙?CommodityOperationManager")
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 鑾峰彇鍟嗗搧閰嶇疆
+    -- Local helper value for this logic block.
     local ProductData = CommodityOperationManager:GetProductData(self.ProductID)
     if not ProductData then
-        --[[        --ugcprint(string.format("[shoucong] 閿欒锛氭棤娉曡幏鍙栧晢鍝侀厤缃紝ProductID: %d", self.ProductID))]]
+        -- Exit early when requirements are not met.
         return
     end
     
-    --[[    --ugcprint(string.format("[shoucong] 鍟嗗搧閰嶇疆 - ID:%d, 鐗╁搧ID:%d, 浠锋牸:%d", self.ProductID, ProductData.ItemID, ProductData.SellingPrice or 0))]]
+    -- Guard condition before running this branch.
     
-    -- 妫€鏌ユ槸鍚﹁兘澶熻喘涔?    if not CommodityOperationManager:CanAfford(self.ProductID, 1) then
-        --ugcprint("[shoucong] 缁挎床甯佷笉瓒?)
+    -- Guard condition before running this branch.
+    if not CommodityOperationManager:CanAfford(self.ProductID, 1) then
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 鑾峰彇 VirtualItemManager
+    -- Local helper value for this logic block.
     local VirtualItemManager = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
     if not VirtualItemManager then
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曡幏鍙?VirtualItemManager")
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 鑾峰彇鐗╁搧閰嶇疆
+    -- Local helper value for this logic block.
     local ObjectData = VirtualItemManager:GetItemData(ProductData.ItemID)
     if not ObjectData then
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曡幏鍙栫墿鍝侀厤缃?)
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 鑾峰彇闄愯喘淇℃伅
-    local LimitType = ProductData.LimitType or 0  -- 0:涓嶉檺璐?    local PurchaseLimit = ProductData.PurchaseLimit or 0  -- 闄愯喘鎬绘鏁?    local PurchasedTimes = CommodityOperationManager:GetPurchasedTimes(self.ProductID) or 0  -- 宸茶喘涔版鏁?    local RemainingTimes = PurchaseLimit - PurchasedTimes  -- 鍓╀綑娆℃暟
+    -- Local helper value for this logic block.
+    local LimitType = ProductData.LimitType or 0 -- 
     
     if RemainingTimes < 0 then
         RemainingTimes = 0
     end
     
-    --[[    --ugcprint(string.format("[shoucong] 闄愯喘淇℃伅 - 绫诲瀷:%d, 闄愯喘:%d, 宸茶喘:%d, 鍓╀綑:%d", LimitType, PurchaseLimit, PurchasedTimes, RemainingTimes))]]
+    -- Guard condition before running this branch.
     
-    -- 妫€鏌ユ槸鍚﹁繕鑳借喘涔?    if LimitType ~= 0 and RemainingTimes <= 0 then
-        --ugcprint("[shoucong] 宸茶揪鍒拌喘涔颁笂闄?)
+    -- Guard condition before running this branch.
+    if LimitType ~= 0 and RemainingTimes <= 0 then
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 鏄剧ず鑷畾涔夌‘璁ょ晫闈?    --ugcprint("[shoucong] 鏄剧ず鑷畾涔夌‘璁ょ晫闈?)
+    -- Acquire local player references.
     local PlayerController = UGCGameSystem.GetLocalPlayerController()
     if not PlayerController then
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曡幏鍙?PlayerController")
+        -- Exit early when requirements are not met.
         return
     end
     
@@ -75,12 +77,12 @@ function shoucong:OnClick()
     local confirmUI = UGCGameData.GetUI(PlayerController, "ConfirmPurchase")
     if confirmUI then
         confirmUI:AddToViewport(15000)
-        -- 浼犻€掑畬鏁寸殑璐拱淇℃伅
+        -- Keep this section consistent with the original UI flow.
         confirmUI:SetPurchaseInfo({
             ProductID = self.ProductID,
             ItemID = ProductData.ItemID,
             Price = ProductData.SellingPrice or 1,
-            ItemName = ObjectData.ItemName or "鐗╁搧",
+            ItemName = ObjectData.ItemName or "閻椻晛鎼?,
             ItemDesc = ObjectData.ItemDesc or "",
             ItemIcon = ObjectData.ItemIcon,
             LimitType = LimitType,
@@ -89,52 +91,52 @@ function shoucong:OnClick()
             RemainingTimes = RemainingTimes,
             Caller = self
         })
-        --ugcprint("[shoucong] 鑷畾涔夌‘璁ょ晫闈㈠凡鏄剧ず")
+        -- Keep this section consistent with the original UI flow.
     else
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曞垱寤虹‘璁ょ晫闈?)
+        -- Keep this section consistent with the original UI flow.
     end
 end
 
----纭璐拱锛堜粠鑷畾涔夌‘璁ょ晫闈㈣皟鐢級
+--- Handle confirm purchase event.
 function shoucong:OnConfirmPurchase()
-    --ugcprint("[shoucong] 纭璐拱")
+    -- Local helper value for this logic block.
     
-    -- 鑾峰彇 CommodityOperationManager
+    -- Local helper value for this logic block.
     local CommodityOperationManager = UGCGamePartSystem.CommodityOperationManager.GetGlobalActor()
     if not CommodityOperationManager then
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曡幏鍙?CommodityOperationManager")
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 鑾峰彇鍟嗗搧閰嶇疆
+    -- Local helper value for this logic block.
     local ProductData = CommodityOperationManager:GetProductData(self.ProductID)
     if not ProductData then
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曡幏鍙栧晢鍝侀厤缃?)
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 鑾峰彇 VirtualItemManager
+    -- Local helper value for this logic block.
     local VirtualItemManager = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
     if not VirtualItemManager then
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曡幏鍙?VirtualItemManager")
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 鑾峰彇鐗╁搧閰嶇疆
+    -- Local helper value for this logic block.
     local ObjectData = VirtualItemManager:GetItemData(ProductData.ItemID)
     if not ObjectData then
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曡幏鍙栫墿鍝侀厤缃?)
+        -- Exit early when requirements are not met.
         return
     end
     
-    -- 璋冪敤绯荤粺璐拱鎺ュ彛锛堜細鑷姩鎵ｅ竵鍜屽彂璐э級
-    --[[    --ugcprint(string.format("[shoucong] 璋冪敤璐拱鎺ュ彛 - ProductID:%d", self.ProductID))]]
+    -- Local helper value for this logic block.
+    -- Local helper value for this logic block.
     local PromiseFuture = UGCCommoditySystem.BuyUGCCommodity2(self.ProductID, ObjectData.ItemIcon, ObjectData.ItemDesc, 1)
     
     if PromiseFuture ~= nil then
         PromiseFuture:Then(
             function (Result)
-                --ugcprint("[shoucong] 绯荤粺璐拱纭鐣岄潰宸叉墦寮€")
+                -- Local helper value for this logic block.
                 local UI = Result:Get()
                 if UI and UI.ConfirmationOperationDelegate then
                     UI.ConfirmationOperationDelegate:Add(self.OnPurchaseComplete, self)
@@ -142,17 +144,17 @@ function shoucong:OnConfirmPurchase()
             end
         )
     else
-        --ugcprint("[shoucong] 閿欒锛氭棤娉曟墦寮€璐拱纭鐣岄潰")
+        -- Keep this section consistent with the original UI flow.
     end
 end
 
 function shoucong:OnPurchaseComplete(bConfirmed)
-    --[[    --ugcprint(string.format("[shoucong] 璐拱瀹屾垚鍥炶皟 - 纭:%s", tostring(bConfirmed)))]]
+    -- Guard condition before running this branch.
     
     if bConfirmed then
-        -- ugcprint("[shoucong] 璐拱鎴愬姛锛佺郴缁熷凡鑷姩鎵ｉ櫎缁挎床甯佸苟鍙戞斁鐗╁搧")
+        -- Keep this section consistent with the original UI flow.
     else
-        --ugcprint("[shoucong] 璐拱宸插彇娑?)
+        -- Keep this section consistent with the original UI flow.
     end
 end
 

@@ -31,7 +31,7 @@ local touxiangdetail = { bInitDoOnce = false, bFullScreenLayerApplied = false }
 function touxiangdetail:Construct()
 	self:LuaInit();
     
-    -- 缁戝畾鏁板€兼樉绀?
+    -- Bind widget property text or values.
     self.ATTACK:BindingProperty("Text", self.ATTACK_Text, self)
     self.MAGIC:BindingProperty("Text", self.MAGIC_Text, self)
     self.LIVE:BindingProperty("Text", self.LIVE_Text, self)
@@ -40,38 +40,38 @@ function touxiangdetail:Construct()
     self.Base_HP:BindingProperty("Text", self.Base_HP_Text, self)
     self.Base_Magic:BindingProperty("Text", self.Base_Magic_Text, self)
     
-    -- 缁戝畾褰撳墠鏈€澶ц閲忔樉绀?
+    -- Bind widget property text or values.
     self.Current_MAXHP:BindingProperty("Text", self.Current_MAXHP_Text, self)
     
-    -- 缁戝畾琛€鑴夊睘鎬ф樉绀?
+    -- Bind widget property text or values.
     self.Bland:BindingProperty("Text", self.Bland_Text, self)
     
-    -- 缁戝畾绱鍏呭€兼樉绀?
+    -- Bind widget property text or values.
     self.leijixiaofei:BindingProperty("Text", self.leijixiaofei_Text, self)
 
-    -- 缁戝畾VIP绛夌骇鏄剧ず
+    -- Guard condition before running this branch.
     if self.VIP then
         self.VIP:BindingProperty("Text", self.VIP_Text, self)
     end
     
-    -- 缁戝畾鍔犵偣娆℃暟鏄剧ず
+    -- Bind widget property text or values.
     self.ATTACKup:BindingProperty("Text", self.ATTACKup_Text, self)
     self.MAGICup:BindingProperty("Text", self.MAGICup_Text, self)
     self.hpup:BindingProperty("Text", self.hpup_Text, self)
     self.bland_up:BindingProperty("Text", self.bland_up_Text, self)
     
-    -- 缁戝畾鍔犵偣鎸夐挳
+    -- Register button interaction handlers.
     self.Button_ATTACKup.OnClicked:Add(self.OnATTACKupClicked, self)
     self.Button_MAGICup.OnClicked:Add(self.OnMAGICupClicked, self)
     self.Button_hpup.OnClicked:Add(self.OnHpupClicked, self)
     self.Button_blandup.OnClicked:Add(self.OnBlandupClicked, self)
     
-    -- 缁戝畾鍏抽棴鎸夐挳
+    -- Guard condition before running this branch.
     if self.Detail_Cancel and self.Detail_Cancel.Button_Levels2_3 then
         self.Detail_Cancel.Button_Levels2_3.OnClicked:Add(self.OnCancelClicked, self)
     end
 
-    -- 缁戝畾鐜╁鍚嶅瓧鍜屾垬鏂楀姏
+    -- Guard condition before running this branch.
     if self.name then
         self.name:BindingProperty("Text", self.name_Text, self)
     end
@@ -79,7 +79,7 @@ function touxiangdetail:Construct()
         self.zhandouli:BindingProperty("Text", self.zhandouli_Text, self)
     end
 
-    -- 寤惰繜鍒濆鍖栧ご鍍?
+    -- Delay execution until dependent data is ready.
     UGCGameSystem.SetTimer(self, function()
         self:InitAvatar()
     end, 2.0, false)
@@ -121,7 +121,7 @@ function touxiangdetail:ReleaseFullScreenLayer()
     self.bFullScreenLayerApplied = false
 end
 
--- 鍒濆鍖栧ご鍍?
+-- Init avatar.
 function touxiangdetail:InitAvatar()
     if not self.tou then return end
     local playerState = UGCGameSystem.GetLocalPlayerState()
@@ -135,7 +135,7 @@ function touxiangdetail:InitAvatar()
     self.tou:InitView(1, uid, iconURL, gender, frameLevel, playerLevel, false, true)
 end
 
--- 鏀诲嚮鍔涙樉绀?
+-- Attack text.
 function touxiangdetail:ATTACK_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -148,10 +148,10 @@ function touxiangdetail:ATTACK_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "鏀诲嚮鍔? " .. UGCGameData.FormatNumber(attack)
+    return "閺€璇插毊閸? " .. UGCGameData.FormatNumber(attack)
 end
 
--- 榄旀硶鍊兼樉绀?
+-- Magic text.
 function touxiangdetail:MAGIC_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -164,10 +164,10 @@ function touxiangdetail:MAGIC_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "榄旀硶鍊? " .. UGCGameData.FormatNumber(magic)
+    return "姒勬梹纭堕崐? " .. UGCGameData.FormatNumber(magic)
 end
 
--- 杞敓娆℃暟鏄剧ず
+-- Live text.
 function touxiangdetail:LIVE_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local rebirthCount = 0
@@ -179,10 +179,10 @@ function touxiangdetail:LIVE_Text(ReturnValue)
             rebirthCount = playerState.GameData.PlayerRebirthCount
         end
     end
-    return "杞敓: " .. tostring(rebirthCount) .. "娆?
+    return "鏉烆剛鏁? " .. tostring(rebirthCount) .. "濞?
 end
 
--- 鍚炲櫖棰濆鍔犳垚鏄剧ず
+-- Ecexp text.
 function touxiangdetail:Ecexp_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local bonusPercent = 1
@@ -191,10 +191,10 @@ function touxiangdetail:Ecexp_Text(ReturnValue)
         bonusPercent = playerState.GameData.PlayerEcexp or 1
     end
     
-    return "鍚炲櫖鍔犳垚: " .. tostring(bonusPercent) .. "%"
+    return "閸氱偛娅栭崝鐘冲灇: " .. tostring(bonusPercent) .. "%"
 end
 
--- 鍩虹鏀诲嚮鍔涙樉绀?
+-- Base attack text.
 function touxiangdetail:Base_Attack_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -207,10 +207,10 @@ function touxiangdetail:Base_Attack_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "鍩虹鏀诲嚮鍔? " .. UGCGameData.FormatNumber(baseAttack)
+    return "閸╄櫣顢呴弨璇插毊閸? " .. UGCGameData.FormatNumber(baseAttack)
 end
 
--- 鍩虹鐢熷懡鍊兼樉绀?
+-- Base hp text.
 function touxiangdetail:Base_HP_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -223,10 +223,10 @@ function touxiangdetail:Base_HP_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "鍩虹鐢熷懡鍊? " .. UGCGameData.FormatNumber(baseHp)
+    return "閸╄櫣顢呴悽鐔锋嚒閸? " .. UGCGameData.FormatNumber(baseHp)
 end
 
--- 鍩虹榄旀硶鍊兼樉绀?
+-- Base magic text.
 function touxiangdetail:Base_Magic_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -239,10 +239,10 @@ function touxiangdetail:Base_Magic_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "鍩虹榄旀硶鍊? " .. UGCGameData.FormatNumber(baseMagic)
+    return "閸╄櫣顢呮鏃€纭堕崐? " .. UGCGameData.FormatNumber(baseMagic)
 end
 
--- 褰撳墠鏈€澶ц閲忔樉绀?
+-- Current maxhp text.
 function touxiangdetail:Current_MAXHP_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -255,10 +255,10 @@ function touxiangdetail:Current_MAXHP_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "鏈€澶ц閲? " .. UGCGameData.FormatNumber(maxHp)
+    return "閺堚偓婢堆嗩攨闁? " .. UGCGameData.FormatNumber(maxHp)
 end
 
--- 琛€鑴夊睘鎬ф樉绀?
+-- Bland text.
 function touxiangdetail:Bland_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -271,20 +271,20 @@ function touxiangdetail:Bland_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "琛€鑴? " .. UGCGameData.FormatNumber(bland)
+    return "鐞涒偓閼? " .. UGCGameData.FormatNumber(bland)
 end
 
--- 绱鍏呭€兼樉绀?
+-- Leijixiaofei text.
 function touxiangdetail:leijixiaofei_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local spendCount = 0
     if playerState then
         spendCount = playerState.UGCSpendCount or 0
     end
-    return "绱鍏呭€? " .. tostring(spendCount)
+    return "缁鳖垵顓搁崗鍛偓? " .. tostring(spendCount)
 end
 
--- VIP绛夌骇鏄剧ず锛堟寜绱鍏呭€硷級
+-- Vip text.
 function touxiangdetail:VIP_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local vipLevel = nil
@@ -325,14 +325,14 @@ function touxiangdetail:VIP_Text(ReturnValue)
     return "V" .. tostring(vipLevel or 0)
 end
 
--- 鍔犵偣娆℃暟鏄剧ず
+-- Attac kup text.
 function touxiangdetail:ATTACKup_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local count = 0
     if playerState then
         count = playerState.UGCPlayerManualAttack or (playerState.GameData and playerState.GameData.PlayerManualAttack) or 0
     end
-    return "鏀诲嚮鍔犵偣: " .. tostring(count)
+    return "閺€璇插毊閸旂姷鍋? " .. tostring(count)
 end
 
 function touxiangdetail:MAGICup_Text(ReturnValue)
@@ -341,7 +341,7 @@ function touxiangdetail:MAGICup_Text(ReturnValue)
     if playerState then
         count = playerState.UGCPlayerManualMagic or (playerState.GameData and playerState.GameData.PlayerManualMagic) or 0
     end
-    return "榄旀硶鍔犵偣: " .. tostring(count)
+    return "姒勬梹纭堕崝鐘靛仯: " .. tostring(count)
 end
 
 function touxiangdetail:hpup_Text(ReturnValue)
@@ -350,7 +350,7 @@ function touxiangdetail:hpup_Text(ReturnValue)
     if playerState then
         count = playerState.UGCPlayerManualHp or (playerState.GameData and playerState.GameData.PlayerManualHp) or 0
     end
-    return "鐢熷懡鍔犵偣: " .. tostring(count)
+    return "閻㈢喎鎳￠崝鐘靛仯: " .. tostring(count)
 end
 
 function touxiangdetail:bland_up_Text(ReturnValue)
@@ -359,10 +359,10 @@ function touxiangdetail:bland_up_Text(ReturnValue)
     if playerState then
         count = playerState.UGCPlayerManualBland or (playerState.GameData and playerState.GameData.PlayerManualBland) or 0
     end
-    return "琛€鑴夊姞鐐? " .. tostring(count)
+    return "鐞涒偓閼村濮為悙? " .. tostring(count)
 end
 
--- 鏄剧ず鎻愮ず
+-- Show tip.
 function touxiangdetail:ShowTip(text)
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.ShowTip then
@@ -370,52 +370,52 @@ function touxiangdetail:ShowTip(text)
     end
 end
 
--- 鍔犵偣鎸夐挳鍥炶皟
+-- Handle attac kup button click.
 function touxiangdetail:OnATTACKupClicked()
-    -- ugcprint("[touxiangdetail] 鏀诲嚮鍔犵偣鎸夐挳鐐瑰嚮")
+    -- Local helper value for this logic block.
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "attack")
-        self:ShowTip("鏀诲嚮鍔?2")
+        self:ShowTip("閺€璇插毊閸?2")
     end
 end
 
 function touxiangdetail:OnMAGICupClicked()
-    -- ugcprint("[touxiangdetail] 榄旀硶鍔犵偣鎸夐挳鐐瑰嚮")
+    -- Local helper value for this logic block.
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "magic")
-        self:ShowTip("榄旀硶鍊?1")
+        self:ShowTip("姒勬梹纭堕崐?1")
     end
 end
 
 function touxiangdetail:OnHpupClicked()
-    -- ugcprint("[touxiangdetail] 鐢熷懡鍔犵偣鎸夐挳鐐瑰嚮")
+    -- Local helper value for this logic block.
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "hp")
-        self:ShowTip("鐢熷懡鍊?5")
+        self:ShowTip("閻㈢喎鎳￠崐?5")
     end
 end
 
 function touxiangdetail:OnBlandupClicked()
-    -- ugcprint("[touxiangdetail] 琛€鑴夊姞鐐规寜閽偣鍑?)
+    -- Local helper value for this logic block.
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "bland")
-        self:ShowTip("琛€鑴?10")
+        self:ShowTip("鐞涒偓閼?10")
     end
 end
 
--- 鍏ㄥ睆鏄剧ず璇︽儏鐣岄潰
+-- Show.
 function touxiangdetail:Show()
     self:SetVisibility(ESlateVisibility.Visible)
     self:ApplyFullScreenLayer()
-    -- 鍒锋柊澶村儚
+    -- Execute the next UI update step.
     self:InitAvatar()
 end
 
--- 鍏抽棴鎸夐挳鐐瑰嚮
+-- Handle cancel button click.
 function touxiangdetail:OnCancelClicked()
     self:ReleaseFullScreenLayer()
     self:SetVisibility(ESlateVisibility.Collapsed)
@@ -435,7 +435,7 @@ end
 
 -- [Editor Generated Lua] function define End;
 
--- 鐜╁鍚嶅瓧鏄剧ず
+-- Name text.
 function touxiangdetail:name_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
@@ -449,15 +449,15 @@ function touxiangdetail:name_Text(ReturnValue)
     return ""
 end
 
--- 鎴樻枟鍔涙樉绀?
+-- Zhandouli text.
 function touxiangdetail:zhandouli_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         local combatPower = playerState.UGCPlayerCombatPower or 0
         local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-        return "鎴樻枟鍔? " .. UGCGameData.FormatNumber(combatPower)
+        return "閹存ɑ鏋熼崝? " .. UGCGameData.FormatNumber(combatPower)
     end
-    return "鎴樻枟鍔? 0"
+    return "閹存ɑ鏋熼崝? 0"
 end
 
 return touxiangdetail

@@ -50,7 +50,7 @@ function active:Show()
     if SkillPanel then
         UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
     end
-    -- 榛樿鏄剧ず绗竴涓〉绛?
+    -- Execute the next UI update step.
     self:SwitchTab(0)
 end
 
@@ -71,13 +71,13 @@ function active:SwitchTab(index)
     if self.WidgetSwitcher_0 then
         self.WidgetSwitcher_0:SetActiveWidgetIndex(index)
     end
-    -- 绱㈠紩0鏄疮璁℃秷璐归〉锛岄渶瑕佸埛鏂癰uyslot
+    -- Guard condition before running this branch.
     if index == 0 then
         self:RefreshBuySlots()
     end
 end
 
--- 鑾峰彇褰撳墠鐜╁绱娑堣垂閲戦
+-- Get current spend.
 function active:GetCurrentSpend()
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
@@ -86,21 +86,21 @@ function active:GetCurrentSpend()
     return 0
 end
 
--- 鍒锋柊绱娑堣垂妲戒綅
+-- Refresh buy slots.
 function active:RefreshBuySlots()
     if not self.WrapBox_0 then
-        -- ugcprint("[active] 閿欒锛歐rapBox_0 涓嶅瓨鍦?)
+        -- Exit early when requirements are not met.
         return
     end
     self.WrapBox_0:ClearChildren()
 
     local allConfig = UGCGameData.GetAllChongzhiConfig()
     if not allConfig then
-        -- ugcprint("[active] 閿欒锛氭棤娉曡幏鍙栧厖鍊艰〃閰嶇疆")
+        -- Exit early when requirements are not met.
         return
     end
 
-    -- 鏀堕泦骞舵寜琛屽彿鎺掑簭
+    -- Configuration table used by this widget.
     local sortedRows = {}
     for rowName, config in pairs(allConfig) do
         table.insert(sortedRows, { rowIndex = tonumber(rowName), config = config })
@@ -109,7 +109,7 @@ function active:RefreshBuySlots()
 
     local SlotClass = UGCObjectUtility.LoadClass(UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/buyslot.buyslot_C'))
     if not SlotClass then
-        -- ugcprint("[active] 閿欒锛氭棤娉曞姞杞絙uyslot绫?)
+        -- Exit early when requirements are not met.
         return
     end
 
@@ -127,18 +127,18 @@ function active:RefreshBuySlots()
             if slot.SetData then
                 slot:SetData(rowData.rowIndex, rowData.config, currentSpend, claimed)
             end
-            -- ugcprint("[active] 鍒涘缓buyslot, 琛?" .. tostring(rowData.rowIndex) .. ", 宸查鍙?" .. tostring(claimed))
+            -- Keep this section consistent with the original UI flow.
         end
     end
 end
 
--- 鑾峰彇宸查鍙栫殑鍏呭€煎鍔辫褰?
+-- Get claimed chongzhi.
 function active:GetClaimedChongzhi()
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState and playerState.ClaimedChongzhi then
         return playerState.ClaimedChongzhi
     end
-    -- 灏濊瘯浠庡悓姝ュ瓧绗︿覆鍙嶅簭鍒楀寲
+    -- Guard condition before running this branch.
     if playerState and playerState.UGCClaimedChongzhiStr and playerState.DeserializeClaimedChongzhi then
         return playerState:DeserializeClaimedChongzhi(playerState.UGCClaimedChongzhiStr)
     end

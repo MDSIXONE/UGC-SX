@@ -5,10 +5,10 @@
 local Settlement_2 = { bInitDoOnce = false }
 
 function Settlement_2:Construct()
-	-- ugcprint("[Settlement_2] Construct 琚皟鐢?)
+	-- Initialize widget state and bindings.
 	self:LuaInit()
 	
-	-- 鏄剧ず鍚庣珛鍗虫墽琛屽悗缁祦绋?
+	-- Execute the next UI update step.
 	self:ExecuteNextStep()
 end
 
@@ -18,20 +18,20 @@ function Settlement_2:LuaInit()
 	end
 	self.bInitDoOnce = true
 	
-	-- ugcprint("[Settlement_2] LuaInit 瀹屾垚")
+	-- Guard condition before running this branch.
 	
-	-- 闅愯棌sure鎸夐挳(涓嶅啀闇€瑕?
+	-- Guard condition before running this branch.
 	if self.sure then
 		self.sure:SetVisibility(ESlateVisibility.Collapsed)
-		-- ugcprint("[Settlement_2] sure 鎸夐挳宸查殣钘?)
+		-- Continue applying initial visibility settings.
 	end
 end
 
--- 鎵ц鍚庣画娴佺▼
+-- Execute next step.
 function Settlement_2:ExecuteNextStep()
-	-- ugcprint("[Settlement_2] 绔嬪嵆鎵ц鍚庣画娴佺▼")
+	-- Guard condition before running this branch.
 	
-	-- 涓嶅叧闂璘I,鐩存帴閫氱煡鎵ц鍚庣画娴佺▼
+	-- Guard condition before running this branch.
 	if self.OnSureClicked then
 		self.OnSureClicked()
 	end

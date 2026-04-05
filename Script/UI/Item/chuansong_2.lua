@@ -18,7 +18,7 @@
 --Edit Below--
 local chuansong = { bInitDoOnce = false }
 
--- 闅愯棌鎵€鏈夋帶浠?
+-- Hide all buttons.
 function chuansong:HideAllButtons()
 	if self.fuben1 then self.fuben1:SetVisibility(ESlateVisibility.Collapsed) end
 	if self.fuben1_Text then self.fuben1_Text:SetVisibility(ESlateVisibility.Collapsed) end
@@ -36,7 +36,7 @@ function chuansong:HideAllButtons()
 	if self.CanvasPanel_0 then self.CanvasPanel_0:SetVisibility(ESlateVisibility.Collapsed) end
 end
 
--- 鏄剧ず鎵€鏈夋帶浠?
+-- Show all buttons.
 function chuansong:ShowAllButtons()
 	if self.fuben1 then self.fuben1:SetVisibility(ESlateVisibility.Visible) end
 	if self.fuben1_Text then self.fuben1_Text:SetVisibility(ESlateVisibility.Visible) end
@@ -56,7 +56,7 @@ end
 
 function chuansong:Construct()
 	self:LuaInit();
-	-- 鍒濆鍖栨椂闅愯棌鎵€鏈夋寜閽?
+	-- Execute the next UI update step.
 	self:HideAllButtons()
 end
 
@@ -82,76 +82,76 @@ function chuansong:LuaInit()
 	if self.fuben4 then self.fuben4.OnClicked:Add(self.fuben4_OnClicked, self) end
 	if self.fuben5 then self.fuben5.OnClicked:Add(self.fuben5_OnClicked, self) end
 	if self.fuben6 then self.fuben6.OnClicked:Add(self.fuben6_OnClicked, self) end
-	-- 缁戝畾鍙栨秷鎸夐挳浜嬩欢
+	-- Guard condition before running this branch.
 	if self.Zhuansheng_cancel then
 		self.Zhuansheng_cancel.OnClicked:Add(self.Zhuansheng_cancel_OnClicked, self)
 	end
 	-- [Editor Generated Lua] BindingEvent End;
 end
 
--- 閫氱敤浼犻€佸嚱鏁?- 閫氳繃 RPC 鍙戦€佸埌鏈嶅姟鍣ㄦ墽琛?
--- @param x 鐩爣浣嶇疆 X 鍧愭爣
--- @param y 鐩爣浣嶇疆 Y 鍧愭爣
--- @param z 鐩爣浣嶇疆 Z 鍧愭爣
--- @param yaw 鐩爣鏈濆悜瑙掑害锛堝彲閫夛紝涓嶄紶鍒欎笉鏀瑰彉鏈濆悜锛?
+-- Widget member function definition.
+-- Widget member function definition.
+-- Widget member function definition.
+-- Widget member function definition.
+-- Teleport to location.
 function chuansong:TeleportToLocation(x, y, z, yaw)
-    --ugcprint("chuansong: TeleportToLocation 寮€濮?)
-    --ugcprint("chuansong: 鐩爣浣嶇疆 X=" .. x .. " Y=" .. y .. " Z=" .. z .. " Yaw=" .. tostring(yaw or "鏃?))
+    -- Keep this section consistent with the original UI flow.
+    -- Keep this section consistent with the original UI flow.
     
     local ok, err = pcall(function()
-        -- 鑾峰彇鏈湴鐜╁鎺у埗鍣?
+        -- Acquire local player references.
         local PlayerController = UGCGameSystem.GetLocalPlayerController()
         if not PlayerController then
-            --ugcprint("chuansong: 閿欒 - 鏃犳硶鑾峰彇 PlayerController")
+            -- Exit early when requirements are not met.
             return
         end
         
-        -- 閫氳繃 RPC 璋冪敤鏈嶅姟鍣ㄤ紶閫?
-        --ugcprint("chuansong: 璋冪敤 Server_TeleportPlayer RPC")
+        -- Guard condition before running this branch.
+        -- Guard condition before running this branch.
         if yaw then
             UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_TeleportPlayer", x, y, z, yaw)
         else
             UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_TeleportPlayer", x, y, z)
         end
-        --ugcprint("chuansong: 宸插彂閫佷紶閫佽姹傚埌鏈嶅姟鍣?)
+        -- Keep this section consistent with the original UI flow.
     end)
     
     if not ok then
-        --ugcprint("chuansong: 鍙戦€佷紶閫佽姹傚け璐? " .. tostring(err))
+        -- Keep this section consistent with the original UI flow.
     end
     
-    -- 浼犻€佸悗闅愯棌浼犻€佺晫闈?
+    -- Execute the next UI update step.
     self:HideAllButtons()
     
-    -- 鏄剧ず浼犻€佹寜閽?
+    -- Acquire local player references.
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.chuansongbuttun_2 then
         pc.MMainUI.chuansongbuttun_2:SetVisibility(ESlateVisibility.Visible)
     end
 end
 
--- 鑾峰彇鐜╁杞敓娆℃暟
+-- Get player rebirth count.
 function chuansong:GetPlayerRebirthCount()
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc then
         local ps = UGCGameSystem.GetPlayerStateByPlayerController(pc)
         if ps then
-            -- 浼樺厛浣跨敤澶嶅埗灞炴€?
+            -- Exit early when requirements are not met.
             return ps.UGCPlayerRebirthCount or (ps.GameData and ps.GameData.PlayerRebirthCount) or 0
         end
     end
     return 0
 end
 
--- 妫€鏌ユ槸鍚︽弧瓒充紶閫佹潯浠?
+-- Check rebirth requirement.
 function chuansong:CheckRebirthRequirement(requiredRebirth, fubenName)
     local rebirthCount = self:GetPlayerRebirthCount()
     if rebirthCount < requiredRebirth then
-        -- ugcprint("chuansong: " .. fubenName .. " 闇€瑕佽浆鐢?" .. requiredRebirth .. " 娆★紝褰撳墠杞敓娆℃暟: " .. rebirthCount)
-        -- 寮瑰嚭鎻愮ず
+        -- Acquire local player references.
+        -- Acquire local player references.
         local pc = UGCGameSystem.GetLocalPlayerController()
         if pc and pc.MMainUI and pc.MMainUI.ShowTip then
-            pc.MMainUI:ShowTip("杞敓娆℃暟涓嶈冻")
+            pc.MMainUI:ShowTip("You do not meet the rebirth requirement for this teleport.")
         end
         return false
     end
@@ -159,8 +159,8 @@ function chuansong:CheckRebirthRequirement(requiredRebirth, fubenName)
 end
 
 function chuansong:fuben1_OnClicked()
-    --ugcprint("chuansong: fuben1 琚偣鍑?)
-    -- fuben1 闇€瑕佽浆鐢?>= 1 娆?
+    -- Guard condition before running this branch.
+    -- Guard condition before running this branch.
     if not self:CheckRebirthRequirement(1, "fuben1") then
         return
     end
@@ -168,8 +168,8 @@ function chuansong:fuben1_OnClicked()
 end
 
 function chuansong:fuben2_OnClicked()
-    --ugcprint("chuansong: fuben2 琚偣鍑?)
-    -- fuben2 闇€瑕佽浆鐢?>= 2 娆?
+    -- Guard condition before running this branch.
+    -- Guard condition before running this branch.
     if not self:CheckRebirthRequirement(2, "fuben2") then
         return
     end
@@ -177,8 +177,8 @@ function chuansong:fuben2_OnClicked()
 end
 
 function chuansong:fuben3_OnClicked()
-    --ugcprint("chuansong: fuben3 琚偣鍑?)
-    -- fuben3 闇€瑕佽浆鐢?>= 3 娆?
+    -- Guard condition before running this branch.
+    -- Guard condition before running this branch.
     if not self:CheckRebirthRequirement(3, "fuben3") then
         return
     end
@@ -186,8 +186,8 @@ function chuansong:fuben3_OnClicked()
 end
 
 function chuansong:fuben4_OnClicked()
-    --ugcprint("chuansong: fuben4 琚偣鍑?)
-    -- fuben4 闇€瑕佽浆鐢?>= 4 娆?
+    -- Guard condition before running this branch.
+    -- Guard condition before running this branch.
     if not self:CheckRebirthRequirement(4, "fuben4") then
         return
     end
@@ -202,19 +202,19 @@ function chuansong:fuben6_OnClicked()
     self:TeleportToLocation(18670.0, 24520.0, 200.0)
 end
 
--- 鍙栨秷鎸夐挳鐐瑰嚮浜嬩欢澶勭悊
+-- Zhuansheng cancel on clicked.
 function chuansong:Zhuansheng_cancel_OnClicked()
-	--ugcprint("chuansong_2: 鍙栨秷鎸夐挳琚偣鍑?)
-	-- 闅愯棌鎵€鏈夋寜閽?
+	-- Execute the next UI update step.
+	-- Execute the next UI update step.
 	self:HideAllButtons()
 
-	-- 閫氳繃 PlayerController 鑾峰彇 MMainUI
+	-- Acquire local player references.
 	local pc = UGCGameSystem.GetLocalPlayerController()
 	if pc and pc.MMainUI and pc.MMainUI.chuansongbuttun_2 then
-		--ugcprint("chuansong_2: 鎵惧埌 MMainUI锛屾樉绀轰紶閫佹寜閽?)
+		-- Configure initial widget visibility.
 		pc.MMainUI.chuansongbuttun_2:SetVisibility(ESlateVisibility.Visible)
 	else
-		--ugcprint("chuansong_2: 閿欒 - 鏃犳硶鎵惧埌 MMainUI")
+		-- Keep this section consistent with the original UI flow.
 	end
 end
 
