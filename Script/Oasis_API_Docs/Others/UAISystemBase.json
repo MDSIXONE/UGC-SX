@@ -1,0 +1,31 @@
+{
+    "Name": "UAISystemBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "AISystemClassName",
+            "Type": "FSoftClassPath",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AISystemModuleName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInstantiateAISystemOnClient",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

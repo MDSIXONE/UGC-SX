@@ -1,0 +1,168 @@
+{
+    "Name": "TaskManager",
+    "Description": "UGC任务系统全局管理器",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetTaskLineConfig",
+            "Description": "获取任务线配置\n生效范围：客户端&&服务端",
+            "Params": [
+                {
+                    "Name": "TaskLineName",
+                    "Type": "string",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FUGCTaskLineConfig",
+                    "Description": "",
+                    "Redirect": "cppstruct/detail/FUGCTaskLineConfig.json"
+                }
+            ]
+        },
+        {
+            "Name": "GetTaskConfig",
+            "Description": "获取任务配置\n生效范围：客户端&&服务端",
+            "Params": [
+                {
+                    "Name": "TaskID",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FUGCTaskConfig",
+                    "Description": "",
+                    "Redirect": "cppstruct/detail/FUGCTaskConfig.json"
+                }
+            ]
+        },
+        {
+            "Name": "GetTaskType",
+            "Description": "获取任务类型\n生效范围：客户端&&服务端",
+            "Params": [
+                {
+                    "Name": "TaskID",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EUGCTaskType",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTaskDesc",
+            "Description": "获取任务目标进度\n生效范围：客户端&&服务端",
+            "Params": [
+                {
+                    "Name": "TaskID",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTaskTarget",
+            "Description": "获取任务目标进度\n生效范围：客户端&&服务端",
+            "Params": [
+                {
+                    "Name": "TaskID",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UpdateTaskProgress",
+            "Description": "通用更新任务进度\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "TaskIndex",
+                    "Type": "FUGCTaskIndex",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PlayerController",
+                    "Type": "Controller",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Progress",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsIncremental",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetPercentTaskPercent",
+            "Description": "获取活跃任务完成后获得的活跃度数量\n生效范围：客户端&&服务端",
+            "Params": [
+                {
+                    "Name": "TaskLineName",
+                    "Type": "string",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TaskID",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

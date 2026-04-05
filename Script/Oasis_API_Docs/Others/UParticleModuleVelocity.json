@@ -1,0 +1,25 @@
+{
+    "Name": "UParticleModuleVelocity",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StartVelocity",
+            "Type": "FRawDistributionVector",
+            "Description": "The velocity to apply to a particle when it is spawned.\n\t \tValue is retrieved using the EmitterTime of the emitter.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartVelocityRadial",
+            "Type": "FRawDistributionFloat",
+            "Description": "The velocity to apply to a particle along its radial direction.\n\t \tDirection is determined by subtracting the location of the emitter from the particle location at spawn.\n\t \tValue is retrieved using the EmitterTime of the emitter.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVelocityBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

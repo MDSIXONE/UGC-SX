@@ -1,0 +1,52 @@
+{
+    "Name": "UMaterialExpressionMaterialFunctionCall",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MaterialFunction",
+            "Type": "UMaterialFunction *",
+            "Description": "The function to call.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FunctionInputs",
+            "Type": "TArray < struct FFunctionExpressionInput >",
+            "Description": "Array of all the function inputs that this function exposes.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FunctionOutputs",
+            "Type": "TArray < struct FFunctionExpressionOutput >",
+            "Description": "Array of all the function outputs that this function exposes.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetMaterialFunction",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewMaterialFunction",
+                    "Type": "UMaterialFunction *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

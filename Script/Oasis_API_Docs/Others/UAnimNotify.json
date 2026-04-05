@@ -1,0 +1,77 @@
+{
+    "Name": "UAnimNotify",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bCheckAnimIsolation",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCheckAnimIsolation_OnlyNewFPP",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCheckAnimIsolation_OnlyNewFPP_IgnoreOldAnimMode",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetNotifyName",
+            "Description": "Implementable event to get a custom name for the notify",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Received_Notify",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MeshComp",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Animation",
+                    "Type": "UAnimSequenceBase * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InvokeAnimInstance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

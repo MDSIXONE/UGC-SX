@@ -1,0 +1,100 @@
+{
+    "Name": "UGCMessageSystem",
+    "Description": "游戏聊天通用接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "JoinCampMessageChannel",
+            "Description": "阵营聊天 开局分阵营或阵营变更时同步阵营信息，创建阵营的聊天室\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家的 PlayerKey",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CampID",
+                    "Type": "number",
+                    "Description": "阵营 ID（传入0为无阵营）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "SendSystemMessageToPlayer",
+            "Description": "给单独玩家发送系统消息\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MessageTag",
+                    "Type": "string",
+                    "Description": "消息标题",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MessageContent",
+                    "Type": "string",
+                    "Description": "消息内容",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Level",
+                    "Type": "number",
+                    "Description": "消息等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否发送成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SendSystemMessageToAll",
+            "Description": "给所有玩家发送系统消息\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "MessageTag",
+                    "Type": "string",
+                    "Description": "消息标题",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MessageContent",
+                    "Type": "string",
+                    "Description": "消息内容",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Level",
+                    "Type": "number",
+                    "Description": "消息等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否发送成功",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

@@ -1,0 +1,43 @@
+{
+    "Name": "UEdGraph",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Schema",
+            "Type": "TSubclassOf < UEdGraphSchema >",
+            "Description": "The schema that this graph obeys",
+            "Redirect": ""
+        },
+        {
+            "Name": "Nodes",
+            "Type": "TArray < UEdGraphNode * >",
+            "Description": "Set of all nodes in this graph",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEditable",
+            "Type": "uint32",
+            "Description": "If true, graph can be edited by the user",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowDeletion",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowRenaming",
+            "Type": "uint32",
+            "Description": "If true, graph can be renamed; Note: Graph can also be renamed if bAllowDeletion is true currently",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

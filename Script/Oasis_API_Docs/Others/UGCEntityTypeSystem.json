@@ -1,0 +1,702 @@
+{
+    "Name": "UGCEntityTypeSystem",
+    "Description": "实体类型查询系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "IsActorOfEntityType",
+            "Description": "判断Actor是否属于指定的实体类型\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeName",
+                    "Type": "string",
+                    "Description": "实体类型名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否属于指定类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorEntityType",
+            "Description": "获取Actor的实体类型（返回第一个匹配的）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "实体类型名称，如果没有匹配则返回空字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorEntityTypes",
+            "Description": "获取Actor的所有匹配的实体类型\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string[]",
+                    "Description": "实体类型名称数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllEntityTypeNames",
+            "Description": "获取所有已配置的实体类型名称\n生效范围：服务器&客户端",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string[]",
+                    "Description": "所有实体类型名称数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapBoxByEntityType",
+            "Description": "使用Box形状检测指定EntityType的Actor\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeName",
+                    "Type": "string",
+                    "Description": "实体类型名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfExtent",
+                    "Type": "FVector",
+                    "Description": "Box的半尺寸（默认值：{X=50, Y=50, Z=50}）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator",
+                    "Description": "旋转角度（默认值：{Pitch=0, Yaw=0, Roll=0}）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapSphereByEntityType",
+            "Description": "使用Sphere形状检测指定EntityType的Actor\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeName",
+                    "Type": "string",
+                    "Description": "实体类型名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "球体半径（默认值：100）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapCapsuleByEntityType",
+            "Description": "使用Capsule形状检测指定EntityType的Actor\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeName",
+                    "Type": "string",
+                    "Description": "实体类型名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "胶囊体半径（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfHeight",
+                    "Type": "number",
+                    "Description": "胶囊体半高（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator",
+                    "Description": "旋转角度（默认值：{Pitch=0, Yaw=0, Roll=0}）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsActorOfClassType",
+            "Description": "检查Actor是否为指定的类类型\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorClassPath",
+                    "Type": "string",
+                    "Description": "Actor类的路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否为指定类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsActorOfAnyClassTypes",
+            "Description": "检查Actor是否为指定类类型数组中的任意一种\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorClassPaths",
+                    "Type": "string[]",
+                    "Description": "Actor类路径数组",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否为指定类型之一",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsActorOfEntityTypeByTag",
+            "Description": "判断Actor是否属于指定的实体类型（使用GameplayTag）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeTag",
+                    "Type": "FGameplayTag",
+                    "Description": "实体类型GameplayTag",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否属于指定类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsActorOfEntityTypeByTags",
+            "Description": "判断Actor是否属于指定的实体类型（使用GameplayTagContainer）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeTags",
+                    "Type": "FGameplayTagContainer",
+                    "Description": "实体类型GameplayTag容器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否属于指定类型之一",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorEntityTypeAsGameplayTag",
+            "Description": "获取Actor的实体类型（返回GameplayTag）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FGameplayTag",
+                    "Description": "实体类型GameplayTag",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorEntityTypesAsGameplayTagContainer",
+            "Description": "获取Actor的所有匹配的实体类型（返回GameplayTagContainer）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor",
+                    "Description": "要检查的Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FGameplayTagContainer",
+                    "Description": "实体类型GameplayTag容器",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapBoxByEntityTypeTag",
+            "Description": "使用Box形状检测指定EntityType的Actor（使用GameplayTag）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeTag",
+                    "Type": "FGameplayTag",
+                    "Description": "实体类型GameplayTag",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfExtent",
+                    "Type": "FVector",
+                    "Description": "Box的半尺寸（默认值：{X=50, Y=50, Z=50}）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator",
+                    "Description": "旋转角度（默认值：{Pitch=0, Yaw=0, Roll=0}）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapBoxByEntityTypeTags",
+            "Description": "使用Box形状检测指定EntityType的Actor（使用GameplayTagContainer）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeTags",
+                    "Type": "FGameplayTagContainer",
+                    "Description": "实体类型GameplayTag容器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfExtent",
+                    "Type": "FVector",
+                    "Description": "Box的半尺寸（默认值：{X=50, Y=50, Z=50}）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator",
+                    "Description": "旋转角度（默认值：{Pitch=0, Yaw=0, Roll=0}）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapSphereByEntityTypeTag",
+            "Description": "使用Sphere形状检测指定EntityType的Actor（使用GameplayTag）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeTag",
+                    "Type": "FGameplayTag",
+                    "Description": "实体类型GameplayTag",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "球体半径（默认值：100）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapSphereByEntityTypeTags",
+            "Description": "使用Sphere形状检测指定EntityType的Actor（使用GameplayTagContainer）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeTags",
+                    "Type": "FGameplayTagContainer",
+                    "Description": "实体类型GameplayTag容器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "球体半径（默认值：100）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapCapsuleByEntityTypeTag",
+            "Description": "使用Capsule形状检测指定EntityType的Actor（使用GameplayTag）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeTag",
+                    "Type": "FGameplayTag",
+                    "Description": "实体类型GameplayTag",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "胶囊体半径（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfHeight",
+                    "Type": "number",
+                    "Description": "胶囊体半高（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator",
+                    "Description": "旋转角度（默认值：{Pitch=0, Yaw=0, Roll=0}）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverlapCapsuleByEntityTypeTags",
+            "Description": "使用Capsule形状检测指定EntityType的Actor（使用GameplayTagContainer）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityTypeTags",
+                    "Type": "FGameplayTagContainer",
+                    "Description": "实体类型GameplayTag容器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "检测位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "胶囊体半径（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfHeight",
+                    "Type": "number",
+                    "Description": "胶囊体半高（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator",
+                    "Description": "旋转角度（默认值：{Pitch=0, Yaw=0, Roll=0}）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "找到的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllEntityTypesAsGameplayTagContainer",
+            "Description": "获取所有已配置的实体类型（返回GameplayTagContainer）\n生效范围：服务器&客户端",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FGameplayTagContainer",
+                    "Description": "所有实体类型GameplayTag容器",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ConvertEntityTypeNameToGameplayTag",
+            "Description": "将实体类型名称转换为GameplayTag\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "EntityTypeName",
+                    "Type": "string",
+                    "Description": "实体类型名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FGameplayTag",
+                    "Description": "对应的GameplayTag",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ConvertGameplayTagToEntityTypeName",
+            "Description": "将GameplayTag转换为实体类型名称\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "EntityTypeTag",
+                    "Type": "FGameplayTag",
+                    "Description": "实体类型GameplayTag",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "对应的实体类型名称",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetConfigDataAssetPath",
+            "Description": "设置自定义配置DataAsset路径\n如果不调用此函数，将使用默认路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ConfigDataAssetPath",
+                    "Type": "string",
+                    "Description": "配置DataAsset的路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ForceReloadConfig",
+            "Description": "强制重新加载配置\n配合SetConfigDataAssetPath使用，建议设置完路径后调用一次\n生效范围：服务器&客户端",
+            "Params": null,
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

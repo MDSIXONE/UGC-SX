@@ -1,0 +1,25 @@
+{
+    "Name": "UInterpTrackVectorBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "VectorTrack",
+            "Type": "FInterpCurveVector",
+            "Description": "Actually track data containing keyframes of a FVector as it varies over time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CurveTension",
+            "Type": "float",
+            "Description": "Tension of curve, used for keypoints using automatic tangents.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

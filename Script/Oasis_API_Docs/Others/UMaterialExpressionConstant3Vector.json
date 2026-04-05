@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionConstant3Vector",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Constant",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

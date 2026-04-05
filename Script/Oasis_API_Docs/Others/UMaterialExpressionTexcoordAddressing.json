@@ -1,0 +1,25 @@
+{
+    "Name": "UMaterialExpressionTexcoordAddressing",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Coordinates",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstCoordinate",
+            "Type": "uint32",
+            "Description": "only used if Coordinates is not hooked up",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

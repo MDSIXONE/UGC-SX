@@ -1,0 +1,19 @@
+{
+    "Name": "UMovieSceneComponentMaterialTrack",
+    "Description": "A material track which is specialized for animation materials which are owned by actor components.",
+    "Variables": [
+        {
+            "Name": "MaterialIndex",
+            "Type": "int32",
+            "Description": "The index of this material this track is animating.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneMaterialTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

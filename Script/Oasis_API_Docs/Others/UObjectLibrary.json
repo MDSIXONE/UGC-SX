@@ -1,0 +1,49 @@
+{
+    "Name": "UObjectLibrary",
+    "Description": "Class that holds a library of Objects",
+    "Variables": [
+        {
+            "Name": "ObjectBaseClass",
+            "Type": "UClass *",
+            "Description": "Class that Objects must be of. If ContainsBlueprints is true, this is the native class that the blueprints are instances of and not UClass",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasBlueprintClasses",
+            "Type": "bool",
+            "Description": "True if this library holds blueprint classes, false if it holds other objects",
+            "Redirect": ""
+        },
+        {
+            "Name": "Objects",
+            "Type": "TArray < UObject * >",
+            "Description": "List of Objects in library",
+            "Redirect": ""
+        },
+        {
+            "Name": "WeakObjects",
+            "Type": "TArray < TWeakObjectPtr < UObject > >",
+            "Description": "Weak pointers to objects",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseWeakReferences",
+            "Type": "bool",
+            "Description": "If this library should use weak pointers",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsFullyLoaded",
+            "Type": "bool",
+            "Description": "True if we've already fully loaded this library, can't do it twice",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

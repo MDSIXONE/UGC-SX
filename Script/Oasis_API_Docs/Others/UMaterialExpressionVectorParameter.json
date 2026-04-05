@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionVectorParameter",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DefaultValue",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionParameter"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

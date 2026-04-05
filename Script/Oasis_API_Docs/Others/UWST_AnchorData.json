@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_AnchorData",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "FAnchorData",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

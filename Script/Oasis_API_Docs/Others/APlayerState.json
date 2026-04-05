@@ -1,0 +1,190 @@
+{
+    "Name": "APlayerState",
+    "Description": "A PlayerState is created for every player on a server (or in a standalone game).\n  PlayerStates are replicated to all clients, and contain network game relevant information about the player, such as playername, score, etc.",
+    "Variables": [
+        {
+            "Name": "Score",
+            "Type": "float",
+            "Description": "Player's current score.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Ping",
+            "Type": "uint8",
+            "Description": "Replicated compressed ping for this player (holds ping in msec divided by 4)",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayerName",
+            "Type": "FString",
+            "Description": "Player name, or blank if none.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayerId",
+            "Type": "int32",
+            "Description": "Unique net id number. Actual value varies based on current online subsystem, use it only as a guaranteed unique number per player.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsSpectator",
+            "Type": "uint32",
+            "Description": "Whether this player is currently a spectator",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOnlySpectator",
+            "Type": "uint32",
+            "Description": "Whether this player can only ever be a spectator",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsABot",
+            "Type": "uint32",
+            "Description": "True if this PlayerState is associated with an AIController",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsInactive",
+            "Type": "uint32",
+            "Description": "Means this PlayerState came from the GameMode's InactivePlayerArray",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFromPreviousLevel",
+            "Type": "uint32",
+            "Description": "indicates this is a PlayerState from the previous level of a seamless travel,\n\t  waiting for the player to finish the transition before creating a new one\n\t  this is used to avoid preserving the PlayerState in the InactivePlayerArray if the player leaves",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartTime",
+            "Type": "int32",
+            "Description": "Elapsed time on server when this PlayerState was first created.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EngineMessageClass",
+            "Type": "TSubclassOf < ULocalMessage >",
+            "Description": "This is used for sending game agnostic messages that can be localized",
+            "Redirect": ""
+        },
+        {
+            "Name": "SavedNetworkAddress",
+            "Type": "FString",
+            "Description": "Used to match up InactivePlayerState with rejoining playercontroller.",
+            "Redirect": ""
+        },
+        {
+            "Name": "UniqueId",
+            "Type": "FUniqueNetIdRepl",
+            "Description": "The id used by the network to uniquely identify a player.\n\t  NOTE: the internals of this property should never be exposed to the player as it's transient\n\t  and opaque in meaning (ie it might mean datetime followed by something else).\n\t  It is OK to use and pass around this property, though.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PingBucketSize",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "OnRep_Score",
+            "Description": "Replication Notification Callbacks",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_PlayerName",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_bIsInactive",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_UniqueId",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveOverrideWith",
+            "Description": "Can be implemented in Blueprint Child to move more properties from old to new PlayerState when reconnecting\n\t",
+            "Params": [
+                {
+                    "Name": "OldPlayerState",
+                    "Type": "APlayerState *",
+                    "Description": "Old PlayerState, which we use to fill the new one with",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveCopyProperties",
+            "Description": "Can be implemented in Blueprint Child to move more properties from old to new PlayerState when traveling to a new level\n\t",
+            "Params": [
+                {
+                    "Name": "NewPlayerState",
+                    "Type": "APlayerState *",
+                    "Description": "New PlayerState, which we fill with the current properties",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AInfo"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

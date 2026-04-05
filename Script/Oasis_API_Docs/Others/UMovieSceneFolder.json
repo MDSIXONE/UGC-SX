@@ -1,0 +1,37 @@
+{
+    "Name": "UMovieSceneFolder",
+    "Description": "Reprents a folder used for organizing objects in tracks in a movie scene.",
+    "Variables": [
+        {
+            "Name": "FolderName",
+            "Type": "FName",
+            "Description": "The name of this folder.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChildFolders",
+            "Type": "TArray < UMovieSceneFolder * >",
+            "Description": "The folders contained by this folder.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChildMasterTracks",
+            "Type": "TArray < UMovieSceneTrack * >",
+            "Description": "The master tracks contained by this folder.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChildObjectBindingStrings",
+            "Type": "TArray < FString >",
+            "Description": "The guid strings used to serialize the guids for the object bindings contained by this folder.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

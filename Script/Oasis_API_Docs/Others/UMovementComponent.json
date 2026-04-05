@@ -1,0 +1,498 @@
+{
+    "Name": "UMovementComponent",
+    "Description": "MovementComponent is an abstract component class that defines functionality for moving a PrimitiveComponent (our UpdatedComponent) each tick.\n  Base functionality includes:\n     - Restricting movement to a plane or axis.\n     - Utility functions for special handling of collision results (SlideAlongSurface(), ComputeSlideVector(), TwoWallAdjust()).\n     - Utility functions for moving when there may be initial penetration (SafeMoveUpdatedComponent(), ResolvePenetration()).\n     - Automatically registering the component tick and finding a component to move on the owning Actor.\n  Normally the root component of the owning actor is moved, however another component may be selected (see SetUpdatedComponent()).\n  During swept (non-teleporting) movement only collision of UpdatedComponent is considered, attached components will teleport to the end location ignoring collision.",
+    "Variables": [
+        {
+            "Name": "UpdatedComponent",
+            "Type": "USceneComponent *",
+            "Description": "The component we move and update.\n\t  If this is null at startup and bAutoRegisterUpdatedComponent is true, the owning Actor's root component will automatically be set as our UpdatedComponent at startup.\n\t  @see bAutoRegisterUpdatedComponent, SetUpdatedComponent(), UpdatedPrimitive",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpdatedPrimitive",
+            "Type": "UPrimitiveComponent *",
+            "Description": "UpdatedComponent, cast as a UPrimitiveComponent. May be invalid if UpdatedComponent was null or not a UPrimitiveComponent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Velocity",
+            "Type": "FVector",
+            "Description": "Current velocity of updated component.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlaneConstraintNormal",
+            "Type": "FVector",
+            "Description": "The normal or axis of the plane that constrains movement, if bConstrainToPlane is enabled.\n\t  If for example you wanted to constrain movement to the X-Z plane (so that Y cannot change), the normal would be set to X=0 Y=1 Z=0.\n\t  This is recalculated whenever PlaneConstraintAxisSetting changes. It is normalized once the component is registered with the game world.\n\t  @see bConstrainToPlane, SetPlaneConstraintNormal(), SetPlaneConstraintFromVectors()",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlaneConstraintOrigin",
+            "Type": "FVector",
+            "Description": "The origin of the plane that constrains movement, if plane constraint is enabled. \n\t  This defines the behavior of snapping a position to the plane, such as by SnapUpdatedComponentToPlane().\n\t  @see bConstrainToPlane, SetPlaneConstraintOrigin().",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUpdateOnlyIfRendered",
+            "Type": "uint8",
+            "Description": "If true, skips TickComponent() if UpdatedComponent was not recently rendered.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoUpdateTickRegistration",
+            "Type": "uint8",
+            "Description": "If true, whenever the updated component is changed, this component will enable or disable its tick dependent on whether it has something to update.\n\t  This will NOT enable tick at startup if bAutoActivate is false, because presumably you have a good reason for not wanting it to start ticking initially.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTickBeforeOwner",
+            "Type": "uint8",
+            "Description": "If true, after registration we will add a tick dependency to tick before our owner (if we can both tick).\n\t  This is important when our tick causes an update in the owner's position, so that when the owner ticks it uses the most recent position without lag.\n\t  Disabling this can improve performance if both objects tick but the order of ticks doesn't matter.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoRegisterUpdatedComponent",
+            "Type": "uint8",
+            "Description": "If true, registers the owner's Root component as the UpdatedComponent if there is not one currently assigned.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bConstrainToPlane",
+            "Type": "uint8",
+            "Description": "If true, movement will be constrained to a plane.\n\t  @see PlaneConstraintNormal, PlaneConstraintOrigin, PlaneConstraintAxisSetting",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSnapToPlaneAtStart",
+            "Type": "uint8",
+            "Description": "If true and plane constraints are enabled, then the updated component will be snapped to the plane when first attached.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoRegisterPhysicsVolumeUpdates",
+            "Type": "uint8",
+            "Description": "If true, then applies the value of bComponentShouldUpdatePhysicsVolume to the UpdatedComponent. If false, will not change bShouldUpdatePhysicsVolume on the UpdatedComponent at all.\n\t  @see bComponentShouldUpdatePhysicsVolume",
+            "Redirect": ""
+        },
+        {
+            "Name": "bComponentShouldUpdatePhysicsVolume",
+            "Type": "uint8",
+            "Description": "If true, enables bShouldUpdatePhysicsVolume on the UpdatedComponent during initialization from SetUpdatedComponent(), otherwise disables such updates.\n\t  Only enabled if bAutoRegisterPhysicsVolumeUpdates is true.\n\t  WARNING: UpdatePhysicsVolume is potentially expensive if overlap events are also disabled because it requires a separate query against all physics volumes in the world.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlaneConstraintAxisSetting",
+            "Type": "EPlaneConstraintAxisSetting",
+            "Description": "Setting that controls behavior when movement is restricted to a 2D plane defined by a specific axisnormal,\n\t  so that movement along the locked axis is not be possible.\n\t  @see SetPlaneConstraintAxisSetting",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetGravityZ",
+            "Description": "Returns gravity that affects this component",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaxSpeed",
+            "Description": "Returns maximum speed of component in current movement mode.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetMaxSpeedModifier",
+            "Description": "Returns a scalar applied to the maximum velocity that the component can currently move.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetModifiedMaxSpeed",
+            "Description": "Returns the result of GetMaxSpeed()  GetMaxSpeedModifier().",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsExceedingMaxSpeed",
+            "Description": "Returns true if the current velocity is exceeding the given max speed (usually the result of GetMaxSpeed()), within a small error tolerance.\n\t  Note that under normal circumstances updates cause by acceleration will not cause this to be true, however external forces or changes in the max speed limit\n\t  can cause the max speed to be violated.",
+            "Params": [
+                {
+                    "Name": "MaxSpeed",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopMovementImmediately",
+            "Description": "Stops movement immediately (zeroes velocity, usually zeros acceleration for components with acceleration).",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPhysicsVolume",
+            "Description": "Returns the PhysicsVolume this MovementComponent is using, or the world's default physics volume if none.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APhysicsVolume *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PhysicsVolumeChanged",
+            "Description": "Delegate when PhysicsVolume of UpdatedComponent has been changed",
+            "Params": [
+                {
+                    "Name": "NewVolume",
+                    "Type": "APhysicsVolume *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetUpdatedComponent",
+            "Description": "Assign the component we move and update.",
+            "Params": [
+                {
+                    "Name": "NewUpdatedComponent",
+                    "Type": "USceneComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_MoveUpdatedComponent",
+            "Description": "Moves our UpdatedComponent by the given Delta, and sets rotation to NewRotation.\n\t  Respects the plane constraint, if enabled.",
+            "Params": [
+                {
+                    "Name": "Delta",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutHit",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if some movement occurred, false if no movement occurred. Result of any impact will be stored in OutHit.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaneConstraintAxisSetting",
+            "Description": "Set the plane constraint axis setting.\n\t  Changing this setting will modify the current value of PlaneConstraintNormal.\n\t  ",
+            "Params": [
+                {
+                    "Name": "NewAxisSetting",
+                    "Type": "EPlaneConstraintAxisSetting",
+                    "Description": "New plane constraint axis setting.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaneConstraintAxisSetting",
+            "Description": "Get the plane constraint axis setting.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPlaneConstraintAxisSetting",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaneConstraintNormal",
+            "Description": "Sets the normal of the plane that constrains movement, enforced if the plane constraint is enabled.\n\t  Changing the normal automatically sets PlaneConstraintAxisSetting to \"Custom\".\n\t ",
+            "Params": [
+                {
+                    "Name": "PlaneNormal",
+                    "Type": "FVector",
+                    "Description": "The normal of the plane. If non-zero in length, it will be normalized.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaneConstraintFromVectors",
+            "Description": "Uses the Forward and Up vectors to compute the plane that constrains movement, enforced if the plane constraint is enabled.",
+            "Params": [
+                {
+                    "Name": "Forward",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Up",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaneConstraintOrigin",
+            "Description": "Sets the origin of the plane that constrains movement, enforced if the plane constraint is enabled.",
+            "Params": [
+                {
+                    "Name": "PlaneOrigin",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaneConstraintEnabled",
+            "Description": "Sets whether or not the plane constraint is enabled.",
+            "Params": [
+                {
+                    "Name": "bEnabled",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaneConstraintNormal",
+            "Description": "Returns the normal of the plane that constrains movement, enforced if the plane constraint is enabled.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaneConstraintOrigin",
+            "Description": "Get the plane constraint origin. This defines the behavior of snapping a position to the plane, such as by SnapUpdatedComponentToPlane().",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const FVector &",
+                    "Description": "The origin of the plane that constrains movement, if the plane constraint is enabled.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ConstrainDirectionToPlane",
+            "Description": "Constrain a direction vector to the plane constraint, if enabled.",
+            "Params": [
+                {
+                    "Name": "Direction",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ConstrainLocationToPlane",
+            "Description": "Constrain a position vector to the plane constraint, if enabled.",
+            "Params": [
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ConstrainNormalToPlane",
+            "Description": "Constrain a normal vector (of unit length) to the plane constraint, if enabled.",
+            "Params": [
+                {
+                    "Name": "Normal",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SnapUpdatedComponentToPlane",
+            "Description": "Snap the updated component to the plane constraint, if enabled.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "USlateDataSheet",
+    "Description": "A texture used for communicating data to the GPU.\n  Used in combination with SlateVectorArtData and SlateVectorArtInstanceData to\n  pass data to UI materials.",
+    "Variables": [
+        {
+            "Name": "DataTexture",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

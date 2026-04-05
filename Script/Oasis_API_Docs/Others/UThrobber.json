@@ -1,0 +1,130 @@
+{
+    "Name": "UThrobber",
+    "Description": "A Throbber widget that shows several zooming circles in a row.",
+    "Variables": [
+        {
+            "Name": "NumberOfPieces",
+            "Type": "int32",
+            "Description": "How many pieces there are",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAnimateHorizontally",
+            "Type": "bool",
+            "Description": "Should the pieces animate horizontally?",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAnimateVertically",
+            "Type": "bool",
+            "Description": "Should the pieces animate vertically?",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAnimateOpacity",
+            "Type": "bool",
+            "Description": "Should the pieces animate their opacity?",
+            "Redirect": ""
+        },
+        {
+            "Name": "PieceImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use for each segment of the throbber",
+            "Redirect": ""
+        },
+        {
+            "Name": "Image",
+            "Type": "FSlateBrush",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetNumberOfPieces",
+            "Description": "Sets how many pieces there are",
+            "Params": [
+                {
+                    "Name": "InNumberOfPieces",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAnimateHorizontally",
+            "Description": "Sets whether the pieces animate horizontally.",
+            "Params": [
+                {
+                    "Name": "bInAnimateHorizontally",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAnimateVertically",
+            "Description": "Sets whether the pieces animate vertically.",
+            "Params": [
+                {
+                    "Name": "bInAnimateVertically",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAnimateOpacity",
+            "Description": "Sets whether the pieces animate their opacity.",
+            "Params": [
+                {
+                    "Name": "bInAnimateOpacity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,379 @@
+{
+    "Name": "ALevelSequenceActor",
+    "Description": "Actor responsible for controlling a specific level sequence in the world.",
+    "Variables": [
+        {
+            "Name": "bAutoPlay",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlaybackSettings",
+            "Type": "FMovieSceneSequencePlaybackSettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SequencePlayer",
+            "Type": "ULevelSequencePlayer *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LevelSequence",
+            "Type": "FSoftObjectPath",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TempLevelSequence",
+            "Type": "ULevelSequence *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdditionalEventReceivers",
+            "Type": "TArray < AActor * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BurnInOptions",
+            "Type": "ULevelSequenceBurnInOptions *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BindingOverrides",
+            "Type": "UMovieSceneBindingOverrides *",
+            "Description": "Mapping of actors to override the sequence bindings with",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReduceFrequency",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReduceFrameCount",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IgnoreFrameTolerance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideInstanceData",
+            "Type": "uint8",
+            "Description": "Enable specification of dynamic instance data to be supplied to the sequence during playback",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultInstanceData",
+            "Type": "UObject *",
+            "Description": "Instance data that can be used to dynamically control sequence evaluation at runtime",
+            "Redirect": ""
+        },
+        {
+            "Name": "BurnInInstance",
+            "Type": "ULevelSequenceBurnIn *",
+            "Description": "Burn-in widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "OwnCharacter",
+            "Type": "AActor *",
+            "Description": "所属玩家, feishen, 20210623",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetSequence",
+            "Description": "Get the level sequence being played by this actor.\n\t ",
+            "Params": [
+                {
+                    "Name": "bLoad",
+                    "Type": "bool ",
+                    "Description": "Whether to load the sequence object if it is not already in memory.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bInitializePlayer",
+                    "Type": "bool",
+                    "Description": "Whether to initialize the player when the sequence has been loaded.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ULevelSequence * ",
+                    "Description": "Level sequence, or nullptr if not assigned or if it cannot be loaded.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSequence",
+            "Description": "Set the level sequence being played by this actor.\n\t ",
+            "Params": [
+                {
+                    "Name": "InSequence",
+                    "Type": "ULevelSequence *",
+                    "Description": "The sequence object to set.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEventReceivers",
+            "Description": "Set an array of additional actors that will receive events triggerd from this sequence actor\n\t ",
+            "Params": [
+                {
+                    "Name": "AdditionalReceivers",
+                    "Type": "TArray < AActor * >",
+                    "Description": "An array of actors to receive events",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBinding",
+            "Description": "Overrides the specified binding with the specified actors, optionally still allowing the bindings defined in the Level Sequence asset",
+            "Params": [
+                {
+                    "Name": "Binding",
+                    "Type": "FMovieSceneObjectBindingID ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Actors",
+                    "Type": "TArray < AActor * > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bAllowBindingsFromAsset",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddBinding",
+            "Description": "Adds the specified actor to the overridden bindings for the specified binding ID, optionally still allowing the bindings defined in the Level Sequence asset",
+            "Params": [
+                {
+                    "Name": "Binding",
+                    "Type": "FMovieSceneObjectBindingID ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Actor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bAllowBindingsFromAsset",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveBinding",
+            "Description": "Removes the specified actor from the specified binding's actor array",
+            "Params": [
+                {
+                    "Name": "Binding",
+                    "Type": "FMovieSceneObjectBindingID ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Actor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetBinding",
+            "Description": "Resets the specified binding back to the defaults defined by the Level Sequence asset",
+            "Params": [
+                {
+                    "Name": "Binding",
+                    "Type": "FMovieSceneObjectBindingID",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetBindings",
+            "Description": "Resets all overridden bindings back to the defaults defined by the Level Sequence asset",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGCAddBinding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TrackName",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FMovieSceneObjectBindingID ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGCRemoveBinding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TrackName",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FMovieSceneObjectBindingID ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveInitailizePlayer",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOwnCharacter",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AActor",
+        "IMovieSceneBindingOwnerInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,237 @@
+{
+    "Name": "USpringArmComponent",
+    "Description": "This component tries to maintain its children at a fixed distance from the parent,\n  but will retract the children if there is a collision, and spring back when there is no collision.\n \n  Example: Use as a 'camera boom' to keep the follow camera for a player from colliding into the world.",
+    "Variables": [
+        {
+            "Name": "TargetArmLength",
+            "Type": "float",
+            "Description": "Natural length of the spring arm when there are no collisions",
+            "Redirect": ""
+        },
+        {
+            "Name": "SocketOffset",
+            "Type": "FVector",
+            "Description": "offset at end of spring arm; use this instead of the relative offset of the attached component to ensure the line trace works as desired",
+            "Redirect": ""
+        },
+        {
+            "Name": "TargetOffset",
+            "Type": "FVector",
+            "Description": "Offset at start of spring, applied in world space. Use this if you want a world-space offset from the parent component instead of the usual relative-space offset.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProbeSize",
+            "Type": "float",
+            "Description": "How big should the query probe sphere be (in unreal units)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProbeChannel",
+            "Type": "TEnumAsByte < ECollisionChannel >",
+            "Description": "Collision channel of the query probe (defaults to ECC_Camera)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDoCollisionTest",
+            "Type": "uint32",
+            "Description": "If true, do a collision test using ProbeChannel and ProbeSize to prevent camera clipping into level.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsePawnControlRotation",
+            "Type": "uint32",
+            "Description": "If this component is placed on a pawn, should it use the viewcontrol rotation of the pawn where possible?\n\t  When disabled, the component will revert to using the stored RelativeRotation of the component.\n\t  Note that this component itself does not rotate, but instead maintains its relative rotation to its parent as normal,\n\t  and just repositions and rotates its children as desired by the inherited rotation settings. Use GetTargetRotation()\n\t  if you want the rotation target based on all the settings (UsePawnControlRotation, InheritPitch, etc).\n\t \n\t  @see GetTargetRotation(), APawn::GetViewRotation()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritPitch",
+            "Type": "uint32",
+            "Description": "Should we inherit pitch from parent component. Does nothing if using Absolute Rotation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritYaw",
+            "Type": "uint32",
+            "Description": "Should we inherit yaw from parent component. Does nothing if using Absolute Rotation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritRoll",
+            "Type": "uint32",
+            "Description": "Should we inherit roll from parent component. Does nothing if using Absolute Rotation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableCameraLag",
+            "Type": "uint32",
+            "Description": "If true, camera lags behind target position to smooth its movement.\n\t  @see CameraLagSpeed",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableCameraRotationLag",
+            "Type": "uint32",
+            "Description": "If true, camera lags behind target rotation to smooth its movement.\n\t  @see CameraRotationLagSpeed",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseCameraLagSubstepping",
+            "Type": "uint32",
+            "Description": "If bUseCameraLagSubstepping is true, sub-step camera damping so that it handles fluctuating frame rates well (though this comes at a cost).\n\t  @see CameraLagMaxTimeStep",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDrawDebugLagMarkers",
+            "Type": "uint32",
+            "Description": "If true and camera location lag is enabled, draws markers at the camera target (in green) and the lagged position (in yellow).\n\t  A line is drawn between the two locations, in green normally but in red if the distance to the lag target has been clamped (by CameraLagMaxDistance).",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraLagSpeed",
+            "Type": "float",
+            "Description": "If bEnableCameraLag is true, controls how quickly camera reaches target position. Low values are slower (more lag), high values are faster (less lag), while zero is instant (no lag).",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraRotationLagSpeed",
+            "Type": "float",
+            "Description": "If bEnableCameraRotationLag is true, controls how quickly camera reaches target position. Low values are slower (more lag), high values are faster (less lag), while zero is instant (no lag).",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraLagMaxTimeStep",
+            "Type": "float",
+            "Description": "Max time step used when sub-stepping camera lag.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraLagMaxDistance",
+            "Type": "float",
+            "Description": "Max distance the camera target may lag behind the current location. If set to zero, no max distance is enforced.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IgnoredActors",
+            "Type": "TArray < AActor * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CacheHit",
+            "Type": "FHitResult",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetTargetRotation",
+            "Description": "Get the target rotation we inherit, used as the base target for the boom rotation.\n\t  This is derived from attachment to our parent and considering the UsePawnControlRotation and absolute rotation flags.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActive",
+            "Description": "Sets whether the component is active or not",
+            "Params": [
+                {
+                    "Name": "bNewActive",
+                    "Type": "bool ",
+                    "Description": "- The new active state of the component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bReset",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UpdateDesiredArmLocationCustom",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bDoTrace",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bDoLocationLag",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bDoRotationLag",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DeltaTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetExtraIgnoreActors",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < AActor * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetExtraIgnoreCompoents",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UPrimitiveComponent * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

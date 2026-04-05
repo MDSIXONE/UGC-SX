@@ -1,0 +1,33 @@
+{
+    "Name": "UCanvasPanel",
+    "Description": "The canvas panel is a designer friendly panel that allows widgets to be laid out at arbitrary \n  locations, anchored and z-ordered with other children of the canvas.  The canvas is a great widget\n  for manual layout, but bad when you want to procedurally just generate widgets and place them in a \n  container (unless you want absolute layout).\n \n   Many Children\n   Absolute Layout\n   Anchors",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "AddChildToCanvas",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UCanvasPanelSlot * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPanelWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

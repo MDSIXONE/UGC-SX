@@ -1,0 +1,19 @@
+{
+    "Name": "UInterpFilter_Custom",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "GroupsToInclude",
+            "Type": "TArray < UInterpGroup * >",
+            "Description": "Which groups are included in this filter.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpFilter"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

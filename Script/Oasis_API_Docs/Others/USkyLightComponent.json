@@ -1,0 +1,329 @@
+{
+    "Name": "USkyLightComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SourceType",
+            "Type": "TEnumAsByte < enum ESkyLightSourceType >",
+            "Description": "Indicates where to get the light contribution from.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Cubemap",
+            "Type": "UTextureCube *",
+            "Description": "Cubemap to use for sky lighting if SourceType is set to SLS_SpecifiedCubemap.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceCubemapAngle",
+            "Type": "float",
+            "Description": "Angle to rotate the source cubemap when SourceType is set to SLS_SpecifiedCubemap.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CubemapResolution",
+            "Type": "int32",
+            "Description": "Maximum resolution for the very top processed cubemap mip. Must be a power of 2.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkyDistanceThreshold",
+            "Type": "float",
+            "Description": "Distance from the sky light at which any geometry should be treated as part of the sky. \n\t  This is also used by reflection captures, so update reflection captures to see the impact.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCaptureEmissiveOnly",
+            "Type": "bool",
+            "Description": "Only capture emissive materials. Skips all lighting making the capture cheaper. Recomended when using CaptureEveryFrame",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLowerHemisphereIsBlack",
+            "Type": "bool",
+            "Description": "Whether all distant lighting from the lower hemisphere should be set to LowerHemisphereColor.  \n\t  Enabling this is accurate when lighting a scene on a planet where the ground blocks the sky, \n\t  However disabling it can be useful to approximate skylight bounce lighting (eg Movable light).",
+            "Redirect": ""
+        },
+        {
+            "Name": "LowerHemisphereColor",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OcclusionMaxDistance",
+            "Type": "float",
+            "Description": "Max distance that the occlusion of one point will affect another.\n\t  Higher values increase the cost of Distance Field AO exponentially.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Contrast",
+            "Type": "float",
+            "Description": "Contrast S-curve applied to the computed AO.  A value of 0 means no contrast increase, 1 is a significant contrast increase.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OcclusionExponent",
+            "Type": "float",
+            "Description": "Exponent applied to the computed AO.  Values lower than 1 brighten occlusion overall without losing contact shadows.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinOcclusion",
+            "Type": "float",
+            "Description": "Controls the darkest that a fully occluded area can get.  This tends to destroy contact shadows, use Contrast or OcclusionExponent instead.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OcclusionTint",
+            "Type": "FColor",
+            "Description": "Tint color on occluded areas, artistic control.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OcclusionCombineMode",
+            "Type": "TEnumAsByte < enum EOcclusionCombineMode >",
+            "Description": "Controls how occlusion from Distance Field Ambient Occlusion is combined with Screen Space Ambient Occlusion.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendDestinationCubemap",
+            "Type": "UTextureCube *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetIntensity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewIntensity",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIndirectLightingIntensity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewIntensity",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricScatteringIntensity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewIntensity",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightColor",
+            "Description": "Set color of the light",
+            "Params": [
+                {
+                    "Name": "NewLightColor",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCubemap",
+            "Description": "Sets the cubemap used when SourceType is set to SpecifiedCubemap, and causes a skylight update on the next tick.",
+            "Params": [
+                {
+                    "Name": "NewCubemap",
+                    "Type": "UTextureCube *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCubemapBlend",
+            "Description": "Creates sky lighting from a blend between two cubemaps, which is only valid when SourceType is set to SpecifiedCubemap. \n\t  This can be used to seamlessly transition sky lighting between different times of day.\n\t  The caller should continue to update the blend until BlendFraction is 0 or 1 to reduce rendering cost.\n\t  The caller is responsible for avoiding pops due to changing the source or destination.",
+            "Params": [
+                {
+                    "Name": "SourceCubemap",
+                    "Type": "UTextureCube * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DestinationCubemap",
+                    "Type": "UTextureCube * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBlendFraction",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOcclusionTint",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTint",
+                    "Type": "FColor &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOcclusionContrast",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InOcclusionContrast",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOcclusionExponent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InOcclusionExponent",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMinOcclusion",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InMinOcclusion",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RecaptureSky",
+            "Description": "Recaptures the scene for the skylight.\n\t  This is useful for making sure the sky light is up to date after changing something in the world that it would capture.\n\t  Warning: this is very costly and will definitely cause a hitch.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "ULightComponentBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

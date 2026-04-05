@@ -1,0 +1,641 @@
+{
+    "Name": "USkeletalMesh",
+    "Description": "SkeletalMesh is geometry bound to a hierarchical skeleton of bones which can be animated for the purpose of deforming the mesh.\n  Skeletal Meshes are built up of two parts; a set of polygons composed to make up the surface of the mesh, and a hierarchical skeleton which can be used to animate the polygons.\n  The 3D models, rigging, and animations are created in an external modeling and animation application (3DSMax, Maya, Softimage, etc).",
+    "Variables": [
+        {
+            "Name": "Skeleton",
+            "Type": "USkeleton *",
+            "Description": "Skeleton of this skeletal mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowCPUAccess",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceAllowCPUAccess",
+            "Type": "bool",
+            "Description": "Ignore \"FreeSkeletalMeshBuffers\" console value.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EncodeBits_Position",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EncodeBits_TexCoord",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EncodeBits_Normal",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EncodeBits_Generic",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EncodeBits_VertexColor",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EncodeSpeed",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DecodeSpeed",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ImportedBounds",
+            "Type": "FBoxSphereBounds",
+            "Description": "Original imported mesh bounds",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExtendedBounds",
+            "Type": "FBoxSphereBounds",
+            "Description": "Bounds extended by user values below",
+            "Redirect": ""
+        },
+        {
+            "Name": "PositiveBoundsExtension",
+            "Type": "FVector",
+            "Description": "Bound extension values in addition to imported bound in the positive direction of XYZ, \n\t \tpositive value increases bound size and negative value decreases bound size. \n\t \tThe final bound would be from [Imported Bound - Negative Bound] to [Imported Bound + Positive Bound].",
+            "Redirect": ""
+        },
+        {
+            "Name": "NegativeBoundsExtension",
+            "Type": "FVector",
+            "Description": "Bound extension values in addition to imported bound in the negative direction of XYZ, \n\t \tpositive value increases bound size and negative value decreases bound size. \n\t \tThe final bound would be from [Imported Bound - Negative Bound] to [Imported Bound + Positive Bound].",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsStreamable",
+            "Type": "bool",
+            "Description": "Streamable flag, determine whether to split the lod serialization, WITH_STREAMING_SM_LOD",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCompressData",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IndirectLightingCachePositionOffset",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Materials",
+            "Type": "TArray < FSkeletalMaterial >",
+            "Description": "List of materials applied to this mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplaceMaterialInterface",
+            "Type": "UMaterialInterface *",
+            "Description": "Replace for async compile pso.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkelMirrorTable",
+            "Type": "TArray < FBoneMirrorInfo >",
+            "Description": "List of bones that should be mirrored.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkelMirrorAxis",
+            "Type": "TEnumAsByte < EAxis :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkelMirrorFlipAxis",
+            "Type": "TEnumAsByte < EAxis :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CullingScreenSize",
+            "Type": "float",
+            "Description": "Culling screen size",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODInfo",
+            "Type": "TArray < FSkeletalMeshLODInfo >",
+            "Description": "Struct containing information for each LOD level, such as materials to use, and when use the LOD.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAnyLODFeature",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerLODBiasTypeInfo",
+            "Type": "TArray < FMeshPerLODBiasArray >",
+            "Description": "When autonomous or simulated pawn needs special LOD bias",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLODBiasExt",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoUpdateLODBiasExt",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerLODBiasTypeInfoExt",
+            "Type": "TArray < FMeshLODBiasCondition >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseFullPrecisionUVs",
+            "Type": "uint32",
+            "Description": "If true, use 32 bit UVs. If false, use 16 bit UVs to save memory",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithDynamicInstancing",
+            "Type": "uint32",
+            "Description": "Whether or not this mesh can be used with dynamic instancing.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasBeenSimplified",
+            "Type": "uint32",
+            "Description": "true if this mesh has ever been simplified with Simplygon.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasVertexColors",
+            "Type": "uint32",
+            "Description": "Whether or not the mesh has vertex colors",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnablePerPolyCollision",
+            "Type": "uint32",
+            "Description": "Uses skinned data for collision data. Per poly collision cannot be used for simulation, in most cases you are better off using the physics asset",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableSelfCollision",
+            "Type": "uint32",
+            "Description": "Need self-collision in an aggregate. In most cases you don't need if the aggregate isn't containing the ragdoll. submit by elvisxu",
+            "Redirect": ""
+        },
+        {
+            "Name": "BodySetup",
+            "Type": "UBodySetup *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PhysicsAsset",
+            "Type": "UPhysicsAsset *",
+            "Description": "Physics and collision information used for this USkeletalMesh, set up in Physics Asset Editor.\n\t \tThis is used for per-bone hit detection, accurate bounding box calculation and ragdoll physics for example.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadowPhysicsAsset",
+            "Type": "UPhysicsAsset *",
+            "Description": "Physics asset whose shapes will be used for shadowing when components have bCastCharacterCapsuleDirectShadow or bCastCharacterCapsuleIndirectShadow enabled.\n\t  Only spheres and sphyl shapes in the physics asset can be supported.  The more shapes used, the higher the cost of the capsule shadows will be.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NodeMappingData",
+            "Type": "TArray < UNodeMappingContainer * >",
+            "Description": "Mapping data that is saved",
+            "Redirect": ""
+        },
+        {
+            "Name": "LodModelsHasSkinweight",
+            "Type": "bool",
+            "Description": "use for FStaticLODModel Serialize SkinweightProfilesData",
+            "Redirect": ""
+        },
+        {
+            "Name": "MorphTargets",
+            "Type": "TArray < UMorphTarget * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClothingAssets_DEPRECATED",
+            "Type": "TArray < FClothingAssetData_Legacy >",
+            "Description": "Legacy clothing asset data, will be converted to new assets after loading",
+            "Redirect": ""
+        },
+        {
+            "Name": "PostProcessAnimBlueprint",
+            "Type": "TSubclassOf < UAnimInstance >",
+            "Description": "Animation Blueprint class to run as a post process for this mesh.\n\t   This blueprint will be ran before physics, but after the main\n\t   anim instance for any skeletal mesh component using this mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshClothingAssets",
+            "Type": "TArray < UClothingAssetBase * >",
+            "Description": "Clothing assets imported to this mesh. May or may not be in use currently on the mesh.\n\t  Ordering not guaranteed, use the provided getters to access elements in this array\n\t  whenever possible",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetUserData",
+            "Type": "TArray < UAssetUserData * >",
+            "Description": "Array of user data stored with the asset",
+            "Redirect": ""
+        },
+        {
+            "Name": "Sockets",
+            "Type": "TArray < USkeletalMeshSocket * >",
+            "Description": "Array of named socket locations, set up in editor and used as a shortcut instead of specifying \n\t \teverything explicitly to AttachComponent in the SkeletalMeshComponent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TemplateRetargetSource",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkinWeightProfiles",
+            "Type": "TArray < FSkinWeightProfileInfo >",
+            "Description": "Set of skin weight profiles associated with this mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScreenSizeCullingRoughDistance",
+            "Type": "float",
+            "Description": "Rough Distance of Screen size Culling",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCloseDraco",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetImportData",
+            "Type": "UAssetImportData *",
+            "Description": "Importing data and options used for this mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceFilePath_DEPRECATED",
+            "Type": "FString",
+            "Description": "Path to the resource used to construct this skeletal mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceFileTimestamp_DEPRECATED",
+            "Type": "FString",
+            "Description": "DateTime-stamp of the file from the last import",
+            "Redirect": ""
+        },
+        {
+            "Name": "ThumbnailInfo",
+            "Type": "UThumbnailInfo *",
+            "Description": "Information for thumbnail rendering",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasCustomDefaultEditorCamera",
+            "Type": "bool",
+            "Description": "Should we use a custom camera transform when viewing this mesh in the tools",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultEditorCameraLocation",
+            "Type": "FVector",
+            "Description": "Default camera location",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultEditorCameraRotation",
+            "Type": "FRotator",
+            "Description": "Default camera rotation",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultEditorCameraLookAt",
+            "Type": "FVector",
+            "Description": "Default camera look at",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultEditorCameraOrthoZoom",
+            "Type": "float",
+            "Description": "Default camera ortho zoom",
+            "Redirect": ""
+        },
+        {
+            "Name": "OptimizationSettings",
+            "Type": "TArray < FSkeletalMeshOptimizationSettings >",
+            "Description": "Optimization settings used to simplify LODs of this mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewAttachedAssetContainer",
+            "Type": "FPreviewAssetAttachContainer",
+            "Description": "Attached assets component for this mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPreviewDraco",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseHighPrecision",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectedEditorSection",
+            "Type": "int32",
+            "Description": "The section currently selected in the Editor. Used for highlighting",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectedEditorMaterial",
+            "Type": "int32",
+            "Description": "The Material currently selected. need to remember this index for reimporting cloth",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectedClothingSection",
+            "Type": "int32",
+            "Description": "The section currently selected for clothing. need to remember this index for reimporting cloth",
+            "Redirect": ""
+        },
+        {
+            "Name": "FloorOffset",
+            "Type": "float",
+            "Description": "Height offset for the floor mesh in the editor",
+            "Redirect": ""
+        },
+        {
+            "Name": "RetargetBasePose",
+            "Type": "TArray < FTransform >",
+            "Description": "This is buffer that saves pose that is used by retargeting",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetBounds",
+            "Description": "Get the extended bounds of this mesh (imported bounds plus bounds extension)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FBoxSphereBounds",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetImportedBounds",
+            "Description": "Get the original imported bounds of the skel mesh",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FBoxSphereBounds",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNodeMappingContainer",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SourceAsset",
+                    "Type": "UBlueprint *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UNodeMappingContainer * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRefBonePose",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const TArray < FTransform > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRefBoneInfo",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const TArray < FName > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindSocket",
+            "Description": "Find a socket object in this SkeletalMesh by name. \n\t \tEntering NAME_None will return NULL. If there are multiple sockets with the same name, will return the first one.",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USkeletalMeshSocket * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddDynamicSocket",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSocket",
+                    "Type": "USkeletalMeshSocket *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindSocketAndIndex",
+            "Description": "Find a socket object in this SkeletalMesh by name.\n\t\tEntering NAME_None will return NULL. If there are multiple sockets with the same name, will return the first one.\n\t   Also returns the index for the socket allowing for future fast access via GetSocketByIndex()",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutIndex",
+                    "Type": "int32 &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USkeletalMeshSocket * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "NumSockets",
+            "Description": "Returns the number of sockets available. Both on this mesh and it's skeleton.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSocketByIndex",
+            "Description": "Returns a socket by index. Max index is NumSockets(). The meshes sockets are accessed first, then the skeletons.",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USkeletalMeshSocket * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsSectionUsingCloth",
+            "Description": "Checks whether the provided section is using APEX cloth. if bCheckCorrespondingSections is true\n\t  disabled sections will defer to correspond sections to see if they use cloth (non-cloth sections\n\t  are disabled and another section added when cloth is enabled, using this flag allows for a check\n\t  on the original section to succeed)",
+            "Params": [
+                {
+                    "Name": "InSectionIndex",
+                    "Type": "int32 ",
+                    "Description": "Index to check",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCheckCorrespondingSections",
+                    "Type": "bool",
+                    "Description": "Whether to check corresponding sections for disabled sections",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddCopySocket",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSocket",
+                    "Type": "USkeletalMeshSocket *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IInterface_CollisionDataProvider",
+        "IInterface_AssetUserData"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

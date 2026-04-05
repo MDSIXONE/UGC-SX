@@ -1,0 +1,603 @@
+{
+    "Name": "AAIController",
+    "Description": "AIController is the base class of controllers for AI-controlled Pawns.\n  \n  Controllers are non-physical actors that can be attached to a pawn to control its actions.\n  AIControllers manage the artificial intelligence for the pawns they control.\n  In networked games, they only exist on the server.",
+    "Variables": [
+        {
+            "Name": "bStopAILogicOnUnposses",
+            "Type": "uint32",
+            "Description": "By default AI's logic gets stopped when controlled Pawn is unpossesed. Setting this flag to false\n\t \twill make AI logic persist past loosing controll over a pawn",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSkipExtraLOSChecks",
+            "Type": "uint32",
+            "Description": "Skip extra line of sight traces to extremities of target being checked.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowStrafe",
+            "Type": "uint32",
+            "Description": "Is strafing allowed during movement?",
+            "Redirect": ""
+        },
+        {
+            "Name": "bWantsPlayerState",
+            "Type": "uint32",
+            "Description": "Specifies if this AI wants its own PlayerState.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSetControlRotationFromPawnOrientation",
+            "Type": "uint32",
+            "Description": "Copy Pawn rotation to ControlRotation, if there is no focus point.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathFollowingComponent",
+            "Type": "UPathFollowingComponent *",
+            "Description": "Component used for moving along a path.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BrainComponent",
+            "Type": "UBrainComponent *",
+            "Description": "Component responsible for behaviors.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerceptionComponent",
+            "Type": "UAIPerceptionComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActionsComp",
+            "Type": "UPawnActionsComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Blackboard",
+            "Type": "UBlackboardComponent *",
+            "Description": "blackboard",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedGameplayTasksComponent",
+            "Type": "UGameplayTasksComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultNavigationFilterClass",
+            "Type": "TSubclassOf < UNavigationQueryFilter >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "OnPossess",
+            "Description": "Event called when PossessedPawn is possessed by this controller.",
+            "Params": [
+                {
+                    "Name": "PossessedPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnUnpossess",
+            "Description": "Gets triggered after given pawn has been unpossesed",
+            "Params": [
+                {
+                    "Name": "UnpossessedPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MoveToActor",
+            "Description": "Makes AI go toward specified Goal actor (destination will be continuously updated), aborts any active path following",
+            "Params": [
+                {
+                    "Name": "Goal",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AcceptanceRadius",
+                    "Type": "float ",
+                    "Description": "- finish move if pawn gets close enough",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bStopOnOverlap",
+                    "Type": "bool ",
+                    "Description": "- add pawn's radius to AcceptanceRadius",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUsePathfinding",
+                    "Type": "bool ",
+                    "Description": "- use navigation data to calculate path (otherwise it will go in straight line)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCanStrafe",
+                    "Type": "bool ",
+                    "Description": "- set focus related flag: bAllowStrafe",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FilterClass",
+                    "Type": "TSubclassOf < UNavigationQueryFilter > ",
+                    "Description": "- navigation filter for pathfinding adjustments. If none specified DefaultNavigationFilterClass will be used",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bAllowPartialPath",
+                    "Type": "bool",
+                    "Description": "- use incomplete path when goal can't be reached",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPathFollowingRequestResult :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MoveToLocation",
+            "Description": "Makes AI go toward specified Dest location, aborts any active path following",
+            "Params": [
+                {
+                    "Name": "Dest",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AcceptanceRadius",
+                    "Type": "float ",
+                    "Description": "- finish move if pawn gets close enough",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bStopOnOverlap",
+                    "Type": "bool ",
+                    "Description": "- add pawn's radius to AcceptanceRadius",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUsePathfinding",
+                    "Type": "bool ",
+                    "Description": "- use navigation data to calculate path (otherwise it will go in straight line)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bProjectDestinationToNavigation",
+                    "Type": "bool ",
+                    "Description": "- project location on navigation data before using it",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCanStrafe",
+                    "Type": "bool ",
+                    "Description": "- set focus related flag: bAllowStrafe",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FilterClass",
+                    "Type": "TSubclassOf < UNavigationQueryFilter > ",
+                    "Description": "- navigation filter for pathfinding adjustments. If none specified DefaultNavigationFilterClass will be used",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bAllowPartialPath",
+                    "Type": "bool ",
+                    "Description": "- use incomplete path when goal can't be reached",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseNavLink",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPathFollowingRequestResult :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMoveStatus",
+            "Description": "Returns status of path following",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPathFollowingStatus :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasPartialPath",
+            "Description": "Returns true if the current PathFollowingComponent's path is partial (does not reach desired destination).",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetImmediateMoveDestination",
+            "Description": "Returns position of current path segment's end.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMoveBlockDetection",
+            "Description": "Updates state of movement block detection.",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RunBehaviorTree",
+            "Description": "Starts executing behavior tree.",
+            "Params": [
+                {
+                    "Name": "BTAsset",
+                    "Type": "UBehaviorTree *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UseBlackboard",
+            "Description": "Makes AI use the specified Blackboard asset & creates a Blackboard Component if one does not already exist.",
+            "Params": [
+                {
+                    "Name": "BlackboardAsset",
+                    "Type": "UBlackboardData * ",
+                    "Description": " The Blackboard asset to use.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlackboardComponent",
+                    "Type": "UBlackboardComponent * &",
+                    "Description": "The Blackboard component that was used or created to work with the passed-in Blackboard Asset.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if we successfully linked the blackboard asset to the blackboard component.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClaimTaskResource",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ResourceClass",
+                    "Type": "TSubclassOf < UGameplayTaskResource >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UnclaimTaskResource",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ResourceClass",
+                    "Type": "TSubclassOf < UGameplayTaskResource >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnUsingBlackBoard",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "BlackboardComp",
+                    "Type": "UBlackboardComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlackboardAsset",
+                    "Type": "UBlackboardData *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFocalPoint",
+            "Description": "Retrieve the final position that controller should be looking at.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFocalPointOnActor",
+            "Description": "Retrieve the focal point this controller should focus to on given actor.",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetFocalPoint",
+            "Description": "Set the position that controller should be looking at.",
+            "Params": [
+                {
+                    "Name": "FP",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetFocus",
+            "Description": "Set Focus for actor, will set FocalPoint as a result.",
+            "Params": [
+                {
+                    "Name": "NewFocus",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFocusActor",
+            "Description": "Get the focused actor.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_ClearFocus",
+            "Description": "Clears Focus, will also clear FocalPoint as a result",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnGameplayTaskResourcesClaimed",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewlyClaimed",
+                    "Type": "FGameplayResourceSet ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FreshlyReleased",
+                    "Type": "FGameplayResourceSet",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPathFollowingComponent",
+            "Description": "Returns PathFollowingComponent subobject",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPathFollowingComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAIPerceptionComponent",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAIPerceptionComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AController",
+        "IAIPerceptionListenerInterface",
+        "IGameplayTaskOwnerInterface",
+        "IGenericTeamAgentInterface",
+        "IVisualLoggerDebugSnapshotInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "ReceiveMoveCompleted",
+            "Description": "Blueprint notification that we've completed the current movement request",
+            "Params": [
+                {
+                    "Name": "RequestID",
+                    "Type": "FAIRequestID",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Result",
+                    "Type": "EPathFollowingResult::Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

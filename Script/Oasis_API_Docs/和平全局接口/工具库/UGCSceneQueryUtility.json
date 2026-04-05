@@ -1,0 +1,1021 @@
+{
+    "Name": "UGCSceneQueryUtility",
+    "Description": "环境查询工具库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "QueryByLineSingle",
+            "Description": "使用射线执行一次环境查询（单个目标）",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身（默认值：true）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult",
+                    "Description": "查询结果，是否找到",
+                    "Redirect": "cppstruct/detail/FHitResult.json"
+                }
+            ]
+        },
+        {
+            "Name": "QueryByLineMulti",
+            "Description": "使用射线执行一次环境查询（多个目标）",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身（默认值：true）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult[]",
+                    "Description": "查询结果数组，是否找到",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryBySphereSingle",
+            "Description": "使用球体执行一次环境查询（单个目标）",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "球体半径（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身（默认值：true）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult",
+                    "Description": "查询结果数组，是否找到",
+                    "Redirect": "cppstruct/detail/FHitResult.json"
+                }
+            ]
+        },
+        {
+            "Name": "QueryBySphereMulti",
+            "Description": "使用球体执行一次环境查询（多个目标）",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "球体半径（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身（默认值：true）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult[]",
+                    "Description": "查询结果数组，是否找到",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryByBoxSingle",
+            "Description": "使用盒子执行一次环境查询（单个目标）",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfSize",
+                    "Type": "FVector",
+                    "Description": "各轴到盒子中心的距离（默认值：X = 25, Y = 25, Z = 25）",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "Orientation",
+                    "Type": "FRotator",
+                    "Description": "盒子朝向（默认值：Pitch = 0, Yaw = 0, Roll = 0）",
+                    "Redirect": "cppstruct/detail/FRotator.json"
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身（默认值：true）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult",
+                    "Description": "查询结果数组，是否找到",
+                    "Redirect": "cppstruct/detail/FHitResult.json"
+                }
+            ]
+        },
+        {
+            "Name": "QueryByBoxMulti",
+            "Description": "使用盒子执行一次环境查询（多个目标）",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfSize",
+                    "Type": "FVector",
+                    "Description": "各轴到盒子中心的距离（默认值：X = 25, Y = 25, Z = 25）",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "Orientation",
+                    "Type": "FRotator",
+                    "Description": "盒子朝向（默认值：Pitch = 0, Yaw = 0, Roll = 0）",
+                    "Redirect": "cppstruct/detail/FRotator.json"
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身（默认值：true）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult[]",
+                    "Description": "查询结果数组，是否找到",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryByCapsuleSingle",
+            "Description": "使用胶囊执行一次环境查询（单个目标）",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "胶囊起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "胶囊终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "胶囊半径（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfHeight",
+                    "Type": "number",
+                    "Description": "胶囊高度（默认值：50）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身（默认值：true）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult",
+                    "Description": "查询结果数组，是否找到",
+                    "Redirect": "cppstruct/detail/FHitResult.json"
+                }
+            ]
+        },
+        {
+            "Name": "QueryByCapsuleMulti",
+            "Description": "使用胶囊执行一次环境查询（多个目标）",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "胶囊起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "胶囊终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "胶囊半径（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HalfHeight",
+                    "Type": "number",
+                    "Description": "胶囊高度（默认值：50）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身（默认值：true）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult[]",
+                    "Description": "查询结果数组，是否找到",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryOverlapActorsBySphere",
+            "Description": "使用球体检测重叠的Actor",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Position",
+                    "Type": "FVector",
+                    "Description": "球体中心位置",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "QueryType",
+                    "Type": "ESceneQueryType",
+                    "Description": "环境查询类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "球体半径（默认值：100）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "忽略的 Actor 列表（默认值：空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorClassFilter",
+                    "Type": "UClass",
+                    "Description": "Actor类型过滤器（默认值：nil）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutActors",
+                    "Type": "AActor[]",
+                    "Description": "输出的Actor数组（如果为nil则创建新数组）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "AActor[]",
+                    "Description": "是否找到重叠的Actor，重叠的Actor数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryByBoxMultiForObjects",
+            "Description": "返回所有跟Box沿射线移动扫过区域碰撞物体的碰撞信息，只查询指定对象类型",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线检测起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线检测终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "HalfSize",
+                    "Type": "FVector",
+                    "Description": "Box边的半长尺寸",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "Orientation",
+                    "Type": "FRotator",
+                    "Description": "Box的朝向",
+                    "Redirect": "cppstruct/detail/FRotator.json"
+                },
+                {
+                    "Name": "ObjectTypes",
+                    "Type": "EObjectTypeQuery[]",
+                    "Description": "要检测的对象类型数组",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTraceComplex",
+                    "Type": "boolean",
+                    "Description": "true为复杂碰撞检测，false为简单碰撞检测",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "需要忽略的Actor列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DrawDebugType",
+                    "Type": "EDrawDebugTrace",
+                    "Description": "绘制调试类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutHits",
+                    "Type": "FHitResult[]",
+                    "Description": "存储所有碰撞结果",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TraceColor",
+                    "Type": "FLinearColor",
+                    "Description": "未命中时的调试线颜色",
+                    "Redirect": "cppstruct/detail/FLinearColor.json"
+                },
+                {
+                    "Name": "TraceHitColor",
+                    "Type": "FLinearColor",
+                    "Description": "命中时的调试线颜色",
+                    "Redirect": "cppstruct/detail/FLinearColor.json"
+                },
+                {
+                    "Name": "DrawTime",
+                    "Type": "number",
+                    "Description": "绘制时间",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "boolean,",
+                    "Type": "FHitResult[]",
+                    "Description": "是否检测到碰撞，碰撞结果数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryOverlapActorsBySphereWithFinder",
+            "Description": "在指定位置和半径的球体范围内检测所有重叠的Actor对象",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Finder",
+                    "Type": "AActor",
+                    "Description": "检测发起者，不被检测",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Origin",
+                    "Type": "FVector",
+                    "Description": "球体中心位置",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "球体半径",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Channel",
+                    "Type": "ECollisionChannel",
+                    "Description": "碰撞通道，默认为ECollisionChannel.ECC_WorldDynamic",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FHitResult[]",
+                    "Description": "碰撞结果数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryBlocksByChannel",
+            "Description": "检测从起点到终点之间所有阻挡物体的碰撞信息",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线检测起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线检测终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "OutHits",
+                    "Type": "FHitResult[]",
+                    "Description": "存储所有碰撞结果",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreActors",
+                    "Type": "AActor[]",
+                    "Description": "需要忽略的Actor列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TraceChannels",
+                    "Type": "ECollisionChannel[]",
+                    "Description": "需要检测的碰撞通道数组",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "bool,",
+                    "Type": "FHitResult[]",
+                    "Description": "是否检测到碰撞，碰撞结果数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryBySphereMultiForObjects",
+            "Description": "返回所有跟球体沿射线移动扫过区域碰撞物体的碰撞信息，只查询指定对象类型",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线检测起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线检测终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "扫描球体的半径",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ObjectTypes",
+                    "Type": "EObjectTypeQuery[]",
+                    "Description": "对象类型列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTraceComplex",
+                    "Type": "boolean",
+                    "Description": "true为复杂碰撞检测，false为简单碰撞检测",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "要忽略的Actor列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DrawDebugType",
+                    "Type": "EDrawDebugTrace",
+                    "Description": "调试模式",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutHits",
+                    "Type": "FHitResult[]",
+                    "Description": "碰撞结果列表，按从起点到终点的检测顺序排序。如果存在阻挡性碰撞，它将是列表中的最后一个碰撞结果",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TraceColor",
+                    "Type": "FLinearColor",
+                    "Description": "未命中时的调试线颜色",
+                    "Redirect": "cppstruct/detail/FLinearColor.json"
+                },
+                {
+                    "Name": "TraceHitColor",
+                    "Type": "FLinearColor",
+                    "Description": "命中时的调试线颜色",
+                    "Redirect": "cppstruct/detail/FLinearColor.json"
+                },
+                {
+                    "Name": "DrawTime",
+                    "Type": "number",
+                    "Description": "调试线的持续时间",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "如果发生碰撞返回true，否则返回false",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryByLineMultiForObjects",
+            "Description": "返回所有跟射线碰撞的物体的碰撞信息，只查询指定对象类型",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "world上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线检测起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线检测终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "ObjectTypes",
+                    "Type": "EObjectTypeQuery[]",
+                    "Description": "对象类型列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTraceComplex",
+                    "Type": "boolean",
+                    "Description": "true为复杂碰撞检测，false为简单碰撞检测",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "需要忽略的Actor列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DrawDebugType",
+                    "Type": "EDrawDebugTrace",
+                    "Description": "调试模式",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutHits",
+                    "Type": "FHitResult[]",
+                    "Description": "输出的HitResult列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIgnoreSelf",
+                    "Type": "boolean",
+                    "Description": "是否忽略自身",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TraceColor",
+                    "Type": "FLinearColor",
+                    "Description": "未命中时的调试线颜色",
+                    "Redirect": "cppstruct/detail/FLinearColor.json"
+                },
+                {
+                    "Name": "TraceHitColor",
+                    "Type": "FLinearColor",
+                    "Description": "命中时的调试线颜色",
+                    "Redirect": "cppstruct/detail/FLinearColor.json"
+                },
+                {
+                    "Name": "DrawTime",
+                    "Type": "number",
+                    "Description": "调试线的持续时间",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "true为检测到碰撞，false为未检测到碰撞",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "QueryByLineWithChannel",
+            "Description": "返回指定通道的射线碰撞的物体的碰撞信息",
+            "Params": [
+                {
+                    "Name": "OutHit",
+                    "Type": "FHitResult",
+                    "Description": "输出的HitResult",
+                    "Redirect": "cppstruct/detail/FHitResult.json"
+                },
+                {
+                    "Name": "ContextObject",
+                    "Type": "UObject",
+                    "Description": "world上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector",
+                    "Description": "射线检测起点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector",
+                    "Description": "射线检测终点",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "IgnoreActors",
+                    "Type": "AActor[]",
+                    "Description": "需要忽略的Actor列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TraceChannel",
+                    "Type": "ECollisionChannel",
+                    "Description": "碰撞通道",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "true为检测到碰撞，false为未检测到碰撞",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindPositionToHoldCapsule",
+            "Description": "获取一个目标位置附近能容纳胶囊体的坐标，以目标位置为中心，八方向向外迭代寻找位置",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "World上下文",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SourceLocation",
+                    "Type": "FVector",
+                    "Description": "目标位置",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "CapsuleRotation",
+                    "Type": "FRotator",
+                    "Description": "胶囊体的旋转",
+                    "Redirect": "cppstruct/detail/FRotator.json"
+                },
+                {
+                    "Name": "CapsuleRadius",
+                    "Type": "float",
+                    "Description": "胶囊体半径",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CapsuleHalfHeight",
+                    "Type": "float",
+                    "Description": "胶囊体半高",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreActors",
+                    "Type": "AActor[]",
+                    "Description": "需要忽略的Actor列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DetectObjectTypes",
+                    "Type": "EObjectTypeQuery[]",
+                    "Description": "检测的对象类型列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Iterations",
+                    "Type": "int",
+                    "Description": "检测迭代次数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNearestLocation",
+                    "Type": "bool",
+                    "Description": "是否返回最近的位置",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否找到合适的位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "找到的坐标",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

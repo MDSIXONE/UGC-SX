@@ -1,0 +1,19 @@
+{
+    "Name": "UAnimNotifyStateBoneRetargetAdaptInfoObj",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "AnimNotifyStateBoneRetargetAdaptInfoMap",
+            "Type": "TMap < UObject * , FAnimNotifyStateBoneRetargetAdaptInfo >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

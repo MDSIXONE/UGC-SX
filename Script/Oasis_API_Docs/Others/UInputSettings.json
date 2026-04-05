@@ -1,0 +1,428 @@
+{
+    "Name": "UInputSettings",
+    "Description": "Project wide settings for input handling",
+    "Variables": [
+        {
+            "Name": "AxisConfig",
+            "Type": "TArray < struct FInputAxisConfigEntry >",
+            "Description": "Properties of Axis controls",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAltEnterTogglesFullscreen",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bF11TogglesFullscreen",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseMouseForTouch",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableMouseSmoothing",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableFOVScaling",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FOVScale",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DoubleClickTime",
+            "Type": "float",
+            "Description": "If a key is pressed twice in this amount of time it is considered a \"double click\"",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCaptureMouseOnLaunch",
+            "Type": "bool",
+            "Description": "Controls if the viewport will capture the mouse on Launch of the application",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultViewportMouseCaptureMode",
+            "Type": "EMouseCaptureMode",
+            "Description": "The default mouse capture mode for the game viewport",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultViewportMouseLock_DEPRECATED",
+            "Type": "bool",
+            "Description": "The default mouse lock state when the viewport acquires capture",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultViewportMouseLockMode",
+            "Type": "EMouseLockMode",
+            "Description": "The default mouse lock state behavior when the viewport acquires capture",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActionMappings",
+            "Type": "TArray < struct FInputActionKeyMapping >",
+            "Description": "List of Action Mappings",
+            "Redirect": ""
+        },
+        {
+            "Name": "AxisMappings",
+            "Type": "TArray < struct FInputAxisKeyMapping >",
+            "Description": "List of Axis Mappings",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAlwaysShowTouchInterface",
+            "Type": "bool",
+            "Description": "Should the touch input interface be shown always, or only when the platform has a touch screen?",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowConsoleOnFourFingerTap",
+            "Type": "bool",
+            "Description": "Whether or not to show the console on 4 finger tap, on mobile platforms",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultTouchInterface",
+            "Type": "FSoftObjectPath",
+            "Description": "The default on-screen touch input interface for the game (can be null to disable the onscreen interface)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConsoleKey_DEPRECATED",
+            "Type": "FKey",
+            "Description": "The key which opens the console.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConsoleKeys",
+            "Type": "TArray < FKey >",
+            "Description": "The keys which open the console.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetInputSettings",
+            "Description": "Returns the game local input settings (action mappings, axis mappings, etc...)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UInputSettings *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddActionMapping",
+            "Description": "Programmatically add an action mapping to the project defaults",
+            "Params": [
+                {
+                    "Name": "KeyMapping",
+                    "Type": "FInputActionKeyMapping & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForceRebuildKeymaps",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActionMappingByName",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InActionName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutMappings",
+                    "Type": "TArray < FInputActionKeyMapping > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveActionMapping",
+            "Description": "Programmatically remove an action mapping to the project defaults",
+            "Params": [
+                {
+                    "Name": "KeyMapping",
+                    "Type": "FInputActionKeyMapping & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForceRebuildKeymaps",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddAxisMapping",
+            "Description": "Programmatically add an axis mapping to the project defaults",
+            "Params": [
+                {
+                    "Name": "KeyMapping",
+                    "Type": "FInputAxisKeyMapping & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForceRebuildKeymaps",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAxisMappingByName",
+            "Description": "Retrieve all axis mappings by a certain name.",
+            "Params": [
+                {
+                    "Name": "InAxisName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutMappings",
+                    "Type": "TArray < FInputAxisKeyMapping > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveAxisMapping",
+            "Description": "Programmatically remove an axis mapping to the project defaults",
+            "Params": [
+                {
+                    "Name": "KeyMapping",
+                    "Type": "FInputAxisKeyMapping & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForceRebuildKeymaps",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SaveKeyMappings",
+            "Description": "Flush the current mapping values to the config file",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActionNames",
+            "Description": "Populate a list of all defined action names",
+            "Params": [
+                {
+                    "Name": "ActionNames",
+                    "Type": "TArray < FName > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAxisNames",
+            "Description": "Populate a list of all defined axis names",
+            "Params": [
+                {
+                    "Name": "AxisNames",
+                    "Type": "TArray < FName > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ForceRebuildKeymaps",
+            "Description": "When changes are made to the default mappings, push those changes out to PlayerInput key maps",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ApplySettings",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetToDefaultEditorSettings",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SaveToConfig",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActionMappings",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < struct FInputActionKeyMapping >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAxisMappings",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < struct FInputAxisKeyMapping >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

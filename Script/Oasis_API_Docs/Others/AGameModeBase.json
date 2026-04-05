@@ -1,0 +1,707 @@
+{
+    "Name": "AGameModeBase",
+    "Description": "The GameModeBase defines the game being played. It governs the game rules, scoring, what actors\n  are allowed to exist in this game type, and who may enter the game.\n \n  It is only instanced on the server and will never exist on the client. \n \n  A GameModeBase actor is instantiated when the level is initialized for gameplay in\n  C++ UGameEngine::LoadMap().  \n  \n  The class of this GameMode actor is determined by (in order) either the URL ?game=xxx, \n  the GameMode Override value set in the World Settings, or the DefaultGameMode entry set \n  in the game's Project Settings.",
+    "Variables": [
+        {
+            "Name": "OptionsString",
+            "Type": "FString",
+            "Description": "Save options string and parse it when needed",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameSessionClass",
+            "Type": "TSubclassOf < AGameSession >",
+            "Description": "Class of GameSession, which handles login approval and online game interface",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameStateClass",
+            "Type": "TSubclassOf < AGameStateBase >",
+            "Description": "Class of GameState associated with this GameMode.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayerControllerClass",
+            "Type": "TSubclassOf < APlayerController >",
+            "Description": "The class of PlayerController to spawn for players logging in.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayerStateClass",
+            "Type": "TSubclassOf < APlayerState >",
+            "Description": "A PlayerState of this class will be associated with every player to replicate relevant player information to all clients.",
+            "Redirect": ""
+        },
+        {
+            "Name": "HUDClass",
+            "Type": "TSubclassOf < AHUD >",
+            "Description": "HUD class this game uses.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultPawnClass",
+            "Type": "TSubclassOf < APawn >",
+            "Description": "The default pawn class used by players.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpectatorClass",
+            "Type": "TSubclassOf < ASpectatorPawn >",
+            "Description": "The pawn class used by the PlayerController for players when spectating.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplaySpectatorPlayerControllerClass",
+            "Type": "TSubclassOf < APlayerController >",
+            "Description": "The PlayerController class used when spectating a network replay.",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameSession",
+            "Type": "AGameSession *",
+            "Description": "Game Session handles login approval, arbitration, online game interface",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameState",
+            "Type": "AGameStateBase *",
+            "Description": "GameState is used to replicate game state relevant properties to all clients.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultPlayerName",
+            "Type": "FText",
+            "Description": "The default player name assigned to players that join with no name specified.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseSeamlessTravel",
+            "Type": "uint32",
+            "Description": "Whether the game perform map travels using SeamlessTravel() which loads in the background and doesn't disconnect clients",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUnlimitedRegionZ",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bStartPlayersAsSpectators",
+            "Type": "uint32",
+            "Description": "Whether players should immediately spawn when logging in, or stay as spectators until they manually spawn",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPauseable",
+            "Type": "uint32",
+            "Description": "Whether the game is pauseable.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetDefaultPawnClassForController",
+            "Description": "Returns default pawn class for given controller",
+            "Params": [
+                {
+                    "Name": "InController",
+                    "Type": "AController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UClass * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumPlayers",
+            "Description": "Returns number of active human players, excluding spectators",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumSpectators",
+            "Description": "Returns number of human players currently spectating",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartPlay",
+            "Description": "Transitions to calls BeginPlay on actors.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasMatchStarted",
+            "Description": "Returns true if the match start callbacks have been called",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ShouldReset",
+            "Description": "Overridable function to determine whether an Actor should have Reset called when the game has Reset called on it.\n\t  Default implementation returns true",
+            "Params": [
+                {
+                    "Name": "ActorToReset",
+                    "Type": "AActor *",
+                    "Description": "The actor to make a determination for",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if ActorToReset should have Reset() called on it while restarting the game,",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetLevel",
+            "Description": "Overridable function called when resetting level. This is used to reset the game state while staying in the same map\n\t  Default implementation calls Reset() on all actors except GameMode and Controllers",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReturnToMainMenuHost",
+            "Description": "Return to main menu, and disconnect any players",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_PostLogin",
+            "Description": "Notification that a player has successfully logged in, and has been given a player controller",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "APlayerController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnLogout",
+            "Description": "Implementable event when a Controller with a PlayerState leaves the game.",
+            "Params": [
+                {
+                    "Name": "ExitingController",
+                    "Type": "AController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HandleStartingNewPlayer",
+            "Description": "Signals that a player is ready to enter the game, which may start it up",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "APlayerController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MustSpectate",
+            "Description": "Returns true if NewPlayerController may only join the server as a spectator.",
+            "Params": [
+                {
+                    "Name": "NewPlayerController",
+                    "Type": "APlayerController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanSpectate",
+            "Description": "Return whether Viewer is allowed to spectate from the point of view of ViewTarget.",
+            "Params": [
+                {
+                    "Name": "Viewer",
+                    "Type": "APlayerController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ViewTarget",
+                    "Type": "APlayerState *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ChangeName",
+            "Description": "Sets the name for a controller ",
+            "Params": [
+                {
+                    "Name": "Controller",
+                    "Type": "AController * ",
+                    "Description": "The controller of the player to change the name of",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewName",
+                    "Type": "FString & ",
+                    "Description": "The name to set the player to",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNameChange",
+                    "Type": "bool",
+                    "Description": "Whether the name is changing or if this is the first time it has been set",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnChangeName",
+            "Description": "Overridable event for GameMode blueprint to respond to a change name call",
+            "Params": [
+                {
+                    "Name": "Other",
+                    "Type": "AController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewName",
+                    "Type": "FString & ",
+                    "Description": "The name to set the player to",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNameChange",
+                    "Type": "bool",
+                    "Description": "Whether the name is changing or if this is the first time it has been set",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ChoosePlayerStart",
+            "Description": "Return the 'best' player start for this player to spawn from\n\t  Default implementation looks for a random unoccupied spot\n\t  ",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "AController *",
+                    "Description": "is the controller for whom we are choosing a playerstart",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor * ",
+                    "Description": " AActor chosen as player start (usually a PlayerStart)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindPlayerStart",
+            "Description": "Return the specific player start actor that should be used for the next spawn\n\t  This will either use a previously saved startactor, or calls ChoosePlayerStart\n\t  ",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "AController * ",
+                    "Description": "The AController for whom we are choosing a Player Start",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IncomingName",
+                    "Type": "FString &",
+                    "Description": "Specifies the tag of a Player Start to use",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor * ",
+                    "Description": " Actor chosen as player start (usually a PlayerStart)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_FindPlayerStart",
+            "Description": "Return the specific player start actor that should be used for the next spawn\n\t  This will either use a previously saved startactor, or calls ChoosePlayerStart\n\t ",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "AController * ",
+                    "Description": "The AController for whom we are choosing a Player Start",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IncomingName",
+                    "Type": "FString &",
+                    "Description": "Specifies the tag of a Player Start to use",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor * ",
+                    "Description": " Actor chosen as player start (usually a PlayerStart)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlayerCanRestart",
+            "Description": "Returns true if it's valid to call RestartPlayer. By default will call Player->CanRestartPlayer",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "APlayerController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RestartPlayer",
+            "Description": "Tries to spawn the player's pawn, at the location returned by FindPlayerStart",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "AController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RestartPlayerAtPlayerStart",
+            "Description": "Tries to spawn the player's pawn at the specified actor's location",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "AController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartSpot",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RestartPlayerAtTransform",
+            "Description": "Tries to spawn the player's pawn at a specific location",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "AController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SpawnTransform",
+                    "Type": "FTransform &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SpawnDefaultPawnFor",
+            "Description": "Called during RestartPlayer to actually spawn the player's pawn, when using a start spot",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "AController * ",
+                    "Description": "- Controller for whom this pawn is spawned",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartSpot",
+                    "Type": "AActor *",
+                    "Description": "- Actor at which to spawn pawn",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APawn * ",
+                    "Description": "a pawn of the default pawn class",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SpawnDefaultPawnAtTransform",
+            "Description": "Called during RestartPlayer to actually spawn the player's pawn, when using a transform",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "AController * ",
+                    "Description": "- Controller for whom this pawn is spawned",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SpawnTransform",
+                    "Type": "FTransform &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APawn * ",
+                    "Description": "a pawn of the default pawn class",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitStartSpot",
+            "Description": "Called from RestartPlayerAtPlayerStart, can be used to initialize the start spawn actor",
+            "Params": [
+                {
+                    "Name": "StartSpot",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewPlayer",
+                    "Type": "AController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnRestartPlayer",
+            "Description": "Implementable event called at the end of RestartPlayer",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "AController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitializeHUDForPlayer",
+            "Description": "Initialize the AHUD object for a player. Games can override this to do something different",
+            "Params": [
+                {
+                    "Name": "NewPlayer",
+                    "Type": "APlayerController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnSwapPlayerControllers",
+            "Description": "Called when a PlayerController is swapped to a new one during seamless travel",
+            "Params": [
+                {
+                    "Name": "OldPC",
+                    "Type": "APlayerController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewPC",
+                    "Type": "APlayerController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AInfo",
+        "IVirtualParallelWorld"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

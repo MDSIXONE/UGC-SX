@@ -1,0 +1,55 @@
+{
+    "Name": "URotatingMovementComponent",
+    "Description": "Performs continuous rotation of a component at a specific rotation rate.\n  Rotation can optionally be offset around a pivot point.\n  Collision testing is not performed during movement.",
+    "Variables": [
+        {
+            "Name": "RotationRate",
+            "Type": "FRotator",
+            "Description": "How fast to update rollpitchyaw of the component we update.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PivotTranslation",
+            "Type": "FVector",
+            "Description": "Translation of pivot point around which we rotate, relative to current rotation.\n\t  For instance, with PivotTranslation set to (X=+100, Y=0, Z=0), rotation will occur\n\t  around the point +100 units along the local X axis from the center of the object,\n\t  rather than around the object's origin (the default).",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRotationInLocalSpace",
+            "Type": "uint32",
+            "Description": "Whether rotation is applied in local or world space.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCirculatingRotation",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RotationAngle",
+            "Type": "FRotator",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OriginRotator",
+            "Type": "FRotator",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCircleFlag",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovementComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,163 @@
+{
+    "Name": "ULandscapeSplineControlPoint",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Location",
+            "Type": "FVector",
+            "Description": "Location in Landscape-space",
+            "Redirect": ""
+        },
+        {
+            "Name": "Rotation",
+            "Type": "FRotator",
+            "Description": "Rotation of tangent vector at this point (in landscape-space)",
+            "Redirect": ""
+        },
+        {
+            "Name": "Width",
+            "Type": "float",
+            "Description": "Width of the spline at this point.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SideFalloff",
+            "Type": "float",
+            "Description": "Falloff at the sides of the spline at this point.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EndFalloff",
+            "Type": "float",
+            "Description": "Falloff at the startend of the spline (if this point is a start or end point, otherwise ignored).",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConnectedSegments",
+            "Type": "TArray < FLandscapeSplineConnection >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Points",
+            "Type": "TArray < FLandscapeSplineInterpPoint >",
+            "Description": "Spline points",
+            "Redirect": ""
+        },
+        {
+            "Name": "Bounds",
+            "Type": "FBox",
+            "Description": "Bounds of points",
+            "Redirect": ""
+        },
+        {
+            "Name": "LocalMeshComponent",
+            "Type": "UControlPointMeshComponent *",
+            "Description": "Control point mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "SegmentMeshOffset",
+            "Type": "float",
+            "Description": "Vertical offset of the spline segment mesh. Useful for a river's surface, among other things.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LayerName",
+            "Type": "FName",
+            "Description": "Name of blend layer to paint when applying spline to landscape\n\t  If \"none\", no layer is painted",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRaiseTerrain",
+            "Type": "uint32",
+            "Description": "If the spline is above the terrain, whether to raise the terrain up to the level of the spline when applying it to the landscape.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLowerTerrain",
+            "Type": "uint32",
+            "Description": "If the spline is below the terrain, whether to lower the terrain down to the level of the spline when applying it to the landscape.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Mesh",
+            "Type": "UStaticMesh *",
+            "Description": "Mesh to use on the control point",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialOverrides",
+            "Type": "TArray < UMaterialInterface * >",
+            "Description": "Overrides mesh's materials",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshScale",
+            "Type": "FVector",
+            "Description": "Scale of the control point mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableCollision",
+            "Type": "uint32",
+            "Description": "Whether to enable collision for the Control Point Mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastShadow",
+            "Type": "uint32",
+            "Description": "Whether the Control Point Mesh should cast a shadow.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LDMaxDrawDistance",
+            "Type": "float",
+            "Description": "Max draw distance for the mesh used on this control point",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucencySortPriority",
+            "Type": "int32",
+            "Description": "Translucent objects with a lower sort priority draw behind objects with a higher priority.\n\t  Translucent objects with the same priority are rendered from back-to-front based on their bounds origin.\n\t \n\t  Ignored if the object is not translucent.  The default priority is zero.\n\t  Warning: This should never be set to a non-default value unless you know what you are doing, as it will prevent the renderer from sorting correctly.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPlaceSplineMeshesInStreamingLevels",
+            "Type": "uint32",
+            "Description": "Whether control point mesh should be placed in landscape proxy streaming level (true) or the spline's level (false)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSelected",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNavDirty",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForeignWorld",
+            "Type": "TSoftObjectPtr < UWorld >",
+            "Description": "World reference for if mesh component is stored in another streaming level",
+            "Redirect": ""
+        },
+        {
+            "Name": "ModificationKey",
+            "Type": "FGuid",
+            "Description": "Key for tracking whether this segment has been modified relative to the mesh component stored in another streaming level",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

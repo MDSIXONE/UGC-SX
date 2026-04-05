@@ -1,0 +1,44 @@
+{
+    "Name": "UFontFace",
+    "Description": "A font face asset contains the raw payload data for a source TTFOTF file as used by FreeType.\n  During cook this asset type generates a \".ufont\" file containing the raw payload data (unless loaded \"Inline\").",
+    "Variables": [
+        {
+            "Name": "SourceFilename",
+            "Type": "FString",
+            "Description": "The filename of the font face we were created from. This may not always exist on disk, as we may have previously loaded and cached the font data inside this asset.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Hinting",
+            "Type": "EFontHinting",
+            "Description": "The hinting algorithm to use with the font face.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LoadingPolicy",
+            "Type": "EFontLoadingPolicy",
+            "Description": "Enum controlling how this font face should be loaded at runtime. See the enum for more explanations of the options.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LayoutMethod",
+            "Type": "EFontLayoutMethod",
+            "Description": "Which method should we use when laying out the font? Try changing this if you notice clipping or height issues with your font.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FontFaceData_DEPRECATED",
+            "Type": "TArray < uint8 >",
+            "Description": "The data associated with the font face. This should always be filled in providing the source filename is valid.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IFontFaceInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

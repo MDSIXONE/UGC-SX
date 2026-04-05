@@ -1,0 +1,19 @@
+{
+    "Name": "UPartTypeSocket",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "PartType",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USkeletalMeshSocket"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

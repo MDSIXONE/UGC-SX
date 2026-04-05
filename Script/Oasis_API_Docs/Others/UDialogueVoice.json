@@ -1,0 +1,31 @@
+{
+    "Name": "UDialogueVoice",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Gender",
+            "Type": "TEnumAsByte < EGrammaticalGender :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Plurality",
+            "Type": "TEnumAsByte < EGrammaticalNumber :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LocalizationGUID",
+            "Type": "FGuid",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

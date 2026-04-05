@@ -1,0 +1,25 @@
+{
+    "Name": "UHLODProxy",
+    "Description": "This asset acts as a proxy to a static mesh for ALODActors to display",
+    "Variables": [
+        {
+            "Name": "ProxyMeshes",
+            "Type": "TArray < FHLODProxyMesh >",
+            "Description": "All the mesh proxies we contain",
+            "Redirect": ""
+        },
+        {
+            "Name": "OwningMap",
+            "Type": "TSoftObjectPtr < UWorld >",
+            "Description": "Keep hold of the level in the editor to allow for package cleaning etc.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

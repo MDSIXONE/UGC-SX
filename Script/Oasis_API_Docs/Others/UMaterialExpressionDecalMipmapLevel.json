@@ -1,0 +1,31 @@
+{
+    "Name": "UMaterialExpressionDecalMipmapLevel",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TextureSize",
+            "Type": "FExpressionInput",
+            "Description": "The texture's size",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstWidth",
+            "Type": "float",
+            "Description": "only used if TextureSize is not hooked up",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstHeight",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

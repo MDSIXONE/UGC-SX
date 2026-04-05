@@ -1,0 +1,19 @@
+{
+    "Name": "USpinBoxWidgetStyle",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SpinBoxStyle",
+            "Type": "FSpinBoxStyle",
+            "Description": "The actual data describing the button's appearance.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USlateWidgetStyleContainerBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

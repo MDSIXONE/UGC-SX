@@ -1,0 +1,25 @@
+{
+    "Name": "UDistributionFloatUniform",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Min",
+            "Type": "float",
+            "Description": "Low end of output float distribution.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Max",
+            "Type": "float",
+            "Description": "High end of output float distribution.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDistributionFloat"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

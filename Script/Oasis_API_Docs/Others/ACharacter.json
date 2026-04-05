@@ -1,0 +1,1111 @@
+{
+    "Name": "ACharacter",
+    "Description": "Characters are Pawns that have a mesh, collision, and built-in movement logic.\n  They are responsible for all physical interaction between the player or AI and the world, and also implement basic networking and input models.\n  They are designed for a vertically-oriented player representation that can walk, jump, fly, and swim through the world using CharacterMovementComponent.\n \n  @see APawn, UCharacterMovementComponent",
+    "Variables": [
+        {
+            "Name": "Mesh",
+            "Type": "USkeletalMeshComponent *",
+            "Description": "The main skeletal mesh associated with this Character (optional sub-object).",
+            "Redirect": ""
+        },
+        {
+            "Name": "CharacterMovement",
+            "Type": "UCharacterMovementComponent *",
+            "Description": "Movement component used for movement logic in various movement modes (walking, falling, etc), containing relevant settings and functions to control movement.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CapsuleComponent",
+            "Type": "UCapsuleComponent *",
+            "Description": "The CapsuleComponent being used for movement collision (by CharacterMovement). Always treated as being vertically aligned in simple collision check functions.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BasedMovement",
+            "Type": "FBasedMovementInfo",
+            "Description": "Info about our current movement base (object we are standing on).",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedBasedMovement",
+            "Type": "FBasedMovementInfo",
+            "Description": "Replicated version of relative movement. Read-only on simulated proxies!",
+            "Redirect": ""
+        },
+        {
+            "Name": "AnimRootMotionTranslationScale",
+            "Type": "float",
+            "Description": "Scale to apply to root motion translation on this Character",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetworkPredictionInterface",
+            "Type": "TScriptInterface < INetworkPredictionInterface >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseTranslationOffset",
+            "Type": "FVector",
+            "Description": "Saved translation offset of mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseRotationOffset",
+            "Type": "FQuat",
+            "Description": "Saved rotation offset of mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedServerLastTransformUpdateTimeStamp",
+            "Type": "float",
+            "Description": "CharacterMovement ServerLastTransformUpdateTimeStamp value, replicated to simulated proxies.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedMovementMode",
+            "Type": "uint8",
+            "Description": "Flag that we are receiving replication of the based movement.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInBaseReplication",
+            "Type": "bool",
+            "Description": "Flag that we are receiving replication of the based movement.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CrouchedEyeHeight",
+            "Type": "float",
+            "Description": "Default crouched eye height",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsCrouched",
+            "Type": "uint32",
+            "Description": "Set by character movement to specify that this Character is currently crouched.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPressedJump",
+            "Type": "uint32",
+            "Description": "When true, player wants to jump",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClientUpdating",
+            "Type": "uint32",
+            "Description": "When true, applying updates to network client (replaying saved moves for a locally controlled character)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClientWasFalling",
+            "Type": "uint32",
+            "Description": "True if Pawn was initially falling when started to replay network moves.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClientResimulateRootMotion",
+            "Type": "uint32",
+            "Description": "If server disagrees with root motion track position, client has to resimulate root motion from last AckedMove.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClientResimulateRootMotionSources",
+            "Type": "uint32",
+            "Description": "If server disagrees with root motion state, client has to resimulate root motion from last AckedMove.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSimGravityDisabled",
+            "Type": "uint32",
+            "Description": "Disable simulated gravity (set when character encroaches geometry on client, to keep him from falling through floors)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClientCheckEncroachmentOnNetUpdate",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bServerMoveIgnoreRootMotion",
+            "Type": "uint32",
+            "Description": "Disable root motion on the server. When receiving a DualServerMove, where the first move is not root motion and the second is.",
+            "Redirect": ""
+        },
+        {
+            "Name": "JumpKeyHoldTime",
+            "Type": "float",
+            "Description": "Jump key Held Time.\n\t  This is the time that the player has held the jump key, in seconds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "JumpMaxHoldTime",
+            "Type": "float",
+            "Description": "The max time the jump key can be held.\n\t  Note that if StopJumping() is not called before the max jump hold time is reached,\n\t  then the character will carry on receiving vertical velocity. Therefore it is usually \n\t  best to call StopJumping() when jump input has ceased (such as a button up event).",
+            "Redirect": ""
+        },
+        {
+            "Name": "JumpMaxCount",
+            "Type": "int32",
+            "Description": "The max number of jumps the character can perform.\n      Note that if JumpMaxHoldTime is non zero and StopJumping is not called, the player\n      may be able to perform and unlimited number of jumps. Therefore it is usually\n      best to call StopJumping() when jump input has ceased (such as a button up event).",
+            "Redirect": ""
+        },
+        {
+            "Name": "JumpCurrentCount",
+            "Type": "int32",
+            "Description": "Tracks the current number of jumps performed.\n      This is incremented in CheckJumpInput, used in CanJump_Implementation, and reset in OnMovementModeChanged.\n      When providing overrides for these methods, it's recommended to either manually\n      increment  reset this value, or call the Super:: method.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bWasJumping",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseReplaySampleRot",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SavedRootMotion",
+            "Type": "FRootMotionSourceGroup",
+            "Description": "For LocallyControlled Autonomous clients. \n\t   During a PerformMovement() after root motion is prepared, we save it off into this and\n\t   then record it into our SavedMoves.\n\t   During SavedMove playback we use it as our \"Previous Move\" SavedRootMotion which includes\n\t   last received root motion from the Server",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientRootMotionParams",
+            "Type": "FRootMotionMovementParams",
+            "Description": "For LocallyControlled Autonomous clients. Saved root motion data to be used by SavedMoves.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RootMotionRepMoves",
+            "Type": "TArray < FSimulatedRootMotionReplicatedMove >",
+            "Description": "Array of previously received root motion moves from the server.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RepRootMotion",
+            "Type": "FRepRootMotionMontage",
+            "Description": "Replicated Root Motion montage",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReplicateBasedMovement",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DisableParticleNames",
+            "Type": "TArray < FString >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GeneralCampID",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EnableApplyMomentumInRadialDamage",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableAsyncAnimInstance",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAsyncNewAnimInstance",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AsyncAnimInstances",
+            "Type": "TMap < UAnimInstance * , bool >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMarkScopeIn",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArrowComponent",
+            "Type": "UArrowComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "CacheInitialMeshOffset",
+            "Description": "Cache mesh offset from capsule. This is used as the target for network smoothing interpolation, when the mesh is offset with lagged smoothing.\n\t  This is automatically called during initialization; call this at runtime if you intend to change the default mesh offset from the capsule.",
+            "Params": [
+                {
+                    "Name": "MeshRelativeLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MeshRelativeRotation",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicatedBasedMovement",
+            "Description": "Rep notify for ReplicatedBasedMovement",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetReplicateMovement",
+            "Description": "Set whether this actor's movement replicates to network clients.",
+            "Params": [
+                {
+                    "Name": "bInReplicateMovement",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicatedMovementMode",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "LastReplicatedMovementMode",
+                    "Type": "uint8",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetReplicatedMovementMode",
+            "Description": "Returns ReplicatedMovementMode",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "uint8",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBaseTranslationOffset",
+            "Description": "Get the saved translation offset of mesh. This is how much extra offset is applied from the center of the capsule.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBaseRotationOffsetRotator",
+            "Description": "Get the saved rotation offset of mesh. This is how much extra rotation is applied from the capsule rotation.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_IsCrouched",
+            "Description": "Handle Crouching replicated from server",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMovementBase",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPrimitiveComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetReplicatedMovementBase",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPrimitiveComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Jump",
+            "Description": "Make the character jump on the next update.\t \n\t  If you want your character to jump according to the time that the jump key is held,\n\t  then you can set JumpKeyHoldTime to some non-zero value. Make sure in this case to\n\t  call StopJumping() when you want the jump's z-velocity to stop being applied (such \n\t  as on a button up event), otherwise the character will carry on receiving the \n\t  velocity until JumpKeyHoldTime is reached.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopJumping",
+            "Description": "Stop the character from jumping on the next update. \n\t  Call this from an input event (such as a button 'up' event) to cease applying\n\t  jump Z-velocity. If this is not called, then jump z-velocity will be applied\n\t  until JumpMaxHoldTime is reached.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanJump",
+            "Description": "Check if the character can jump in the current state.\n\t \n\t  The default implementation may be overridden or extended by implementing the custom CanJump event in Blueprints. \n\t  ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanJumpInternal",
+            "Description": "Customizable event to check if the character can jump in the current state.\n\t  Default implementation returns true if the character is on the ground and not crouching,\n\t  has a valid CharacterMovementComponent and CanEverJump() returns true.\n\t  Default implementation also allows for 'hold to jump higher' functionality: \n\t  As well as returning true when on the ground, it also returns true when GetMaxJumpTime is more\n\t  than zero and IsJumping returns true.\n\t  \n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsJumpProvidingForce",
+            "Description": "True if jump is actively providing a force, such as when the jump key is held and the time it has been held is less than JumpMaxHoldTime.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlayAnimMontage",
+            "Description": "Play Animation Montage on the character mesh",
+            "Params": [
+                {
+                    "Name": "AnimMontage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPlayRate",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartSectionName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TPP",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FPP",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewFPP",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopAnimMontage",
+            "Description": "Stop Animation Montage. If NULL, it will stop what's currently active. The Blend Out Time is taken from the montage asset that is being stopped.",
+            "Params": [
+                {
+                    "Name": "AnimMontage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentMontage",
+            "Description": "Return current playing Montage",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsVelocitySimulated",
+            "Description": "是否正在速度场模拟中(实际生效)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAdditiveVelocity",
+            "Description": "获取速度场的叠加速度",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSimulatedVelocity",
+            "Description": "获取速度场中的模拟速度(原有速度+叠加速度)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LaunchCharacter",
+            "Description": "Set a pending launch velocity on the Character. This velocity will be processed on the next CharacterMovementComponent tick,\n\t   and will set it to the \"falling\" state. Triggers the OnLaunched event.",
+            "Params": [
+                {
+                    "Name": "LaunchVelocity",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bXYOverride",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bZOverride",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnLaunched",
+            "Description": "Let blueprint know that we were launched",
+            "Params": [
+                {
+                    "Name": "LaunchVelocity",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bXYOverride",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bZOverride",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnJumped",
+            "Description": "Event fired when the character has just started jumping",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnLanded",
+            "Description": "Called upon landing when falling, to perform actions based on the Hit result.\n\t Note that movement mode is still \"Falling\" during this event. Current Velocity value is the velocity at the time of landing.\n\t Consider OnMovementModeChanged() as well, as that can be used once the movement mode changes to the new mode (most likely Walking).\n\t",
+            "Params": [
+                {
+                    "Name": "Hit",
+                    "Type": "FHitResult &",
+                    "Description": "Result describing the landing that resulted in a valid landing spot.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnWalkingOffLedge",
+            "Description": "Event fired when the Character is walking off a surface and is about to fall because CharacterMovement->CurrentFloor became unwalkable.\n\t  If CharacterMovement->MovementMode does not change during this event then the character will automatically start falling afterwards.",
+            "Params": [
+                {
+                    "Name": "PreviousFloorImpactNormal",
+                    "Type": "FVector & ",
+                    "Description": "Normal of the previous walkable floor.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PreviousFloorContactNormal",
+                    "Type": "FVector & ",
+                    "Description": "Normal of the contact with the previous walkable floor.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PreviousLocation",
+                    "Type": "FVector & ",
+                    "Description": "Previous character location before movement off the ledge.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TimeDelta",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Crouch",
+            "Description": "Request the character to start crouching. The request is processed on the next update of the CharacterMovementComponent.",
+            "Params": [
+                {
+                    "Name": "bClientSimulation",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UnCrouch",
+            "Description": "Request the character to stop crouching. The request is processed on the next update of the CharacterMovementComponent.",
+            "Params": [
+                {
+                    "Name": "bClientSimulation",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnEndCrouch",
+            "Description": "Event when Character stops crouching.",
+            "Params": [
+                {
+                    "Name": "HalfHeightAdjust",
+                    "Type": "float ",
+                    "Description": "difference between default collision half-height, and actual crouched capsule half-height.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaledHalfHeightAdjust",
+                    "Type": "float",
+                    "Description": "difference after component scale is taken in to account.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnStartCrouch",
+            "Description": "Event when Character crouches.",
+            "Params": [
+                {
+                    "Name": "HalfHeightAdjust",
+                    "Type": "float ",
+                    "Description": "difference between default collision half-height, and actual crouched capsule half-height.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaledHalfHeightAdjust",
+                    "Type": "float",
+                    "Description": "difference after component scale is taken in to account.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnMovementModeChanged",
+            "Description": "Called from CharacterMovementComponent to notify the character that the movement mode has changed.",
+            "Params": [
+                {
+                    "Name": "PrevMovementMode",
+                    "Type": "EMovementMode ",
+                    "Description": "Movement mode before the change",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewMovementMode",
+                    "Type": "EMovementMode ",
+                    "Description": "New movement mode",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PrevCustomMode",
+                    "Type": "uint8 ",
+                    "Description": "Custom mode before the change (applicable if PrevMovementMode is Custom)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewCustomMode",
+                    "Type": "uint8",
+                    "Description": "New custom mode (applicable if NewMovementMode is Custom)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_UpdateCustomMovement",
+            "Description": "Event for implementing custom character movement mode. Called by CharacterMovement if MovementMode is set to Custom.",
+            "Params": [
+                {
+                    "Name": "DeltaTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClientCheatWalk",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClientCheatFly",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClientCheatGhost",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RootMotionDebugClientPrintOnScreen",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_RootMotion",
+            "Description": "Handles replicated root motion properties on simulated proxies and position correction.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsPlayingRootMotion",
+            "Description": "true if we are playing Root Motion right now",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsPlayingNetworkedRootMotionMontage",
+            "Description": "true if we are playing Root Motion right now, through a Montage with RootMotionMode == ERootMotionMode::RootMotionFromMontagesOnly.\n\t  This means code path for networked root motion is enabled.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAnimRootMotionTranslationScale",
+            "Description": "Returns current value of AnimRootMotionScale",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetReplicateBasedMovement",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bInReplicateBasedMovement",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_GeneralCampID",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "APawn"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnReachedJumpApex",
+            "Description": "Broadcast when Character's jump reaches its apex. Needs CharacterMovement->bNotifyApex = true",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MovementModeChangedDelegate",
+            "Description": "Multicast delegate for MovementMode changing.",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "ACharacter*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PrevMovementMode",
+                    "Type": "EMovementMode",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PreviousCustomMode",
+                    "Type": "uint8",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnCharacterMovementUpdated",
+            "Description": "Event triggered at the end of a CharacterMovementComponent movement update.\n\t  This is the preferred event to use rather than the Tick event when performing custom updates to CharacterMovement properties based on the current state.\n\t  This is mainly due to the nature of network updates, where client corrections in position from the server can cause multiple iterations of a movement update,\n\t  which allows this event to update as well, while a Tick event would not.\n\t ",
+            "Params": [
+                {
+                    "Name": "DeltaSeconds",
+                    "Type": "float",
+                    "Description": "Delta time in seconds for this update",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OldLocation",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OldVelocity",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

@@ -1,0 +1,36 @@
+{
+    "Name": "UGCAchievementSystem",
+    "Description": "徽章专用接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "AddAchievementProgress",
+            "Description": "累积徽章进度\n计数为覆盖累计，单场内多次调用不会累加计数，需自行计算累计总数单次调用\n详细使用流程参考wiki (https://developer.gp.qq.com/wiki/#/lvzhou_huizhang.html)\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家PlayerKey",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AchievementID",
+                    "Type": "number",
+                    "Description": "徽章ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "徽章计数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

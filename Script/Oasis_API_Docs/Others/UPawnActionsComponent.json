@@ -1,0 +1,142 @@
+{
+    "Name": "UPawnActionsComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ControlledPawn",
+            "Type": "APawn *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActionStacks",
+            "Type": "TArray < FPawnActionStack >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActionEvents",
+            "Type": "TArray < FPawnActionEvent >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CurrentAction",
+            "Type": "UPawnAction *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "K2_PerformAction",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Pawn",
+                    "Type": "APawn * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Action",
+                    "Type": "UPawnAction * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Priority",
+                    "Type": "TEnumAsByte < EAIRequestPriority :: Type >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_PushAction",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewAction",
+                    "Type": "UPawnAction * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Priority",
+                    "Type": "EAIRequestPriority :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Instigator",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AbortAction",
+            "Description": "Aborts given action instance",
+            "Params": [
+                {
+                    "Name": "ActionToAbort",
+                    "Type": "UPawnAction *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPawnActionAbortState :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_ForceAbortAction",
+            "Description": "Aborts given action instance",
+            "Params": [
+                {
+                    "Name": "ActionToAbort",
+                    "Type": "UPawnAction *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPawnActionAbortState :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

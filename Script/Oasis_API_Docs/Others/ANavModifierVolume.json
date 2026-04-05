@@ -1,0 +1,41 @@
+{
+    "Name": "ANavModifierVolume",
+    "Description": "Allows applying selected AreaClass to navmesh, using Volume's shape",
+    "Variables": [
+        {
+            "Name": "AreaClass",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetAreaClass",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewAreaClass",
+                    "Type": "TSubclassOf < UNavArea >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AVolume",
+        "INavRelevantInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

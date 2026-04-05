@@ -1,0 +1,31 @@
+{
+    "Name": "UPlaneReflectionCaptureComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "InfluenceRadiusScale",
+            "Type": "float",
+            "Description": "Radius of the area that can receive reflections from this capture.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewInfluenceRadius",
+            "Type": "UDrawSphereComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewCaptureBox",
+            "Type": "UBoxComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UReflectionCaptureComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

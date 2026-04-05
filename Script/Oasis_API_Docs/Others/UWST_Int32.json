@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_Int32",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

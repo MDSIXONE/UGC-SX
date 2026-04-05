@@ -1,0 +1,19 @@
+{
+    "Name": "UMovieSceneEventRepeaterSection",
+    "Description": "NewEvent section that will trigger its NewEvent exactly once, every time it is evaluated.",
+    "Variables": [
+        {
+            "Name": "Event",
+            "Type": "FMovieSceneEventWrapper",
+            "Description": "The NewEvent that should be triggered each time this section is evaluated",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneNewEventSectionBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

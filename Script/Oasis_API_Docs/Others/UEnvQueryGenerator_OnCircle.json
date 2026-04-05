@@ -1,0 +1,85 @@
+{
+    "Name": "UEnvQueryGenerator_OnCircle",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CircleRadius",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "max distance of path between point and context",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpaceBetween",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "items will be generated on a circle this much apart",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumberOfPoints",
+            "Type": "FAIDataProviderIntValue",
+            "Description": "this many items will be generated on a circle",
+            "Redirect": ""
+        },
+        {
+            "Name": "PointOnCircleSpacingMethod",
+            "Type": "EPointOnCircleSpacingMethod",
+            "Description": "how we are choosing where the points are in the circle",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArcDirection",
+            "Type": "FEnvDirection",
+            "Description": "If you generate items on a piece of circle you define direction of Arc cut here",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArcAngle",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "If you generate items on a piece of circle you define angle of Arc cut here",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngleRadians",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CircleCenter",
+            "Type": "TSubclassOf < UEnvQueryContext >",
+            "Description": "context",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoreAnyContextActorsWhenGeneratingCircle",
+            "Type": "bool",
+            "Description": "ignore tracing into context actors when generating the circle",
+            "Redirect": ""
+        },
+        {
+            "Name": "CircleCenterZOffset",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "context offset",
+            "Redirect": ""
+        },
+        {
+            "Name": "TraceData",
+            "Type": "FEnvTraceData",
+            "Description": "horizontal trace for nearest obstacle",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefineArc",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UEnvQueryGenerator_ProjectedPoints"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

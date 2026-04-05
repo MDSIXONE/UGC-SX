@@ -1,0 +1,25 @@
+{
+    "Name": "AWindDirectionalSource",
+    "Description": "Actor that provides a directional wind source. Only affects SpeedTree assets.",
+    "Variables": [
+        {
+            "Name": "Component",
+            "Type": "UWindDirectionalSourceComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArrowComponent",
+            "Type": "UArrowComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AInfo"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

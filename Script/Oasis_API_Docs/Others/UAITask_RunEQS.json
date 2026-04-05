@@ -1,0 +1,39 @@
+{
+    "Name": "UAITask_RunEQS",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "RunEQS",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Controller",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "QueryTemplate",
+                    "Type": "UEnvQuery *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAITask_RunEQS * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UAITask"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

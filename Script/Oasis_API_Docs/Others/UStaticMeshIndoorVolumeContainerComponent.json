@@ -1,0 +1,25 @@
+{
+    "Name": "UStaticMeshIndoorVolumeContainerComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StaticMeshes",
+            "Type": "TArray < UStaticMesh * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstanceRuns",
+            "Type": "TArray < FInstanceRun >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

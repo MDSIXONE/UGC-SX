@@ -1,0 +1,26 @@
+{
+    "Name": "UVisibilityBinding",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetValue",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ESlateVisibility",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPropertyBinding"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

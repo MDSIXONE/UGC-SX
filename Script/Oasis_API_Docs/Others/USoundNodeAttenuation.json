@@ -1,0 +1,31 @@
+{
+    "Name": "USoundNodeAttenuation",
+    "Description": "Defines how a sound's volume changes based on distance to the listener",
+    "Variables": [
+        {
+            "Name": "AttenuationSettings",
+            "Type": "USoundAttenuation *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttenuationOverrides",
+            "Type": "FSoundAttenuationSettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideAttenuation",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

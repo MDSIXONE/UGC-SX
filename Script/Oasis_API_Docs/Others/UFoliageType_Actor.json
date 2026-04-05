@@ -1,0 +1,25 @@
+{
+    "Name": "UFoliageType_Actor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ActorClass",
+            "Type": "TSubclassOf < AActor >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldAttachToBaseComponent",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UFoliageType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,394 @@
+{
+    "Name": "UPhysicsHandleComponent",
+    "Description": "Utility object for moving physics objects around.",
+    "Variables": [
+        {
+            "Name": "GrabbedComponent",
+            "Type": "UPrimitiveComponent *",
+            "Description": "Component we are currently holding",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSoftAngularConstraint",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSoftLinearConstraint",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInterpolateTarget",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearDamping",
+            "Type": "float",
+            "Description": "Linear damping of the handle spring.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearStiffness",
+            "Type": "float",
+            "Description": "Linear stiffness of the handle spring",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngularDamping",
+            "Type": "float",
+            "Description": "Angular stiffness of the handle spring",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngularStiffness",
+            "Type": "float",
+            "Description": "Angular stiffness of the handle spring",
+            "Redirect": ""
+        },
+        {
+            "Name": "InterpolationSpeed",
+            "Type": "float",
+            "Description": "How quickly we interpolate the physics target transform",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GrabComponent",
+            "Description": "Grab the specified component",
+            "Params": [
+                {
+                    "Name": "Component",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "GrabLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bConstrainRotation",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API virtual void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GrabComponentAtLocation",
+            "Description": "Grab the specified component at a given location. Does NOT constraint rotation which means the handle will pivot about GrabLocation.",
+            "Params": [
+                {
+                    "Name": "Component",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "GrabLocation",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GrabComponentAtLocationWithRotation",
+            "Description": "Grab the specified component at a given location and rotation. Constrains rotation.",
+            "Params": [
+                {
+                    "Name": "Component",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReleaseComponent",
+            "Description": "Release the currently held component",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API virtual void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGrabbedComponent",
+            "Description": "Returns the currently grabbed component, or null if nothing is grabbed.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API class UPrimitiveComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTargetLocation",
+            "Description": "Set the target location",
+            "Params": [
+                {
+                    "Name": "NewLocation",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTargetRotation",
+            "Description": "Set the target rotation",
+            "Params": [
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTargetLocationAndRotation",
+            "Description": "Set target location and rotation",
+            "Params": [
+                {
+                    "Name": "NewLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTargetLocationAndRotation",
+            "Description": "Get the current location and rotation",
+            "Params": [
+                {
+                    "Name": "TargetLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TargetRotation",
+                    "Type": "FRotator &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLinearDamping",
+            "Description": "Set linear damping",
+            "Params": [
+                {
+                    "Name": "NewLinearDamping",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLinearStiffness",
+            "Description": "Set linear stiffness",
+            "Params": [
+                {
+                    "Name": "NewLinearStiffness",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAngularDamping",
+            "Description": "Set angular damping",
+            "Params": [
+                {
+                    "Name": "NewAngularDamping",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAngularStiffness",
+            "Description": "Set angular stiffness",
+            "Params": [
+                {
+                    "Name": "NewAngularStiffness",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetInterpolationSpeed",
+            "Description": "Set interpolation speed",
+            "Params": [
+                {
+                    "Name": "NewInterpolationSpeed",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

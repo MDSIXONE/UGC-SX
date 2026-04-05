@@ -1,0 +1,89 @@
+{
+    "Name": "UGameplayTask_ClaimResource",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "ClaimResource",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTaskOwner",
+                    "Type": "TScriptInterface < IGameplayTaskOwnerInterface > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ResourceClass",
+                    "Type": "TSubclassOf < UGameplayTaskResource > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Priority",
+                    "Type": "uint8 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TaskInstanceName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UGameplayTask_ClaimResource * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClaimResources",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTaskOwner",
+                    "Type": "TScriptInterface < IGameplayTaskOwnerInterface > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ResourceClasses",
+                    "Type": "TArray < TSubclassOf < UGameplayTaskResource > > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Priority",
+                    "Type": "uint8 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TaskInstanceName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UGameplayTask_ClaimResource * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UGameplayTask"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

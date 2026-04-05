@@ -1,0 +1,19 @@
+{
+    "Name": "UShaderPlatformQualitySettings",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "QualityOverrides",
+            "Type": "FMaterialQualityOverrides",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

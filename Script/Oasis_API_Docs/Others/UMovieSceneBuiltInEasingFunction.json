@@ -1,0 +1,20 @@
+{
+    "Name": "UMovieSceneBuiltInEasingFunction",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Type",
+            "Type": "EMovieSceneBuiltInEasing",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IMovieSceneEasingFunction"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

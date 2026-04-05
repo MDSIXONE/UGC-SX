@@ -1,0 +1,43 @@
+{
+    "Name": "UMaterialExpressionDepthFade",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "InOpacity",
+            "Type": "FExpressionInput",
+            "Description": "Input opacity which will be scaled by the result of the fade.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeDistance",
+            "Type": "FExpressionInput",
+            "Description": "World space distance over which the fade should take place.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OpacityDefault",
+            "Type": "float",
+            "Description": "Opacity which will be scaled by the result of the fade.  This is used when InOpacity is unconnected.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeDistanceDefault",
+            "Type": "float",
+            "Description": "World space distance over which the fade should take place.  This is used when FadeDistance is unconnected.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportFPR",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

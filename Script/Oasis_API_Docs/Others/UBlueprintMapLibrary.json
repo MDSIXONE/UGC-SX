@@ -1,0 +1,253 @@
+{
+    "Name": "UBlueprintMapLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "Map_Add",
+            "Description": "Adds a key and value to the map. If something already uses the provided key it will be overwritten with the new value.\n\t  After calling Key is guaranteed to be associated with Value until a subsequent mutation of the Map.\n\t ",
+            "Params": [
+                {
+                    "Name": "TargetMap",
+                    "Type": "TMap < int32 , int32 > & ",
+                    "Description": "The map to add the key and value to",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "int32 & ",
+                    "Description": " The key that will be used to look the value up",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "int32 &",
+                    "Description": " The value to be retrieved later",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "True if a Value was added, or False if the Key was already present and has been overwritten",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Map_Remove",
+            "Description": "Removes a key and its associated value from the map.\n\t ",
+            "Params": [
+                {
+                    "Name": "TargetMap",
+                    "Type": "TMap < int32 , int32 > & ",
+                    "Description": "The map to remove the key and its associated value from",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "int32 &",
+                    "Description": " The key that will be used to look the value up",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if an item was removed (False indicates nothing in the map uses the provided key)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Map_Find",
+            "Description": "Finds the value associated with the provided Key\n\t ",
+            "Params": [
+                {
+                    "Name": "TargetMap",
+                    "Type": "TMap < int32 , int32 > & ",
+                    "Description": "The map to perform the lookup on",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "int32 & ",
+                    "Description": " The key that will be used to look the value up",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "int32 &",
+                    "Description": " The value associated with the key, default constructed if key was not found",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if an item was found (False indicates nothing in the map uses the provided key)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Map_Contains",
+            "Description": "Checks whether key is in a provided Map\n\t ",
+            "Params": [
+                {
+                    "Name": "TargetMap",
+                    "Type": "TMap < int32 , int32 > & ",
+                    "Description": "The map to perform the lookup on",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "int32 &",
+                    "Description": " The key that will be used to lookup",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if an item was found (False indicates nothing in the map uses the provided key)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Map_Keys",
+            "Description": "Outputs an array of all keys present in the map\n\t ",
+            "Params": [
+                {
+                    "Name": "TargetMap",
+                    "Type": "TMap < int32 , int32 > & ",
+                    "Description": "The map to get the list of keys from",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Keys",
+                    "Type": "TArray < int32 > &",
+                    "Description": " All keys present in the map",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Map_Values",
+            "Description": "Outputs an array of all values present in the map\n\t ",
+            "Params": [
+                {
+                    "Name": "TargetMap",
+                    "Type": "TMap < int32 , int32 > & ",
+                    "Description": "The map to get the list of values from",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Values",
+                    "Type": "TArray < int32 > &",
+                    "Description": " All values present in the map",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Map_Length",
+            "Description": "Determines the number of entries in a provided Map\n\t ",
+            "Params": [
+                {
+                    "Name": "TargetMap",
+                    "Type": "TMap < int32 , int32 > &",
+                    "Description": "The map in question",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "The number of entries in the map",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Map_Clear",
+            "Description": "Clears a map of all entries, resetting it to empty\n\t ",
+            "Params": [
+                {
+                    "Name": "TargetMap",
+                    "Type": "TMap < int32 , int32 > &",
+                    "Description": "The map to clear",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMapPropertyByName",
+            "Description": "Not exposed to users. Supports setting a map property on an object by name.",
+            "Params": [
+                {
+                    "Name": "Object",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PropertyName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "TMap < int32 , int32 > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

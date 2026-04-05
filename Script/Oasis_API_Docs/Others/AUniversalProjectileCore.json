@@ -1,0 +1,121 @@
+{
+    "Name": "AUniversalProjectileCore",
+    "Description": "通用抛体基类",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "AActor",
+        "IObjectPoolInterface",
+        "IOwnershipChainInterface"
+    ],
+    "Event": [
+        {
+            "Name": "ReceiveOnBounce",
+            "Description": "弹跳时的额外接口\n\t 生效范围：SC",
+            "Params": [
+                {
+                    "Name": "ImpactResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ImpactVelocity",
+                    "Type": "FVector &",
+                    "Description": "碰撞速度",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveLaunchBullet",
+            "Description": "发射时的额外接口\n\t 生效范围：S",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTarget",
+            "Description": "修改Target的接口，能触发对应目标修改接口\n\t 生效范围：SC",
+            "Params": [
+                {
+                    "Name": "TargetPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveOnProjectileDestroyed",
+            "Description": "销毁时的额外接口\n\t 生效范围：SC",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": [
+        {
+            "Name": "OnBulletHitDelegate",
+            "Description": "Delegate\n\t  生效范围S\n\t  通用抛体命中事件",
+            "Params": [
+                {
+                    "Name": "ImpactResult",
+                    "Type": "const FHitResult&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnLaunchBulletDelegate",
+            "Description": "Delegate\n\t  生效范围S\n\t  抛体发射事件",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "UComponentDelegateBinding",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ComponentDelegateBindings",
+            "Type": "TArray < FBlueprintComponentDelegateBinding >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDynamicBlueprintBinding"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

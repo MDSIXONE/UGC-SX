@@ -1,0 +1,25 @@
+{
+    "Name": "UGameplayTagsManager",
+    "Description": "Holds data about the tag dictionary, is in a singleton UObject",
+    "Variables": [
+        {
+            "Name": "TagSources",
+            "Type": "TArray < FGameplayTagSource >",
+            "Description": "List of gameplay tag sources",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameplayTagTables",
+            "Type": "TArray < UDataTable * >",
+            "Description": "Holds all of the valid gameplay-related tags that can be applied to assets",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

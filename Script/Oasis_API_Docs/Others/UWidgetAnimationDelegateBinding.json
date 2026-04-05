@@ -1,0 +1,19 @@
+{
+    "Name": "UWidgetAnimationDelegateBinding",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "WidgetAnimationDelegateBindings",
+            "Type": "TArray < FBlueprintWidgetAnimationDelegateBinding >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDynamicBlueprintBinding"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

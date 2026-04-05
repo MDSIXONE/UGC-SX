@@ -1,0 +1,92 @@
+{
+    "Name": "AUGCPickUpWrapperActor",
+    "Description": "地面拾取物Actor",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetDefineID",
+            "Description": "获取拾取物物品的实例ID\n\t  DS & 客户端 可调用\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FItemDefineID",
+                    "Description": "实例ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemCount",
+            "Description": "获取拾取物物品的物品数量\n\t  DS & 客户端 可调用\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "物品数量",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "APickUpWrapperActor"
+    ],
+    "Event": [
+        {
+            "Name": "OnInitPickupWrapper",
+            "Description": "当地面拾取物初始化后回调\n\t  可重载并自定义\n\t  DS & 客户端 被调用\n\t \n\t  能通过此事件，实现自定义的初始化逻辑",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnItemPickup",
+            "Description": "当地面拾取物被拾取后回调(拾取物销毁时也会有回调)\n\t  可重载并自定义\n\t  DS & 客户端 被调用\n\t \n\t  能通过此事件，实现自定义的被拾取后处理逻辑\n\t ",
+            "Params": [
+                {
+                    "Name": "OldItemCount",
+                    "Type": "int32 ",
+                    "Description": "拾取前的物品数量",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewItemCount",
+                    "Type": "int32",
+                    "Description": "拾取后的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnUnInitPickupWrapper",
+            "Description": "当地面拾取物销毁前回调\n\t  可重载并自定义\n\t  DS & 客户端 被调用\n\t \n\t  能通过此事件，实现自定义的反初始化逻辑",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

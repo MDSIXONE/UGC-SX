@@ -1,0 +1,25 @@
+{
+    "Name": "UMaterialExpressionSetMaterialAttributes",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Inputs",
+            "Type": "TArray < FExpressionInput >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttributeSetTypes",
+            "Type": "TArray < FGuid >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

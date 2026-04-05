@@ -1,0 +1,386 @@
+{
+    "Name": "UTexture",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LightingGuid",
+            "Type": "FGuid",
+            "Description": "Unique ID for this material, used for caching during distributed lighting",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODBias",
+            "Type": "int32",
+            "Description": "--------------------------------------------------------------------------\n\t--------------------------------------------------------------------------\n\t A bias to the index of the top mip level to use.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExpectedQualityLimit",
+            "Type": "FExpectedQuality",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SRGB",
+            "Type": "uint32",
+            "Description": "This should be unchecked if using alpha channels individually as masks.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumCinematicMipLevels",
+            "Type": "int32",
+            "Description": "Number of mip-levels to use for cinematic quality.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNotUsedInUltimateHighQuality",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNotUsedInHighQuality",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNotUsedInMediumQuality",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNotUsedInLowQuality",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NeverStream",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNoTiling",
+            "Type": "uint32",
+            "Description": "If true, the RHI texture will be created using TexCreate_NoTiling",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseCinematicMipLevels",
+            "Type": "uint32",
+            "Description": "Whether to use the extra cinematic quality mip-levels, when we're forcing mip-levels to be resident.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetUserData",
+            "Type": "TArray < UAssetUserData * >",
+            "Description": "Array of user data stored with the asset",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedCombinedLODBias",
+            "Type": "int32",
+            "Description": "Cached combined group and texture LOD bias to use.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAsyncResourceReleaseHasBeenStarted",
+            "Type": "uint32",
+            "Description": "Whether the async resource release process has already been kicked off or not",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompressionSettings",
+            "Type": "TEnumAsByte < enum TextureCompressionSettings >",
+            "Description": "Compression settings to use when building the texture.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Filter",
+            "Type": "TEnumAsByte < enum TextureFilter >",
+            "Description": "The texture filtering mode to use when sampling this texture.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODGroup",
+            "Type": "TEnumAsByte < enum TextureGroup >",
+            "Description": "Texture group this texture belongs to",
+            "Redirect": ""
+        },
+        {
+            "Name": "CrunchSetting",
+            "Type": "TEnumAsByte < enum ETextureCrunchSetting >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideCrunchCompressionAmount",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CrunchCompressionAmount",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BasisSetting",
+            "Type": "TEnumAsByte < enum ETextureBasisSetting >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideBasisCompressionAmount",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BasisCompressionAmount",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Source",
+            "Type": "FTextureSource",
+            "Description": "--------------------------------------------------------------------------\n\t--------------------------------------------------------------------------",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceFilePath_DEPRECATED",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetImportData",
+            "Type": "UAssetImportData *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdjustBrightness",
+            "Type": "float",
+            "Description": "Static texture brightness adjustment (scales HSV value.)  (Non-destructive; Requires texture source art to be available.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdjustBrightnessCurve",
+            "Type": "float",
+            "Description": "Static texture curve adjustment (raises HSV value to the specified power.)  (Non-destructive; Requires texture source art to be available.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdjustVibrance",
+            "Type": "float",
+            "Description": "Static texture \"vibrance\" adjustment (0 - 1) (HSV saturation algorithm adjustment.)  (Non-destructive; Requires texture source art to be available.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdjustSaturation",
+            "Type": "float",
+            "Description": "Static texture saturation adjustment (scales HSV saturation.)  (Non-destructive; Requires texture source art to be available.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdjustRGBCurve",
+            "Type": "float",
+            "Description": "Static texture RGB curve adjustment (raises linear-space RGB color to the specified power.)  (Non-destructive; Requires texture source art to be available.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdjustHue",
+            "Type": "float",
+            "Description": "Static texture hue adjustment (0 - 360) (offsets HSV hue by value in degrees.)  (Non-destructive; Requires texture source art to be available.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdjustMinAlpha",
+            "Type": "float",
+            "Description": "Remaps the alpha to the specified minmax range, defines the new value of 0 (Non-destructive; Requires texture source art to be available.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdjustMaxAlpha",
+            "Type": "float",
+            "Description": "Remaps the alpha to the specified minmax range, defines the new value of 1 (Non-destructive; Requires texture source art to be available.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompressionNoAlpha",
+            "Type": "uint32",
+            "Description": "If enabled, the texture's alpha channel will be discarded during compression",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompressionNone",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DeferCompression",
+            "Type": "uint32",
+            "Description": "If enabled, defer compression of the texture until save.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxTextureSize",
+            "Type": "int32",
+            "Description": "The maximum resolution for generated textures. A value of 0 means the maximum size for the format on each platform, except HDR longlat cubemaps, which default to a resolution of 512.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxTextureSizeHD",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxTextureSizeWinOB",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxTextureSizePC",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompressionQuality",
+            "Type": "TEnumAsByte < enum ETextureCompressionQuality >",
+            "Description": "The compression quality for generated textures.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDitherMipMapAlpha",
+            "Type": "uint32",
+            "Description": "When true, the alpha channel of mip-maps and the base image are dithered for smooth LOD transitions.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AlphaCoverageThresholds",
+            "Type": "FVector4",
+            "Description": "Alpha values per channel to compare to when preserving alpha coverage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPreserveBorder",
+            "Type": "uint32",
+            "Description": "When true the texture's border will be preserved during mipmap generation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFlipGreenChannel",
+            "Type": "uint32",
+            "Description": "When true the texture's green channel will be inverted. This is useful for some normal maps.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForcePVRTC4",
+            "Type": "uint32",
+            "Description": "For DXT1 textures, setting this will cause the texture to be twice the size, but better looking, on iPhone",
+            "Redirect": ""
+        },
+        {
+            "Name": "PowerOfTwoMode",
+            "Type": "TEnumAsByte < enum ETexturePowerOfTwoSetting :: Type >",
+            "Description": "How to pad the texture to a power of 2 size (if necessary)",
+            "Redirect": ""
+        },
+        {
+            "Name": "PaddingColor",
+            "Type": "FColor",
+            "Description": "The color used to pad the texture out if it is resized due to PowerOfTwoMode",
+            "Redirect": ""
+        },
+        {
+            "Name": "bChromaKeyTexture",
+            "Type": "bool",
+            "Description": "Whether to chroma key the image, replacing any pixels that match ChromaKeyColor with transparent black",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChromaKeyThreshold",
+            "Type": "float",
+            "Description": "The threshold that components have to match for the texel to be considered equal to the ChromaKeyColor when chroma keying (<=, set to 0 to require a perfect exact match)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChromaKeyColor",
+            "Type": "FColor",
+            "Description": "The color that will be replaced with transparent black if chroma keying is enabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "MipGenSettings",
+            "Type": "TEnumAsByte < enum TextureMipGenSettings >",
+            "Description": "Per asset specific setting to define the mip-map generation properties like sharpening and kernel size.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseNewFilter_UE4",
+            "Type": "bool",
+            "Description": "New Tex Mip Filter  Tex MaxSize Filter from UE5",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompositeTexture",
+            "Type": "UTexture *",
+            "Description": "Can be defined to modify the roughness based on the normal map variation (mostly from mip maps).\n\t  MaxAlpha comes in handy to define a base roughness if no source alpha was there.\n\t  Make sure the normal map has at least as many mips as this texture.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompositeTextureMode",
+            "Type": "TEnumAsByte < enum ECompositeTextureMode >",
+            "Description": "defines how the CompositeTexture is applied, e.g. CTM_RoughnessFromNormalAlpha",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompositePower",
+            "Type": "float",
+            "Description": "default 1, high values result in a stronger effect e.g 1, 2, 4, 8\n\t  this is no slider because the texture update would not be fast enough",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsCookingHDTexture",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsCookingPCTexture",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLegacyGamma",
+            "Type": "uint32",
+            "Description": "A flag for using the simplified legacy gamma space e.g pow(color,12.2) for converting from FColor to FLinearColor, if we're doing sRGB.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bKeepSourceDataWhenCookingUGCEditor",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IInterface_AssetUserData"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

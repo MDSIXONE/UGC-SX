@@ -1,0 +1,787 @@
+{
+    "Name": "UPersistEffectSkill",
+    "Description": "技能实体",
+    "Variables": [
+        {
+            "Name": "PESkillSlot",
+            "Type": "FGameplayTag",
+            "Description": "技能槽位Tag",
+            "Redirect": ""
+        },
+        {
+            "Name": "ApplyTagGroup",
+            "Type": "FGameplayTagGroups",
+            "Description": "Tag的配置组，包含该技能与各个Tag的互斥关系",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomActivateConditions",
+            "Type": "FPESkillConditionContainer",
+            "Description": "技能激活自定义条件",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConsumeTime",
+            "Type": "EPESkillConsumeTimeType",
+            "Description": "CD能量和消耗扣除时机",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkillCD",
+            "Type": "FPESkillCDWapper",
+            "Description": "技能CD",
+            "Redirect": ""
+        },
+        {
+            "Name": "CostConsume",
+            "Type": "FPESkillConsume",
+            "Description": "技能消耗",
+            "Redirect": ""
+        },
+        {
+            "Name": "UIInfo",
+            "Type": "FPESkillUIInfo",
+            "Description": "技能外显信息",
+            "Redirect": ""
+        },
+        {
+            "Name": "InputType",
+            "Type": "EPESkillInputType",
+            "Description": "技能操作类型",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkillGroup",
+            "Type": "FGameplayTag",
+            "Description": "技能组，同组互斥，不能同时激活同组的技能，如果填空的话则没有任何互斥关系",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultEnable",
+            "Type": "bool",
+            "Description": "默认是否可用，如果配置了false，则需要调用enable才能激活技能",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "EnableSkill",
+            "Description": "生效范围：S\n\t  使技能可用",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableSkill",
+            "Description": "生效范围：S\n\t  使技能不可用",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsSkillEnable",
+            "Description": "生效范围：SC",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "技能是否可用",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DeActivateSkill",
+            "Description": "生效范围：SC\n\t  取消技能释放",
+            "Params": [
+                {
+                    "Name": "Reason",
+                    "Type": "EPESkillDeActivateReason",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanActivateSkill",
+            "Description": "生效范围：SC",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "技能是否可用",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ActivateSkill",
+            "Description": "生效范围：SC\n\t  释放技能",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsActivating",
+            "Description": "生效范围：SC",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "技能是否正在激活",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CheckCDReady",
+            "Description": "生效范围：服务器&客户端",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "技能CD是否已准备好",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CheckCostReady",
+            "Description": "生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "技能需要的消耗是否已准备好",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ConsumeCD",
+            "Description": "生效范围：服务器\n\t  消耗CD",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "是否成功消耗",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ConsumeCost",
+            "Description": "生效范围：服务器\n\t  消耗道具",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "是否成功消耗",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRemainingCDTime",
+            "Description": "生效范围：服务器&客户端\n\t  获取CD剩余时间",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "剩余时间",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCDRecoveryTime",
+            "Description": "生效范围：服务器&客户端\n\t  获取CD恢复时间",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "剩余时间",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCDRecoveryTime",
+            "Description": "生效范围：服务器\n\t  设置CD恢复时间",
+            "Params": [
+                {
+                    "Name": "CDRecoveryTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCDRecoverRate",
+            "Description": "生效范围：服务器&客户端\n\t  获取CD恢复速率",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "CD恢复速率",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCDRecoverRate",
+            "Description": "生效范围：服务器\n\t  设置CD恢复速率",
+            "Params": [
+                {
+                    "Name": "Rate",
+                    "Type": "float",
+                    "Description": "CD恢复速率",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ChargeCDEnergy",
+            "Description": "生效范围：服务器\n\t  恢复CD比例，1代表完全恢复一层CD，大于1代表恢复多层，不超过层数上限",
+            "Params": [
+                {
+                    "Name": "ChargeRate",
+                    "Type": "float",
+                    "Description": "恢复的层数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RefreshCD",
+            "Description": "生效范围：服务器\n\t  刷新技能CD",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCDMaxLayer",
+            "Description": "生效范围：服务器\n\t  设置CD最大层数",
+            "Params": [
+                {
+                    "Name": "InMaxLayer",
+                    "Type": "int",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverwriteSkillUIInfo",
+            "Description": "生效范围：服务器&客户端\n\t  更改UI信息，但双端不同步",
+            "Params": [
+                {
+                    "Name": "SkillName",
+                    "Type": "FName ",
+                    "Description": "技能名字",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SkillDetail",
+                    "Type": "FString ",
+                    "Description": "技能描述",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SkillIconPath",
+                    "Type": "FString",
+                    "Description": "技能图标路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkillName",
+            "Description": "生效范围：服务器&客户端\n\t  获取技能名字",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "技能名字",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkillDetail",
+            "Description": "生效范围：服务器&客户端\n\t  获取技能描述",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "技能描述",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkillIconPath",
+            "Description": "生效范围：服务器&客户端\n\t  获取技能图标路径",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "技能图标路径",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetShowTipsEnable",
+            "Description": "生效范围：服务器\n\t  设置是否开启技能激活检查失败显示Tips",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": "是否开启提示",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlayActivateFailedSoundEnable",
+            "Description": "生效范围：服务器\n\t  设置是否开启技能激活检查失败播放提示音",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": "是否开启提示",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSelectTargetActor",
+            "Description": "获取技能目标角色",
+            "Params": [
+                {
+                    "Name": "SelectType",
+                    "Type": "EPESkillSelectTarget",
+                    "Description": "选择类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < AActor * > ",
+                    "Description": "技能目标角色",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSelectTargetActor",
+            "Description": "设置技能目标角色",
+            "Params": [
+                {
+                    "Name": "Actors",
+                    "Type": "TArray < AActor * > &",
+                    "Description": "Actor数组",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSelectTargetOneActor",
+            "Description": "设置技能目标角色",
+            "Params": [
+                {
+                    "Name": "pActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSelectDirection",
+            "Description": "设置技能方向",
+            "Params": [
+                {
+                    "Name": "Direction",
+                    "Type": "FVector &",
+                    "Description": "方向",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSelectDirection",
+            "Description": "获取技能方向",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "技能方向",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSelectTransform",
+            "Description": "获取技能目标位置",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const FTransform &",
+                    "Description": "技能目标位置",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSelectTransform",
+            "Description": "设置技能目标位置",
+            "Params": [
+                {
+                    "Name": "Transform",
+                    "Type": "FTransform &",
+                    "Description": "技能目标位置",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSelectTransforms",
+            "Description": "设置技能多目标位置",
+            "Params": [
+                {
+                    "Name": "Transforms",
+                    "Type": "TArray < FTransform > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSelectTransforms",
+            "Description": "获取技能多目标位置",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const TArray < FTransform > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearSelectTransforms",
+            "Description": "清除技能目标位置",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPersistEffectWithState",
+        "ISkillObjectInterface"
+    ],
+    "Event": [
+        {
+            "Name": "OnEnableSkill_BP",
+            "Description": "生效范围：服务器\n\t  技能可用通知",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnDisableSkill_BP",
+            "Description": "生效范围：服务器\n\t  技能不可用通知",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnActivateSkill_BP",
+            "Description": "生效范围：服务器\n\t  技能被触发",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnDeActivateSkill_BP",
+            "Description": "生效范围：服务器\n\t  技能结束",
+            "Params": [
+                {
+                    "Name": "Reason",
+                    "Type": "EPESkillDeActivateReason",
+                    "Description": "结束原因",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanActivateSkill_BP",
+            "Description": "生效范围：服务器&客户端\n\t  技能是否可用",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "技能是否可释放",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnCDStateChange_BP",
+            "Description": "生效范围：服务器&客户端\n\t  技能CD状态改变",
+            "Params": [
+                {
+                    "Name": "bIsCD",
+                    "Type": "bool",
+                    "Description": "技能是否CD中",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnInputActionTriggered_BP",
+            "Description": "生效范围：客户端\n\t  技能激活期间按键被按下或抬起",
+            "Params": [
+                {
+                    "Name": "InputEvent",
+                    "Type": "EPersistEffectClientEvent",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": [
+        {
+            "Name": "OnUIInfoChange",
+            "Description": "Event\n\t  生效范围：客户端\n\t  技能的UI信息改变事件",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CDStateChangeHandle",
+            "Description": "Event\n\t  生效范围：客户端\n\t  客户端同步技能CD状态变化",
+            "Params": [
+                {
+                    "Name": "IsTrue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

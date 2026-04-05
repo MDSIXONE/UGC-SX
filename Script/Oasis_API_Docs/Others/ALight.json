@@ -1,0 +1,251 @@
+{
+    "Name": "ALight",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LightComponent",
+            "Type": "ULightComponent *",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnabled",
+            "Type": "uint32",
+            "Description": "replicated copy of LightComponent's bEnabled property",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "OnRep_bEnabled",
+            "Description": "Replication Notification Callbacks",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEnabled",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bSetEnabled",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsEnabled",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ToggleEnabled",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBrightness",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewBrightness",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBrightness",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightColor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewLightColor",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLightColor",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightFunctionMaterial",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewLightFunctionMaterial",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightFunctionScale",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewLightFunctionScale",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightFunctionFadeDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewLightFunctionFadeDistance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCastShadows",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAffectTranslucentLighting",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

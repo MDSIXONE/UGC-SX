@@ -1,0 +1,37 @@
+{
+    "Name": "UParticleModuleAttractorPointGravity",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Position",
+            "Type": "FVector",
+            "Description": "The position of the point gravity source.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Radius",
+            "Type": "float",
+            "Description": "The distance at which the influence of the point begins to falloff.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Strength_DEPRECATED",
+            "Type": "UDistributionFloat *",
+            "Description": "The strength of the point source.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StrengthRaw",
+            "Type": "FRawDistributionFloat",
+            "Description": "The strength of the point source.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleAttractorBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,20 @@
+{
+    "Name": "UMovieSceneStringSection",
+    "Description": "A single string section",
+    "Variables": [
+        {
+            "Name": "StringCurve",
+            "Type": "FStringCurve",
+            "Description": "Curve data",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection",
+        "IKeyframeSection<FString>"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

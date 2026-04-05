@@ -1,0 +1,67 @@
+{
+    "Name": "UReflectionCaptureComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CaptureOffsetComponent",
+            "Type": "UBillboardComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReflectionSourceType",
+            "Type": "EReflectionSourceType",
+            "Description": "Indicates where to get the reflection source from.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IndoorOutdoorMask",
+            "Type": "TEnumAsByte < EIndoorOutdoorMask >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Cubemap",
+            "Type": "UTextureCube *",
+            "Description": "Cubemap to use for reflection if ReflectionSourceType is set to RS_SpecifiedCubemap.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceCubemapAngle",
+            "Type": "float",
+            "Description": "Angle to rotate the source cubemap when SourceType is set to SLS_SpecifiedCubemap.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Brightness",
+            "Type": "float",
+            "Description": "A brightness control to scale the captured scene's reflection intensity.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CaptureOffset",
+            "Type": "FVector",
+            "Description": "World space offset to apply before capturing.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EnabledPlatform",
+            "Type": "EReflectionPlatform",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StateId",
+            "Type": "FGuid",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

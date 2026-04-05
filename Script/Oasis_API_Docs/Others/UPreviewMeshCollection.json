@@ -1,0 +1,26 @@
+{
+    "Name": "UPreviewMeshCollection",
+    "Description": "A simple collection of skeletal meshes used for in-editor preview",
+    "Variables": [
+        {
+            "Name": "Skeleton",
+            "Type": "USkeleton *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkeletalMeshes",
+            "Type": "TArray < FPreviewMeshCollectionEntry >",
+            "Description": "The skeletal meshes that this collection contains",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDataAsset",
+        "IPreviewCollectionInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,25 @@
+{
+    "Name": "UWidget3DInstancedComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "PerInstanceData",
+            "Type": "TArray < FInstancedWidget3DInstanceData >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstancingRandomSeed",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWidgetComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

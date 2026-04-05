@@ -1,0 +1,49 @@
+{
+    "Name": "UBTDecorator_Blackboard",
+    "Description": "Blackboard decorator node.\n  A decorator node that bases its condition on a Blackboard key.",
+    "Variables": [
+        {
+            "Name": "IntValue",
+            "Type": "int32",
+            "Description": "value for arithmetic operations",
+            "Redirect": ""
+        },
+        {
+            "Name": "FloatValue",
+            "Type": "float",
+            "Description": "value for arithmetic operations",
+            "Redirect": ""
+        },
+        {
+            "Name": "StringValue",
+            "Type": "FString",
+            "Description": "value for string operations",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedDescription",
+            "Type": "FString",
+            "Description": "cached description",
+            "Redirect": ""
+        },
+        {
+            "Name": "OperationType",
+            "Type": "uint8",
+            "Description": "operation type",
+            "Redirect": ""
+        },
+        {
+            "Name": "NotifyObserver",
+            "Type": "TEnumAsByte < EBTBlackboardRestart :: Type >",
+            "Description": "when observer can try to request abort?",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTDecorator_BlackboardBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

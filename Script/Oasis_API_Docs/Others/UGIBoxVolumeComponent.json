@@ -1,0 +1,117 @@
+{
+    "Name": "UGIBoxVolumeComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Extents",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeExtents_Neg",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeExtents_Pos",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOutdoorTransition",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumeAlpha",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Brightness",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkyIntensity",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Priority",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AmbientCube2",
+            "Type": "FAmbientCube2",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DebugColor",
+            "Type": "FColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TransitionDistance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AmbientCube",
+            "Type": "FAmbientCube",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseCustomCapture",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOldCubemap",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CapturedTransform",
+            "Type": "FTransform",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "CaptureSceneToAmbientCube",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

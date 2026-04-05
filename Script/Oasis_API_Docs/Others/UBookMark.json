@@ -1,0 +1,31 @@
+{
+    "Name": "UBookMark",
+    "Description": "A camera position the current level.",
+    "Variables": [
+        {
+            "Name": "Location",
+            "Type": "FVector",
+            "Description": "Camera position",
+            "Redirect": ""
+        },
+        {
+            "Name": "Rotation",
+            "Type": "FRotator",
+            "Description": "Camera rotation",
+            "Redirect": ""
+        },
+        {
+            "Name": "HiddenLevels",
+            "Type": "TArray < FString >",
+            "Description": "Array of levels that are hidden",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

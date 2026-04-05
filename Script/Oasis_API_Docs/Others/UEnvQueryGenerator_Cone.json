@@ -1,0 +1,49 @@
+{
+    "Name": "UEnvQueryGenerator_Cone",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "AlignedPointsDistance",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "Distance between each point of the same angle",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConeDegrees",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "Maximum degrees of the generated cone",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngleStep",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "The step of the angle increase. Angle step must be >=1\n\t   Smaller values generate less items",
+            "Redirect": ""
+        },
+        {
+            "Name": "Range",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "Generation distance",
+            "Redirect": ""
+        },
+        {
+            "Name": "CenterActor",
+            "Type": "TSubclassOf < UEnvQueryContext >",
+            "Description": "The actor (or actors) that will generate a cone in their facing direction",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIncludeContextLocation",
+            "Type": "uint8",
+            "Description": "Whether to include CenterActors' locations when generating items. \n\t \tNote that this option skips the MinAngledPointsDistance parameter.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UEnvQueryGenerator_ProjectedPoints"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,25 @@
+{
+    "Name": "UParticleModuleAcceleration",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Acceleration",
+            "Type": "FRawDistributionVector",
+            "Description": "The initial acceleration of the particle.\n\t \tValue is obtained using the EmitterTime at particle spawn.\n\t \tEach frame, the current and base velocity of the particle \n\t \tis then updated using the formula \n\t \t\tvelocity += acceleration  DeltaTime\n\t \twhere DeltaTime is the time passed since the last frame.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bApplyOwnerScale",
+            "Type": "uint32",
+            "Description": "If true, then apply the particle system components scale \n\t \tto the acceleration value.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleAccelerationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

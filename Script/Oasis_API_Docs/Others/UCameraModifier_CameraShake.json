@@ -1,0 +1,31 @@
+{
+    "Name": "UCameraModifier_CameraShake",
+    "Description": "A UCameraModifier_CameraShake is a camera modifier that can apply a UCameraShake to \n  the owning camera.",
+    "Variables": [
+        {
+            "Name": "ActiveShakes",
+            "Type": "TArray < UCameraShake * >",
+            "Description": "List of active CameraShake instances",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplitScreenShakeScale",
+            "Type": "float",
+            "Description": "Scaling factor applied to all camera shakes in when in splitscreen mode. Normally used to reduce shaking, since shakes feel more intense in a smaller viewport.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CacheShakeInsMap",
+            "Type": "TMap < TSubclassOf < UCameraShake > , FCacheCameraShakeData >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UCameraModifier"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

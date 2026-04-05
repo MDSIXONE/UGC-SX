@@ -1,0 +1,451 @@
+{
+    "Name": "UGameInstance",
+    "Description": "GameInstance: high-level manager object for an instance of the running game.\n  Spawned at game creation and not destroyed until game instance is shut down.\n  Running as a standalone game, there will be one of these.\n  Running in PIE (play-in-editor) will generate one of these per PIE instance.",
+    "Variables": [
+        {
+            "Name": "EncryptedLocalPlayers",
+            "Type": "TArray < int64 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LocalPlayers",
+            "Type": "TArray < ULocalPlayer * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnlineSession",
+            "Type": "UOnlineSession *",
+            "Description": "Class to manage online services",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseEncryptLocalPlayerPtr",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DSHUD",
+            "Type": "UObject *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedConsoleVariableBunch_Groups",
+            "Type": "TArray < TArray < uint8 > >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedConsoleVariableBunch_BigWorld",
+            "Type": "TArray < uint8 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedConsoleVariableBunch_Permanent",
+            "Type": "TArray < uint8 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpecialPakResStates",
+            "Type": "TMap < ESpecialPakID , EPakResState >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ReceiveInit",
+            "Description": "Opportunity for blueprints to handle the game instance being initialized.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveShutdown",
+            "Description": "Opportunity for blueprints to handle the game instance being shutdown.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HandleNetworkError",
+            "Description": "Opportunity for blueprints to handle network errors.",
+            "Params": [
+                {
+                    "Name": "FailureType",
+                    "Type": "ENetworkFailure :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIsServer",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HandleTravelError",
+            "Description": "Opportunity for blueprints to handle travel errors.",
+            "Params": [
+                {
+                    "Name": "FailureType",
+                    "Type": "ETravelFailure :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DebugCreatePlayer",
+            "Description": "Local player access \n\t\n\t  Debug console command to create a player.",
+            "Params": [
+                {
+                    "Name": "ControllerId",
+                    "Type": "int32",
+                    "Description": "- The controller ID the player should accept input from.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DebugRemovePlayer",
+            "Description": "Debug console command to remove the player with a given controller ID.",
+            "Params": [
+                {
+                    "Name": "ControllerId",
+                    "Type": "int32",
+                    "Description": "- The controller ID to search for.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetDynaConfigAndDynaCVar",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetDynaConfig",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SendConsoleVariableBunch",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "CVarType",
+                    "Type": "ECVarType ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Connection",
+                    "Type": "UNetConnection *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveConsoleVariableBunch_BigWorld",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InConsoleVariablesBunch",
+                    "Type": "TArray < uint8 >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveConsoleVariableBunch_Permanent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InConsoleVariablesBunch",
+                    "Type": "TArray < uint8 >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableConsoleVariableBunch",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "CVarType",
+                    "Type": "ECVarType ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bMapIsBigWorld",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearConsoleVariableBunch",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "CVarType",
+                    "Type": "ECVarType",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetConsoleVariable",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "CVarType",
+                    "Type": "ECVarType",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPakResState",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InPakID",
+                    "Type": "ESpecialPakID ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPakState",
+                    "Type": "EPakResState",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPakResState",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InPakID",
+                    "Type": "ESpecialPakID",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPakResState ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsPlatformSplitPakRes",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InPakID",
+                    "Type": "ESpecialPakID",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPakSplitState ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitPakResState",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "FExec"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnPakResStateChanged",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InPakID",
+                    "Type": "ESpecialPakID",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPakOldState",
+                    "Type": "EPakResState",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPakNewState",
+                    "Type": "EPakResState",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

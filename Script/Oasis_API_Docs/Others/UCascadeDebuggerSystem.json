@@ -1,0 +1,19 @@
+{
+    "Name": "UCascadeDebuggerSystem",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StatFont",
+            "Type": "UFont *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

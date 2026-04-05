@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionChromaticAberrationCustomOutput",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Input",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionCustomOutput"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

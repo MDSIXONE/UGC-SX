@@ -1,0 +1,31 @@
+{
+    "Name": "UDistributionVector",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bCanBeBaked",
+            "Type": "uint32",
+            "Description": "Can this variable be baked out to a FRawDistribution? Should be true 99% of the time",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsDirty",
+            "Type": "uint32",
+            "Description": "Set internally when the distribution is updated so that that FRawDistribution can know to update itself",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBakedDataSuccesfully",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDistribution"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

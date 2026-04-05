@@ -1,0 +1,219 @@
+{
+    "Name": "UPawnSensingComponent",
+    "Description": "SensingComponent encapsulates sensory (ie sight and hearing) settings and functionality for an Actor,\n  allowing the actor to seehear Pawns in the world. It does nothing on network clients.",
+    "Variables": [
+        {
+            "Name": "HearingThreshold",
+            "Type": "float",
+            "Description": "Max distance at which a makenoise(1.0) loudness sound can be heard, regardless of occlusion",
+            "Redirect": ""
+        },
+        {
+            "Name": "LOSHearingThreshold",
+            "Type": "float",
+            "Description": "Max distance at which a makenoise(1.0) loudness sound can be heard if unoccluded (LOSHearingThreshold should be > HearingThreshold)",
+            "Redirect": ""
+        },
+        {
+            "Name": "SightRadius",
+            "Type": "float",
+            "Description": "Maximum sight distance.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SensingInterval",
+            "Type": "float",
+            "Description": "Amount of time between pawn sensing updates. Use SetSensingInterval() to adjust this at runtime. A value <= 0 prevents any updates.",
+            "Redirect": ""
+        },
+        {
+            "Name": "HearingMaxSoundAge",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableSensingUpdates",
+            "Type": "uint32",
+            "Description": "If true, component will perform sensing updates. At runtime change this using SetSensingUpdatesEnabled().",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOnlySensePlayers",
+            "Type": "uint32",
+            "Description": "If true, will only sense player-controlled pawns in the world. Default: true",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSeePawns",
+            "Type": "uint32",
+            "Description": "If true, we will perform visibility tests and will trigger notifications when a Pawn is visible. Default: true",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHearNoises",
+            "Type": "uint32",
+            "Description": "If true, we will perform audibility tests and will be notified when a Pawn makes a noise that can be heard. Default: true\n\t  IMPORTANT NOTE: If we can see pawns (bSeePawns is true), and the pawn is visible, noise notifications are not triggered.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PeripheralVisionAngle",
+            "Type": "float",
+            "Description": "How far to the side AI can see, in degrees. Use SetPeripheralVisionAngle to change the value at runtime.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PeripheralVisionCosine",
+            "Type": "float",
+            "Description": "Cosine of limits of peripheral vision. Computed from PeripheralVisionAngle.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetSensingInterval",
+            "Description": "Changes the SensingInterval.\n\t  If we are currently waiting for an interval, this can either extend or shorten that interval.\n\t  A value <= 0 prevents any updates.",
+            "Params": [
+                {
+                    "Name": "NewSensingInterval",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSensingUpdatesEnabled",
+            "Description": "Enables or disables sensing updates. The timer is reset in either case.",
+            "Params": [
+                {
+                    "Name": "bEnabled",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPeripheralVisionAngle",
+            "Description": "Sets PeripheralVisionAngle. Calculates PeripheralVisionCosine from PeripheralVisionAngle",
+            "Params": [
+                {
+                    "Name": "NewPeripheralVisionAngle",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPeripheralVisionAngle",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPeripheralVisionCosine",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnSeePawn",
+            "Description": "Delegate to execute when we see a Pawn.",
+            "Params": [
+                {
+                    "Name": "Pawn",
+                    "Type": "APawn*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnHearNoise",
+            "Description": "Delegate to execute when we hear a noise from a Pawn's PawnNoiseEmitterComponent.",
+            "Params": [
+                {
+                    "Name": "Instigator",
+                    "Type": "APawn*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "const FVector&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Volume",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

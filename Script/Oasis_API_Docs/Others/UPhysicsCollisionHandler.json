@@ -1,0 +1,37 @@
+{
+    "Name": "UPhysicsCollisionHandler",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ImpactThreshold",
+            "Type": "float",
+            "Description": "How hard an impact must be to trigger effectsound",
+            "Redirect": ""
+        },
+        {
+            "Name": "ImpactReFireDelay",
+            "Type": "float",
+            "Description": "Min time between effectsound being triggered",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultImpactSound",
+            "Type": "USoundBase *",
+            "Description": "Sound to play",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastImpactSoundTime",
+            "Type": "float",
+            "Description": "Time since last impact sound",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

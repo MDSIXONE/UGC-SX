@@ -1,0 +1,31 @@
+{
+    "Name": "ULayer",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LayerName",
+            "Type": "FName",
+            "Description": "The display name of the layer",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsVisible",
+            "Type": "uint32",
+            "Description": "Whether actors associated with the layer are visible in the viewport",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActorStats",
+            "Type": "TArray < FLayerActorStats >",
+            "Description": "Basic stats regarding the number of Actors and their types currently assigned to the Layer",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

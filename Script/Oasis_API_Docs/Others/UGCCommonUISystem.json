@@ -1,0 +1,49 @@
+{
+    "Name": "UGCCommonUISystem",
+    "Description": "UI通用响应库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "AddDragSuccess",
+            "Description": "拖拽成功添加监听\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "InFunc",
+                    "Type": "function",
+                    "Description": "回调函数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Context",
+                    "Type": "table",
+                    "Description": "函数上下文",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RemoveDragSuccess",
+            "Description": "拖拽成功移除监听\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "InFunc",
+                    "Type": "function",
+                    "Description": "回调函数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Context",
+                    "Type": "table",
+                    "Description": "函数上下文",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "UMovieSceneParticleTrack",
+    "Description": "Handles triggering of particle emitters",
+    "Variables": [
+        {
+            "Name": "ParticleSections",
+            "Type": "TArray < UMovieSceneSection * >",
+            "Description": "List of all particle sections.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneNameableTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

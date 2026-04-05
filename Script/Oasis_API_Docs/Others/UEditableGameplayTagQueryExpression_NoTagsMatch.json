@@ -1,0 +1,19 @@
+{
+    "Name": "UEditableGameplayTagQueryExpression_NoTagsMatch",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Tags",
+            "Type": "FGameplayTagContainer",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UEditableGameplayTagQueryExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

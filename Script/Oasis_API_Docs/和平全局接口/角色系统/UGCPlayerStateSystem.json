@@ -1,0 +1,249 @@
+{
+    "Name": "UGCPlayerStateSystem",
+    "Description": "玩家数据/状态系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "IsAlive",
+            "Description": "是否存活\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsExit",
+            "Description": "是否离开游戏（主动退出，非断线）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUGCVIPLevel",
+            "Description": "获取 VIP Level\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerAccountInfo",
+            "Description": "获取玩家的账号数据\n生效范围：服务器 & 客户端",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FPlayerAccountInfo",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerBattleInfo",
+            "Description": "获取玩家的战斗数据\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FPlayerBattleInfo",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SavePlayerArchiveData",
+            "Description": "保存玩家存档数据（存档数据在 PIE 下无法跨对局保存和读取）!!!!注意，不能在对局结算之后保存存档数据，在对局结算后调用此接口无法成功保存存档数据\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "UID",
+                    "Type": "number",
+                    "Description": "玩家 UID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ArchiveData",
+                    "Type": "table",
+                    "Description": "存档数据",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerArchiveData",
+            "Description": "获取玩家存档数据（存档数据在 PIE 下无法跨对局保存和读取）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "UID",
+                    "Type": "number",
+                    "Description": "玩家 UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "存档数据",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearPlayerArchiveData",
+            "Description": "清理玩家存档数据（GM 指令，仅开发环境生效）\n生效范围：客户端",
+            "Params": null,
+            "Return": null
+        },
+        {
+            "Name": "GetPlayerPlatformGender",
+            "Description": "获取玩家账号性别\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlatformGender",
+                    "Type": "number",
+                    "Description": "从DS获取的玩家性别",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "UID",
+                    "Type": "number",
+                    "Description": "玩家UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "玩家账号性别，0 - 隐藏，1 - 男，2 - 女",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTeamID",
+            "Description": "获取 TeamID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerKeyInt64",
+            "Description": "获取 64 位玩家 PlayerKey\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerState",
+                    "Type": "PlayerState",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerKey",
+            "Description": "获取字符串玩家 PlayerKey\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerState",
+                    "Type": "PlayerState",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

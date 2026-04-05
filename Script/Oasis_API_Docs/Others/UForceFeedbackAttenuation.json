@@ -1,0 +1,19 @@
+{
+    "Name": "UForceFeedbackAttenuation",
+    "Description": "Wrapper class that can be created as an asset for force feedback attenuation properties which allows reuse\n  of the properties for multiple attenuation components",
+    "Variables": [
+        {
+            "Name": "Attenuation",
+            "Type": "FForceFeedbackAttenuationSettings",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

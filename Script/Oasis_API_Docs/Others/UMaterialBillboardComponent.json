@@ -1,0 +1,90 @@
+{
+    "Name": "UMaterialBillboardComponent",
+    "Description": "A 2d material that will be rendered always facing the camera.",
+    "Variables": [
+        {
+            "Name": "Elements",
+            "Type": "TArray < FMaterialSpriteElement >",
+            "Description": "Current array of material billboard elements",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetElements",
+            "Description": "Set all elements of this material billboard component",
+            "Params": [
+                {
+                    "Name": "NewElements",
+                    "Type": "TArray < FMaterialSpriteElement > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddElement",
+            "Description": "Adds an element to the sprite.",
+            "Params": [
+                {
+                    "Name": "Material",
+                    "Type": "UMaterialInterface * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DistanceToOpacityCurve",
+                    "Type": "UCurveFloat * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSizeIsInScreenSpace",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BaseSizeX",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BaseSizeY",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DistanceToSizeCurve",
+                    "Type": "UCurveFloat *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

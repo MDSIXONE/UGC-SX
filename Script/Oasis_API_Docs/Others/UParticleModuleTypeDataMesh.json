@@ -1,0 +1,121 @@
+{
+    "Name": "UParticleModuleTypeDataMesh",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Mesh",
+            "Type": "UStaticMesh *",
+            "Description": "The static mesh to render at the particle positions",
+            "Redirect": ""
+        },
+        {
+            "Name": "CastShadows",
+            "Type": "uint32",
+            "Description": "If true, has the meshes cast shadows",
+            "Redirect": ""
+        },
+        {
+            "Name": "DoCollisions",
+            "Type": "uint32",
+            "Description": "UNUSED (the collision module dictates doing collisions)",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshAlignment",
+            "Type": "TEnumAsByte < enum EMeshScreenAlignment >",
+            "Description": "The alignment to use on the meshes emitted.\n\t \tThe RequiredModule->ScreenAlignment MUST be set to PSA_TypeSpecific to use.\n\t \tOne of the following:\n\t \tPSMA_MeshFaceCameraWithRoll\n\t \t\tFace the camera allowing for rotation around the mesh-to-camera FVector \n\t \t\t(amount provided by the standard particle sprite rotation).  \n\t \tPSMA_MeshFaceCameraWithSpin\n\t \t\tFace the camera allowing for the mesh to rotate about the tangential axis.  \n\t \tPSMA_MeshFaceCameraWithLockedAxis\n\t \t\tFace the camera while maintaining the up FVector as the locked direction.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideMaterial",
+            "Type": "uint32",
+            "Description": "If true, use the emitter material when rendering rather than the one applied \n\t \tto the static mesh model.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideDefaultMotionBlurSettings",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableMotionBlur",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Pitch_DEPRECATED",
+            "Type": "float",
+            "Description": "deprecated properties for initial orientation",
+            "Redirect": ""
+        },
+        {
+            "Name": "Roll_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Yaw_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RollPitchYawRange",
+            "Type": "FRawDistributionVector",
+            "Description": "The 'pre' rotation pitch (in degrees) to apply to the static mesh used.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AxisLockOption",
+            "Type": "TEnumAsByte < EParticleAxisLock >",
+            "Description": "The axis to lock the mesh on. This overrides TypeSpecific mesh alignment as well as the LockAxis module.\n\t \t\tEPAL_NONE\t\t -\tNo locking to an axis.\n\t \t\tEPAL_X\t\t\t -\tLock the mesh X-axis facing towards +X.\n\t \t\tEPAL_Y\t\t\t -\tLock the mesh X-axis facing towards +Y.\n\t \t\tEPAL_Z\t\t\t -\tLock the mesh X-axis facing towards +Z.\n\t \t\tEPAL_NEGATIVE_X\t -\tLock the mesh X-axis facing towards -X.\n\t \t\tEPAL_NEGATIVE_Y\t -\tLock the mesh X-axis facing towards -Y.\n\t \t\tEPAL_NEGATIVE_Z\t -\tLock the mesh X-axis facing towards -Z.\n\t \t\tEPAL_ROTATE_X\t -\tIgnored for mesh emitters. Treated as EPAL_NONE.\n\t \t\tEPAL_ROTATE_Y\t -\tIgnored for mesh emitters. Treated as EPAL_NONE.\n\t \t\tEPAL_ROTATE_Z\t -\tIgnored for mesh emitters. Treated as EPAL_NONE.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCameraFacing",
+            "Type": "uint32",
+            "Description": "If true, then point the X-axis of the mesh towards the camera.\n\t \tWhen set, AxisLockOption as well as all other locked axisscreen alignment settings are ignored.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraFacingUpAxisOption_DEPRECATED",
+            "Type": "TEnumAsByte < enum EMeshCameraFacingUpAxis >",
+            "Description": "The axis of the mesh to point up when camera facing the X-axis.\n\t \t\tCameraFacing_NoneUP\t\t\tNo attempt to face an axis up or down.\n\t \t\tCameraFacing_ZUp\t\t\tZ-axis of the mesh should attempt to point up.\n\t \t\tCameraFacing_NegativeZUp\tZ-axis of the mesh should attempt to point down.\n\t \t\tCameraFacing_YUp\t\t\tY-axis of the mesh should attempt to point up.\n\t \t\tCameraFacing_NegativeYUp\tY-axis of the mesh should attempt to point down.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraFacingOption",
+            "Type": "TEnumAsByte < enum EMeshCameraFacingOptions >",
+            "Description": "The camera facing option to use:\n\t \tAll camera facing options without locked axis assume X-axis will be facing the camera.\n\t \t\tXAxisFacing_NoUp\t\t\t\t- X-axis camera facing, no attempt to face an axis up or down.\n\t \t\tXAxisFacing_ZUp\t\t\t\t\t- X-axis camera facing, Z-axis of the mesh should attempt to point up.\n\t \t\tXAxisFacing_NegativeZUp\t\t\t- X-axis camera facing, Z-axis of the mesh should attempt to point down.\n\t \t\tXAxisFacing_YUp\t\t\t\t\t- X-axis camera facing, Y-axis of the mesh should attempt to point up.\n\t \t\tXAxisFacing_NegativeYUp\t\t\t- X-axis camera facing, Y-axis of the mesh should attempt to point down.\n\t \tAll axis-locked camera facing options assume the AxisLockOption is set. EPAL_NONE will be treated as EPAL_X.\n\t \t\tLockedAxis_ZAxisFacing\t\t\t- X-axis locked on AxisLockOption axis, rotate Z-axis of the mesh to face towards camera.\n\t \t\tLockedAxis_NegativeZAxisFacing\t- X-axis locked on AxisLockOption axis, rotate Z-axis of the mesh to face away from camera.\n\t \t\tLockedAxis_YAxisFacing\t\t\t- X-axis locked on AxisLockOption axis, rotate Y-axis of the mesh to face towards camera.\n\t \t\tLockedAxis_NegativeYAxisFacing\t- X-axis locked on AxisLockOption axis, rotate Y-axis of the mesh to face away from camera.\n\t \tAll velocity-aligned options do NOT require the ScreenAlignment be set to PSA_Velocity.\n\t \tDoing so will result in additional work being performed... (it will orient the mesh twice).\n\t \t\tVelocityAligned_ZAxisFacing         - X-axis aligned to the velocity, rotate the Z-axis of the mesh to face towards camera.\n\t \t\tVelocityAligned_NegativeZAxisFacing - X-axis aligned to the velocity, rotate the Z-axis of the mesh to face away from camera.\n\t \t\tVelocityAligned_YAxisFacing         - X-axis aligned to the velocity, rotate the Y-axis of the mesh to face towards camera.\n\t \t\tVelocityAligned_NegativeYAxisFacing - X-axis aligned to the velocity, rotate the Y-axis of the mesh to face away from camera.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bApplyParticleRotationAsSpin",
+            "Type": "uint32",
+            "Description": "If true, apply 'sprite' particle rotation about the orientation axis (direction mesh is pointing).\n\t \tIf false, apply 'sprite' particle rotation about the camera facing axis.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFaceCameraDirectionRatherThanPosition",
+            "Type": "uint32",
+            "Description": "If true, all camera facing options will point the mesh against the camera's view direction rather than pointing at the cameras location. \n\t\tIf false, the camera facing will point to the cameras position as normal.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCollisionsConsiderPartilceSize",
+            "Type": "uint32",
+            "Description": "If true, all collisions for mesh particle on this emitter will take the particle size into account.\n\t\tIf false, particle size will be ignored in collision checks.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleTypeDataBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,32 @@
+{
+    "Name": "UDefaultLevelSequenceInstanceData",
+    "Description": "Default instance data class that level sequences understand. Implements IMovieSceneTransformOrigin.",
+    "Variables": [
+        {
+            "Name": "TransformOriginActor",
+            "Type": "AActor *",
+            "Description": "When set, this actor's world position will be used as the transform origin for all absolute transform sections",
+            "Redirect": ""
+        },
+        {
+            "Name": "TransformOrigin",
+            "Type": "FTransform",
+            "Description": "Specifies a transform that offsets all absolute transform sections in this sequence. Will compound with attach tracks. Scale is ignored. Not applied to Relative or Additive sections.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShouldIgnoreScale",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IMovieSceneTransformOrigin"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

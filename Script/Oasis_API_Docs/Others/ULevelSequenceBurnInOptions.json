@@ -1,0 +1,31 @@
+{
+    "Name": "ULevelSequenceBurnInOptions",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bUseBurnIn",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BurnInClass",
+            "Type": "FSoftClassPath",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Settings",
+            "Type": "ULevelSequenceBurnInInitSettings *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

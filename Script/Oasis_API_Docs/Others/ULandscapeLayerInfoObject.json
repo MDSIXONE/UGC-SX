@@ -1,0 +1,37 @@
+{
+    "Name": "ULandscapeLayerInfoObject",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LayerName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PhysMaterial",
+            "Type": "UPhysicalMaterial *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Hardness",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LayerUsageDebugColor",
+            "Type": "FLinearColor",
+            "Description": "The color to use for layer usage debug",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

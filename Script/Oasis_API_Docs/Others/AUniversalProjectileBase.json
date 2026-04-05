@@ -1,0 +1,99 @@
+{
+    "Name": "AUniversalProjectileBase",
+    "Description": "通用抛体",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "ReceiveCustomFilter",
+            "Description": "自定义的过滤器接口\n\t 生效范围：SC",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceivePlayExplosionEffectToAllTarget",
+            "Description": "自定义爆炸范围内筛选过后所有碰撞结果接口\n\t 生效范围：S",
+            "Params": [
+                {
+                    "Name": "FoundTargets",
+                    "Type": "TArray < FHitResult > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceivePlayExplosionEffect",
+            "Description": "自定义爆炸范围内筛选过后碰撞接口\n\t 生效范围：S",
+            "Params": [
+                {
+                    "Name": "ExplosionTarget",
+                    "Type": "FHitResult &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveBeginExplodeTimer",
+            "Description": "爆炸开始计时的额外接口（如果有延时爆炸）\n\t 生效范围：S",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveEndExplodeTimer",
+            "Description": "爆炸停止计时的额外接口（如果有延时爆炸）\n\t 生效范围：S",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AUniversalProjectileCore"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

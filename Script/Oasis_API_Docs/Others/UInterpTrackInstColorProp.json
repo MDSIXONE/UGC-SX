@@ -1,0 +1,19 @@
+{
+    "Name": "UInterpTrackInstColorProp",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ResetColor",
+            "Type": "FColor",
+            "Description": "Saved value for restoring state when exiting Matinee.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInstProperty"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "USoundNodeBranch",
+    "Description": "Selects a child node based on the value of a boolean parameter",
+    "Variables": [
+        {
+            "Name": "BoolParameterName",
+            "Type": "FName",
+            "Description": "The name of the boolean parameter to use to determine which branch we should take",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

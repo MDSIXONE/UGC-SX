@@ -1,0 +1,88 @@
+{
+    "Name": "UPawnNoiseEmitterComponent",
+    "Description": "PawnNoiseEmitterComponent tracks noise event data used by SensingComponents to hear a Pawn.\n  This component is intended to exist on either a Pawn or its Controller. It does nothing on network clients.",
+    "Variables": [
+        {
+            "Name": "bAIPerceptionSystemCompatibilityMode",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastRemoteNoisePosition",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseLifetime",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastRemoteNoiseVolume",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastRemoteNoiseTime",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastLocalNoiseVolume",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastLocalNoiseTime",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "MakeNoise",
+            "Description": "Cache noises instigated by the owning pawn for AI sensing ",
+            "Params": [
+                {
+                    "Name": "NoiseMaker",
+                    "Type": "AActor * ",
+                    "Description": "- is the actual actor which made the noise",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Loudness",
+                    "Type": "float ",
+                    "Description": "- is the relative loudness of the noise (0.0 to 1.0)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NoiseLocation",
+                    "Type": "FVector &",
+                    "Description": "- is the position of the noise",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

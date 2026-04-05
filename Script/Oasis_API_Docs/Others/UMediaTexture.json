@@ -1,0 +1,96 @@
+{
+    "Name": "UMediaTexture",
+    "Description": "Implements a texture asset for rendering video tracks from UMediaPlayer assets.",
+    "Variables": [
+        {
+            "Name": "AddressX",
+            "Type": "TEnumAsByte < TextureAddress >",
+            "Description": "The addressing mode to use for the X axis.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AddressY",
+            "Type": "TEnumAsByte < TextureAddress >",
+            "Description": "The addressing mode to use for the Y axis.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AutoClear",
+            "Type": "bool",
+            "Description": "Whether to clear the texture when no media is being played (default = enabled).",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearColor",
+            "Type": "FLinearColor",
+            "Description": "The color used to clear the texture if AutoClear is enabled (default = black).",
+            "Redirect": ""
+        },
+        {
+            "Name": "MediaPlayer",
+            "Type": "UMediaPlayer *",
+            "Description": "The media player asset associated with this texture.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetAspectRatio",
+            "Description": "Gets the current aspect ratio of the texture.\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "Texture aspect ratio.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetHeight",
+            "Description": "Gets the current height of the texture.\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "Texture height (in pixels).",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWidth",
+            "Description": "Gets the current width of the texture.\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "Texture width (in pixels).",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetFirstFrame",
+            "Description": "Reset The IsFirstFrameRender&IsFirstFrameNotify to false for iOS",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UTexture"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

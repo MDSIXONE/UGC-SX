@@ -1,0 +1,31 @@
+{
+    "Name": "UInterpTrackFade",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bPersistFade",
+            "Type": "uint32",
+            "Description": "InterpTrackFade\n\t \n\t  Special float property track that controls camera fading over time.\n\t  Should live in a Director group.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFadeAudio",
+            "Type": "uint32",
+            "Description": "True to set master audio volume along with the visual fade.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeColor",
+            "Type": "FLinearColor",
+            "Description": "Color to fade to.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackFloatBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

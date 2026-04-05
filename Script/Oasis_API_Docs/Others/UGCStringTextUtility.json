@@ -1,0 +1,374 @@
+{
+    "Name": "UGCStringTextUtility",
+    "Description": "文本系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "ExportText",
+            "Description": "导出对象文本，会根据传入的对象类型打印关键信息",
+            "Params": [
+                {
+                    "Name": "Object",
+                    "Type": "string",
+                    "Description": "文本对象",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "文本字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TrimStartOrEnd",
+            "Description": "修剪字符串的起始和结尾，根据传入的TrimStart和TrimEnd去除字符串头尾的空白字符",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TrimStart",
+                    "Type": "boolean",
+                    "Description": "是否修剪起始",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TrimEnd",
+                    "Type": "boolean",
+                    "Description": "是否修剪结尾",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "修剪后的字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SplitToArray",
+            "Description": "将字符串按照分隔符分割成数组",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Separator",
+                    "Type": "string",
+                    "Description": "分隔符",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartsWith",
+            "Description": "判断字符串是否以指定的前缀开头",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPrefix",
+                    "Type": "string",
+                    "Description": "前缀",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchCase",
+                    "Type": "ESearchCase",
+                    "Description": "是否区分大小写",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否以指定的前缀开头",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EndWith",
+            "Description": "判断字符串是否以指定的后缀结尾",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSuffix",
+                    "Type": "string",
+                    "Description": "后缀",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchCase",
+                    "Type": "ESearchCase",
+                    "Description": "是否区分大小写",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否以指定的后缀结尾",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InsertIntoString",
+            "Description": "在字符串的指定位置插入内容",
+            "Params": [
+                {
+                    "Name": "SourceStr",
+                    "Type": "string",
+                    "Description": "源字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Content",
+                    "Type": "string",
+                    "Description": "插入内容",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Position",
+                    "Type": "number",
+                    "Description": "插入位置",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "JoinArrayIntoString",
+            "Description": "将字符串数组连接成字符串",
+            "Params": [
+                {
+                    "Name": "InStrArray",
+                    "Type": "table",
+                    "Description": "字符串数组",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Separator",
+                    "Type": "string",
+                    "Description": "分隔符",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SplitToCharArray",
+            "Description": "将字符串分割成字符数组",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "字符数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ComposedOfDigits",
+            "Description": "判断字符串是否由数字组成",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否由数字组成",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LeftChop",
+            "Description": "截断字符串的前n个字符",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "字符数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LeftPad",
+            "Description": "在字符串的左侧填充空白字符使得字符串长度达到指定的长度",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StrLen",
+                    "Type": "number",
+                    "Description": "指定的长度",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RightChop",
+            "Description": "截断字符串的后n个字符",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "字符数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RightPad",
+            "Description": "在字符串的右侧填充空白字符使得字符串长度达到指定的长度",
+            "Params": [
+                {
+                    "Name": "InStr",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StrLen",
+                    "Type": "number",
+                    "Description": "指定的长度",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "字符串",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LogTree",
+            "Description": "打印变量,特别是对table类型做树形输出,仅DEV打印",
+            "Params": [
+                {
+                    "Name": "Desc",
+                    "Type": "string",
+                    "Description": "变量描述",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Var",
+                    "Type": "any",
+                    "Description": "要输出的变量,可以是任何类型table, bool, number, nil",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

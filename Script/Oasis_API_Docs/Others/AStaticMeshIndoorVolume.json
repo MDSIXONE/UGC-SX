@@ -1,0 +1,19 @@
+{
+    "Name": "AStaticMeshIndoorVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "VolumeComponent",
+            "Type": "UStaticMeshIndoorVolumeComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,31 @@
+{
+    "Name": "UPawnAction_Repeat",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ActionToRepeat",
+            "Type": "UPawnAction *",
+            "Description": "Action to repeat. This instance won't really be run, it's a source for copying actions to be actually performed",
+            "Redirect": ""
+        },
+        {
+            "Name": "RecentActionCopy",
+            "Type": "UPawnAction *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChildFailureHandlingMode",
+            "Type": "TEnumAsByte < EPawnActionFailHandling :: Type >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPawnAction"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

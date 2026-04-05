@@ -1,0 +1,31 @@
+{
+    "Name": "ANote",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Text",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteComponent",
+            "Type": "UBillboardComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArrowComponent",
+            "Type": "UArrowComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

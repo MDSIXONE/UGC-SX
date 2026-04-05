@@ -1,0 +1,43 @@
+{
+    "Name": "UMaterialExpressionSobol",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Cell",
+            "Type": "FExpressionInput",
+            "Description": "2D integer cell in 256x256 grid.\n\t   Uses cell (0,0) if not connected",
+            "Redirect": ""
+        },
+        {
+            "Name": "Index",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Seed",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstIndex",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstSeed",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

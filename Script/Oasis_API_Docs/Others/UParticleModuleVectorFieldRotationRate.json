@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleVectorFieldRotationRate",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RotationRate",
+            "Type": "FVector",
+            "Description": "Constant rotation rate applied to the local vector field.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVectorFieldBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

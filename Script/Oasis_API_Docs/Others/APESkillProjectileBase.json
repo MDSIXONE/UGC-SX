@@ -1,0 +1,111 @@
+{
+    "Name": "APESkillProjectileBase",
+    "Description": "通用抛体V2",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "AUniversalProjectileCore"
+    ],
+    "Event": [
+        {
+            "Name": "ReceiveOnImpactBP",
+            "Description": "碰撞时处理Action前的额外接口\n\t 生效范围：SC",
+            "Params": [
+                {
+                    "Name": "ImpactResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TargetData",
+                    "Type": "FPESkillTargetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PostReceiveOnImpactBP",
+            "Description": "碰撞处理Action结束后的额外接口\n\t 生效范围：SC",
+            "Params": [
+                {
+                    "Name": "ImpactResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TargetData",
+                    "Type": "FPESkillTargetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveStoppedBP",
+            "Description": "完全停止后的额外接口\n\t 生效范围：SC",
+            "Params": [
+                {
+                    "Name": "LastHitResult",
+                    "Type": "FHitResult &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SearchTargetActorByPriorityBP",
+            "Description": "弹射轨迹的自定义优先级算法\n\t 生效范围：S",
+            "Params": [
+                {
+                    "Name": "InActors",
+                    "Type": "TArray < AActor * > & ",
+                    "Description": "传入的Actor数组",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CurrentTarget",
+                    "Type": "AActor *",
+                    "Description": "当前碰撞对象",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor * ",
+                    "Description": "AActor 最后返回的结果对象",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

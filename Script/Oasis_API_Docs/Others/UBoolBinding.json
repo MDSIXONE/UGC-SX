@@ -1,0 +1,26 @@
+{
+    "Name": "UBoolBinding",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetValue",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPropertyBinding"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

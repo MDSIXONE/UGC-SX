@@ -1,0 +1,99 @@
+{
+    "Name": "ANavigationData",
+    "Description": "Represents abstract Navigation Data (sub-classed as NavMesh, NavGraph, etc)\n \tUsed as a common interface for all navigation types handled by NavigationSystem",
+    "Variables": [
+        {
+            "Name": "RenderingComp",
+            "Type": "UPrimitiveComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavDataConfig",
+            "Type": "FNavDataConfig",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableDrawing",
+            "Type": "uint32",
+            "Description": "if set to true then this navigation data will be drawing itself when requested as part of \"show navigation\"",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceRebuildOnLoad",
+            "Type": "uint32",
+            "Description": "By default navigation will skip the first update after being successfully loaded\n\t  setting bForceRebuildOnLoad to false can override this behavior",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanBeMainNavData",
+            "Type": "uint32",
+            "Description": "If set, navigation data can act as default one in navigation system's queries",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanSpawnOnRebuild",
+            "Type": "uint32",
+            "Description": "If set, navigation data will be spawned in persistent level during rebuild if actor doesn't exist",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRebuildAtRuntime_DEPRECATED",
+            "Type": "uint32",
+            "Description": "If true, the NavMesh can be dynamically rebuilt at runtime.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RuntimeGeneration",
+            "Type": "ERuntimeGenerationType",
+            "Description": "Navigation data runtime generation options",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObservedPathsTickInterval",
+            "Type": "float",
+            "Description": "all observed paths will be processed every ObservedPathsTickInterval seconds",
+            "Redirect": ""
+        },
+        {
+            "Name": "AgentType",
+            "Type": "int32",
+            "Description": "AgentType for quick match",
+            "Redirect": ""
+        },
+        {
+            "Name": "DataVersion",
+            "Type": "uint32",
+            "Description": "Navigation data versioning.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SupportedAreas",
+            "Type": "TArray < FSupportedAreaData >",
+            "Description": "serialized area class - ID mapping",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "BuildTileSortSeedLocationDelegate",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray<FVector2D>",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

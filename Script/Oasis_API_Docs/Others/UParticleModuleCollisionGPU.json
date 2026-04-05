@@ -1,0 +1,67 @@
+{
+    "Name": "UParticleModuleCollisionGPU",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Resilience",
+            "Type": "FRawDistributionFloat",
+            "Description": "Dampens the velocity of a particle in the direction normal to the\n\t  collision plane.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ResilienceScaleOverLife",
+            "Type": "FRawDistributionFloat",
+            "Description": "Modulates the resilience of the particle over its lifetime.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Friction",
+            "Type": "float",
+            "Description": "Friction applied to all particles during a collision or while moving\n\t  along a surface.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomSpread",
+            "Type": "float",
+            "Description": "Controls how wide the bouncing particles are distributed (0 = disabled).",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomDistribution",
+            "Type": "float",
+            "Description": "Controls bouncing particles distribution (1 = uniform distribution; 2 = squared distribution).",
+            "Redirect": ""
+        },
+        {
+            "Name": "RadiusScale",
+            "Type": "float",
+            "Description": "Scale applied to the size of the particle to obtain the collision radius.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RadiusBias",
+            "Type": "float",
+            "Description": "Bias applied to the collision radius.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Response",
+            "Type": "TEnumAsByte < EParticleCollisionResponse :: Type >",
+            "Description": "How particles respond to a collision event.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionMode",
+            "Type": "TEnumAsByte < EParticleCollisionMode :: Type >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleCollisionBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

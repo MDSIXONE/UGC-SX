@@ -1,0 +1,19 @@
+{
+    "Name": "ALandscapeMeshProxyActor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LandscapeMeshProxyComponent",
+            "Type": "ULandscapeMeshProxyComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

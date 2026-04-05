@@ -1,0 +1,84 @@
+{
+    "Name": "UAISense_Prediction",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RegisteredEvents",
+            "Type": "TArray < FAIPredictionEvent >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "RequestControllerPredictionEvent",
+            "Description": "Asks perception system to supply Requestor with PredictedActor's predicted location in PredictionTime seconds\n\t \tLocation is being predicted based on PredicterActor's current location and velocity",
+            "Params": [
+                {
+                    "Name": "Requestor",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PredictedActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PredictionTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RequestPawnPredictionEvent",
+            "Description": "Asks perception system to supply Requestor with PredictedActor's predicted location in PredictionTime seconds\n\t \tLocation is being predicted based on PredicterActor's current location and velocity",
+            "Params": [
+                {
+                    "Name": "Requestor",
+                    "Type": "APawn * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PredictedActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PredictionTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UAISense"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

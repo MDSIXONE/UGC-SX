@@ -1,0 +1,19 @@
+{
+    "Name": "UMovieSceneCameraAnimTrack",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CameraAnimSections",
+            "Type": "TArray < UMovieSceneSection * >",
+            "Description": "List of all sections",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneNameableTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

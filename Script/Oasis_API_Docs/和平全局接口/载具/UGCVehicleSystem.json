@@ -1,0 +1,949 @@
+{
+    "Name": "UGCVehicleSystem",
+    "Description": "载具系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "SpawnVehicle",
+            "Description": "【废弃】请使用 UGCVehicleSystem.SpawnVehicleNew\n生成载具\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "VehicleID",
+                    "Type": "number",
+                    "Description": "载具表ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "Vector",
+                    "Description": "生成位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "Rotator",
+                    "Description": "旋转",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsForce",
+                    "Type": "boolean",
+                    "Description": "是否无视碰撞强行生成",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnterVehicle",
+            "Description": "进入载具\n仅限普通玩家控制的角色（Character）可以用\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Pawn",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "普通玩家",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatType",
+                    "Type": "ESTExtraVehicleSeatType",
+                    "Description": "座位类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsForce",
+                    "Type": "boolean",
+                    "Description": "是否无视距离和阻挡",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ExitVehicle",
+            "Description": "离开载具\n仅限普通玩家控制的角色可以用\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Pawn",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "普通玩家",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetVehicleSeatCount",
+            "Description": "获取载具的座位数量\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "载具的座位数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetVehicleSeatOccupiers",
+            "Description": "获取载具座位上的乘客列表（包括司机）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "对应的载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraBaseCharacter[]",
+                    "Description": "载具上的乘客们（包括司机）",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetVehicleSeatType",
+            "Description": "获取载具对应 SeatIndex 编号的座位类型\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位编号(从1开始)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ESTExtraVehicleSeatType",
+                    "Description": "载具座位类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOccupierBySeatIndex",
+            "Description": "获取 SeatIndex 编号获取对应座位上的乘客 Pawn\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位编号（从 1 开始）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "对应乘客，如果没有则返回 nil",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SpawnVehicleNew",
+            "Description": "使用蓝图路径生成载具\n不要在 Spawn 之后立马修改载具位置，等载具落地停稳后再修改，不然位置修改会失败（如果有类似需求，建议直接创建在对应点）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "VehicleBlueprintPath",
+                    "Type": "string",
+                    "Description": "载具蓝图路径，格式类似 /Game/Arts_PlayerBluePrints/Vehicle/VH_Buggy/BP_VH_Buggy.BP_VH_Buggy_C",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "Vector",
+                    "Description": "生成位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "Rotator",
+                    "Description": "旋转",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SnapFloor",
+                    "Type": "boolean",
+                    "Description": "是否贴地",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsForce",
+                    "Type": "boolean",
+                    "Description": "是否无视碰撞强行生成",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CharacterEnterVehicle",
+            "Description": "乘客进入载具\n仅限普通玩家控制的角色可以用\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "乘客",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatType",
+                    "Type": "ESTExtraVehicleSeatType",
+                    "Description": "座位类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsForce",
+                    "Type": "boolean",
+                    "Description": "是否无视距离和阻挡",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CharacterLeaveVehicle",
+            "Description": "乘客离开当前所在载具\n仅限普通玩家控制的角色可以用\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "乘客",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "TeleportVehicleTo",
+            "Description": "传送载具\n不要在 Spawn 之后立马传送载具，等载具落地停稳后再传送，不然传送会失败（如果有类似需求，建议直接创建在对应点）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "Vector",
+                    "Description": "位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotator",
+                    "Type": "Rotator",
+                    "Description": "旋转",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetForwardSpeed",
+            "Description": "获得载具当前速度(单位是cm/s)\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "载具当前速度",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsStoped",
+            "Description": "载具是否静止\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "载具是否静止",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsEngineStarted",
+            "Description": "载具引擎是否启动\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "载具引擎是否启动",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetVehicleHealthState",
+            "Description": "获得当前载具健康状态\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ESTExtraVehicleHealthState",
+                    "Description": "载具当前健康状态",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DestroySelf",
+            "Description": "摧毁载具\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "Respawn",
+            "Description": "重生载具\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetSeatState",
+            "Description": "指定座位上是否有人\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "指定座位上是否有人",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSeatNum",
+            "Description": "获得载具座位个数\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "载具座位个数",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWheelNum",
+            "Description": "获得轮胎数量\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "载具轮子数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsWheelDamageable",
+            "Description": "获得轮胎是否可以被摧毁\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WheelIndex",
+                    "Type": "number",
+                    "Description": "轮胎 ID（从 1 开始）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "轮胎是否可以被摧毁",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWheelDamageable",
+            "Description": "设置轮胎是否可以被摧毁\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WheelIndex",
+                    "Type": "number",
+                    "Description": "轮胎ID（从1开始）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Damageable",
+                    "Type": "boolean",
+                    "Description": "是否可以被摧毁",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "StopFireVehicleWeapon",
+            "Description": "车载武器停止攻击\n仅限驾驶位车载武器生效\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "VehicleWeapon",
+                    "Type": "AVehicleShootWeapon",
+                    "Description": "车载武器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "StartFireVehicleWeapon",
+            "Description": "车载武器开始攻击\n仅限驾驶位车载武器生效\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "VehicleWeapon",
+                    "Type": "AVehicleShootWeapon",
+                    "Description": "车载武器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "攻击者(传入 nil 视为 Driver)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetVehicleWeapon",
+            "Description": "获得指定座位上指定 ID 的武器实例\n武器 ID 指载具蓝图中，座位上配置的武器序号\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位ID（从 1 开始）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WeaponID",
+                    "Type": "number",
+                    "Description": "武器ID（从 1 开始）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AVehicleShootWeapon",
+                    "Description": "武器实例",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllVehicleWeaponList",
+            "Description": "获得所有车载武器的列表\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AVehicleShootWeapon[]",
+                    "Description": "武器列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopMusic",
+            "Description": "暂停播放车载音乐\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetVehicleType",
+            "Description": "获得载具类型\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ESTExtraVehicleType",
+                    "Description": "载具类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartBrake",
+            "Description": "载具拉起手刹\n仅在主控端（驾驶员端）调用有效\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "StopBrake",
+            "Description": "载具放下手刹\n仅在主控端（驾驶员端）调用有效\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CanDriverBoosting",
+            "Description": "获得载具是否能够加速\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "载具是否能够加速",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartBoosting",
+            "Description": "载具加速\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "StopBoosting",
+            "Description": "载具取消加速\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CanDriverUsingHorn",
+            "Description": "是否能按喇叭\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否能按喇叭",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartHorn",
+            "Description": "载具长按喇叭（按下）\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "StopHorn",
+            "Description": "载具长按喇叭（抬起）\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "MoveForward",
+            "Description": "载具前进/后退\n需要在驾驶员所在客户端每帧调用\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Throttle",
+                    "Type": "number",
+                    "Description": "取值范围[-1,1]，负值代表后退，正值代表前进",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CanDrive",
+            "Description": "驾驶员是否可以操控载具\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否可以操控载具",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlayMusic",
+            "Description": "播放车载音乐\n注意，武装载具不支持车载音乐功能\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MusicIndex",
+                    "Type": "number",
+                    "Description": "曲目ID（取值范围[1,8]）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetVehicleBaseType",
+            "Description": "获取载具的基础类型\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ESTExtraVehicleBaseType",
+                    "Description": "载具基础类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ModifyWheeledVehicleDragCoefficientScale",
+            "Description": "修改空气阻力的倍率\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Scale",
+                    "Type": "number",
+                    "Description": "空气阻力的修改倍率",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ModifyWheeledVehicleMaxRPMScale",
+            "Description": "修改引擎最大转速的倍率\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Scale",
+                    "Type": "number",
+                    "Description": "引擎最大转速的修改倍率",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ModifyWheeledVehicleTorqueScale",
+            "Description": "修改引擎扭矩的倍率\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Scale",
+                    "Type": "number",
+                    "Description": "引擎扭矩的修改倍率",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "BrakeInCustomizeScale",
+            "Description": "用自定义倍率刹车\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Scale",
+                    "Type": "number",
+                    "Description": "自定义刹车倍率",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetVehicleByPlayerController",
+            "Description": "通过 PlayerController 获取 Vehicle\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "APlayerController",
+                    "Description": "对应的玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "对应的载具",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

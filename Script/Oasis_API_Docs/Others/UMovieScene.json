@@ -1,0 +1,127 @@
+{
+    "Name": "UMovieScene",
+    "Description": "Implements a movie scene asset.",
+    "Variables": [
+        {
+            "Name": "Spawnables",
+            "Type": "TArray < FMovieSceneSpawnable >",
+            "Description": "Data-only blueprints for all of the objects that we we're able to spawn.\n\t  These describe objects and actors that we may instantiate at runtime,\n\t  or create proxy objects for previewing in the editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Possessables",
+            "Type": "TArray < FMovieScenePossessable >",
+            "Description": "Typed slots for already-spawned objects that we are able to control with this MovieScene",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObjectBindings",
+            "Type": "TArray < FMovieSceneBinding >",
+            "Description": "Tracks bound to possessed or spawned objects",
+            "Redirect": ""
+        },
+        {
+            "Name": "MasterTracks",
+            "Type": "TArray < UMovieSceneTrack * >",
+            "Description": "Master tracks which are not bound to spawned or possessed objects",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraCutTrack",
+            "Type": "UMovieSceneTrack *",
+            "Description": "The camera cut track is a specialized track for switching between cameras on a cinematic",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectionRange",
+            "Type": "FFloatRange",
+            "Description": "User-defined selection range.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlaybackRange",
+            "Type": "FFloatRange",
+            "Description": "User-defined playback range for this movie scene. Must be a finite range. Relative to this movie-scene's 0-time origin.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceFixedFrameIntervalPlayback",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FixedFrameInterval",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InTime_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OutTime_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartTime_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EndTime_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EmptySections",
+            "Type": "TArray < UMovieSceneSection * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPlaybackRangeLocked",
+            "Type": "bool",
+            "Description": "User-defined playback range is locked.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObjectsToDisplayNames",
+            "Type": "TMap < FString , FText >",
+            "Description": "Maps object GUIDs to user defined display names.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObjectsToLabels",
+            "Type": "TMap < FString , FMovieSceneTrackLabels >",
+            "Description": "Maps object GUIDs to user defined labels.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorData",
+            "Type": "FMovieSceneEditorData",
+            "Description": "Editor only data that needs to be saved between sessions for editing but has no runtime purpose",
+            "Redirect": ""
+        },
+        {
+            "Name": "RootFolders",
+            "Type": "TArray < UMovieSceneFolder * >",
+            "Description": "The root folders for this movie scene.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSignedObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

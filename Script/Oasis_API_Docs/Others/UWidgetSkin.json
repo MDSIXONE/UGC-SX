@@ -1,0 +1,97 @@
+{
+    "Name": "UWidgetSkin",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "BasicUserWidget",
+            "Type": "TSubclassOf < UUserWidget >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNeedRevertSkin",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParentMatchingKey",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LuaModulePath",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoLoadSubDefaultSkin",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoReplayAnim",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ModifiedProperties",
+            "Type": "FWSPropContext",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkinMountInfos",
+            "Type": "TArray < FSkinMountInfo >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OriginalPropertiesMap",
+            "Type": "TMap < TWeakObjectPtr < UWidgetTree > , FWSPropContext >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ModifiedPropertiesEditorOnly",
+            "Type": "FWSPropContext",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DynamicElemsEditorOnly",
+            "Type": "FWSDynamicPropContext",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DynamicElementInstanceID_EditorOnly",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TransientDynamicElemsEditorOnly",
+            "Type": "FWSDynamicPropContext",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TransientDynamicDynamicElementInstanceID_EditorOnly",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

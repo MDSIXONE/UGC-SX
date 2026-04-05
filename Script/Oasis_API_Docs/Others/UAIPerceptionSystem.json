@@ -1,0 +1,157 @@
+{
+    "Name": "UAIPerceptionSystem",
+    "Description": "By design checks perception between hostile teams",
+    "Variables": [
+        {
+            "Name": "Senses",
+            "Type": "TArray < UAISense * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerceptionAgingRate",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ReportEvent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "PerceptionEvent",
+                    "Type": "UAISenseEvent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReportPerceptionEvent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PerceptionEvent",
+                    "Type": "UAISenseEvent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RegisterPerceptionStimuliSource",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Sense",
+                    "Type": "TSubclassOf < UAISense > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Target",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSenseClassForStimulus",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Stimulus",
+                    "Type": "FAIStimulus &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TSubclassOf < UAISense > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnPerceptionStimuliSourceEndPlay",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EndPlayReason",
+                    "Type": "EEndPlayReason :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "FTickableGameObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,211 @@
+{
+    "Name": "UGCNavigationSystem",
+    "Description": "寻路导航系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "BuildNavmesh",
+            "Description": "同步生成全地图寻路图, 会阻塞服务器运行\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "当前世界上下文",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AgentName",
+                    "Type": "FName",
+                    "Description": "作用Agent的寻路图名称一般为\"Mannequin\"",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "AsyncBuildNavmesh",
+            "Description": "异步生成全地图寻路图\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "当前世界上下文",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AgentName",
+                    "Type": "FName",
+                    "Description": "作用Agent的寻路图名称一般为\"Mannequin\"",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "AddDynamicNavAffect",
+            "Description": "添加寻路图动态影响区域，标记后可只针对该区域增量更新寻路\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "当前世界上下文",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AgentName",
+                    "Type": "FName",
+                    "Description": "作用Agent的寻路图名称一般为\"Mannequin\"",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBounds",
+                    "Type": "FBox",
+                    "Description": "区域大小",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "操作结果",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AsyncIncrementalBuild",
+            "Description": "区域异步增量生成寻路图，和AddDynamicNavAffect配合使用\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "当前世界上下文",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AgentName",
+                    "Type": "FName",
+                    "Description": "作用Agent的寻路图名称一般为\"Mannequin\"",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "操作结果",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ProjectPointToNavigation",
+            "Description": "投影点到寻路图上的位置\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "当前世界上下文",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Point",
+                    "Type": "FVector",
+                    "Description": "要投影的点",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "QueryExtent",
+                    "Type": "FVector",
+                    "Description": "投影查询范围",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool,FVector",
+                    "Description": "操作结果, @投影位置",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRandomReachablePointInRadius",
+            "Description": "范围获取随机可寻路到达点位\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "当前世界上下文",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Origin",
+                    "Type": "FVector",
+                    "Description": "查找原点",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "float",
+                    "Description": "查询范围",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool,FVector",
+                    "Description": "操作结果， @可达位置",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsNavigationBeingBuilt",
+            "Description": "寻路图是否构建\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "当前世界上下文",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "查询结果",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNavigationGenerationFinishedDelegate",
+            "Description": "获取寻路图生成结束Delegate\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject",
+                    "Description": "当前世界上下文",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "Delegate",
+                    "Description": "寻路图生成结束Delegate",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

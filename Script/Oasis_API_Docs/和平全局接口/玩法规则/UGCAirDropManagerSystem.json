@@ -1,0 +1,116 @@
+{
+    "Name": "UGCAirDropManagerSystem",
+    "Description": "空投系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GenerateAirDrop",
+            "Description": "生成指定ID空投\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ID",
+                    "Type": "number",
+                    "Description": "空投配置ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DroppingLocation",
+                    "Type": "FVector",
+                    "Description": "掉落位置 结构Vector={X=0,Y=0,Z=0}",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "DroppingSpeed",
+                    "Type": "number",
+                    "Description": "掉落速度",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "bool,",
+                    "Type": "int32",
+                    "Description": "是否生成成功, 实例ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllAirDropConfigs",
+            "Description": "获得所有空投配置\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ID",
+                    "Type": "number",
+                    "Description": "空投配置ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "OneAirDrop[]",
+                    "Description": "空投配置",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DestroyAirDrop",
+            "Description": "销毁指定实例ID空投\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InsID",
+                    "Type": "number",
+                    "Description": "指定实例ID的空投 0.1s 后销毁",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否销毁成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAirDropItemList",
+            "Description": "获取指定实例ID空投的物品列表\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InsID",
+                    "Type": "number",
+                    "Description": "空投实例InsID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FPickUpItemData[]",
+                    "Description": "空投的物品列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllAirDropInstanceIDs",
+            "Description": "获取当前场景内所有的实例ID\n生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32[]",
+                    "Description": "空投实例ID列表",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "UBlackboardKeyType_String",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StringValue",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBlackboardKeyType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

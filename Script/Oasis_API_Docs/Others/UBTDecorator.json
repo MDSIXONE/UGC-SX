@@ -1,0 +1,25 @@
+{
+    "Name": "UBTDecorator",
+    "Description": "Decorators are supporting nodes placed on parent-child connection, that receive notification about execution flow and can be ticked\n \n  Because some of them can be instanced for specific AI, following virtual functions are not marked as const:\n   - OnNodeActivation\n   - OnNodeDeactivation\n   - OnNodeProcessed\n   - OnBecomeRelevant (from UBTAuxiliaryNode)\n   - OnCeaseRelevant (from UBTAuxiliaryNode)\n   - TickNode (from UBTAuxiliaryNode)\n \n  If your node is not being instanced (default behavior), DO NOT change any properties of object within those functions!\n  Template nodes are shared across all behavior tree components using the same tree asset and must store\n  their runtime properties in provided NodeMemory block (allocation size determined by GetInstanceMemorySize() )",
+    "Variables": [
+        {
+            "Name": "bInverseCondition",
+            "Type": "uint32",
+            "Description": "if set, condition check result will be inversed",
+            "Redirect": ""
+        },
+        {
+            "Name": "FlowAbortMode",
+            "Type": "TEnumAsByte < EBTFlowAbortMode :: Type >",
+            "Description": "flow controller settings",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTAuxiliaryNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

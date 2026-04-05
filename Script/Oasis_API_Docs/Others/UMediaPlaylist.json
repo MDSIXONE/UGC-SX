@@ -1,0 +1,271 @@
+{
+    "Name": "UMediaPlaylist",
+    "Description": "Implements a media play list.",
+    "Variables": [
+        {
+            "Name": "Loop",
+            "Type": "uint32",
+            "Description": "Whether the play list should loop (default = true).",
+            "Redirect": ""
+        },
+        {
+            "Name": "Items",
+            "Type": "TArray < UMediaSource * >",
+            "Description": "List of media sources to play.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "Add",
+            "Description": "Add a media source to the play list.\n\t ",
+            "Params": [
+                {
+                    "Name": "MediaSource",
+                    "Type": "UMediaSource *",
+                    "Description": "The media source to append.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the media source was added, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddFile",
+            "Description": "Add a media file path to the play list.\n\t ",
+            "Params": [
+                {
+                    "Name": "FilePath",
+                    "Type": "FString &",
+                    "Description": "The file path to add.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the file was added, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddUrl",
+            "Description": "Add a media URL to the play list.\n\t ",
+            "Params": [
+                {
+                    "Name": "Url",
+                    "Type": "FString &",
+                    "Description": "The URL to add.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the URL was added, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Get",
+            "Description": "Get the media source at the specified index.\n\t ",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "The index of the media source to get.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMediaSource * ",
+                    "Description": "The media source, or nullptr if the index doesn't exist.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNext",
+            "Description": "Get the next media source in the play list.\n\t ",
+            "Params": [
+                {
+                    "Name": "InOutIndex",
+                    "Type": "int32 &",
+                    "Description": "Index of the current media source (will contain the new index).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMediaSource * ",
+                    "Description": "The media source after the current one, or nullptr if the list is empty.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPrevious",
+            "Description": "Get the previous media source in the play list.\n\t ",
+            "Params": [
+                {
+                    "Name": "InOutIndex",
+                    "Type": "int32 &",
+                    "Description": "Index of the current media source (will contain the new index).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMediaSource * ",
+                    "Description": "The media source before the current one, or nullptr if the list is empty.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRandom",
+            "Description": "Get a random media source in the play list.\n\t ",
+            "Params": [
+                {
+                    "Name": "OutIndex",
+                    "Type": "int32 &",
+                    "Description": "Will contain the index of the returned media source.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMediaSource * ",
+                    "Description": "The random media source, or nullptr if the list is empty.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Insert",
+            "Description": "Insert a media source into the play list at the given position.\n\t ",
+            "Params": [
+                {
+                    "Name": "MediaSource",
+                    "Type": "UMediaSource * ",
+                    "Description": "The media source to insert.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "The index to insert into.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Num",
+            "Description": "Get the number of media sources in the play list.\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "Number of media sources.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Remove",
+            "Description": "Remove all occurrences of the given media source in the play list.\n\t ",
+            "Params": [
+                {
+                    "Name": "MediaSource",
+                    "Type": "UMediaSource *",
+                    "Description": "The media source to remove.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the media source was removed, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveAt",
+            "Description": "Remove the media source at the specified position.\n\t ",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "The index of the media source to remove.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the media source was removed, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Replace",
+            "Description": "Replace the media source at the specified position.\n\t ",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32 ",
+                    "Description": "The index of the media source to replace.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Replacement",
+                    "Type": "UMediaSource *",
+                    "Description": "The replacement media source.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the media source was replaced, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

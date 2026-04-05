@@ -1,0 +1,19 @@
+{
+    "Name": "UBTTask_GameplayTaskBase",
+    "Description": "Base class for managing gameplay tasks\n  Since AITask doesn't have any kind of successfailed results, default implemenation will only return EBTNode::Succeeded\n \n  In your ExecuteTask:\n  - use NewBTAITask() helper to create task\n  - initialize task with values if needed\n  - use StartGameplayTask() helper to execute and get node result",
+    "Variables": [
+        {
+            "Name": "bWaitForGameplayTask",
+            "Type": "uint32",
+            "Description": "if set, behavior tree task will wait until gameplay tasks finishes",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTTaskNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

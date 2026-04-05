@@ -1,0 +1,91 @@
+{
+    "Name": "UMovieSceneAudioSection",
+    "Description": "Audio section, for use in the master audio, or by attached audio objects",
+    "Variables": [
+        {
+            "Name": "Sound",
+            "Type": "USoundBase *",
+            "Description": "The sound cue or wave that this section plays",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartOffset",
+            "Type": "float",
+            "Description": "The offset into the beginning of the audio clip",
+            "Redirect": ""
+        },
+        {
+            "Name": "AudioStartTime_DEPRECATED",
+            "Type": "float",
+            "Description": "The absolute time that the sound starts playing at",
+            "Redirect": ""
+        },
+        {
+            "Name": "AudioDilationFactor_DEPRECATED",
+            "Type": "float",
+            "Description": "The amount which this audio is time dilated by",
+            "Redirect": ""
+        },
+        {
+            "Name": "AudioVolume_DEPRECATED",
+            "Type": "float",
+            "Description": "The volume the sound will be played with.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SoundVolume",
+            "Type": "FRichCurve",
+            "Description": "The volume the sound will be played with.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PitchMultiplier",
+            "Type": "FRichCurve",
+            "Description": "The pitch multiplier the sound will be played with.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSuppressSubtitles",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideAttenuation",
+            "Type": "bool",
+            "Description": "Should the attenuation settings on this section be used.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttenuationSettings",
+            "Type": "USoundAttenuation *",
+            "Description": "The attenuation settings to use.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnQueueSubtitles",
+            "Type": "FOnQueueSubtitles",
+            "Description": "Called when subtitles are sent to the SubtitleManager.  Set this delegate if you want to hijack the subtitles for other purposes",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnAudioFinished",
+            "Type": "FOnAudioFinished",
+            "Description": "called when we finish playing audio, either because it played to completion or because a Stop() call turned it off early",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnAudioPlaybackPercent",
+            "Type": "FOnAudioPlaybackPercent",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

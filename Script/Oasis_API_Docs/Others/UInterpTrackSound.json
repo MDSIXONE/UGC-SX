@@ -1,0 +1,49 @@
+{
+    "Name": "UInterpTrackSound",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Sounds",
+            "Type": "TArray < struct FSoundTrackKey >",
+            "Description": "Array of sounds to play at specific times.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPlayOnReverse",
+            "Type": "uint32",
+            "Description": "if set, sound plays only when playing the matinee in reverse instead of when the matinee plays forward",
+            "Redirect": ""
+        },
+        {
+            "Name": "bContinueSoundOnMatineeEnd",
+            "Type": "uint32",
+            "Description": "If true, sounds on this track will not be forced to finish when the matinee sequence finishes.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSuppressSubtitles",
+            "Type": "uint32",
+            "Description": "If true, don't show subtitles for sounds played by this track.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTreatAsDialogue",
+            "Type": "uint32",
+            "Description": "If true and track is controlling a pawn, makes the pawn \"speak\" the given audio.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAttach",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackVectorBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

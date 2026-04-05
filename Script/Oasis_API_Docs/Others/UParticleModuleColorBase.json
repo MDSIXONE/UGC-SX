@@ -1,0 +1,25 @@
+{
+    "Name": "UParticleModuleColorBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bOverrideColorHDR",
+            "Type": "uint32",
+            "Description": "If true, allow mobile HDR to use a separate set of color parameters",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideAlphaHDR",
+            "Type": "uint32",
+            "Description": "If true, allow mobile HDR to use a separate set of alpha parameters",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModule"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

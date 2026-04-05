@@ -1,0 +1,98 @@
+{
+    "Name": "UApplicationLifecycleComponent",
+    "Description": "Component to handle receiving notifications from the OS about application state (activated, suspended, termination, etc).",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "ApplicationWillDeactivateDelegate",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ApplicationHasReactivatedDelegate",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ApplicationWillEnterBackgroundDelegate",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ApplicationHasEnteredForegroundDelegate",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ApplicationWillTerminateDelegate",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTemperatureChangeDelegate",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Severity",
+                    "Type": "ETemperatureSeverityType",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

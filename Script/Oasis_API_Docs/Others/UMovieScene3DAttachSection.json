@@ -1,0 +1,61 @@
+{
+    "Name": "UMovieScene3DAttachSection",
+    "Description": "A 3D Attach section",
+    "Variables": [
+        {
+            "Name": "AttachSocketName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachComponentName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachmentLocationRule",
+            "Type": "EAttachmentRule",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachmentRotationRule",
+            "Type": "EAttachmentRule",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachmentScaleRule",
+            "Type": "EAttachmentRule",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DetachmentLocationRule",
+            "Type": "EDetachmentRule",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DetachmentRotationRule",
+            "Type": "EDetachmentRule",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DetachmentScaleRule",
+            "Type": "EDetachmentRule",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieScene3DConstraintSection"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

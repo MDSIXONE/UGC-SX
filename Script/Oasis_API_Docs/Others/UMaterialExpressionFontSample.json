@@ -1,0 +1,25 @@
+{
+    "Name": "UMaterialExpressionFontSample",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Font",
+            "Type": "UFont *",
+            "Description": "font resource that will be sampled",
+            "Redirect": ""
+        },
+        {
+            "Name": "FontTexturePage",
+            "Type": "int32",
+            "Description": "allow access to the various font pages",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

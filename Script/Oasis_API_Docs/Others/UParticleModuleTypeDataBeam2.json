@@ -1,0 +1,121 @@
+{
+    "Name": "UParticleModuleTypeDataBeam2",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "BeamMethod",
+            "Type": "TEnumAsByte < enum EBeam2Method >",
+            "Description": "The method with which to form the beam(s). Must be one of the following:\n\t \t\tPEB2M_Distance\t- Use the distance property to emit a beam along the X-axis of the emitter.\n\t \t\tPEB2M_Target\t- Emit a beam from the source to the supplied target.\n\t \t\tPEB2M_Branch\t- Currently unimplemented.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextureTile",
+            "Type": "int32",
+            "Description": "The number of times to tile the texture along each beam. \n\t   Overridden by TextureTilingDistance if it is > 0.0.\n\t \t1st UV set only. 2nd UV set does not Tile.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextureTileDistance",
+            "Type": "float",
+            "Description": "The distance per texture tile. \n\t \t1st UV set only. 2nd UV set does not Tile.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Sheets",
+            "Type": "int32",
+            "Description": "The number of sheets to render",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxBeamCount",
+            "Type": "int32",
+            "Description": "The number of live beams",
+            "Redirect": ""
+        },
+        {
+            "Name": "Speed",
+            "Type": "float",
+            "Description": "The speed at which the beam should move from source to target when firing up.\n\t \t'0' indicates instantaneous",
+            "Redirect": ""
+        },
+        {
+            "Name": "InterpolationPoints",
+            "Type": "int32",
+            "Description": "Indicates whether the beam should be interpolated.\n\t      <= 0 --> no\n\t      >  0 --> yes (and is equal to the number of interpolation steps that should be taken.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAlwaysOn",
+            "Type": "uint32",
+            "Description": "If true, there will ALWAYS be a beam...",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpVectorStepSize",
+            "Type": "int32",
+            "Description": "The approach to use for determining the Up vector(s) for the beam.\n\t \n\t \t0 indicates that the Up FVector should be calculated at EVERY point in the beam.\n\t \t1 indicates a single Up FVector should be determined at the start of the beam and used at every point.\n\t \tN indicates an Up FVector should be calculated every N points of the beam and interpolated between them.\n\t \t    [NOTE: This mode is currently unsupported.]",
+            "Redirect": ""
+        },
+        {
+            "Name": "BranchParentName",
+            "Type": "FName",
+            "Description": "The name of the emitter to branch from (if mode is PEB2M_Branch)\n\t  MUST BE IN THE SAME PARTICLE SYSTEM!",
+            "Redirect": ""
+        },
+        {
+            "Name": "Distance",
+            "Type": "FRawDistributionFloat",
+            "Description": "The distance along the X-axis to stretch the beam\n\t \tDistance is only used if BeamMethod is PEB2M_Distance",
+            "Redirect": ""
+        },
+        {
+            "Name": "TaperMethod",
+            "Type": "TEnumAsByte < enum EBeamTaperMethod >",
+            "Description": "Tapering mode - one of the following:\n\t \tPEBTM_None\t\t- No tapering is applied\n\t \tPEBTM_Full\t\t- Taper the beam relative to source-->target, regardless of current beam length\n\t \tPEBTM_Partial\t- Taper the beam relative to source-->location, 0=source,1=endpoint",
+            "Redirect": ""
+        },
+        {
+            "Name": "TaperFactor",
+            "Type": "FRawDistributionFloat",
+            "Description": "Tapering factor, 0 = source of beam, 1 = target",
+            "Redirect": ""
+        },
+        {
+            "Name": "TaperScale",
+            "Type": "FRawDistributionFloat",
+            "Description": "Tapering scaling\n\t \tThis is intended to be either a constant, uniform or a ParticleParam.\n\t \tIf a curve is used, 01 mapping of sourcetarget... which could be integrated into\n\t \tthe taper factor itself, and therefore makes no sense.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RenderGeometry",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RenderDirectLine",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RenderLines",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RenderTessellation",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleTypeDataBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

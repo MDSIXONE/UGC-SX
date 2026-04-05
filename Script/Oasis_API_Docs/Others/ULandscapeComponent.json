@@ -1,0 +1,433 @@
+{
+    "Name": "ULandscapeComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SectionBaseX",
+            "Type": "int32",
+            "Description": "X offset from global components grid origin (in quads)",
+            "Redirect": ""
+        },
+        {
+            "Name": "SectionBaseY",
+            "Type": "int32",
+            "Description": "Y offset from global components grid origin (in quads)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ComponentSizeQuads",
+            "Type": "int32",
+            "Description": "Total number of quads for this component, has to be >0",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubsectionSizeQuads",
+            "Type": "int32",
+            "Description": "Number of quads for a subsection of the component. SubsectionSizeQuads+1 must be a power of two.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumSubsections",
+            "Type": "int32",
+            "Description": "Number of subsections in X or Y axis",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideHoleMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideMaterial_ForPC",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideHoleMaterial_ForPC",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldSerializationGrassWeightDataForPC",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideOtherMaterials",
+            "Type": "TMap < FName , UMaterialInterface * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverridePhyxMaterial",
+            "Type": "FOverridePhyxMaterial",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideGrassTypes",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GrassTypes",
+            "Type": "TArray < ULandscapeGrassType * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideGrassTypes_ForPC",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GrassTypes_ForPC",
+            "Type": "TArray < ULandscapeGrassType * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialInstances",
+            "Type": "TArray < UMaterialInstanceConstant * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OtherMaterialInstances",
+            "Type": "TMap < FName , UMaterialInstanceConstant * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WeightmapLayerAllocations",
+            "Type": "TArray < FWeightmapLayerAllocationInfo >",
+            "Description": "List of layers, and the weightmap and channel they are stored",
+            "Redirect": ""
+        },
+        {
+            "Name": "WeightmapTextures",
+            "Type": "TArray < UTexture2D * >",
+            "Description": "Weightmap texture reference",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialInstances_ForPC",
+            "Type": "TArray < UMaterialInstanceConstant * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WeightmapTextures_ForPC",
+            "Type": "TArray < UTexture2D * >",
+            "Description": "Weightmap texture reference",
+            "Redirect": ""
+        },
+        {
+            "Name": "VisibilityLayerChannel",
+            "Type": "int32",
+            "Description": "Visibility layer channel in weightmap",
+            "Redirect": ""
+        },
+        {
+            "Name": "XYOffsetmapTexture",
+            "Type": "UTexture2D *",
+            "Description": "XYOffsetmap texture reference",
+            "Redirect": ""
+        },
+        {
+            "Name": "WeightmapScaleBias",
+            "Type": "FVector4",
+            "Description": "UV offset to component's weightmap data from component local coordinates",
+            "Redirect": ""
+        },
+        {
+            "Name": "WeightmapSubsectionOffset",
+            "Type": "float",
+            "Description": "U or V offset into the weightmap for the first subsection, in texture UV space",
+            "Redirect": ""
+        },
+        {
+            "Name": "HeightmapScaleBias",
+            "Type": "FVector4",
+            "Description": "UV offset to Heightmap data from component local coordinates",
+            "Redirect": ""
+        },
+        {
+            "Name": "HeightmapTexture",
+            "Type": "UTexture2D *",
+            "Description": "Heightmap texture reference",
+            "Redirect": ""
+        },
+        {
+            "Name": "MultiVisibilityTextureData",
+            "Type": "TMap < FString , FVisibilityData >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VisibleVisibilityLayer",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedLocalBox",
+            "Type": "FBox",
+            "Description": "Cached local-space bounding box, created at heightmap update time",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionComponent",
+            "Type": "TLazyObjectPtr < ULandscapeHeightfieldCollisionComponent >",
+            "Description": "Reference to associated collision component",
+            "Redirect": ""
+        },
+        {
+            "Name": "MapBuildDataId",
+            "Type": "FGuid",
+            "Description": "Uniquely identifies this component's built map data.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IrrelevantLights_DEPRECATED",
+            "Type": "TArray < FGuid >",
+            "Description": "Legacy irrelevant lights",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionMipLevel",
+            "Type": "int32",
+            "Description": "Heightfield mipmap used to generate collision",
+            "Redirect": ""
+        },
+        {
+            "Name": "SimpleCollisionMipLevel",
+            "Type": "int32",
+            "Description": "Heightfield mipmap used to generate simple collision",
+            "Redirect": ""
+        },
+        {
+            "Name": "NegativeZBoundsExtension",
+            "Type": "float",
+            "Description": "Allows overriding the landscape bounds. This is useful if you distort the landscape with world-position-offset, for example\n\t   Extension value in the negative Z axis, positive value increases bound size",
+            "Redirect": ""
+        },
+        {
+            "Name": "PositiveZBoundsExtension",
+            "Type": "float",
+            "Description": "Allows overriding the landscape bounds. This is useful if you distort the landscape with world-position-offset, for example\n\t   Extension value in the positive Z axis, positive value increases bound size",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticLightingResolution",
+            "Type": "float",
+            "Description": "StaticLightingResolution overriding per component, default value 0 means no overriding",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForcedLOD",
+            "Type": "int32",
+            "Description": "Forced LOD level to use when rendering",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODBias",
+            "Type": "int32",
+            "Description": "LOD level Bias to use when rendering",
+            "Redirect": ""
+        },
+        {
+            "Name": "MobileVertexHoleMaxLOD",
+            "Type": "int32",
+            "Description": "The max lod level that allow landscape component to use vertex hole. If the lod level greater than this limitation, all vertex hole on landscape will vanish",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODDeltaVertex",
+            "Type": "TArray < float >",
+            "Description": "Subsection's Delta Vertex for fixing LOD level",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxDeltaVertex",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StateId",
+            "Type": "FGuid",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BakedTextureMaterialGuid",
+            "Type": "FGuid",
+            "Description": "The Material Guid that used when baking, to detect material recompilations",
+            "Redirect": ""
+        },
+        {
+            "Name": "GIBakedBaseColorTexture",
+            "Type": "UTexture2D *",
+            "Description": "Pre-baked Base Color texture for use by distance field GI",
+            "Redirect": ""
+        },
+        {
+            "Name": "FSOCOccluder",
+            "Type": "UFlakeOccluder *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MobileBlendableLayerMask",
+            "Type": "uint8",
+            "Description": "For ES2",
+            "Redirect": ""
+        },
+        {
+            "Name": "MobileMaterialInterface",
+            "Type": "UMaterialInterface *",
+            "Description": "Material interface used for ES2. Serialized only when cooking or loading cooked builds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OtherMobileMaterialInterfaces",
+            "Type": "TMap < FName , UMaterialInterface * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MobileWeightmapTextures",
+            "Type": "TArray < UTexture2D * >",
+            "Description": "Generated weightnormal map texture used for ES2. Serialized only when cooking or loading cooked builds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MobileWeightNormalmapTexture",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileMultiLayers",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedHeightData",
+            "Type": "TArray < uint16 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedHaltonBaseIndex",
+            "Type": "TArray < bool >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedAddHaltonBaseIndexList",
+            "Type": "TArray < int32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasROCData",
+            "Type": "bool",
+            "Description": "Has ROCData？",
+            "Redirect": ""
+        },
+        {
+            "Name": "DeformHeightmap",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UsedOtherMaterialName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialInstance_DEPRECATED",
+            "Type": "UMaterialInstanceConstant *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MultiHeightmapTexture",
+            "Type": "TMap < FString , UTexture2D * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TempHeightmapTexture",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightingGuid",
+            "Type": "FGuid",
+            "Description": "Unique ID for this component, used for caching during distributed lighting",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightingLODBias",
+            "Type": "int32",
+            "Description": "LOD level Bias to use when lighting buidling via lightmass, -1 Means automatic LOD calculation based on ForcedLOD + LODBias",
+            "Redirect": ""
+        },
+        {
+            "Name": "LayerWhitelist",
+            "Type": "TArray < ULandscapeLayerInfoObject * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditToolRenderData",
+            "Type": "FLandscapeEditToolRenderData",
+            "Description": "Pointer to data shared with the render thread, used by the editor tools",
+            "Redirect": ""
+        },
+        {
+            "Name": "MobileDataSourceHash",
+            "Type": "FGuid",
+            "Description": "Hash of source for ES2 generated data. Used for mobile preview and cook-in-editor\n\t  to determine if we need to re-generate ES2 pixel data.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OccluderMesh",
+            "Type": "UStaticMesh *",
+            "Description": "Specifies the custom occluder mesh for software occlusion",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseFSOCOccluder",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,49 @@
+{
+    "Name": "UDrawFrustumComponent",
+    "Description": "Utility component for drawing a view frustum. Origin is at the component location, frustum points down position X axis.",
+    "Variables": [
+        {
+            "Name": "FrustumColor",
+            "Type": "FColor",
+            "Description": "Color to draw the wireframe frustum.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FrustumAngle",
+            "Type": "float",
+            "Description": "Angle of longest dimension of view shape. \n\t   If the angle is 0 then an orthographic projection is used",
+            "Redirect": ""
+        },
+        {
+            "Name": "FrustumAspectRatio",
+            "Type": "float",
+            "Description": "Ratio of horizontal size over vertical size.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FrustumStartDist",
+            "Type": "float",
+            "Description": "Distance from origin to start drawing the frustum.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FrustumEndDist",
+            "Type": "float",
+            "Description": "Distance from origin to stop drawing the frustum.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Texture",
+            "Type": "UTexture *",
+            "Description": "optional texture to show on the near plane",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

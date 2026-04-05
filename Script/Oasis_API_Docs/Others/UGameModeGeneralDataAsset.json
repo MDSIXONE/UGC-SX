@@ -1,0 +1,37 @@
+{
+    "Name": "UGameModeGeneralDataAsset",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CampConfigs",
+            "Type": "TArray < FCampConfigInfo >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CampRelationConfigs",
+            "Type": "TArray < FCampReleation >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultCampRelation",
+            "Type": "ECampRelation",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDifferentTeamHasDifferentCamp",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDataAsset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

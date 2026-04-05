@@ -1,0 +1,398 @@
+{
+    "Name": "ASTExtraBaseCharacter",
+    "Description": "主角类（PlayerPawn）",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "DSTeleportToLocationOrRotation",
+            "Description": "生效范围：服务器\n\t  传送主角，只有服务器上调用生效，客户端调用无效",
+            "Params": [
+                {
+                    "Name": "location",
+                    "Type": "FVector ",
+                    "Description": "位置",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "rotation",
+                    "Type": "FRotator ",
+                    "Description": "旋转",
+                    "Redirect": "cppstruct/detail/FRotator.json"
+                },
+                {
+                    "Name": "setLoc",
+                    "Type": "bool ",
+                    "Description": "是否修改位置",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "setRot",
+                    "Type": "bool ",
+                    "Description": "是否修改旋转",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ResetVelocity",
+                    "Type": "bool ",
+                    "Description": "是否重置速度",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRecordTeleportInfo",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "ASTExtraCharacter",
+        "ISTExtraInputInterface",
+        "IPickupProxyFactory",
+        "ISTExtraBaseCharacter_UGCEventInterface",
+        "IGISPlayerInterface",
+        "IGenericAbilityCarrierInterface",
+        "IItemSkillV2RecevierInterface",
+        "IInteractorInterface",
+        "IDamageNumberInterface",
+        "IMeleeAttackOwnerInterface"
+    ],
+    "Event": [
+        {
+            "Name": "UGC_WeaponShootBulletEvent",
+            "Description": "发射子弹事件\n\t 生效范围C",
+            "Params": [
+                {
+                    "Name": "ShootWeapon",
+                    "Type": "ASTExtraShootWeapon * ",
+                    "Description": "射击武器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bullet",
+                    "Type": "ASTExtraShootWeaponBulletBase *",
+                    "Description": "子弹",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_WeaponBulletHitEvent",
+            "Description": "子弹命中事件\n\t 生效范围SC",
+            "Params": [
+                {
+                    "Name": "ShootWeapon",
+                    "Type": "ASTExtraShootWeapon * ",
+                    "Description": "射击武器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bullet",
+                    "Type": "ASTExtraShootWeaponBulletBase * ",
+                    "Description": "子弹",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitInfo",
+                    "Type": "FHitResult",
+                    "Description": "命中信息",
+                    "Redirect": "cppstruct/detail/FHitResult.json"
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_ChangeCurrentUsingWeaponEvent",
+            "Description": "当前武器变化事件\n\t 生效范围SC",
+            "Params": [
+                {
+                    "Name": "UsingWeaponSlot",
+                    "Type": "ESurviveWeaponPropSlot ",
+                    "Description": "当前武器插槽",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LastSlot",
+                    "Type": "ESurviveWeaponPropSlot",
+                    "Description": "上次武器插槽",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_EquipWeaponEvent",
+            "Description": "装备武器事件，仅装备在身上，非当前手持武器\n\t 生效范围SC",
+            "Params": [
+                {
+                    "Name": "Slot",
+                    "Type": "ESurviveWeaponPropSlot",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_WeaponStartFireEvent",
+            "Description": "开火调用事件，仅在按下开火时调用一次\n\t 生效范围SC",
+            "Params": [
+                {
+                    "Name": "isAuto",
+                    "Type": "ESTEWeaponShootType :: type",
+                    "Description": "是否自动开火",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_WeaponStopFireEvent",
+            "Description": "停火调用事件\n\t 生效范围SC",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_WeaponSwitchEvent",
+            "Description": "切换武器事件\n\t 生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_ReloadStartEvent",
+            "Description": "开始换弹事件\n\t 生效范围SC",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_ReloadEndEvent",
+            "Description": "换弹结束事件\n\t 生效范围SC",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_OpenScopeEvent",
+            "Description": "开镜事件\n\t 生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_CloseScopeEvent",
+            "Description": "开镜结束事件\n\t 生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_EnterPawnStateEvent",
+            "Description": "进入某个PawnState事件\n\t 生效范围SC",
+            "Params": [
+                {
+                    "Name": "PawnState",
+                    "Type": "EPawnState",
+                    "Description": "进入的PawnState",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_LeavePawnStateEvent",
+            "Description": "离开某个PawnState事件\n\t 生效范围SC",
+            "Params": [
+                {
+                    "Name": "PawnState",
+                    "Type": "EPawnState",
+                    "Description": "离开的PawnState",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_PlayerPickUpEvent",
+            "Description": "玩家拾取事件\n\t 生效范围SC",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_PlayerDeadEvent",
+            "Description": "玩家死亡事件\n\t 生效范围SC",
+            "Params": [
+                {
+                    "Name": "Killer",
+                    "Type": "AController * ",
+                    "Description": "把该角色淘汰的玩家",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "EDamageType :: DamageType",
+                    "Description": "伤害类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_TakeDamageOverrideEvent",
+            "Description": "重载伤害事件，返回值为修改后的伤害\n\t 生效范围S",
+            "Params": [
+                {
+                    "Name": "Damage",
+                    "Type": "float ",
+                    "Description": "伤害类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "EDamageType :: DamageType ",
+                    "Description": "造成伤害的玩家",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EventInstigator",
+                    "Type": "AController * ",
+                    "Description": "造成伤害的玩家",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor * ",
+                    "Description": "把该角色淘汰的玩家",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Hit",
+                    "Type": "FHitResult",
+                    "Description": "伤害命中信息",
+                    "Redirect": "cppstruct/detail/FHitResult.json"
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "修改后伤害值",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

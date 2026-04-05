@@ -1,0 +1,119 @@
+{
+    "Name": "UViewport",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "BackgroundColor",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetViewportWorld",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UWorld *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetViewLocation",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetViewLocation",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Location",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetViewRotation",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetViewRotation",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Spawn",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ActorClass",
+                    "Type": "TSubclassOf < AActor >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UContentWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,25 @@
+{
+    "Name": "UParticleModuleVectorFieldRotation",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MinInitialRotation",
+            "Type": "FVector",
+            "Description": "Minimum initial rotation applied to the local vector field.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxInitialRotation",
+            "Type": "FVector",
+            "Description": "Maximum initial rotation applied to the local vector field.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVectorFieldBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,91 @@
+{
+    "Name": "ACameraRig_Crane",
+    "Description": "A simple rig for simulating crane-like camera movements.",
+    "Variables": [
+        {
+            "Name": "CranePitch",
+            "Type": "float",
+            "Description": "Controls the pitch of the crane arm.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CraneYaw",
+            "Type": "float",
+            "Description": "Controls the yaw of the crane arm.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CraneArmLength",
+            "Type": "float",
+            "Description": "Controls the length of the crane arm.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLockMountPitch",
+            "Type": "bool",
+            "Description": "Lock the mount pitch so that an attached camera is locked and pitched in the direction of the crane arm",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLockMountYaw",
+            "Type": "bool",
+            "Description": "Lock the mount yaw so that an attached camera is locked and oriented in the direction of the crane arm",
+            "Redirect": ""
+        },
+        {
+            "Name": "TransformComponent",
+            "Type": "USceneComponent *",
+            "Description": "Root component to give the whole actor a transform.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CraneYawControl",
+            "Type": "USceneComponent *",
+            "Description": "Component to control Yaw.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CranePitchControl",
+            "Type": "USceneComponent *",
+            "Description": "Component to control Pitch.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CraneCameraMount",
+            "Type": "USceneComponent *",
+            "Description": "Component to define the attach point for cameras.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewMesh_CraneArm",
+            "Type": "UStaticMeshComponent *",
+            "Description": "Preview meshes for visualization",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewMesh_CraneBase",
+            "Type": "UStaticMeshComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewMesh_CraneMount",
+            "Type": "UStaticMeshComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewMesh_CraneCounterWeight",
+            "Type": "UStaticMeshComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,44 @@
+{
+    "Name": "UMovieScene3DTransformSection",
+    "Description": "A 3D transform section",
+    "Variables": [
+        {
+            "Name": "TransformMask",
+            "Type": "FMovieSceneTransformMask",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Translation",
+            "Type": "FRichCurve",
+            "Description": "Translation curves",
+            "Redirect": ""
+        },
+        {
+            "Name": "Rotation",
+            "Type": "FRichCurve",
+            "Description": "Rotation curves",
+            "Redirect": ""
+        },
+        {
+            "Name": "Scale",
+            "Type": "FRichCurve",
+            "Description": "Scale curves",
+            "Redirect": ""
+        },
+        {
+            "Name": "ManualWeight",
+            "Type": "FRichCurve",
+            "Description": "Manual weight curve",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection",
+        "IKeyframeSection<FTransformKey>"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

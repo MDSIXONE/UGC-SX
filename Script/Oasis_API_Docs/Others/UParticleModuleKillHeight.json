@@ -1,0 +1,37 @@
+{
+    "Name": "UParticleModuleKillHeight",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Height",
+            "Type": "FRawDistributionFloat",
+            "Description": "The height at which to kill the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAbsolute",
+            "Type": "uint32",
+            "Description": "If true, the height should be treated as a world-space position.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFloor",
+            "Type": "uint32",
+            "Description": "If true, the plane should be considered a floor - ie kill anything BELOW it.\n\t \tIf false, if is a ceiling - ie kill anything ABOVE it.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bApplyPSysScale",
+            "Type": "uint32",
+            "Description": "If true, take the particle systems scale into account",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleKillBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

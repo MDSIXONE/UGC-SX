@@ -1,0 +1,142 @@
+{
+    "Name": "UGameplayTasksComponent",
+    "Description": "The core ActorComponent for interfacing with the GameplayAbilities System",
+    "Variables": [
+        {
+            "Name": "SimulatedTasks",
+            "Type": "TArray < UGameplayTask * >",
+            "Description": "Tasks that run on simulated proxies",
+            "Redirect": ""
+        },
+        {
+            "Name": "AutonomousTasks",
+            "Type": "TArray < UGameplayTask * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TaskPriorityQueue",
+            "Type": "TArray < UGameplayTask * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TickingTasks",
+            "Type": "TArray < UGameplayTask * >",
+            "Description": "Array of currently active UGameplayTask that require ticking",
+            "Redirect": ""
+        },
+        {
+            "Name": "KnownTasks",
+            "Type": "TArray < UGameplayTask * >",
+            "Description": "All known tasks (processed by this component) referenced for GC",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "OnRep_SimulatedTasks",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_AutonomousTasks",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_RunGameplayTask",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "TaskOwner",
+                    "Type": "TScriptInterface < IGameplayTaskOwnerInterface > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Task",
+                    "Type": "UGameplayTask * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Priority",
+                    "Type": "uint8 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AdditionalRequiredResources",
+                    "Type": "TArray < TSubclassOf < UGameplayTaskResource > > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AdditionalClaimedResources",
+                    "Type": "TArray < TSubclassOf < UGameplayTaskResource > >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EGameplayTaskRunResult ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent",
+        "IGameplayTaskOwnerInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnClaimedResourcesChange",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewlyClaimed",
+                    "Type": "FGameplayResourceSet",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FreshlyReleased",
+                    "Type": "FGameplayResourceSet",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

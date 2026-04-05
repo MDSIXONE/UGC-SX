@@ -1,0 +1,19 @@
+{
+    "Name": "ANavMeshBoundsVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SupportedAgents",
+            "Type": "FNavAgentSelector",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

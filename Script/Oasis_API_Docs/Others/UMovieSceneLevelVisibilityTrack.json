@@ -1,0 +1,19 @@
+{
+    "Name": "UMovieSceneLevelVisibilityTrack",
+    "Description": "A track for controlling the visibility of streamed levels.",
+    "Variables": [
+        {
+            "Name": "Sections",
+            "Type": "TArray < UMovieSceneSection * >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneNameableTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

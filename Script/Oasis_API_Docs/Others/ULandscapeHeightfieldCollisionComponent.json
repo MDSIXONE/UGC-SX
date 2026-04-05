@@ -1,0 +1,103 @@
+{
+    "Name": "ULandscapeHeightfieldCollisionComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ComponentLayerInfos",
+            "Type": "TArray < ULandscapeLayerInfoObject * >",
+            "Description": "List of layers painted on this component. Matches the WeightmapLayerAllocations array in the LandscapeComponent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SectionBaseX",
+            "Type": "int32",
+            "Description": "Offset of component in landscape quads",
+            "Redirect": ""
+        },
+        {
+            "Name": "SectionBaseY",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionSizeQuads",
+            "Type": "int32",
+            "Description": "Size of component in collision quads",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionScale",
+            "Type": "float",
+            "Description": "Collision scale: (ComponentSizeQuads)  (CollisionSizeQuads)",
+            "Redirect": ""
+        },
+        {
+            "Name": "SimpleCollisionSizeQuads",
+            "Type": "int32",
+            "Description": "Size of component's \"simple collision\" in collision quads",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionQuadFlags",
+            "Type": "TArray < uint8 >",
+            "Description": "The flags for each collision quad. See ECollisionQuadFlags.",
+            "Redirect": ""
+        },
+        {
+            "Name": "HeightfieldGuid",
+            "Type": "FGuid",
+            "Description": "Guid used to share PhysX heightfield objects in the editor",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedLocalBox",
+            "Type": "FBox",
+            "Description": "Cached local-space bounding box, created at heightmap update time",
+            "Redirect": ""
+        },
+        {
+            "Name": "RenderComponent",
+            "Type": "TLazyObjectPtr < ULandscapeComponent >",
+            "Description": "Reference to render component",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLandscapeDeform",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CookedPhysicalMaterials",
+            "Type": "TArray < UPhysicalMaterial * >",
+            "Description": "This is a list of physical materials that is actually used by a cooked HeightField",
+            "Redirect": ""
+        },
+        {
+            "Name": "RCRLandscapeMapList",
+            "Type": "TArray < FString >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RCRCommunicatorClassName",
+            "Type": "FSoftClassPath",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RCRCommunicator",
+            "Type": "URCRCommunicator *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

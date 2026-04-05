@@ -1,0 +1,43 @@
+{
+    "Name": "UAnimNotify_PlaySound",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Sound",
+            "Type": "USoundBase *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumeMultiplier",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PitchMultiplier",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFollow",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UAnimNotify"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

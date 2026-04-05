@@ -1,0 +1,59 @@
+{
+    "Name": "UContentWidget",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetContentSlot",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPanelSlot *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetContent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPanelSlot * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetContent",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPanelWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,175 @@
+{
+    "Name": "AUGCItemSpawner",
+    "Description": "物资刷新系统：物资刷新器",
+    "Variables": [
+        {
+            "Name": "ItemConfig",
+            "Type": "FUGCItemSpawnerItemConfig",
+            "Description": "配置刷出的物资类别和数量",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNeedSpawnerManager",
+            "Type": "bool",
+            "Description": "物资刷新点是否能独立运作，还是依赖于物资刷新管理器",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLoopSpawn",
+            "Type": "bool",
+            "Description": "独立运作模式时，物资被拾取后是否会自动生成",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpawnCD",
+            "Type": "float",
+            "Description": "开启循环生成后，物资被拾取后间隔重新刷新",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTraceGround",
+            "Type": "bool",
+            "Description": "物资是否一定刷新在地面上",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRandomRotator",
+            "Type": "bool",
+            "Description": "物资方向是否随机",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartRadius",
+            "Type": "int32",
+            "Description": "物资刷新位置到刷新点的最小距离",
+            "Redirect": ""
+        },
+        {
+            "Name": "EndRadius",
+            "Type": "int32",
+            "Description": "物资刷新位置到刷新点的最大距离",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SpawnItem",
+            "Description": "生效范围 服务器\n\t  刷物资",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "int32 ",
+                    "Description": "物资ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemCount",
+                    "Type": "int32",
+                    "Description": "物资数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor * ",
+                    "Description": "刷出的物资",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetItemConfig",
+            "Description": "生效范围 服务器\n\t  修改物资刷新配置",
+            "Params": [
+                {
+                    "Name": "InItemConfig",
+                    "Type": "FUGCItemSpawnerItemConfig",
+                    "Description": "新的物资刷新配置",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CleanItems",
+            "Description": "生效范围 服务器\n\t  清除刷出的物资",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "刷出的物资",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AActor"
+    ],
+    "Event": [
+        {
+            "Name": "OnItemsSpawn",
+            "Description": "生效范围 服务器\n\t  物资刷出事件",
+            "Params": [
+                {
+                    "Name": "Items",
+                    "Type": "TArray < AActor * > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnAllItemsArePick",
+            "Description": "生效范围 服务器\n\t  所有物资都被拾取",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CustomSpawnItem",
+            "Description": "生效范围 服务器\n\t  覆写该事件来自定义物资刷出流程",
+            "Params": [
+                {
+                    "Name": "CustomParam",
+                    "Type": "TMap < FString , FString > &",
+                    "Description": "自定义参数列表",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < AActor * > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

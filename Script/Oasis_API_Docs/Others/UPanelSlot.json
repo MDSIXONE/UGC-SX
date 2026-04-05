@@ -1,0 +1,25 @@
+{
+    "Name": "UPanelSlot",
+    "Description": "The base class for all Slots in UMG.",
+    "Variables": [
+        {
+            "Name": "Parent",
+            "Type": "UPanelWidget *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Content",
+            "Type": "UWidget *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UVisual"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

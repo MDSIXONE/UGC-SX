@@ -1,0 +1,177 @@
+{
+    "Name": "UPaperSprite",
+    "Description": "Sprite Asset\n \n  Stores the data necessary to render a single 2D sprite (from a region of a texture)\n  Can also contain collision shapes for the sprite.\n \n  @see UPaperSpriteComponent",
+    "Variables": [
+        {
+            "Name": "SourceUV",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceDimension",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceTexture",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdditionalSourceTextures",
+            "Type": "TArray < UTexture * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BakedSourceUV",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BakedSourceDimension",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BakedSourceTexture",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AlternateMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Sockets",
+            "Type": "TArray < FPaperSpriteSocket >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteCollisionDomain",
+            "Type": "TEnumAsByte < ESpriteCollisionMode :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PixelsPerUnrealUnit",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BodySetup",
+            "Type": "UBodySetup *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AlternateMaterialSplitIndex",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BakedRenderData",
+            "Type": "TArray < FVector4 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OriginInSourceImageBeforeTrimming",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceImageDimensionBeforeTrimming",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTrimmedInSourceImage",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRotatedInSourceImage",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceTextureDimension",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PivotMode",
+            "Type": "TEnumAsByte < ESpritePivotMode :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomPivotPoint",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSnapPivotToPixelGrid",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionGeometry",
+            "Type": "FSpriteGeometryCollection",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionThickness",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RenderGeometry",
+            "Type": "FSpriteGeometryCollection",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AtlasGroup",
+            "Type": "UPaperSpriteAtlas *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IInterface_CollisionDataProvider",
+        "ISlateTextureAtlasInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

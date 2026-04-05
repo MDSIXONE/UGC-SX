@@ -1,0 +1,25 @@
+{
+    "Name": "UBasicOverlays",
+    "Description": "Implements an asset that contains a set of overlay data (which includes timing, text, and position) to be displayed for any\n  given source (including, but not limited to, audio, dialog, and movies)",
+    "Variables": [
+        {
+            "Name": "Overlays",
+            "Type": "TArray < FOverlayItem >",
+            "Description": "The overlay data held by this asset. Contains info on timing, position, and the subtitle to display",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetImportData",
+            "Type": "UAssetImportData *",
+            "Description": "The import data used to make this overlays asset",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UOverlays"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,91 @@
+{
+    "Name": "UInterpTrackMove",
+    "Description": "Track containing data for moving an actor around over time.",
+    "Variables": [
+        {
+            "Name": "PosTrack",
+            "Type": "FInterpCurveVector",
+            "Description": "Actual position keyframe data.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EulerTrack",
+            "Type": "FInterpCurveVector",
+            "Description": "Actual rotation keyframe data, stored as Euler angles in degrees, for easy editing on curve.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LookupTrack",
+            "Type": "FInterpLookupTrack",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LookAtGroupName",
+            "Type": "FName",
+            "Description": "When using IMR_LookAtGroup, specifies the Group which this track should always point its actor at.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinCurveTension",
+            "Type": "float",
+            "Description": "Controls the tightness of the curve for the translation path.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngCurveTension",
+            "Type": "float",
+            "Description": "Controls the tightness of the curve for the rotation path.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseQuatInterpolation",
+            "Type": "uint32",
+            "Description": "Use a Quaternion linear interpolation between keys.\n\t \tThis is robust and will find the 'shortest' distance between keys, but does not support ease inout.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowArrowAtKeys",
+            "Type": "uint32",
+            "Description": "In the editor, show a small arrow at each keyframe indicating the rotation at that key.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableMovement",
+            "Type": "uint32",
+            "Description": "Disable previewing of this track - will always position  AActor  at Time=0.0. Useful when keyframing an object relative to this group.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowTranslationOnCurveEd",
+            "Type": "uint32",
+            "Description": "If false, when this track is displayed on the Curve Editor in Matinee, do not show the Translation tracks.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowRotationOnCurveEd",
+            "Type": "uint32",
+            "Description": "If false, when this track is displayed on the Curve Editor in Matinee, do not show the Rotation tracks.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHide3DTrack",
+            "Type": "uint32",
+            "Description": "If true, 3D representation of this track in the 3D viewport is disabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RotMode",
+            "Type": "TEnumAsByte < enum EInterpTrackMoveRotMode >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

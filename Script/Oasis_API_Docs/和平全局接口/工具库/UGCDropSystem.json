@@ -1,0 +1,51 @@
+{
+    "Name": "UGCDropSystem",
+    "Description": "掉落系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "DropItems",
+            "Description": "根据掉落信息进行物品掉落\n根据权重掉落：每次掉落一个物品\n根据概率掉落：每次根据物品表的物品数量掉落物品\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "DropID",
+                    "Type": "number",
+                    "Description": "掉落ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "掉落结果 {key-物品ID : value-物品数量}",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DropItemsByGroup",
+            "Description": "根据掉落组信息进行物品掉落\n掉落组配置参考掉落表格配置（DropGroup Table）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "DropGroupID",
+                    "Type": "number",
+                    "Description": "掉落组ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "掉落结果 {key-物品ID : value-物品数量}",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

@@ -1,0 +1,37 @@
+{
+    "Name": "UBTDecorator_CheckGameplayTagsOnActor",
+    "Description": "GameplayTag decorator node.\n  A decorator node that bases its condition on whether the specified Actor (in the blackboard) has a Gameplay Tag or\n  Tags specified.",
+    "Variables": [
+        {
+            "Name": "ActorToCheck",
+            "Type": "FBlackboardKeySelector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TagsToMatch",
+            "Type": "EGameplayContainerMatchType",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameplayTags",
+            "Type": "FGameplayTagContainer",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedDescription",
+            "Type": "FString",
+            "Description": "cached description",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTDecorator"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

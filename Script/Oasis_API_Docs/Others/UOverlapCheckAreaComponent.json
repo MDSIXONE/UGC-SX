@@ -1,0 +1,114 @@
+{
+    "Name": "UOverlapCheckAreaComponent",
+    "Description": "区域重叠检测组件，能够检测到某个范围内开启重叠检测的Actor",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "CheckOverlapActor",
+            "Description": "生效范围：S\n\t  触发一次区域重叠检测",
+            "Params": [
+                {
+                    "Name": "DeltaTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartCheck",
+            "Description": "生效范围：S\n\t  开始检测",
+            "Params": [
+                {
+                    "Name": "InIgnoreActorList",
+                    "Type": "TArray < AActor * > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bStopIfStarted",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopCheck",
+            "Description": "生效范围：S\n\t  停止检测",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddIgnoreActors",
+            "Description": "生效范围：S\n\t  添加要忽略的Actor列表",
+            "Params": [
+                {
+                    "Name": "Ignores",
+                    "Type": "TArray < AActor * >",
+                    "Description": "要添加的Actor列表",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveIgnoreActor",
+            "Description": "生效范围：S\n\t  移除忽略的Actor列表",
+            "Params": [
+                {
+                    "Name": "Ignore",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent",
+        "IRegionObjectInterface",
+        "IComponentHibernationNotifyInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,134 @@
+{
+    "Name": "ASTExtraWeapon",
+    "Description": "武器基类",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "AActor",
+        "IOwnerRelevancyDependencyInterface",
+        "IRegionObjectInterface",
+        "IActorHiddenInterface",
+        "IAttrModifyInterface",
+        "IActorFeedbackInterface",
+        "IGenericAbilityCarrierInterface",
+        "IGameAttributeCarrierInterface",
+        "ILogicEffectInterface",
+        "IUAESharedModuleInterface",
+        "IOwnershipChainInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnWeaponDrawHUDDelegate",
+            "Description": "Delegate\n\t  生效范围C\n\t  武器绘制HUD事件，传入武器的HUDWidiget， Canvas",
+            "Params": [
+                {
+                    "Name": "WeaponHudWidget",
+                    "Type": "UHUDWidgetBase*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Canvas",
+                    "Type": "UCanvas*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnPressingWeaponFuncBtnDelegate",
+            "Description": "Delegate\n\t  生效范围C\n\t  持续按键事件，有DeltaTime传入",
+            "Params": [
+                {
+                    "Name": "DeltaTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_AttachmentChangeDelegate",
+            "Description": "武器配件装卸委托\n\t \n\t  生效范围SC\n\t ",
+            "Params": [
+                {
+                    "Name": "AttachHandleID",
+                    "Type": "int32",
+                    "Description": "配件ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsEquip",
+                    "Type": "bool",
+                    "Description": "是否是装备配件",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "void",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnWeaponTriggerEventDelegate",
+            "Description": "Delegate\n\t  生效范围C\n\t  武器按键事件",
+            "Params": [
+                {
+                    "Name": "Event",
+                    "Type": "EWeaponTriggerEvent",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EventData",
+                    "Type": "const FString&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnWeaponAttachToBackpackDelegate",
+            "Description": "Delegate\n\t  生效范围SC\n\t  武器挂背事件",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

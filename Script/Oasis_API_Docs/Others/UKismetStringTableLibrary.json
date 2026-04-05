@@ -1,0 +1,196 @@
+{
+    "Name": "UKismetStringTableLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "IsRegisteredTableId",
+            "Description": "Returns true if the given table ID corresponds to a registered string table.",
+            "Params": [
+                {
+                    "Name": "TableId",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsRegisteredTableEntry",
+            "Description": "Returns true if the given table ID corresponds to a registered string table, and that table has.",
+            "Params": [
+                {
+                    "Name": "TableId",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTableNamespace",
+            "Description": "Returns the namespace of the given string table.",
+            "Params": [
+                {
+                    "Name": "TableId",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTableEntrySourceString",
+            "Description": "Returns the source string of the given string table entry (or an empty string).",
+            "Params": [
+                {
+                    "Name": "TableId",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTableEntryMetaData",
+            "Description": "Returns the specified meta-data of the given string table entry (or an empty string).",
+            "Params": [
+                {
+                    "Name": "TableId",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MetaDataId",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRegisteredStringTables",
+            "Description": "Returns an array of all registered string table IDs",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FName >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetKeysFromStringTable",
+            "Description": "Returns an array of all keys within the given string table",
+            "Params": [
+                {
+                    "Name": "TableId",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FString > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMetaDataIdsFromStringTableEntry",
+            "Description": "Returns an array of all meta-data IDs within the given string table entry",
+            "Params": [
+                {
+                    "Name": "TableId",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FName > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

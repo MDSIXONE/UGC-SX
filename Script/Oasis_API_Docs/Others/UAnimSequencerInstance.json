@@ -1,0 +1,19 @@
+{
+    "Name": "UAnimSequencerInstance",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RuntimeAsset",
+            "Type": "TArray < UObject * >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UAnimCustomInstance"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

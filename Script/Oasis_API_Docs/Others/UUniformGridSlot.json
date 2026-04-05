@@ -1,0 +1,118 @@
+{
+    "Name": "UUniformGridSlot",
+    "Description": "A slot for UUniformGridPanel, these slots all share the same size as the largest slot\n  in the grid.",
+    "Variables": [
+        {
+            "Name": "HorizontalAlignment",
+            "Type": "TEnumAsByte < EHorizontalAlignment >",
+            "Description": "The alignment of the object horizontally.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VerticalAlignment",
+            "Type": "TEnumAsByte < EVerticalAlignment >",
+            "Description": "The alignment of the object vertically.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Row",
+            "Type": "int32",
+            "Description": "The row index of the cell this slot is in",
+            "Redirect": ""
+        },
+        {
+            "Name": "Column",
+            "Type": "int32",
+            "Description": "The column index of the cell this slot is in",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetRow",
+            "Description": "Sets the row index of the slot, this determines what cell the slot is in the panel",
+            "Params": [
+                {
+                    "Name": "InRow",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetColumn",
+            "Description": "Sets the column index of the slot, this determines what cell the slot is in the panel",
+            "Params": [
+                {
+                    "Name": "InColumn",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetHorizontalAlignment",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InHorizontalAlignment",
+                    "Type": "EHorizontalAlignment",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVerticalAlignment",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InVerticalAlignment",
+                    "Type": "EVerticalAlignment",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPanelSlot"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

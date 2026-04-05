@@ -1,0 +1,19 @@
+{
+    "Name": "UVirtualJoystickResource",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "BrushList",
+            "Type": "TArray < FSlateBrush >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

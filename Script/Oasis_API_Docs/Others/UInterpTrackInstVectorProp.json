@@ -1,0 +1,19 @@
+{
+    "Name": "UInterpTrackInstVectorProp",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ResetVector",
+            "Type": "FVector",
+            "Description": "Saved value for restoring state when exiting Matinee.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInstProperty"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

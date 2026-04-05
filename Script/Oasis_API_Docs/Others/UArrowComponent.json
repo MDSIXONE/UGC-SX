@@ -1,0 +1,64 @@
+{
+    "Name": "UArrowComponent",
+    "Description": "A simple arrow rendered using lines. Useful for indicating which way an object is facing.",
+    "Variables": [
+        {
+            "Name": "ArrowColor",
+            "Type": "FColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArrowSize",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsScreenSizeScaled",
+            "Type": "bool",
+            "Description": "Set to limit the screen size of this arrow",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScreenSize",
+            "Type": "float",
+            "Description": "The size on screen to limit this arrow to (in screen space)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTreatAsASprite",
+            "Type": "uint32",
+            "Description": "If true, don't show the arrow when EngineShowFlags.BillboardSprites is disabled.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetArrowColor",
+            "Description": "Updates the arrow's colour, and tells it to refresh",
+            "Params": [
+                {
+                    "Name": "NewColor",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

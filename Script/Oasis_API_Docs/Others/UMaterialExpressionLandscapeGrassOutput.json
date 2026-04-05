@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionLandscapeGrassOutput",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "GrassTypes",
+            "Type": "TArray < FGrassInput >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionCustomOutput"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

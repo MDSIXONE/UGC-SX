@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleMeshMaterial",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MeshMaterials",
+            "Type": "TArray < UMaterialInterface * >",
+            "Description": "The array of materials to apply to the mesh particles.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleMaterialBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

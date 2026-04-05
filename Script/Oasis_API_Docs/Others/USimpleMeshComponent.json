@@ -1,0 +1,25 @@
+{
+    "Name": "USimpleMeshComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MeshSections",
+            "Type": "TArray < FSimpleMeshSection >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LocalBounds",
+            "Type": "FBoxSphereBounds",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

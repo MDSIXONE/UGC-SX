@@ -1,0 +1,60 @@
+{
+    "Name": "ASpotLight",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SpotLightComponent",
+            "Type": "USpotLightComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetInnerConeAngle",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewInnerConeAngle",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOuterConeAngle",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewOuterConeAngle",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "ALight"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

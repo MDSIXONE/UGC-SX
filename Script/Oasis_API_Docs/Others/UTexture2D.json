@@ -1,0 +1,136 @@
+{
+    "Name": "UTexture2D",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StreamingIndex",
+            "Type": "int32",
+            "Description": "FStreamingTexture index used by the texture streaming system.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LevelIndex",
+            "Type": "int32",
+            "Description": "Level scope index of this texture. It is used to reduce the amount of lookup to map a texture to its level index.\n\t  Useful when building texture streaming data, as well as when filling the texture streamer with precomputed data.\n      It relates to FStreamingTextureBuildInfo::TextureLevelIndex and also the index in ULevel::StreamingTextureGuids. \n\t  Default value of -1, indicates that the texture has an unknown index (not yet processed). At level load time, \n\t  -2 is also used to indicate that the texture has been processed but no entry were found in the level table.\n\t  After any of these processes, the LevelIndex is reset to INDEX_NONE. Making it ready for the next level task.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FirstResourceMemMip",
+            "Type": "int32",
+            "Description": "keep track of first mip level used for ResourceMem creation",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSuperSamplingMipBiasResponsive",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ImportedSize",
+            "Type": "FIntPoint",
+            "Description": "The imported size of the texture. Only valid on cooked builds when texture source is not\n\t  available. Access ONLY via the GetImportedSize() accessor!",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForceMipLevelsToBeResidentTimestamp",
+            "Type": "double",
+            "Description": "WorldSettings timestamp that tells the streamer to force all miplevels to be resident up until that time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTemporarilyDisableStreaming",
+            "Type": "bool",
+            "Description": "True if streaming is temporarily disabled so we can update subregions of this texture's resource \n\twithout streaming clobbering it. Automatically cleared before saving.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsStreamable",
+            "Type": "bool",
+            "Description": "Whether the texture is currently streamable or not.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasStreamingUpdatePending",
+            "Type": "uint32",
+            "Description": "Whether some mips might be streamed soon. If false, the texture is not planned resolution will be stable.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceMiplevelsToBeResident",
+            "Type": "uint32",
+            "Description": "Override whether to fully stream even if texture hasn't been rendered.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoreStreamingMipBias",
+            "Type": "uint32",
+            "Description": "Ignores the streaming mip bias used to accommodate memory constraints.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGlobalForceMipLevelsToBeResident",
+            "Type": "uint32",
+            "Description": "Global and serialized version of ForceMiplevelsToBeResident.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsTransient",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AddressX",
+            "Type": "TEnumAsByte < enum TextureAddress >",
+            "Description": "The addressing mode to use for the X axis.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AddressY",
+            "Type": "TEnumAsByte < enum TextureAddress >",
+            "Description": "The addressing mode to use for the Y axis.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasBeenPaintedInEditor",
+            "Type": "uint32",
+            "Description": "Whether the texture has been painted in the editor.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "Blueprint_GetSizeX",
+            "Description": "Gets the X size of the texture, in pixels",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Blueprint_GetSizeY",
+            "Description": "Gets the Y size of the texture, in pixels",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UTexture"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

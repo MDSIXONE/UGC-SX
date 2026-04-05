@@ -1,0 +1,69 @@
+{
+    "Name": "APickUpWrapperActor",
+    "Description": "地面可拾取物类",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "AUAENetActor",
+        "IGeneratorActorInterface",
+        "IPickupInterface",
+        "IPickupCustomInterface",
+        "IObjectPoolInterface",
+        "IManagedActorInterface",
+        "IDropActorCurveInterface",
+        "IDropItemPerformanceInterface",
+        "ILuaInterface",
+        "IInteractorInterface",
+        "IScopeInteractionInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "UGC_PickUpWrapperHideDelegate",
+            "Description": "生效范围:SC\n\t 可拾取道具隐藏事件委托",
+            "Params": [
+                {
+                    "Name": "InRefreshTimeStamp",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_PickUpWrapperShowDelegate",
+            "Description": "生效范围:S\n\t 可拾取道具显示事件委托",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_PickUpWrapperDestroyDelegate",
+            "Description": "生效范围:SC\n\t 可拾取道具销毁事件委托",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

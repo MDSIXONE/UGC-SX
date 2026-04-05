@@ -1,0 +1,166 @@
+{
+    "Name": "UOceanFFTComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DisTexture",
+            "Type": "UTextureRenderTarget2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NormalMapTexture",
+            "Type": "UTextureRenderTarget2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FFTGridSize",
+            "Type": "int32",
+            "Description": "Size of grid for FFT",
+            "Redirect": ""
+        },
+        {
+            "Name": "WaveAmplitude",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FetchLength",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WaveSwell",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WindSpeed",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SamplePatch",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WaveSpeed",
+            "Type": "float",
+            "Description": "Speed of time for FFT",
+            "Redirect": ""
+        },
+        {
+            "Name": "XYDisplaceFactor",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "JacobianFactor",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FoamDissipationSpeed",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FoamFalloffSpeed",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FoamGenerationAmount",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FoamGenerationThreshold",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DisplaceTextureArray",
+            "Type": "TArray < UTexture2D * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NormalTextureArray",
+            "Type": "TArray < UTexture2D * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Frameinterval",
+            "Type": "int",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FrameNum",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpdateNeeded",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DisRTArray",
+            "Type": "TArray < UTextureRenderTarget2D * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NormalRTArray",
+            "Type": "TArray < UTextureRenderTarget2D * >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "Update",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "DeltaTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

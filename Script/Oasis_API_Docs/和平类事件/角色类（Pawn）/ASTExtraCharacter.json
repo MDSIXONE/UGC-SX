@@ -1,0 +1,180 @@
+{
+    "Name": "ASTExtraCharacter",
+    "Description": "角色类",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "AUAECharacter",
+        "IUAESkillInterface",
+        "ISTBaseBuffCarrierInterface",
+        "IDamageableInterface",
+        "IWeaponOwnerInterface",
+        "IWeaponOwnerProxyFactory",
+        "IAttrModifyInterface",
+        "IItemGenerateInterface",
+        "IObjectPoolInterface",
+        "IActorHiddenInterface",
+        "ILaserSeekAndLockOwnerInterface",
+        "IBulletHitInterface",
+        "IGameAttributeCarrierInterface",
+        "IPickerEffectInterface",
+        "ICustomMovementInterface",
+        "IGenericCharacterInterface",
+        "ITargetFilterInfoProviderInterface",
+        "IStateAbilityInterface",
+        "IOwnershipChainInterface",
+        "IFieldApplyInterface",
+        "ICharacterTypeInterface"
+    ],
+    "Event": [
+        {
+            "Name": "UGC_GetDamageNumberConfigIndex",
+            "Description": "获取伤害数字配置索引\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "Damage",
+                    "Type": "float ",
+                    "Description": "伤害数值",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bHeadShot",
+                    "Type": "bool ",
+                    "Description": "是否爆头",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EventInstigator",
+                    "Type": "AController * ",
+                    "Description": "伤害来源Controller",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor * ",
+                    "Description": "伤害来源物体",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageTypeID",
+                    "Type": "int32",
+                    "Description": "伤害类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_PreTakeDamageEvent",
+            "Description": "受到伤害前，返回值可以修改伤害值\n\t 生效范围S",
+            "Params": [
+                {
+                    "Name": "Damage",
+                    "Type": "float ",
+                    "Description": "当前伤害值，",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EventInstigator",
+                    "Type": "AController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageEvent",
+                    "Type": "FDamageEvent ",
+                    "Description": "伤害类型",
+                    "Redirect": "cppstruct/detail/FDamageEvent.json"
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor *",
+                    "Description": "把该角色淘汰的玩家",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "修改后伤害值",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": [
+        {
+            "Name": "UGC_OnHPChangedDelegate",
+            "Description": "Delegate\n\t 生效范围SC\n\t 怪物血量变化",
+            "Params": [
+                {
+                    "Name": "HP",
+                    "Type": "float",
+                    "Description": "当前血量",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HPChanged",
+                    "Type": "float",
+                    "Description": "血量变化值",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_OnTakeDamageDelegate",
+            "Description": "Delegate\n\t 生效范围S\n\t 受到伤害后",
+            "Params": [
+                {
+                    "Name": "Damage",
+                    "Type": "float",
+                    "Description": "当前伤害值，",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EventInstigator",
+                    "Type": "AController*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageEvent",
+                    "Type": "FDamageEvent",
+                    "Description": "伤害类型",
+                    "Redirect": "cppstruct/detail/FDamageEvent.json"
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor*",
+                    "Description": "把该角色淘汰的玩家",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

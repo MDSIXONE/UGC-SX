@@ -1,0 +1,89 @@
+{
+    "Name": "UGCPrivilegeSystem",
+    "Description": "特权系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetPlayerPrivilegesInformation",
+            "Description": "获取玩家特权 ID 信息列表，如果玩家没有特权 ID 信息或者在 PIE 环境下返回 nil\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "UID",
+                    "Type": "number",
+                    "Description": "玩家UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "玩家特权ID信息列表，table = { [id1] = { Description = \"\" }, [id2] = { Description = \"\" }, [id3] = { Description = \"\" }, ... }",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DoesPlayerHavePrivileges",
+            "Description": "判断玩家是否拥有特权，没有特权或者在 PIE 环境下返回 false\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "UID",
+                    "Type": "number",
+                    "Description": "玩家UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "玩家是否拥有特权",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddPrivilegeEmblemFlagUI",
+            "Description": "给指定队友（不包含主控玩家自己）添加绿洲特权徽章UI标记\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerState",
+                    "Type": "PlayerState",
+                    "Description": "队友PlayerState",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NameColorHexStr",
+                    "Type": "string",
+                    "Description": "玩家名字颜色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bHideTeammatePositionItemName",
+                    "Type": "boolean",
+                    "Description": "是否隐藏队友标记名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RemovePrivilegeEmblemFlagUI",
+            "Description": "给指定队友（不包含主控玩家自己）移除绿洲特权徽章UI标记\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerState",
+                    "Type": "PlayerState",
+                    "Description": "队友PlayerState",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

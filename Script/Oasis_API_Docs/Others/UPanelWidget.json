@@ -1,0 +1,237 @@
+{
+    "Name": "UPanelWidget",
+    "Description": "The base class for all UMG panel widgets.  Panel widgets layout a collection of child widgets.",
+    "Variables": [
+        {
+            "Name": "Slots",
+            "Type": "TArray < UPanelSlot * >",
+            "Description": "The slots in the widget holding the child widgets of this panel.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedContents_ForGC",
+            "Type": "TArray < UWidget * >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetChildrenCount",
+            "Description": "Gets number of child widgets in the container.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetChildAt",
+            "Description": "Gets the widget at an index.",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "The index of the widget.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UWidget * ",
+                    "Description": "The widget at the given index, or nothing if there is no widget there.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetChildIndex",
+            "Description": "Gets the index of a specific child widget",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasChild",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if panel contains this widget",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveChildAt",
+            "Description": "Removes a child by it's index.",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddChild",
+            "Description": "Adds a new child widget to the container.  Returns the base slot type, \n\t  requires casting to turn it into the type specific to the container.",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPanelSlot * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InsertChildAtIndex",
+            "Description": "Insert a widget at a specific index, available in game.",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPanelSlot * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ShiftChildToIndex",
+            "Description": "Moves the child widget from its current index to the new index provided, available in game.",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Child",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveChild",
+            "Description": "Removes a specific widget from the container.",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the widget was found and removed.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasAnyChildren",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "true if there are any child widgets in the panel",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearChildren",
+            "Description": "Remove all child widgets from the panel widget.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

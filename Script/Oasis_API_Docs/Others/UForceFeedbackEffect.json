@@ -1,0 +1,25 @@
+{
+    "Name": "UForceFeedbackEffect",
+    "Description": "A predefined force-feedback effect to be played on a controller",
+    "Variables": [
+        {
+            "Name": "ChannelDetails",
+            "Type": "TArray < FForceFeedbackChannelDetails >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Duration",
+            "Type": "float",
+            "Description": "Duration of force feedback pattern in seconds.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

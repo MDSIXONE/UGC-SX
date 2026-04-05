@@ -1,0 +1,43 @@
+{
+    "Name": "UBTTask_PlayAnimation",
+    "Description": "Play indicated AnimationAsset on Pawn controlled by BT \n \tNote that this node is generic and is handing multiple special cases,\n \tIf you want a more efficient solution you'll need to implement it yourself (or wait for our BTTask_PlayCharacterAnimation)",
+    "Variables": [
+        {
+            "Name": "AnimationToPlay",
+            "Type": "UAnimationAsset *",
+            "Description": "Animation asset to play. Note that it needs to match the skeleton of pawn this BT is controlling",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLooping",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNonBlocking",
+            "Type": "uint32",
+            "Description": "if true the task will just trigger the animation and instantly finish. Fire and Forget.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MyOwnerComp",
+            "Type": "UBehaviorTreeComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedSkelMesh",
+            "Type": "USkeletalMeshComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTTaskNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,316 @@
+{
+    "Name": "UComboBoxString",
+    "Description": "The combobox allows you to display a list of options to the user in a dropdown menu for them to select one.",
+    "Variables": [
+        {
+            "Name": "DefaultOptions",
+            "Type": "TArray < FString >",
+            "Description": "The default list of items to be displayed on the combobox.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectedOption",
+            "Type": "FString",
+            "Description": "The item in the combobox to select by default",
+            "Redirect": ""
+        },
+        {
+            "Name": "WidgetStyle",
+            "Type": "FComboBoxStyle",
+            "Description": "The style.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ItemStyle",
+            "Type": "FTableRowStyle",
+            "Description": "The item row style.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ContentPadding",
+            "Type": "FMargin",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxListHeight",
+            "Type": "float",
+            "Description": "The max height of the combobox list that opens",
+            "Redirect": ""
+        },
+        {
+            "Name": "HasDownArrow",
+            "Type": "bool",
+            "Description": "When false, the down arrow is not generated and it is up to the API consumer\n\t  to make their own visual hint that this is a drop down.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EnableGamepadNavigationMode",
+            "Type": "bool",
+            "Description": "When false, directional keys will change the selection. When true, ComboBox \n\t must be activated and will only capture arrow input while activated.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Font",
+            "Type": "FSlateFontInfo",
+            "Description": "The default font to use in the combobox, only applies if you're not implementing OnGenerateWidgetEvent\n\t  to factory each new entry.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForegroundColor",
+            "Type": "FSlateColor",
+            "Description": "The foreground color to pass through the hierarchy.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsFocusable",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceNotify",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnGenerateWidgetEvent",
+            "Type": "FGenerateWidgetForString",
+            "Description": "Called when the widget is needed for the item.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnGenerateSelectWidgetEvent",
+            "Type": "FGenerateWidgetForString",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "AddOption",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Option",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveOption",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Option",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindOptionIndex",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Option",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOptionAtIndex",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearOptions",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearSelection",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RefreshOptions",
+            "Description": "Refreshes the list of options.  If you added new ones, and want to update the list even if it's\n\t  currently being displayed use this.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSelectedOption",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Option",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSelectedOption",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOptionCount",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "The number of options",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnSelectionChanged",
+            "Description": "Called when a new item is selected in the combobox.",
+            "Params": [
+                {
+                    "Name": "SelectedItem",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SelectionType",
+                    "Type": "ESelectInfo::Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnOpening",
+            "Description": "Called when the combobox is opening",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnClosing",
+            "Description": "Called when the combobox is closing",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

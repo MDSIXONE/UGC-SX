@@ -1,0 +1,19 @@
+{
+    "Name": "UTextureRenderTarget",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TargetGamma",
+            "Type": "float",
+            "Description": "Will override FTextureRenderTarget2DResource::GetDisplayGamma if > 0.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UTexture"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,92 @@
+{
+    "Name": "UVolumetricFogSphereComponent",
+    "Description": "Used to create local volumetric fog.",
+    "Variables": [
+        {
+            "Name": "VolumetricFogAlbedo",
+            "Type": "FColor",
+            "Description": "The height fog particle reflectiveness used by volumetric fog.\n\t  Water particles in air have an albedo near white, while dust has slightly darker value.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogEmissive",
+            "Type": "FLinearColor",
+            "Description": "Light emitted by height fog.  This is a density so more light is emitted the further you are looking through the fog.\n\t  In most cases skylight is a better choice, however right now volumetric fog does not support precomputed lighting,\n\t  So stationary skylights are unshadowed and static skylights don't affect volumetric fog at all.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogExtinctionScale",
+            "Type": "float",
+            "Description": "Scales the height fog particle extinction amount used by volumetric fog.  Values larger than 1 cause fog particles everywhere absorb more light.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetVolumetricFogExtinctionScale",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogAlbedo",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "FColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogEmissive",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USphereComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

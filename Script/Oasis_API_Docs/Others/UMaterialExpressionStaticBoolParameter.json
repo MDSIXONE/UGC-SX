@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionStaticBoolParameter",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DefaultValue",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionParameter"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

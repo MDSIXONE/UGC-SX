@@ -1,0 +1,103 @@
+{
+    "Name": "UParticleLODLevel",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Level",
+            "Type": "int32",
+            "Description": "The index value of the LOD level",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnabled",
+            "Type": "uint32",
+            "Description": "True if the LOD level is enabled, meaning it should be updated and rendered.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RequiredModule",
+            "Type": "UParticleModuleRequired *",
+            "Description": "The required module for this LOD level",
+            "Redirect": ""
+        },
+        {
+            "Name": "Modules",
+            "Type": "TArray < UParticleModule * >",
+            "Description": "An array of particle modules that contain the adjusted data for the LOD level",
+            "Redirect": ""
+        },
+        {
+            "Name": "TypeDataModule",
+            "Type": "UParticleModuleTypeDataBase *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpawnModule",
+            "Type": "UParticleModuleSpawn *",
+            "Description": "The SpawnRateBurst module - required by all emitters.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EventGenerator",
+            "Type": "UParticleModuleEventGenerator *",
+            "Description": "The optional EventGenerator module.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpawningModules",
+            "Type": "TArray < UParticleModuleSpawnBase * >",
+            "Description": "SpawningModules - These are called to determine how many particles to spawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpawnModules",
+            "Type": "TArray < UParticleModule * >",
+            "Description": "SpawnModules - These are called when particles are spawned.",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpdateModules",
+            "Type": "TArray < UParticleModule * >",
+            "Description": "UpdateModules - These are called when particles are updated.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OrbitModules",
+            "Type": "TArray < UParticleModuleOrbit * >",
+            "Description": "OrbitModules \n\t \tThese are used to do offsets of the sprite from the particle location.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EventReceiverModules",
+            "Type": "TArray < UParticleModuleEventReceiverBase * >",
+            "Description": "Event receiver modules only!",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConvertedModules",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PeakActiveParticles",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActualPeakParticles",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,154 @@
+{
+    "Name": "UAISystem",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "PerceptionSystemClassName",
+            "Type": "FSoftClassPath",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "HotSpotManagerClassName",
+            "Type": "FSoftClassPath",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavLocalGridManagerClassName",
+            "Type": "FSoftClassPath",
+            "Description": "Class that will be used to spawn the hot spot manager, can be game-specific",
+            "Redirect": ""
+        },
+        {
+            "Name": "AcceptanceRadius",
+            "Type": "float",
+            "Description": "Default AI movement's acceptance radius used to determine whether \n \t  AI reached path's end",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathfollowingRegularPathPointAcceptanceRadius",
+            "Type": "float",
+            "Description": "Value used for pathfollowing's internal code to determine whether AI reached path's point. \n\t \t@note this value is not used for path's last point. @see AcceptanceRadius",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathfollowingNavLinkAcceptanceRadius",
+            "Type": "float",
+            "Description": "Similarly to PathfollowingRegularPathPointAcceptanceRadius used by pathfollowing's internals\n\t \tbut gets applied only when next point on a path represents a begining of navigation link",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFinishMoveOnGoalOverlap",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAcceptPartialPaths",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowStrafing",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableBTAITasks",
+            "Type": "bool",
+            "Description": "this property is just a transition-time flag - in the end we're going to switch over to Gameplay Tasks anyway, that's the goal.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowControllersAsEQSQuerier",
+            "Type": "bool",
+            "Description": "if enable will make EQS not complaint about using Controllers as queriers. Default behavior (false) will \n\t \tin places automatically convert controllers to pawns, and complain if code user bypasses the conversion or uses\n\t \tpawn-less controller",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableDebuggerPlugin",
+            "Type": "bool",
+            "Description": "if set, GameplayDebuggerPlugin will be loaded on module's startup",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultSightCollisionChannel",
+            "Type": "TEnumAsByte < ECollisionChannel >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BehaviorTreeManager",
+            "Type": "UBehaviorTreeManager *",
+            "Description": "Behavior tree manager used by game",
+            "Redirect": ""
+        },
+        {
+            "Name": "EnvironmentQueryManager",
+            "Type": "UEnvQueryManager *",
+            "Description": "Environment query manager used by game",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerceptionSystem",
+            "Type": "UAIPerceptionSystem *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AllProxyObjects",
+            "Type": "TArray < UAIAsyncTaskBlueprintProxy * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "HotSpotManager",
+            "Type": "UAIHotSpotManager *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavLocalGrids",
+            "Type": "UNavLocalGridManager *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "AIIgnorePlayers",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AILoggingVerbose",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UAISystemBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

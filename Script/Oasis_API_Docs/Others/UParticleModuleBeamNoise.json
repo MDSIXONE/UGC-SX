@@ -1,0 +1,133 @@
+{
+    "Name": "UParticleModuleBeamNoise",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bLowFreq_Enabled",
+            "Type": "uint32",
+            "Description": "Is low frequency noise enabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Frequency",
+            "Type": "int32",
+            "Description": "The frequency of noise points.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Frequency_LowRange",
+            "Type": "int32",
+            "Description": "If not 0, then the frequency will select a random value in the range\n\t \t\t[Frequency_LowRange..Frequency]",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseRange",
+            "Type": "FRawDistributionVector",
+            "Description": "The noise point ranges.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseRangeScale",
+            "Type": "FRawDistributionFloat",
+            "Description": "A scale factor that will be applied to the noise range.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNRScaleEmitterTime",
+            "Type": "uint32",
+            "Description": "If true,  the NoiseRangeScale will be grabbed based on the emitter time.\n\t \tIf false, the NoiseRangeScale will be grabbed based on the particle time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseSpeed",
+            "Type": "FRawDistributionVector",
+            "Description": "The speed with which to move each noise point.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSmooth",
+            "Type": "uint32",
+            "Description": "Whether the noise movement should be smooth or 'jerky'.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseLockRadius",
+            "Type": "float",
+            "Description": "Default target-point information to use if the beam method is endpoint.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNoiseLock",
+            "Type": "uint32",
+            "Description": "INTERNAL - Whether the noise points should be locked.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOscillate",
+            "Type": "uint32",
+            "Description": "Whether the noise points should be oscillate.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseLockTime",
+            "Type": "float",
+            "Description": "How long the  noise points should be locked - 0.0 indicates forever.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseTension",
+            "Type": "float",
+            "Description": "The tension to apply to the tessellated noise line.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseNoiseTangents",
+            "Type": "uint32",
+            "Description": "If true, calculate tangents at each noise point.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseTangentStrength",
+            "Type": "FRawDistributionFloat",
+            "Description": "The strength of noise tangents, if enabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseTessellation",
+            "Type": "int32",
+            "Description": "The amount of tessellation between noise points.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTargetNoise",
+            "Type": "uint32",
+            "Description": "Whether to apply noise to the target point (or end of line in distance mode...)\n\t \tIf true, the beam could potentially 'leave' the target...",
+            "Redirect": ""
+        },
+        {
+            "Name": "FrequencyDistance",
+            "Type": "float",
+            "Description": "The distance at which to deposit noise points.\n\t \tIf 0.0, then use the static frequency value.\n\t \tIf not, distribute noise points at the given distance, up to the static Frequency value.\n\t \tAt that point, evenly distribute them along the beam.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bApplyNoiseScale",
+            "Type": "uint32",
+            "Description": "If true, apply the noise scale to the beam.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseScale",
+            "Type": "FRawDistributionFloat",
+            "Description": "The scale factor to apply to noise range.\n\t \tThe lookup value is determined by dividing the number of noise points present by the \n\t \tmaximum number of noise points (Frequency).",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleBeamBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

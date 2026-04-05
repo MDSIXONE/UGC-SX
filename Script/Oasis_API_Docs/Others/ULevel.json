@@ -1,0 +1,230 @@
+{
+    "Name": "ULevel",
+    "Description": "A Level is a collection of Actors (lights, volumes, mesh instances etc.).\n  Multiple Levels can be loaded and unloaded into the World to create a streaming experience.\n \n  @see UActor",
+    "Variables": [
+        {
+            "Name": "OwningWorld",
+            "Type": "UWorld *",
+            "Description": "The World that has this level in its Levels array.\n\t  This is not the same as GetOuter(), because GetOuter() for a streaming level is a vestigial world that is not used.\n\t  It should not be accessed during BeginDestroy(), just like any other UObject references, since GC may occur in any order.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Model",
+            "Type": "UModel *",
+            "Description": "BSP UModel.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ModelComponents",
+            "Type": "TArray < UModelComponent * >",
+            "Description": "BSP Model components used for rendering.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActorCluster",
+            "Type": "ULevelActorContainer *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumTextureStreamingUnbuiltComponents",
+            "Type": "int32",
+            "Description": "Num of components missing valid texture streaming data. Updated in map check.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumTextureStreamingDirtyResources",
+            "Type": "int32",
+            "Description": "Num of resources that have changed since the last texture streaming build. Updated in map check.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LevelScriptActor",
+            "Type": "ALevelScriptActor *",
+            "Description": "The level scripting actor, created by instantiating the class from LevelScriptBlueprint.  This handles all level scripting",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavListStart",
+            "Type": "ANavigationObjectBase *",
+            "Description": "Start and end of the navigation list for this level, used for quickly fixing up\n\t  when streaming this level inout. @TODO DEPRECATED - DELETE",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavListEnd",
+            "Type": "ANavigationObjectBase *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavDataChunks",
+            "Type": "TArray < UNavigationDataChunk * >",
+            "Description": "Navigation related data that can be stored per level",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightmapTotalSize",
+            "Type": "float",
+            "Description": "Total number of KB used for lightmap textures in the level.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadowmapTotalSize",
+            "Type": "float",
+            "Description": "Total number of KB used for shadowmap textures in the level.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticNavigableGeometry",
+            "Type": "TArray < FVector >",
+            "Description": "threes of triangle vertices - AABB filtering friendly. Stored if there's a runtime need to rebuild navigation that accepts BSPs\n\t \tas well - it's a lot easier this way than retrieve this data at runtime",
+            "Redirect": ""
+        },
+        {
+            "Name": "StreamingTextureGuids",
+            "Type": "TArray < FGuid >",
+            "Description": "The Guid of each texture refered by FStreamingTextureBuildInfo::TextureLevelIndex",
+            "Redirect": ""
+        },
+        {
+            "Name": "PVSHandlerHash",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PrecomputedVisibilityDataRegistry",
+            "Type": "UPrecomputedVisibilityDataRegistry *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsLightingScenario",
+            "Type": "bool",
+            "Description": "Whether the level is a lighting scenario.  Lighting is built separately for each lighting scenario level with all other scenario levels hidden.\n\t  Only one lighting scenario level should be visible at a time for correct rendering, and lightmaps from that level will be used on the rest of the world.\n\t  Note: When a lighting scenario level is present, lightmaps for all streaming levels are placed in the scenario's _BuildData package.\n\t \t\tThis means that lightmaps for those streaming levels will not be streamed with them.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LevelBuildDataId",
+            "Type": "FGuid",
+            "Description": "Identifies map build data specific to this level, eg lighting volume samples.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MapBuildData",
+            "Type": "UMapBuildDataRegistry *",
+            "Description": "Registry for data from the map build.  This is stored in a separate package from the level to speed up saving  autosaving.\n\t  ReleaseRenderingResources must be called before changing what is referenced, to update the rendering thread state.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MapPCBuildData",
+            "Type": "UMapBuildDataRegistry *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightBuildLevelOffset",
+            "Type": "FIntVector",
+            "Description": "Level offset at time when lighting was built",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTextureStreamingRotationChanged",
+            "Type": "uint8",
+            "Description": "Whether a level transform rotation was applied since the texture streaming builds. Invalidates the precomputed streaming bounds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsVisible",
+            "Type": "uint8",
+            "Description": "Whether the level is currently visible associated with the world",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLocked",
+            "Type": "uint8",
+            "Description": "Whether this level is locked; that is, its actors are read-only\n\t \tUsed by WorldBrowser to lock a level when corresponding ULevelStreaming does not exist",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPVSDirty",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WorldSettings",
+            "Type": "AWorldSettings *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RCRCommunicatorClassName",
+            "Type": "FSoftClassPath",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RCRCommunicator",
+            "Type": "URCRCommunicator *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshRefCounter",
+            "Type": "TMap < UStaticMesh * , int32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Level_RCR",
+            "Type": "ULevel_RCR *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetUserData",
+            "Type": "TArray < UAssetUserData * >",
+            "Description": "Array of user data stored with the asset",
+            "Redirect": ""
+        },
+        {
+            "Name": "LevelScriptBlueprint",
+            "Type": "ULevelScriptBlueprint *",
+            "Description": "Reference to the blueprint for level scripting",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextureStreamingResourceGuids",
+            "Type": "TArray < FGuid >",
+            "Description": "The Guid list of all materials and meshes Guid used in the last texture streaming build. Used to know if the streaming data needs rebuild. Only used for the persistent level.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LevelSimplification",
+            "Type": "FLevelSimplificationDetails",
+            "Description": "Level simplification settings for each LOD",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlatformLevelSimplification",
+            "Type": "TArray < FLevelSimplificationDetails >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LevelColor",
+            "Type": "FLinearColor",
+            "Description": "The level color used for visualization. (Show -> Advanced -> Level Coloration)\n\t  Used only in world composition mode",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IInterface_AssetUserData"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

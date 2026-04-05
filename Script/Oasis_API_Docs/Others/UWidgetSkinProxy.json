@@ -1,0 +1,145 @@
+{
+    "Name": "UWidgetSkinProxy",
+    "Description": "The user widget proxy, using this proxy to activate widget skin for an user widget.",
+    "Variables": [
+        {
+            "Name": "bHideBeforeLoadSkin",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActiveSkins",
+            "Type": "TArray < UUserWidgetSkin * >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ApplySkin",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SkinPathPtr",
+                    "Type": "TSoftClassPtr < UUserWidgetSkin > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bAsyncLoad",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RevertSkin",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SkinPathPtr",
+                    "Type": "TSoftClassPtr < UUserWidgetSkin >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RevertRevertableSkin",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActiveSkins",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UUserWidgetSkin * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRevertableSkin",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UUserWidgetSkin *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ContainsSkin",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSkin",
+                    "Type": "UUserWidgetSkin *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOwnerUserWidget",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UUserWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IWidgetSkinProxyInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

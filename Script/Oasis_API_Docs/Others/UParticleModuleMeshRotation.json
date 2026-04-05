@@ -1,0 +1,25 @@
+{
+    "Name": "UParticleModuleMeshRotation",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StartRotation",
+            "Type": "FRawDistributionVector",
+            "Description": "Initial rotation in ROTATIONS PER SECOND (1 = 360 degrees).\n\t \tThe value is retrieved using the EmitterTime.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritParent",
+            "Type": "uint32",
+            "Description": "If true, apply the parents rotation as well.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleRotationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

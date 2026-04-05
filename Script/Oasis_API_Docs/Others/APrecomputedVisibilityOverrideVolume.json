@@ -1,0 +1,31 @@
+{
+    "Name": "APrecomputedVisibilityOverrideVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "OverrideVisibleActors",
+            "Type": "TArray < AActor * >",
+            "Description": "Array of actors that will always be considered visible by Precomputed Visibility when viewed from inside this volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideInvisibleActors",
+            "Type": "TArray < AActor * >",
+            "Description": "Array of actors that will always be considered invisible by Precomputed Visibility when viewed from inside this volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideInvisibleLevels",
+            "Type": "TArray < FName >",
+            "Description": "Array of level names whose actors will always be considered invisible by Precomputed Visibility when viewed from inside this volume.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

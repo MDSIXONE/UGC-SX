@@ -1,0 +1,49 @@
+{
+    "Name": "USubUVAnimation",
+    "Description": "SubUV animation asset, which caches bounding geometry for regions in the SubUVTexture with non-zero opacity.\n  Particle emitters with a SubUV module which use this asset leverage the optimal bounding geometry to reduce overdraw.",
+    "Variables": [
+        {
+            "Name": "SubUVTexture",
+            "Type": "UTexture2D *",
+            "Description": "Texture to generate bounding geometry from.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubImages_Horizontal",
+            "Type": "int32",
+            "Description": "The number of sub-images horizontally in the texture",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubImages_Vertical",
+            "Type": "int32",
+            "Description": "The number of sub-images vertically in the texture",
+            "Redirect": ""
+        },
+        {
+            "Name": "BoundingMode",
+            "Type": "TEnumAsByte < enum ESubUVBoundingVertexCount >",
+            "Description": "More bounding vertices results in reduced overdraw, but adds more triangle overhead.\n\t  The eight vertex mode is best used when the SubUV texture has a lot of space to cut out that is not captured by the four vertex version,\n\t  and when the particles using the texture will be few and large.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OpacitySourceMode",
+            "Type": "TEnumAsByte < enum EOpacitySourceMode >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AlphaThreshold",
+            "Type": "float",
+            "Description": "Alpha channel values larger than the threshold are considered occupied and will be contained in the bounding geometry.\n\t  Raising this threshold slightly can reduce overdraw in particles using this animation asset.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

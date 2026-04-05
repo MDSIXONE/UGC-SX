@@ -1,0 +1,118 @@
+{
+    "Name": "UCommonBattleItemHandleBase",
+    "Description": "通用扩展 ItemHandle 基类",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "UBattleItemHandleBase",
+        "ICommonBattleItemUseInterface"
+    ],
+    "Event": [
+        {
+            "Name": "CanCreateItemHandleV2",
+            "Description": "能否创建物品 Handle\n\t  可重载并自定义\n\t  DS 被调用\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "是否允许创建物品 Handle",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnCreateItemHandleV2",
+            "Description": "当创建物品 Handle 后回调\n\t  可重载并自定义\n\t  DS 被调用",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanDestoryItemHandleV2",
+            "Description": "能否销毁物品 Handle\n\t  可重载并自定义\n\t  DS 被调用\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "是否允许销毁物品 Handle",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnDestoryItemHandleV2",
+            "Description": "销毁物品 Handle 前回调\n\t  可重载并自定义\n\t  DS 被调用",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanUpdateItemCountV2",
+            "Description": "能否更新此物品实例的数量\n\t  可重载并自定义\n\t  DS 被调用\n\t ",
+            "Params": [
+                {
+                    "Name": "NewItemCount",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OldItemCount",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "是否允许物品数量更新",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnUpdateItemCountV2",
+            "Description": "物品数量更新后回调\n\t  可重载并自定义\n\t  DS 被调用",
+            "Params": [
+                {
+                    "Name": "NewItemCount",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OldItemCount",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

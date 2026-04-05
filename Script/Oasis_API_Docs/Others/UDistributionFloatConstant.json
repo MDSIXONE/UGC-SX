@@ -1,0 +1,19 @@
+{
+    "Name": "UDistributionFloatConstant",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Constant",
+            "Type": "float",
+            "Description": "This float will be returned for all values of time.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDistributionFloat"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

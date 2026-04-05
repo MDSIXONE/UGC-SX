@@ -1,0 +1,105 @@
+{
+    "Name": "UEnvQueryGenerator_BlueprintBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "GeneratorsActionDescription",
+            "Type": "FText",
+            "Description": "A short description of what test does, like \"Generate pawn named Joe\"",
+            "Redirect": ""
+        },
+        {
+            "Name": "Context",
+            "Type": "TSubclassOf < UEnvQueryContext >",
+            "Description": "context",
+            "Redirect": ""
+        },
+        {
+            "Name": "GeneratedItemType",
+            "Type": "TSubclassOf < UEnvQueryItemType >",
+            "Description": "@todo this should show up only in the generator's BP, but \n\t \tdue to the way EQS editor is generating widgets it's there as well\n\t \tIt's a bug and we'll fix it",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "DoItemGeneration",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ContextLocations",
+                    "Type": "TArray < FVector > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddGeneratedVector",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "GeneratedVector",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddGeneratedActor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "GeneratedActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetQuerier",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UEnvQueryGenerator"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,25 @@
+{
+    "Name": "UMaterialExpressionDepthOfFieldFunction",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "FunctionValue",
+            "Type": "TEnumAsByte < enum EDepthOfFieldFunctionValue >",
+            "Description": "Determines the mapping place to use on the terrain.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Depth",
+            "Type": "FExpressionInput",
+            "Description": "usually nothing or PixelDepth",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

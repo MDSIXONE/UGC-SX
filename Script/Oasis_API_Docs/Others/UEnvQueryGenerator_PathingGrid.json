@@ -1,0 +1,31 @@
+{
+    "Name": "UEnvQueryGenerator_PathingGrid",
+    "Description": "Navigation grid, generates points on navmesh\n   with paths tofrom context no further than given limit",
+    "Variables": [
+        {
+            "Name": "PathToItem",
+            "Type": "FAIDataProviderBoolValue",
+            "Description": "pathfinding direction",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavigationFilter",
+            "Type": "TSubclassOf < UNavigationQueryFilter >",
+            "Description": "navigation filter to use in pathfinding",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScanRangeMultiplier",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "multiplier for max distance between point and context",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UEnvQueryGenerator_SimpleGrid"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

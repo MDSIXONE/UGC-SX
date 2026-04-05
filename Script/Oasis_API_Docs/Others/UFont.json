@@ -1,0 +1,110 @@
+{
+    "Name": "UFont",
+    "Description": "A font object, for use by Slate, UMG, and Canvas.\n \n  A font can either be:\n     Runtime cached - The font contains a series of TTF files that combine to form a composite font. The glyphs are cached on demand when required at runtime.\n     Offline cached - The font contains a series of textures containing pre-baked cached glyphs and their associated texture coordinates.",
+    "Variables": [
+        {
+            "Name": "FontCacheType",
+            "Type": "EFontCacheType",
+            "Description": "What kind of font caching should we use? This controls which options we see",
+            "Redirect": ""
+        },
+        {
+            "Name": "Characters",
+            "Type": "TArray < FFontCharacter >",
+            "Description": "List of characters in the font.  For a MultiFont, this will include all characters in all sub-fonts!  Thus,\n\t\tthe number of characters in this array isn't necessary the number of characters available in the font",
+            "Redirect": ""
+        },
+        {
+            "Name": "Textures",
+            "Type": "TArray < UTexture2D * >",
+            "Description": "Textures that store this font's glyph image data",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsRemapped",
+            "Type": "int32",
+            "Description": "True if font is 'remapped'.  That is, the character array is not a direct mapping to unicode values.  Instead,\n\t\tall characters are indexed indirectly through the CharRemap array",
+            "Redirect": ""
+        },
+        {
+            "Name": "EmScale",
+            "Type": "float",
+            "Description": "Font metrics.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Ascent",
+            "Type": "float",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "Descent",
+            "Type": "float",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "Leading",
+            "Type": "float",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "Kerning",
+            "Type": "int32",
+            "Description": "Default horizontal spacing between characters when rendering text with this font",
+            "Redirect": ""
+        },
+        {
+            "Name": "ImportOptions",
+            "Type": "FFontImportOptionsData",
+            "Description": "Options used when importing this font",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumCharacters",
+            "Type": "int32",
+            "Description": "Number of characters in the font, not including multiple instances of the same character (for multi-fonts).\n\t\tThis is cached at load-time or creation time, and is never serialized.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxCharHeight",
+            "Type": "TArray < int32 >",
+            "Description": "The maximum height of a character in this font.  For multi-fonts, this array will contain a maximum\n\t\tcached at load-time or creation time, and is never serialized.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScalingFactor",
+            "Type": "float",
+            "Description": "Scale to apply to the font.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LegacyFontSize",
+            "Type": "int32",
+            "Description": "The default size of the font used for legacy Canvas APIs that don't specify a font size",
+            "Redirect": ""
+        },
+        {
+            "Name": "LegacyFontName",
+            "Type": "FName",
+            "Description": "The default font name to use for legacy Canvas APIs that don't specify a font name",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompositeFont",
+            "Type": "FCompositeFont",
+            "Description": "Embedded composite font data",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IFontProviderInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

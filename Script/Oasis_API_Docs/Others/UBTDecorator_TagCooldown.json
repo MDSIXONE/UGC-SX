@@ -1,0 +1,37 @@
+{
+    "Name": "UBTDecorator_TagCooldown",
+    "Description": "Cooldown decorator node.\n  A decorator node that bases its condition on whether a cooldown timer based on a gameplay tag has expired.",
+    "Variables": [
+        {
+            "Name": "CooldownTag",
+            "Type": "FGameplayTag",
+            "Description": "Gameplay tag that will be used for the cooldown.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CooldownDuration",
+            "Type": "float",
+            "Description": "Value we will add or set to the Cooldown tag when this node is deactivated.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAddToExistingDuration",
+            "Type": "bool",
+            "Description": "True if we are adding to any existing duration, false if we are setting the duration (potentially invalidating an existing end time).",
+            "Redirect": ""
+        },
+        {
+            "Name": "bActivatesCooldown",
+            "Type": "bool",
+            "Description": "Whether or not we are addingsetting to the cooldown tag's value when the decorator deactivates.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTDecorator"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

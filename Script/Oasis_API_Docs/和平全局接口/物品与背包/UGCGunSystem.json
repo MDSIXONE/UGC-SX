@@ -1,0 +1,808 @@
+{
+    "Name": "UGCGunSystem",
+    "Description": "枪械系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "StartFire",
+            "Description": "开火\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "StopFire",
+            "Description": "停止开火\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "EnableInfiniteBullets",
+            "Description": "启用/停用无限子弹（无需换弹）\n启用后，弹夹容量无限，一直开火也无需换弹\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsEnable",
+                    "Type": "boolean",
+                    "Description": "启用/停用",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "EnableClipInfiniteBullets",
+            "Description": "启用/停用弹夹无限子弹（需要换弹一次）\n启用后，子弹容量无限，开火会打空弹夹触发换弹\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsEnable",
+                    "Type": "boolean",
+                    "Description": "启用/停用",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ForceReloadAndEnableInfiniteBullets",
+            "Description": "启用/停用无限子弹（无需换弹）并且强制换弹\n启用后，强制换弹弹夹容量无限，一直开火也无需换弹，避免弹夹内子弹为0时触发检查\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsEnable",
+                    "Type": "boolean",
+                    "Description": "启用/停用",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "SetMaxBulletNumInOneClip",
+            "Description": "设置弹夹容量\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MaxBulletNumInOneClip",
+                    "Type": "number",
+                    "Description": "弹夹容量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetMaxBulletNumInOneClip",
+            "Description": "获取弹夹容量\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "弹夹容量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBulletFireSpeed",
+            "Description": "设置子弹飞行速度\n例：60000代表1秒飞行600米\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BulletFireSpeed",
+                    "Type": "number",
+                    "Description": "飞行速度",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetBulletFireSpeed",
+            "Description": "获取子弹飞行速度\n例：60000代表1秒飞行600米\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "当前飞行速度",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetShootIntervalTime",
+            "Description": "设置射击间隔时间\n例：0.1代表0.1秒射击一次\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ShootIntervalTime",
+                    "Type": "number",
+                    "Description": "射击间隔时间",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetShootIntervalTime",
+            "Description": "获取射击间隔时间\n例：0.1代表0.1秒射击一次\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "射击间隔时间",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBulletRange",
+            "Description": "设置子弹射程\n例：60000射程为600米\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BulletRange",
+                    "Type": "number",
+                    "Description": "子弹射程",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetBulletRange",
+            "Description": "获取子弹射程\n例：60000射程为600米\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "子弹射程",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBulletBaseDamage",
+            "Description": "设置子弹基础伤害\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BulletBaseDamage",
+                    "Type": "number",
+                    "Description": "基础伤害",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetBulletBaseDamage",
+            "Description": "获取子弹基础伤害\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "基础伤害",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBulletMinimumDamage",
+            "Description": "设置子弹最低伤害（子弹经过穿透，距离等衰减后）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BulletMinimumDamage",
+                    "Type": "number",
+                    "Description": "最低伤害",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetBulletMinimumDamage",
+            "Description": "获取子弹最低伤害（子弹经过穿透，距离等衰减后）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "最低伤害",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBulletImpulse",
+            "Description": "设置子弹命中冲量\n冲量越大，击退击飞效果越大\n参考：破片手雷最大造成冲量为2500\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BulletImpulse",
+                    "Type": "number",
+                    "Description": "冲量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetBulletImpulse",
+            "Description": "获取子弹命中冲量\n冲量越大，击退击飞效果越大\n参考：破片手雷最大造成冲量为2500\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "冲量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetReloadTime",
+            "Description": "设置换弹时间\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ReloadTime",
+                    "Type": "number",
+                    "Description": "换弹时间",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetReloadTime",
+            "Description": "获取换弹时间                 \n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "换弹时间",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTacticalReloadTime",
+            "Description": "设置战术换弹时间（弹夹子弹数不为0）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TacticalReloadTime",
+                    "Type": "number",
+                    "Description": "换弹时间",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetTacticalReloadTime",
+            "Description": "获取战术换弹时间（弹夹子弹数不为0）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "换弹时间",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVerticalRecoilScale",
+            "Description": "设置垂直后坐力倍率\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "VerticalRecoilScale",
+                    "Type": "number",
+                    "Description": "倍率",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetVerticalRecoilScale",
+            "Description": "获取垂直后坐力倍率\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "倍率",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetHorizontalRecoilScale",
+            "Description": "设置水平后坐力倍率\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HorizontalRecoilScale",
+                    "Type": "number",
+                    "Description": "倍率",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetHorizontalRecoilScale",
+            "Description": "获取水平后坐力倍率\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "倍率",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDeviationScale",
+            "Description": "设置扩散值倍率\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DeviationScale",
+                    "Type": "number",
+                    "Description": "倍率",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetDeviationScale",
+            "Description": "获取扩散值倍率\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "倍率",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Reload",
+            "Description": "玩家当前武器换弹\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "OpenScope",
+            "Description": "玩家当前武器开镜/关镜\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsOpenScope",
+                    "Type": "boolean",
+                    "Description": "开镜/关镜",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetIsAutoAimEnabled",
+            "Description": "获取辅助瞄准是否启用 \n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "启用/关闭",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsAutoAimEnabled",
+            "Description": "设置自动瞄准是否启用 \n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsAutoAimEnabled",
+                    "Type": "boolean",
+                    "Description": "启用/关闭",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "AddGunAttachment",
+            "Description": "武器添加指定配件\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CreateAndAddGunAttachment",
+            "Description": "创建新配件并且直接添加到武器\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RemoveGunAttachmentBySocketType",
+            "Description": "卸载武器指定部位配件\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SocketType",
+                    "Type": "WeaponAttachmentSocketType",
+                    "Description": "配件槽位",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetWeaponAttachmentIDBySocketType",
+            "Description": "获取特定槽位的配件ItemDefineID\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SocketType",
+                    "Type": "WeaponAttachmentSocketType",
+                    "Description": "配件槽位",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAvailableWeaponAttachmentSocketTypeList",
+            "Description": "获取枪械可用的配件槽位\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "uint8[]",
+                    "Type": "@AttachmentSocketType",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAvailableWeaponAttachment",
+            "Description": "获取武器可用配件(需要武器加载出来才能使用，不能在武器初始化时调用)\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "int32[]",
+                    "Type": "@AvailableWeaponAttachment",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisuseAllWeaponAttachmentsOnServer",
+            "Description": "卸载武器所有配件\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetWeaponAllAttachmentIDList",
+            "Description": "获取武器上的所有配件\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "ItemDefineID[]",
+                    "Type": "@AttachmentDefineID",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCurrentBulletNumInClip",
+            "Description": "设置武器弹匣内弹药\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Gun",
+                    "Type": "STExtraShootWeapon",
+                    "Description": "枪械",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int",
+                    "Description": "枪械",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

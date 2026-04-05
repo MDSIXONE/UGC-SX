@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_Float",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

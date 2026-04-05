@@ -1,0 +1,37 @@
+{
+    "Name": "UMaterialExpressionTextureSampleParameter",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ParameterName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExpressionGUID",
+            "Type": "FGuid",
+            "Description": "GUID that should be unique within the material, this is used for parameter renaming.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Group",
+            "Type": "FName",
+            "Description": "The name of the parameter Group to display in MaterialInstance Editor. Default is None group",
+            "Redirect": ""
+        },
+        {
+            "Name": "SortPriority",
+            "Type": "int32",
+            "Description": "Controls where the this parameter is displayed in a material instance parameter list.  The lower the number the higher up in the parameter list.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionTextureSample"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

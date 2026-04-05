@@ -1,0 +1,54 @@
+{
+    "Name": "UUMGSequencePlayer",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Animation",
+            "Type": "UWidgetAnimation *",
+            "Description": "Animation being played",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetUserTag",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetUserTag",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InUserTag",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IMovieScenePlayer"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

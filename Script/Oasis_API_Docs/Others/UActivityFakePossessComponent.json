@@ -1,0 +1,151 @@
+{
+    "Name": "UActivityFakePossessComponent",
+    "Description": "能够将这个Actor的控制权传递给玩家的组件",
+    "Variables": [
+        {
+            "Name": "OnPossess",
+            "Type": "FFakePossesserChangeDelegate",
+            "Description": "获取控制权事件事件委托\n\t @param PC 获取到这个Actor控制权的PC",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnUnPossess",
+            "Type": "FFakePossesserChangeDelegate",
+            "Description": "解除控制权事件委托\n\t @param PC 解除这个Actor控制权的PC",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnUnPossessWithReason",
+            "Type": "FFakeUnPossessDelegate",
+            "Description": "解除控制权事件委托\n\t @param PC 解除这个Actor控制权的PC\n\t @param Reason 解除控制权的原因",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "FakePossess",
+            "Description": "生效范围：S\n\t  让一个PlayerController控制这个Actor",
+            "Params": [
+                {
+                    "Name": "PC",
+                    "Type": "AController *",
+                    "Description": "获得控制权的PlayerController",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FakeUnPossess",
+            "Description": "生效范围：S\n\t  解除这个Actor上的PC的控制权",
+            "Params": [
+                {
+                    "Name": "Reason",
+                    "Type": "EUnPossessReason",
+                    "Description": "解除控制权的原因",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FakePossessWithAttach",
+            "Description": "生效范围：S\n\t  让一个PlayerController控制这个Actor，并将当前控制的角色Attach到这个Actor上",
+            "Params": [
+                {
+                    "Name": "PC",
+                    "Type": "AController * ",
+                    "Description": "获得控制权的PlayerController",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AttachScene",
+                    "Type": "USceneComponent * ",
+                    "Description": "Attach到的组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SocketName",
+                    "Type": "FName ",
+                    "Description": "Attach到的Socket",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bMulticastToClient",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FakeUnPossessWithDettach",
+            "Description": "生效范围：S\n\t  解除这个Actor上的PC的控制权，并将角色从这个Actor上Detach",
+            "Params": [
+                {
+                    "Name": "Reason",
+                    "Type": "EUnPossessReason",
+                    "Description": "解除控制权的原因",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanBePossess",
+            "Description": "生效范围：S\n\t  获取是否可以由这个Character控制当前Actor",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraBaseCharacter *",
+                    "Description": "要检查的Character",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent",
+        "IFakePossessInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

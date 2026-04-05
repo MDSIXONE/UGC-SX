@@ -1,0 +1,579 @@
+{
+    "Name": "UHeadMountedDisplayFunctionLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "IsHeadMountedDisplayEnabled",
+            "Description": "Returns whether or not we are currently using the head mounted display.\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "(Boolean)  status of HMD",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsHeadMountedDisplayConnected",
+            "Description": "Returns whether or not the HMD hardware is connected and ready to use.  It may or may not actually be in use.\n\t",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "(Boolean)  status whether the HMD hardware is connected and ready to use.  It may or may not actually be in use.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableHMD",
+            "Description": "Switches tofrom using HMD and stereo rendering.\n\t ",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": " (in) 'true' to enable HMD stereo; 'false' otherwise",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "(Boolean)\t\tTrue, if the request was successful.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetHMDDeviceName",
+            "Description": "Returns the name of the device, so scripts can modify their behaviour appropriately\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "FName specific to the currently active HMD device type.  \"None\" implies no device, \"Unknown\" implies a device with no description.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetHMDWornState",
+            "Description": "Returns the worn state of the device.\n\t",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EHMDWornState :: Type",
+                    "Description": "Unknown, Worn, NotWorn.  If the platform does not detect this it will always return Unknown.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOrientationAndPosition",
+            "Description": "Grabs the current orientation and position for the HMD.  If positional tracking is not available, DevicePosition will be a zero vector\n\t ",
+            "Params": [
+                {
+                    "Name": "DeviceRotation",
+                    "Type": "FRotator & ",
+                    "Description": "(out) The device's current rotation",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DevicePosition",
+                    "Type": "FVector &",
+                    "Description": "(out) The device's current position, in its own tracking space",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasValidTrackingPosition",
+            "Description": "If the HMD supports positional tracking, whether or not we are currently being tracked",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumOfTrackingSensors",
+            "Description": "If the HMD has multiple positional tracking sensors, return a total number of them currently connected.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTrackingSensorParameters",
+            "Description": "If the HMD has a positional sensor, this will return the game-world location of it, as well as the parameters for the bounding region of tracking.\n\t  This allows an in-game representation of the legal positional tracking range.  All values will be zeroed if the sensor is not available or the HMD does not support it.\n\t ",
+            "Params": [
+                {
+                    "Name": "Origin",
+                    "Type": "FVector & ",
+                    "Description": " (out) Origin, in world-space, of the sensor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator & ",
+                    "Description": " (out) Rotation, in world-space, of the sensor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LeftFOV",
+                    "Type": "float & ",
+                    "Description": " (out) Field-of-view, left from center, in degrees, of the valid tracking zone of the sensor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RightFOV",
+                    "Type": "float & ",
+                    "Description": " (out) Field-of-view, right from center, in degrees, of the valid tracking zone of the sensor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TopFOV",
+                    "Type": "float & ",
+                    "Description": " (out) Field-of-view, top from center, in degrees, of the valid tracking zone of the sensor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BottomFOV",
+                    "Type": "float & ",
+                    "Description": " (out) Field-of-view, bottom from center, in degrees, of the valid tracking zone of the sensor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Distance",
+                    "Type": "float & ",
+                    "Description": " (out) Nominal distance to sensor, in world-space",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NearPlane",
+                    "Type": "float & ",
+                    "Description": " (out) Near plane distance of the tracking volume, in world-space",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FarPlane",
+                    "Type": "float & ",
+                    "Description": " (out) Far plane distance of the tracking volume, in world-space",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsActive",
+                    "Type": "bool & ",
+                    "Description": " (out) True, if the query for the specified sensor succeeded.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": " (in) Index of the tracking sensor to query",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPositionalTrackingCameraParameters",
+            "Description": "If the HMD has a positional sensor, this will return the game-world location of it, as well as the parameters for the bounding region of tracking.\n\t  This allows an in-game representation of the legal positional tracking range.  All values will be zeroed if the sensor is not available or the HMD does not support it.\n\t ",
+            "Params": [
+                {
+                    "Name": "CameraOrigin",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CameraRotation",
+                    "Type": "FRotator & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HFOV",
+                    "Type": "float & ",
+                    "Description": " (out) Field-of-view, horizontal, in degrees, of the valid tracking zone of the sensor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "VFOV",
+                    "Type": "float & ",
+                    "Description": " (out) Field-of-view, vertical, in degrees, of the valid tracking zone of the sensor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CameraDistance",
+                    "Type": "float & ",
+                    "Description": "(out) Nominal distance to sensor, in world-space",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NearPlane",
+                    "Type": "float & ",
+                    "Description": " (out) Near plane distance of the tracking volume, in world-space",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FarPlane",
+                    "Type": "float &",
+                    "Description": " (out) Far plane distance of the tracking volume, in world-space",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsInLowPersistenceMode",
+            "Description": "Returns true, if HMD is in low persistence mode. 'false' otherwise.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableLowPersistenceMode",
+            "Description": "Switches between low and full persistence modes.\n\t ",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": " (in) 'true' to enable low persistence mode; 'false' otherwise",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetOrientationAndPosition",
+            "Description": "Resets orientation by setting roll and pitch to 0, assuming that current yaw is forward direction and assuming\n\t  current position as a 'zero-point' (for positional tracking). \n\t ",
+            "Params": [
+                {
+                    "Name": "Yaw",
+                    "Type": "float ",
+                    "Description": " (in) the desired yaw to be set after orientation reset.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Options",
+                    "Type": "EOrientPositionSelector :: Type",
+                    "Description": " (in) specifies either position, orientation or both should be reset.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetClippingPlanes",
+            "Description": "Sets near and far clipping planes (NCP and FCP) for stereo rendering. Similar to 'stereo ncp= fcp' console command, but NCP and FCP set by this\n\t  call won't be saved in .ini file.\n\t ",
+            "Params": [
+                {
+                    "Name": "Near",
+                    "Type": "float ",
+                    "Description": " (in) Near clipping plane, in centimeters",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Far",
+                    "Type": "float",
+                    "Description": " (in) Far clipping plane, in centimeters",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetScreenPercentage",
+            "Description": "Returns screen percentage to be used in VR mode.\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "(float)\tThe screen percentage to be used in VR mode.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWorldToMetersScale",
+            "Description": "Sets the World to Meters scale, which changes the scale of the world as perceived by the player\n\t",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewScale",
+                    "Type": "float",
+                    "Description": "Specifies how many Unreal units correspond to one meter in the real world",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldToMetersScale",
+            "Description": "Returns the World to Meters scale, which corresponds to the scale of the world as perceived by the player\n\t",
+            "Params": [
+                {
+                    "Name": "WorldContext",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "How many Unreal units correspond to one meter in the real world",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTrackingOrigin",
+            "Description": "Sets current tracking origin type (eye level or floor level).",
+            "Params": [
+                {
+                    "Name": "Origin",
+                    "Type": "TEnumAsByte < EHMDTrackingOrigin :: Type >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTrackingOrigin",
+            "Description": "Returns current tracking origin type (eye level or floor level).",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TEnumAsByte < EHMDTrackingOrigin :: Type >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetVRFocusState",
+            "Description": "Returns current state of VR focus.\n\t ",
+            "Params": [
+                {
+                    "Name": "bUseFocus",
+                    "Type": "bool & ",
+                    "Description": "(out) if set to true, then this App does use VR focus.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bHasFocus",
+                    "Type": "bool &",
+                    "Description": "(out) if set to true, then this App currently has VR focus.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsSpectatorScreenModeControllable",
+            "Description": "Return true if spectator screen mode control is available.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSpectatorScreenMode",
+            "Description": "Sets the social screen mode.",
+            "Params": [
+                {
+                    "Name": "Mode",
+                    "Type": "ESpectatorScreenMode",
+                    "Description": " (in) The social screen Mode.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSpectatorScreenTexture",
+            "Description": "Change the texture displayed on the social screen",
+            "Params": [
+                {
+                    "Name": "InTexture",
+                    "Type": "UTexture *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSpectatorScreenModeTexturePlusEyeLayout",
+            "Description": "Setup the layout for ESpectatorScreenMode::TexturePlusEye.",
+            "Params": [
+                {
+                    "Name": "EyeRectMin",
+                    "Type": "FVector2D ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EyeRectMax",
+                    "Type": "FVector2D ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TextureRectMin",
+                    "Type": "FVector2D ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TextureRectMax",
+                    "Type": "FVector2D ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bDrawEyeFirst",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bClearBlack",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

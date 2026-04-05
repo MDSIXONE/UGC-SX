@@ -1,0 +1,43 @@
+{
+    "Name": "UParticleModuleKillBox",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LowerLeftCorner",
+            "Type": "FRawDistributionVector",
+            "Description": "The lower left corner of the box.",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpperRightCorner",
+            "Type": "FRawDistributionVector",
+            "Description": "The upper right corner of the box.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAbsolute",
+            "Type": "uint32",
+            "Description": "If true, the box coordinates are in world space.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bKillInside",
+            "Type": "uint32",
+            "Description": "If true, particles INSIDE the box will be killed. \n\t \tIf false (the default), particles OUTSIDE the box will be killed.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAxisAlignedAndFixedSize",
+            "Type": "uint32",
+            "Description": "If true, the box will always be axis aligned and non-scalable.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleKillBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,43 @@
+{
+    "Name": "UAnimCompress_PerTrackVariableBit",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CompressedTranslationBitRate",
+            "Type": "TArray < uint32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompressedRotationBitRate",
+            "Type": "TArray < uint32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompressedScaleBitRate",
+            "Type": "TArray < uint32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "isCompressed",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UncompressBoneName",
+            "Type": "TArray < FName >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UAnimCompress_PerTrackCompression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

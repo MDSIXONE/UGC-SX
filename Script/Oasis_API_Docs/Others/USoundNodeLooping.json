@@ -1,0 +1,25 @@
+{
+    "Name": "USoundNodeLooping",
+    "Description": "Defines how a sound loops; either indefinitely, or for a set number of times.\n  Note: The Looping node should only be used for logical or procedural looping such as introducing a delay.\n  These sounds will not be played seamlessly. If you want a sound to loop seamlessly and indefinitely,\n  use the Looping flag on the Wave Player node for that sound.",
+    "Variables": [
+        {
+            "Name": "LoopCount",
+            "Type": "int32",
+            "Description": "The amount of times to loop",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLoopIndefinitely",
+            "Type": "uint32",
+            "Description": "If enabled, the node will continue to loop indefinitely regardless of the Loop Count value.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

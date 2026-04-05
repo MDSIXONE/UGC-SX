@@ -1,0 +1,455 @@
+{
+    "Name": "UPaperFlipbookComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SourceFlipbook",
+            "Type": "UPaperFlipbook *",
+            "Description": "Flipbook currently being played",
+            "Redirect": ""
+        },
+        {
+            "Name": "Material_DEPRECATED",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayRate",
+            "Type": "float",
+            "Description": "Current play rate of the flipbook",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLooping",
+            "Type": "uint32",
+            "Description": "Whether the flipbook should loop when it reaches the end, or stop",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReversePlayback",
+            "Type": "uint32",
+            "Description": "If playback should move the current position backwards instead of forwards",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPlaying",
+            "Type": "uint32",
+            "Description": "Are we currently playing (moving Position)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AccumulatedTime",
+            "Type": "float",
+            "Description": "Current position in the timeline",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedFrameIndex",
+            "Type": "int32",
+            "Description": "Last frame index calculated",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteColor",
+            "Type": "FLinearColor",
+            "Description": "Vertex color to apply to the frames",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedBodySetup",
+            "Type": "UBodySetup *",
+            "Description": "The cached body setup",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetFlipbook",
+            "Description": "Change the flipbook used by this instance (will reset the play time to 0 if it is a new flipbook).",
+            "Params": [
+                {
+                    "Name": "NewFlipbook",
+                    "Type": "UPaperFlipbook *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFlipbook",
+            "Description": "Gets the flipbook used by this instance.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPaperFlipbook *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSpriteColor",
+            "Description": "Set color of the sprite",
+            "Params": [
+                {
+                    "Name": "NewColor",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Play",
+            "Description": "Start playback of flipbook",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlayFromStart",
+            "Description": "Start playback of flipbook from the start",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Reverse",
+            "Description": "Start playback of flipbook in reverse",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReverseFromEnd",
+            "Description": "Start playback of flipbook in reverse from the end",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Stop",
+            "Description": "Stop playback of flipbook",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsPlaying",
+            "Description": "Get whether this flipbook is playing or not.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsReversing",
+            "Description": "Get whether we are reversing or not",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaybackPositionInFrames",
+            "Description": "Jump to a position in the flipbook (expressed in frames). If bFireEvents is true, event functions will fire, otherwise they will not.",
+            "Params": [
+                {
+                    "Name": "NewFramePosition",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bFireEvents",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaybackPositionInFrames",
+            "Description": "Get the current playback position (in frames) of the flipbook",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaybackPosition",
+            "Description": "Jump to a position in the flipbook (expressed in seconds). If bFireEvents is true, event functions will fire, otherwise they will not.",
+            "Params": [
+                {
+                    "Name": "NewPosition",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bFireEvents",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaybackPosition",
+            "Description": "Get the current playback position (in seconds) of the flipbook",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLooping",
+            "Description": "true means we should loop, false means we should not.",
+            "Params": [
+                {
+                    "Name": "bNewLooping",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsLooping",
+            "Description": "Get whether we are looping or not",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlayRate",
+            "Description": "Sets the new play rate for this flipbook",
+            "Params": [
+                {
+                    "Name": "NewRate",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayRate",
+            "Description": "Get the current play rate for this flipbook",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetNewTime",
+            "Description": "Set the new playback position time to use",
+            "Params": [
+                {
+                    "Name": "NewTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFlipbookLength",
+            "Description": "Get length of the flipbook (in seconds)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFlipbookLengthInFrames",
+            "Description": "Get length of the flipbook (in frames)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFlipbookFramerate",
+            "Description": "Get the nominal framerate that the flipbook will be played back at (ignoring PlayRate), in frames per second",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_SourceFlipbook",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "OldFlipbook",
+                    "Type": "UPaperFlipbook *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnFinishedPlaying",
+            "Description": "Event called whenever a non-looping flipbook finishes playing (either reaching the beginning or the end, depending on the play direction)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "UInputTouchDelegateBinding",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "InputTouchDelegateBindings",
+            "Type": "TArray < FBlueprintInputTouchDelegateBinding >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInputDelegateBinding"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

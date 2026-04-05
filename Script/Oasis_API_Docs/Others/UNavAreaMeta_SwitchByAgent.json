@@ -1,0 +1,109 @@
+{
+    "Name": "UNavAreaMeta_SwitchByAgent",
+    "Description": "Class containing definition of a navigation area",
+    "Variables": [
+        {
+            "Name": "Agent0Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent1Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent2Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent3Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent4Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent5Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent6Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent7Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent8Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent9Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent10Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent11Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent12Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent13Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent14Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Agent15Area",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UNavAreaMeta"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

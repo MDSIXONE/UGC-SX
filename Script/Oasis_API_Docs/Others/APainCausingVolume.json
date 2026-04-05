@@ -1,0 +1,55 @@
+{
+    "Name": "APainCausingVolume",
+    "Description": "Volume that causes damage over time to any Actor that overlaps its collision.",
+    "Variables": [
+        {
+            "Name": "bPainCausing",
+            "Type": "uint32",
+            "Description": "Whether volume currently causes damage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DamagePerSec",
+            "Type": "float",
+            "Description": "Damage done per second to actors in this volume when bPainCausing=true",
+            "Redirect": ""
+        },
+        {
+            "Name": "DamageType",
+            "Type": "TSubclassOf < UDamageType >",
+            "Description": "Type of damage done",
+            "Redirect": ""
+        },
+        {
+            "Name": "PainInterval",
+            "Type": "float",
+            "Description": "If pain causing, time between damage applications.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEntryPain",
+            "Type": "uint32",
+            "Description": "if bPainCausing, cause pain when something enters the volume in addition to damage each second",
+            "Redirect": ""
+        },
+        {
+            "Name": "BACKUP_bPainCausing",
+            "Type": "uint32",
+            "Description": "Checkpointed bPainCausing value",
+            "Redirect": ""
+        },
+        {
+            "Name": "DamageInstigator",
+            "Type": "AController *",
+            "Description": "Controller that gets credit for any damage caused by this volume",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "APhysicsVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

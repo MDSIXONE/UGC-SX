@@ -1,0 +1,49 @@
+{
+    "Name": "ULevelSequence",
+    "Description": "Movie scene animation for Actors.",
+    "Variables": [
+        {
+            "Name": "MovieScene",
+            "Type": "UMovieScene *",
+            "Description": "Pointer to the movie scene that controls this animation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObjectReferences",
+            "Type": "FLevelSequenceObjectReferenceMap",
+            "Description": "Legacy object references - should be read-only. Not deprecated because they need to still be saved",
+            "Redirect": ""
+        },
+        {
+            "Name": "BindingReferences",
+            "Type": "FLevelSequenceBindingReferences",
+            "Description": "References to bound objects.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PossessedObjects_DEPRECATED",
+            "Type": "TMap < FString , FLevelSequenceObject >",
+            "Description": "Deprecated property housing old possessed object bindings",
+            "Redirect": ""
+        },
+        {
+            "Name": "DirectorClass",
+            "Type": "UClass *",
+            "Description": "The class that is used to spawn this level sequence's director instance.\n\t  Director instances are allocated on-demand one per sequence during evaluation and are used by event tracks for triggering events.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DirectorBlueprint",
+            "Type": "UBlueprint *",
+            "Description": "A pointer to the director blueprint that generates this sequence's DirectorClass.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSequence"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

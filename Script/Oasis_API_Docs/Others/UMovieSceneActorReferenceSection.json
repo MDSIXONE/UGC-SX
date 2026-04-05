@@ -1,0 +1,26 @@
+{
+    "Name": "UMovieSceneActorReferenceSection",
+    "Description": "A single actor reference point section",
+    "Variables": [
+        {
+            "Name": "ActorGuidIndexCurve",
+            "Type": "FIntegralCurve",
+            "Description": "Curve data",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActorGuidStrings",
+            "Type": "TArray < FString >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection",
+        "IKeyframeSection<FGuid>"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

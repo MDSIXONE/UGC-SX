@@ -1,0 +1,74 @@
+{
+    "Name": "UAsyncTaskDownloadImage",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "DownloadImage",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "URL",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAsyncTaskDownloadImage * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintAsyncActionBase"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnSuccess",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Texture",
+                    "Type": "UTexture2DDynamic*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnFail",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Texture",
+                    "Type": "UTexture2DDynamic*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

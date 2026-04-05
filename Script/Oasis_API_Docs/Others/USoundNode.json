@@ -1,0 +1,25 @@
+{
+    "Name": "USoundNode",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ChildNodes",
+            "Type": "TArray < USoundNode * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GraphNode",
+            "Type": "UEdGraphNode *",
+            "Description": "Node's Graph representation, used to get position.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

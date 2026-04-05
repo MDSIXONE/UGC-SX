@@ -1,0 +1,154 @@
+{
+    "Name": "UChildActorComponent",
+    "Description": "A component that spawns an Actor when registered, and destroys it when unregistered.",
+    "Variables": [
+        {
+            "Name": "ChildActorClass",
+            "Type": "TSubclassOf < AActor >",
+            "Description": "The class of Actor to spawn",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChildActor",
+            "Type": "AActor *",
+            "Description": "The actor that we spawned and own",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowTemplateModification",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChildActorTemplate",
+            "Type": "AActor *",
+            "Description": "Property to point to the template child actor for details panel purposes",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsDestoryChildActor",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bKeepChildActorComponet",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableReplication",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDumpChildActorLocation",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRedirectComps",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPCOnlyComps",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetChildActorClass",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InClass",
+                    "Type": "TSubclassOf < AActor >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ChildActor",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateChildActor",
+            "Description": "Create the child actor",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DestroyChildActor",
+            "Description": "Kill any currently present child actor",
+            "Params": [
+                {
+                    "Name": "bNeedInstanceData",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnChildActorRep",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

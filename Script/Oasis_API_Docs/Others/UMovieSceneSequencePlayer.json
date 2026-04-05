@@ -1,0 +1,613 @@
+{
+    "Name": "UMovieSceneSequencePlayer",
+    "Description": "Abstract class that provides consistent player behaviour for various animation players",
+    "Variables": [
+        {
+            "Name": "Status",
+            "Type": "TEnumAsByte < EMovieScenePlayerStatus :: Type >",
+            "Description": "Movie player status.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReversePlayback",
+            "Type": "uint32",
+            "Description": "Whether we're currently playing in reverse.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPendingFirstUpdate",
+            "Type": "uint32",
+            "Description": "True where we're waiting for the first update of the sequence after calling StartPlayingNextTick.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Sequence",
+            "Type": "UMovieSceneSequence *",
+            "Description": "The sequence to play back",
+            "Redirect": ""
+        },
+        {
+            "Name": "TimeCursorPosition",
+            "Type": "float",
+            "Description": "The current time cursor position within the sequence (in seconds)",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartTime",
+            "Type": "float",
+            "Description": "Time time at which to start playing the sequence (defaults to the lower bound of the sequence's play range)",
+            "Redirect": ""
+        },
+        {
+            "Name": "EndTime",
+            "Type": "float",
+            "Description": "Time time at which to end playing the sequence (defaults to the upper bound of the sequence's play range)",
+            "Redirect": ""
+        },
+        {
+            "Name": "CurrentNumLoops",
+            "Type": "int32",
+            "Description": "The number of times we have looped in the current playback",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlaybackSettings",
+            "Type": "FMovieSceneSequencePlaybackSettings",
+            "Description": "Specific playback settings for the animation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RootTemplateInstance",
+            "Type": "FMovieSceneRootEvaluationTemplateInstance",
+            "Description": "The root template instance we're evaluating",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "Play",
+            "Description": "Start playback forwards from the current time cursor position, using the current play rate.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlayReverse",
+            "Description": "Reverse playback.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ChangePlaybackDirection",
+            "Description": "Changes the direction of playback (go in reverse if it was going forward, or vice versa)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlayLooping",
+            "Description": "Start playback from the current time cursor position, looping the specified number of times.",
+            "Params": [
+                {
+                    "Name": "NumLoops",
+                    "Type": "int32",
+                    "Description": "- The number of loops to play. -1 indicates infinite looping.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartPlayingNextTick",
+            "Description": "Start playback from the current time cursor position, using the current play rate. Does not update the animation until next tick.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Pause",
+            "Description": "Pause playback.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Scrub",
+            "Description": "Scrub playback.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Stop",
+            "Description": "Stop playback.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GoToEndAndStop",
+            "Description": "Go to end and stop.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaybackPosition",
+            "Description": "Get the current playback position",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaybackPosition",
+            "Description": "Set the current playback position",
+            "Params": [
+                {
+                    "Name": "NewPlaybackPosition",
+                    "Type": "float",
+                    "Description": "- The new playback position to set.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaybackPostionWithloop",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTargetTimePostionWithloop",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "JumpToPosition",
+            "Description": "Jump to new playback position",
+            "Params": [
+                {
+                    "Name": "NewPlaybackPosition",
+                    "Type": "float",
+                    "Description": "- The new playback position to set.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "JumpToPositionEx",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewPlaybackPosition",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsPlaying",
+            "Description": "Check whether the sequence is actively playing.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsPaused",
+            "Description": "Check whether the sequence is paused.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLength",
+            "Description": "Get the playback length of the sequence",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayRate",
+            "Description": "Get the playback rate of this player.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsEvaluating",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlayRate",
+            "Description": "Set the playback rate of this player. Negative values will play the animation in reverse.",
+            "Params": [
+                {
+                    "Name": "PlayRate",
+                    "Type": "float",
+                    "Description": "- The new rate of playback for the animation.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlayLoopCount",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NumLoops",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPlaybackRange",
+            "Description": "Sets the range in time to be played back by this player, overriding the default range stored in the asset\n\t ",
+            "Params": [
+                {
+                    "Name": "NewStartTime",
+                    "Type": "float ",
+                    "Description": "The new starting time for playback",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewEndTime",
+                    "Type": "float",
+                    "Description": "The new ending time for playback. Must be larger than the start time.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaybackStart",
+            "Description": "Get the offset within the level sequence to start playing",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaybackStartSeconds",
+            "Description": "Get the offset seconds within the level sequence to start playing",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaybackEnd",
+            "Description": "Get the offset within the level sequence to finish playing",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlaybackEndSeconds",
+            "Description": "Get the offset seconds within the level sequence to finish playing",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoundObjects",
+            "Description": "Retrieve all objects currently bound to the specified binding identifier",
+            "Params": [
+                {
+                    "Name": "ObjectBinding",
+                    "Type": "FMovieSceneObjectBindingID",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UObject * > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IMovieScenePlayer"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnPlay",
+            "Description": "Event triggered when the level sequence player is played",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnPlayReverse",
+            "Description": "Event triggered when the level sequence player is played in reverse",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnStop",
+            "Description": "Event triggered when the level sequence player is stopped",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnPause",
+            "Description": "Event triggered when the level sequence player is paused",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnFinished",
+            "Description": "Event triggered when the level sequence player finishes naturally (without explicitly calling stop)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnObjectSpawnedEvent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InObject",
+                    "Type": "UObject*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBindingID",
+                    "Type": "const FGuid&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSequenceID",
+                    "Type": "FMovieSceneSequenceID",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

@@ -1,0 +1,43 @@
+{
+    "Name": "UVectorFieldStatic",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SizeX",
+            "Type": "int32",
+            "Description": "Size of the vector field volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SizeY",
+            "Type": "int32",
+            "Description": "Size of the vector field volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SizeZ",
+            "Type": "int32",
+            "Description": "Size of the vector field volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceFilePath_DEPRECATED",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetImportData",
+            "Type": "UAssetImportData *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UVectorField"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

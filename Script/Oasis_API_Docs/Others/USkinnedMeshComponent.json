@@ -1,0 +1,1487 @@
+{
+    "Name": "USkinnedMeshComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SkeletalMesh",
+            "Type": "USkeletalMesh *",
+            "Description": "The skeletal mesh used by this component.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MasterPoseComponent",
+            "Type": "TWeakObjectPtr < USkinnedMeshComponent >",
+            "Description": "If set, this SkeletalMeshComponent will not use its SpaceBase for bone transform, but will\n\t \tuse the component space transforms from the MasterPoseComponent. This is used when constructing a character using multiple skeletal meshes sharing the same\n\t \tskeleton within the same Actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ComponentSpaceBoneExtraTransform",
+            "Type": "TArray < FTransform >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseBoundsFromMasterPoseComponent",
+            "Type": "uint32",
+            "Description": "When true, we will just using the bounds from our MasterPoseComponent.  This is useful for when we have a Mesh Parented\n\t  to the main SkelMesh (e.g. outline mesh or a full body overdraw effect that is toggled) that is always going to be the same\n\t  bounds as parent.  We want to do no calculations in that case.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PhysicsAssetOverride",
+            "Type": "UPhysicsAsset *",
+            "Description": "PhysicsAsset is set in SkeletalMesh by default, but you can override with this value",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideMinLod",
+            "Type": "uint8",
+            "Description": "Whether we should use the min lod specified in MinLodModel for this component instead of the min lod in the mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForcedLodModel",
+            "Type": "int32",
+            "Description": "If 0, auto-select LOD level. if >0, force to (ForcedLodModel-1).",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinLodModel",
+            "Type": "int32",
+            "Description": "This is the min LOD that this component will use.  (e.g. if set to 2 then only 2+ LOD Models will be used.) This is useful to set on\n\t  meshes which are known to be a certain distance away and still want to have better LODs when zoomed in on them.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxLodModel",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODDynamicMask",
+            "Type": "TArray < bool >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODInfo",
+            "Type": "TArray < struct FSkelMeshComponentLODInfo >",
+            "Description": "LOD array info. Each index will correspond to the LOD index",
+            "Redirect": ""
+        },
+        {
+            "Name": "StreamingDistanceMultiplier",
+            "Type": "float",
+            "Description": "Allows adjusting the desired streaming distance of streaming textures that uses UV 0.\n\t  1.0 is the default, whereas a higher value makes the textures stream in sooner from far away.\n\t  A lower value (0.0-1.0) makes the textures stream in later (you have to be closer).\n\t  Value can be < 0 (from legcay content, or code changes)",
+            "Redirect": ""
+        },
+        {
+            "Name": "WireframeColor",
+            "Type": "FColor",
+            "Description": "Wireframe color",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceWireframe",
+            "Type": "uint32",
+            "Description": "Forces the mesh to draw in wireframe mode.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisplayBones_DEPRECATED",
+            "Type": "uint32",
+            "Description": "Draw the skeleton hierarchy for this skel mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableMorphTarget",
+            "Type": "uint32",
+            "Description": "Disable Morphtarget for this component.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHideSkin",
+            "Type": "uint32",
+            "Description": "Don't bother rendering the skin.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPerBoneMotionBlur",
+            "Type": "uint32",
+            "Description": "If true, use per-bone motion blur on this skeletal mesh (requires additional rendering, can be disabled to save performance).",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpdateBoundsRate",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bComponentUseFixedSkelBounds",
+            "Type": "uint32",
+            "Description": "When true, skip using the physics asset etc. and always use the fixed bounds defined in the SkeletalMesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bConsiderAllBodiesForBounds",
+            "Type": "uint32",
+            "Description": "If true, when updating bounds from a PhysicsAsset, consider _all_ BodySetups, not just those flagged with bConsiderForBounds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFixCachedLocalBoundsIssue",
+            "Type": "uint32",
+            "Description": "If true, cache correct local bounds. Otherwise cache a bounds transformed twice. See USkeletalMeshComponent::CalcBounds() --lyonarzhang",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshComponentUpdateFlag",
+            "Type": "TEnumAsByte < EMeshComponentUpdateFlag :: Type >",
+            "Description": "This is update frequency flag even when our Owner has not been rendered recently",
+            "Redirect": ""
+        },
+        {
+            "Name": "NeedUpdateEveryFrame",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NeedRateTickWhenNoRender",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceMeshObjectUpdate",
+            "Type": "uint32",
+            "Description": "If true, UpdateTransform will always result in a call to MeshObject->Update.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanHighlightSelectedSections",
+            "Type": "uint32",
+            "Description": "Whether or not we can highlight selected sections - this should really only be done in the editor",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRecentlyRendered",
+            "Type": "uint32",
+            "Description": "true if mesh has been recently rendered, false otherwise",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomSortAlternateIndexMode",
+            "Type": "uint8",
+            "Description": "Editor only. Used for manually selecting the alternate indices for\n\t   TRISORT_CustomLeftRight sections.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastCapsuleDirectShadow",
+            "Type": "uint32",
+            "Description": "Whether to use the capsule representation (when present) from a skeletal mesh's ShadowPhysicsAsset for direct shadowing from lights.\n\t  This type of shadowing is approximate but handles extremely wide area shadowing well.  The softness of the shadow depends on the light's LightSourceAngle  SourceRadius.\n\t  This flag will force bCastInsetShadow to be enabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastCapsuleIndirectShadow",
+            "Type": "uint32",
+            "Description": "Whether to use the capsule representation (when present) from a skeletal mesh's ShadowPhysicsAsset for shadowing indirect lighting (from lightmaps or skylight).",
+            "Redirect": ""
+        },
+        {
+            "Name": "CapsuleIndirectShadowMinVisibility",
+            "Type": "float",
+            "Description": "Controls how dark the capsule indirect shadow can be.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCPUSkinning",
+            "Type": "uint32",
+            "Description": "Whether or not to CPU skin this component, requires render data refresh after changing",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedLocalBounds",
+            "Type": "FBoxSphereBounds",
+            "Description": "LocalBounds cached, so they're computed just once.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCachedLocalBoundsUpToDate",
+            "Type": "bool",
+            "Description": "true when CachedLocalBounds is up to date.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableUpdateRateOptimizations",
+            "Type": "bool",
+            "Description": "if TRUE, Owner will determine how often animation will be updated and evaluated. See AnimUpdateRateTick()\n\t  This allows to skip frames for performance. (For example based on visibility and size on screen).",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisplayDebugUpdateRateOptimizations",
+            "Type": "bool",
+            "Description": "Enable on screen debugging of update rate optimization.\n\t  Red = Skipping 0 frames, Green = skipping 1 frame, Blue = skipping 2 frames, black = skipping more than 2 frames.\n\t  @todo: turn this into a console command.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRenderStatic",
+            "Type": "uint8",
+            "Description": "If true, render as static in reference pose.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseBoneVisibilityPropagateFeature",
+            "Type": "bool",
+            "Description": "Engine modify Start +++++++++",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideAnimUpdateRateParameters",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideAnimUpdateRateParameters_ByComponent",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRunWithOverrideAnimUpdateRateParameters",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomAnimUpdateRateParams",
+            "Type": "FAnimUpdateRateParameters",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetPhysicsAsset",
+            "Description": "Override the Physics Asset of the mesh. It uses SkeletalMesh.PhysicsAsset, but if you'd like to override use this function\n\t ",
+            "Params": [
+                {
+                    "Name": "NewPhysicsAsset",
+                    "Type": "UPhysicsAsset * ",
+                    "Description": "New PhysicsAsset",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForceReInit",
+                    "Type": "bool",
+                    "Description": "Force reinitialize",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumLODs",
+            "Description": "Get the number of LODs on this component",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMinLOD",
+            "Description": "Set MinLodModel of the mesh component\n\t ",
+            "Params": [
+                {
+                    "Name": "InNewMinLOD",
+                    "Type": "int32",
+                    "Description": "Set new MinLodModel that make sure the LOD does not go below of this value. Range from [0, Max Number of LOD - 1]. This will affect in the next tick update.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetForcedLOD",
+            "Description": "Set MinLodModel of the mesh component\n\t ",
+            "Params": [
+                {
+                    "Name": "InNewForcedLOD",
+                    "Type": "int32",
+                    "Description": "Set new ForcedLODModel that forces to set the incoming LOD. Range from [1, Max Number of LOD]. This will affect in the next tick update.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCastCapsuleDirectShadow",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCastCapsuleIndirectShadow",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCapsuleIndirectShadowMinVisibility",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumBones",
+            "Description": "Returns the number of bones in the skeleton.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoneIndex",
+            "Description": "Find the index of bone by name. Looks in the current SkeletalMesh being used by this SkeletalMeshComponent.\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "Name of bone to look up",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "Index of the named bone in the current SkeletalMesh. Will return INDEX_NONE if bone not found.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoneName",
+            "Description": "Get Bone Name from index",
+            "Params": [
+                {
+                    "Name": "BoneIndex",
+                    "Type": "int32",
+                    "Description": "Index of the bone",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "the name of the bone at the specified index",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSocketBoneName",
+            "Description": "Returns bone name linked to a given named socket on the skeletal mesh component.\n\t  If you're unsure to deal with sockets or bones names, you can use this function to filter through, and always return the bone name.\n\t ",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "bone name",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSkeletalMesh",
+            "Description": "Change the SkeletalMesh that is rendered for this Component. Will re-initialize the animation tree etc.\n\t ",
+            "Params": [
+                {
+                    "Name": "NewMesh",
+                    "Type": "USkeletalMesh * ",
+                    "Description": "New mesh to set for this component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bReinitPose",
+                    "Type": "bool ",
+                    "Description": "Whether we should keep current pose or reinitialize.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCheckBoneMap",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTickAnimationNow",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkeletalMesh",
+            "Description": "Return SkeletalMesh.\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USkeletalMesh *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetParentBone",
+            "Description": "Get Parent Bone of the input bone\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "Name of the bone",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "the name of the parent bone for the specified bone. Returns 'None' if the bone does not exist or it is the root bone",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearBoneExtraOffset",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OffsetBoneExtraOffsprings",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InputBoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InputTranslation",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RotateBoneExtraOffsprings",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InputBoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InputRotation",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ScaleBoneExtraOffsprings",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InputBoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InputScale",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVertexColorOverride_LinearColor",
+            "Description": "Allow override of vertex colors on a per-component basis, taking array of Blueprint-friendly LinearColors.",
+            "Params": [
+                {
+                    "Name": "LODIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "VertexColors",
+                    "Type": "TArray < FLinearColor > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearVertexColorOverride",
+            "Description": "Clear any applied vertex color override",
+            "Params": [
+                {
+                    "Name": "LODIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSkinWeightOverride",
+            "Description": "Allow override of skin weights on a per-component basis.",
+            "Params": [
+                {
+                    "Name": "LODIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SkinWeights",
+                    "Type": "TArray < FSkelMeshSkinWeightInfo > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearSkinWeightOverride",
+            "Description": "Clear any applied skin weight override",
+            "Params": [
+                {
+                    "Name": "LODIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSkinWeightProfile",
+            "Description": "Setup an override Skin Weight Profile for this component",
+            "Params": [
+                {
+                    "Name": "InProfileName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearSkinWeightProfile",
+            "Description": "Clear the Skin Weight Profile from this component, in case it is set",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UpdateSkinWeightForRemapping",
+            "Description": "Update Skin weight for remapping skeleton",
+            "Params": [
+                {
+                    "Name": "WeightInfo",
+                    "Type": "FSkinWeightInfoForFPP",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UnloadSkinWeightProfile",
+            "Description": "Unload a Skin Weight Profile's skin weight buffer (if created)",
+            "Params": [
+                {
+                    "Name": "InProfileName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasSkinweightProfileByName",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InProfileName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentSkinWeightProfileName",
+            "Description": "Return the name of the Skin Weight Profile that is currently set otherwise returns 'None'",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsUsingSkinWeightProfile",
+            "Description": "Check whether or not a Skin Weight Profile is currently set",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SwitchToOverrideSkinWeights",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "LODIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InvalidateCachedBounds",
+            "Description": "Invalidate Cached Bounds, when Mesh Component has been updated.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RefreshUpdateRateParams",
+            "Description": "Recreates update rate params and internal tracker data",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RefreshUpdateRateParamsEnsureTrackerOrder",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMasterPoseComponent",
+            "Description": "Set MasterPoseComponent for this component\n\t ",
+            "Params": [
+                {
+                    "Name": "NewMasterBoneComponent",
+                    "Type": "USkinnedMeshComponent * ",
+                    "Description": "New MasterPoseComponent",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForceUpdate",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveMasterPoseComponent",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoneTransform",
+            "Description": "Get Bone Transform from index\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneIndex",
+                    "Type": "int32",
+                    "Description": "Index of the bone",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "the transform of the bone at the specified index",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoneLocation",
+            "Description": "Get Bone Location\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName ",
+                    "Description": "Name of the bone",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Space",
+                    "Type": "EBoneSpaces :: Type",
+                    "Description": "0 == World, 1 == Local (Component)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "Vector of the bone",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BoneIsChildOf",
+            "Description": "Tests if BoneName is child of (or equal to) ParentBoneName.\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName ",
+                    "Description": "Name of the bone",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParentBoneName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if child (strictly, not same). false otherwise",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TransformToBoneSpace",
+            "Description": "Transform a locationrotation from world space to bone relative space.\n\t \tThis is handy if you know the location in world space for a bone attachment, as AttachComponent takes locationrotation in bone-relative space.\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName ",
+                    "Description": "Name of bone",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPosition",
+                    "Type": "FVector ",
+                    "Description": "Input position",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InRotation",
+                    "Type": "FRotator ",
+                    "Description": "Input rotation",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutPosition",
+                    "Type": "FVector & ",
+                    "Description": "(out) Transformed position",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutRotation",
+                    "Type": "FRotator &",
+                    "Description": "(out) Transformed rotation",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TransformFromBoneSpace",
+            "Description": "Transform a locationrotation in bone relative space to world space.\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName ",
+                    "Description": "Name of bone",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPosition",
+                    "Type": "FVector ",
+                    "Description": "Input position",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InRotation",
+                    "Type": "FRotator ",
+                    "Description": "Input rotation",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutPosition",
+                    "Type": "FVector & ",
+                    "Description": "(out) Transformed position",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutRotation",
+                    "Type": "FRotator &",
+                    "Description": "(out) Transformed rotation",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindClosestBone_K2",
+            "Description": "finds the closest bone to the given location\n\t",
+            "Params": [
+                {
+                    "Name": "TestLocation",
+                    "Type": "FVector ",
+                    "Description": "the location to test against",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoneLocation",
+                    "Type": "FVector & ",
+                    "Description": "(optional, out) if specified, set to the world space location of the bone that was found, or (0,0,0) if no bone was found",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreScale",
+                    "Type": "float ",
+                    "Description": "(optional) if specified, only bones with scaling larger than the specified factor are considered",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRequirePhysicsAsset",
+                    "Type": "bool",
+                    "Description": "(optional) if true, only bones with physics will be considered",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "the name of the bone that was found, or 'None' if no bone was found",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HideBoneByName",
+            "Description": "Hides the specified bone with name.  Currently this just enforces a scale of 0 for the hidden bones.\n\t \tCompoared to HideBone By Index - This keeps track of list of bones and update when LOD changes\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName ",
+                    "Description": "     Name of bone to hide",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PhysBodyOption",
+                    "Type": "EPhysBodyOp",
+                    "Description": "Option for physics bodies that attach to the bones to be hidden",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UnHideBoneByName",
+            "Description": "UnHide the specified bone with name.  Currently this just enforces a scale of 0 for the hidden bones.\n\t \tCompoared to HideBone By Index - This keeps track of list of bones and update when LOD changes",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "     Name of bone to unhide",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsBoneHiddenByName",
+            "Description": "Determines if the specified bone is hidden.\n\t ",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "     Name of bone to check",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if hidden",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PropagateBoneHidden",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "BoneIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PhysBodyOption",
+                    "Type": "EPhysBodyOp",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PropagateBoneUnHidden",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "BoneIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FollowBoneHidden",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InHiddenLeaderComp",
+                    "Type": "USkinnedMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PhysBodyOption",
+                    "Type": "EPhysBodyOp",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FollowBoneUnHidden",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InUnHiddenLeaderComp",
+                    "Type": "USkinnedMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClipPlane",
+            "Description": "Engine modify End -----------",
+            "Params": [
+                {
+                    "Name": "ClipPlane",
+                    "Type": "FPlane & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PlaneIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClipPlane",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "PlaneIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClipArc",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ClipPlane",
+                    "Type": "FPlane & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ClipSphere",
+                    "Type": "FVector4 &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClipArc",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClip4Planes",
+            "Description": "Num of ClipPlanes is 4\n\t  0: Top Plane\n\t  1: Down Plane\n\t  2: Left Plane\n\t  3: Right Plane",
+            "Params": [
+                {
+                    "Name": "ClipPlanes",
+                    "Type": "TArray < FPlane > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bBox",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClip4Planes",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetRenderStatic",
+            "Description": "Set whether this skinned mesh should be rendered as static mesh in a reference pose\n\t ",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsSectionBatched",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "LODIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

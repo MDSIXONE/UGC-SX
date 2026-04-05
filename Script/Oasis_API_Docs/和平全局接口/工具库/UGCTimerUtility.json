@@ -1,0 +1,158 @@
+{
+    "Name": "UGCTimerUtility",
+    "Description": "计时器工具类",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "CreateLuaTimer",
+            "Description": "创建 Lua 计时器\n 1. TimeOffset > 0，则 TimeOffset 单位是秒。\n 2. TimeOffset == 0，遇到 tick 就会执行。\n 3. TimeOffset < 0，是负数如 -N 的话，会在间隔 N 帧后执行第一次。如果传入了 InitDelay，则此条略过，按下面 InitDelay 参数说明来执行：\n  a) 如果 InitDelay ~= nil(即传入 InitDelay 参数)，则计时器会在 InitDelay 秒后执行第一次；后面根据 TimeOffset 的设置，循环调用。\n  b) 如果 InitDelay == 0，则 InsertTimer 时，会立即执行第一次；后面根据 TimeOffset 的设置，循环调用。\n  c) 如果 InitDelay == nil(即未传入 InitDelay 参数)，则会在 TimeOffset 后，执行第一次；后面根据 TimeOffset 的设置，循环调用。\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TimeOffset",
+                    "Type": "number",
+                    "Description": "间隔时间",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Callback",
+                    "Type": "function",
+                    "Description": "回调函数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bLoop",
+                    "Type": "boolean",
+                    "Description": "是否循环",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TimerName",
+                    "Type": "string",
+                    "Description": "计时器名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InitDelay",
+                    "Type": "number",
+                    "Description": "第一次执行延迟时间",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bLog",
+                    "Type": "boolean",
+                    "Description": "是否记录日志",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCoroutine",
+                    "Type": "boolean",
+                    "Description": "是否是协程",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UGCLuaTimerInstance",
+                    "Description": "创建的计时器实例",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveLuaTimer",
+            "Description": "移除 Lua 计时器\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TimerInstance",
+                    "Type": "UGCLuaTimerInstance",
+                    "Description": "计时器实例",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RemoveLuaTimerByName",
+            "Description": "根据名称移除 Lua 计时器\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TimerName",
+                    "Type": "string",
+                    "Description": "计时器名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "IsLuaTimerExistByName",
+            "Description": "根据名称判断 Lua 计时器是否存在\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TimerName",
+                    "Type": "string",
+                    "Description": "计时器名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否存在",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateUETimer",
+            "Description": "设置 UE 计时器\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "CallbackFunction",
+                    "Type": "LuaFunction",
+                    "Description": "Lua 回调函数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Time",
+                    "Type": "number",
+                    "Description": "定时时长",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsLooping",
+                    "Type": "boolean",
+                    "Description": "是否循环",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "FTimerHandle,",
+                    "Type": "ULuaSingleDelegate",
+                    "Description": "计时器句柄，计时器回调",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveUETimer",
+            "Description": "移除 UE 计时器\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TimerHandle",
+                    "Type": "FTimerHandle",
+                    "Description": "计时器句柄",
+                    "Redirect": "cppstruct/detail/FTimerHandle.json"
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

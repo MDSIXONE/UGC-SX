@@ -1,0 +1,19 @@
+{
+    "Name": "USoundNodeDoppler",
+    "Description": "Computes doppler pitch shift",
+    "Variables": [
+        {
+            "Name": "DopplerIntensity",
+            "Type": "float",
+            "Description": "How much to scale the doppler shift (1.0 is normal).",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

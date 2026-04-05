@@ -1,0 +1,25 @@
+{
+    "Name": "UInterpTrackMoveAxis",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MoveAxis",
+            "Type": "TEnumAsByte < enum EInterpMoveAxis >",
+            "Description": "The axis which this track will use when transforming an actor",
+            "Redirect": ""
+        },
+        {
+            "Name": "LookupTrack",
+            "Type": "FInterpLookupTrack",
+            "Description": "Lookup track to use when looking at different groups for transform information",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackFloatBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

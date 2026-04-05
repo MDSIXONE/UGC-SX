@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionBreakMaterialAttributes",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MaterialAttributes",
+            "Type": "FMaterialAttributesInput",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

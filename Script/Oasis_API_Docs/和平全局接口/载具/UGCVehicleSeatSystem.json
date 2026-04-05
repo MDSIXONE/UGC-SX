@@ -1,0 +1,352 @@
+{
+    "Name": "UGCVehicleSeatSystem",
+    "Description": "载具系统座位系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "ChangePassengerSeat",
+            "Description": "在目标座位上没有乘客时更换乘客座位\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Passenger",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "乘客",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ForceChangePassengerSeat",
+            "Description": "在目标座位上有乘客时更换乘客座位\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Passenger",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "乘客",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetSeatNum",
+            "Description": "获得载具座位个数\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "载具座位个数",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAvailableSeatNum",
+            "Description": "获得空闲的载具座位个数\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "空闲的载具座位个数",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPassenger",
+            "Description": "获得对应座位的乘客\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "对应座位的乘客",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsSeatIndexAvailable",
+            "Description": "获得对应座位是否空着\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "对应座位是否空着",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCharacterSeatIndex",
+            "Description": "获得指定乘客的座位 ID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Passenger",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "乘客",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "GetBySocket",
+                    "Type": "boolean",
+                    "Description": "BySocket",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "指定乘客的座位 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDriver",
+            "Description": "获得司机\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "司机",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPassengers",
+            "Description": "获得所有乘客\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraBaseCharacter[]",
+                    "Description": "所有乘客",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAvailableSeatIndexes",
+            "Description": "获得所有空闲座位的 Index\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32[]",
+                    "Description": "所有空闲座位的索引",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanLeanOut",
+            "Description": "座位上是否可以探头\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否可以探头",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveVehicleWeapon",
+            "Description": "移除指定座位上对应 ID 的车载武器\n需要这个座位原来也配置了载具武器，且这个载具武器不在使用中\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WeaponIndex",
+                    "Type": "number",
+                    "Description": "车载武器 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "AddVehicleWeaponFromSupportKit",
+            "Description": "将座位武器库中的武器装备到座位武器孔上\n需要这个座位原来也配置了载具武器，且这个载具武器不在使用中\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WeaponIndex",
+                    "Type": "number",
+                    "Description": "车载武器 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WeaponIndexSupport",
+                    "Type": "number",
+                    "Description": "武器库武器 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "SetPassengerVehicleWeapon",
+            "Description": "设置当前座位上的车载武器是否能使用\n需要这个座位原来也配置了载具武器，且乘客正在该座位上\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Vehicle",
+                    "Type": "ASTExtraVehicleBase",
+                    "Description": "载具",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIndex",
+                    "Type": "number",
+                    "Description": "座位 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bControlVehicleWeapon",
+                    "Type": "boolean",
+                    "Description": "是否能控制车载武器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

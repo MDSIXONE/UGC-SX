@@ -1,0 +1,19 @@
+{
+    "Name": "UProxyLODMeshSimplificationSettings",
+    "Description": "Controls the system used to generate proxy LODs with merged meshes (i.e. the HLOD system).",
+    "Variables": [
+        {
+            "Name": "ProxyLODMeshReductionModuleName",
+            "Type": "FName",
+            "Description": "Mesh reduction plugin to use when simplifying mesh geometry for Hierarchical LOD",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDeveloperSettings"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,46 @@
+{
+    "Name": "UNavModifierComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "AreaClass",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FailsafeExtent",
+            "Type": "FVector",
+            "Description": "box extent used ONLY when owning actor doesn't have collision component",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetAreaClass",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewAreaClass",
+                    "Type": "TSubclassOf < UNavArea >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UNavRelevantComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

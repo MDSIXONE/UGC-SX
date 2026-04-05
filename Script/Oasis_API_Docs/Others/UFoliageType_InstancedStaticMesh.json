@@ -1,0 +1,31 @@
+{
+    "Name": "UFoliageType_InstancedStaticMesh",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Mesh",
+            "Type": "UStaticMesh *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideMaterials",
+            "Type": "TArray < UMaterialInterface * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ComponentClass",
+            "Type": "TSubclassOf < UFoliageInstancedStaticMeshComponent >",
+            "Description": "The component class to use for foliage instances. \n\t   You can make a Blueprint subclass of FoliageInstancedStaticMeshComponent to implement custom behavior and assign that class here.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UFoliageType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

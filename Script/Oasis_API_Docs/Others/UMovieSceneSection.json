@@ -1,0 +1,85 @@
+{
+    "Name": "UMovieSceneSection",
+    "Description": "Base class for movie scene sections",
+    "Variables": [
+        {
+            "Name": "EvalOptions",
+            "Type": "FMovieSceneSectionEvalOptions",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Easing",
+            "Type": "FMovieSceneEasingSettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartTime",
+            "Type": "float",
+            "Description": "The start time of the section",
+            "Redirect": ""
+        },
+        {
+            "Name": "EndTime",
+            "Type": "float",
+            "Description": "The end time of the section",
+            "Redirect": ""
+        },
+        {
+            "Name": "RowIndex",
+            "Type": "int32",
+            "Description": "The row index that this section sits on",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverlapPriority",
+            "Type": "int32",
+            "Description": "This section's priority over overlapping sections",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsActive",
+            "Type": "uint32",
+            "Description": "Toggle whether this section is activeinactive",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsLocked",
+            "Type": "uint32",
+            "Description": "Toggle whether this section is lockedunlocked",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsInfinite",
+            "Type": "uint32",
+            "Description": "Toggle to set this section to be infinite",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreRollTime",
+            "Type": "float",
+            "Description": "The amount of time to prepare this section for evaluation before it actually starts.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PostRollTime",
+            "Type": "float",
+            "Description": "The amount of time to continue 'postrolling' this section for after evaluation has ended.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendType",
+            "Type": "FOptionalMovieSceneBlendType",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSignedObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

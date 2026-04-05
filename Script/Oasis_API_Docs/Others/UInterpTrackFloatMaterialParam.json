@@ -1,0 +1,25 @@
+{
+    "Name": "UInterpTrackFloatMaterialParam",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TargetMaterials",
+            "Type": "TArray < UMaterialInterface * >",
+            "Description": "Materials whose parameters we want to change and the references to those materials.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParamName",
+            "Type": "FName",
+            "Description": "Name of parameter in the MaterialInstance which this track will modify over time.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackFloatBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

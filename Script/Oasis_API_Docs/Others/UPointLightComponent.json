@@ -1,0 +1,272 @@
+{
+    "Name": "UPointLightComponent",
+    "Description": "A light component which emits light from a single point equally in all directions.",
+    "Variables": [
+        {
+            "Name": "Radius_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttenuationRadius",
+            "Type": "float",
+            "Description": "Bounds the light's visible influence.  \n\t  This clamping of the light's influence is not physically correct but very important for performance, larger lights cost more.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseInverseSquaredFalloff",
+            "Type": "uint32",
+            "Description": "Whether to use physically based inverse squared distance falloff, where AttenuationRadius is only clamping the light's contribution.  \n\t  Disabling inverse squared falloff can be useful when placing fill lights (don't want a super bright spot near the light).\n\t  When enabled, the light's Intensity is in units of lumens, where 1700 lumens is a 100W lightbulb.\n\t  When disabled, the light's Intensity is a brightness scale.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightFalloffExponent",
+            "Type": "float",
+            "Description": "Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled. \n\t  2 is almost linear and very unrealistic and around 8 it looks reasonable.\n\t  With large exponents, the light has contribution to only a small area of its influence radius but still costs the same as low exponents.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceRadius",
+            "Type": "float",
+            "Description": "Radius of light source shape.\n\t  Note that light sources shapes which intersect shadow casting geometry can cause shadowing artifacts.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SoftSourceRadius",
+            "Type": "float",
+            "Description": "Soft radius of light source shape.\n\t Note that light sources shapes which intersect shadow casting geometry can cause shadowing artifacts.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceLength",
+            "Type": "float",
+            "Description": "Length of light source shape.\n\t  Note that light sources shapes which intersect shadow casting geometry can cause shadowing artifacts.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSimulateRectLight",
+            "Type": "uint32",
+            "Description": "By luciuszhang: when in rect light mode, source radius is the rect light source width.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSimulatePortalLight",
+            "Type": "uint32",
+            "Description": "By luciuszhang: Portal light will be used in lightmass for IdeaBake, it is just a flag for Rect Light.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RectLightSourceWidth",
+            "Type": "float",
+            "Description": "By luciuszhang: rect light source width.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RectLightSourceHeight",
+            "Type": "float",
+            "Description": "By luciuszhang: rect light source height.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableForVertexPointLight",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightmassSettings",
+            "Type": "FLightmassPointLightSettings",
+            "Description": "The Lightmass settings for this object.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetAttenuationRadius",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewRadius",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightFalloffExponent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewLightFalloffExponent",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSourceRadius",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSoftSourceRadius",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSourceLength",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSimulateRectLight",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "newValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSimulatePortalLight",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "newValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetRectLightSourceWidth",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetRectLightSourceHeight",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "ULightComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

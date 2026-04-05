@@ -1,0 +1,607 @@
+{
+    "Name": "UGCActorComponentUtility",
+    "Description": "Actor接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "SpawnActor",
+            "Description": "在游戏世界中生成指定类型的 Actor\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorClass",
+                    "Type": "UClass",
+                    "Description": "要生成的 Actor 类型，需通过 UGCObjectUtility.LoadClass 加载类引用",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "Vector",
+                    "Description": "生成位置坐标，推荐使用 {X=1,Y=1,Z=1} 构造",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "Rotator",
+                    "Description": "生成旋转角度，推荐使用 {X=0,Y=0,Z=0} 构造",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Scale3D",
+                    "Type": "Vector",
+                    "Description": "可生成缩放比例，推荐使用 {X=1,Y=1,Z=1} 构造，默认值: Vector(0,0,0)，建议使用Vector(1,1,1)保持原始比例",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Owner",
+                    "Type": "Actor",
+                    "Description": "新生成 Actor 的所属对象",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "Actor",
+                    "Description": "新生成的 Actor 实例",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DestroyActor",
+            "Description": "销毁Actor\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ToString",
+            "Description": "获取Actor的ToString\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "ToString",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOwner",
+            "Description": "获取Actor的Owner\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor",
+                    "Description": "Owner",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOwner",
+            "Description": "设置Actor的Owner\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InOwner",
+                    "Type": "AActor",
+                    "Description": "Owner",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetUltimateOwnerActor",
+            "Description": "获取技能，武器，Buff等持有者acotr\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor",
+                    "Description": "Owner",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUltimateController",
+            "Description": "获取技能，武器，Buff等持有者的Controller\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor",
+                    "Description": "Owner",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AttachToActor",
+            "Description": "附着到Actor上\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InAttachTo",
+                    "Type": "AActor",
+                    "Description": "需要附着到的Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocationRule",
+                    "Type": "EAttachmentRule",
+                    "Description": "附着位置规则",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RotationRule",
+                    "Type": "EAttachmentRule",
+                    "Description": "附着旋转规则",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaleRule",
+                    "Type": "EAttachmentRule",
+                    "Description": "附着缩放规则",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSocketName",
+                    "Type": "string",
+                    "Description": "需要附着到的SocketName",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "AttachToComponent",
+            "Description": "附着到Component上\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InAttachTo",
+                    "Type": "USceneComponent",
+                    "Description": "需要附着到的Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocationRule",
+                    "Type": "EAttachmentRule",
+                    "Description": "附着位置规则",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RotationRule",
+                    "Type": "EAttachmentRule",
+                    "Description": "附着旋转规则",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaleRule",
+                    "Type": "EAttachmentRule",
+                    "Description": "附着缩放规则",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSocketName",
+                    "Type": "string",
+                    "Description": "需要附着到的SocketName",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWeldSimulatedBodies",
+                    "Type": "boolean",
+                    "Description": "是否保持相对位置不变/是否焊接为模拟刚体",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "DetachFromParent",
+            "Description": "将Component从父Actor上拆离\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InComponent",
+                    "Type": "USceneComponent",
+                    "Description": "Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bMaintainWorldPosition",
+                    "Type": "boolean",
+                    "Description": "是否保持位置不变",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCallModify",
+                    "Type": "boolean",
+                    "Description": "是否调用Modify",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetRootComponent",
+            "Description": "获取根组件\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USceneComponent",
+                    "Description": "根组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentsByOwner",
+            "Description": "获取Actor上的所有Component\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UActorComponent[]",
+                    "Description": "Actor上的所有Component",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentsByClass",
+            "Description": "获取Actor上指定类的Component\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InComonentClass",
+                    "Type": "UClass",
+                    "Description": "指定Component的Class",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UActorComponent[]",
+                    "Description": "Actor上特定类型的Components",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentsByTag",
+            "Description": "获取Actor上指定Tag的Component\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InComonentClass",
+                    "Type": "UClass",
+                    "Description": "ComponentClass",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tag",
+                    "Type": "string",
+                    "Description": "Tag",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UActorComponent[]",
+                    "Description": "Components",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllActorsOfClass",
+            "Description": "获取指定Class在场景里的所有Actor\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "WorldContextObject",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorClass",
+                    "Type": "UClass",
+                    "Description": "ActorClass",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "Actor列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllActorsWithTag",
+            "Description": "获取指定Tag在场景里的所有Actor\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "WorldContextObject",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tag",
+                    "Type": "string",
+                    "Description": "Tag",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "Actor列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorTransform",
+            "Description": "获取Actor的Transform\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform",
+                    "Description": "Transform",
+                    "Redirect": "cppstruct/detail/FTransform.json"
+                }
+            ]
+        },
+        {
+            "Name": "GetSceneComponentWorldTransform",
+            "Description": "获取场景组件的世界Transform\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InSceneComponent",
+                    "Type": "USceneComponent",
+                    "Description": "场景组件",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform",
+                    "Description": "Transform",
+                    "Redirect": "cppstruct/detail/FTransform.json"
+                }
+            ]
+        },
+        {
+            "Name": "SetActorTransform",
+            "Description": "设置Actor的Transform\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTransform",
+                    "Type": "FTransform",
+                    "Description": "Transform",
+                    "Redirect": "cppstruct/detail/FTransform.json"
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "HasAuthority",
+            "Description": "判断是否为权威端\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "当前端是否为权威端",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateAndRegisterComponent",
+            "Description": "创建并注册组件\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InComponentClass",
+                    "Type": "UClass",
+                    "Description": "要创建组件对应的Class",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InOuter",
+                    "Type": "UObject",
+                    "Description": "Outer",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InComponentName",
+                    "Type": "string",
+                    "Description": "要创建组件对应的Class对应的ObjectName",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "DestroyComponent",
+            "Description": "销毁组件\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InActor",
+                    "Type": "AActor",
+                    "Description": "Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InComponent",
+                    "Type": "UActorComponent",
+                    "Description": "要销毁的组件",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetOverlappingActorsWithPrimitiveComponent",
+            "Description": "获取与PrimitiveComponent重叠的Actor\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InPrimitiveComponent",
+                    "Type": "UPrimitiveComponent",
+                    "Description": "组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Transform",
+                    "Type": "FTransform",
+                    "Description": "组件的Transform",
+                    "Redirect": "cppstruct/detail/FTransform.json"
+                },
+                {
+                    "Name": "ObjectTypes",
+                    "Type": "ESceneQueryType[]",
+                    "Description": "对象类型列表",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorClassFilter",
+                    "Type": "UClass",
+                    "Description": "要检测的Actor类型（默认值：nil为全部类型的Actor）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorsToIgnore",
+                    "Type": "AActor[]",
+                    "Description": "需要忽略的Actor列表",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "与目标Actor重叠的Actor列表",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

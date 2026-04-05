@@ -1,0 +1,139 @@
+{
+    "Name": "UCustomActorMoveComponent",
+    "Description": "一个给ActivityBaseActor移动功能的组件，用于移动所挂载的ActivityBaseActor",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "StartMove",
+            "Description": "生效范围：S\n\t  开始移动",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopMove",
+            "Description": "生效范围：S\n\t  结束移动",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMoveSpeed",
+            "Description": "生效范围：S\n\t  设置移动速度",
+            "Params": [
+                {
+                    "Name": "InSpeed",
+                    "Type": "float",
+                    "Description": "速度",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetGlideTime",
+            "Description": "生效范围：S\n\t  设置固定的滑行时间, 而不是使用起始点到终点位置除以速度得到这个数值",
+            "Params": [
+                {
+                    "Name": "GlideTime",
+                    "Type": "float",
+                    "Description": "滑行时间",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPosition",
+            "Description": "生效范围：S\n\t  设置移动的起始点和终点",
+            "Params": [
+                {
+                    "Name": "InStart",
+                    "Type": "FVector ",
+                    "Description": "起点",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InEnd",
+                    "Type": "FVector",
+                    "Description": "终点",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsMoving",
+            "Description": "生效范围：SC\n\t  获取Actor是否在移动\n\t  return 是否在移动",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "ActorMoveEvent",
+            "Description": "移动状态改变事件委托",
+            "Params": [
+                {
+                    "Name": "bIsMove",
+                    "Type": "bool",
+                    "Description": "是否正在移动",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

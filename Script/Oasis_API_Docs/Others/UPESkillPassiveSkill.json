@@ -1,0 +1,46 @@
+{
+    "Name": "UPESkillPassiveSkill",
+    "Description": "被动技能实体",
+    "Variables": [
+        {
+            "Name": "MaxActivationCount",
+            "Type": "int32",
+            "Description": "最大激活次数，-1表示无限制",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPersistEffectSkill"
+    ],
+    "Event": [
+        {
+            "Name": "OnStackChange_BP",
+            "Description": "生效范围：服务器&客户端\n\t  当 被动技能 堆叠层数变化时调用，比如技能被合并时",
+            "Params": [
+                {
+                    "Name": "PreNum",
+                    "Type": "int32 ",
+                    "Description": "上一次的堆叠层数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CurrentNum",
+                    "Type": "int32",
+                    "Description": "当前的堆叠层数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

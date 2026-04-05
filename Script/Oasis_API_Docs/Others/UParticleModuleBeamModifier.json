@@ -1,0 +1,61 @@
+{
+    "Name": "UParticleModuleBeamModifier",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ModifierType",
+            "Type": "TEnumAsByte < enum BeamModifierType >",
+            "Description": "Whether this module modifies the Source or the Target.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PositionOptions",
+            "Type": "FBeamModifierOptions",
+            "Description": "The options associated with the position.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Position",
+            "Type": "FRawDistributionVector",
+            "Description": "The value to use when modifying the position.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TangentOptions",
+            "Type": "FBeamModifierOptions",
+            "Description": "The options associated with the Tangent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Tangent",
+            "Type": "FRawDistributionVector",
+            "Description": "The value to use when modifying the Tangent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAbsoluteTangent",
+            "Type": "uint32",
+            "Description": "If true, don't transform the tangent modifier into the tangent basis.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StrengthOptions",
+            "Type": "FBeamModifierOptions",
+            "Description": "The options associated with the Strength.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Strength",
+            "Type": "FRawDistributionFloat",
+            "Description": "The value to use when modifying the Strength.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleBeamBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

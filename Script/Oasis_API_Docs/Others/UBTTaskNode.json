@@ -1,0 +1,25 @@
+{
+    "Name": "UBTTaskNode",
+    "Description": "Task are leaf nodes of behavior tree, which perform actual actions\n \n  Because some of them can be instanced for specific AI, following virtual functions are not marked as const:\n   - ExecuteTask\n   - AbortTask\n   - TickTask\n   - OnMessage\n \n  If your node is not being instanced (default behavior), DO NOT change any properties of object within those functions!\n  Template nodes are shared across all behavior tree components using the same tree asset and must store\n  their runtime properties in provided NodeMemory block (allocation size determined by GetInstanceMemorySize() )",
+    "Variables": [
+        {
+            "Name": "Services",
+            "Type": "TArray < UBTService * >",
+            "Description": "service nodes",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoreRestartSelf",
+            "Type": "uint32",
+            "Description": "if set, task search will be discarded when this task is selected to execute but is already running",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

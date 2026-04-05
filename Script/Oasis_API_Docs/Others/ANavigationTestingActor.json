@@ -1,0 +1,201 @@
+{
+    "Name": "ANavigationTestingActor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CapsuleComponent",
+            "Type": "UCapsuleComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InvokerComponent",
+            "Type": "UNavigationInvokerComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bActAsNavigationInvoker",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavAgentProps",
+            "Type": "FNavAgentProperties",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "QueryingExtent",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MyNavData",
+            "Type": "ANavigationData *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProjectedLocation",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProjectedTile",
+            "Type": "FIntVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProjectedPloyId",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bProjectedLocationValid",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSearchStart",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseHierarchicalPathfinding",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGatherDetailedInfo",
+            "Type": "uint32",
+            "Description": "if set, all steps of A algorithm will be accessible for debugging",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDrawDistanceToWall",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowNodePool",
+            "Type": "uint32",
+            "Description": "show polys from open (orange) and closed (yellow) sets",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowBestPath",
+            "Type": "uint32",
+            "Description": "show current best path",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowDiffWithPreviousStep",
+            "Type": "uint32",
+            "Description": "show which nodes were modified in current A step",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldBeVisibleInGame",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CostDisplayMode",
+            "Type": "TEnumAsByte < ENavCostDisplay :: Type >",
+            "Description": "determines which cost will be shown",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextCanvasOffset",
+            "Type": "FVector2D",
+            "Description": "text canvas offset to apply",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPathExist",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPathIsPartial",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPathSearchOutOfNodes",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathfindingTime",
+            "Type": "float",
+            "Description": "Time in micro seconds",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathCost",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathfindingSteps",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OtherActor",
+            "Type": "ANavigationTestingActor *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FilterClass",
+            "Type": "TSubclassOf < UNavigationQueryFilter >",
+            "Description": "\"None\" will result in default filter being used",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShowStepIndex",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OffsetFromCornersDistance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EdRenderComp",
+            "Type": "UNavTestRenderingComponent *",
+            "Description": "Editor Preview",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor",
+        "INavAgentInterface",
+        "INavPathObserverInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

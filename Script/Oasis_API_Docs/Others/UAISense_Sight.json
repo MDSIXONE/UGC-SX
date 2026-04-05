@@ -1,0 +1,49 @@
+{
+    "Name": "UAISense_Sight",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MaxTracesPerTick",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinQueriesPerTimeSliceCheck",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxTimeSlicePerTick",
+            "Type": "double",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "HighImportanceQueryDistanceThreshold",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxQueryImportance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SightLimitQueryImportance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UAISense"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

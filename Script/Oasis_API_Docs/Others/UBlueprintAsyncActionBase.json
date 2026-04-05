@@ -1,0 +1,26 @@
+{
+    "Name": "UBlueprintAsyncActionBase",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "Activate",
+            "Description": "Called to trigger the action once the delegates have been bound",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

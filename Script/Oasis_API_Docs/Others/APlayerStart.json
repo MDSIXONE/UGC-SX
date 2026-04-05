@@ -1,0 +1,25 @@
+{
+    "Name": "APlayerStart",
+    "Description": "This class indicates a location where a player can spawn when the game begins",
+    "Variables": [
+        {
+            "Name": "PlayerStartTag",
+            "Type": "FName",
+            "Description": "~ To take more control over PlayerStart selection, you can override the virtual AGameModeBase::FindPlayerStart and AGameModeBase::ChoosePlayerStart functions. \n\t Used when searching for which playerstart to use.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArrowComponent",
+            "Type": "UArrowComponent *",
+            "Description": "Arrow component to indicate forward direction of start",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "ANavigationObjectBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

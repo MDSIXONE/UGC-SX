@@ -1,0 +1,19 @@
+{
+    "Name": "UBTTask_BlackboardBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "BlackboardKey",
+            "Type": "FBlackboardKeySelector",
+            "Description": "blackboard key selector",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTTaskNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

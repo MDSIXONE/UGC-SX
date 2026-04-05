@@ -1,0 +1,169 @@
+{
+    "Name": "USoundWave",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CompressionQuality",
+            "Type": "int32",
+            "Description": "Platform agnostic compression quality. 1..100 with 1 being best compression and 100 being best quality.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLooping",
+            "Type": "uint32",
+            "Description": "If set, when played directly (not through a sound cue) the wave will be played looping.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bStreaming",
+            "Type": "uint32",
+            "Description": "Whether this sound can be streamed to avoid increased memory usage",
+            "Redirect": ""
+        },
+        {
+            "Name": "StreamingPriority",
+            "Type": "int32",
+            "Description": "Priority of this sound when streaming (lower priority streams may not always play)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMature",
+            "Type": "uint32",
+            "Description": "If set to true if this sound is considered to contain matureadult content.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bManualWordWrap",
+            "Type": "uint32",
+            "Description": "If set to true will disable automatic generation of line breaks - use if the subtitles have been split manually.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSingleLine",
+            "Type": "uint32",
+            "Description": "If set to true the subtitles display as a sequence of single lines as opposed to multiline.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bVirtualizeWhenSilent",
+            "Type": "uint32",
+            "Description": "Allows sound to play at 0 volume, otherwise will stop the sound when the sound is silent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SoundGroup",
+            "Type": "TEnumAsByte < ESoundGroup >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpokenText",
+            "Type": "FString",
+            "Description": "A localized version of the text that is actually spoken phonetically in the audio.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubtitlePriority",
+            "Type": "float",
+            "Description": "The priority of the subtitle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Volume",
+            "Type": "float",
+            "Description": "Playback volume of sound 0 to 1 - Default is 1.0.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Pitch",
+            "Type": "float",
+            "Description": "Playback pitch for sound.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumChannels",
+            "Type": "int32",
+            "Description": "Number of channels of multichannel data; 1 or 2 for regular mono and stereo files",
+            "Redirect": ""
+        },
+        {
+            "Name": "SampleRate",
+            "Type": "int32",
+            "Description": "Cached sample rate for displaying in the tools",
+            "Redirect": ""
+        },
+        {
+            "Name": "RawPCMDataSize",
+            "Type": "int32",
+            "Description": "Size of RawPCMData, or what RawPCMData would be if the sound was fully decompressed",
+            "Redirect": ""
+        },
+        {
+            "Name": "Subtitles",
+            "Type": "TArray < struct FSubtitleCue >",
+            "Description": "Subtitle cues.  If empty, use SpokenText as the subtitle.  Will often be empty,\n\t  as the contents of the subtitle is commonly identical to what is spoken.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LocalizedSubtitles",
+            "Type": "TArray < struct FLocalizedSubtitle >",
+            "Description": "The array of the subtitles for each language. Generated at cook time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Curves",
+            "Type": "UCurveTable *",
+            "Description": "Curves associated with this sound wave",
+            "Redirect": ""
+        },
+        {
+            "Name": "InternalCurves",
+            "Type": "UCurveTable *",
+            "Description": "Hold a reference to our internal curve so we can switch back to it if we want to",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChannelOffsets",
+            "Type": "TArray < int32 >",
+            "Description": "Offsets into the bulk data for the source wav data",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChannelSizes",
+            "Type": "TArray < int32 >",
+            "Description": "Sizes of the bulk data for the source wav data",
+            "Redirect": ""
+        },
+        {
+            "Name": "Comment",
+            "Type": "FString",
+            "Description": "Provides contextual information for the sound to the translator.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceFilePath_DEPRECATED",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceFileTimestamp_DEPRECATED",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetImportData",
+            "Type": "UAssetImportData *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

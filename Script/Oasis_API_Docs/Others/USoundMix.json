@@ -1,0 +1,67 @@
+{
+    "Name": "USoundMix",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bApplyEQ",
+            "Type": "uint32",
+            "Description": "Whether to apply the EQ effect",
+            "Redirect": ""
+        },
+        {
+            "Name": "EQPriority",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EQSettings",
+            "Type": "FAudioEQEffect",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SoundClassEffects",
+            "Type": "TArray < struct FSoundClassAdjuster >",
+            "Description": "Array of changes to be applied to groups.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitialDelay",
+            "Type": "float",
+            "Description": "Initial delay in seconds before the the mix is applied.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeInTime",
+            "Type": "float",
+            "Description": "Time taken in seconds for the mix to fade in.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Duration",
+            "Type": "float",
+            "Description": "Duration of mix, negative means it will be applied until another mix is set.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeOutTime",
+            "Type": "float",
+            "Description": "Time taken in seconds for the mix to fade out.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bChanged",
+            "Type": "uint32",
+            "Description": "Transient property used to trigger real-time updates of the active EQ filter for editor previewing",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

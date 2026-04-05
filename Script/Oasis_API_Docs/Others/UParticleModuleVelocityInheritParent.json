@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleVelocityInheritParent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Scale",
+            "Type": "FRawDistributionVector",
+            "Description": "The scale to apply tot he parent velocity prior to adding it to the particle velocity during spawn.\n\t \tValue is retrieved using the EmitterTime of the emitter.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVelocityBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

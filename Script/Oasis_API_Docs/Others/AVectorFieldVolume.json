@@ -1,0 +1,25 @@
+{
+    "Name": "AVectorFieldVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "VectorFieldComponent",
+            "Type": "UVectorFieldComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteComponent",
+            "Type": "UBillboardComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

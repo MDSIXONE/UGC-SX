@@ -1,0 +1,55 @@
+{
+    "Name": "UMovieSceneCameraCutSection",
+    "Description": "Movie CameraCuts are sections on the CameraCuts track, that show what the viewer \"sees\"",
+    "Variables": [
+        {
+            "Name": "CameraGuid",
+            "Type": "FGuid",
+            "Description": "The camera possessable or spawnable that this movie CameraCut uses",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendInTime",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendInType",
+            "Type": "EMovieSceneBuiltInEasing",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendOutTime",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendOutType",
+            "Type": "EMovieSceneBuiltInEasing",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAutoFixupConsecutive",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLockControlRotation",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

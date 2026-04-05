@@ -1,0 +1,179 @@
+{
+    "Name": "UKismetMaterialLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "SetScalarParameterValue",
+            "Description": "Sets a scalar parameter value on the material collection instance. Logs if ParameterName is invalid.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Collection",
+                    "Type": "UMaterialParameterCollection * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParameterName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParameterValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVectorParameterValue",
+            "Description": "Sets a vector parameter value on the material collection instance. Logs if ParameterName is invalid.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Collection",
+                    "Type": "UMaterialParameterCollection * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParameterName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParameterValue",
+                    "Type": "FLinearColor &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetScalarParameterValue",
+            "Description": "Gets a scalar parameter value from the material collection instance. Logs if ParameterName is invalid.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Collection",
+                    "Type": "UMaterialParameterCollection * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParameterName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetVectorParameterValue",
+            "Description": "Gets a vector parameter value from the material collection instance. Logs if ParameterName is invalid.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Collection",
+                    "Type": "UMaterialParameterCollection * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParameterName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API FLinearColor ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateDynamicMaterialInstance",
+            "Description": "Creates a Dynamic Material Instance which you can modify during gameplay.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Parent",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API class UMaterialInstanceDynamic * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

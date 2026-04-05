@@ -1,0 +1,73 @@
+{
+    "Name": "UParticleModuleBeamSource",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SourceMethod",
+            "Type": "TEnumAsByte < enum Beam2SourceTargetMethod >",
+            "Description": "The method flag.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceName",
+            "Type": "FName",
+            "Description": "The strength of the tangent from the source point for each beam.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSourceAbsolute",
+            "Type": "uint32",
+            "Description": "Whether to treat the as an absolute position in world space.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Source",
+            "Type": "FRawDistributionVector",
+            "Description": "Default source-point to use.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLockSource",
+            "Type": "uint32",
+            "Description": "Whether to lock the source to the life of the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceTangentMethod",
+            "Type": "TEnumAsByte < enum Beam2SourceTargetTangentMethod >",
+            "Description": "The method to use for the source tangent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceTangent",
+            "Type": "FRawDistributionVector",
+            "Description": "The tangent for the source point for each beam.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLockSourceTangent",
+            "Type": "uint32",
+            "Description": "Whether to lock the source to the life of the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceStrength",
+            "Type": "FRawDistributionFloat",
+            "Description": "The strength of the tangent from the source point for each beam.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLockSourceStength",
+            "Type": "uint32",
+            "Description": "Whether to lock the source to the life of the particle.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleBeamBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

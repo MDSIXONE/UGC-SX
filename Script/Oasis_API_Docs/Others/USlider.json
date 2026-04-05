@@ -1,0 +1,286 @@
+{
+    "Name": "USlider",
+    "Description": "A simple widget that shows a sliding bar with a handle that allows you to control the value between 0..1.\n \n   No Children",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "float",
+            "Description": "The volume value to display.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ValueDelegate",
+            "Type": "FGetFloat",
+            "Description": "A bindable delegate to allow logic to drive the value of the widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "WidgetStyle",
+            "Type": "FSliderStyle",
+            "Description": "The progress bar style",
+            "Redirect": ""
+        },
+        {
+            "Name": "Orientation",
+            "Type": "TEnumAsByte < EOrientation >",
+            "Description": "The slider's orientation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SliderBarColor",
+            "Type": "FLinearColor",
+            "Description": "The color to draw the slider bar in.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SliderHandleColor",
+            "Type": "FLinearColor",
+            "Description": "The color to draw the slider handle in.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IndentHandle",
+            "Type": "bool",
+            "Description": "Whether the slidable area should be indented to fit the handle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Locked",
+            "Type": "bool",
+            "Description": "Whether the handle is interactive or fixed.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StepSize",
+            "Type": "float",
+            "Description": "The amount to adjust the value by, when using a controller or keyboard",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsFocusable",
+            "Type": "bool",
+            "Description": "Should the slider be focusable?",
+            "Redirect": ""
+        },
+        {
+            "Name": "SupportClickChange",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetValue",
+            "Description": "Gets the current value of the slider.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetValue",
+            "Description": "Sets the current value of the slider.",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIndentHandle",
+            "Description": "Sets if the slidable area should be indented to fit the handle",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLocked",
+            "Description": "Sets the handle to be interactive or fixed",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStepSize",
+            "Description": "Sets the amount to adjust the value by, when using a controller or keyboard",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSliderBarColor",
+            "Description": "Sets the color of the slider bar",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSliderHandleColor",
+            "Description": "Sets the color of the handle bar",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnMouseCaptureBegin",
+            "Description": "Invoked when the mouse is pressed and a capture begins.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnMouseCaptureEnd",
+            "Description": "Invoked when the mouse is released and a capture ends.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnControllerCaptureBegin",
+            "Description": "Invoked when the controller capture begins.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnControllerCaptureEnd",
+            "Description": "Invoked when the controller capture ends.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnValueChanged",
+            "Description": "Called when the value is changed by slider or typing.",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

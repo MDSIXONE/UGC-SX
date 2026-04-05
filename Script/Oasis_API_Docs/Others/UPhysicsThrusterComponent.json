@@ -1,0 +1,19 @@
+{
+    "Name": "UPhysicsThrusterComponent",
+    "Description": "Used with objects that have physics to apply a force down the negative-X direction\n \tie. point X in the direction you want the thrust in.",
+    "Variables": [
+        {
+            "Name": "ThrustStrength",
+            "Type": "float",
+            "Description": "Strength of thrust force applied to the base object.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleEventGenerator",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Events",
+            "Type": "TArray < struct FParticleEvent_GenerateInfo >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleEventBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "APaperSpriteActor",
+    "Description": "An instance of a UPaperSprite in a level.\n \n  This actor is created when you drag a sprite asset from the content browser into the level, and\n  it is just a thin wrapper around a UPaperSpriteComponent that actually references the asset.",
+    "Variables": [
+        {
+            "Name": "RenderComponent",
+            "Type": "UPaperSpriteComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionWorldPosition",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "WorldPositionShaderOffset",
+            "Type": "TEnumAsByte < EWorldPositionIncludedOffsets >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

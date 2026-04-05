@@ -1,0 +1,37 @@
+{
+    "Name": "UNetworkSettings",
+    "Description": "Network settings.",
+    "Variables": [
+        {
+            "Name": "bVerifyPeer",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableMultiplayerWorldOriginRebasing",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxRepArraySize",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxRepArrayMemory",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDeveloperSettings"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

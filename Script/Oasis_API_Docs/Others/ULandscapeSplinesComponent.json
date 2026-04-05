@@ -1,0 +1,67 @@
+{
+    "Name": "ULandscapeSplinesComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ControlPoints",
+            "Type": "TArray < ULandscapeSplineControlPoint * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Segments",
+            "Type": "TArray < ULandscapeSplineSegment * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CookedForeignMeshComponents",
+            "Type": "TArray < UMeshComponent * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineResolution",
+            "Type": "float",
+            "Description": "Resolution of the spline, in distance per point",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineColor",
+            "Type": "FColor",
+            "Description": "Color to use to draw the splines",
+            "Redirect": ""
+        },
+        {
+            "Name": "ControlPointSprite",
+            "Type": "UTexture2D *",
+            "Description": "Sprite used to draw control points",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineEditorMesh",
+            "Type": "UStaticMesh *",
+            "Description": "Mesh used to draw splines that have no mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowSplineEditorMesh",
+            "Type": "uint32",
+            "Description": "Whether we are in-editor and showing spline editor meshes",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForeignWorldSplineDataMap",
+            "Type": "TMap < TSoftObjectPtr < UWorld > , FForeignWorldSplineData >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

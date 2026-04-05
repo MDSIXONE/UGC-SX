@@ -1,0 +1,19 @@
+{
+    "Name": "UBTTask_MakeNoise",
+    "Description": "Make Noise task node.\n  A task node that calls MakeNoise() on this Pawn when executed.",
+    "Variables": [
+        {
+            "Name": "Loudnes",
+            "Type": "float",
+            "Description": "Loudnes of generated noise",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTTaskNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

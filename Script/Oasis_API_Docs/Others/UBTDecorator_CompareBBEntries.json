@@ -1,0 +1,31 @@
+{
+    "Name": "UBTDecorator_CompareBBEntries",
+    "Description": "Blackboard comparison decorator node.\n  A decorator node that bases its condition on a comparison between two Blackboard keys.",
+    "Variables": [
+        {
+            "Name": "Operator",
+            "Type": "TEnumAsByte < EBlackBoardEntryComparison :: Type >",
+            "Description": "operation type",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlackboardKeyA",
+            "Type": "FBlackboardKeySelector",
+            "Description": "blackboard key selector",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlackboardKeyB",
+            "Type": "FBlackboardKeySelector",
+            "Description": "blackboard key selector",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTDecorator"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,38 @@
+{
+    "Name": "UMovieScene2DTransformSection",
+    "Description": "A transform section",
+    "Variables": [
+        {
+            "Name": "Translation",
+            "Type": "FRichCurve",
+            "Description": "Translation curves",
+            "Redirect": ""
+        },
+        {
+            "Name": "Rotation",
+            "Type": "FRichCurve",
+            "Description": "Rotation curve",
+            "Redirect": ""
+        },
+        {
+            "Name": "Scale",
+            "Type": "FRichCurve",
+            "Description": "Scale curves",
+            "Redirect": ""
+        },
+        {
+            "Name": "Shear",
+            "Type": "FRichCurve",
+            "Description": "Shear curve",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection",
+        "IKeyframeSection<F2DTransformKey>"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,67 @@
+{
+    "Name": "UAnimCompress_Automatic",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MaxEndEffectorError",
+            "Type": "float",
+            "Description": "Maximum amount of error that a compression technique can introduce in an end effector \n\t Determines the current setting for world - space error tolerance in the animation compressor.\n\t When requested, animation being compressed will also consider an alternative compression\n\t method if the end result of that method produces less error than the AlternativeCompressionThreshold.\n\t Also known as \"Alternative Compression Threshold\"",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTryFixedBitwiseCompression",
+            "Type": "uint32",
+            "Description": "If true, the uniform bitwise techniques will be tried",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTryPerTrackBitwiseCompression",
+            "Type": "uint32",
+            "Description": "If true, the per-track compressor techniques will be tried",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTryLinearKeyRemovalCompression",
+            "Type": "uint32",
+            "Description": "If true, the linear key removal techniques will be tried",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTryIntervalKeyRemoval",
+            "Type": "uint32",
+            "Description": "If true, the resampling techniques will be tried",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRunCurrentDefaultCompressor",
+            "Type": "uint32",
+            "Description": "If true, then the animation will be first recompressed with it's current compressor if non-NULL, or with the global default compressor (specified in the engine ini)\n\t Also known as \"First Recompress Using Current Or Default\"",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoReplaceIfExistingErrorTooGreat",
+            "Type": "uint32",
+            "Description": "If true and the existing compression error is greater than Max End Effector Error, then any compression technique (even one that increases the size) with a lower error will be used until it falls below the threshold\n\t Also known as \"force below threshold\"",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRaiseMaxErrorToExisting",
+            "Type": "uint32",
+            "Description": "If true and the existing compression error is greater than Max End Effector Error, then Max End Effector Error will be effectively raised to the existing error level",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTryPerTrackVarBitCompression",
+            "Type": "uint32",
+            "Description": "If true, the per-track variable bit compressor techniques will be tried",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UAnimCompress"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

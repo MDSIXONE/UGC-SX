@@ -1,0 +1,19 @@
+{
+    "Name": "UBTTask_PushPawnAction",
+    "Description": "Action task node.\n  Push pawn action to controller.",
+    "Variables": [
+        {
+            "Name": "Action",
+            "Type": "UPawnAction *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTTask_PawnActionBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,92 @@
+{
+    "Name": "ULevelSequencePlayer",
+    "Description": "ULevelSequencePlayer is used to actually \"play\" an level sequence asset at runtime.\n \n  This class keeps track of playback state and provides functions for manipulating\n  an level sequence while its playing.",
+    "Variables": [
+        {
+            "Name": "AdditionalEventReceivers",
+            "Type": "TArray < UObject * >",
+            "Description": "Array of additional event receivers",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "CreateLevelSequencePlayer",
+            "Description": "Create a new level sequence player.\n\t ",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "Context object from which to retrieve a UWorld.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LevelSequence",
+                    "Type": "ULevelSequence * ",
+                    "Description": "The level sequence to play.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Settings",
+                    "Type": "FMovieSceneSequencePlaybackSettings ",
+                    "Description": "The desired playback settings",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutActor",
+                    "Type": "ALevelSequenceActor * &",
+                    "Description": "The level sequence actor created to play this sequence.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ULevelSequencePlayer * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEventReceivers",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UObject * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UMovieSceneSequencePlayer"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnCameraCut",
+            "Description": "Event triggered when there is a camera cut",
+            "Params": [
+                {
+                    "Name": "CameraComponent",
+                    "Type": "UCameraComponent*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

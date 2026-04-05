@@ -1,0 +1,44 @@
+{
+    "Name": "UAnimationAsset",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "AnimAssetUID",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Skeleton",
+            "Type": "USkeleton *",
+            "Description": "Pointer to the Skeleton this asset can be played on .",
+            "Redirect": ""
+        },
+        {
+            "Name": "MetaData",
+            "Type": "TArray < UAnimMetaData * >",
+            "Description": "Meta data that can be saved with the asset \n\t  \n\t  You can query by GetMetaData function",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetUserData",
+            "Type": "TArray < UAssetUserData * >",
+            "Description": "Array of user data stored with the asset",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseBoneRetarget",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IInterface_AssetUserData"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

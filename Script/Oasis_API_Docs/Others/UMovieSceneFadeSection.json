@@ -1,0 +1,25 @@
+{
+    "Name": "UMovieSceneFadeSection",
+    "Description": "A single floating point section.",
+    "Variables": [
+        {
+            "Name": "FadeColor",
+            "Type": "FLinearColor",
+            "Description": "Fade color.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFadeAudio",
+            "Type": "uint32",
+            "Description": "Fade audio.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneFloatSection"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

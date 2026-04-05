@@ -1,0 +1,19 @@
+{
+    "Name": "ASplineMeshActor",
+    "Description": "SplineMeshActor is an actor with a SplineMeshComponent.\n \n  @see USplineMeshComponent",
+    "Variables": [
+        {
+            "Name": "SplineMeshComponent",
+            "Type": "USplineMeshComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

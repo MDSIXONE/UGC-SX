@@ -1,0 +1,61 @@
+{
+    "Name": "UTouchInterface",
+    "Description": "Defines an interface by which touch input can be controlled using any number of buttons and virtual joysticks",
+    "Variables": [
+        {
+            "Name": "Controls",
+            "Type": "TArray < FTouchInputControl >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActiveOpacity",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InactiveOpacity",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TimeUntilDeactive",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TimeUntilReset",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActivationDelay",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPreventRecenter",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartupDelay",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

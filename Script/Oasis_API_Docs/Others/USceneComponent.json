@@ -1,0 +1,1883 @@
+{
+    "Name": "USceneComponent",
+    "Description": "A SceneComponent has a transform and supports attachment, but has no rendering or collision capabilities.\n  Useful as a 'dummy' component in the hierarchy to offset others.",
+    "Variables": [
+        {
+            "Name": "PhysicsVolume",
+            "Type": "TWeakObjectPtr < APhysicsVolume >",
+            "Description": "Physics Volume in which this SceneComponent is located",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachParent",
+            "Type": "USceneComponent *",
+            "Description": "What we are currently attached to. If valid, RelativeLocation etc. are used relative to this object",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachSocketName",
+            "Type": "FName",
+            "Description": "Optional socket name on AttachParent that we are attached to.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachChildren",
+            "Type": "TArray < USceneComponent * >",
+            "Description": "List of child SceneComponents that are attached to us.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientAttachedChildren",
+            "Type": "TArray < USceneComponent * >",
+            "Description": "Set of attached SceneComponents that were attached by the client so we can fix up AttachChildren when it is replicated to us.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeLocation",
+            "Type": "FVector",
+            "Description": "Location of the component relative to its parent",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeRotation",
+            "Type": "FRotator",
+            "Description": "Rotation of the component relative to its parent",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeScale3D",
+            "Type": "FVector",
+            "Description": "Non-uniform scaling of the component relative to its parent.\n\t\tNote that scaling is always applied in local space (no shearing etc)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ComponentToWorld",
+            "Type": "FTransform",
+            "Description": "Current transform of the component, relative to the world",
+            "Redirect": ""
+        },
+        {
+            "Name": "ComponentVelocity",
+            "Type": "FVector",
+            "Description": "Velocity of the component.\n\t @see GetComponentVelocity()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bComponentToWorldUpdated",
+            "Type": "uint8",
+            "Description": "True if we have ever updated ComponentToWorld based on RelativeLocationRotationScale. Used at startup to make sure it is initialized.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAbsoluteLocation",
+            "Type": "uint8",
+            "Description": "If RelativeLocation should be considered relative to the world, rather than the parent",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAbsoluteRotation",
+            "Type": "uint8",
+            "Description": "If RelativeRotation should be considered relative to the world, rather than the parent",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAbsoluteScale",
+            "Type": "uint8",
+            "Description": "If RelativeScale3D should be considered relative to the world, rather than the parent",
+            "Redirect": ""
+        },
+        {
+            "Name": "bVisible",
+            "Type": "uint8",
+            "Description": "Whether to completely draw the primitive; if false, the primitive is not drawn, does not cast a shadow.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHiddenInGame",
+            "Type": "uint8",
+            "Description": "Whether to hide the primitive in game, if the primitive is Visible.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldUpdatePhysicsVolume",
+            "Type": "uint8",
+            "Description": "Whether or not the cached PhysicsVolume this component overlaps should be updated when the component is moved.\n\t  @see GetPhysicsVolume()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBoundsChangeTriggersStreamingDataRebuild",
+            "Type": "uint8",
+            "Description": "If true, a change in the bounds of the component will call trigger a streaming data rebuild",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAttachParentBound",
+            "Type": "uint8",
+            "Description": "If true, this component uses its parents bounds when attached.\n\t   This can be a significant optimization with many components attached together.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldUpdateOverLaps",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceUpdateChildCompTransform",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableUpdateTransformOption",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUpdateTransformOptionConsiderAbsolute",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOpenServerOptLite",
+            "Type": "uint8",
+            "Description": "Simplify server move\n\t\tby zoranouyang",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldUseTeleportMove",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceFrameInterpolate",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableParallelMove",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Mobility",
+            "Type": "TEnumAsByte < EComponentMobility :: Type >",
+            "Description": "How often this component is allowed to move, used to make various optimizations. Only safe to set in constructor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DetailMode",
+            "Type": "TEnumAsByte < enum EDetailMode >",
+            "Description": "If detail mode is >= system detail mode, primitive won't be rendered.",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpdateTransformOption",
+            "Type": "EUpdateTransformOption",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsFppLayerRecursive",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableFppLayerRecursive",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAbsoluteTranslation_DEPRECATED",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bVisualizeComponent",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeTranslation_DEPRECATED",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetBoundsOirgin",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoundsBoxExtent",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_Transform",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_AttachParent",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_AttachChildren",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_AttachSocketName",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_Visibility",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "OldValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetRelativeLocation",
+            "Description": "Set the location of the component relative to its parent",
+            "Params": [
+                {
+                    "Name": "NewLocation",
+                    "Type": "FVector ",
+                    "Description": "New location of the component relative to its parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetRelativeRotation",
+            "Description": "Set the rotation of the component relative to its parent",
+            "Params": [
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator ",
+                    "Description": "New rotation of the component relative to its parent",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination (currently not supported for rotation).",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetRelativeTransform",
+            "Description": "Set the transform of the component relative to its parent",
+            "Params": [
+                {
+                    "Name": "NewTransform",
+                    "Type": "FTransform & ",
+                    "Description": "New transform of the component relative to its parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination (currently not supported for rotation).",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRelativeTransform",
+            "Description": "Returns the transform of the component relative to its parent",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetRelativeTransform",
+            "Description": "Reset the transform of the component relative to its parent. Sets relative location to zero, relative rotation to no rotation, and Scale to 1.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetRelativeScale3D",
+            "Description": "Set the non-uniform scale of the component relative to its parent",
+            "Params": [
+                {
+                    "Name": "NewScale3D",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddRelativeLocation",
+            "Description": "Adds a delta to the translation of the component relative to its parent",
+            "Params": [
+                {
+                    "Name": "DeltaLocation",
+                    "Type": "FVector ",
+                    "Description": "Change in location of the component relative to its parent",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddRelativeRotation",
+            "Description": "Adds a delta the rotation of the component relative to its parent",
+            "Params": [
+                {
+                    "Name": "DeltaRotation",
+                    "Type": "FRotator ",
+                    "Description": "Change in rotation of the component relative to is parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination (currently not supported for rotation).",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddLocalOffset",
+            "Description": "Adds a delta to the location of the component in its local reference frame",
+            "Params": [
+                {
+                    "Name": "DeltaLocation",
+                    "Type": "FVector ",
+                    "Description": "Change in location of the component in its local reference frame.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddLocalRotation",
+            "Description": "Adds a delta to the rotation of the component in its local reference frame",
+            "Params": [
+                {
+                    "Name": "DeltaRotation",
+                    "Type": "FRotator ",
+                    "Description": "Change in rotation of the component in its local reference frame.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination (currently not supported for rotation).",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddLocalTransform",
+            "Description": "Adds a delta to the transform of the component in its local reference frame. Scale is unchanged.",
+            "Params": [
+                {
+                    "Name": "DeltaTransform",
+                    "Type": "FTransform & ",
+                    "Description": "Change in transform of the component in its local reference frame. Scale is unchanged.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetWorldLocation",
+            "Description": "Put this component at the specified location in world space. Updates relative location to achieve the final world location.",
+            "Params": [
+                {
+                    "Name": "NewLocation",
+                    "Type": "FVector ",
+                    "Description": "New location in world space for the component.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetWorldRotation",
+            "Description": "Put this component at the specified rotation in world space. Updates relative rotation to achieve the final world rotation.",
+            "Params": [
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator ",
+                    "Description": "New rotation in world space for the component.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination (currently not supported for rotation).",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWorldScale3D",
+            "Description": "Set the relative scale of the component to put it at the supplied scale in world space.",
+            "Params": [
+                {
+                    "Name": "NewScale",
+                    "Type": "FVector",
+                    "Description": "New scale in world space for this component.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetWorldTransform",
+            "Description": "Set the transform of the component in world space.",
+            "Params": [
+                {
+                    "Name": "NewTransform",
+                    "Type": "FTransform & ",
+                    "Description": "New transform in world space for the component.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddWorldOffset",
+            "Description": "Adds a delta to the location of the component in world space.",
+            "Params": [
+                {
+                    "Name": "DeltaLocation",
+                    "Type": "FVector ",
+                    "Description": "Change in location in world space for the component.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddWorldRotation",
+            "Description": "Adds a delta to the rotation of the component in world space.",
+            "Params": [
+                {
+                    "Name": "DeltaRotation",
+                    "Type": "FRotator ",
+                    "Description": "Change in rotation in world space for the component.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination (currently not supported for rotation).",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddWorldTransform",
+            "Description": "Adds a delta to the transform of the component in world space. Scale is unchanged.",
+            "Params": [
+                {
+                    "Name": "DeltaTransform",
+                    "Type": "FTransform & ",
+                    "Description": "Change in transform in world space for the component. Scale is unchanged.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetComponentLocation",
+            "Description": "Return location of the component, in world space",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetComponentRotation",
+            "Description": "Returns rotation of the component, in world space.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetComponentScale",
+            "Description": "Returns scale of the component, in world space.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetComponentToWorld",
+            "Description": "Get the current component-to-world transform for this component",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetForwardVector",
+            "Description": "Get the forward (X) unit direction vector from this component, in world space.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUpVector",
+            "Description": "Get the up (Z) unit direction vector from this component, in world space.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRightVector",
+            "Description": "Get the right (Y) unit direction vector from this component, in world space.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsSimulatingPhysics",
+            "Description": "Returns whether the specified body is currently using physics simulation",
+            "Params": [
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsAnySimulatingPhysics",
+            "Description": "Returns whether the specified body is currently using physics simulation",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachParent",
+            "Description": "Get the SceneComponent we are attached to.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USceneComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachSocketName",
+            "Description": "Get the socket we are attached to.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetParentComponents",
+            "Description": "Gets all parent components up to and including the root component",
+            "Params": [
+                {
+                    "Name": "Parents",
+                    "Type": "TArray < USceneComponent * > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumChildrenComponents",
+            "Description": "Gets the number of attached children components",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetChildComponent",
+            "Description": "Gets the attached child component at the specified location",
+            "Params": [
+                {
+                    "Name": "ChildIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USceneComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetChildrenComponents",
+            "Description": "Gets all the attached child components",
+            "Params": [
+                {
+                    "Name": "bIncludeAllDescendants",
+                    "Type": "bool ",
+                    "Description": "Whether to include all descendants in the list of children (i.e. grandchildren, great grandchildren, etc.)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Children",
+                    "Type": "TArray < USceneComponent * > &",
+                    "Description": "The list of attached child components",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AttachTo",
+            "Description": "Attach this component to another scene component, optionally at a named socket. It is valid to call this on components whether or not they have been Registered.",
+            "Params": [
+                {
+                    "Name": "InParent",
+                    "Type": "USceneComponent * ",
+                    "Description": " Parent to attach to.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName ",
+                    "Description": " Optional socket to attach to on the parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AttachType",
+                    "Type": "EAttachLocation :: Type ",
+                    "Description": " How to handle transform when attaching (Keep relative offset, keep world position, etc).",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWeldSimulatedBodies",
+                    "Type": "bool",
+                    "Description": "Whether to weld together simulated physics bodies.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if attachment is successful (or already attached to requested parentsocket), false if attachment is rejected and there is no change in AttachParent.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AttachToComponent",
+            "Description": "Attach this component to another scene component, optionally at a named socket. It is valid to call this on components whether or not they have been Registered.",
+            "Params": [
+                {
+                    "Name": "Parent",
+                    "Type": "USceneComponent * ",
+                    "Description": "  Parent to attach to.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SocketName",
+                    "Type": "FName ",
+                    "Description": " Optional socket to attach to on the parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocationRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": " How to handle translation when attaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RotationRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": " How to handle rotation when attaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaleRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": "  How to handle scale when attaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWeldSimulatedBodies",
+                    "Type": "bool",
+                    "Description": "Whether to weld together simulated physics bodies.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if attachment is successful (or already attached to requested parentsocket), false if attachment is rejected and there is no change in AttachParent.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SnapTo",
+            "Description": "Zeroes out the relative transform of the component, and calls AttachTo(). Useful for attaching directly to a scene component or socket location",
+            "Params": [
+                {
+                    "Name": "InParent",
+                    "Type": "USceneComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DetachFromParent",
+            "Description": "Detach this component from whatever it is attached to. Automatically unwelds components that are welded together (See WeldTo)",
+            "Params": [
+                {
+                    "Name": "bMaintainWorldPosition",
+                    "Type": "bool ",
+                    "Description": "If true, update the relative location of the component to keep its world position the same",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCallModify",
+                    "Type": "bool",
+                    "Description": " If true, call Modify() on the component and the current attach parent component",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_DetachFromComponent",
+            "Description": "Detach this component from whatever it is attached to. Automatically unwelds components that are welded together (See WeldTo)",
+            "Params": [
+                {
+                    "Name": "LocationRule",
+                    "Type": "EDetachmentRule ",
+                    "Description": " How to handle translations when detaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RotationRule",
+                    "Type": "EDetachmentRule ",
+                    "Description": " How to handle rotation when detaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaleRule",
+                    "Type": "EDetachmentRule ",
+                    "Description": "  How to handle scales when detaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCallModify",
+                    "Type": "bool",
+                    "Description": " If true, call Modify() on the component and the current attach parent component",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllSocketNames",
+            "Description": "Gets the names of all the sockets on the component.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FName >",
+                    "Description": "Get the names of all the sockets on the component.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSocketTransform",
+            "Description": "Get world-space socket transform.",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName ",
+                    "Description": "Name of the socket or the bone to get the transform",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TransformSpace",
+                    "Type": "ERelativeTransformSpace",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "Socket transform in world space if socket if found. Otherwise it will return component's transform in world space.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSocketLocation",
+            "Description": "Get world-space socket or bone location.",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "Name of the socket or the bone to get the transform",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "Socket transform in world space if socket if found. Otherwise it will return component's transform in world space.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSocketRotation",
+            "Description": "Get world-space socket or bone  FRotator rotation.",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "Name of the socket or the bone to get the transform",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator ",
+                    "Description": "Socket transform in world space if socket if found. Otherwise it will return component's transform in world space.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSocketQuaternion",
+            "Description": "Get world-space socket or bone FQuat rotation.",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "Name of the socket or the bone to get the transform",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FQuat ",
+                    "Description": "Socket transform in world space if socket if found. Otherwise it will return component's transform in world space.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSocketScale",
+            "Description": "Get world-space socket or bone scale.",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "Name of the socket or the bone to get the scale",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "Socket scale in world space if socket if found. Otherwise it will return component's scale in world space.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DoesSocketExist",
+            "Description": "return true if socket with the given name exists",
+            "Params": [
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "Name of the socket or the bone to get the transform",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the socket with the given name exists. Otherwise, return false",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentVelocity",
+            "Description": "Get velocity of the component: either ComponentVelocity, or the velocity of the physics body if simulating physics.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "Velocity of the component",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsVisible",
+            "Description": "Is this component visible or not in game",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "true if visible",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVisibility",
+            "Description": "Set visibility of the component, if during game use this to turn onoff",
+            "Params": [
+                {
+                    "Name": "bNewVisibility",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bPropagateToChildren",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForceNoPropagate",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ToggleVisibility",
+            "Description": "Toggle visibility of the component",
+            "Params": [
+                {
+                    "Name": "bPropagateToChildren",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetHiddenInGame",
+            "Description": "Changes the value of HiddenGame.",
+            "Params": [
+                {
+                    "Name": "NewHidden",
+                    "Type": "bool ",
+                    "Description": "- The value to assign to HiddenGame.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bPropagateToChildren",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsForceFrameInterpolate",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetForceFrameInterpolate",
+            "Description": "set bForceDynamic",
+            "Params": [
+                {
+                    "Name": "InForceFrameInterpolate",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentTransformViewTranslatedBP",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentLocal",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "localTransform",
+                    "Type": "FTransform &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPhysicsVolume",
+            "Description": "Get the PhysicsVolume overlapping this component.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APhysicsVolume *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetRelativeLocationAndRotation",
+            "Description": "Set the location and rotation of the component relative to its parent",
+            "Params": [
+                {
+                    "Name": "NewLocation",
+                    "Type": "FVector ",
+                    "Description": "New location of the component relative to its parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator ",
+                    "Description": "New rotation of the component relative to its parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAbsolute",
+            "Description": "Set which parts of the relative transform should be relative to parent, and which should be relative to world",
+            "Params": [
+                {
+                    "Name": "bNewAbsoluteLocation",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNewAbsoluteRotation",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNewAbsoluteScale",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsAbsoluteLocation",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ContainsParent",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetWorldLocationAndRotation",
+            "Description": "Set the relative location and rotation of the component to put it at the supplied pose in world space.",
+            "Params": [
+                {
+                    "Name": "NewLocation",
+                    "Type": "FVector ",
+                    "Description": "New location in world space for the component.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator ",
+                    "Description": "New rotation in world space for the component.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "Hit result from any impact if sweep is true.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetMobility",
+            "Description": "Set how often this component is allowed to move during runtime. Causes a component re-register if the component is already registered",
+            "Params": [
+                {
+                    "Name": "NewMobility",
+                    "Type": "EComponentMobility :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFppLayerRecursive",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InIsFppLayer",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDisableFppLayerRecursive",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bDisable",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "PhysicsVolumeChangedDelegate",
+            "Description": "Delegate that will be called when PhysicsVolume has been changed",
+            "Params": [
+                {
+                    "Name": "NewVolume",
+                    "Type": "APhysicsVolume*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TransformUpdatedDynamic",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

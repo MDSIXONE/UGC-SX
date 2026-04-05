@@ -1,0 +1,263 @@
+{
+    "Name": "AGameMode",
+    "Description": "GameMode is a subclass of GameModeBase that behaves like a multiplayer match-based game.\n  It has default behavior for picking spawn points and match state.\n  If you want a simpler base, inherit from GameModeBase instead.",
+    "Variables": [
+        {
+            "Name": "MatchState",
+            "Type": "FName",
+            "Description": "What match state we are currently in",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDelayedStart",
+            "Type": "uint32",
+            "Description": "Whether the game should immediately start when the first player logs in. Affects the default behavior of ReadyToStartMatch",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumSpectators",
+            "Type": "int32",
+            "Description": "Current number of spectators.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumPlayers",
+            "Type": "int32",
+            "Description": "Current number of human players.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumBots",
+            "Type": "int32",
+            "Description": "number of non-human players (AI controlled but participating as a player).",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinRespawnDelay",
+            "Type": "float",
+            "Description": "Minimum time before player can respawn after dying.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumTravellingPlayers",
+            "Type": "int32",
+            "Description": "Number of players that are still traveling from a previous map",
+            "Redirect": ""
+        },
+        {
+            "Name": "EngineMessageClass",
+            "Type": "TSubclassOf < ULocalMessage >",
+            "Description": "Contains strings describing localized game agnostic messages.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InactivePlayerArray",
+            "Type": "TArray < APlayerState * >",
+            "Description": "PlayerStates of players who have disconnected from the server (saved in case they reconnect)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnabelPawnPool",
+            "Type": "bool",
+            "Description": "Weather to enable Gamemode Pawn Pool",
+            "Redirect": ""
+        },
+        {
+            "Name": "InactivePlayerStateLifeSpan",
+            "Type": "float",
+            "Description": "Time a playerstate will stick around in an inactive state after a player logout",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHandleDedicatedServerReplays",
+            "Type": "bool",
+            "Description": "If true, dedicated servers will record replays when HandleMatchHasStartedHandleMatchHasStopped is called",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetMatchState",
+            "Description": "Returns the current match state, this is an accessor to protect the state machine flow",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsMatchInProgress",
+            "Description": "Returns true if the match state is InProgress or other gameplay state",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasMatchEnded",
+            "Description": "Returns true if the match state is WaitingPostMatch or later",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartMatch",
+            "Description": "Transition from WaitingToStart to InProgress. You can call this manually, will also get called if ReadyToStartMatch returns true",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EndMatch",
+            "Description": "Transition from InProgress to WaitingPostMatch. You can call this manually, will also get called if ReadyToEndMatch returns true",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RestartGame",
+            "Description": "Restart the game, by default travel to the current map",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AbortMatch",
+            "Description": "Report that a match has failed due to unrecoverable error",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnSetMatchState",
+            "Description": "Implementable event to respond to match state changes",
+            "Params": [
+                {
+                    "Name": "NewState",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReadyToStartMatch",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "True if ready to Start Match. Games should override this",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReadyToEndMatch",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "true if ready to End Match. Games should override this",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Say",
+            "Description": "Exec command to broadcast a string to all players",
+            "Params": [
+                {
+                    "Name": "Msg",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBandwidthLimit",
+            "Description": "Alters the synthetic bandwidth limit for a running game.",
+            "Params": [
+                {
+                    "Name": "AsyncIOBandwidthLimit",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AGameModeBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,85 @@
+{
+    "Name": "USphereComponent",
+    "Description": "A sphere generally used for simple collision. Bounds are rendered as lines in the editor.",
+    "Variables": [
+        {
+            "Name": "SphereRadius",
+            "Type": "float",
+            "Description": "The radius of the sphere",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetSphereRadius",
+            "Description": "Change the sphere radius. This is the unscaled radius, before component scale is applied.",
+            "Params": [
+                {
+                    "Name": "InSphereRadius",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateOverlaps",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetScaledSphereRadius",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUnscaledSphereRadius",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetShapeScale",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UShapeComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,115 @@
+{
+    "Name": "URadialForceComponent",
+    "Description": "Used to emit a radial force or impulse that can affect physics objects and or destructible objects.",
+    "Variables": [
+        {
+            "Name": "Radius",
+            "Type": "float",
+            "Description": "The radius to apply the force or impulse in",
+            "Redirect": ""
+        },
+        {
+            "Name": "Falloff",
+            "Type": "TEnumAsByte < enum ERadialImpulseFalloff >",
+            "Description": "How the force or impulse should fall off as object are further away from the center",
+            "Redirect": ""
+        },
+        {
+            "Name": "ImpulseStrength",
+            "Type": "float",
+            "Description": "How strong the impulse should be",
+            "Redirect": ""
+        },
+        {
+            "Name": "bImpulseVelChange",
+            "Type": "uint32",
+            "Description": "If true, the impulse will ignore mass of objects and will always result in a fixed velocity change",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoreOwningActor",
+            "Type": "uint32",
+            "Description": "If true, do not apply forceimpulse to any physics objects that are part of the Actor that owns this component.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForceStrength",
+            "Type": "float",
+            "Description": "How strong the force should be",
+            "Redirect": ""
+        },
+        {
+            "Name": "DestructibleDamage",
+            "Type": "float",
+            "Description": "If > 0.f, will cause damage to destructible meshes as well",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObjectTypesToAffect",
+            "Type": "TArray < TEnumAsByte < enum EObjectTypeQuery > >",
+            "Description": "The object types that are affected by this radial force",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "FireImpulse",
+            "Description": "Fire a single impulse",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddObjectTypeToAffect",
+            "Description": "Add an object type for this radial force to affect",
+            "Params": [
+                {
+                    "Name": "ObjectType",
+                    "Type": "TEnumAsByte < enum EObjectTypeQuery >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveObjectTypeToAffect",
+            "Description": "Remove an object type that is affected by this radial force",
+            "Params": [
+                {
+                    "Name": "ObjectType",
+                    "Type": "TEnumAsByte < enum EObjectTypeQuery >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

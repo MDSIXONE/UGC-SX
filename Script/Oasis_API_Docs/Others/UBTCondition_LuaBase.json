@@ -1,0 +1,232 @@
+{
+    "Name": "UBTCondition_LuaBase",
+    "Description": "Base class for lua based condition nodes. Do NOT use it for creating native c++ classes!\n \n   Unlike task and attachments, condition have two execution chains:\n    ExecutionStart-ExecutionFinish and ObserverActivated-ObserverDeactivated\n   which makes automatic latent action cleanup impossible. Keep in mind, that\n   you HAVE TO verify is given chain is still active after resuming from any\n   latent action (like Delay, Timelines, etc).\n \n   Helper functions:\n   - IsConditionExecutionActive (true after ExecutionStart, until ExecutionFinish)\n   - IsConditionObserverActive (true after ObserverActivated, until ObserverDeactivated)",
+    "Variables": [
+        {
+            "Name": "AIOwner",
+            "Type": "AAIController *",
+            "Description": "Cached AIController owner of BehaviorTreeComponent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObservedKeyNames",
+            "Type": "TArray < FName >",
+            "Description": "blackboard key names that should be observed",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCheckConditionOnlyBlackBoardChanges",
+            "Type": "uint32",
+            "Description": "Applies only if Condition has any FBlackboardKeySelector property and if condition is\n\t \tset to abort BT flow. Is set to true ReceiveConditionCheck will be called only on changes\n\t  \tto observed BB keys. If false or no BB keys observed ReceiveConditionCheck will be called every tick",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsObservingBB",
+            "Type": "uint32",
+            "Description": "gets set to true if condition declared BB keys it can potentially observe",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ReceiveTickAI",
+            "Description": "tick function",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DeltaSeconds",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveExecutionStartAI",
+            "Description": "called on execution of underlying node",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveExecutionFinishAI",
+            "Description": "called when execution of underlying node is finished",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NodeResult",
+                    "Type": "EBTNodeResult :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveObserverActivatedAI",
+            "Description": "called when observer is activated (flow controller)",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveObserverDeactivatedAI",
+            "Description": "called when observer is deactivated (flow controller)",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PerformConditionCheckAI",
+            "Description": "called when testing if underlying node can be executed",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsConditionExecutionActive",
+            "Description": "check if condition is part of currently active branch",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsConditionObserverActive",
+            "Description": "check if condition's observer is currently active",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBTDecorator"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

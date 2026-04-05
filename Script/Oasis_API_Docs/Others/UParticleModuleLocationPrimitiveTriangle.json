@@ -1,0 +1,37 @@
+{
+    "Name": "UParticleModuleLocationPrimitiveTriangle",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StartOffset",
+            "Type": "FRawDistributionVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Height",
+            "Type": "FRawDistributionFloat",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Angle",
+            "Type": "FRawDistributionFloat",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Thickness",
+            "Type": "FRawDistributionFloat",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleLocationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

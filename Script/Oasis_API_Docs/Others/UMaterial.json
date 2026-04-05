@@ -1,0 +1,1195 @@
+{
+    "Name": "UMaterial",
+    "Description": "A Material is an asset which can be applied to a mesh to control the visual look of the scene.\n  When light from the scene hits the surface, the shading model of the material is used to calculate how that light interacts with the surface.\n \n  Warning: Creating new materials directly increases shader compile times!  Consider creating a Material Instance off of an existing material instead.",
+    "Variables": [
+        {
+            "Name": "PhysMaterial",
+            "Type": "UPhysicalMaterial *",
+            "Description": "Physical material to use for this graphics material. Used for sounds, effects etc.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DiffuseColor_DEPRECATED",
+            "Type": "FColorMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpecularColor_DEPRECATED",
+            "Type": "FColorMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseColor",
+            "Type": "FColorMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Metallic",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Specular",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Roughness",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Normal",
+            "Type": "FVectorMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EmissiveColor",
+            "Type": "FColorMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Opacity",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OpacityMask",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplaceMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialDomain",
+            "Type": "TEnumAsByte < enum EMaterialDomain >",
+            "Description": "The domain that the material's attributes will be evaluated in.\n\t  Certain pieces of material functionality are only valid in certain domains, for example vertex normal is only valid on a surface.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendMode",
+            "Type": "TEnumAsByte < enum EBlendMode >",
+            "Description": "Determines how the material's color is blended with background colors.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DecalBlendMode",
+            "Type": "TEnumAsByte < enum EDecalBlendMode >",
+            "Description": "Defines how the GBuffer chanels are getting manipulated by a decal material pass. (only with MaterialDomain == MD_DeferredDecal)",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialDecalResponse",
+            "Type": "TEnumAsByte < enum EMaterialDecalResponse >",
+            "Description": "Defines how the material reacts on DBuffer decals (Affects look, performance and texturesample usage).\n\t  Non DBuffer Decals can be disabled on the primitive (e.g. static mesh)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadingModel",
+            "Type": "TEnumAsByte < enum EMaterialShadingModel >",
+            "Description": "Determines how inputs are combined to create the material's final color.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIncludeShaderCode",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OpacityMaskClipValue",
+            "Type": "float",
+            "Description": "If BlendMode is BLEND_Masked, the surface is not rendered where OpacityMask < OpacityMaskClipValue.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTranslucentVelocityRendering",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentVelocityClipValue",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VertexOffsetAlongNormal",
+            "Type": "float",
+            "Description": "pixels offset along vertex normal, for outline drawing.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastDynamicShadowAsMasked",
+            "Type": "uint32",
+            "Description": "If true, translucent materials will cast dynamic shadows according to their opacity.\n\t OpacityMaskClipValue is used as the threshold value.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastDynamicShadowAsUnlit",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OITBlendMode",
+            "Type": "TEnumAsByte < enum EOITBlendMode >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WorldPositionOffset",
+            "Type": "FVectorMaterialInput",
+            "Description": "Adds to world position in the vertex shader.",
+            "Redirect": ""
+        },
+        {
+            "Name": "WorldDisplacement",
+            "Type": "FVectorMaterialInput",
+            "Description": "Offset in world space applied to tessellated vertices.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TessellationMultiplier",
+            "Type": "FScalarMaterialInput",
+            "Description": "Multiplies the tessellation factors applied when a tessellation mode is set.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubsurfaceColor",
+            "Type": "FColorMaterialInput",
+            "Description": "Inner material color, only used for ShadingModel=Subsurface",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearCoat",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearCoatRoughness",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AmbientOcclusion",
+            "Type": "FScalarMaterialInput",
+            "Description": "output ambient occlusion to the GBuffer",
+            "Redirect": ""
+        },
+        {
+            "Name": "Refraction",
+            "Type": "FScalarMaterialInput",
+            "Description": "output refraction index for translucent rendering\n\t  Air:1.0 Water:1.333 Ice:1.3 Glass:~1.6 Diamond:2.42",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomizedUVs",
+            "Type": "FVector2MaterialInput",
+            "Description": "These inputs are evaluated in the vertex shader and allow artists to do arbitrary vertex shader operations and access them in the pixel shader.\n\t  When unconnected or hidden they default to passing through the vertex UVs.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialAttributes",
+            "Type": "FMaterialAttributesInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PixelDepthOffset",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomizedVertexColor",
+            "Type": "FVector4MaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlanarReflectionOffsetScale",
+            "Type": "FVector4MaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VertexDepthOffset",
+            "Type": "FScalarMaterialInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableSeparateTranslucency",
+            "Type": "uint32",
+            "Description": "Indicates that the material should be rendered in the SeparateTranslucency Pass (not affected by DOF, requires bAllowSeparateTranslucency to be set in .ini).",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTranslucencyRenderAfterSS",
+            "Type": "uint32",
+            "Description": "Indicates that the material should be rendered after post process and super sampling, dedicate for reticle materials",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableMobileSeparateTranslucency",
+            "Type": "uint32",
+            "Description": "Indicates that the translucent material should not be affected by bloom or DOF. (Note: Depth testing is not available)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableMobileDownsampleSeparateTranslucency",
+            "Type": "uint32",
+            "Description": "Indicates that the translucent material can be rendered on an off-screen render target at a low resolution)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableResponsiveAA",
+            "Type": "uint32",
+            "Description": "Indicates that the material should be rendered using responsive anti-aliasing. Improves sharpness of small moving particles such as sparks.\n\t  Only use for small moving features because it will cause aliasing of the background.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bScreenSpaceReflections",
+            "Type": "uint32",
+            "Description": "SSR on translucency",
+            "Redirect": ""
+        },
+        {
+            "Name": "TwoSided",
+            "Type": "uint32",
+            "Description": "Indicates that the material should be rendered without backface culling and the normal should be flipped for backfaces.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DitheredLODTransition",
+            "Type": "uint32",
+            "Description": "Whether meshes rendered with the material should support dithered LOD transitions.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForceOpaqueLevelPointIndirectLighting",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DitherOpacityMask",
+            "Type": "uint32",
+            "Description": "Dither opacity mask. When combined with Temporal AA this can be used as a form of limited translucency which supports all lighting features.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowNegativeEmissiveColor",
+            "Type": "uint32",
+            "Description": "Whether the material should allow outputting negative emissive color values.  Only allowed on unlit materials.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumCustomizedUVs",
+            "Type": "int32",
+            "Description": "Number of customized UV inputs to display.  Unconnected customized UV inputs will just pass through the vertex UVs.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucencyLightingMode",
+            "Type": "TEnumAsByte < enum ETranslucencyLightingMode >",
+            "Description": "Sets the lighting mode that will be used on this material if it is translucent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucencyDirectionalLightingIntensity",
+            "Type": "float",
+            "Description": "Useful for artificially increasing the influence of the normal on the lighting result for translucency.\n\t  A value larger than 1 increases the influence of the normal, a value smaller than 1 makes the lighting more ambient.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AllowTranslucentCustomDepthWrites",
+            "Type": "uint32",
+            "Description": "Allows a translucenct material to be used with custom depth writing by compiling additional shaders.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentShadowDensityScale",
+            "Type": "float",
+            "Description": "Scale used to make translucent shadows more or less opaque than the material's actual opacity.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentSelfShadowDensityScale",
+            "Type": "float",
+            "Description": "Scale used to make translucent self-shadowing more or less opaque than the material's shadow on other objects.\n\t  This is only used when the object is casting a volumetric translucent shadow.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentSelfShadowSecondDensityScale",
+            "Type": "float",
+            "Description": "Used to make a second self shadow gradient, to add interesting shading in the shadow of the first.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentSelfShadowSecondOpacity",
+            "Type": "float",
+            "Description": "Controls the strength of the second self shadow gradient.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentBackscatteringExponent",
+            "Type": "float",
+            "Description": "Controls how diffuse the material's backscattering is when using the MSM_Subsurface shading model.\n\t  Larger exponents give a less diffuse look (smaller, brighter backscattering highlight).\n\t  This is only used when the object is casting a volumetric translucent shadow from a directional light.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentMultipleScatteringExtinction",
+            "Type": "FLinearColor",
+            "Description": "Colored extinction factor used to approximate multiple scattering in dense volumes.\n\t  This is only used when the object is casting a volumetric translucent shadow.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentShadowStartOffset",
+            "Type": "float",
+            "Description": "Local space distance to bias the translucent shadow.  Positive values move the shadow away from the light.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableDepthTest",
+            "Type": "uint32",
+            "Description": "Whether to draw on top of opaque pixels even if behind them. This only has meaning for translucency.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGenerateSphericalParticleNormals",
+            "Type": "uint32",
+            "Description": "Whether to generate spherical normals for particles that use this material.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTangentSpaceNormal",
+            "Type": "uint32",
+            "Description": "Whether the material takes a tangent space normal or a world space normal as input.\n\t  (TangentSpace requires extra instructions but is often more convenient).",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseEmissiveForDynamicAreaLighting",
+            "Type": "uint32",
+            "Description": "If enabled, the material's emissive colour is injected into the LightPropagationVolume",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBlockGI",
+            "Type": "uint32",
+            "Description": "If enabled, the material's opacity defines how much GI is blocked when using the LightPropagationVolume feature",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseSimpleGI",
+            "Type": "uint32",
+            "Description": "If enabled, the material uses simplified and inaccurate GI color for efficiency",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedAsSpecialEngineMaterial",
+            "Type": "uint32",
+            "Description": "This is a special usage flag that allows a material to be assignable to any primitive type.\n\t  This is useful for materials used by code to implement certain viewmodes, for example the default material or lighting only material.\n\t  The cost is that nearly 20x more shaders will be compiled for the material than the average material, which will greatly increase shader compile time and memory usage.\n\t  This flag should only be enabled when absolutely necessary, and is purposefully not exposed to the UI to prevent abuse.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithSkeletalMesh",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with skeletal meshes.\n\t  This will result in the shaders required to support skeletal meshes being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithGFur",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with GFur.\n\t This will result in the shaders required to support skeletal meshes being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithEditorCompositing",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with editor compositing\n\t  This will result in the shaders required to support editor compositing being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithParticleSprites",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with particle sprites\n\t  This will result in the shaders required to support particle sprites being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceDisableSubUVCalculate",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithBeamTrails",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with beam trails\n\t  This will result in the shaders required to support beam trails being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithMeshParticles",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with mesh particles\n\t  This will result in the shaders required to support mesh particles being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithParticleBigWorldPrecision",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithNiagaraSprites",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with Niagara sprites (meshes and ribbons, respectively)\n\t This will result in the shaders required to support Niagara sprites being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithNiagaraRibbons",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithNiagaraMeshParticles",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithIBL",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with reflection cube\n\t  This will result in the shaders required to support IBL being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithStaticLighting",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with static lighting\n\t  This will result in the shaders required to support static lighting being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithMorphTargets",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with morph targets\n\t  This will result in the shaders required to support morph targets being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithSplineMeshes",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with spline meshes\n\t  This will result in the shaders required to support spline meshes being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithQuantizedMeshes",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithInstancedStaticMeshes",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with instanced static meshes\n\t  This will result in the shaders required to support instanced static meshes being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithCustomInstancedStaticMeshes",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with custom instanced static meshes\n\t  This will result in the shaders required to support instanced static meshes being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithInstancedWidget",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithInstancedPDSurface",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsesDistortion",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with distortion\n\t  This will result in the shaders required to support distortion being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithClothing",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with clothing\n\t  This will result in the shaders required to support clothing being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithUI_DEPRECATED",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with Slate UI and UMG\n\t  This will result in the shaders required to support UI materials being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithPPRBackgroud",
+            "Type": "uint32",
+            "Description": "Indicates that the material would use for ppr background in deferred rendering.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithSurfelInjectColor",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with SurfelGI inject color\n\t  This will result in the shaders required to support SurfelGI inject color being compiled which will increase shader compile time and memory usage.\n\t  HACK by huiwenjiang.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithTranslucentGI",
+            "Type": "uint32",
+            "Description": "[SurfelGI - brainfkli ADD]\n\t  Indicates that the material and its instances can be affected by GI in translucent blend mode.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithAtmosphericSkyBox",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with AtmosphericSkyBox\n\t  This will result in the shaders required to support AtmosphericSkyBox being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutomaticallySetUsageInEditor",
+            "Type": "uint32",
+            "Description": "Whether to automatically set usage flags based on what the material is applied to in the editor.\n\t  It can be useful to disable this on a base material with many instances, where adding another usage flag accidentally (eg bUsedWithSkeletalMeshes) can add a lot of shader permutations.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFullyRough",
+            "Type": "uint32",
+            "Description": "Forces the material to be completely rough. Saves a number of instructions and one sampler. Note: Overrided by Lite Rough.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithLandscapeDeform",
+            "Type": "uint32",
+            "Description": "Indicates that the material and its instances can be use with Landscape Deform\n\t  This will result in the shaders required to support LandscapeDeform being compiled which will increase shader compile time and memory usage.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseFullPrecision",
+            "Type": "uint32",
+            "Description": "Forces this material to use full (highp) precision in the pixel shader.\n\t \tThis is slower than the default (mediump) but can be used to work around precision-related rendering errors.\n\t \tThis setting has no effect on older mobile devices that do not support high precision.\n\t   Note: Overrided by Lite Rough.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceMaterialFloat",
+            "Type": "uint32",
+            "Description": "Forces this material's temporary variables to use full precision float in the pixel shader.\n\t  Keeps uniforms to use default precision. HACK by huiwen.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLightmapDirectionality",
+            "Type": "uint32",
+            "Description": "Use lightmap directionality and per pixel normals. If disabled, lighting from lightmaps will be flat but cheaper.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithDynamicInstancing",
+            "Type": "uint32",
+            "Description": "Indicates that the each material instance(of this material) can be dynamic instanced.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDynamicInstancingByUBO",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithRuntimeStaticBatchMultiParams",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNeedInstanceTransform",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseSimplestShader",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBypassSystemMaterialQuality",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBypassMobilePointLight",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAsEarlyZ",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceOutputLinearSpace",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAsDrawToRenderTarget",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRenderInTwoPass",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShadowUseTentFilter",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLightmap",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseGPUVolumetricLightMap",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedGPUVLMVertexLighting",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseIndirectLighting",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShadowOnEmissiveColor",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedGrassInstnaceColor",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedVertexPointLight",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithLandscapeShadow",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLandscapeMultiLayer",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithPhotonShadow",
+            "Type": "uint32",
+            "Description": "#if WITH_PHOTON_SHADOW",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithPhotonShadowPCSS",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedDynamicObjectVertexLighting",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithDynamicBatching",
+            "Type": "uint32",
+            "Description": "Indicates that the material instance shared with same base mat can be batched",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithDynamicMergeSkeletalMesh",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadowOverride",
+            "Type": "TEnumAsByte < enum EMaterialShadowOverride >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SimpleVertexNormalSituation",
+            "Type": "TEnumAsByte < enum ESimpleVertexNormalSituation >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bZForceFar",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bWettable",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLegacySpecular",
+            "Type": "uint32",
+            "Description": "use Phong instead of GGX",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCorrectBlendingColorInHDR",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGPUSkinForceUseBonesUniformBuffer",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAsTranslucentEarlyZ",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLiteRough",
+            "Type": "uint32",
+            "Description": "Override: Fully Rough On、UseFullPrecision Off",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseSimpleSkyLight",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bACESOff",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEmissionOff",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInstL2WOnlyTranslation",
+            "Type": "uint32",
+            "Description": "Instancing only uses translation of LocalToWorld, exclusive of rotation and scale.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLiteFog",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseChromaticAberration",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithFirstPerson",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithScope",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithMaterialDistFade",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseHQForwardReflections",
+            "Type": "uint32",
+            "Description": "Forward renderer: enables multiple parallax-corrected reflection captures that blend together.\n\t  Mobile renderer: blend between nearest 3 reflection captures, but reduces the number of samplers available to the material as two more samplers will be used for reflection cubemaps.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsePlanarForwardReflections",
+            "Type": "uint32",
+            "Description": "Enables planar reflection when using the forward renderer or mobile. Enabling this setting reduces the number of samplers available to the material as one more sampler will be used for the planar reflection.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bApplyVertexFog",
+            "Type": "uint32",
+            "Description": "When false, materials are not fogged in forward shading or mobile. Defaults to true.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNormalCurvatureToRoughness",
+            "Type": "uint32",
+            "Description": "Reduce roughness based on screen space normal changes.",
+            "Redirect": ""
+        },
+        {
+            "Name": "D3D11TessellationMode",
+            "Type": "TEnumAsByte < enum EMaterialTessellationMode >",
+            "Description": "The type of tessellation to apply to this object.  Note D3D11 required for anything except MTM_NoTessellation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableCrackFreeDisplacement",
+            "Type": "uint32",
+            "Description": "Prevents cracks in the surface of the mesh when using tessellation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableAdaptiveTessellation",
+            "Type": "uint32",
+            "Description": "Enables adaptive tessellation, which tries to maintain a uniform number of pixels per triangle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsedWithTexture2DArrayShaderVariant",
+            "Type": "uint32",
+            "Description": "ENABLE_TEXTURE2D_ARRAY_SHADER_VARIANT\n\t Enable Dynamic MaterialInstance use Texture 2D Array shader variant with Texture 2D material expression graph",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSkipRSH",
+            "Type": "uint32",
+            "Description": "Skip Runtime Static Batching (RSH)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSkipDynamicSwitchOp",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableWPOShadow",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxDisplacement",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Wireframe",
+            "Type": "uint32",
+            "Description": "Enables a wireframe view of the mesh the material is applied to.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOutputVelocityOnBasePass",
+            "Type": "uint32",
+            "Description": "Skips outputting velocity during the base pass.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUnlitOutputAllMTOnBasePass",
+            "Type": "uint32",
+            "Description": "Force unlit material output all MT during the base pass.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadingRate",
+            "Type": "TEnumAsByte < EMaterialShadingRate >",
+            "Description": "Select what shading rate to apply for platforms that have variable rate shading",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorX",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorY",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorPitch",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorYaw",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Expressions",
+            "Type": "TArray < UMaterialExpression * >",
+            "Description": "Array of material expressions, excluding Comments.  Used by the material editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialFunctionInfos",
+            "Type": "TArray < FMaterialFunctionInfo >",
+            "Description": "Array of all functions this material depends on.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialParameterCollectionInfos",
+            "Type": "TArray < FMaterialParameterCollectionInfo >",
+            "Description": "Array of all parameter collections this material depends on.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanMaskedBeAssumedOpaque",
+            "Type": "uint32",
+            "Description": "true if this Material can be assumed Opaque when set to masked.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsMasked_DEPRECATED",
+            "Type": "uint32",
+            "Description": "true if Material is masked and uses custom opacity",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsPreviewMaterial",
+            "Type": "uint32",
+            "Description": "true if Material is the preview material used in the material editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseMaterialAttributes",
+            "Type": "uint32",
+            "Description": "when true, the material attributes pin is used instead of the regular pins.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bComputeFogPerPixel",
+            "Type": "uint32",
+            "Description": "When true, translucent materials have fog computed for every pixel, which costs more but fixes artifacts due to low tessellation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableDirectionalLighting",
+            "Type": "uint32",
+            "Description": "When true, the directional lighting will be disabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowDevelopmentShaderCompile",
+            "Type": "uint32",
+            "Description": "If true the compilation environment will be changed to remove the global COMPILE_SHADERS_FOR_DEVELOPMENT flag.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsMaterialEditorStatsMaterial",
+            "Type": "uint32",
+            "Description": "true if this is a special material used for stats by the material editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLandscapeVertexAO",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowLandscapeVertexMorph",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLandscapeVertexHole",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UsageFlagWarnings",
+            "Type": "uint32",
+            "Description": "true if we have printed a warning about material usage for a given usage flag.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendableLocation",
+            "Type": "TEnumAsByte < enum EBlendableLocation >",
+            "Description": "Where the node is inserted in the (post processing) graph, only used if domain is PostProcess",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendablePriority",
+            "Type": "int32",
+            "Description": "If multiple nodes with the same  type are inserted at the same point, this defined order and if they get combined, only used if domain is PostProcess",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendableOutputAlpha",
+            "Type": "bool",
+            "Description": "If this is enabled, the blendable will output alpha",
+            "Redirect": ""
+        },
+        {
+            "Name": "RefractionMode",
+            "Type": "TEnumAsByte < enum ERefractionMode >",
+            "Description": "Controls how the Refraction input is interpreted and how the refraction offset into scene color is computed for this material.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RefractionDepthBias",
+            "Type": "float",
+            "Description": "This is the refraction depth bias, larger values offset distortion to prevent closer objects from rendering into the distorted surface at acute viewing angles but increases the disconnect between surface and where the refraction starts.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOceanFoam",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableMeshClip",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableMeshDiscard",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableMeshArcPlaneClip",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsEnhancedUImage",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSimplePointLight",
+            "Type": "uint32",
+            "Description": "Enable this so the material will not calculate spot light shadows",
+            "Redirect": ""
+        },
+        {
+            "Name": "StateId",
+            "Type": "FGuid",
+            "Description": "Guid that uniquely identifies this material.\n\t  Any changes to the state of the material that do not appear separately in the shadermap DDC keys must cause this guid to be regenerated!\n\t  For example, a modification to the Expressions array.\n\t  Code changes that cause the guid to be regenerated on load should be avoided, as that requires a resave of the content to stop recompiling every load.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExpressionTextureReferences",
+            "Type": "TArray < UTexture * >",
+            "Description": "Cached texture references from all expressions in the material (including nested functions).\n\t  This is used to link uniform texture expressions which were stored in the DDC with the UTextures that they reference.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorComments",
+            "Type": "TArray < UMaterialExpressionComment * >",
+            "Description": "Array of comments associated with this material; viewed in the material editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParameterGroupData",
+            "Type": "TArray < FParameterGroupData >",
+            "Description": "Controls where this parameter group is displayed in a material instance parameter list.  The lower the number the higher up in the parameter list.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReferencedTextureGuids",
+            "Type": "TArray < FGuid >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanBakeWithLandscape",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

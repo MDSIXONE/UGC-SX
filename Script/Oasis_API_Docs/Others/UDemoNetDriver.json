@@ -1,0 +1,37 @@
+{
+    "Name": "UDemoNetDriver",
+    "Description": "Simulated network driver for recording and playing back game sessions.",
+    "Variables": [
+        {
+            "Name": "RollbackNetStartupActors",
+            "Type": "TMap < FString , FRollbackNetStartupActorInfo >",
+            "Description": "Net startup actors that need to be rolled back during scrubbing by being destroyed and re-spawned \n\t  NOTE - DeletedNetStartupActors will take precedence here, and destroy the actor instead",
+            "Redirect": ""
+        },
+        {
+            "Name": "CheckpointSaveMaxMSPerFrame",
+            "Type": "float",
+            "Description": "Maximum time allowed each frame to spend on saving a checkpoint. If 0, it will save the checkpoint in a single frame, regardless of how long it takes.\n\t  See also demo.CheckpointSaveMaxMSPerFrameOverride.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsLocalReplay",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameInstance",
+            "Type": "UGameInstance *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UNetDriver"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,55 @@
+{
+    "Name": "UMaterialExpressionPanner",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Coordinate",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Time",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Speed",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpeedX",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpeedY",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstCoordinate",
+            "Type": "uint32",
+            "Description": "only used if Coordinate is not hooked up",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFractionalPart",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

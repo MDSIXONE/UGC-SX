@@ -1,0 +1,31 @@
+{
+    "Name": "ULocalizedOverlays",
+    "Description": "Implements an asset that contains a set of Basic Overlays that will be displayed in accordance with\n  the current locale, or a default set if an appropriate locale is not found",
+    "Variables": [
+        {
+            "Name": "DefaultOverlays",
+            "Type": "UBasicOverlays *",
+            "Description": "The overlays to use if no overlays are found for the current culture",
+            "Redirect": ""
+        },
+        {
+            "Name": "LocaleToOverlaysMap",
+            "Type": "TMap < FString , UBasicOverlays * >",
+            "Description": "Maps a set of cultures to specific BasicOverlays assets.\n\t  Cultures are comprised of three hyphen-separated parts:\n\t \t\tA two-letter ISO 639-1 language code (e.g., \"zh\")\n\t \t\tAn optional four-letter ISO 15924 script code (e.g., \"Hans\")\n\t \t\tAn optional two-letter ISO 3166-1 country code  (e.g., \"CN\")",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetImportData",
+            "Type": "UAssetImportData *",
+            "Description": "The import data used to make this overlays asset",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UOverlays"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

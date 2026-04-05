@@ -1,0 +1,31 @@
+{
+    "Name": "UMaterialExpressionTerrainBlendDesert",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "UV",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Inputs",
+            "Type": "TArray < FTerrainLayerDesert >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstCoordinate",
+            "Type": "uint32",
+            "Description": "only used if Coordinates is not hooked up",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionTerrainBlendBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

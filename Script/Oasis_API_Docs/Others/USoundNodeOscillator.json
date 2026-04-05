@@ -1,0 +1,73 @@
+{
+    "Name": "USoundNodeOscillator",
+    "Description": "Defines how a sound oscillates",
+    "Variables": [
+        {
+            "Name": "bModulateVolume",
+            "Type": "uint32",
+            "Description": "Whether to oscillate volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bModulatePitch",
+            "Type": "uint32",
+            "Description": "Whether to oscillate pitch.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AmplitudeMin",
+            "Type": "float",
+            "Description": "An amplitude of 0.25 would oscillate between 0.75 and 1.25.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AmplitudeMax",
+            "Type": "float",
+            "Description": "An amplitude of 0.25 would oscillate between 0.75 and 1.25.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FrequencyMin",
+            "Type": "float",
+            "Description": "A frequency of 20 would oscillate at 10Hz.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FrequencyMax",
+            "Type": "float",
+            "Description": "A frequency of 20 would oscillate at 10Hz.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OffsetMin",
+            "Type": "float",
+            "Description": "Offset into the sine wave. Value modded by 2  PI.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OffsetMax",
+            "Type": "float",
+            "Description": "Offset into the sine wave. Value modded by 2  PI.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CenterMin",
+            "Type": "float",
+            "Description": "A center of 0.5 would oscillate around 0.5.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CenterMax",
+            "Type": "float",
+            "Description": "A center of 0.5 would oscillate around 0.5.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

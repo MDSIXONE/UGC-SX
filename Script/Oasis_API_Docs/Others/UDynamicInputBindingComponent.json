@@ -1,0 +1,216 @@
+{
+    "Name": "UDynamicInputBindingComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ActionBindingClusters",
+            "Type": "TArray < FActionBindingCluster >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AxisBindingClusters",
+            "Type": "TArray < FAxisBindingCluster >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "BindAction",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ActionName",
+                    "Type": "FName & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActorInputEvent",
+                    "Type": "EActorInputEvent ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FunctionName",
+                    "Type": "FName & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bConsumeInput",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BindAxis",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "AxisName",
+                    "Type": "FName & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FunctionName",
+                    "Type": "FName & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bConsumeInput",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveActionBinding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ActionName",
+                    "Type": "FName &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveAxisBinding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "AxisName",
+                    "Type": "FName &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BindActionCluster",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BindAxisCluster",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveActionClusterBinding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveAxisClusterBinding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

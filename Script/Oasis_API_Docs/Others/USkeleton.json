@@ -1,0 +1,193 @@
+{
+    "Name": "USkeleton",
+    "Description": "USkeleton : that links between mesh and animation\n \t\t- Bone hierarchy for animations\n \t\t- Bonetrack linkup between mesh and animation\n \t\t- Retargetting related\n \t\t- Mirror table",
+    "Variables": [
+        {
+            "Name": "BoneTree",
+            "Type": "TArray < struct FBoneNode >",
+            "Description": "Skeleton bone tree - each contains name and parent index",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideBoneTranslationRetargetingModeConfigMap",
+            "Type": "TMap < FName , FOverrideBoneTranslationRetargetingModeConfig >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RefLocalPoses_DEPRECATED",
+            "Type": "TArray < FTransform >",
+            "Description": "Reference skeleton poses in local space",
+            "Redirect": ""
+        },
+        {
+            "Name": "VirtualBoneGuid",
+            "Type": "FGuid",
+            "Description": "Guid for virtual bones.\n\t   Separate so that we don't have to dirty the original guid when only changing virtual bones",
+            "Redirect": ""
+        },
+        {
+            "Name": "VirtualBones",
+            "Type": "TArray < FVirtualBone >",
+            "Description": "Array of this skeletons virtual bones. These are new bones are links between two existing bones\n\t  and are baked into all the skeletons animations",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompatibleSkeletons",
+            "Type": "TArray < TSoftObjectPtr < USkeleton > >",
+            "Description": "The list of compatible skeletons.\n\t  This is an array of TSoftObjectPtr in order to prevent all skeletons to be loaded, as we only want to load things on demand.\n\t  As this is EditAnywhere and an array of TSoftObjectPtr, checking validity of pointers is needed.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomSkeletonNameMap",
+            "Type": "TMap < FName , FName >",
+            "Description": "key名称对应其他骨骼的名字 做骨骼兼容时 会被当作本骨骼的value使用",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkeletonNotOffsetName",
+            "Type": "TMap < FName , FBoneOffset >",
+            "Description": "是否要在骨骼兼容后不应用offset",
+            "Redirect": ""
+        },
+        {
+            "Name": "RefBoneNames",
+            "Type": "TArray < FName >",
+            "Description": "该名称对应的骨骼 做骨骼兼容时 只会应用旋转",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExcludeBoneInfos",
+            "Type": "TArray < FSkinWeightInfoForFPP >",
+            "Description": "该名称对应的骨骼 做骨骼兼容时排除该骨骼的信息",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExcludeBoneNameForAvatar",
+            "Type": "TArray < FName >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsFPPSkeleton",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Sockets",
+            "Type": "TArray < USkeletalMeshSocket * >",
+            "Description": "Array of named socket locations, set up in editor and used as a shortcut instead of specifying \n\t \teverything explicitly to AttachComponent in the SkeletalMeshComponent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SmartNames",
+            "Type": "FSmartNameContainer",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendProfiles",
+            "Type": "TArray < UBlendProfile * >",
+            "Description": "List of blend profiles available in this skeleton",
+            "Redirect": ""
+        },
+        {
+            "Name": "SlotGroups",
+            "Type": "TArray < FAnimSlotGroup >",
+            "Description": "Slot Groups",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetUserData",
+            "Type": "TArray < UAssetUserData * >",
+            "Description": "Array of user data stored with the asset",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSkipGenerateGuidWhenSkeletonHierarchyAdd",
+            "Type": "bool",
+            "Description": "当骨架增加骨骼时，跳过 Guid 更新和 DDC 重新构建",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewSkeletalMesh",
+            "Type": "TSoftObjectPtr < USkeletalMesh >",
+            "Description": "The default skeletal mesh to use when previewing this skeleton",
+            "Redirect": ""
+        },
+        {
+            "Name": "AdditionalPreviewSkeletalMeshes",
+            "Type": "TSoftObjectPtr < UDataAsset >",
+            "Description": "The additional skeletal meshes to use when previewing this skeleton",
+            "Redirect": ""
+        },
+        {
+            "Name": "RigConfig",
+            "Type": "FRigConfiguration",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AnimationNotifies",
+            "Type": "TArray < FName >",
+            "Description": "AnimNotifiers that has been created. Right now there is no delete step for this, but in the future we'll supply delete",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewAttachedAssetContainer",
+            "Type": "FPreviewAssetAttachContainer",
+            "Description": "Attached assets component for this skeleton",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "AddCompatibleSkeleton",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SourceSkeleton",
+                    "Type": "USkeleton *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddCompatibleSkeletonSoft",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SourceSkeleton",
+                    "Type": "TSoftObjectPtr < USkeleton > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IInterface_AssetUserData"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

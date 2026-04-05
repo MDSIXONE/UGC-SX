@@ -1,0 +1,25 @@
+{
+    "Name": "UParticleModuleRotationOverLifetime",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RotationOverLife",
+            "Type": "FRawDistributionFloat",
+            "Description": "The rotation of the particle (1.0 = 360 degrees).\n\t \tThe value is retrieved using the RelativeTime of the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Scale",
+            "Type": "uint32",
+            "Description": "If true,  the particle rotation is multiplied by the value retrieved from RotationOverLife.\n\t \tIf false, the particle rotation is incremented by the value retrieved from RotationOverLife.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleRotationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

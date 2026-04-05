@@ -1,0 +1,43 @@
+{
+    "Name": "UMaterialExpressionSpeedTree",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "GeometryType",
+            "Type": "TEnumAsByte < enum ESpeedTreeGeometryType >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WindType",
+            "Type": "TEnumAsByte < enum ESpeedTreeWindType >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODType",
+            "Type": "TEnumAsByte < enum ESpeedTreeLODType >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BillboardThreshold",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAccurateWindVelocities",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

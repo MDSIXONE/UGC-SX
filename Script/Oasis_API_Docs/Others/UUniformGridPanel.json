@@ -1,0 +1,112 @@
+{
+    "Name": "UUniformGridPanel",
+    "Description": "A panel that evenly divides up available space between all of its children.",
+    "Variables": [
+        {
+            "Name": "SlotPadding",
+            "Type": "FMargin",
+            "Description": "Padding given to each slot",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinDesiredSlotWidth",
+            "Type": "float",
+            "Description": "The minimum desired width of the slots",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinDesiredSlotHeight",
+            "Type": "float",
+            "Description": "The minimum desired height of the slots",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetSlotPadding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSlotPadding",
+                    "Type": "FMargin",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMinDesiredSlotWidth",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InMinDesiredSlotWidth",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMinDesiredSlotHeight",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InMinDesiredSlotHeight",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddChildToUniformGrid",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UUniformGridSlot * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPanelWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

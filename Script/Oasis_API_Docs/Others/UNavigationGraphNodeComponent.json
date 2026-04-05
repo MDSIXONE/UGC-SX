@@ -1,0 +1,31 @@
+{
+    "Name": "UNavigationGraphNodeComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Node",
+            "Type": "FNavGraphNode",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NextNodeComponent",
+            "Type": "UNavigationGraphNodeComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PrevNodeComponent",
+            "Type": "UNavigationGraphNodeComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

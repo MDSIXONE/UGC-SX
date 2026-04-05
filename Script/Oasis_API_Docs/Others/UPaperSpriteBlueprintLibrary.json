@@ -1,0 +1,45 @@
+{
+    "Name": "UPaperSpriteBlueprintLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "MakeBrushFromSprite",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Sprite",
+                    "Type": "UPaperSprite * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Width",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FSlateBrush ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

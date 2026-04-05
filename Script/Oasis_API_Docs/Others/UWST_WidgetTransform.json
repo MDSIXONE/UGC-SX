@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_WidgetTransform",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "FWidgetTransform",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

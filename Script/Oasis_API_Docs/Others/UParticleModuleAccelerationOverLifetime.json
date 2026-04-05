@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleAccelerationOverLifetime",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "AccelOverLife",
+            "Type": "FRawDistributionVector",
+            "Description": "The acceleration of the particle over its lifetime.\n\t \tValue is obtained using the RelativeTime of the partice.\n\t \tThe current and base velocity values of the particle \n\t \tare then updated using the formula \n\t \t\tvelocity += acceleration DeltaTime\n\t \twhere DeltaTime is the time passed since the last frame.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleAccelerationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

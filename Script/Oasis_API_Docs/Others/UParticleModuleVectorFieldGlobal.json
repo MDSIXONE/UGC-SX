@@ -1,0 +1,31 @@
+{
+    "Name": "UParticleModuleVectorFieldGlobal",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bOverrideGlobalVectorFieldTightness",
+            "Type": "uint32",
+            "Description": "Property override value for global vector field tightness.",
+            "Redirect": ""
+        },
+        {
+            "Name": "GlobalVectorFieldScale",
+            "Type": "float",
+            "Description": "Global vector field scale.",
+            "Redirect": ""
+        },
+        {
+            "Name": "GlobalVectorFieldTightness",
+            "Type": "float",
+            "Description": "Global vector field tightness override.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVectorFieldBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

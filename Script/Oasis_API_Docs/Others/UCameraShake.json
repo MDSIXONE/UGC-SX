@@ -1,0 +1,261 @@
+{
+    "Name": "UCameraShake",
+    "Description": "A CameraShake is an asset that defines how to shake the camera in \n  a particular way. CameraShakes can be authored as either oscillating shakes, \n  animated shakes, or both.\n \n  An oscillating shake will sinusoidally vibrate various camera parameters over time. Each location\n  and rotation axis can be oscillated independently with different parameters to create complex and\n  random-feeling shakes. These are easier to author and tweak, but can still feel mechanical and are\n  limited to vibration-style shakes, such as earthquakes.\n \n  Animated shakes play keyframed camera animations.  These can take more effort to author, but enable\n  more natural-feeling results and things like directional shakes.  For instance, you can have an explosion\n  to the camera's right push it primarily to the left.",
+    "Variables": [
+        {
+            "Name": "bSingleInstance",
+            "Type": "uint32",
+            "Description": "If true to only allow a single instance of this shake class to play at any given time.\n\t   Subsequent attempts to play this shake will simply restart the timer.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OscillationDuration",
+            "Type": "float",
+            "Description": "Duration in seconds of current screen shake. Less than 0 means indefinite, 0 means no oscillation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OscillationBlendInTime",
+            "Type": "float",
+            "Description": "Duration of the blend-in, where the oscillation scales from 0 to 1.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OscillationBlendOutTime",
+            "Type": "float",
+            "Description": "Duration of the blend-out, where the oscillation scales from 1 to 0.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RotOscillation",
+            "Type": "FROscillator",
+            "Description": "Rotational oscillation",
+            "Redirect": ""
+        },
+        {
+            "Name": "LocOscillation",
+            "Type": "FVOscillator",
+            "Description": "Positional oscillation",
+            "Redirect": ""
+        },
+        {
+            "Name": "FOVOscillation",
+            "Type": "FFOscillator",
+            "Description": "FOV oscillation",
+            "Redirect": ""
+        },
+        {
+            "Name": "AnimPlayRate",
+            "Type": "float",
+            "Description": "Parameters for defining CameraAnim-driven camera shakes\n\t \n\t Scalar defining how fast to play the anim.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AnimScale",
+            "Type": "float",
+            "Description": "Scalar defining how \"intense\" to play the anim.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AnimBlendInTime",
+            "Type": "float",
+            "Description": "Linear blend-in time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AnimBlendOutTime",
+            "Type": "float",
+            "Description": "Linear blend-out time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomAnimSegmentDuration",
+            "Type": "float",
+            "Description": "When bRandomAnimSegment is true, this defines how long the anim should play.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Anim",
+            "Type": "UCameraAnim *",
+            "Description": "Source camera animation to play. Can be null.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Anims",
+            "Type": "TArray < UCameraAnim * >",
+            "Description": "Source camera animations to play. Can be empty.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRandomAnimSegment",
+            "Type": "uint32",
+            "Description": "If true, play a random snippet of the animation of length Duration.  Implies bLoop and bRandomStartTime = true for the CameraAnim.\n\t If false, play the full anim once, non-looped. Useful for getting variety out of a single looped CameraAnim asset.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomFinalIntenseScaleRange",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomFinalIntenseScaleRange_X",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomFinalIntenseScaleRange_Y",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomFinalIntenseScaleRange_Z",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomFinalIntenseScaleRange_Yaw",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomFinalIntenseScaleRange_Pitch",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomFinalIntenseScaleRange_Roll",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraOwner",
+            "Type": "APlayerCameraManager *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShakeScale",
+            "Type": "float",
+            "Description": "Overall intensity scale for this shake instance.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OscillatorTimeRemaining",
+            "Type": "float",
+            "Description": "Time remaining for oscillation shakes. Less than 0.f means shake infinitely.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttenuationFloatCurve",
+            "Type": "UCurveFloat *",
+            "Description": "Source camera curve to add. Can be null.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "BlueprintUpdateCameraShake",
+            "Description": "Called every tick to let the shake modify the point of view",
+            "Params": [
+                {
+                    "Name": "DeltaTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Alpha",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "POV",
+                    "Type": "FMinimalViewInfo & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ModifiedPOV",
+                    "Type": "FMinimalViewInfo &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceivePlayShake",
+            "Description": "Called when the shake starts playing",
+            "Params": [
+                {
+                    "Name": "Scale",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveIsFinished",
+            "Description": "Called to allow a shake to decide when it's finished playing.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveStopShake",
+            "Description": "Called when the shake is explicitly stopped. ",
+            "Params": [
+                {
+                    "Name": "bImmediately",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

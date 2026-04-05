@@ -1,0 +1,19 @@
+{
+    "Name": "UAITask",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "OwnerController",
+            "Type": "AAIController *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UGameplayTask"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,369 @@
+{
+    "Name": "UKismetNodeHelperLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "BitIsMarked",
+            "Description": "Returns whether the bit at index \"Index\" is set or not in the data\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 ",
+                    "Description": "- The integer containing the bits that are being tested against",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "- The bit index into the Data that we are inquiring",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": " - Whether the bit at index \"Index\" is set or not",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MarkBit",
+            "Description": "Sets the bit at index \"Index\" in the data\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 & ",
+                    "Description": "- The integer containing the bits that are being set",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "- The bit index into the Data that we are setting",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearBit",
+            "Description": "Clears the bit at index \"Index\" in the data\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 & ",
+                    "Description": "- The integer containing the bits that are being cleared",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "- The bit index into the Data that we are clearing",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearAllBits",
+            "Description": "Clears all of the bit in the data\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 &",
+                    "Description": "- The integer containing the bits that are being cleared",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasUnmarkedBit",
+            "Description": "Returns whether there exists an unmarked bit in the data\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 ",
+                    "Description": "- The data being tested against",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NumBits",
+                    "Type": "int32",
+                    "Description": "- The logical number of bits we want to track",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "- Whether there is a bit not marked in the data",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasMarkedBit",
+            "Description": "Returns whether there exists a marked bit in the data\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 ",
+                    "Description": "- The data being tested against",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NumBits",
+                    "Type": "int32",
+                    "Description": "- The logical number of bits we want to track",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "- Whether there is a bit marked in the data",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUnmarkedBit",
+            "Description": "Gets an already unmarked bit and returns the bit index selected\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 ",
+                    "Description": "- The integer containing the bits that are being set",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartIdx",
+                    "Type": "int32 ",
+                    "Description": "- The index to start with when determining the selection'",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NumBits",
+                    "Type": "int32 ",
+                    "Description": "- The logical number of bits we want to track",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRandom",
+                    "Type": "bool",
+                    "Description": "- Whether to select a random index or not",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "- The index that was selected (returns INDEX_NONE if there was no unmarked bits to choose from)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRandomUnmarkedBit",
+            "Description": "Gets a random not already marked bit and returns the bit index selected\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 ",
+                    "Description": "- The integer containing the bits that are being set",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartIdx",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NumBits",
+                    "Type": "int32",
+                    "Description": "- The logical number of bits we want to track",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "- The index that was selected (returns INDEX_NONE if there was no unmarked bits to choose from)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFirstUnmarkedBit",
+            "Description": "Gets the first index not already marked starting from a specific index and returns the bit index selected\n\t ",
+            "Params": [
+                {
+                    "Name": "Data",
+                    "Type": "int32 ",
+                    "Description": "- The integer containing the bits that are being set",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartIdx",
+                    "Type": "int32 ",
+                    "Description": "- The index to start looking for an available index from",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NumBits",
+                    "Type": "int32",
+                    "Description": "- The logical number of bits we want to track",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "- The index that was selected (returns INDEX_NONE if there was no unmarked bits to choose from)",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEnumeratorName",
+            "Description": "Gets enumerator name.\n\t ",
+            "Params": [
+                {
+                    "Name": "Enum",
+                    "Type": "UEnum * ",
+                    "Description": "- Enumeration",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EnumeratorValue",
+                    "Type": "uint8",
+                    "Description": "- Value of searched enumeration",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "- name of the searched enumerator, or NAME_None",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEnumeratorUserFriendlyName",
+            "Description": "Gets enumerator name as FString. Use DeisplayName when possible.\n\t ",
+            "Params": [
+                {
+                    "Name": "Enum",
+                    "Type": "UEnum * ",
+                    "Description": "- Enumeration",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EnumeratorValue",
+                    "Type": "uint8",
+                    "Description": "- Value of searched enumeration",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "- name of the searched enumerator, or NAME_None",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetValidValue",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Enum",
+                    "Type": "UEnum * ",
+                    "Description": "- Enumeration",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EnumeratorValue",
+                    "Type": "uint8",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "uint8 ",
+                    "Description": "- if EnumeratorIndex is valid return EnumeratorIndex, otherwise return MAX value of Enum",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEnumeratorValueFromIndex",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Enum",
+                    "Type": "UEnum * ",
+                    "Description": "- Enumeration",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EnumeratorIndex",
+                    "Type": "uint8",
+                    "Description": "- Input index",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "uint8 ",
+                    "Description": "- The value of the enumerator, or INDEX_NONE",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

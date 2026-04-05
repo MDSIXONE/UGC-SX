@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionBlackBody",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Temp",
+            "Type": "FExpressionInput",
+            "Description": "Temperature",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,55 @@
+{
+    "Name": "ACullDistanceVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CullDistances",
+            "Type": "TArray < struct FCullDistanceSizePair >",
+            "Description": "Array of size and cull distance pairs. The code will calculate the sphere diameter of a primitive's BB and look for a best\n\t  fit in this array to determine which cull distance to use.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnabled",
+            "Type": "uint32",
+            "Description": "Whether the volume is currently enabled or not.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnabledDeviceScale",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VeryLowScale",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LowScale",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MidScale",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "HighScale",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

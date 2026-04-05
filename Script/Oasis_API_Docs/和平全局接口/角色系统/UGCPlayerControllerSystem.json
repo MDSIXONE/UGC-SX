@@ -1,0 +1,173 @@
+{
+    "Name": "UGCPlayerControllerSystem",
+    "Description": "玩家控制器系统",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "DisableJoyStickSprint",
+            "Description": "禁用摇杆触发疾跑\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "EnableJoyStickSprint",
+            "Description": "启用摇杆触发疾跑\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetTeamID",
+            "Description": "通过 PlayerController 获取 TeamID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "玩家队伍 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerCharacter",
+            "Description": "获取玩家角色\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraBaseCharacter",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TeleportTo",
+            "Description": "瞬移至坐标\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "X",
+                    "Type": "number",
+                    "Description": "X坐标",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Y",
+                    "Type": "number",
+                    "Description": "Y坐标",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Z",
+                    "Type": "number",
+                    "Description": "Z坐标",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "SetControlRotation",
+            "Description": "设置控制旋转\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewRotation",
+                    "Type": "Rotator",
+                    "Description": "新旋转量 可使用Rotator.New(Roll,Pitch,Yaw)创建,结构{Roll=Roll, Pitch=Pitch, Yaw=Yaw}",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "EnableBulletTrackEffect",
+            "Description": "启用子弹尾迹特效\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "NotifyBattleBeginPlay",
+            "Description": "使玩家立刻进入游戏。首先设置PlayerController蓝图上的DelayNotifyBattleBeginPlay，设置之后在切换DS，或者进入游戏的两种情况下的loading图会延长，接着调用本接口，即可立刻跳过loading图进入游戏\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "IsLocalController",
+            "Description": "判断是否为主控端\n生效范围：客户端&服务器",
+            "Params": [
+                {
+                    "Name": "InController",
+                    "Type": "AController",
+                    "Description": "Pawn",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "当前端是否为主控端",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

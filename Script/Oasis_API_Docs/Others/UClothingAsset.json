@@ -1,0 +1,61 @@
+{
+    "Name": "UClothingAsset",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "PhysicsAsset",
+            "Type": "UPhysicsAsset *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClothConfig",
+            "Type": "FClothConfig",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LodData",
+            "Type": "TArray < FClothLODData >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LodMap",
+            "Type": "TArray < int32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UsedBoneNames",
+            "Type": "TArray < FName >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UsedBoneIndices",
+            "Type": "TArray < int32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReferenceBoneIndex",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomData",
+            "Type": "UClothingAssetCustomData *",
+            "Description": "Custom data applied by the importer depending on where the asset was imported from",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UClothingAssetBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

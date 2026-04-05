@@ -1,0 +1,37 @@
+{
+    "Name": "UBTService",
+    "Description": "Behavior Tree service nodes is designed to perform \"background\" tasks that update AI's knowledge.\n \n   Services are being executed when underlying branch of behavior tree becomes active,\n   but unlike tasks they don't return any results and can't directly affect execution flow.\n \n   Usually they perform periodical checks (see TickNode) and often store results in blackboard.\n   If any decorator node below requires results of check beforehand, use OnSearchStart function.\n    Keep in mind that any checks performed there have to be instantaneous!\n \t\n   Other typical use case is creating a marker when specific branch is being executed\n   (see OnBecomeRelevant, OnCeaseRelevant), by setting a flag in blackboard.\n \n   Because some of them can be instanced for specific AI, following virtual functions are not marked as const:\n    - OnBecomeRelevant (from UBTAuxiliaryNode)\n    - OnCeaseRelevant (from UBTAuxiliaryNode)\n    - TickNode (from UBTAuxiliaryNode)\n    - OnSearchStart\n \n   If your node is not being instanced (default behavior), DO NOT change any properties of object within those functions!\n   Template nodes are shared across all behavior tree components using the same tree asset and must store\n   their runtime properties in provided NodeMemory block (allocation size determined by GetInstanceMemorySize() )",
+    "Variables": [
+        {
+            "Name": "Interval",
+            "Type": "float",
+            "Description": "defines time span between subsequent ticks of the service",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomDeviation",
+            "Type": "float",
+            "Description": "adds random range to service's Interval",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCallTickOnSearchStart",
+            "Type": "uint32",
+            "Description": "call Tick event when task search enters this node (SearchStart will be called as well)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRestartTimerOnEachActivation",
+            "Type": "uint32",
+            "Description": "if set, next tick time will be always reset to service's interval when node is activated",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTAuxiliaryNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}
