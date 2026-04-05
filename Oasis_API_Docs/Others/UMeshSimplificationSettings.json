@@ -1,0 +1,19 @@
+{
+    "Name": "UMeshSimplificationSettings",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MeshReductionModuleName",
+            "Type": "FName",
+            "Description": "Mesh reduction plugin to use when simplifying mesh geometry",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDeveloperSettings"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

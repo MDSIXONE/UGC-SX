@@ -1,0 +1,19 @@
+{
+    "Name": "UMorphTarget",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "BaseSkelMesh",
+            "Type": "USkeletalMesh *",
+            "Description": "USkeletalMesh that this vertex animation works on.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

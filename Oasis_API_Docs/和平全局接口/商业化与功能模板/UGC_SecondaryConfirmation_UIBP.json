@@ -1,0 +1,17 @@
+{
+    "Name": "UGC_SecondaryConfirmation_UIBP",
+    "Description": "二次确认面板",
+    "Variables": [
+        {
+            "Name": "UGC_SecondaryConfirmation_UIBP.ConfirmationOperationDelegate",
+            "Type": "",
+            "Description": "生效范围：客户端\n二次确认面板操作通知，触发后会清空绑定的回调\n@param Value boolean @true为确认，false为取消",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

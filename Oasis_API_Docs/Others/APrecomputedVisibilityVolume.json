@@ -1,0 +1,49 @@
+{
+    "Name": "APrecomputedVisibilityVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bOnlyInteriorComputed",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOnlyUesdInDS",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PVSMode",
+            "Type": "EPVSMode",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoRCR",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AutoRCRMaxSize",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SaveNewFolderName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

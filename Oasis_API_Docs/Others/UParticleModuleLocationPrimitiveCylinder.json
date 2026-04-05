@@ -1,0 +1,37 @@
+{
+    "Name": "UParticleModuleLocationPrimitiveCylinder",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RadialVelocity",
+            "Type": "uint32",
+            "Description": "If true, get the particle velocity form the radial distance inside the primitive.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartRadius",
+            "Type": "FRawDistributionFloat",
+            "Description": "The radius of the cylinder.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartHeight",
+            "Type": "FRawDistributionFloat",
+            "Description": "The height of the cylinder, centered about the location.",
+            "Redirect": ""
+        },
+        {
+            "Name": "HeightAxis",
+            "Type": "TEnumAsByte < enum CylinderHeightAxis >",
+            "Description": "Determine particle particle system axis that should represent the height of the cylinder.\n\t  Can be one of the following:\n\t    PMLPC_HEIGHTAXIS_X - Orient the height along the particle system X-axis.\n\t    PMLPC_HEIGHTAXIS_Y - Orient the height along the particle system Y-axis.\n\t    PMLPC_HEIGHTAXIS_Z - Orient the height along the particle system Z-axis.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleLocationPrimitiveBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

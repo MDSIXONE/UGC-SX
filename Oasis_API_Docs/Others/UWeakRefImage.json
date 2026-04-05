@@ -1,0 +1,46 @@
+{
+    "Name": "UWeakRefImage",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "LoadTextureResource",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bAsync",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UnloadTextureResource",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UImage"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

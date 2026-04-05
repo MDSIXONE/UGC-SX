@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_UInt8",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

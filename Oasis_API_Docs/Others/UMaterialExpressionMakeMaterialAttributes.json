@@ -1,0 +1,139 @@
+{
+    "Name": "UMaterialExpressionMakeMaterialAttributes",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "BaseColor",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Metallic",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Specular",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Roughness",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EmissiveColor",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Opacity",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OpacityMask",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Normal",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WorldPositionOffset",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WorldDisplacement",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TessellationMultiplier",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubsurfaceColor",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearCoat",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearCoatRoughness",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AmbientOcclusion",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Refraction",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomizedUVs",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PixelDepthOffset",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomizedVertexColor",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlanarReflectionOffsetScale",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VertexDepthOffset",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

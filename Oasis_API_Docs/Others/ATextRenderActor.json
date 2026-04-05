@@ -1,0 +1,25 @@
+{
+    "Name": "ATextRenderActor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TextRender",
+            "Type": "UTextRenderComponent *",
+            "Description": "Component to render a text in 3d with a font",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteComponent",
+            "Type": "UBillboardComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

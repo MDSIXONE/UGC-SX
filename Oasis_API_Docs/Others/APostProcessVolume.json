@@ -1,0 +1,77 @@
+{
+    "Name": "APostProcessVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Settings",
+            "Type": "FPostProcessSettings",
+            "Description": "Post process settings to use for this volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Priority",
+            "Type": "float",
+            "Description": "Priority of this volume. In the case of overlapping volumes the one with the highest priority\n\t  overrides the lower priority ones. The order is undefined if two or more overlapping volumes have the same priority.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendRadius",
+            "Type": "float",
+            "Description": "World space radius around the volume that is used for blending (only if not unbound).",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlendWeight",
+            "Type": "float",
+            "Description": "0:no effect, 1:full effect",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnabled",
+            "Type": "uint32",
+            "Description": "Whether this volume is enabled or not.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUnbound",
+            "Type": "uint32",
+            "Description": "Whether this volume covers the whole world, or just the area inside its bounds.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "AddOrUpdateBlendable",
+            "Description": "Adds an Blendable (implements IBlendableInterface) to the array of Blendables (if it doesn't exist) and update the weight",
+            "Params": [
+                {
+                    "Name": "InBlendableObject",
+                    "Type": "TScriptInterface < IBlendableInterface > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InWeight",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AVolume",
+        "IInterface_PostProcessVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

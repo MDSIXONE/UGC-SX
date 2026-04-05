@@ -1,0 +1,103 @@
+{
+    "Name": "UPrimaryAssetLabel",
+    "Description": "A seed file that is created to mark referenced assets as part of this primary asset",
+    "Variables": [
+        {
+            "Name": "Rules",
+            "Type": "FPrimaryAssetRules",
+            "Description": "Management rules for this specific asset, if set it will override the type rules",
+            "Redirect": ""
+        },
+        {
+            "Name": "LogicChunkName",
+            "Type": "FString",
+            "Description": "Pak file name",
+            "Redirect": ""
+        },
+        {
+            "Name": "FinalChunkName",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChunkOutputPath",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLabelAssetsInMyDirectory",
+            "Type": "uint32",
+            "Description": "True to Label everything in this directory and sub directories",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssignedDirectories",
+            "Type": "TArray < FDirectoryPath >",
+            "Description": "True to Label everything in this directory and sub directories",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExcludeDirectories",
+            "Type": "TArray < FDirectoryPath >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExcludeAssets",
+            "Type": "TArray < TSoftObjectPtr < UObject > >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsRuntimeLabel",
+            "Type": "uint32",
+            "Description": "Set to true if the label asset itself should be cooked and available at runtime. This does not affect the assets that are labeled, they are set with cook rule",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExplicitAssets",
+            "Type": "TArray < TSoftObjectPtr < UObject > >",
+            "Description": "List of manually specified assets to label",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExplicitBlueprints",
+            "Type": "TArray < TSoftClassPtr < UObject > >",
+            "Description": "List of manually specified blueprint assets to label",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetCollection",
+            "Type": "FCollectionReference",
+            "Description": "Collection to load asset references out of",
+            "Redirect": ""
+        },
+        {
+            "Name": "Key",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IV",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DataTableAsExplicitAssets",
+            "Type": "TSoftObjectPtr < UDataTable >",
+            "Description": "List of manually specified assets to label",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPrimaryDataAsset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

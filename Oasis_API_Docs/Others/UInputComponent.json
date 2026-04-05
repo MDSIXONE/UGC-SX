@@ -1,0 +1,229 @@
+{
+    "Name": "UInputComponent",
+    "Description": "Implement an Actor component for input bindings.\n \n  An Input Component is a transient component that enables an Actor to bind various forms of input events to delegate functions.  \n  Input components are processed from a stack managed by the PlayerController and processed by the PlayerInput.\n  Each binding can consume the input event preventing other components on the input stack from processing the input.",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "IsControllerKeyDown",
+            "Description": "Returns true if the given keybutton is pressed on the input of the controller (if present)",
+            "Params": [
+                {
+                    "Name": "Key",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "WasControllerKeyJustPressed",
+            "Description": "Returns true if the given keybutton was up last frame and down this frame.",
+            "Params": [
+                {
+                    "Name": "Key",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "WasControllerKeyJustReleased",
+            "Description": "Returns true if the given keybutton was down last frame and up this frame.",
+            "Params": [
+                {
+                    "Name": "Key",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetControllerAnalogKeyState",
+            "Description": "Returns the analog value for the given keybutton.  If analog isn't supported, returns 1 for down and 0 for up.",
+            "Params": [
+                {
+                    "Name": "Key",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetControllerVectorKeyState",
+            "Description": "Returns the vector value for the given keybutton.",
+            "Params": [
+                {
+                    "Name": "Key",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTouchState",
+            "Description": "Returns the location of a touch, and if it's held down",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocationX",
+                    "Type": "float & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocationY",
+                    "Type": "float & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIsCurrentlyPressed",
+                    "Type": "bool &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetControllerKeyTimeDown",
+            "Description": "Returns how long the given keybutton has been down.  Returns 0 if it's up or it just went down this frame.",
+            "Params": [
+                {
+                    "Name": "Key",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetControllerMouseDelta",
+            "Description": "Retrieves how far the mouse moved this frame.",
+            "Params": [
+                {
+                    "Name": "DeltaX",
+                    "Type": "float & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DeltaY",
+                    "Type": "float &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetControllerAnalogStickState",
+            "Description": "Retrieves the X and Y displacement of the given analog stick.  For WhickStick, 0 = left, 1 = right.",
+            "Params": [
+                {
+                    "Name": "WhichStick",
+                    "Type": "EControllerAnalogStick :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StickX",
+                    "Type": "float & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StickY",
+                    "Type": "float &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

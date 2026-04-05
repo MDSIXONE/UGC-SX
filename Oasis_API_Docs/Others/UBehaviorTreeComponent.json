@@ -1,0 +1,124 @@
+{
+    "Name": "UBehaviorTreeComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "NodeInstances",
+            "Type": "TArray < UBTNode * >",
+            "Description": "instanced nodes",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetTagCooldownEndTime",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "CooldownTag",
+                    "Type": "FGameplayTag",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "the cooldown tag end time, 0.0f if CooldownTag is not found",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddCooldownTagDuration",
+            "Description": "add to the cooldown tag's duration",
+            "Params": [
+                {
+                    "Name": "CooldownTag",
+                    "Type": "FGameplayTag ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CooldownDuration",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bAddToExistingDuration",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDynamicSubtree",
+            "Description": "assign subtree to RunBehaviorDynamic task specified by tag",
+            "Params": [
+                {
+                    "Name": "InjectTag",
+                    "Type": "FGameplayTag ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BehaviorAsset",
+                    "Type": "UBehaviorTree *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUGCMobBTDebugInfo",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "OutTreeInfo",
+                    "Type": "FUGCMobBTDebugInfo & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutBlackBoardInfo",
+                    "Type": "TArray < FUGCMobBTBlackBoardInfo > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBrainComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

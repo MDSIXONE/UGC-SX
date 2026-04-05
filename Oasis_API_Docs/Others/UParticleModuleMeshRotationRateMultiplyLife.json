@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleMeshRotationRateMultiplyLife",
+    "Description": "UCLASS(editinlinenew, hidecategories=Object, meta=(DisplayName = \"Mesh Rotation Rate  Life\"))",
+    "Variables": [
+        {
+            "Name": "LifeMultiplier",
+            "Type": "FRawDistributionVector",
+            "Description": "The scale factor that should be applied to the rotation rate.\n\t \tThe value is retrieved using the RelativeTime of the particle.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleRotationRateBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

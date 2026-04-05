@@ -1,0 +1,914 @@
+{
+    "Name": "UKismetRenderingLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "ClearRenderTarget2D",
+            "Description": "Clears the specified render target with the given ClearColor.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TextureRenderTarget",
+                    "Type": "UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ClearColor",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateRenderTarget2D",
+            "Description": "Creates a new render target and initializes it to the specified dimensions",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Width",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Format",
+                    "Type": "ETextureRenderTargetFormat",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateRenderTarget2DExt",
+            "Description": "Creates a new render target and initializes it to the specified dimensions",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Width",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Format",
+                    "Type": "ETextureRenderTargetFormat ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ClearColor",
+                    "Type": "FLinearColor &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateRenderTarget2DWithFilter",
+            "Description": "Creates a new render target and initializes it to the specified dimensions",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Width",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Format",
+                    "Type": "ETextureRenderTargetFormat ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Filter",
+                    "Type": "TextureFilter",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReleaseRenderTarget2D",
+            "Description": "Manually releases GPU resources of a render target. This is useful for blueprint creating a lot of render target that would\n\t  normally be released too late by the garbage collector that can be problematic on platforms that have tight GPU memory constrains.",
+            "Params": [
+                {
+                    "Name": "TextureRenderTarget",
+                    "Type": "UTextureRenderTarget2D *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DrawMaterialToRenderTarget",
+            "Description": "Renders a quad with the material applied to the specified render target.   \n\t  This sets the render target even if it is already set, which is an expensive operation. \n\t  Use BeginDrawCanvasToRenderTarget  EndDrawCanvasToRenderTarget instead if rendering multiple primitives to the same render target.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TextureRenderTarget",
+                    "Type": "UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Material",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RenderTargetCreateStaticTexture2DEditorOnly",
+            "Description": "Creates a new Static Texture from a Render Target 2D. Render Target Must be power of two and use four channels.\n\t Only works in the editor",
+            "Params": [
+                {
+                    "Name": "RenderTarget",
+                    "Type": "UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Name",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CompressionSettings",
+                    "Type": "TextureCompressionSettings ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MipSettings",
+                    "Type": "TextureMipGenSettings",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API UTexture2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ConvertRenderTargetToTexture2DEditorOnly",
+            "Description": "Copies the contents of a render target to a UTexture2D\n\t  Only works in the editor",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RenderTarget",
+                    "Type": "UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Texture",
+                    "Type": "UTexture2D *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ExportRenderTarget",
+            "Description": "Exports a render target as a HDR or PNG image onto the disk (depending on the format of the render target)",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TextureRenderTarget",
+                    "Type": "UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FilePath",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FileName",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ExportTexture2D",
+            "Description": "Exports a Texture2D as a HDR image onto the disk.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Texture",
+                    "Type": "UTexture2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FilePath",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FileName",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BeginDrawCanvasToRenderTarget",
+            "Description": "Returns a Canvas object that can be used to draw to the specified render target.\n\t  Canvas has functions like DrawMaterial with size parameters that can be used to draw to a specific area of a render target.\n\t  Be sure to call EndDrawCanvasToRenderTarget to complete the rendering!",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TextureRenderTarget",
+                    "Type": "UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Canvas",
+                    "Type": "UCanvas * & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Size",
+                    "Type": "FVector2D & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Context",
+                    "Type": "FDrawToRenderTargetContext &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EndDrawCanvasToRenderTarget",
+            "Description": "Must be paired with a BeginDrawCanvasToRenderTarget to complete rendering to a render target.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Context",
+                    "Type": "FDrawToRenderTargetContext &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MakeSkinWeightInfo",
+            "Description": "Create FSkelMeshSkinWeightInfo",
+            "Params": [
+                {
+                    "Name": "Bone0",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight0",
+                    "Type": "uint8 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bone1",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight1",
+                    "Type": "uint8 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bone2",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight2",
+                    "Type": "uint8 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bone3",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight3",
+                    "Type": "uint8",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API FSkelMeshSkinWeightInfo ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BreakSkinWeightInfo",
+            "Description": "Break FSkelMeshSkinWeightInfo",
+            "Params": [
+                {
+                    "Name": "InWeight",
+                    "Type": "FSkelMeshSkinWeightInfo ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bone0",
+                    "Type": "int32 & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight0",
+                    "Type": "uint8 & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bone1",
+                    "Type": "int32 & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight1",
+                    "Type": "uint8 & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bone2",
+                    "Type": "int32 & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight2",
+                    "Type": "uint8 & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Bone3",
+                    "Type": "int32 & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight3",
+                    "Type": "uint8 &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReadRenderTargetRawPixel",
+            "Description": "Incredibly inefficient and slow operation! Read a value as-is from a render target using integer pixel coordinates.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TextureRenderTarget",
+                    "Type": "UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "X",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Y",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API FLinearColor ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReadRenderTargetRawUV",
+            "Description": "Incredibly inefficient and slow operation! Read a value as-is color from a render target using UV [0,1]x[0,1] coordinates.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TextureRenderTarget",
+                    "Type": "UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "U",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "V",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API FLinearColor ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "NeedsToSwitchVerticalAxis",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCastInsetShadowForAllAttachments",
+            "Description": "Set the inset shadow casting state of the given component and all its child attachments.\n\t \tAlso choose if all attachments should be grouped for the inset shadow rendering. If enabled, one depth target will be shared for all attachments.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PrimitiveComponent",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCastInsetShadow",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bLightAttachmentsAsGroup",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetupFPPShadowForAllAttachments",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PrimitiveComponent",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ChangeRecords",
+                    "Type": "TArray < FFppTppShadowChangeRecord > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetupTPPShadowForAllAttachments",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PrimitiveComponent",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ChangeRecords",
+                    "Type": "TArray < FFppTppShadowChangeRecord > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetShadowForAllAttachments",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PrimitiveComponent",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ChangeRecords",
+                    "Type": "TArray < FFppTppShadowChangeRecord > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RecordForAllAttachments",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PrimitiveComponent",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ChangeRecords",
+                    "Type": "TArray < FFppTppShadowChangeRecord > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetScalabilityQualityLevels",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API FScalabilityQuality",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ApplyMaxScalabilityQualityLevels",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ApplyScalabilityQualityLevels",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "QualityLevels",
+                    "Type": "FScalabilityQuality &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateRenderTarget2D",
+            "Description": "Creates a new render target and initializes it to the specified dimensions",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Width",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Format",
+                    "Type": "ETextureRenderTargetFormat ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bAutoGenerateMipmap",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API UTextureRenderTarget2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

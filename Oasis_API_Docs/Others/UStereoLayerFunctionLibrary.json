@@ -1,0 +1,103 @@
+{
+    "Name": "UStereoLayerFunctionLibrary",
+    "Description": "StereoLayer Extensions Function Library",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "SetSplashScreen",
+            "Description": "Set splash screen attributes\n\t",
+            "Params": [
+                {
+                    "Name": "Texture",
+                    "Type": "UTexture * ",
+                    "Description": " (in) A texture to be used for the splash. B8R8G8A8 format.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Scale",
+                    "Type": "FVector2D ",
+                    "Description": " (in) Scale of the texture.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Offset",
+                    "Type": "FVector2D ",
+                    "Description": " (in) Position from which to start rendering the texture.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bShowLoadingMovie",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bShowOnSet",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ShowSplashScreen",
+            "Description": "Show the splash screen and override the VR display",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HideSplashScreen",
+            "Description": "Hide the splash screen and return to normal display.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableAutoLoadingSplashScreen",
+            "Description": "Enablesdisables splash screen to be automatically shown when LoadMap is called.\n\t ",
+            "Params": [
+                {
+                    "Name": "InAutoShowEnabled",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

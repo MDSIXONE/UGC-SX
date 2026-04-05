@@ -1,0 +1,19 @@
+{
+    "Name": "UInterpTrackInstFloatParticleParam",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ResetFloat",
+            "Type": "float",
+            "Description": "Saved value for restoring state when exiting Matinee.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInst"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

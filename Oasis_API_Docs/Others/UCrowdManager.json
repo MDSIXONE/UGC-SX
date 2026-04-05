@@ -1,0 +1,85 @@
+{
+    "Name": "UCrowdManager",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MyNavData",
+            "Type": "ANavigationData *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AvoidanceConfig",
+            "Type": "TArray < FCrowdAvoidanceConfig >",
+            "Description": "obstacle avoidance params",
+            "Redirect": ""
+        },
+        {
+            "Name": "SamplingPatterns",
+            "Type": "TArray < FCrowdAvoidanceSamplingPattern >",
+            "Description": "obstacle avoidance params",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxAgents",
+            "Type": "int32",
+            "Description": "max number of agents supported by crowd",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxAgentRadius",
+            "Type": "float",
+            "Description": "max radius of agent that can be added to crowd",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxAvoidedAgents",
+            "Type": "int32",
+            "Description": "max number of neighbor agents for velocity avoidance",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxAvoidedWalls",
+            "Type": "int32",
+            "Description": "max number of wall segments for velocity avoidance",
+            "Redirect": ""
+        },
+        {
+            "Name": "NavmeshCheckInterval",
+            "Type": "float",
+            "Description": "how often should agents check their position after moving off navmesh?",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathOptimizationInterval",
+            "Type": "float",
+            "Description": "how often should agents try to optimize their paths?",
+            "Redirect": ""
+        },
+        {
+            "Name": "SeparationDirClamp",
+            "Type": "float",
+            "Description": "clamp separation force to leftright when neighbor is behind (dot between forward and dirToNei, -1 = disabled)",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathOffsetRadiusMultiplier",
+            "Type": "float",
+            "Description": "agent radius multiplier for offsetting path around corners",
+            "Redirect": ""
+        },
+        {
+            "Name": "bResolveCollisions",
+            "Type": "uint32",
+            "Description": "should crowd simulation resolve collisions between agents? if not, this will be handled by their movement components",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UCrowdManagerBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

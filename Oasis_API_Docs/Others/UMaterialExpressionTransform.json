@@ -1,0 +1,31 @@
+{
+    "Name": "UMaterialExpressionTransform",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Input",
+            "Type": "FExpressionInput",
+            "Description": "input expression for this transform",
+            "Redirect": ""
+        },
+        {
+            "Name": "TransformSourceType",
+            "Type": "TEnumAsByte < enum EMaterialVectorCoordTransformSource >",
+            "Description": "Source coordinate space of the FVector",
+            "Redirect": ""
+        },
+        {
+            "Name": "TransformType",
+            "Type": "TEnumAsByte < enum EMaterialVectorCoordTransform >",
+            "Description": "Destination coordinate space of the FVector",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,613 @@
+{
+    "Name": "UGCPersistEffectSystem",
+    "Description": "新技能和Buff系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "AddSkillByClass",
+            "Description": "给指定拥有新技能组件的目标 Actor 添加技能\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SkillClass",
+                    "Type": "UClass|string",
+                    "Description": "技能蓝图类或蓝图路径",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OverrideApplyTime",
+                    "Type": "number",
+                    "Description": "技能生效时长(可选，默认为技能类中配置的时长)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Slot",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "由Tag标识的技能槽位",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPersistEffectSkill",
+                    "Description": "技能对象",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveSkillInstance",
+            "Description": "给指定拥有新技能组件的目标 Actor 移除技能\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SkillInstance",
+                    "Type": "UPersistEffectSkill",
+                    "Description": "技能对象",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否移除成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkillsByClass",
+            "Description": "从指定拥有新技能组件的目标 Actor 获取指定类型的技能\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SkillClass",
+                    "Type": "UClass|string",
+                    "Description": "技能蓝图类或蓝图路径,为空时获取所有技能",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPersistEffectSkill[]",
+                    "Description": "技能列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkillsByTag",
+            "Description": "从指定拥有新技能组件的目标 Actor 获取拥有指定 Tag 的技能\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要获取的技能所包含的 Tag,为空时获取所有技能",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPersistEffectSkill[]",
+                    "Description": "技能列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddBuffByClass",
+            "Description": "给指定拥有新技能组件的目标 Actor 添加 Buff\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffClass",
+                    "Type": "UClass|string",
+                    "Description": "Buff 蓝图类或蓝图路径",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Causer",
+                    "Type": "AActor",
+                    "Description": "Buff释放者（可选，默认为空）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OverrideDuration",
+                    "Type": "number",
+                    "Description": "技能生效时长（可选，默认为-1代表Buff类中配置的时长）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StackNum",
+                    "Type": "number",
+                    "Description": "Buff的堆叠层数（可选，默认为 1 层）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPersistEffectBuff",
+                    "Description": "Buff对象",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveBuffByClass",
+            "Description": "给指定拥有新技能组件的目标 Actor 移除 Buff\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffClass",
+                    "Type": "UClass|string",
+                    "Description": "Buff 蓝图类或蓝图路径",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RemoveNum",
+                    "Type": "number",
+                    "Description": "Buff减少堆叠数量（可选，默认-1移除全部层）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Causer",
+                    "Type": "AActor",
+                    "Description": "筛选特定的释放者（可选，默认不筛选）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否移除成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveBuffByTag",
+            "Description": "给指定拥有新技能组件的目标 Actor 移除包含某个 Tag 的 Buff\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要移除的 Buff 所包含的 Tag",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RemoveNum",
+                    "Type": "number",
+                    "Description": "Buff 减少堆叠数量（可选，默认移除全部层）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Causer",
+                    "Type": "AActor",
+                    "Description": "筛选特定的释放者(可选，默认不筛选)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否移除成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBuffsByClass",
+            "Description": "从指定拥有新技能组件的目标 Actor 获取指定类型的Buff\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffClass",
+                    "Type": "UClass|string",
+                    "Description": "Buff蓝图类或蓝图路径,为空时获取所有Buff",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPersistEffectBuff[]",
+                    "Description": "Buff列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBuffsByTag",
+            "Description": "从指定拥有新技能组件的目标 Actor 获取拥有指定Tag的Buff\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要获取的 Buff 所包含的 Tag,为空时获取所有Buff",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPersistEffectBuff[]",
+                    "Description": "Buff列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasDynamicState",
+            "Description": "检查指定拥有新技能组件的目标 Actor 是否包含某个 Tag 标识的状态\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DynamicStateTag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要检查的 Tag 标识的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否拥有 Tag 标识的状态",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AllowDynamicState",
+            "Description": "检查指定拥有新技能组件的目标 Actor 是否允许进入某个 Tag 标识的状态\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DynamicStateTag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要检查的 Tag 标识的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否允许进入 Tag 标识的状态",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnterDynamicState",
+            "Description": "尝试让拥有新技能组件的目标 Actor 获取指定 Tag 标识的状态，多次获取同一个 Tag 会叠加计数\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DynamicStateTag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要添加的 Tag 标识的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LeaveDynamicState",
+            "Description": "尝试从拥有新技能组件的目标 Actor 移除指定 Tag 标识的状态\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DynamicStateTag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要移除的 Tag 标识的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否有剩余的 Tag。若移除 Tag 的一次计数后还有剩余则返回 False，若全部没有剩余则返回 True",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InterruptDynamicState",
+            "Description": "将拥有新技能组件的目标 Actor 的 Tag 标识的状态移除并触发打断事件\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DynamicStateTag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要打断的 Tag 标识的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否成功打断",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDynamicStateDisabled",
+            "Description": "设置由 Tag 标识的状态的是否禁用，Actor 中 Tag 的禁用计数大于 0 时禁用生效\n - bNewDisabled == True：将拥有新技能组件的目标 Actor 的一组 Tag 标识的状态进行打断，并为这一组 Tag 的禁用计数 +1\n - bNewDisabled == false：将拥有新技能组件的目标 Actor 的一组 Tag 标识的状态禁用计数 -1\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DynamicStateTag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要增加或减少禁用的 Tag 标识的状态",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNewDisabled",
+                    "Type": "boolean",
+                    "Description": "是否禁用",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ResetDynamicStateDisabled",
+            "Description": "重置被禁用的由 Tag 标识的状态，重置后目标 Actor 将允许进入这个 Tag 标识的状态\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DynamicStateTag",
+                    "Type": "UGCGameplayTag|string|FGameplayTag",
+                    "Description": "需要增加或减少禁用的 Tag 标识的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetPersistBaseComponentByContent",
+            "Description": "从拥有新技能组件的目标 Actor 上获取 PersistBaseComponent 组件\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TargetActor",
+                    "Type": "AActor",
+                    "Description": "拥有新技能组件的目标 Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "UPersistBaseComponent",
+                    "Type": "@UPersistBaseComponent",
+                    "Description": "组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddOcclusionHighlight",
+            "Description": "添加透视效果\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "TargetCharacter",
+                    "Type": "ACharacter",
+                    "Description": "被透视的角色或怪",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Causer",
+                    "Type": "AActor",
+                    "Description": "透视的发起方",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Type",
+                    "Type": "EPEBuffOcclusionHighlightType",
+                    "Description": "透视类型(仅Causer透视/Causer及其队友透视/所有人)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Color",
+                    "Type": "FLinearColor",
+                    "Description": "透视颜色",
+                    "Redirect": "cppstruct/detail/FLinearColor.json"
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "透视ID，用于移除透视效果,<=0为无效值",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveOcclusionHighlight",
+            "Description": "移除透视效果\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OcclusionID",
+                    "Type": "number",
+                    "Description": "透视ID，AddOcclusionHighlight函数的返回值, <=0为无效值",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "AddFresnelEffect",
+            "Description": "添加菲涅尔效果\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "TargetCharacter",
+                    "Type": "ACharacter",
+                    "Description": "被透视的角色或怪",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Color",
+                    "Type": "FLinearColor",
+                    "Description": "颜色",
+                    "Redirect": "cppstruct/detail/FLinearColor.json"
+                },
+                {
+                    "Name": "Duration",
+                    "Type": "number",
+                    "Description": "时长",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "PickTargets",
+            "Description": "选取参数指定范围内的目标\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "OwnerActor",
+                    "Type": "AActor",
+                    "Description": "发起选目标的角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartTransform",
+                    "Type": "FTransform",
+                    "Description": "Picker开始位置",
+                    "Redirect": "cppstruct/detail/FTransform.json"
+                },
+                {
+                    "Name": "TargetPickerParams",
+                    "Type": "FTargetPickerParams",
+                    "Description": "Picker参数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreActors",
+                    "Type": "AActor[]",
+                    "Description": "忽略的Actors",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor[]",
+                    "Description": "选中的目标",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

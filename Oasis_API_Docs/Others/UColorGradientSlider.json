@@ -1,0 +1,144 @@
+{
+    "Name": "UColorGradientSlider",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SliderStyle",
+            "Type": "FSliderStyle",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BarFrameNormal",
+            "Type": "FSlateBrush",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BarFrameSelect",
+            "Type": "FSlateBrush",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultSelectIndex",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CurSelectIndex",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetCurSelectIndex",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCurSelectIndex",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Idx",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDatas",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "datas",
+                    "Type": "TArray < FColorGradientCellInfo > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UColorGradient"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnPercentChanged",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Idx",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPercent",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnChildSelected",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Idx",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "USoundNodeParamCrossFade",
+    "Description": "Crossfades between different sounds based on a parameter",
+    "Variables": [
+        {
+            "Name": "ParamName",
+            "Type": "FName",
+            "Description": "Parameter controlling cross fades.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNodeDistanceCrossFade"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,230 @@
+{
+    "Name": "UBlueprintPlatformLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "ClearAllLocalNotifications",
+            "Description": "Clear all pending local notifications. Typically this will be done before scheduling new notifications when going into the background",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleLocalNotificationAtTime",
+            "Description": "Schedule a local notification at a specific time, inLocalTime specifies the current local time or if UTC time should be used ",
+            "Params": [
+                {
+                    "Name": "FireDateTime",
+                    "Type": "FDateTime & ",
+                    "Description": "The time at which to fire the local notification",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocalTime",
+                    "Type": "bool ",
+                    "Description": "If true the provided time is in the local timezone, if false it is in UTC",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Title",
+                    "Type": "FText & ",
+                    "Description": "The title of the notification",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Body",
+                    "Type": "FText & ",
+                    "Description": "The more detailed description of the notification",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Action",
+                    "Type": "FText & ",
+                    "Description": "The text to be displayed on the slider controller",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActivationEvent",
+                    "Type": "FString &",
+                    "Description": "A string that is passed in the delegate callback when the app is brought into the foreground from the user activating the notification",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleLocalNotificationFromNow",
+            "Description": "Schedule a local notification to fire inSecondsFromNow from now ",
+            "Params": [
+                {
+                    "Name": "inSecondsFromNow",
+                    "Type": "int32 ",
+                    "Description": "The seconds until the notification should fire",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Title",
+                    "Type": "FText & ",
+                    "Description": "The title of the notification",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Body",
+                    "Type": "FText & ",
+                    "Description": "The more detailed description of the notification",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Action",
+                    "Type": "FText & ",
+                    "Description": "The text to be displayed on the slider controller",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActivationEvent",
+                    "Type": "FString &",
+                    "Description": "A string that is passed in the delegate callback when the app is brought into the foreground from the user activating the notification",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleLocalNotificationBadgeAtTime",
+            "Description": "Schedule a local notification badge at a specific time, inLocalTime specifies the current local time or if UTC time should be used",
+            "Params": [
+                {
+                    "Name": "FireDateTime",
+                    "Type": "FDateTime & ",
+                    "Description": "The time at which to fire the local notification",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocalTime",
+                    "Type": "bool ",
+                    "Description": "If true the provided time is in the local timezone, if false it is in UTC",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActivationEvent",
+                    "Type": "FString &",
+                    "Description": "A string that is passed in the delegate callback when the app is brought into the foreground from the user activating the notification",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ScheduleLocalNotificationBadgeFromNow",
+            "Description": "Schedule a local notification badge to fire inSecondsFromNow from now",
+            "Params": [
+                {
+                    "Name": "inSecondsFromNow",
+                    "Type": "int32 ",
+                    "Description": "The seconds until the notification should fire",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActivationEvent",
+                    "Type": "FString &",
+                    "Description": "A string that is passed in the delegate callback when the app is brought into the foreground from the user activating the notification",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CancelLocalNotification",
+            "Description": "Cancel a local notification given the ActivationEvent",
+            "Params": [
+                {
+                    "Name": "ActivationEvent",
+                    "Type": "FString &",
+                    "Description": "The string passed into the Schedule call for the notification to be cancelled",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLaunchNotification",
+            "Description": "Get the local notification that was used to launch the app",
+            "Params": [
+                {
+                    "Name": "NotificationLaunchedApp",
+                    "Type": "bool & ",
+                    "Description": "Return true if a notification was used to launch the app",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ActivationEvent",
+                    "Type": "FString & ",
+                    "Description": "Returns the name of the ActivationEvent if a notification was used to launch the app",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FireDate",
+                    "Type": "int32 &",
+                    "Description": "Returns the time the notification was activated",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

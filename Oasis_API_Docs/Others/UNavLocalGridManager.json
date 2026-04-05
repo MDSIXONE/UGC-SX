@@ -1,0 +1,309 @@
+{
+    "Name": "UNavLocalGridManager",
+    "Description": "Manager for local navigation grids\n  \n   Builds non overlapping grid from multiple sources, that can be used later for pathfinding.\n   Check also: UGridPathFollowingComponent, FNavLocalGridData",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "SetLocalNavigationGridDensity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CellSize",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddLocalNavigationGridForPoint",
+            "Description": "creates new grid data for single point",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius2D",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRebuildGrids",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddLocalNavigationGridForPoints",
+            "Description": "creates single grid data for set of points",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Locations",
+                    "Type": "TArray < FVector > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius2D",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRebuildGrids",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddLocalNavigationGridForBox",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Extent",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius2D",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRebuildGrids",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddLocalNavigationGridForCapsule",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CapsuleRadius",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CapsuleHalfHeight",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius2D",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Height",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRebuildGrids",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveLocalNavigationGrid",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "GridId",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRebuildGrids",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindLocalNavigationGridPath",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "End",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PathPoints",
+                    "Type": "TArray < FVector > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

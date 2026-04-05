@@ -1,0 +1,111 @@
+{
+    "Name": "UInterpTrack",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SubTracks",
+            "Type": "TArray < UInterpTrack * >",
+            "Description": "A list of subtracks that belong to this track",
+            "Redirect": ""
+        },
+        {
+            "Name": "TrackInstClass",
+            "Type": "TSubclassOf < UInterpTrackInst >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActiveCondition",
+            "Type": "TEnumAsByte < enum ETrackActiveCondition >",
+            "Description": "Sets the condition that must be met for this track to be enabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "TrackTitle",
+            "Type": "FString",
+            "Description": "Title of track type.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOnePerGroup",
+            "Type": "uint32",
+            "Description": "Whether there may only be one of this track in an UInterpGroup.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDirGroupOnly",
+            "Type": "uint32",
+            "Description": "If this track can only exist inside the Director group.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableTrack",
+            "Type": "uint32",
+            "Description": "Whether or not this track should actually update the target actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsSelected",
+            "Type": "uint32",
+            "Description": "Whether or not this track is selected in the editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsAnimControlTrack",
+            "Type": "uint32",
+            "Description": "If true, the  AActor  this track is working on will have BeginAnimControlFinishAnimControl called on it.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSubTrackOnly",
+            "Type": "uint32",
+            "Description": "If this track can only exist as a sub track.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bVisible",
+            "Type": "uint32",
+            "Description": "Whether or not this track is visible in the editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsRecording",
+            "Type": "uint32",
+            "Description": "Whether or not this track is recording in the editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubTrackGroups",
+            "Type": "TArray < struct FSubTrackGroup >",
+            "Description": "A list of subtrack groups (for editor UI organization only)",
+            "Redirect": ""
+        },
+        {
+            "Name": "SupportedSubTracks",
+            "Type": "TArray < struct FSupportedSubTrackInfo >",
+            "Description": "A list of supported tracks that can be a subtrack of this track.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TrackIcon",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsCollapsed",
+            "Type": "uint32",
+            "Description": "If this track is collapsed. (Only applies  to tracks with subtracks).",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "FCurveEdInterface",
+        "FInterpEdInputInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

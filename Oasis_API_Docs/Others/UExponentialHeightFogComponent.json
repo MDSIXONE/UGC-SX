@@ -1,0 +1,756 @@
+{
+    "Name": "UExponentialHeightFogComponent",
+    "Description": "Used to create fogging effects such as clouds but with a density that is related to the height of the fog.",
+    "Variables": [
+        {
+            "Name": "FogDensity",
+            "Type": "float",
+            "Description": "Global density factor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomHightFogDensity",
+            "Type": "TArray < FCustomHeightFog >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseCustomFog",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomFogLow_Height",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomFogLow_DensityCoefficient",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomFogLow_Color",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomFogHigh_Height",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomFogHigh_DensityCoefficient",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomFogHigh_Color",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FogInscatteringColor",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InscatteringColorCubemap",
+            "Type": "UTextureCube *",
+            "Description": "Cubemap that can be specified for fog color, which is useful to make distant, heavily fogged scene elements match the sky.\n\t  When the cubemap is specified, FogInscatteringColor is ignored and Directional inscattering is disabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InscatteringColorCubemapAngle",
+            "Type": "float",
+            "Description": "Angle to rotate the InscatteringColorCubemap around the Z axis.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InscatteringTextureTint",
+            "Type": "FLinearColor",
+            "Description": "Tint color used when InscatteringColorCubemap is specified, for quick edits without having to reimport InscatteringColorCubemap.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FullyDirectionalInscatteringColorDistance",
+            "Type": "float",
+            "Description": "Distance at which InscatteringColorCubemap should be used directly for the Inscattering Color.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NonDirectionalInscatteringColorDistance",
+            "Type": "float",
+            "Description": "Distance at which only the average color of InscatteringColorCubemap should be used as Inscattering Color.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DirectionalInscatteringExponent",
+            "Type": "float",
+            "Description": "Controls the size of the directional inscattering cone, which is used to approximate inscattering from a directional light.  \n\t  Note: there must be a directional light with bUsedAsAtmosphereSunLight enabled for DirectionalInscattering to be used.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DirectionalInscatteringStartDistance",
+            "Type": "float",
+            "Description": "Controls the start distance from the viewer of the directional inscattering, which is used to approximate inscattering from a directional light. \n\t  Note: there must be a directional light with bUsedAsAtmosphereSunLight enabled for DirectionalInscattering to be used.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DirectionalInscatteringColor",
+            "Type": "FLinearColor",
+            "Description": "Controls the color of the directional inscattering, which is used to approximate inscattering from a directional light. \n\t  Note: there must be a directional light with bUsedAsAtmosphereSunLight enabled for DirectionalInscattering to be used.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FogHeightFalloff",
+            "Type": "float",
+            "Description": "Height density factor, controls how the density increases as height decreases.  \n\t  Smaller values make the visible transition larger.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FogMaxOpacity",
+            "Type": "float",
+            "Description": "Maximum opacity of the fog.  \n\t  A value of 1 means the fog can become fully opaque at a distance and replace scene color completely,\n\t  A value of 0 means the fog color will not be factored in at all.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartDistance",
+            "Type": "float",
+            "Description": "Distance from the camera that the fog will start, in world units.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FogCutoffDistance",
+            "Type": "float",
+            "Description": "Scene elements past this distance will not have fog applied.  This is useful for excluding skyboxes which already have fog baked in.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Priority",
+            "Type": "int32",
+            "Description": "Priority to be rendered with, useful if more than one exponential fogs are visible concurrently",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableVolumetricFog",
+            "Type": "bool",
+            "Description": "Whether to enable Volumetric fog.  Scalability settings control the resolution of the fog simulation. \n\t  Note that Volumetric fog currently does not support StartDistance, FogMaxOpacity and FogCutoffDistance.\n\t  Volumetric fog also can't match exponential height fog in general as exponential height fog has non-physical behavior.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogScatteringDistribution",
+            "Type": "float",
+            "Description": "Controls the scattering phase function - how much incoming light scatters in various directions.\n\t  A distribution value of 0 scatters equally in all directions, while .9 scatters predominantly in the light direction.  \n\t  In order to have visible volumetric fog light shafts from the side, the distribution will need to be closer to 0.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogAlbedo",
+            "Type": "FColor",
+            "Description": "The height fog particle reflectiveness used by volumetric fog. \n\t  Water particles in air have an albedo near white, while dust has slightly darker value.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogEmissive",
+            "Type": "FLinearColor",
+            "Description": "Light emitted by height fog.  This is a density so more light is emitted the further you are looking through the fog.\n\t  In most cases skylight is a better choice, however right now volumetric fog does not support precomputed lighting, \n\t  So stationary skylights are unshadowed and static skylights don't affect volumetric fog at all.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogExtinctionScale",
+            "Type": "float",
+            "Description": "Scales the height fog particle extinction amount used by volumetric fog.  Values larger than 1 cause fog particles everywhere absorb more light.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogDistance",
+            "Type": "float",
+            "Description": "Distance over which volumetric fog should be computed.  Larger values extend the effect into the distance but expose under-sampling artifacts in details.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogStaticLightingScatteringIntensity",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideLightColorsWithFogInscatteringColors",
+            "Type": "bool",
+            "Description": "Whether to use FogInscatteringColor for the Sky Light volumetric scattering color and DirectionalInscatteringColor for the Directional Light scattering color. \n\t  Make sure your directional light has 'Atmosphere Sun Light' enabled!\n\t  Enabling this allows Volumetric fog to better match Height fog in the distance, but produces non-physical volumetric lighting that may not match surface lighting.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogStartDistance",
+            "Type": "float",
+            "Description": "Distance over which volumetric fog should be computed.  Larger values extend the effect into the distance but expose under-sampling artifacts in details.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogNoiseTexture",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VolumetricFogNoiseTransform",
+            "Type": "FTransform",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetFogDensity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCustomFogHeight",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCustomFogDensityCoefficient",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCustomFogInscatteringColor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "FLinearColor ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "index",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFogInscatteringColor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetInscatteringColorCubemap",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "UTextureCube *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetInscatteringColorCubemapAngle",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFullyDirectionalInscatteringColorDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetNonDirectionalInscatteringColorDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetInscatteringTextureTint",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDirectionalInscatteringExponent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDirectionalInscatteringStartDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDirectionalInscatteringColor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFogHeightFalloff",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFogMaxOpacity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStartDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFogCutoffDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFog",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogScatteringDistribution",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogExtinctionScale",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogAlbedo",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "FColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogEmissive",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogStartDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogNoiseTexture",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "UTexture2D *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricFogNoiseTransform",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Transform",
+                    "Type": "FTransform",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,157 @@
+{
+    "Name": "UGameplayTask_SpawnActor",
+    "Description": "Convenience task for spawning actors (optionally limiting the spawning to the network authority). If not the net authority, we will not spawn \n \tand Success will not be called. The nice thing this adds is the ability to modify expose on spawn properties while also implicitly checking \n \tnetwork role before spawning.\n \n \tThough this task doesn't do much - games can implement similar tasks that carry out game specific rules. For example a 'SpawnProjectile'\n \ttask that limits the available classes to the games projectile class, and that does game specific stuff on spawn (for example, determining\n \tfiring position from a weapon attachment).\n \t\n \tLong term we can also use this task as a sync point. If the executing client could wait execution until the server creates and replicates the \n \tactor down to him. We could potentially also use this to do predictive actor spawning  reconciliation.",
+    "Variables": [
+        {
+            "Name": "ClassToSpawn",
+            "Type": "TSubclassOf < AActor >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SpawnActor",
+            "Description": "Spawn new Actor on the network authority (server)",
+            "Params": [
+                {
+                    "Name": "TaskOwner",
+                    "Type": "TScriptInterface < IGameplayTaskOwnerInterface > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SpawnLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SpawnRotation",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Class",
+                    "Type": "TSubclassOf < AActor > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSpawnOnlyOnAuthority",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UGameplayTask_SpawnActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BeginSpawningActor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SpawnedActor",
+                    "Type": "AActor * &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FinishSpawningActor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SpawnedActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UGameplayTask"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "Success",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SpawnedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DidNotSpawn",
+            "Description": "Called when we can't spawn: on clients or potentially on server if they fail to spawn (rare)",
+            "Params": [
+                {
+                    "Name": "SpawnedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

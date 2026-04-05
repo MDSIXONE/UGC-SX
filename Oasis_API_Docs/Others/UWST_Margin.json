@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_Margin",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "FMargin",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

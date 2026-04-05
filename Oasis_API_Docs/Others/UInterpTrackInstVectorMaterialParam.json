@@ -1,0 +1,37 @@
+{
+    "Name": "UInterpTrackInstVectorMaterialParam",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MaterialInstances",
+            "Type": "TArray < UMaterialInstanceDynamic * >",
+            "Description": "MIDs we're using to set the desired parameter.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ResetVectors",
+            "Type": "TArray < FVector >",
+            "Description": "Saved values for restoring state when exiting Matinee.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PrimitiveMaterialRefs",
+            "Type": "TArray < struct FPrimitiveMaterialRef >",
+            "Description": "Primitive components on which materials have been overridden.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstancedTrack",
+            "Type": "UInterpTrackVectorMaterialParam *",
+            "Description": "Track we are an instance of - used in the editor to propagate changes to the track's Materials array immediately.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInst"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

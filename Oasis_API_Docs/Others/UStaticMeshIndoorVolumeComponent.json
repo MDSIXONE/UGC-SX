@@ -1,0 +1,19 @@
+{
+    "Name": "UStaticMeshIndoorVolumeComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StaticMesh",
+            "Type": "UStaticMesh *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

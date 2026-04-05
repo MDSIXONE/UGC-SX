@@ -1,0 +1,25 @@
+{
+    "Name": "UInterpTrackFloatBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "FloatTrack",
+            "Type": "FInterpCurveFloat",
+            "Description": "Actually track data containing keyframes of float as it varies over time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CurveTension",
+            "Type": "float",
+            "Description": "Tension of curve, used for keypoints using automatic tangents.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

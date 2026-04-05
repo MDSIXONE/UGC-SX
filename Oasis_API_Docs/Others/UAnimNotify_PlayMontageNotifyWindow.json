@@ -1,0 +1,19 @@
+{
+    "Name": "UAnimNotify_PlayMontageNotifyWindow",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "NotifyName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UAnimNotifyState"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

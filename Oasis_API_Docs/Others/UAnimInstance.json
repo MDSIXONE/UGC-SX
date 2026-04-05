@@ -1,0 +1,3323 @@
+{
+    "Name": "UAnimInstance",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CurrentSkeleton",
+            "Type": "USkeleton *",
+            "Description": "This is used to extract animation. If Mesh exists, this will be overwritten by Mesh->Skeleton",
+            "Redirect": ""
+        },
+        {
+            "Name": "RootMotionMode",
+            "Type": "TEnumAsByte < ERootMotionMode :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRunUpdatesInWorkerThreads_DEPRECATED",
+            "Type": "bool",
+            "Description": "DEPRECATED: No longer used.\n\t  Allows this anim instance to update its native update, blend tree, montages and asset players on\n\t  a worker thread. this requires certain conditions to be met:\n\t  - All access of variables in the blend tree should be a direct access of a member variable\n\t  - No BlueprintUpdateAnimation event should be used (i.e. the event graph should be empty). Only native update is permitted.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanUseParallelUpdateAnimation_DEPRECATED",
+            "Type": "bool",
+            "Description": "DEPRECATED: No longer used.\n\t  Whether we can use parallel updates for our animations.\n\t  Conditions affecting this include:\n\t  - Use of BlueprintUpdateAnimation\n\t  - Use of non 'fast-path' EvaluateGraphExposedInputs in the node graph",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseMultiThreadedAnimationUpdate",
+            "Type": "bool",
+            "Description": "Allows this anim instance to update its native update, blend tree, montages and asset players on\n\t  a worker thread. This flag is propagated from the UAnimBlueprint to this instance by the compiler.\n\t  The compiler will attempt to pick up any issues that may occur with threaded update.\n\t  For updates to run in multiple threads both this flag and the project setting \"Allow Multi Threaded\n\t  Animation Update\" should be set.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bWarnAboutBlueprintUsage_DEPRECATED",
+            "Type": "bool",
+            "Description": "Selecting this option will cause the compiler to emit warnings whenever a call into Blueprint\n\t  is made from the animation graph. This can help track down optimizations that need to be made.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBlueprintSkipUpdate",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseBlueprintUpdateAnimation",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseBlueprintPostEvaluateAnimation",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bQueueMontageEvents",
+            "Type": "bool",
+            "Description": "True when Montages are being ticked, and Montage Events should be queued.\n\t  When Montage are being ticked, we queue AnimNotifies and Events. We trigger notifies first, then Montage events.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForbiddenPlayMontageSlot",
+            "Type": "TArray < FString >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActiveAnimNotifyState",
+            "Type": "TArray < FAnimNotifyEvent >",
+            "Description": "Currently Active AnimNotifyState, stored as a copy of the event as we need to\n\t\tis removed correctly.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNeedUpdateNotAttributeCurve",
+            "Type": "bool",
+            "Description": "此动画蓝图是否需要更新非Attribute的Curve数据",
+            "Redirect": ""
+        },
+        {
+            "Name": "RefCachedSubAnimInstances",
+            "Type": "TArray < UAnimInstance * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsOnlyMasterTriggerNotify",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsMaster",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDynamicDisableBoneRetarget",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CopyPoseFromSkelComp",
+            "Type": "USkeletalMeshComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BoneRetargetSource",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseBoneStateDirtyFeature",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBoneStateDirty",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "C_InverseRetargetIgnoreBoneList",
+            "Type": "TArray < int32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FollowedAnimInstance",
+            "Type": "UAnimInstance *",
+            "Description": "记录被跟随者的动画实例   当该指针为nullptr时，代表启用了自身 Proxy 的 Follow 轨道(即FollowGroupArrays开始记录)",
+            "Redirect": ""
+        },
+        {
+            "Name": "FollowerAnimInstances",
+            "Type": "TArray < TWeakObjectPtr < UAnimInstance > >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParentAnimInstance",
+            "Type": "TWeakObjectPtr < UAnimInstance >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubAnimInstances",
+            "Type": "TArray < TWeakObjectPtr < UAnimInstance > >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubAnimInstancesTempRef",
+            "Type": "TArray < UAnimInstance * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedSwitchNotifySequence",
+            "Type": "TArray < UAnimSequenceBase * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedBoneTransformInfoIndex",
+            "Type": "int64",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedBoneTransformMapAsync",
+            "Type": "TMap < FName , FCachedBoneTransformInfo >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedBoneTransformMapInGame",
+            "Type": "TMap < FName , FCachedBoneTransformInfo >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsInPoseUpdate",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableBoneCacheInGameThread",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableFastPathExposedNodeTree",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpdateConditions",
+            "Type": "TArray < UAnimInstanceUpdateCondition * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCheckUpdateConditionResult",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableAnimBlueprintSkeletonDifferFromMeshSkeleton",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableFilterForceTriggerNotifyWhenMontageJumpTick",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableTriggerAnimNotify",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitNodeSourcePropertyLookupTable",
+            "Type": "TMap < FName , UProperty * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bParentPoseOverride",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoCopyPose",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasAvatarSlotEvent",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSkipSlotRelevanceCheckForNotifies",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableAsyncAnimInstance",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PostCompileValidationClassName",
+            "Type": "FSoftClassPath",
+            "Description": "Name of Class to do Post Compile Validation.\n\t See Class UAnimBlueprintPostCompileValidation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BoneRetargetBaseRefMesh",
+            "Type": "USkeletalMesh *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "TryGetPawnOwner",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SavePoseSnapshot",
+            "Description": "Takes a snapshot of the current skeletal mesh component pose & saves it internally.\n\t  This snapshot can then be retrieved by name in the animation blueprint for blending.\n\t  The snapshot is taken at the current LOD, so if for example you took the snapshot at LOD1 and then used it at LOD0 any bones not in LOD1 will use the reference pose",
+            "Params": [
+                {
+                    "Name": "SnapshotName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SnapshotPose",
+            "Description": "Takes a snapshot of the current skeletal mesh component pose and saves it to the specified snapshot.\n\t  The snapshot is taken at the current LOD, so if for example you took the snapshot at LOD1\n\t  and then used it at LOD0 any bones not in LOD1 will use the reference pose",
+            "Params": [
+                {
+                    "Name": "Snapshot",
+                    "Type": "FPoseSnapshot &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOwningActor",
+            "Description": "Returns the owning actor of this AnimInstance",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOwningComponent",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USkeletalMeshComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BlueprintShouldSkipUpdateAnimation",
+            "Description": "Executed before the Animation is updated, Check custom condition, whether to skip update",
+            "Params": [
+                {
+                    "Name": "DeltaTimeX",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BlueprintInitializeAnimation",
+            "Description": "Executed when the Animation is initialized",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BlueprintUnInitializeAnimation",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BlueprintUpdateAnimation",
+            "Description": "Executed when the Animation is updated",
+            "Params": [
+                {
+                    "Name": "DeltaTimeX",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BlueprintPostEvaluateAnimation",
+            "Description": "Executed after the Animation is evaluated",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BlueprintBeginPlay",
+            "Description": "Executed when begin play is called on the owning component",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlaySlotAnimation",
+            "Description": "SlotAnimation\n\t \n\t DEPRECATED. Use PlaySlotAnimationAsDynamicMontage instead, it returns the UAnimMontage created instead of time, allowing more control \n\t Play normal animation asset on the slot node. You can only play one asset (whether montage or animsequence) at a time.",
+            "Params": [
+                {
+                    "Name": "Asset",
+                    "Type": "UAnimSequenceBase * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotNodeName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendInTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendOutTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPlayRate",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LoopCount",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlaySlotAnimationAsDynamicMontage",
+            "Description": "Play normal animation asset on the slot node by creating a dynamic UAnimMontage. You can only play one asset (whether montage or animsequence) at a time per SlotGroup.",
+            "Params": [
+                {
+                    "Name": "Asset",
+                    "Type": "UAnimSequenceBase * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotNodeName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendInTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendOutTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPlayRate",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LoopCount",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendOutTriggerTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTimeToStartMontageAt",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PlaySlotAnimationAsDynamicMontageCustom",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Asset",
+                    "Type": "UAnimSequenceBase * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotNodeName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Extra",
+                    "Type": "FCustomMontageAnimInfo ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendInTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendOutTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPlayRate",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LoopCount",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendOutTriggerTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTimeToStartMontageAt",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMatineeAnimPosition",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "TargetMontage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPosition",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Extra",
+                    "Type": "FCustomMontageAnimInfo ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Weight",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopSlotAnimation",
+            "Description": "Stops currently playing slot animation slot or all",
+            "Params": [
+                {
+                    "Name": "InBlendOutTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotNodeName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsPlayingSlotAnimation",
+            "Description": "Return true if it's playing the slot animation",
+            "Params": [
+                {
+                    "Name": "Asset",
+                    "Type": "UAnimSequenceBase * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotNodeName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bcheckTransientPackage",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ForceTriggerAnimEndedEvent",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMontageCustomSectionsPlayInfo",
+            "Description": "AnimMontage",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPlayInfo",
+                    "Type": "TArray < FMontageSectionsPlayInfo > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearMontageCustomSectionsPlayInfo",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_Play",
+            "Description": "Plays an animation montage. Returns the length of the animation montage in seconds. Returns 0.f if failed to play.",
+            "Params": [
+                {
+                    "Name": "MontageToPlay",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPlayRate",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ReturnValueType",
+                    "Type": "EMontagePlayReturnType ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTimeToStartMontageAt",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_CustomPlay",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MontageToPlay",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Extra",
+                    "Type": "FCustomMontageAnimInfo ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPlayRate",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ReturnValueType",
+                    "Type": "EMontagePlayReturnType ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTimeToStartMontageAt",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_Stop",
+            "Description": "Stops the animation montage. If reference is NULL, it will stop ALL active montages.",
+            "Params": [
+                {
+                    "Name": "InBlendOutTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_StopBySlot",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InBlendOutTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_CustomStop",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InBlendOutTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Extra",
+                    "Type": "FCustomMontageAnimInfo ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_Pause",
+            "Description": "Pauses the animation montage. If reference is NULL, it will pause ALL active montages.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_Resume",
+            "Description": "Resumes a paused animation montage. If reference is NULL, it will resume ALL active montages.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_JumpToSection",
+            "Description": "Makes a montage jump to a named section. If Montage reference is NULL, it will do that to all active montages.",
+            "Params": [
+                {
+                    "Name": "SectionName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_JumpToSectionsEnd",
+            "Description": "Makes a montage jump to the end of a named section. If Montage reference is NULL, it will do that to all active montages.",
+            "Params": [
+                {
+                    "Name": "SectionName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_SetNextSection",
+            "Description": "Relink new next section AFTER SectionNameToChange in run-time\n\t \tYou can link section order the way you like in editor, but in run-time if you'd like to change it dynamically,\n\t \tuse this function to relink the next section\n\t \tFor example, you can have Start->Loop->Loop->Loop.... but when you want it to end, you can relink\n\t \tnext section of Loop to be End to finish the montage, in which case, it stops looping by Loop->End.",
+            "Params": [
+                {
+                    "Name": "SectionNameToChange",
+                    "Type": "FName ",
+                    "Description": ": This should be the name of the Montage Section after which you want to insert a new next section",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NextSection",
+                    "Type": "FName ",
+                    "Description": ": new next section",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_SetPlayRate",
+            "Description": "Change AnimMontage play rate. NewPlayRate = 1.0 is the default playback rate.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewPlayRate",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_ReversePlayByAbsRateAndSlot",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SlotName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AbsPlayRate",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_SetDelayFrame",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DelayFrame",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_IsActive",
+            "Description": "Returns true if the animation montage is active. If the Montage reference is NULL, it will return true if any Montage is active.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_IsPlaying",
+            "Description": "Returns true if the animation montage is currently active and playing.\n\tIf reference is NULL, it will return true is ANY montage is currently active and playing.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_IsExisting",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MontageGroup_IsPlaying",
+            "Description": "判断有无某个组下的蒙太奇正在播放",
+            "Params": [
+                {
+                    "Name": "GroupName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_GetCurrentSection",
+            "Description": "Returns the name of the current animation montage section.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_GetPosition",
+            "Description": "Get Current Montage Position",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_SetPosition",
+            "Description": "Set position.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewPosition",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_GetIsStopped",
+            "Description": "return true if Montage is not currently active. (not valid or blending out)",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_GetBlendTime",
+            "Description": "Get the current blend time of the Montage.\n\tIf Montage reference is NULL, it will return the current blend time on the first active Montage found.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_GetPlayRate",
+            "Description": "Get PlayRate for Montage.\n\tIf Montage is not playing, 0 is returned.",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsAnyMontagePlaying",
+            "Description": "Returns true if any montage is playing currently. Doesn't mean it's active though, it could be blending out.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentActiveMontage",
+            "Description": "Get a current Active Montage in this AnimInstance.\n\t\tNote that there might be multiple Active at the same time. This will only return the first active one it finds.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimMontage *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentActiveMontages",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FAnimMontageInstance >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurMontageBySlot",
+            "Description": "Get the UAnimMontage currently running that matches this SlotName.  Will return NULL if no instance is found.",
+            "Params": [
+                {
+                    "Name": "SlotName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Montage_GetNextSection",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SectionName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopAllMontages",
+            "Description": "Stop all montages that are active",
+            "Params": [
+                {
+                    "Name": "BlendOut",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearAllMontages",
+            "Description": "Stop all montages that are active",
+            "Params": [
+                {
+                    "Name": "BlendOut",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetForbiddenPlayMontageSlot",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FString >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetForbiddenPlayMontageSlot",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bIsAdd",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "FString",
+                    "Description": "should be GroupName + SlotName",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetRootMotionMode",
+            "Description": "Set RootMotionMode",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "TEnumAsByte < ERootMotionMode :: Type >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceAssetPlayerLength",
+            "Description": "NOTE: Derived anim getters\n\t \n\t  Anim getter functions can be defined for any instance deriving UAnimInstance.\n\t  To do this the function must be marked BlueprintPure, and have the AnimGetter metadata entry set to\n\t  \"true\". Following the instructions below, getters should appear correctly in the blueprint node context\n\t  menu for the derived classes\n\t \n\t  A context string can be provided in the GetterContext metadata and can contain any (or none) of the\n\t  following entries separated by a pipe (|)\n\t  Transition  - Only available in a transition rule\n\t  AnimGraph   - Only available in an animgraph (also covers state anim graphs)\n\t  CustomBlend - Only available in a custom blend graph\n\t \n\t  Anim getters support a number of automatic parameters that will be baked at compile time to be passed\n\t  to the functions. They will not appear as pins on the graph node. They are as follows:\n\t  AssetPlayerIndex - Index of an asset player node to operate on, one getter will be added to the blueprint action list per asset node available\n\t  MachineIndex     - Index of a state machine in the animation blueprint, one getter will be added to the blueprint action list per state machine\n\t  StateIndex       - Index of a state inside a state machine, also requires MachineIndex. One getter will be added to the blueprint action list per state\n\t  TransitionIndex  - Index of a transition inside a state machine, also requires MachineIndex. One getter will be added to the blueprint action list per transition\n\t \n\t  Gets the length in seconds of the asset referenced in an asset player node",
+            "Params": [
+                {
+                    "Name": "AssetPlayerIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceAssetPlayerTime",
+            "Description": "Get the current accumulated time in seconds for an asset player node",
+            "Params": [
+                {
+                    "Name": "AssetPlayerIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetInstanceAssetPlayerTime",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "AssetPlayerIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "time",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNodeIndexWithTag",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeTag",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceAssetPlayerTime_BP",
+            "Description": "Get the current accumulated time in seconds for an asset player node",
+            "Params": [
+                {
+                    "Name": "AssetPlayerIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetInstanceAssetPlayerTime_BP",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "AssetPlayerIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "time",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceAssetPlayerTimeFraction",
+            "Description": "Get the current accumulated time as a fraction for an asset player node",
+            "Params": [
+                {
+                    "Name": "AssetPlayerIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceAssetPlayerTimeFromEnd",
+            "Description": "Get the time in seconds from the end of an animation in an asset player node",
+            "Params": [
+                {
+                    "Name": "AssetPlayerIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceAssetPlayerTimeFromEndFraction",
+            "Description": "Get the time as a fraction of the asset length of an animation in an asset player node",
+            "Params": [
+                {
+                    "Name": "AssetPlayerIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceMachineWeight",
+            "Description": "Get the blend weight of a specified state machine",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceStateWeight",
+            "Description": "Get the blend weight of a specified state",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StateIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceCurrentStateElapsedTime",
+            "Description": "Get the current elapsed time of a state within the specified state machine",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceTransitionCrossfadeDuration",
+            "Description": "Get the crossfade duration of a specified transition",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TransitionIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceTransitionTimeElapsed",
+            "Description": "Get the elapsed time in seconds of a specified transition",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TransitionIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceTransitionTimeElapsedFraction",
+            "Description": "Get the elapsed time as a fraction of the crossfade duration of a specified transition",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TransitionIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRelevantAnimTimeRemaining",
+            "Description": "Get the time remaining in seconds for the most relevant animation in the source state",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StateIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NullAnimDefaultValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRelevantAnimTimeRemainingFraction",
+            "Description": "Get the time remaining as a fraction of the duration for the most relevant animation in the source state",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StateIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NullAnimDefaultValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRelevantAnimLength",
+            "Description": "Get the length in seconds of the most relevant animation in the source state",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StateIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NullAnimDefaultValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRelevantAnimTime",
+            "Description": "Get the current accumulated time in seconds for the most relevant animation in the source state",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StateIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NullAnimDefaultValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRelevantAnimTimeFraction",
+            "Description": "Get the current accumulated time as a fraction of the length of the most relevant animation in the source state",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StateIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NullAnimDefaultValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurveValue",
+            "Description": "Returns the value of a named curve.",
+            "Params": [
+                {
+                    "Name": "CurveName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Immediately",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentStateName",
+            "Description": "Returns the name of a currently active state in a state machine.",
+            "Params": [
+                {
+                    "Name": "MachineIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMorphTarget",
+            "Description": "Sets a morph target to a certain weight.",
+            "Params": [
+                {
+                    "Name": "MorphTargetName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearMorphTargets",
+            "Description": "Clears the current morph targets.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CalculateDirection",
+            "Description": "Returns degree of the angle betwee velocity and Rotation forward vector\n\t  The range of return will be from [-180, 180], and this can be used to feed blendspace directional value",
+            "Params": [
+                {
+                    "Name": "Velocity",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BaseRotation",
+                    "Type": "FRotator &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LockAIResources",
+            "Description": "locks indicated AI resources of animated pawn\n\t \tDEPRECATED. Use LockAIResourcesWithAnimation instead",
+            "Params": [
+                {
+                    "Name": "bLockMovement",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LockAILogic",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UnlockAIResources",
+            "Description": "unlocks indicated AI resources of animated pawn. Will unlock only animation-locked resources.\n\t \tDEPRECATED. Use UnlockAIResourcesWithAnimation instead",
+            "Params": [
+                {
+                    "Name": "bUnlockMovement",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "UnlockAILogic",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTimeToClosestMarker",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SyncGroup",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MarkerName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutMarkerTime",
+                    "Type": "float &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasMarkerBeenHitThisFrame",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SyncGroup",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MarkerName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsSyncGroupBetweenMarkers",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSyncGroupName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PreviousMarker",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NextMarker",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRespectMarkerOrder",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSyncGroupPosition",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSyncGroupName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FMarkerSyncAnimPosition ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TriggerAllSequenceSwitchNotify",
+            "Description": "Trigger AnimNotifies",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CheckCanTriggerNotify_AnimIsolation_Outer",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InAnimNotifyEvent",
+                    "Type": "FAnimNotifyEvent & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InNotify",
+                    "Type": "UAnimNotify *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CheckCanTriggerNotifyState_AnimIsolation_Outer",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InAnimNotifyEvent",
+                    "Type": "FAnimNotifyEvent & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InNotifyState",
+                    "Type": "UAnimNotifyState *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CheckCanTriggerAnimNotifyFunction_AnimIsolation_Outer",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InAnimNotifyEvent",
+                    "Type": "FAnimNotifyEvent &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReplaceSubAnimNodeAnimClass",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SubInstanceSlotName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewAnimClass",
+                    "Type": "TSubclassOf < UAnimInstance > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bEnableNoWaitParallelEvalTask",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimInstance * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReplaceSubAnimNodeAnimClass_EmptyClassDefaut",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SubInstanceSlotName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewAnimClass",
+                    "Type": "TSubclassOf < UAnimInstance > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimInstance * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetSubAnimNodeAnimClass",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SubInstanceSlotName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FilterAnimClass",
+                    "Type": "TSubclassOf < UAnimInstance > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bEnableNoWaitParallelEvalTask",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetSubAnimNodeAnimClass_EmptyClassDefaut",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SubInstanceSlotName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FilterAnimClass",
+                    "Type": "TSubclassOf < UAnimInstance > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BlendTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetAllSubAnimNode",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearAllSubAnimBlendTime",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetAllSubAnimNodePosInertialization",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSubAnimInstanceBySlot",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SubInstanceSlotName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimInstance * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsUseSubAnimInstanceBySlot",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SubInstanceSlotName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSubAnimNodeEnableBlend",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SubInstanceSlotName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bEnable",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewSubAnimBlendTime",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddStopTickSubAnimInstance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Instance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveCachedStopTickSubAnimInstance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Instance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearAllStopTickSubAnimInstance",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRecycleCachedSubAnimInstances",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bToPersistentPool",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MarkBoneStateDirty",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InIsDirty",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsBoneStateDirty",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsUseBoneStateDirtyFeature",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasSlotNode",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSlotName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UpdateAnimSlotRetargetInfo",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InMontage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSlotNameRetargetInfo",
+                    "Type": "TMap < FName , FName > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInverseRetargetIgnoreBoneList",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const TArray < int32 > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFollowedAnimInstance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InputFollowedInstance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetFollowedAnimInstance",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsFollowing",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "TargetFollowedInstance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDelayPlay",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "IsDelay",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InputDelayFrames",
+                    "Type": "int",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetParentAnimInstance",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetParentAnimInstance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InParentAnimInstance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSubAnimInstances",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UAnimInstance * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllSubAnimInstances",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UAnimInstance * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SwapCachedBoneTransformMap",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCachedBoneTransform",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InBoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutTransform",
+                    "Type": "FTransform & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "forceSync",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCachedBoneTransformByFlag",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InBoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InCacheFlag",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutTransform",
+                    "Type": "FTransform & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NeedLastFrameCount",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "forceSync",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CompareCachedBoneTransformByFlag",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InBoneName0",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InCacheFlag0",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBoneName1",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InCacheFlag1",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int64 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTriggerAnimNotify",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NeedTrigger",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FilterForceTriggerNotifyWhenMontageJumpTick",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InMontage",
+                    "Type": "UAnimMontage * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bPlayingBackwards",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CurrentTrackPos",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CurrentDeltaSeconds",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InAnimNotifies",
+                    "Type": "TArray < FAnimNotifyEvent > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutForceTriggerAnimNotifies",
+                    "Type": "TArray < FAnimNotifyEvent > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLobbySeqIgnoreNotifyList",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FString >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetNotifyQueue",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IObjectPoolInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnMontageBlendingOut",
+            "Description": "Called when a montage starts blending out, whether interrupted or finished",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bInterrupted",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnMontageStarted",
+            "Description": "Called when a montage has started",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnMontageEnded",
+            "Description": "Called when a montage has ended, whether interrupted or finished",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bInterrupted",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnMontageRealEnded",
+            "Description": "Called when a montage real ended, whether interrupted or finished",
+            "Params": [
+                {
+                    "Name": "Montage",
+                    "Type": "UAnimMontage*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bInterrupted",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnAllMontageInstancesEnded",
+            "Description": "Called when all Montage instances have ended.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

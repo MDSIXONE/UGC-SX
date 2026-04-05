@@ -1,0 +1,19 @@
+{
+    "Name": "UMovieSceneByteTrack",
+    "Description": "Handles manipulation of byte properties in a movie scene",
+    "Variables": [
+        {
+            "Name": "Enum",
+            "Type": "UEnum *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieScenePropertyTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,85 @@
+{
+    "Name": "UPaperSpriteComponent",
+    "Description": "A component that handles rendering and collision for a single instance of a UPaperSprite asset.\n \n  This component is created when you drag a sprite asset from the content browser into a Blueprint, or\n  contained inside of the actor created when you drag one into the level.\n \n  @see UPrimitiveComponent, UPaperSprite",
+    "Variables": [
+        {
+            "Name": "SourceSprite",
+            "Type": "UPaperSprite *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialOverride_DEPRECATED",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteColor",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetSprite",
+            "Description": "Change the PaperSprite used by this instance.",
+            "Params": [
+                {
+                    "Name": "NewSprite",
+                    "Type": "UPaperSprite *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSprite",
+            "Description": "Gets the PaperSprite used by this instance.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPaperSprite *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSpriteColor",
+            "Description": "Set color of the sprite",
+            "Params": [
+                {
+                    "Name": "NewColor",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

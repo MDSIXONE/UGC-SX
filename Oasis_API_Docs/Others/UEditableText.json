@@ -1,0 +1,372 @@
+{
+    "Name": "UEditableText",
+    "Description": "Editable text box widget",
+    "Variables": [
+        {
+            "Name": "Text",
+            "Type": "FText",
+            "Description": "The text content for this editable text box widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextDelegate",
+            "Type": "FGetText",
+            "Description": "A bindable delegate to allow logic to drive the text of the widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "HintText",
+            "Type": "FText",
+            "Description": "Hint text that appears when there is no text in the text box",
+            "Redirect": ""
+        },
+        {
+            "Name": "HintTextDelegate",
+            "Type": "FGetText",
+            "Description": "A bindable delegate to allow logic to drive the hint text of the widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "WidgetStyle",
+            "Type": "FEditableTextStyle",
+            "Description": "The style",
+            "Redirect": ""
+        },
+        {
+            "Name": "Style_DEPRECATED",
+            "Type": "USlateWidgetStyleAsset *",
+            "Description": "Text style",
+            "Redirect": ""
+        },
+        {
+            "Name": "BackgroundImageSelected_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Background image for the selected text (overrides Style)",
+            "Redirect": ""
+        },
+        {
+            "Name": "BackgroundImageComposing_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Background image for the composing text (overrides Style)",
+            "Redirect": ""
+        },
+        {
+            "Name": "CaretImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image brush used for the caret (overrides Style)",
+            "Redirect": ""
+        },
+        {
+            "Name": "Font_DEPRECATED",
+            "Type": "FSlateFontInfo",
+            "Description": "Font color and opacity (overrides Style)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ColorAndOpacity_DEPRECATED",
+            "Type": "FSlateColor",
+            "Description": "Text color and opacity (overrides Style)",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsReadOnly",
+            "Type": "bool",
+            "Description": "Sets whether this text box can actually be modified interactively by the user",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsPassword",
+            "Type": "bool",
+            "Description": "Sets whether this text box is for storing a password",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinimumDesiredWidth",
+            "Type": "float",
+            "Description": "Minimum width that a text block should be",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsCaretMovedWhenGainFocus",
+            "Type": "bool",
+            "Description": "Workaround as we lose focus when the auto completion closes.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectAllTextWhenFocused",
+            "Type": "bool",
+            "Description": "Whether to select all text when the user clicks to give focus on the widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "RevertTextOnEscape",
+            "Type": "bool",
+            "Description": "Whether to allow the user to back out of changes when they press the escape key",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearKeyboardFocusOnCommit",
+            "Type": "bool",
+            "Description": "Whether to clear keyboard focus when pressing enter to commit changes",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectAllTextOnCommit",
+            "Type": "bool",
+            "Description": "Whether to select all text when pressing enter to commit changes",
+            "Redirect": ""
+        },
+        {
+            "Name": "AllowContextMenu",
+            "Type": "bool",
+            "Description": "Whether the context menu can be opened",
+            "Redirect": ""
+        },
+        {
+            "Name": "KeyboardType",
+            "Type": "TEnumAsByte < EVirtualKeyboardType :: Type >",
+            "Description": "If we're on a platform that requires a virtual keyboard, what kind of keyboard should this widget use?",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShapedTextOptions",
+            "Type": "FShapedTextOptions",
+            "Description": "Controls how the text within this widget should be shaped.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetText",
+            "Description": "Gets the widget text",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FText",
+                    "Description": "The widget text",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetText",
+            "Description": "Directly sets the widget text.\n\t  Warning: This will wipe any binding created for the Text property!",
+            "Params": [
+                {
+                    "Name": "InText",
+                    "Type": "FText",
+                    "Description": "The text to assign to the widget",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsPassword",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InbIsPassword",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetHintText",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InHintText",
+                    "Type": "FText",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsReadOnly",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InbIsReadyOnly",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFont",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Font",
+                    "Type": "FSlateFontInfo",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetColorAndOpacity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Color",
+                    "Type": "FSlateColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnTextChanged",
+            "Description": "Called whenever the text is changed interactively by the user",
+            "Params": [
+                {
+                    "Name": "Text",
+                    "Type": "const FText&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTextCommitted",
+            "Description": "Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus.",
+            "Params": [
+                {
+                    "Name": "Text",
+                    "Type": "const FText&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CommitMethod",
+                    "Type": "ETextCommit::Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTextBeginEditTransation",
+            "Description": "Called to begin an undoable editable text transaction",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTextEndEditTransaction",
+            "Description": "Called to end an undoable editable text transaction",
+            "Params": [
+                {
+                    "Name": "Text",
+                    "Type": "const FText&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTextFocusReceived",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

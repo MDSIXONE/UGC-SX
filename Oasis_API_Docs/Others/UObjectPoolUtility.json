@@ -1,0 +1,26 @@
+{
+    "Name": "UObjectPoolUtility",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "IsAllocatingObject",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

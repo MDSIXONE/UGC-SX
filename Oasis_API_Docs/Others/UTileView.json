@@ -1,0 +1,97 @@
+{
+    "Name": "UTileView",
+    "Description": "A flow panel that presents the contents as a set of tiles all uniformly sized.",
+    "Variables": [
+        {
+            "Name": "ItemWidth",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ItemHeight",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Items",
+            "Type": "TArray < UObject * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectionMode",
+            "Type": "TEnumAsByte < ESelectionMode :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnGenerateTileEvent",
+            "Type": "FOnGenerateRowUObject",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetItemWidth",
+            "Description": "Set item width",
+            "Params": [
+                {
+                    "Name": "Width",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetItemHeight",
+            "Description": "Set item height",
+            "Params": [
+                {
+                    "Name": "Height",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RequestListRefresh",
+            "Description": "Refreshes the list",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UTableViewBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

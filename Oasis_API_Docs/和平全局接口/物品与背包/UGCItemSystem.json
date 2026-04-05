@@ -1,0 +1,329 @@
+{
+    "Name": "UGCItemSystem",
+    "Description": "道具系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetItemType",
+            "Description": "获取物品ItemType\n对应表格数据：和平精英\\表格\\物品表中ItemType列\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemSubType",
+            "Description": "获取ItemSubType\n对应表格数据：和平精英\\表格\\物品表中ItemSubType列\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品子类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemData",
+            "Description": "获取道具数据\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FBattleItem_TabRes",
+                    "Description": "物品数据",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsUGCItem",
+            "Description": "是否为绿洲物品（物资编辑器中自定义物品）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否为绿洲物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsCanUseInBackpack",
+            "Description": "返回道具在背包中是否可以使用\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否可以使用",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPickupWrapperClassPath",
+            "Description": "通过ItemID获取Wrapper路径\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "Wrapper路径",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWrapperToGround",
+            "Description": "将Wrapper设置贴在地面\nWrapper.bDropedByPlayer为True时，贴地功能生效\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WrapperActor",
+                    "Type": "APickUpWrapperActor",
+                    "Description": "可拾取物",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWrapperItemID",
+            "Description": "获取Wrapper关联的ItemID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WrapperActor",
+                    "Type": "APickUpWrapperActor",
+                    "Description": "可拾取物",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ModifyWrapperItemCount",
+            "Description": "修改Wrpaaer中物品的数量\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WrapperActor",
+                    "Type": "APickUpWrapperActor",
+                    "Description": "可拾取物",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "修改后的数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DoPickWrapper",
+            "Description": "拾取Wrapper\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WrapperActor",
+                    "Type": "APickUpWrapperActor",
+                    "Description": "可拾取物",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsWrapperDropedByPlayer",
+            "Description": "Wrapper是否是由玩家丢弃生成\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "WrapperActor",
+                    "Type": "APickUpWrapperActor",
+                    "Description": "可拾取物",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWrapperPickUpRadius",
+            "Description": "设置Wrapper的可拾取范围\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WrapperActor",
+                    "Type": "APickUpWrapperActor",
+                    "Description": "可拾取物",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "number",
+                    "Description": "可拾取范围，单位厘米",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetQualityTexturePath",
+            "Description": "获取品质色的128*128纹理路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "QualityRank",
+                    "Type": "number",
+                    "Description": "品质等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "品质纹理路径",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBigQualityTexturePath",
+            "Description": "获取品质色的128*256纹理路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "QualityRank",
+                    "Type": "number",
+                    "Description": "品质等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "品质纹理路径string",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetQualityBarTexturePath",
+            "Description": "获取品质色条纹理路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "QualityRank",
+                    "Type": "number",
+                    "Description": "品质等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "品质纹理路径string",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

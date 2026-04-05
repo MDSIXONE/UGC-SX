@@ -1,0 +1,25 @@
+{
+    "Name": "UInterpTrackInstSound",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LastUpdatePosition",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayAudioComp",
+            "Type": "UAudioComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInst"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

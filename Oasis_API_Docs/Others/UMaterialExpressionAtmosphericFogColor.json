@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionAtmosphericFogColor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "WorldPosition",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

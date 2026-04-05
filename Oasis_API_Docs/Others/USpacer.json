@@ -1,0 +1,72 @@
+{
+    "Name": "USpacer",
+    "Description": "A spacer widget; it does not have a visual representation, and just provides padding between other widgets.\n \n   No Children",
+    "Variables": [
+        {
+            "Name": "Size",
+            "Type": "FVector2D",
+            "Description": "The size of the spacer",
+            "Redirect": ""
+        },
+        {
+            "Name": "UsePcParams",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SizePc",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetSize",
+            "Description": "Sets the size of the spacer",
+            "Params": [
+                {
+                    "Name": "InSize",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPcParamController",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

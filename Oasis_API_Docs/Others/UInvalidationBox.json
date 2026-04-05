@@ -1,0 +1,72 @@
+{
+    "Name": "UInvalidationBox",
+    "Description": "Invalidate\n   Single Child\n   Caching  Performance",
+    "Variables": [
+        {
+            "Name": "bCanCache",
+            "Type": "bool",
+            "Description": "Should the invalidation panel cache the widgets?  Making this false makes it so the invalidation\n\t  panel stops acting like an invalidation panel, just becomes a simple container widget.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CacheRelativeTransforms",
+            "Type": "bool",
+            "Description": "Caches the locations for child draw elements relative to the invalidation box,\n\t  this adds extra overhead to drawing them every frame.  However, in cases where\n\t  the position of the invalidation boxes changes every frame this can be a big savings.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "InvalidateCache",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCanCache",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCanCache",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "CanCache",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UContentWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

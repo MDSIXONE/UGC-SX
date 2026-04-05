@@ -1,0 +1,261 @@
+{
+    "Name": "UPersistBaseComponent",
+    "Description": "技能Buff组件",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "RegisterPersistEffectWithSlot",
+            "Description": "生效范围：服务器\n\t  将PersistEffect注册到目标槽位中",
+            "Params": [
+                {
+                    "Name": "Slot",
+                    "Type": "FGameplayTag ",
+                    "Description": "槽位",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPE",
+                    "Type": "UPersistEffectBase * ",
+                    "Description": "注册到槽位的PersistEffect",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bShouldUnapply",
+                    "Type": "bool",
+                    "Description": "是否将原来槽位上的PersistEffect进行Unapply",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "注册是否成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UnRegisterPersistEffectWithSlot",
+            "Description": "生效范围：服务器\n\t  将目标槽位中的PersistEffect解除注册",
+            "Params": [
+                {
+                    "Name": "Slot",
+                    "Type": "FGameplayTag ",
+                    "Description": "槽位",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bShouldUnapply",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "解除注册是否成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPersistEffectBySlot",
+            "Description": "生效范围：服务器&客户端\n\t  获取目标槽位中的PersistEffect",
+            "Params": [
+                {
+                    "Name": "Slot",
+                    "Type": "FGameplayTag",
+                    "Description": "槽位",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPersistEffectBase * ",
+                    "Description": "槽位上的PersistEffect",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UGameplayTasksComponent",
+        "IObjectPoolInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "DynamicStateEnterHandle",
+            "Description": "Event\n\t  生效范围：服务器&客户端\n\t  进入状态事件, 注意：服务端DynamicState是有计数的, 服务端多次EnterDynamicState都会触发这个代理",
+            "Params": [
+                {
+                    "Name": "SelfRef",
+                    "Type": "UPersistBaseComponent*",
+                    "Description": "监听的组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "state",
+                    "Type": "FGameplayTag",
+                    "Description": "进入的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DynamicStateLeaveHandle",
+            "Description": "Event\n      生效范围：服务器&客户端\n      离开状态事件, 注意：服务端DynamicState是有计数的, 服务端多次LeaveDynamicState都会触发这个代理, 只有当前计数为0时再Leave就不会触发",
+            "Params": [
+                {
+                    "Name": "SelfRef",
+                    "Type": "UPersistBaseComponent*",
+                    "Description": "监听的组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "state",
+                    "Type": "FGameplayTag",
+                    "Description": "离开的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DynamicStateInterruptedHandle",
+            "Description": "Event\n\t  生效范围：服务器&客户端\n\t  打断状态事件",
+            "Params": [
+                {
+                    "Name": "SelfRef",
+                    "Type": "UPersistBaseComponent*",
+                    "Description": "监听的组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "state",
+                    "Type": "FGameplayTag",
+                    "Description": "打断的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DynamicStateInterruptedWithSourceHandle",
+            "Description": "Event\n\t  生效范围：服务器\n\t  打断状态事件",
+            "Params": [
+                {
+                    "Name": "SelfRef",
+                    "Type": "UPersistBaseComponent*",
+                    "Description": "监听的组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InterruptedState",
+                    "Type": "FGameplayTag",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SourceState",
+                    "Type": "FGameplayTag",
+                    "Description": "打断的状态的来源",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DynamicStateDisabledChangedHandle",
+            "Description": "Event\n\t  生效范围：服务器&客户端\n\t  禁用状态事件",
+            "Params": [
+                {
+                    "Name": "SelfRef",
+                    "Type": "UPersistBaseComponent*",
+                    "Description": "监听的组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "state",
+                    "Type": "FGameplayTag",
+                    "Description": "禁用的状态",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNewDisabled",
+                    "Type": "bool",
+                    "Description": "禁用解除禁用",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DynamicStateDisabledResetHandle",
+            "Description": "Event\n\t  生效范围：服务器&客户端\n\t  重置禁用状态事件",
+            "Params": [
+                {
+                    "Name": "SelfRef",
+                    "Type": "UPersistBaseComponent*",
+                    "Description": "监听的组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "state",
+                    "Type": "FGameplayTag",
+                    "Description": "重置禁用的状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

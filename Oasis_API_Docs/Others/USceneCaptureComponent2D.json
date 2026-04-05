@@ -1,0 +1,137 @@
+{
+    "Name": "USceneCaptureComponent2D",
+    "Description": "Used to capture a 'snapshot' of the scene from a single plane and feed it to a render target.",
+    "Variables": [
+        {
+            "Name": "ProjectionType",
+            "Type": "TEnumAsByte < ECameraProjectionMode :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FOVAngle",
+            "Type": "float",
+            "Description": "Camera field of view (in degrees).",
+            "Redirect": ""
+        },
+        {
+            "Name": "OrthoWidth",
+            "Type": "float",
+            "Description": "The desired width (in world units) of the orthographic view (ignored in Perspective mode)",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextureTarget",
+            "Type": "UTextureRenderTarget2D *",
+            "Description": "Output render target of the scene capture that can be read in materals.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CaptureSource",
+            "Type": "TEnumAsByte < enum ESceneCaptureSource >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompositeMode",
+            "Type": "TEnumAsByte < enum ESceneCaptureCompositeMode >",
+            "Description": "When enabled, the scene capture will composite into the render target instead of overwriting its contents.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PostProcessSettings",
+            "Type": "FPostProcessSettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PostProcessBlendWeight",
+            "Type": "float",
+            "Description": "Range (0.0, 1.0) where 0 indicates no effect, 1 indicates full effect.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseCustomProjectionMatrix",
+            "Type": "bool",
+            "Description": "Whether a custom projection matrix will be used during rendering. Use with caution. Does not currently affect culling",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomProjectionMatrix",
+            "Type": "FMatrix",
+            "Description": "The custom projection matrix to use",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableClipPlane",
+            "Type": "bool",
+            "Description": "Enables a clip plane while rendering the scene capture which is useful for portals.  \n\t  The global clip plane must be enabled in the renderer project settings for this to work.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClipPlaneBase",
+            "Type": "FVector",
+            "Description": "Base position for the clip plane, can be any position on the plane.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClipPlaneNormal",
+            "Type": "FVector",
+            "Description": "Normal for the plane.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCameraCutThisFrame",
+            "Type": "uint32",
+            "Description": "True if we did a camera cut this frame. Automatically reset to false at every capture.\n\t  This flag affects various things in the renderer (such as whether to use the occlusion queries from last frame, and motion blur).\n\t  Similar to UPlayerCameraManager::bGameCameraCutThisFrame.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "AddOrUpdateBlendable",
+            "Description": "Adds an Blendable (implements IBlendableInterface) to the array of Blendables (if it doesn't exist) and update the weight",
+            "Params": [
+                {
+                    "Name": "InBlendableObject",
+                    "Type": "TScriptInterface < IBlendableInterface > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InWeight",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CaptureScene",
+            "Description": "Render the scene to the texture target immediately.  \n\t  This should not be used if bCaptureEveryFrame is enabled, or the scene capture will render redundantly.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneCaptureComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

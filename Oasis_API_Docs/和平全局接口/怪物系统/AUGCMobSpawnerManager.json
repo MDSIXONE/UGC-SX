@@ -1,0 +1,393 @@
+{
+    "Name": "AUGCMobSpawnerManager",
+    "Description": "刷怪系统：刷怪管理器",
+    "Variables": [
+        {
+            "Name": "StartCondition",
+            "Type": "EUGCMobSpawnerManagerStartCondition",
+            "Description": "配置刷怪管理器的启动方式",
+            "Redirect": ""
+        },
+        {
+            "Name": "EventName",
+            "Type": "FString",
+            "Description": "启动方式使用事件触发时，监听的GMP名",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxSpawnPerFrame",
+            "Type": "int32",
+            "Description": "配置刷怪管理器每帧刷怪的上限",
+            "Redirect": ""
+        },
+        {
+            "Name": "AliveMobsCheckDeltaTime",
+            "Type": "float",
+            "Description": "配置刷怪管理器检查当前怪物存活情况的间隔",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpawnWaves",
+            "Type": "TArray < FUGCSpawnWave >",
+            "Description": "配置刷怪的波次",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "StartSpawnerManager",
+            "Description": "生效范围 服务器\n\t  启动刷怪管理器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetSpawnerManager",
+            "Description": "生效范围 服务器\n\t  重置刷怪管理器",
+            "Params": [
+                {
+                    "Name": "bDeleteAllMobs",
+                    "Type": "bool",
+                    "Description": "是否清除所有刷出的怪物",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CleanAllMobs",
+            "Description": "生效范围 服务器\n\t  清理对刷出怪物的引用",
+            "Params": [
+                {
+                    "Name": "bDelete",
+                    "Type": "bool",
+                    "Description": "是否清除怪物",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PauseSpawnerManager",
+            "Description": "生效范围 服务器\n\t  暂停刷怪管理器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResumeSpawnerManager",
+            "Description": "生效范围 服务器\n\t  恢复刷怪管理器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSpawner",
+            "Description": "生效范围 服务器\n\t  获取波次中特定编号的刷怪点",
+            "Params": [
+                {
+                    "Name": "WaveIndex",
+                    "Type": "int32 ",
+                    "Description": "波次编号",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SpawnerIndex",
+                    "Type": "int32",
+                    "Description": "刷新点编号",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AUGCMobSpawner * ",
+                    "Description": "怪物刷新点",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentWaveIndex",
+            "Description": "生效范围 服务器\n\t  获取当前波的波次编号",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "当前波次编号",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWaveSpawnerNum",
+            "Description": "生效范围 服务器\n\t  获取对应波次的刷新点数量",
+            "Params": [
+                {
+                    "Name": "WaveIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "刷新点数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWaveNum",
+            "Description": "生效范围 服务器\n\t  获取波次的数量",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "波次数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMobConfigOverrideForSpawner",
+            "Description": "生效范围 服务器\n\t  修改特定波次中特定刷新点的怪物配置覆盖",
+            "Params": [
+                {
+                    "Name": "InMobConfig",
+                    "Type": "FUGCMobSpawnerMobConfig ",
+                    "Description": "新的怪物配置",
+                    "Redirect": "cppstruct/detail/FUGCMobSpawnerMobConfig.json"
+                },
+                {
+                    "Name": "WaveIndex",
+                    "Type": "int32 ",
+                    "Description": "波次编号",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SpawnerIndex",
+                    "Type": "int32",
+                    "Description": "刷新点编号",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMobConfigOverrideForWave",
+            "Description": "生效范围 服务器\n\t  修改特定波次中所有刷新点的怪物配置覆盖",
+            "Params": [
+                {
+                    "Name": "InMobConfig",
+                    "Type": "FUGCMobSpawnerMobConfig ",
+                    "Description": "新的怪物配置",
+                    "Redirect": "cppstruct/detail/FUGCMobSpawnerMobConfig.json"
+                },
+                {
+                    "Name": "WaveIndex",
+                    "Type": "int32",
+                    "Description": "波次编号",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMobConfigOverride",
+            "Description": "生效范围 服务器\n\t  修改所有波次的怪物配置覆盖",
+            "Params": [
+                {
+                    "Name": "InMobConfig",
+                    "Type": "FUGCMobSpawnerMobConfig",
+                    "Description": "新的怪物配置",
+                    "Redirect": "cppstruct/detail/FUGCMobSpawnerMobConfig.json"
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CleanAllMobConfigOverride",
+            "Description": "生效范围 服务器\n\t  清除管理器所有的怪物配置覆盖",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "JumpToWave",
+            "Description": "生效范围 服务器\n\t  跳转到指定波次",
+            "Params": [
+                {
+                    "Name": "WaveIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AActor"
+    ],
+    "Event": [
+        {
+            "Name": "OnMobSpawn",
+            "Description": "生效范围 服务器\n\t  怪物刷出事件",
+            "Params": [
+                {
+                    "Name": "Mob",
+                    "Type": "AActor *",
+                    "Description": "刷出的怪物",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnWaveStart",
+            "Description": "生效范围 服务器\n\t  刷怪波次开始事件",
+            "Params": [
+                {
+                    "Name": "WaveIndex",
+                    "Type": "int32",
+                    "Description": "波次编号",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnWaveEnd",
+            "Description": "生效范围 服务器\n\t  刷怪波次结束事件",
+            "Params": [
+                {
+                    "Name": "WaveIndex",
+                    "Type": "int32",
+                    "Description": "波次编号",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnAllWaveEnd",
+            "Description": "生效范围 服务器\n\t  所有波次结束事件",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnAllMobDie",
+            "Description": "生效范围 服务器\n\t  所以波次怪物都已刷新并死亡事件",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

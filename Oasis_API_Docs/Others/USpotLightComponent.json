@@ -1,0 +1,90 @@
+{
+    "Name": "USpotLightComponent",
+    "Description": "A spot light component emits a directional cone shaped light (Eg a Torch).",
+    "Variables": [
+        {
+            "Name": "InnerConeAngle",
+            "Type": "float",
+            "Description": "Degrees.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OuterConeAngle",
+            "Type": "float",
+            "Description": "Degrees.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastPhotonShadow",
+            "Type": "uint32",
+            "Description": "#if WITH_PHOTON_SHADOW\n\t Whether the light should cast photon shadow for character\n\t #endif",
+            "Redirect": ""
+        },
+        {
+            "Name": "NearPlaneOffset",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FarPlaneOffset",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightShaftConeAngle",
+            "Type": "float",
+            "Description": "Degrees. \n\tUPROPERTY(EditAnywhere, BlueprintReadOnly, Category=LightShaft, meta=(UIMin = \"1.0\", UIMax = \"180.0\"))",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetInnerConeAngle",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewInnerConeAngle",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOuterConeAngle",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewOuterConeAngle",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPointLightComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

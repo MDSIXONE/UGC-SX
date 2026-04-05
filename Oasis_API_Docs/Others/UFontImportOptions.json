@@ -1,0 +1,19 @@
+{
+    "Name": "UFontImportOptions",
+    "Description": "Holds options for importing fonts.",
+    "Variables": [
+        {
+            "Name": "Data",
+            "Type": "FFontImportOptionsData",
+            "Description": "The actual data for this object.  We wrap it in a struct so that we can copy it around between objects.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

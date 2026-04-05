@@ -1,0 +1,493 @@
+{
+    "Name": "UFoliageType",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "UpdateGuid",
+            "Type": "FGuid",
+            "Description": "A GUID that is updated every time the foliage type is modified, \n\t   so foliage placed in the level can detect the FoliageType has changed.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Density",
+            "Type": "float",
+            "Description": "Foliage instances will be placed at this density, specified in instances per 1000x1000 unit area",
+            "Redirect": ""
+        },
+        {
+            "Name": "DensityAdjustmentFactor",
+            "Type": "float",
+            "Description": "The factor by which to adjust the density of instances. Values >1 will increase density while values <1 will decrease it.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Radius",
+            "Type": "float",
+            "Description": "The minimum distance between foliage instances",
+            "Redirect": ""
+        },
+        {
+            "Name": "Scaling",
+            "Type": "EFoliageScaling",
+            "Description": "Specifies foliage instance scaling behavior when painting.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScaleX",
+            "Type": "FFloatInterval",
+            "Description": "Specifies the range of scale, from minimum to maximum, to apply to a foliage instance's X Scale property",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScaleY",
+            "Type": "FFloatInterval",
+            "Description": "Specifies the range of scale, from minimum to maximum, to apply to a foliage instance's Y Scale property",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScaleZ",
+            "Type": "FFloatInterval",
+            "Description": "Specifies the range of scale, from minimum to maximum, to apply to a foliage instance's Z Scale property",
+            "Redirect": ""
+        },
+        {
+            "Name": "VertexColorMaskByChannel",
+            "Type": "FFoliageVertexColorChannelMask",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VertexColorMask_DEPRECATED",
+            "Type": "TEnumAsByte < enum FoliageVertexColorMask >",
+            "Description": "When painting on static meshes, foliage instance placement can be limited to areas where the static mesh has values in the selected vertex color channel(s). \n\t   This allows a static mesh to mask out certain areas to prevent foliage from being placed there",
+            "Redirect": ""
+        },
+        {
+            "Name": "VertexColorMaskThreshold_DEPRECATED",
+            "Type": "float",
+            "Description": "Specifies the threshold value above which the static mesh vertex color value must be, in order for foliage instances to be placed in a specific area",
+            "Redirect": ""
+        },
+        {
+            "Name": "VertexColorMaskInvert_DEPRECATED",
+            "Type": "uint32",
+            "Description": "When unchecked, foliage instances will be placed only when the vertex color in the specified channel(s) is above the threshold amount. \n\t   When checked, the vertex color must be less than the threshold amount",
+            "Redirect": ""
+        },
+        {
+            "Name": "ZOffset",
+            "Type": "FFloatInterval",
+            "Description": "Specifies a range from minimum to maximum of the offset to apply to a foliage instance's Z location",
+            "Redirect": ""
+        },
+        {
+            "Name": "AlignToNormal",
+            "Type": "uint32",
+            "Description": "Whether foliage instances should have their angle adjusted away from vertical to match the normal of the surface they're painted on \n\t   If AlignToNormal is enabled and RandomYaw is disabled, the instance will be rotated so that the +X axis points down-slope",
+            "Redirect": ""
+        },
+        {
+            "Name": "AlignMaxAngle",
+            "Type": "float",
+            "Description": "The maximum angle in degrees that foliage instances will be adjusted away from the vertical",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomYaw",
+            "Type": "uint32",
+            "Description": "If selected, foliage instances will have a random yaw rotation around their vertical axis applied",
+            "Redirect": ""
+        },
+        {
+            "Name": "RandomPitchAngle",
+            "Type": "float",
+            "Description": "A random pitch adjustment can be applied to each instance, up to the specified angle in degrees, from the original vertical",
+            "Redirect": ""
+        },
+        {
+            "Name": "GroundSlopeAngle",
+            "Type": "FFloatInterval",
+            "Description": "Foliage instances will only be placed on surfaces sloping in the specified angle range from the horizontal",
+            "Redirect": ""
+        },
+        {
+            "Name": "Height",
+            "Type": "FFloatInterval",
+            "Description": "The valid altitude range where foliage instances will be placed, specified using minimum and maximum world coordinate Z values",
+            "Redirect": ""
+        },
+        {
+            "Name": "LandscapeLayers",
+            "Type": "TArray < FName >",
+            "Description": "If a layer name is specified, painting on landscape will limit the foliage to areas of landscape with the specified layer painted",
+            "Redirect": ""
+        },
+        {
+            "Name": "LandscapeLayer_DEPRECATED",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionWithWorld",
+            "Type": "uint32",
+            "Description": "If checked, an overlap test with existing world geometry is performed before each instance is placed",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionScale",
+            "Type": "FVector",
+            "Description": "The foliage instance's collision bounding box will be scaled by the specified amount before performing the overlap check",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinimumLayerWeight",
+            "Type": "float",
+            "Description": "Specifies the minimum value above which the landscape layer weight value must be, in order for foliage instances to be placed in a specific area",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshBounds",
+            "Type": "FBoxSphereBounds",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LowBoundOriginRadius",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Mobility",
+            "Type": "TEnumAsByte < EComponentMobility :: Type >",
+            "Description": "Mobility property to apply to foliage components",
+            "Redirect": ""
+        },
+        {
+            "Name": "CullDistance",
+            "Type": "FInt32Interval",
+            "Description": "The distance where instances will begin to fade out if using a PerInstanceFadeAmount material node. 0 disables.\n\t  When the entire cluster is beyond this distance, the cluster is completely culled and not rendered at all.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NearCullDistance",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsFlyType",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableStaticLighting_DEPRECATED",
+            "Type": "uint32",
+            "Description": "Deprecated. Now use the Mobility setting to control staticdynamic lighting",
+            "Redirect": ""
+        },
+        {
+            "Name": "CastShadow",
+            "Type": "uint32",
+            "Description": "Controls whether the foliage should cast a shadow or not.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAffectDynamicIndirectLighting",
+            "Type": "uint32",
+            "Description": "Controls whether the foliage should inject light into the Light Propagation Volume.  This flag is only used if CastShadow is true.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAffectDistanceFieldLighting",
+            "Type": "uint32",
+            "Description": "Controls whether the primitive should affect dynamic distance field lighting methods.  This flag is only used if CastShadow is true.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastDynamicShadow",
+            "Type": "uint32",
+            "Description": "Controls whether the foliage should cast shadows in the case of non precomputed shadowing.  This flag is only used if CastShadow is true.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastStaticShadow",
+            "Type": "uint32",
+            "Description": "Whether the foliage should cast a static shadow from shadow casting lights.  This flag is only used if CastShadow is true.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastShadowAsTwoSided",
+            "Type": "uint32",
+            "Description": "Whether this foliage should cast dynamic shadows as if it were a two sided material.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReceivesDecals",
+            "Type": "uint32",
+            "Description": "Whether the foliage receives decals.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideLightMapRes",
+            "Type": "uint32",
+            "Description": "Whether to override the lightmap resolution defined in the static mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverriddenLightMapRes",
+            "Type": "int32",
+            "Description": "Overrides the lightmap resolution defined in the static mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightmapType",
+            "Type": "ELightmapType",
+            "Description": "Controls the type of lightmap used for this component.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAsOccluder",
+            "Type": "uint32",
+            "Description": "If enabled, foliage will render a pre-pass which allows it to occlude other primitives, and also allows \n\t  it to correctly receive DBuffer decals. Enabling this setting may have a negative performance impact.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BodyInstance",
+            "Type": "FBodyInstance",
+            "Description": "Custom collision for foliage",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomNavigableGeometry",
+            "Type": "TEnumAsByte < EHasCustomNavigableGeometry :: Type >",
+            "Description": "Force navmesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightingChannels",
+            "Type": "FLightingChannels",
+            "Description": "Lighting channels that placed foliage will be assigned. Lights with matching channels will affect the foliage.\n\t  These channels only apply to opaque materials, direct lighting, and dynamic lighting and shadowing.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRenderCustomDepth",
+            "Type": "uint32",
+            "Description": "If true, the foliage will be rendered in the CustomDepth pass (usually used for outlines)",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomDepthStencilValue",
+            "Type": "int32",
+            "Description": "Optionally write this 0-255 value to the stencil buffer in CustomDepth pass (Requires project setting or r.CustomDepth == 3)",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionRadius",
+            "Type": "float",
+            "Description": "The CollisionRadius determines when two instances overlap. When two instances overlap a winner will be picked based on rules and priority.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadeRadius",
+            "Type": "float",
+            "Description": "The ShadeRadius determines when two instances overlap. If an instance can grow in the shade this radius is ignored.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumSteps",
+            "Type": "int32",
+            "Description": "The number of times we age the species and spread its seeds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitialSeedDensity",
+            "Type": "float",
+            "Description": "Specifies the number of seeds to populate along 10 meters. The number is implicitly squared to cover a 10m x 10m area",
+            "Redirect": ""
+        },
+        {
+            "Name": "AverageSpreadDistance",
+            "Type": "float",
+            "Description": "The average distance between the spreading instance and its seeds. For example, a tree with an AverageSpreadDistance 10 will ensure the average distance between the tree and its seeds is 10cm",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpreadVariance",
+            "Type": "float",
+            "Description": "Specifies how much seed distance varies from the average. For example, a tree with an AverageSpreadDistance 10 and a SpreadVariance 1 will produce seeds with an average distance of 10cm plus or minus 1cm",
+            "Redirect": ""
+        },
+        {
+            "Name": "SeedsPerStep",
+            "Type": "int32",
+            "Description": "The number of seeds an instance will spread in a single step of the simulation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DistributionSeed",
+            "Type": "int32",
+            "Description": "The seed that determines placement of initial seeds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxInitialSeedOffset",
+            "Type": "float",
+            "Description": "The seed that determines placement of initial seeds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanGrowInShade",
+            "Type": "bool",
+            "Description": "If true, seeds of this type will ignore shade radius during overlap tests with other types.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSpawnsInShade",
+            "Type": "bool",
+            "Description": "Whether new seeds are spawned exclusively in shade. Occurs in a second pass after all types that do not spawn in shade have been simulated. \n\t  Only valid when CanGrowInShade is true.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxInitialAge",
+            "Type": "float",
+            "Description": "Allows a new seed to be older than 0 when created. New seeds will be randomly assigned an age in the range [0,MaxInitialAge]",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxAge",
+            "Type": "float",
+            "Description": "Specifies the oldest a seed can be. After reaching this age the instance will still spread seeds, but will not get any older",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverlapPriority",
+            "Type": "float",
+            "Description": "When two instances overlap we must determine which instance to remove. \n\t  The instance with a lower OverlapPriority will be removed. \n\t  In the case where OverlapPriority is the same regular simulation rules apply.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProceduralScale",
+            "Type": "FFloatInterval",
+            "Description": "The scale range of this type when being procedurally generated. Configured with the Scale Curve.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScaleCurve",
+            "Type": "FRuntimeFloatCurve",
+            "Description": "Instance scale factor as a function of normalized age (i.e. Current Age  Max Age).\n\t  X = 0 corresponds to Age = 0, X = 1 corresponds to Age = Max Age.\n\t  Y = 0 corresponds to Min Scale, Y = 1 corresponds to Max Scale.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChangeCount",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyDensity",
+            "Type": "uint32",
+            "Description": "If checked, the density of foliage instances already placed will be adjusted by the density adjustment factor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyRadius",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances not meeting the new Radius constraint will be removed",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyAlignToNormal",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have their normal alignment adjusted by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyRandomYaw",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have their yaw adjusted by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyScaling",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have their scale adjusted to fit the specified scaling behavior by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyScaleX",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have their X scale adjusted by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyScaleY",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have their Y scale adjusted by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyScaleZ",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have their Z scale adjusted by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyRandomPitchAngle",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have their pitch adjusted by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyGroundSlope",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances not meeting the ground slope condition will be removed by the Reapply too",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyHeight",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances not meeting the valid Z height condition will be removed by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyLandscapeLayers",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances painted on areas that do not have the appropriate landscape layer painted will be removed by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyZOffset",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have their Z offset adjusted by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyCollisionWithWorld",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances will have an overlap test with the world reapplied, and overlapping instances will be removed by the Reapply tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReapplyVertexColorMask",
+            "Type": "uint32",
+            "Description": "If checked, foliage instances no longer matching the vertex color constraint will be removed by the Reapply too",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableDensityScaling",
+            "Type": "uint32",
+            "Description": "Whether this foliage type should be affected by the Engine Scalability system's Foliage scalability setting.\n\t  Enable for detail meshes that don't really affect the game. Disable for anything important.\n\t  Typically, this will be enabled for small meshes without collision (e.g. grass) and disabled for large meshes with collision (e.g. trees)",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

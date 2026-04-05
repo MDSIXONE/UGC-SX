@@ -1,0 +1,25 @@
+{
+    "Name": "UBTCompositeNode",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Children",
+            "Type": "TArray < FBTCompositeChild >",
+            "Description": "child nodes",
+            "Redirect": ""
+        },
+        {
+            "Name": "Services",
+            "Type": "TArray < UBTService * >",
+            "Description": "service nodes",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

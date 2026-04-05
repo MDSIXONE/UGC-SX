@@ -1,0 +1,243 @@
+{
+    "Name": "UStereoLayerComponent",
+    "Description": "A geometry layer within the stereo rendered viewport.",
+    "Variables": [
+        {
+            "Name": "bLiveTexture",
+            "Type": "uint32",
+            "Description": "True if the stereo layer texture needs to update itself every frame(scene capture, video, etc.)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportsDepth",
+            "Type": "uint32",
+            "Description": "True if the stereo layer needs to support depth intersections with the scene geometry, if available on the platform",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNoAlphaChannel",
+            "Type": "uint32",
+            "Description": "True if the texture should not use its own alpha channel (1.0 will be substituted)",
+            "Redirect": ""
+        },
+        {
+            "Name": "Texture",
+            "Type": "UTexture *",
+            "Description": "Texture displayed on the stereo layer (is stereocopic textures are supported on the platfrom and more than one texture is provided, this will be the right eye)",
+            "Redirect": ""
+        },
+        {
+            "Name": "LeftTexture",
+            "Type": "UTexture *",
+            "Description": "Texture displayed on the stereo layer for left eye, if stereoscopic textures are supported on the platform",
+            "Redirect": ""
+        },
+        {
+            "Name": "bQuadPreserveTextureRatio",
+            "Type": "uint32",
+            "Description": "True if the quad should internally set it's Y value based on the set texture's dimensions",
+            "Redirect": ""
+        },
+        {
+            "Name": "QuadSize",
+            "Type": "FVector2D",
+            "Description": "Size of the rendered stereo layer quad",
+            "Redirect": ""
+        },
+        {
+            "Name": "UVRect",
+            "Type": "FBox2D",
+            "Description": "UV coordinates mapped to the quad face",
+            "Redirect": ""
+        },
+        {
+            "Name": "CylinderRadius",
+            "Type": "float",
+            "Description": "Radial size of the rendered stereo layer cylinder",
+            "Redirect": ""
+        },
+        {
+            "Name": "CylinderOverlayArc",
+            "Type": "float",
+            "Description": "Arc angle for the stereo layer cylinder",
+            "Redirect": ""
+        },
+        {
+            "Name": "CylinderHeight",
+            "Type": "int",
+            "Description": "Height of the stereo layer cylinder",
+            "Redirect": ""
+        },
+        {
+            "Name": "StereoLayerType",
+            "Type": "TEnumAsByte < enum EStereoLayerType >",
+            "Description": "Specifies how and where the quad is rendered to the screen",
+            "Redirect": ""
+        },
+        {
+            "Name": "StereoLayerShape",
+            "Type": "TEnumAsByte < enum EStereoLayerShape >",
+            "Description": "Specifies which type of layer it is.  Note that some shapes will be supported only on certain platforms!",
+            "Redirect": ""
+        },
+        {
+            "Name": "Priority",
+            "Type": "int32",
+            "Description": "Render priority among all stereo layers, higher priority render on top of lower priority",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetTexture",
+            "Description": "Change the texture displayed on the stereo layer quad",
+            "Params": [
+                {
+                    "Name": "InTexture",
+                    "Type": "UTexture *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTexture",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UTexture *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetQuadSize",
+            "Description": "Change the quad size. This is the unscaled height and width, before component scale is applied.",
+            "Params": [
+                {
+                    "Name": "InQuadSize",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetQuadSize",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetUVRect",
+            "Description": "Change the UV coordinates mapped to the quad face",
+            "Params": [
+                {
+                    "Name": "InUVRect",
+                    "Type": "FBox2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUVRect",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FBox2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPriority",
+            "Description": "Change the layer's render priority, higher priorities render on top of lower priorities",
+            "Params": [
+                {
+                    "Name": "InPriority",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPriority",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MarkTextureForUpdate",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

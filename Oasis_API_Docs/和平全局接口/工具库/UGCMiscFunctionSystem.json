@@ -1,0 +1,86 @@
+{
+    "Name": "UGCMiscFunctionSystem",
+    "Description": "游戏杂项函数接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "StartAirRoute",
+            "Description": "开始航线飞行\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldObjectContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "StartAirDrop",
+            "Description": "【废弃】请使用 UGCAirDropManagerSystem\n开始空投\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldObjectContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Index",
+                    "Type": "number",
+                    "Description": "定时普通空投设置中的配置序号（AirDropConfigsUGC）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AirDropType",
+                    "Type": "EAirDropType",
+                    "Description": "空投箱空投类型一般为 EAirDropType.AirDrop_NormalAirDrop",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "StartNormalAirDrop",
+            "Description": "【废弃】请使用 UGCAirDropManagerSystem\n自定义空投\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WorldObjectContext",
+                    "Type": "UObject",
+                    "Description": "世界上下文对象",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartPos",
+                    "Type": "Vector2D",
+                    "Description": "飞机起始点,结构：{X=x,Y=y}",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DropPos",
+                    "Type": "Vector2D",
+                    "Description": "飞机结束点，结构：{X=x,Y=y}",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Distance",
+                    "Type": "number",
+                    "Description": "空投点距离起始点的比例 （0-1）的一个范围，0=StartPos，1=DropPos",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AirDropType",
+                    "Type": "EAirDropType",
+                    "Description": "空投箱空投类型一般为EAirDropType.AirDrop_NormalAirDrop",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

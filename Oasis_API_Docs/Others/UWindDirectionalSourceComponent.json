@@ -1,0 +1,170 @@
+{
+    "Name": "UWindDirectionalSourceComponent",
+    "Description": "Component that provides a directional wind source. Only affects SpeedTree assets.",
+    "Variables": [
+        {
+            "Name": "Strength",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Speed",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinGustAmount",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxGustAmount",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Radius",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPointWind",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetStrength",
+            "Description": "Because the actual data used to query wind is stored on the render thread in\n\t  an instance of FWindSourceSceneProxy all of our properties are read only.\n\t  The data can be manipulated with the following functions which will queue \n\t  a render thread update for this component\n\t \n\t Sets the strength of the generated wind",
+            "Params": [
+                {
+                    "Name": "InNewStrength",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSpeed",
+            "Description": "Sets the windspeed of the generated wind",
+            "Params": [
+                {
+                    "Name": "InNewSpeed",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMinimumGustAmount",
+            "Description": "Set minimum deviation for wind gusts",
+            "Params": [
+                {
+                    "Name": "InNewMinGust",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMaximumGustAmount",
+            "Description": "Set maximum deviation for wind gusts",
+            "Params": [
+                {
+                    "Name": "InNewMaxGust",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetRadius",
+            "Description": "Set the effect radius for point wind",
+            "Params": [
+                {
+                    "Name": "InNewRadius",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWindType",
+            "Description": "Set the type of wind generator to use",
+            "Params": [
+                {
+                    "Name": "InNewType",
+                    "Type": "EWindSourceType",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

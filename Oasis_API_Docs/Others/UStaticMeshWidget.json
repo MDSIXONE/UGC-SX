@@ -1,0 +1,25 @@
+{
+    "Name": "UStaticMeshWidget",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StaticMeshAsset",
+            "Type": "USlateVectorArtData *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshScale",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

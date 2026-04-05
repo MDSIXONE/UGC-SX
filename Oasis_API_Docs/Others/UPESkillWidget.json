@@ -1,0 +1,453 @@
+{
+    "Name": "UPESkillWidget",
+    "Description": "技能UI基类",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "BindToSlot",
+            "Description": "将技能绑定到指定PE组件的指定Slot上\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "Comp",
+                    "Type": "UPersistBaseComponent * ",
+                    "Description": "绑定的组件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "FGameplayTag",
+                    "Description": "绑定的槽位",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentSkill",
+            "Description": "获取当前绑定的技能\n\t  生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UPersistEffectSkill *",
+                    "Description": "当前绑定的技能",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BindImageAndTextForSkillNameAndIcon",
+            "Description": "绑定用于显示技能图标、名字、描述的控件\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "IconImage",
+                    "Type": "UImage * ",
+                    "Description": "图标控件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NameText",
+                    "Type": "UTextBlock * ",
+                    "Description": "名字控件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DescribeText",
+                    "Type": "UTextBlock *",
+                    "Description": "描述控件",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RefreshSkillUI",
+            "Description": "刷新当前UI绑定的控件的内容\n\t  生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkillName",
+            "Description": "获取技能名字\n\t  生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "技能名字",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkillDetail",
+            "Description": "获取技能描述\n\t  生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "技能描述",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSkillIcon",
+            "Description": "获取技能图标\n\t  生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FSoftObjectPath",
+                    "Description": "技能图标",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitButton",
+            "Description": "绑定技能按钮控件\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "IconImage",
+                    "Type": "UImage * ",
+                    "Description": "图标控件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NameText",
+                    "Type": "UTextBlock * ",
+                    "Description": "名字控件",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ClickButton",
+                    "Type": "UButton *",
+                    "Description": "按钮控件",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitLayer",
+            "Description": "绑定技能使用层数控件\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "LayerText",
+                    "Type": "UTextBlock * ",
+                    "Description": "技能层数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LayerPanel",
+                    "Type": "UPanelWidget *",
+                    "Description": "技能层数的Panel控件，控制层数的显隐",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitCDProgress",
+            "Description": "绑定技能CD控件\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "CDText",
+                    "Type": "UTextBlock * ",
+                    "Description": "技能CD时间",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CDProgressImage",
+                    "Type": "UImage * ",
+                    "Description": "@技能CD进度条",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CDProgressPanel",
+                    "Type": "UPanelWidget *",
+                    "Description": "整个CD的Panel控件，控制CD的显隐",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitEnergyProgress",
+            "Description": "绑定技能能量控件\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "EnergyProgressImage",
+                    "Type": "UImage * ",
+                    "Description": "技能能量进度条",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EnergyCanvasPanel",
+                    "Type": "UPanelWidget *",
+                    "Description": "技能能量Panel控件，控制能量进度条的显隐",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitTagDisableState",
+            "Description": "绑定技能显示TagDisable状态的控件\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "TagDisableCanvasPanel",
+                    "Type": "UPanelWidget *",
+                    "Description": "技能TagDisable状态的Panel控件，控制TagDisable状态的显隐",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitEnableState",
+            "Description": "绑定技能显示Enable状态的控件\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "EnableCanvasPanel",
+                    "Type": "UPanelWidget *",
+                    "Description": "技能Enable状态的Panel控件，控制Enable状态的显隐",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitVirtualJoystick",
+            "Description": "绑定技能摇杆输入控件\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "VirtualJoystickPanel",
+                    "Type": "UPanelWidget * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "VirtualJoystick",
+                    "Type": "UPESkillVirtualJoystick *",
+                    "Description": "技能技能摇杆控件，控制摇杆的生效和失效",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UUAEUserWidget",
+        "ILuaInterface"
+    ],
+    "Event": [
+        {
+            "Name": "OnSkillBound_BP",
+            "Description": "当控件绑定到新的技能时触发\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "InOwnerSkill",
+                    "Type": "UPersistEffectSkill *",
+                    "Description": "当前绑定的技能",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UpdateCD_BP",
+            "Description": "每帧触发，用于更新CD显示\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "Delta",
+                    "Type": "float",
+                    "Description": "每帧的时间",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnCDStateChange_BP",
+            "Description": "当控件绑定的技能CD状态变化时触发\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "bIsCD",
+                    "Type": "bool",
+                    "Description": "技能是否处在CD状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnSkillUIInfoChange_BP",
+            "Description": "当控件绑定的技能的UI信息变化时触发\n\t  生效范围C",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnEnableChange_BP",
+            "Description": "当控件绑定的技能Enable状态变化时触发\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "bIsEnable",
+                    "Type": "bool",
+                    "Description": "技能是否Enable",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTagDisableChange_BP",
+            "Description": "当控件绑定的技能被禁用Tag(PawnState.ActivatingSkill)导致无法激活时触发\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "bIsDisable",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnSkillDirectionInputEnableChange_BP",
+            "Description": "当控件绑定的技能的摇杆输入生效或失效时触发\n\t  生效范围C",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

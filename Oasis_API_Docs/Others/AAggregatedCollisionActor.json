@@ -1,0 +1,19 @@
+{
+    "Name": "AAggregatedCollisionActor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "AggregatedCollisionComponent",
+            "Type": "UAggregatedCollisionComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

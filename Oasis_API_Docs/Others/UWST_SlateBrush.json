@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_SlateBrush",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "FSlateBrush",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

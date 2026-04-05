@@ -1,0 +1,31 @@
+{
+    "Name": "ULandscapeMeshProxyComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LandscapeGuid",
+            "Type": "FGuid",
+            "Description": "The landscape this proxy was generated for",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProxyComponentBases",
+            "Type": "TArray < FIntPoint >",
+            "Description": "The components this proxy was generated for",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProxyLOD",
+            "Type": "int8",
+            "Description": "LOD level proxy was generated for",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UStaticMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

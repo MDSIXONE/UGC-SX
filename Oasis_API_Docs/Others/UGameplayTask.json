@@ -1,0 +1,59 @@
+{
+    "Name": "UGameplayTask",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "InstanceName",
+            "Type": "FName",
+            "Description": "This name allows us to find the task later so that we can end it.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ResourceOverlapPolicy",
+            "Type": "ETaskResourceOverlapPolicy",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChildTask",
+            "Type": "UGameplayTask *",
+            "Description": "child task instance",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ReadyForActivation",
+            "Description": "Called to trigger the actual task once the delegates have been set up",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EndTask",
+            "Description": "Called explicitly to end the task (usually by the task itself). Calls OnDestroy. ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IGameplayTaskOwnerInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

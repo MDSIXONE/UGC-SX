@@ -1,0 +1,31 @@
+{
+    "Name": "UTextPropertyTestObject",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DefaultedText",
+            "Type": "FText",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UndefaultedText",
+            "Type": "FText",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TransientText",
+            "Type": "FText",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

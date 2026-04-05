@@ -1,0 +1,39 @@
+{
+    "Name": "UMovieSceneCaptureEnvironment",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetCaptureFrameNumber",
+            "Description": "Get the frame number of the current capture",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCaptureElapsedTime",
+            "Description": "Get the total elapsed time of the current capture in seconds",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

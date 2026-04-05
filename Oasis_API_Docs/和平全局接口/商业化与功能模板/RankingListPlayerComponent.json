@@ -1,0 +1,10 @@
+{
+    "Name": "RankingListPlayerComponent",
+    "Description": "UGC排行榜系统组件",
+    "Variables": null,
+    "Functions": null,
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

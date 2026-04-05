@@ -1,0 +1,61 @@
+{
+    "Name": "UMovieSceneSubSection",
+    "Description": "Implements a section in sub-sequence tracks.",
+    "Variables": [
+        {
+            "Name": "Parameters",
+            "Type": "FMovieSceneSectionParameters",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartOffset_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TimeScale_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PrerollTime_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubSequence",
+            "Type": "UMovieSceneSequence *",
+            "Description": "Movie scene being played by this section.\n\t \n\t  @todo Sequencer: Should this be lazy loaded?",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActorToRecord",
+            "Type": "TLazyObjectPtr < AActor >",
+            "Description": "Target actor to record",
+            "Redirect": ""
+        },
+        {
+            "Name": "TargetSequenceName",
+            "Type": "FString",
+            "Description": "Target name of sequence to try to record to (will record automatically to another if this already exists)",
+            "Redirect": ""
+        },
+        {
+            "Name": "TargetPathToRecordTo",
+            "Type": "FDirectoryPath",
+            "Description": "Target path of sequence to record to",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

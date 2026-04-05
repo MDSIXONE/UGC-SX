@@ -1,0 +1,25 @@
+{
+    "Name": "UCloudStorageBase",
+    "Description": "Base class for the various platform interface classes.",
+    "Variables": [
+        {
+            "Name": "LocalCloudFiles",
+            "Type": "TArray < FString >",
+            "Description": "When using local storage (aka \"cloud emulation\"), this maintains a list of the file paths.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSuppressDelegateCalls",
+            "Type": "uint32",
+            "Description": "If true, delegate callbacks should be skipped.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPlatformInterfaceBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,46 @@
+{
+    "Name": "UDynamicAtlasTexture2D",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ChildTexures_EditorOnly",
+            "Type": "TArray < UTexture2D * >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "CreateAtlasTexture2D",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MergedTexture",
+                    "Type": "FAtlasTextures & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StandardAtlas",
+                    "Type": "FAtlasTextures *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API UDynamicAtlasTexture2D * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UTexture2D"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

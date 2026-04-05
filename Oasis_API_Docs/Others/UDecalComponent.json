@@ -1,0 +1,206 @@
+{
+    "Name": "UDecalComponent",
+    "Description": "A material that is rendered onto the surface of a mesh. A kind of 'bumper sticker' for a model.\n \n  @see UDecalActor",
+    "Variables": [
+        {
+            "Name": "DecalMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "Decal material.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SortOrder",
+            "Type": "int32",
+            "Description": "Controls the order in which decal elements are rendered.  Higher values draw later (on top). \n\t  Setting many different sort orders on many different decals prevents sorting by state and can reduce performance.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeScreenSize",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeStartDelay",
+            "Type": "float",
+            "Description": "Time in seconds to wait before beginning to fade out the decal. Set fade duration and start delay to 0 to make persistent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FadeDuration",
+            "Type": "float",
+            "Description": "Time in seconds for the decal to fade out. Set fade duration and start delay to 0 to make persistent. Only fades in active simulation or game.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDestroyOwnerAfterFade",
+            "Type": "uint8",
+            "Description": "Automatically destroys the owning actor after fully fading out.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DecalSize",
+            "Type": "FVector",
+            "Description": "Decal size in local space (does not include the component scale), technically redundant but there for convenience",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBakeWithLandscape",
+            "Type": "uint8",
+            "Description": "Whether bake decal to the landscape flatten material",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetFadeStartDelay",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFadeDuration",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFadeOut",
+            "Description": "Sets the decal's fade start time, duration and if the owning actor should be destroyed after the decal is fully faded out.\n\t The default value of 0 for FadeStartDelay and FadeDuration makes the decal persistent. See DecalLifetimeOpacity material \n\t node to control the look of \"fading out.\"\n\t",
+            "Params": [
+                {
+                    "Name": "StartDelay",
+                    "Type": "float ",
+                    "Description": "- Time in seconds to wait before beginning to fade out the decal.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Duration",
+                    "Type": "float ",
+                    "Description": "- Time in second for the decal to fade out.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DestroyOwnerAfterFade",
+                    "Type": "bool",
+                    "Description": "- Should the owning actor automatically be destroyed after it is completely faded out.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFadeScreenSize",
+            "Description": "Set the FadeScreenSize for this decal component",
+            "Params": [
+                {
+                    "Name": "NewFadeScreenSize",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSortOrder",
+            "Description": "Sets the sort order for the decal component. Higher values draw later (on top). This will force the decal to reattach",
+            "Params": [
+                {
+                    "Name": "Value",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDecalMaterial",
+            "Description": "setting decal material on decal component. This will force the decal to reattach",
+            "Params": [
+                {
+                    "Name": "NewDecalMaterial",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDecalMaterial",
+            "Description": "Accessor for decal material",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateDynamicMaterialInstance",
+            "Description": "Utility to allocate a new Dynamic Material Instance, set its parent to the currently applied material, and assign it",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMaterialInstanceDynamic *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,25 @@
+{
+    "Name": "APhysicsThruster",
+    "Description": "Attach one of these on an object using physics simulation and it will apply a force down the negative-X direction\n \tie. point X in the direction you want the thrust in.",
+    "Variables": [
+        {
+            "Name": "ThrusterComponent",
+            "Type": "UPhysicsThrusterComponent *",
+            "Description": "Thruster component",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArrowComponent",
+            "Type": "UArrowComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "ARigidBodyBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

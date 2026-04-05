@@ -1,0 +1,49 @@
+{
+    "Name": "UMaterialExpressionClamp",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Input",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Min",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Max",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClampMode",
+            "Type": "TEnumAsByte < enum EClampMode >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinDefault",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxDefault",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,229 @@
+{
+    "Name": "UAtmosphericSkyBoxComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RenderDynamicSky",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Material",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoiseTexture",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticMesh",
+            "Type": "UStaticMesh *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RadiusScale",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshRotation",
+            "Type": "FRotator",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RainyDegree",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Atmosphere",
+            "Type": "FTOD_AtmosphereParameters",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Day",
+            "Type": "FTOD_DayParameters",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Light",
+            "Type": "FTOD_LightParameters",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CloudsPbr",
+            "Type": "FTOD_CloudPBRParameters",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "World",
+            "Type": "FTOD_WorldParameters",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Cycle",
+            "Type": "FTOD_CycleParameters",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TodTime",
+            "Type": "FTOD_Time",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TodAnimation",
+            "Type": "FTOD_Animation",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TodSunParams",
+            "Type": "FTOD_Sun",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TodMoonParams",
+            "Type": "FTOD_Moon",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TodSunAndMoonParams",
+            "Type": "FTOD_SunAndMoon",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TodStarsParams",
+            "Type": "FTOD_Stars",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TodSpecialSkyParams",
+            "Type": "FTOD_SpecialSky",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SunActor",
+            "Type": "AActor *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MoonActor",
+            "Type": "AActor *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightingChannels",
+            "Type": "FLightingChannels",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialInstancesDynamic",
+            "Type": "UMaterialInstanceDynamic *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsMaterialInstanceDirty",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FixedTimeOfDay",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FixedCurrTime",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetFixedCurrTime",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "time",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFixedTimeOfDay",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "IsFiexd",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaterialInstancesDynamic",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMaterialInstanceDynamic *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

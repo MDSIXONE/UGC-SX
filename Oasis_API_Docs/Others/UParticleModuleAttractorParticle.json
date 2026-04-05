@@ -1,0 +1,67 @@
+{
+    "Name": "UParticleModuleAttractorParticle",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "EmitterName",
+            "Type": "FName",
+            "Description": "The source emitter for attractors",
+            "Redirect": ""
+        },
+        {
+            "Name": "Range",
+            "Type": "FRawDistributionFloat",
+            "Description": "The radial range of the attraction around the source particle.\n\t \tParticle-life relative.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bStrengthByDistance",
+            "Type": "uint32",
+            "Description": "The strength curve is a function of distance or of time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Strength",
+            "Type": "FRawDistributionFloat",
+            "Description": "The strength of the attraction (negative values repel).\n\t \tParticle-life relative if StrengthByDistance is false.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAffectBaseVelocity",
+            "Type": "uint32",
+            "Description": "If true, the velocity adjustment will be applied to the base velocity.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectionMethod",
+            "Type": "TEnumAsByte < enum EAttractorParticleSelectionMethod >",
+            "Description": "The method to use when selecting an attractor target particle from the emitter.\n\t \tOne of the following:\n\t \tRandom\t\t- Randomly select a particle from the source emitter.  \n\t \tSequential  - Select a particle using a sequential order.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRenewSource",
+            "Type": "uint32",
+            "Description": "Whether the particle should grab a new particle if it's source expires.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritSourceVel",
+            "Type": "uint32",
+            "Description": "Whether the particle should inherit the source veloctiy if it expires.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastSelIndex",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleAttractorBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "UAnimComposite",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "AnimationTrack",
+            "Type": "FAnimTrack",
+            "Description": "Serializable data that stores sectionanim pairing",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UAnimCompositeBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

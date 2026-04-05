@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_ButtonListenAction",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ListenActions",
+            "Type": "TArray < FButtonListenAction >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,42 @@
+{
+    "Name": "UClickActorComponentBase",
+    "Description": "一个提供给按钮使用的组件，用于实现靠近显示按钮的逻辑",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "HandleEnable",
+            "Description": "生效范围：S\n\t  激活组件功能",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HandleDisable",
+            "Description": "生效范围：S\n\t  停止组件功能",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent",
+        "IRegionObjectInterface",
+        "IObjectPoolInterface",
+        "IInteractorInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

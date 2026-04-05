@@ -1,0 +1,19 @@
+{
+    "Name": "UInterpTrackInstParticleReplay",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LastUpdatePosition",
+            "Type": "float",
+            "Description": "Position we were in last time we evaluated.\n\t \tDuring UpdateTrack, events between this time and the current time will be processed.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInst"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

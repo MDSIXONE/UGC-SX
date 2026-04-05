@@ -1,0 +1,38 @@
+{
+    "Name": "UPlayer",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "PlayerController",
+            "Type": "APlayerController *",
+            "Description": "The actor this player controls.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CurrentNetSpeed",
+            "Type": "int32",
+            "Description": "the current speed of the connection",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConfiguredInternetSpeed",
+            "Type": "int32",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConfiguredLanSpeed",
+            "Type": "int32",
+            "Description": "@todo document",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "FExec"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

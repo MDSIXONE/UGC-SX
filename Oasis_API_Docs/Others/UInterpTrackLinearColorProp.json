@@ -1,0 +1,19 @@
+{
+    "Name": "UInterpTrackLinearColorProp",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "PropertyName",
+            "Type": "FName",
+            "Description": "Name of property in Group  AActor  which this track mill modify over time.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackLinearColorBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

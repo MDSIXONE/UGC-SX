@@ -1,0 +1,67 @@
+{
+    "Name": "AEmitterCameraLensEffectBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "PS_CameraEffect",
+            "Type": "UParticleSystem *",
+            "Description": "Particle System to use",
+            "Redirect": ""
+        },
+        {
+            "Name": "PS_CameraEffectNonExtremeContent_DEPRECATED",
+            "Type": "UParticleSystem *",
+            "Description": "The effect to use for non extreme content",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseCamera",
+            "Type": "APlayerCameraManager *",
+            "Description": "Camera this emitter is attached to, will be notified when emitter is destroyed",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeTransform",
+            "Type": "FTransform",
+            "Description": "Effect-to-camera transform to allow arbitrary placement of the particle system .\n\t  Note the X component of the location will be scaled with camera fov to keep the lens effect the same apparent size.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseFOV",
+            "Type": "float",
+            "Description": "This is the assumed FOV for which the effect was authored. The code will make automatic adjustments to make it look the same at different FOVs",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowMultipleInstances",
+            "Type": "uint8",
+            "Description": "true if multiple instances of this emitter can exist simultaneously, false otherwise.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bResetWhenRetriggered",
+            "Type": "uint8",
+            "Description": "If bAllowMultipleInstances is true and this effect is retriggered, the particle system will be reset if this is true",
+            "Redirect": ""
+        },
+        {
+            "Name": "EmittersToTreatAsSame",
+            "Type": "TArray < TSubclassOf < AEmitterCameraLensEffectBase > >",
+            "Description": "If an emitter class in this array is currently playing, do not play this effect.\n\t   Useful for preventing multiple similar or expensive camera effects from playing simultaneously.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DistFromCamera_DEPRECATED",
+            "Type": "float",
+            "Description": "DEPRECATED(4.11)",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AEmitter"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

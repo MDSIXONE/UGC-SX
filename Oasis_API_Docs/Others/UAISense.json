@@ -1,0 +1,43 @@
+{
+    "Name": "UAISense",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DefaultExpirationAge",
+            "Type": "float",
+            "Description": "age past which stimulus of this sense are \"forgotten\"",
+            "Redirect": ""
+        },
+        {
+            "Name": "NotifyType",
+            "Type": "EAISenseNotifyType",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bWantsNewPawnNotification",
+            "Type": "uint32",
+            "Description": "whether this sense is interested in getting notified about new Pawns being spawned \n\t \tthis can be used for example for automated sense sources registration",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoRegisterAllPawnsAsSources",
+            "Type": "uint32",
+            "Description": "If true all newly spawned pawns will get auto registered as source for this sense.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerceptionSystemInstance",
+            "Type": "UAIPerceptionSystem *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

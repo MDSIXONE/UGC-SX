@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleSystemReplay",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ClipIDNumber",
+            "Type": "int32",
+            "Description": "Unique ID number for this replay clip",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

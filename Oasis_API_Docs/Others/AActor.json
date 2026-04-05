@@ -1,0 +1,5024 @@
+{
+    "Name": "AActor",
+    "Description": "Actor is the base class for an Object that can be placed or spawned in a level.\n  Actors may contain a collection of ActorComponents, which can be used to control how actors move, how they are rendered, etc.\n  The other main function of an Actor is the replication of properties and function calls across the network during play.\n \n  @see UActorComponent",
+    "Variables": [
+        {
+            "Name": "PrimaryActorTick",
+            "Type": "FActorTickFunction",
+            "Description": "Primary Actor tick function, which calls TickActor().\n\t  Tick functions can be configured to control whether ticking is enabled, at what time during a frame the update occurs, and to set up tick dependencies.\n\t  @see AddTickPrerequisiteActor(), AddTickPrerequisiteComponent()",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomTimeDilation",
+            "Type": "float",
+            "Description": "Allow each actor to run at a different time speed. The DeltaTime for a frame is multiplied by the global TimeDilation (in WorldSettings) and this CustomTimeDilation for this actor's tick.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowBPReceiveTickEvent",
+            "Type": "bool",
+            "Description": "If true, bp tick will be called , otherwise skipped",
+            "Redirect": ""
+        },
+        {
+            "Name": "TickAdapterInterval",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTickAdapterRqrMainFrame",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportSuspendTick",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHidden",
+            "Type": "uint8",
+            "Description": "Allows us to only see this Actor in the Editor, and not in the actual game.\n\t  @see SetActorHiddenInGame()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bConsideredHidden",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNetTemporary",
+            "Type": "uint8",
+            "Description": "If true, when the actor is spawned it will be sent to the client but receive no further replication updates from the server afterwards.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNetStartup",
+            "Type": "uint8",
+            "Description": "If true, this actor was loaded directly from the map, and for networking purposes can be addressed by its full path name",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOnlyRelevantToOwner",
+            "Type": "uint8",
+            "Description": "If true, this actor is only relevant to its owner. If this flag is changed during play, all non-owner channels would need to be explicitly closed.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOwningSpecificNetConsideration",
+            "Type": "uint8",
+            "Description": "If true, this actor is considered for replication in an owning-specific semantics.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRegionBasedNetConsideration",
+            "Type": "uint8",
+            "Description": "If true, this actor is considered for replication in region-based semantics.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMRegionBasedNetConsideration",
+            "Type": "uint8",
+            "Description": "If true, this actor is considered for replication in Mregion-based semantics.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMRegionStatic",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFastDistBasedNetRelevancy",
+            "Type": "uint8",
+            "Description": "If true, this actor is checked for relevancy by fast distance-based calculation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGroupBasedNetRelevancy",
+            "Type": "uint8",
+            "Description": "If true, this actor is checked for relevancy by relevancy group first.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLazyNetReplication",
+            "Type": "uint8",
+            "Description": "If true, this actor is only replicated by calling ForceNetUpdate.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClientSimulatedRelevancy",
+            "Type": "uint8",
+            "Description": "NOTE: Mark \"Client Simulated Relevancy\" for ob  replay\n\t @see SetActorSimulatedRelevancy()\n\t @see OnActorSimulatedRelevant()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCheckAllRelyOnAttachment",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAlwaysRelevant",
+            "Type": "uint8",
+            "Description": "Always relevant for network (overrides bOnlyRelevantToOwner).",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceOwnedMeshAlwaysRefreshBones",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTearOff",
+            "Type": "uint8",
+            "Description": "If true, this actor is no longer replicated to new clients, and is \"torn off\" (becomes a ROLE_Authority) on clients to which it was being replicated.\n\t  @see TornOff()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bExchangedRoles",
+            "Type": "uint8",
+            "Description": "Whether we have already exchanged RoleRemoteRole on the client, as when removing then re-adding a streaming level.\n\t  Causes all initialization to be performed again even though the actor may not have actually been reloaded.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNetLoadOnClient",
+            "Type": "uint8",
+            "Description": "This actor will be loaded on network clients during map load",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNetUseOwnerRelevancy",
+            "Type": "uint8",
+            "Description": "If actor has valid Owner, call Owner's IsNetRelevantFor and GetNetPriority",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBlockInput",
+            "Type": "uint8",
+            "Description": "If true, all input on the stack below this actor will not be considered",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanBeBaseForCharacter",
+            "Type": "uint8",
+            "Description": "If true, all input on the stack below this actor will not be considered",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowTickBeforeBeginPlay",
+            "Type": "uint8",
+            "Description": "Whether we allow this Actor to tick before it receives the BeginPlay event.\n\t  Normally we don't tick actors until after BeginPlay; this setting allows this behavior to be overridden.\n\t  This Actor must be able to tick for this setting to be relevant.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCustomHandlingNetworkSubobjectDeletion",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReplicates",
+            "Type": "uint8",
+            "Description": "If true, this actor will replicate to remote machines\n\t  @see SetReplicates()",
+            "Redirect": ""
+        },
+        {
+            "Name": "RemoteRole",
+            "Type": "TEnumAsByte < enum ENetRole >",
+            "Description": "Describes how much control the remote machine has over the actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Owner",
+            "Type": "AActor *",
+            "Description": "Owner of this Actor, used primarily for replication (bNetUseOwnerRelevancy & bOnlyRelevantToOwner) and visibility (PrimitiveComponent bOwnerNoSee and bOnlyOwnerSee)\n\t  @see SetOwner(), GetOwner()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReplicateMovement",
+            "Type": "uint8",
+            "Description": "If true, replicate movementlocation related properties.\n\t  Actor must also be set to replicate.\n\t  @see SetReplicates()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bActorEnableCollision",
+            "Type": "uint8",
+            "Description": "Enables any collision on this actor.\n\t  @see SetActorEnableCollision(), GetActorEnableCollision()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableDeferredConstructComponent",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseSpawnReplicatedActorMaxFrameDelayFromConfig",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PendingConstructComponents",
+            "Type": "TArray < FDeferedComponentUnit >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreSCSComponentsBeforeDeferContruction",
+            "Type": "TArray < UActorComponent * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AsyncReplicatedActorSpawnDistA",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AsyncReplicatedActorSpawnDistB",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpawnReplicatedActorMaxFrameDelayFromConfig",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScriptNetworkReplicatedPropertyWrapper",
+            "Type": "FScriptNetworkReplicatedPropertyWrapper",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetDriverName",
+            "Type": "FName",
+            "Description": "Used to specify the net driver to replicate on (NAME_None || NAME_GameNetDriver is the default net driver)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedMovement",
+            "Type": "FRepMovement",
+            "Description": "Used for replication of our RootComponent's position and velocity",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitialLifeSpan",
+            "Type": "float",
+            "Description": "How long this Actor lives before dying, 0=forever. Note this is the INITIAL value and should not be modified once play has begun.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttachmentReplication",
+            "Type": "FRepAttachment",
+            "Description": "Used for replicating attachment of this actor's RootComponent to another actor.\n\t  This is filled in via GatherCurrentMovement() when the RootComponent has an AttachParent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Role",
+            "Type": "TEnumAsByte < enum ENetRole >",
+            "Description": "Describes how much control the local machine has over the actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetDormancy",
+            "Type": "TEnumAsByte < enum ENetDormancy >",
+            "Description": "Dormancy setting for actor to take itself off of the replication list without being destroyed on clients.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AutoReceiveInput",
+            "Type": "TEnumAsByte < EAutoReceiveInput :: Type >",
+            "Description": "Automatically registers this actor to receive input from a player.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InputPriority",
+            "Type": "int32",
+            "Description": "The priority of this input component when pushed in to the stack.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InputComponent",
+            "Type": "UInputComponent *",
+            "Description": "Component that handles input for this actor, if input is enabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetCullDistanceSquared",
+            "Type": "float",
+            "Description": "Square of the max distance from the client's viewpoint that this actor is relevant and will be replicated.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetCullFactorSquared",
+            "Type": "float",
+            "Description": "NetCullDistanceSquared Factor for Connection",
+            "Redirect": ""
+        },
+        {
+            "Name": "OBRelevantFactor",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetTag",
+            "Type": "int32",
+            "Description": "Internal - used by UWorld::ServerTickClients()",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetConsiderFrequency",
+            "Type": "float",
+            "Description": "How often (per second) this actor enters consider list, should be greater than or equal to NetUpdateFrequency",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetUpdateFrequency",
+            "Type": "float",
+            "Description": "How often (per second) this actor will be checked for replication, used to determine NetUpdateTime",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinNetUpdateFrequency",
+            "Type": "float",
+            "Description": "Used to determine what rate to throttle down to when replicated properties are changing infrequently",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetUpdateJumpFrame",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NetPriority",
+            "Type": "float",
+            "Description": "Priority for this actor when checking for replication in a low bandwidth or saturated situation, higher priority means it is more likely to replicate",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoDestroyWhenFinished",
+            "Type": "uint8",
+            "Description": "If true then destroy self when \"finished\", meaning all relevant components report that they are done and no timelines or timers are in flight.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanBeDamaged",
+            "Type": "uint8",
+            "Description": "Whether this actor can take damage. Must be true for damage events (e.g. ReceiveDamage()) to be called.\n\t  @see TakeDamage(), ReceiveDamage()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanNotifyDamager",
+            "Type": "uint8",
+            "Description": "Whether this actor can Notify damager. Must be true for notify damager events (PreDamageOther) to be called.\n\t  @see TakeDamage(), PreDamageOther()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRepParentUpdatePhx",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bActorIsBeingDestroyed",
+            "Type": "uint8",
+            "Description": "Set when actor is about to be deleted.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCollideWhenPlacing",
+            "Type": "uint8",
+            "Description": "This actor collides with the world when placing in the editor, even if RootComponent collision is disabled. Does not affect spawning, @see SpawnCollisionHandlingMethod",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFindCameraComponentWhenViewTarget",
+            "Type": "uint8",
+            "Description": "If true, this actor should search for an owned camera component to view through when used as a view target.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRelevantForNetworkReplays",
+            "Type": "uint8",
+            "Description": "If true, this actor will be replicated to network replays (default is true)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForcedRelevancyCheckForReplay",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLowUpdateRateForReplay",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGenerateOverlapEventsDuringLevelStreaming",
+            "Type": "uint8",
+            "Description": "If true, this actor will generate overlap events when spawned as part of level streaming. You might enable this is in the case where a streaming level loads around an actor and you want overlaps to trigger.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanCachedInWorldSpecialActorList",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldDumpCallstackWhenMovingfast",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanBeInCluster",
+            "Type": "uint8",
+            "Description": "If true, this actor can be put inside of a GC Cluster to improve Garbage Collection performance",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowReceiveTickEventOnDedicatedServer",
+            "Type": "uint8",
+            "Description": "If false, the Blueprint ReceiveTick() event will be disabled on dedicated servers.\n\t  @see AllowReceiveTickEventOnDedicatedServer()",
+            "Redirect": ""
+        },
+        {
+            "Name": "bActorSeamlessTraveled",
+            "Type": "uint8",
+            "Description": "Indicates the actor was pulled through a seamless travel.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoresOriginShifting",
+            "Type": "uint8",
+            "Description": "Whether this actor should not be affected by world origin shifting.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableAutoLODGeneration",
+            "Type": "uint8",
+            "Description": "If true, and if World setting has bEnableHierarchicalLOD equal to true, then it will generate LODActor from groups of clustered Actor",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpawnCollisionHandlingMethod",
+            "Type": "ESpawnActorCollisionHandlingMethod",
+            "Description": "Controls how to handle spawning this actor in a situation where it's colliding with something else. \"Default\" means AlwaysSpawn here.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionCheckMoveDisStep",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionCheckMoveDegreeStep",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionCheckCircleRadius",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Instigator",
+            "Type": "APawn *",
+            "Description": "Pawn responsible for damage caused by this actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Children",
+            "Type": "TArray < AActor * >",
+            "Description": "Array of Actors whose Owner is this actor",
+            "Redirect": ""
+        },
+        {
+            "Name": "RootComponent",
+            "Type": "USceneComponent *",
+            "Description": "Collision primitive that defines the transform (location, rotation, scale) of this Actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ControllingMatineeActors",
+            "Type": "TArray < AMatineeActor * >",
+            "Description": "The matinee actors that control this actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Layers",
+            "Type": "TArray < FName >",
+            "Description": "Layer's the actor belongs to.  This is outside of the editoronly data to allow hiding of LD-specified layers at runtime for profiling.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParentComponent",
+            "Type": "TWeakObjectPtr < UChildActorComponent >",
+            "Description": "The UChildActorComponent that owns this Actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Tags",
+            "Type": "TArray < FName >",
+            "Description": "Array of tags that can be used for grouping and categorizing.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DynamicTags",
+            "Type": "TArray < FName >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlueprintCreatedComponents",
+            "Type": "TArray < UActorComponent * >",
+            "Description": "Array of ActorComponents that are created by blueprints and serialized per-instance.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstanceComponents",
+            "Type": "TArray < UActorComponent * >",
+            "Description": "Array of ActorComponents that have been added by the user on a per-instance basis.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BackupRestoreIdentifier",
+            "Type": "int64",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NeedsBackupStates",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSkipNewDuplicateOwnedComponents",
+            "Type": "uint8",
+            "Description": "If you call CreateComponentFromTemplate on an actor which already owns a component with the same name, problem comes out\n\t  Optimized version will return the existing component, but not duplicate a new one, in this case, setting this switch to true is necessary",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanBeNetContainer",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDonotAsSubActor",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DeformEffectType",
+            "Type": "TEnumAsByte < enum EDeformEffectType >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBlockLandscapeDeform",
+            "Type": "bool",
+            "Description": "If this actor will block any overlap deform.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRemoveStaticChildActorComp",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InputConsumeOption_DEPRECATED",
+            "Type": "TEnumAsByte < enum EInputConsumeOptions >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExportActorInLevel",
+            "Type": "bool",
+            "Description": "在编辑器获取level里面actor的位置和朝向, 通过命令行方式导出到一个lua表格. feishen, 20210406",
+            "Redirect": ""
+        },
+        {
+            "Name": "PivotOffset",
+            "Type": "FVector",
+            "Description": "Local space pivot offset for the actor",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParentComponentActor_DEPRECATED",
+            "Type": "TWeakObjectPtr < AActor >",
+            "Description": "The Actor that owns the UChildActorComponent that owns this Actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "GroupActor",
+            "Type": "AActor *",
+            "Description": "The group this actor is a part of.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteScale",
+            "Type": "float",
+            "Description": "The scale to apply to any billboard components in editor builds (happens in any WITH_EDITOR build, including non-cooked games).",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActorLabel",
+            "Type": "FString",
+            "Description": "The friendly name for this actor, displayed in the editor.  You should always use AActor::GetActorLabel() to access the actual label to display,\n\t  and call AActor::SetActorLabel() or FActorLabelUtilities::SetActorLabelUnique() to change the label.  Never set the label directly.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FolderPath",
+            "Type": "FName",
+            "Description": "The folder path of this actor in the world (empty=root,  separated)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bActorLabelEditable",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHiddenEd",
+            "Type": "uint8",
+            "Description": "Whether this actor is hidden within the editor viewport.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEditable",
+            "Type": "uint8",
+            "Description": "Whether the actor can be manipulated by editor operations.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bListedInSceneOutliner",
+            "Type": "uint8",
+            "Description": "Whether this actor should be listed in the scene outliner.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsEditorPreviewActor",
+            "Type": "uint8",
+            "Description": "True if this actor is the preview actor dragged out of the content browser",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHiddenEdLayer",
+            "Type": "uint8",
+            "Description": "Whether this actor is hidden by the layer browser.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHiddenEdTemporary",
+            "Type": "uint8",
+            "Description": "Whether this actor is temporarily hidden within the editor; used for showhideetc functionality wo dirtying the actor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHiddenEdLevel",
+            "Type": "uint8",
+            "Description": "Whether this actor is hidden by the level browser.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLockLocation",
+            "Type": "uint8",
+            "Description": "If true, prevents the actor from being moved in the editor viewport.",
+            "Redirect": ""
+        },
+        {
+            "Name": "HiddenEditorViews",
+            "Type": "uint64",
+            "Description": "Bitflag to represent which views this actor is hidden in, via per-view layer visibility.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bActorCoastline",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetToString",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetForceOwnedMeshAlwaysRefreshBones",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bAlwaysRefreshBones",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicateMovement",
+            "Description": "Called on client when updated bReplicateMovement value is received for this actor.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TearOff",
+            "Description": "Networking - Server - TearOff this actor to stop replication to clients. Will set bTearOff to true.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_Role",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_RemoteRole",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_Hidden",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_TearOff",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_CanBeDamaged",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_Owner",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TickConstructComponentWithTime",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "OneFrameConstructTimeMS",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bCreateImmediately",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ScriptNetworkReplicatedPropertyWrapper",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CallSubObjectLuaOnRep",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InObject",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ServerSendScriptNetworkRemoteContent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "FScriptNetworkRemoteContent &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ServerSendScriptNetworkRemoteContent_Unreliable",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "FScriptNetworkRemoteContent &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClientSendScriptNetworkRemoteContent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "FScriptNetworkRemoteContent &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClientSendScriptNetworkRemoteContent_Unreliable",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "FScriptNetworkRemoteContent &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveScriptNetworkRemoteContent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "FScriptNetworkRemoteContent &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetReplicates",
+            "Description": "Set whether this actor replicates to network clients. When this actor is spawned on the server it will be sent to clients as well.\n\t  Properties flagged for replication will update on clients if they change on the server.\n\t  Internally changes the RemoteRole property and handles the cases where the actor needs to be added to the network actor list.",
+            "Params": [
+                {
+                    "Name": "bInReplicates",
+                    "Type": "bool",
+                    "Description": "Whether this Actor replicates to network clients.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetReplicateMovement",
+            "Description": "Set whether this actor's movement replicates to network clients.",
+            "Params": [
+                {
+                    "Name": "bInReplicateMovement",
+                    "Type": "bool",
+                    "Description": "Whether this Actor's movement replicates to clients.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLocalRole",
+            "Description": "Returns how much control the local machine has over this actor.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENetRole",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRemoteRole",
+            "Description": "Returns how much control the remote machine has over this actor.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENetRole",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRole",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENetRole",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_AttachmentReplication",
+            "Description": "Called on client when updated AttachmentReplication value is received for this actor.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_Instigator",
+            "Description": "Called on clients when Instigator is replicated.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddDynamicTag",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Tag",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveDynamicTag",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Tag",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableInput",
+            "Description": "Pushes this actor on to the stack of input being handled by a PlayerController.",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "APlayerController *",
+                    "Description": "The PlayerController whose input events we want to receive.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableInput",
+            "Description": "Removes this actor from the stack of input being handled by a PlayerController.",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "APlayerController *",
+                    "Description": "The PlayerController whose input events we no longer want to receive. If null, this actor will stop receiving input from all PlayerControllers.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInputAxisValue",
+            "Description": "Gets the value of the input axis if input is enabled for this actor.",
+            "Params": [
+                {
+                    "Name": "InputAxisName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInputAxisKeyValue",
+            "Description": "Gets the value of the input axis key if input is enabled for this actor.",
+            "Params": [
+                {
+                    "Name": "InputAxisKey",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInputVectorAxisValue",
+            "Description": "Gets the value of the input axis key if input is enabled for this actor.",
+            "Params": [
+                {
+                    "Name": "InputAxisKey",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstigator",
+            "Description": "Returns the instigator for this actor, or NULL if there is none.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstigatorController",
+            "Description": "Returns the instigator's controller for this actor, or NULL if there is none.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTransform",
+            "Description": "Get the actor-to-world transform.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform",
+                    "Description": "The transform that transforms from actor space to world space.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetActorLocation",
+            "Description": "Returns the location of the RootComponent of this Actor",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetActorLocation",
+            "Description": "Move the Actor to the specified location.",
+            "Params": [
+                {
+                    "Name": "NewLocation",
+                    "Type": "FVector ",
+                    "Description": "The new location to move the Actor to.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": "Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "The hit result from the move if swept.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": "Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "Whether the location was successfully set (if not swept), or whether movement occurred at all (if swept).",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetActorRotation",
+            "Description": "Returns rotation of the RootComponent of this Actor.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorForwardVector",
+            "Description": "Get the forward (X) vector (length 1.0) from this Actor, in world space.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorUpVector",
+            "Description": "Get the up (Z) vector (length 1.0) from this Actor, in world space.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorRightVector",
+            "Description": "Get the right (Y) vector (length 1.0) from this Actor, in world space.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorBounds",
+            "Description": "Returns the bounding box of all components that make up this Actor (excluding ChildActorComponents).",
+            "Params": [
+                {
+                    "Name": "bOnlyCollidingComponents",
+                    "Type": "bool ",
+                    "Description": "If true, will only return the bounding box for components with collision enabled.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Origin",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoxExtent",
+                    "Type": "FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetRootComponent",
+            "Description": "Returns the RootComponent of this Actor",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USceneComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetVelocity",
+            "Description": "Returns velocity (in cms (Unreal Unitssecond) of the rootcomponent if it is either using physics or has an associated MovementComponent",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetActorRotation",
+            "Description": "Set the Actor's rotation instantly to the specified rotation.\n\t ",
+            "Params": [
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator ",
+                    "Description": "The new rotation for the Actor.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleportPhysics",
+                    "Type": "bool",
+                    "Description": "Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "Whether the rotation was successfully set.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetActorLocationAndRotation",
+            "Description": "Move the actor instantly to the specified location and rotation.\n\t ",
+            "Params": [
+                {
+                    "Name": "NewLocation",
+                    "Type": "FVector ",
+                    "Description": "The new location to teleport the Actor to.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewRotation",
+                    "Type": "FRotator ",
+                    "Description": "The new rotation for the Actor.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "The hit result from the move if swept.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "Whether the rotation was successfully set.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActorScale3D",
+            "Description": "Set the Actor's world-space scale.",
+            "Params": [
+                {
+                    "Name": "NewScale3D",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorScale3D",
+            "Description": "Returns the Actor's world-space scale.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDistanceTo",
+            "Description": "Returns the distance from this Actor to OtherActor.",
+            "Params": [
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSquaredDistanceTo",
+            "Description": "Returns the squared distance from this Actor to OtherActor.",
+            "Params": [
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetHorizontalDistanceTo",
+            "Description": "Returns the distance from this Actor to OtherActor, ignoring Z.",
+            "Params": [
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetVerticalDistanceTo",
+            "Description": "Returns the distance from this Actor to OtherActor, ignoring XY.",
+            "Params": [
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDotProductTo",
+            "Description": "Returns the dot product from this Actor to OtherActor. Returns -2.0 on failure. Returns 0.0 for coincidental actors.",
+            "Params": [
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetHorizontalDotProductTo",
+            "Description": "Returns the dot product from this Actor to OtherActor, ignoring Z. Returns -2.0 on failure. Returns 0.0 for coincidental actors.",
+            "Params": [
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddActorWorldOffset",
+            "Description": "Adds a delta to the location of this actor in world space.\n\t ",
+            "Params": [
+                {
+                    "Name": "DeltaLocation",
+                    "Type": "FVector ",
+                    "Description": "The change in location.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "The hit result from the move if swept.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddActorWorldRotation",
+            "Description": "Adds a delta to the rotation of this actor in world space.\n\t ",
+            "Params": [
+                {
+                    "Name": "DeltaRotation",
+                    "Type": "FRotator ",
+                    "Description": "The change in rotation.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether to sweep to the target rotation (not currently supported for rotation).",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "The hit result from the move if swept.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddActorWorldTransform",
+            "Description": "Adds a delta to the transform of this actor in world space. Scale is unchanged.",
+            "Params": [
+                {
+                    "Name": "DeltaTransform",
+                    "Type": "FTransform & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetActorTransform",
+            "Description": "Set the Actors transform to the specified one.",
+            "Params": [
+                {
+                    "Name": "NewTransform",
+                    "Type": "FTransform & ",
+                    "Description": "The new transform.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddActorLocalOffset",
+            "Description": "Adds a delta to the location of this component in its local reference frame.",
+            "Params": [
+                {
+                    "Name": "DeltaLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddActorLocalRotation",
+            "Description": "Adds a delta to the rotation of this component in its local reference frame",
+            "Params": [
+                {
+                    "Name": "DeltaRotation",
+                    "Type": "FRotator ",
+                    "Description": "The change in rotation in local space.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AddActorLocalTransform",
+            "Description": "Adds a delta to the transform of this component in its local reference frame",
+            "Params": [
+                {
+                    "Name": "NewTransform",
+                    "Type": "FTransform & ",
+                    "Description": "The change in transform in local space.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetActorRelativeLocation",
+            "Description": "Set the actor's RootComponent to the specified relative location.",
+            "Params": [
+                {
+                    "Name": "NewRelativeLocation",
+                    "Type": "FVector ",
+                    "Description": "New relative location of the actor's root component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetActorRelativeRotation",
+            "Description": "Set the actor's RootComponent to the specified relative rotation",
+            "Params": [
+                {
+                    "Name": "NewRelativeRotation",
+                    "Type": "FRotator ",
+                    "Description": "New relative rotation of the actor's root component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_SetActorRelativeTransform",
+            "Description": "Set the actor's RootComponent to the specified relative transform",
+            "Params": [
+                {
+                    "Name": "NewRelativeTransform",
+                    "Type": "FTransform & ",
+                    "Description": "New relative transform of the actor's root component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSweep",
+                    "Type": "bool ",
+                    "Description": " Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SweepHitResult",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether we teleport the physics state (if physics collision is enabled for this object).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActorRelativeScale3D",
+            "Description": "Set the actor's RootComponent to the specified relative scale 3d",
+            "Params": [
+                {
+                    "Name": "NewRelativeScale",
+                    "Type": "FVector",
+                    "Description": "New scale to set the actor's RootComponent to",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorRelativeScale3D",
+            "Description": "Return the actor's relative scale 3d",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActorHiddenInGame",
+            "Description": "Sets the actor to be hidden in the game",
+            "Params": [
+                {
+                    "Name": "bNewHidden",
+                    "Type": "bool",
+                    "Description": "Whether or not to hide the actor and all its components",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActorConsideredHidden",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewHidden",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActorSimulatedRelevancy",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bIsRelevant",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnActorSimulatedRelevant",
+            "Description": "NOTE : Callback of Check Actor Relevancy in Client for ob or replay",
+            "Params": [
+                {
+                    "Name": "bIsRelevant",
+                    "Type": "bool ",
+                    "Description": ": Whether or not relevant for replay view target",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bConsiderHidden",
+                    "Type": "bool",
+                    "Description": ": Whether or not to hide the actor and all its components",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActorEnableCollision",
+            "Description": "Allows enablingdisabling collision for the whole actor",
+            "Params": [
+                {
+                    "Name": "bNewActorEnableCollision",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorEnableCollision",
+            "Description": "Get current state of collision for the whole actor",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_DestroyActor",
+            "Description": "Destroy the actor",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasAuthority",
+            "Description": "Returns whether this actor has network authority",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddComponent",
+            "Description": "Creates a new component and assigns ownership to the Actor this is\n\t  called for. Automatic attachment causes the first component created to\n\t  become the root, and all subsequent components to be attached under that\n\t  root. When bManualAttachment is set, automatic attachment is\n\t  skipped and it is up to the user to attach the resulting component (or\n\t  set it up as the root) themselves.\n\t ",
+            "Params": [
+                {
+                    "Name": "TemplateName",
+                    "Type": "FName ",
+                    "Description": "  The name of the Component Template to use.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bManualAttachment",
+                    "Type": "bool ",
+                    "Description": " Whether manual or automatic attachment is to be used",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RelativeTransform",
+                    "Type": "FTransform & ",
+                    "Description": " The relative transform between the new component and its attach parent (automatic only)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ComponentTemplateContext",
+                    "Type": "UObject *",
+                    "Description": "Optional UBlueprintGeneratedClass reference to use to find the template in. If null (or not a BPGC), component is sought in this Actor's class",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UActorComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_DestroyComponent",
+            "Description": "DEPRECATED - Use Component::DestroyComponent",
+            "Params": [
+                {
+                    "Name": "Component",
+                    "Type": "UActorComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AttachRootComponentTo",
+            "Description": "Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.",
+            "Params": [
+                {
+                    "Name": "InParent",
+                    "Type": "USceneComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AttachLocationType",
+                    "Type": "EAttachLocation :: Type ",
+                    "Description": "Type of attachment, AbsoluteWorld to keep its world position, RelativeOffset to keep the object's relative offset and SnapTo to snap to the new parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWeldSimulatedBodies",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AttachToComponent",
+            "Description": "Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.",
+            "Params": [
+                {
+                    "Name": "Parent",
+                    "Type": "USceneComponent * ",
+                    "Description": "  Parent to attach to.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SocketName",
+                    "Type": "FName ",
+                    "Description": " Optional socket to attach to on the parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocationRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RotationRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaleRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWeldSimulatedBodies",
+                    "Type": "bool",
+                    "Description": "Whether to weld together simulated physics bodies.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AttachRootComponentToActor",
+            "Description": "Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.",
+            "Params": [
+                {
+                    "Name": "InParentActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AttachLocationType",
+                    "Type": "EAttachLocation :: Type ",
+                    "Description": "Type of attachment, AbsoluteWorld to keep its world position, RelativeOffset to keep the object's relative offset and SnapTo to snap to the new parent.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWeldSimulatedBodies",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_AttachToActor",
+            "Description": "Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.",
+            "Params": [
+                {
+                    "Name": "ParentActor",
+                    "Type": "AActor * ",
+                    "Description": " Actor to attach this actor's RootComponent to",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SocketName",
+                    "Type": "FName ",
+                    "Description": " Socket name to attach to, if any",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocationRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": " How to handle translation when attaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RotationRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": " How to handle rotation when attaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaleRule",
+                    "Type": "EAttachmentRule ",
+                    "Description": "  How to handle scale when attaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWeldSimulatedBodies",
+                    "Type": "bool",
+                    "Description": "Whether to weld together simulated physics bodies.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SnapRootComponentTo",
+            "Description": "Snap the RootComponent of this Actor to the supplied Actor's root component, optionally at a named socket. It is not valid to call this on components that are not Registered.\n\t   If InSocketName == NAME_None, it will attach to origin of the InParentActor.",
+            "Params": [
+                {
+                    "Name": "InParentActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSocketName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DetachRootComponentFromParent",
+            "Description": "Detaches the RootComponent of this Actor from any SceneComponent it is currently attached to.",
+            "Params": [
+                {
+                    "Name": "bMaintainWorldPosition",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_DetachFromActor",
+            "Description": "Detaches the RootComponent of this Actor from any SceneComponent it is currently attached to.",
+            "Params": [
+                {
+                    "Name": "LocationRule",
+                    "Type": "EDetachmentRule ",
+                    "Description": " How to handle translation when detaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RotationRule",
+                    "Type": "EDetachmentRule ",
+                    "Description": " How to handle rotation when detaching.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ScaleRule",
+                    "Type": "EDetachmentRule",
+                    "Description": " How to handle scale when detaching.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ActorHasTag",
+            "Description": "See if this actor contains the supplied tag",
+            "Params": [
+                {
+                    "Name": "Tag",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorTimeDilation",
+            "Description": "Get CustomTimeDilation - this can be used for input control or speed control for slomo.\n\t  We don't want to scale input globally because input can be used for UI, which do not care for TimeDilation.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddTickPrerequisiteActor",
+            "Description": "Make this actor tick after PrerequisiteActor. This only applies to this actor's tick function; dependencies for owned components must be set up separately if desired.",
+            "Params": [
+                {
+                    "Name": "PrerequisiteActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddTickPrerequisiteComponent",
+            "Description": "Make this actor tick after PrerequisiteComponent. This only applies to this actor's tick function; dependencies for owned components must be set up separately if desired.",
+            "Params": [
+                {
+                    "Name": "PrerequisiteComponent",
+                    "Type": "UActorComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveTickPrerequisiteActor",
+            "Description": "Remove tick dependency on PrerequisiteActor.",
+            "Params": [
+                {
+                    "Name": "PrerequisiteActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveTickPrerequisiteComponent",
+            "Description": "Remove tick dependency on PrerequisiteComponent.",
+            "Params": [
+                {
+                    "Name": "PrerequisiteComponent",
+                    "Type": "UActorComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTickableWhenPaused",
+            "Description": "Gets whether this actor can tick when paused.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTickableWhenPaused",
+            "Description": "Sets whether this actor can tick when paused.",
+            "Params": [
+                {
+                    "Name": "bTickableWhenPaused",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MakeMIDForMaterial",
+            "Description": "Allocate a MID for a given parent material.",
+            "Params": [
+                {
+                    "Name": "Parent",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMaterialInstanceDynamic * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGameTimeSinceCreation",
+            "Description": "The number of seconds (in game time) since this Actor was created, relative to Get Game Time In Seconds.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MakeNoise",
+            "Description": "Trigger a noise caused by a given Pawn, at a given location.\n\t  Note that the NoiseInstigator Pawn MUST have a PawnNoiseEmitterComponent for the noise to be detected by a PawnSensingComponent.\n\t  Senders of MakeNoise should have an Instigator if they are not pawns, or pass a NoiseInstigator.\n\t ",
+            "Params": [
+                {
+                    "Name": "Loudness",
+                    "Type": "float ",
+                    "Description": "The relative loudness of this noise. Usual range is 0 (no noise) to 1 (full volume). If MaxRange is used, this scales the max range, otherwise it affects the hearing range specified by the sensor.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NoiseInstigator",
+                    "Type": "APawn * ",
+                    "Description": "Pawn responsible for this noise. Uses the actor's Instigator if NoiseInstigator=NULL",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NoiseLocation",
+                    "Type": "FVector ",
+                    "Description": "Position of noise source. If zero vector, use the actor's location.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MaxRange",
+                    "Type": "float ",
+                    "Description": "Max range at which the sound may be heard. A value of 0 indicates no max range (though perception may have its own range). Loudness scales the range. (Note: not supported for legacy PawnSensingComponent, only for AIPerception)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tag",
+                    "Type": "FName",
+                    "Description": "Identifier for the noise.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveBeginPlay",
+            "Description": "Event when play begins for this actor.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveReInitForReplay",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveFastForwardFinishedForReplay",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorSimulatedRelevant",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bIsRelevant",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bConsiderHidden",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsActorBeingDestroyed",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveAnyDamage",
+            "Description": "Event when this actor takes ANY damage",
+            "Params": [
+                {
+                    "Name": "Damage",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "UDamageType * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstigatedBy",
+                    "Type": "AController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveRadialDamage",
+            "Description": "Event when this actor takes RADIAL damage",
+            "Params": [
+                {
+                    "Name": "DamageReceived",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "UDamageType * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Origin",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitInfo",
+                    "Type": "FHitResult & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstigatedBy",
+                    "Type": "AController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceivePointDamage",
+            "Description": "Event when this actor takes POINT damage",
+            "Params": [
+                {
+                    "Name": "Damage",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "UDamageType * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitNormal",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitComponent",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoneName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ShotFromDirection",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstigatedBy",
+                    "Type": "AController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitInfo",
+                    "Type": "FHitResult &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveTick",
+            "Description": "Event called every frame",
+            "Params": [
+                {
+                    "Name": "DeltaSeconds",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorBeginOverlap",
+            "Description": "Event when this actor overlaps another actor, for example a player walking into a trigger.\n\t \tFor events when objects have a blocking collision, for example a player hitting a wall, see 'Hit' events.",
+            "Params": [
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorEndOverlap",
+            "Description": "Event when an actor no longer overlaps another actor, and they have separated.",
+            "Params": [
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorBeginCursorOver",
+            "Description": "Event when this actor has the mouse moved over it with the clickable interface.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorEndCursorOver",
+            "Description": "Event when this actor has the mouse moved off of it with the clickable interface.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorOnClicked",
+            "Description": "Event when this actor is clicked by the mouse when using the clickable interface.",
+            "Params": [
+                {
+                    "Name": "ButtonPressed",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorOnReleased",
+            "Description": "Event when this actor is under the mouse when left mouse button is released while using the clickable interface.",
+            "Params": [
+                {
+                    "Name": "ButtonReleased",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorOnInputTouchBegin",
+            "Description": "Event when this actor is touched when click events are enabled.",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "ETouchIndex :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorOnInputTouchEnd",
+            "Description": "Event when this actor is under the finger when untouched when click events are enabled.",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "ETouchIndex :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorOnInputTouchEnter",
+            "Description": "Event when this actor has a finger moved over it with the clickable interface.",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "ETouchIndex :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActorOnInputTouchLeave",
+            "Description": "Event when this actor has a finger moved off of it with the clickable interface.",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "ETouchIndex :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOverlappingActors",
+            "Description": "Returns list of actors this actor is overlapping (any component overlapping any component). Does not return itself.",
+            "Params": [
+                {
+                    "Name": "OverlappingActors",
+                    "Type": "TArray < AActor * > & ",
+                    "Description": "[out] Returned list of overlapping actors",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ClassFilter",
+                    "Type": "TSubclassOf < AActor >",
+                    "Description": " [optional] If set, only returns actors of this class or subclasses",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOverlappingComponents",
+            "Description": "Returns list of components this actor is overlapping.",
+            "Params": [
+                {
+                    "Name": "OverlappingComponents",
+                    "Type": "TArray < UPrimitiveComponent * > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveHit",
+            "Description": "Event when this actor bumps into a blocking object, or blocks another actor that bumps into it.\n\t  This could happen due to things like Character movement, using Set Location with 'sweep' enabled, or physics simulation.\n\t  For events when objects overlap (e.g. walking into a trigger) see the 'Overlap' event.\n\t ",
+            "Params": [
+                {
+                    "Name": "MyComp",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Other",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OtherComp",
+                    "Type": "UPrimitiveComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSelfMoved",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitNormal",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NormalImpulse",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Hit",
+                    "Type": "FHitResult &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLifeSpan",
+            "Description": "Set the lifespan of this actor. When it expires the object will be destroyed. If requested lifespan is 0, the timer is cleared and the actor will not be destroyed.",
+            "Params": [
+                {
+                    "Name": "InLifespan",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLifeSpan",
+            "Description": "Get the remaining lifespan of this actor. If zero is returned the actor lives forever.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UserConstructionScript",
+            "Description": "Construction script, the place to spawn components and do other setup.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveDestroyed",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveEndPlay",
+            "Description": "Event to notify blueprints this actor is about to be deleted.",
+            "Params": [
+                {
+                    "Name": "EndPlayReason",
+                    "Type": "EEndPlayReason :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActorTickEnabled",
+            "Description": "Set this actor's tick functions to be enabled or disabled. Only has an effect if the function is registered\n\t  This only modifies the tick function on actor itself",
+            "Params": [
+                {
+                    "Name": "bEnabled",
+                    "Type": "bool",
+                    "Description": "Whether it should be enabled or not",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsActorTickEnabled",
+            "Description": "Returns whether this actor has tick enabled or not",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetActorTickInterval",
+            "Description": "Sets the tick interval of this actor's primary tick function. Will not enable a disabled tick function. Takes effect on next tick.",
+            "Params": [
+                {
+                    "Name": "TickInterval",
+                    "Type": "float",
+                    "Description": "The rate at which this actor should be ticking",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorTickInterval",
+            "Description": "Returns the tick interval of this actor's primary tick function",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicatedMovement",
+            "Description": "ReplicatedMovement struct replication event",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOwner",
+            "Description": "Set the owner of this Actor, used primarily for network replication.",
+            "Params": [
+                {
+                    "Name": "NewOwner",
+                    "Type": "AActor *",
+                    "Description": "The Actor whom takes over ownership of this Actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOwner",
+            "Description": "Get the owner of this Actor, used primarily for network replication.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor *",
+                    "Description": "Actor that owns this Actor",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsOverlappingActor",
+            "Description": "Check whether any component of this Actor is overlapping any component of another Actor.",
+            "Params": [
+                {
+                    "Name": "Other",
+                    "Type": "AActor *",
+                    "Description": "The other Actor to test against",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "Whether any component of this Actor is overlapping any component of another Actor.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetNetDormancy",
+            "Description": "Puts actor in dormant networking state",
+            "Params": [
+                {
+                    "Name": "NewDormancy",
+                    "Type": "ENetDormancy",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FlushNetDormancy",
+            "Description": "Forces dormant actor to replicate but doesn't change NetDormancy state (i.e., they will go dormant again if left dormant)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsChildActor",
+            "Description": "Returns whether this Actor was spawned by a child actor component",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllChildActors",
+            "Description": "Returns a list of all child actors, including children of children",
+            "Params": [
+                {
+                    "Name": "ChildActors",
+                    "Type": "TArray < AActor * > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIncludeDescendants",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetParentComponent",
+            "Description": "If this Actor was created by a Child Actor Component returns that Child Actor Component",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UChildActorComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetParentActor",
+            "Description": "If this Actor was created by a Child Actor Component returns the Actor that owns that Child Actor Component",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_TeleportTo",
+            "Description": "Teleport this actor to a new location. If the actor doesn't fit exactly at the location specified, tries to slightly move it out of walls and such.\n\t ",
+            "Params": [
+                {
+                    "Name": "DestLocation",
+                    "Type": "FVector ",
+                    "Description": "The target destination point",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DestRotation",
+                    "Type": "FRotator",
+                    "Description": "The target rotation at the destination",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the actor has been successfully moved, or false if it couldn't fit.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLevelName",
+            "Description": "Return the ULevel name that this Actor is part of.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachParentActor",
+            "Description": "Walk up the attachment chain from RootComponent until we encounter a different actor, and return it. If we are not attached to a component in a different actor, returns NULL",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachParentSocketName",
+            "Description": "Walk up the attachment chain from RootComponent until we encounter a different actor, and return the socket name in the component. If we are not attached to a component in a different actor, returns NAME_None",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachedActors",
+            "Description": "Find all Actors which are attached directly to a component in this actor",
+            "Params": [
+                {
+                    "Name": "OutActors",
+                    "Type": "TArray < AActor * > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTickGroup",
+            "Description": "Sets the ticking group for this actor.",
+            "Params": [
+                {
+                    "Name": "NewTickGroup",
+                    "Type": "ETickingGroup",
+                    "Description": "the new value to assign",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanBeBaseForCharacter",
+            "Description": "Return true if the given Pawn can be \"based\" on this actor (ie walk on it).",
+            "Params": [
+                {
+                    "Name": "Pawn",
+                    "Type": "APawn *",
+                    "Description": "- The pawn that wants to be based on this actor",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAnimNotifyStateBoneRetargetAdaptInfoObj",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAnimNotifyStateBoneRetargetAdaptInfoObj *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TryGetBoneRetargetObj",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSourceObj",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TryGetBoneRetargetObjForNotifyState",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTargetNotifyState",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitAnimNotifyStateBoneRetargetInfo",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTargetNotifyState",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBoneRetargetObj",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearAnimNotifyStateBoneRetargetAdaptState",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTargetNotifyState",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsAnimNotifyStateBoneRetargetAdaptInitDone",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTargetNotifyState",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OverrideNotifyAttachMesh",
+            "Description": "For Bone Retarget Feature End",
+            "Params": [
+                {
+                    "Name": "InTargetNotifyState",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTargetSkelMeshComp",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HasRetarget",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IgnoreNewFPPState",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnBecomeViewTarget",
+            "Description": "Event called when this Actor becomes the view target for the given PlayerController.",
+            "Params": [
+                {
+                    "Name": "PC",
+                    "Type": "APlayerController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnEndViewTarget",
+            "Description": "Event called when this Actor is no longer the view target for the given PlayerController.",
+            "Params": [
+                {
+                    "Name": "PC",
+                    "Type": "APlayerController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_OnReset",
+            "Description": "Event called when this Actor is reset to its initial state - used when restarting level without reloading.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "WasRecentlyRendered",
+            "Description": "Returns true if this actor has been rendered \"recently\", with a tolerance in seconds to define what \"recent\" means.\n\t  e.g.: If a tolerance of 0.1 is used, this function will return true only if the actor was rendered in the last 0.1 seconds of game time.\n\t ",
+            "Params": [
+                {
+                    "Name": "Tolerance",
+                    "Type": "float",
+                    "Description": "How many seconds ago the actor last render time can be and still count as having been \"recently\" rendered.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "Whether this actor was recently rendered.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ForceNetRelevant",
+            "Description": "Forces this actor to be net relevant if it is not already by default",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ForceNetConsider",
+            "Description": "Force actor enter consider list",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ForceNetComponentUpdate",
+            "Description": "Force actor's component to be updated to client",
+            "Params": [
+                {
+                    "Name": "InComponent",
+                    "Type": "UActorComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ForceNetUpdate",
+            "Description": "Force actor to be updated to clients",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PrestreamTextures",
+            "Description": "Calls PrestreamTextures() for all the actor's meshcomponents.",
+            "Params": [
+                {
+                    "Name": "Seconds",
+                    "Type": "float ",
+                    "Description": "- Number of seconds to force all mip-levels to be resident",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bEnableStreaming",
+                    "Type": "bool ",
+                    "Description": "- Whether to start (true) or stop (false) streaming",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CinematicTextureGroups",
+                    "Type": "int32",
+                    "Description": "- Bitfield indicating which texture groups that use extra high-resolution mips",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTextureForceResidentFlag",
+            "Description": "Calls SetTextureForceResidentFlag() for all the actor's meshcomponents.",
+            "Params": [
+                {
+                    "Name": "bForceMiplevelsToBeResident",
+                    "Type": "bool",
+                    "Description": "Whether textures should be forced to be resident or not.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActorEyesViewPoint",
+            "Description": "Returns the point of view of the actor.\n\t  Note that this doesn't mean the camera, but the 'eyes' of the actor.\n\t  For example, for a Pawn, this would define the eye height location,\n\t  and view rotation (which is different from the pawn rotation which has a zeroed pitch component).\n\t  A camera first person view will typically use this view point. Most traces (weapon, AI) will be done from this view point.\n\t ",
+            "Params": [
+                {
+                    "Name": "OutLocation",
+                    "Type": "FVector & ",
+                    "Description": "- location of view point",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutRotation",
+                    "Type": "FRotator &",
+                    "Description": "- view rotation of actor.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentByClass",
+            "Description": "Script exposed version of FindComponentByClass",
+            "Params": [
+                {
+                    "Name": "ComponentClass",
+                    "Type": "TSubclassOf < UActorComponent >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UActorComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentsByClass",
+            "Description": "Gets all the components that inherit from the given class.\n\tCurrently returns an array of UActorComponent which must be cast to the correct type.",
+            "Params": [
+                {
+                    "Name": "ComponentClass",
+                    "Type": "TSubclassOf < UActorComponent >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UActorComponent * > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetComponentsByTag",
+            "Description": "Gets all the components that inherit from the given class with a given tag.",
+            "Params": [
+                {
+                    "Name": "ComponentClass",
+                    "Type": "TSubclassOf < UActorComponent > ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tag",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UActorComponent * > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetGeneralCampID",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InCampID",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGeneralCampID",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGeneralCampName",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGeneralCampRelationWithCampID",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "CampID",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ECampRelation ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGeneralCampRelationWithActor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ECampRelation ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AllowTriggerDeformEffect",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Origin",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EffectRange",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TriggerDeformEffect",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Origin",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EffectRange",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableDeformEffect",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsHiddenEdAtStartup",
+            "Description": "Simple accessor to check if the actor is hidden upon editor startup",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "true if the actor is hidden upon editor startup; false if it is not",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsHiddenEd",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsTemporarilyHiddenInEditor",
+            "Description": "Sets whether or not this actor is hidden in the editor for the duration of the current editor session\n\t ",
+            "Params": [
+                {
+                    "Name": "bIsHidden",
+                    "Type": "bool",
+                    "Description": "True if the actor is hidden",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsTemporarilyHiddenInEditor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bIncludeParent",
+                    "Type": "bool",
+                    "Description": "- Whether to recurse up child actor hierarchy or not",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "Whether or not this actor is hidden in the editor for the duration of the current editor session",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsEditable",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "Returns true if this actor is allowed to be displayed, selected and manipulated by the editor.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsSelectable",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "Returns true if this actor can EVER be selected in a level in the editor.  Can be overridden by specific actors to make them unselectable.",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnTakeAnyDamage",
+            "Description": "Called when the actor is damaged in any way.",
+            "Params": [
+                {
+                    "Name": "DamagedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Damage",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "const class UDamageType*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstigatedBy",
+                    "Type": "AController*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTakePointDamage",
+            "Description": "Called when the actor is damaged by point damage.",
+            "Params": [
+                {
+                    "Name": "DamagedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Damage",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstigatedBy",
+                    "Type": "AController*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitLocation",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FHitComponent",
+                    "Type": "UPrimitiveComponent*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ShotFromDirection",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "const class UDamageType*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnActorBeginOverlap",
+            "Description": "Called when another actor begins to overlap this actor, for example a player walking into a trigger.\n\t \tFor events when objects have a blocking collision, for example a player hitting a wall, see 'Hit' events.",
+            "Params": [
+                {
+                    "Name": "OverlappedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnActorEndOverlap",
+            "Description": "Called when another actor stops overlapping this actor.",
+            "Params": [
+                {
+                    "Name": "OverlappedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnBeginCursorOver",
+            "Description": "Called when the mouse cursor is moved over this actor if mouse over events are enabled in the player controller.",
+            "Params": [
+                {
+                    "Name": "TouchedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnEndCursorOver",
+            "Description": "Called when the mouse cursor is moved off this actor if mouse over events are enabled in the player controller.",
+            "Params": [
+                {
+                    "Name": "TouchedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnClicked",
+            "Description": "Called when the left mouse button is clicked while the mouse is over this actor and click events are enabled in the player controller.",
+            "Params": [
+                {
+                    "Name": "TouchedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ButtonPressed",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnReleased",
+            "Description": "Called when the left mouse button is released while the mouse is over this actor and click events are enabled in the player controller.",
+            "Params": [
+                {
+                    "Name": "TouchedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ButtonReleased",
+                    "Type": "FKey",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnInputTouchBegin",
+            "Description": "Called when a touch input is received over this actor when touch events are enabled in the player controller.",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "ETouchIndex::Type",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TouchedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnInputTouchEnd",
+            "Description": "Called when a touch input is received over this component when touch events are enabled in the player controller.",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "ETouchIndex::Type",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TouchedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnInputTouchEnter",
+            "Description": "Called when a finger is moved over this actor when touch over events are enabled in the player controller.",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "ETouchIndex::Type",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TouchedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnInputTouchLeave",
+            "Description": "Called when a finger is moved off this actor when touch over events are enabled in the player controller.",
+            "Params": [
+                {
+                    "Name": "FingerIndex",
+                    "Type": "ETouchIndex::Type",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TouchedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnActorHit",
+            "Description": "Called when this Actor hits (or is hit by) something solid. This could happen due to things like Character movement, using Set Location with 'sweep' enabled, or physics simulation.\n\t \tFor events when objects overlap (e.g. walking into a trigger) see the 'Overlap' event.",
+            "Params": [
+                {
+                    "Name": "SelfActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NormalImpulse",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Hit",
+                    "Type": "const FHitResult&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnActorHitNew",
+            "Description": "same as OnActorHit, but will Recivie StartPenetrating Hits",
+            "Params": [
+                {
+                    "Name": "SelfActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NormalImpulse",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Hit",
+                    "Type": "const FHitResult&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnDestroyed",
+            "Description": "Event triggered when the actor is destroyed.",
+            "Params": [
+                {
+                    "Name": "DestroyedActor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnEndPlay",
+            "Description": "Event triggered when the actor is being removed from a level.",
+            "Params": [
+                {
+                    "Name": "Actor",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EndPlayReason",
+                    "Type": "EEndPlayReason::Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnBecomeViewTargetEvent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "PC",
+                    "Type": "APlayerController*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnEndViewTargetEvent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "PC",
+                    "Type": "APlayerController*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnEndBlendViewTargetEvent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "PC",
+                    "Type": "APlayerController*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ActorOnVaultEvent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitLocation",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

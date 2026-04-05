@@ -1,0 +1,213 @@
+{
+    "Name": "UAudioMixerBlueprintLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "AddMasterSubmixEffect",
+            "Description": "Adds a submix effect preset to the master submix.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SubmixEffectPreset",
+                    "Type": "USoundEffectSubmixPreset *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveMasterSubmixEffect",
+            "Description": "Removes a submix effect preset from the master submix.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SubmixEffectPreset",
+                    "Type": "USoundEffectSubmixPreset *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearMasterSubmixEffects",
+            "Description": "Clears all master submix effects.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddSourceEffectToPresetChain",
+            "Description": "Adds source effect entry to preset chain. Only effects the instance of the preset chain",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PresetChain",
+                    "Type": "USoundEffectSourcePresetChain * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Entry",
+                    "Type": "FSourceEffectChainEntry",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveSourceEffectFromPresetChain",
+            "Description": "Adds source effect entry to preset chain. Only affects the instance of preset chain.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PresetChain",
+                    "Type": "USoundEffectSourcePresetChain * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntryIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBypassSourceEffectChainEntry",
+            "Description": "Set whether or not to bypass the effect at the source effect chain index.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PresetChain",
+                    "Type": "USoundEffectSourcePresetChain * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntryIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bBypassed",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumberOfEntriesInSourceEffectChain",
+            "Description": "Returns the number of effect chain entries in the given source effect chain.",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PresetChain",
+                    "Type": "USoundEffectSourcePresetChain *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

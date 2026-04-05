@@ -1,0 +1,19 @@
+{
+    "Name": "ULandscapeMeshCollisionComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MeshGuid",
+            "Type": "FGuid",
+            "Description": "Guid used to share PhysX heightfield objects in the editor",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "ULandscapeHeightfieldCollisionComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

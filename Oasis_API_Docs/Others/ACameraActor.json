@@ -1,0 +1,75 @@
+{
+    "Name": "ACameraActor",
+    "Description": "A CameraActor is a camera viewpoint that can be placed in a level.",
+    "Variables": [
+        {
+            "Name": "AutoActivateForPlayer",
+            "Type": "TEnumAsByte < EAutoReceiveInput :: Type >",
+            "Description": "Specifies which player controller, if any, should automatically use this Camera when the controller is active.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraComponent",
+            "Type": "UCameraComponent *",
+            "Description": "The camera component for this camera",
+            "Redirect": ""
+        },
+        {
+            "Name": "SceneComponent",
+            "Type": "USceneComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bConstrainAspectRatio_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AspectRatio_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FOVAngle_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PostProcessBlendWeight_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PostProcessSettings_DEPRECATED",
+            "Type": "FPostProcessSettings",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetAutoActivatePlayerIndex",
+            "Description": "Returns index of the player for whom we auto-activate, or INDEX_NONE (-1) if disabled.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

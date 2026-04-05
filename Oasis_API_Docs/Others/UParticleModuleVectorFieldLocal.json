@@ -1,0 +1,79 @@
+{
+    "Name": "UParticleModuleVectorFieldLocal",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "VectorField",
+            "Type": "UVectorField *",
+            "Description": "Vector field asset to use.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeTranslation",
+            "Type": "FVector",
+            "Description": "Translation of the vector field relative to the emitter.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeRotation",
+            "Type": "FRotator",
+            "Description": "Rotation of the vector field relative to the emitter.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeScale3D",
+            "Type": "FVector",
+            "Description": "Scale of the vector field relative to the emitter.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Intensity",
+            "Type": "float",
+            "Description": "Intensity of the local vector field.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Tightness",
+            "Type": "float",
+            "Description": "Tightness tweak value: 0: Force 1: Velocity.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoreComponentTransform",
+            "Type": "uint32",
+            "Description": "Ignore component transform.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTileX",
+            "Type": "uint32",
+            "Description": "Tile vector field in x axis?",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTileY",
+            "Type": "uint32",
+            "Description": "Tile vector field in y axis?",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTileZ",
+            "Type": "uint32",
+            "Description": "Tile vector field in z axis?",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseFixDT",
+            "Type": "uint32",
+            "Description": "Use fix delta time in the simulation?",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVectorFieldBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

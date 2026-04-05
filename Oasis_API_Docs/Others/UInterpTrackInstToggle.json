@@ -1,0 +1,31 @@
+{
+    "Name": "UInterpTrackInstToggle",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Action",
+            "Type": "TEnumAsByte < enum ETrackToggleAction >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastUpdatePosition",
+            "Type": "float",
+            "Description": "Position we were in last time we evaluated.\n\t \tDuring UpdateTrack, toggles between this time and the current time will be processed.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSavedActiveState",
+            "Type": "uint32",
+            "Description": "Cached 'active' state for the toggleable actor before we possessed it; restored when Matinee exits",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInst"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

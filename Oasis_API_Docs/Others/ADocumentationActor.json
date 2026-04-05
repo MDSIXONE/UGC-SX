@@ -1,0 +1,25 @@
+{
+    "Name": "ADocumentationActor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DocumentLink",
+            "Type": "FString",
+            "Description": "Link to a help document.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Billboard",
+            "Type": "UMaterialBillboardComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,103 @@
+{
+    "Name": "UOceanCDLODMeshComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CDLODMeshOverrideMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "The material used to rendering ocean",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxViewDistance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxCDLODDistance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODDistanceRatio",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LOD0Size",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODCount",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WaveFadeDistance",
+            "Type": "float",
+            "Description": ". amplitude of wave have to fade as 0 for edge quads,this is the fade radius",
+            "Redirect": ""
+        },
+        {
+            "Name": "SeaLevel",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Occlusioncoff",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FFTSampleCount",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FFTSampleSize",
+            "Type": "float",
+            "Description": ". FFT texture sampled by world position, used as  normalize sample position",
+            "Redirect": ""
+        },
+        {
+            "Name": "FFTFoamBlurNormalZ",
+            "Type": "FVector2D",
+            "Description": ". X influence the foam shape\n\t. Y : Z of normal vector of FFT wave, at this moment this normal vector haven't be normalize, after z setted, normal vector will be normalized",
+            "Redirect": ""
+        },
+        {
+            "Name": "GerstnerFFTSoftness",
+            "Type": "FVector2D",
+            "Description": "GerstnerFFTSoftness holds two waves blend factor in near sea\n\t .X is Gerstner blend factor, if bigger than 1, wave fade rapidly\n\t .Y is FFT blend factor, if smaller than 1, wave fade slowly",
+            "Redirect": ""
+        },
+        {
+            "Name": "GridSize",
+            "Type": "int32",
+            "Description": "UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = OCeanCDLODMesh)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShapeUniformValue",
+            "Type": "TArray < int32 >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

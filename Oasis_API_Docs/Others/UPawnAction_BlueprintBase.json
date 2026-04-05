@@ -1,0 +1,125 @@
+{
+    "Name": "UPawnAction_BlueprintBase",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "ActionStart",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ActionTick",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DeltaSeconds",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ActionPause",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ActionResume",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ActionFinished",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WithResult",
+                    "Type": "EPawnActionResult :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPawnAction"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

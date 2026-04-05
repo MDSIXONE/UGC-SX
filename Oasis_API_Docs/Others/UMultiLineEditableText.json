@@ -1,0 +1,288 @@
+{
+    "Name": "UMultiLineEditableText",
+    "Description": "Editable text box widget",
+    "Variables": [
+        {
+            "Name": "Text",
+            "Type": "FText",
+            "Description": "The text content for this editable text box widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "HintText",
+            "Type": "FText",
+            "Description": "Hint text that appears when there is no text in the text box",
+            "Redirect": ""
+        },
+        {
+            "Name": "HintTextDelegate",
+            "Type": "FGetText",
+            "Description": "A bindable delegate to allow logic to drive the hint text of the widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "WidgetStyle",
+            "Type": "FTextBlockStyle",
+            "Description": "The style",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsReadOnly",
+            "Type": "bool",
+            "Description": "Sets whether this text block can be modified interactively by the user",
+            "Redirect": ""
+        },
+        {
+            "Name": "Font_DEPRECATED",
+            "Type": "FSlateFontInfo",
+            "Description": "Font color and opacity (overrides Style)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AllowContextMenu",
+            "Type": "bool",
+            "Description": "Whether the context menu can be opened",
+            "Redirect": ""
+        },
+        {
+            "Name": "UseModiferKeyForNewLine",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetText",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FText",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetText",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InText",
+                    "Type": "FText",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsReadOnly",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bReadOnly",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetModiferKeyForNewLine",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bReadOnly",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWrapTextAt",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InWrapTextAt",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFont",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InFontInfo",
+                    "Type": "FSlateFontInfo",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetColorAndOpacity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Color",
+                    "Type": "FSlateColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UTextLayoutWidget"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnTextChanged",
+            "Description": "Called whenever the text is changed interactively by the user",
+            "Params": [
+                {
+                    "Name": "Text",
+                    "Type": "const FText&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTextCommitted",
+            "Description": "Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus.",
+            "Params": [
+                {
+                    "Name": "Text",
+                    "Type": "const FText&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CommitMethod",
+                    "Type": "ETextCommit::Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTextBeginEditTransation",
+            "Description": "Called to begin an undoable editable text transaction",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTextEndEditTransaction",
+            "Description": "Called to end an undoable editable text transaction",
+            "Params": [
+                {
+                    "Name": "Text",
+                    "Type": "const FText&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnTextFocusReceived",
+            "Description": "Called when editable text received focus",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

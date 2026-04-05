@@ -1,0 +1,25 @@
+{
+    "Name": "UNavigationInvokerComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TileGenerationRadius",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TileRemovalRadius",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

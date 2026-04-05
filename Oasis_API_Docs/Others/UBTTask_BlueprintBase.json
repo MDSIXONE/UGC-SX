@@ -1,0 +1,287 @@
+{
+    "Name": "UBTTask_BlueprintBase",
+    "Description": "Base class for blueprint based task nodes. Do NOT use it for creating native c++ classes!\n \n   When task receives Abort event, all latent actions associated this instance are being removed.\n   This prevents from resuming activity started by Execute, but does not handle external events.\n   Please use them safely (unregister at abort) and call IsTaskExecuting() when in doubt.",
+    "Variables": [
+        {
+            "Name": "AIOwner",
+            "Type": "AAIController *",
+            "Description": "Cached AIController owner of BehaviorTreeComponent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActorOwner",
+            "Type": "AActor *",
+            "Description": "Cached actor owner of BehaviorTreeComponent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowPropertyDetails",
+            "Type": "uint32",
+            "Description": "show detailed information about properties",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ReceiveExecute",
+            "Description": "entry point, task will stay active until FinishExecute is called.",
+            "Params": [
+                {
+                    "Name": "OwnerActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveAbort",
+            "Description": "if blueprint graph contains this event, task will stay active until FinishAbort is called",
+            "Params": [
+                {
+                    "Name": "OwnerActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveTick",
+            "Description": "tick function",
+            "Params": [
+                {
+                    "Name": "OwnerActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DeltaSeconds",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveExecuteAI",
+            "Description": "Alternative AI version of ReceiveExecute",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveAbortAI",
+            "Description": "Alternative AI version of ReceiveAbort",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveTickAI",
+            "Description": "Alternative AI version of tick function.",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DeltaSeconds",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FinishExecute",
+            "Description": "finishes task execution with Success or Fail result",
+            "Params": [
+                {
+                    "Name": "bSuccess",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FinishAbort",
+            "Description": "aborts task execution",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFinishOnMessage",
+            "Description": "task execution will be finished (with result 'Success') after receiving specified message",
+            "Params": [
+                {
+                    "Name": "MessageName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFinishOnMessageWithId",
+            "Description": "task execution will be finished (with result 'Success') after receiving specified message with indicated ID",
+            "Params": [
+                {
+                    "Name": "MessageName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RequestID",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsTaskExecuting",
+            "Description": "check if task is currently being executed",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsTaskAborting",
+            "Description": "check if task is currently being aborted",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBTTaskNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

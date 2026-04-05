@@ -1,0 +1,73 @@
+{
+    "Name": "UUserWidgetStyle",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StylesInfo",
+            "Type": "TArray < FUserWidgetStyleInfo >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldHidenJoystick",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowHidenJoystick_NoDestory",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldHidenCrosshair",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseBLEBlackList",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BLEBlackList",
+            "Type": "TArray < FBLEEnumInfo >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldReport",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UnloadDurationTime",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsPCUIStyle",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UnloadTimerHandle",
+            "Type": "FTimerHandle",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDataAsset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

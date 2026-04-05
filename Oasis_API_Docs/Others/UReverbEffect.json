@@ -1,0 +1,91 @@
+{
+    "Name": "UReverbEffect",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Density",
+            "Type": "float",
+            "Description": "Density - 0.0 < 1.0 < 1.0 - Coloration of the late reverb - lower value is more grainy",
+            "Redirect": ""
+        },
+        {
+            "Name": "Diffusion",
+            "Type": "float",
+            "Description": "Diffusion - 0.0 < 1.0 < 1.0 - Echo density in the reverberation decay - lower is more grainy",
+            "Redirect": ""
+        },
+        {
+            "Name": "Gain",
+            "Type": "float",
+            "Description": "Reverb Gain - 0.0 < 0.32 < 1.0 - overall reverb gain - master volume control",
+            "Redirect": ""
+        },
+        {
+            "Name": "GainHF",
+            "Type": "float",
+            "Description": "Reverb Gain High Frequency - 0.0 < 0.89 < 1.0 - attenuates the high frequency reflected sound",
+            "Redirect": ""
+        },
+        {
+            "Name": "DecayTime",
+            "Type": "float",
+            "Description": "Decay Time - 0.1 < 1.49 < 20.0 Seconds - larger is more reverb",
+            "Redirect": ""
+        },
+        {
+            "Name": "DecayHFRatio",
+            "Type": "float",
+            "Description": "Decay High Frequency Ratio - 0.1 < 0.83 < 2.0 - how much the quicker or slower the high frequencies decay relative to the lower frequencies.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReflectionsGain",
+            "Type": "float",
+            "Description": "Reflections Gain - 0.0 < 0.05 < 3.16 - controls the amount of initial reflections",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReflectionsDelay",
+            "Type": "float",
+            "Description": "Reflections Delay - 0.0 < 0.007 < 0.3 Seconds - the time between the listener receiving the direct path sound and the first reflection",
+            "Redirect": ""
+        },
+        {
+            "Name": "LateGain",
+            "Type": "float",
+            "Description": "Late Reverb Gain - 0.0 < 1.26 < 10.0 - gain of the late reverb",
+            "Redirect": ""
+        },
+        {
+            "Name": "LateDelay",
+            "Type": "float",
+            "Description": "Late Reverb Delay - 0.0 < 0.011 < 0.1 Seconds - time difference between late reverb and first reflections",
+            "Redirect": ""
+        },
+        {
+            "Name": "AirAbsorptionGainHF",
+            "Type": "float",
+            "Description": "Air Absorption - 0.0 < 0.994 < 1.0 - lower value means more absorption",
+            "Redirect": ""
+        },
+        {
+            "Name": "RoomRolloffFactor",
+            "Type": "float",
+            "Description": "Room Rolloff - 0.0 < 0.0 < 10.0 - multiplies the attenuation due to distance",
+            "Redirect": ""
+        },
+        {
+            "Name": "bChanged",
+            "Type": "uint32",
+            "Description": "Transient property used to trigger real-time updates of the reverb for real-time editor previewing",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

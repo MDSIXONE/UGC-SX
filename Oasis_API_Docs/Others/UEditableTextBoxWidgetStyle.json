@@ -1,0 +1,19 @@
+{
+    "Name": "UEditableTextBoxWidgetStyle",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "EditableTextBoxStyle",
+            "Type": "FEditableTextBoxStyle",
+            "Description": "The actual data describing the button's appearance.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USlateWidgetStyleContainerBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

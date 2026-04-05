@@ -1,0 +1,31 @@
+{
+    "Name": "UMaterialExpressionFontSampleParameter",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ParameterName",
+            "Type": "FName",
+            "Description": "name to be referenced when we want to find and set thsi parameter",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExpressionGUID",
+            "Type": "FGuid",
+            "Description": "GUID that should be unique within the material, this is used for parameter renaming.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Group",
+            "Type": "FName",
+            "Description": "The name of the parameter Group to display in MaterialInstance Editor. Default is None group",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionFontSample"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

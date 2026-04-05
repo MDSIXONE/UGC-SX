@@ -1,0 +1,31 @@
+{
+    "Name": "USoundSourceBus",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SourceBusChannels",
+            "Type": "ESourceBusChannels",
+            "Description": "How many channels to use for the source bus.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SourceBusDuration",
+            "Type": "float",
+            "Description": "The duration (in seconds) to use for the source bus. A duration of 0.0 indicates to play the source bus indefinitely.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAutoDeactivateWhenSilent",
+            "Type": "uint32",
+            "Description": "Stop the source bus when the volume goes to zero.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundWave"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

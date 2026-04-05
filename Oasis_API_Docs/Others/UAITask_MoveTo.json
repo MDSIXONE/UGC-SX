@@ -1,0 +1,121 @@
+{
+    "Name": "UAITask_MoveTo",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "OnRequestFailed",
+            "Type": "FGenericGameplayTaskDelegate",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MoveRequest",
+            "Type": "FAIMoveRequest",
+            "Description": "parameters of move request",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "AIMoveTo",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Controller",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "GoalLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "GoalActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AcceptanceRadius",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StopOnOverlap",
+                    "Type": "EAIOptionFlag :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AcceptPartialPath",
+                    "Type": "EAIOptionFlag :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUsePathfinding",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bLockAILogic",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseContinuosGoalTracking",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UAITask_MoveTo * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UAITask"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnMoveFinished",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Result",
+                    "Type": "TEnumAsByte<EPathFollowingResult::Type>",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AIController",
+                    "Type": "AAIController*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

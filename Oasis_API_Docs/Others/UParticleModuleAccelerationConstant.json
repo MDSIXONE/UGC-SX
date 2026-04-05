@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleAccelerationConstant",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Acceleration",
+            "Type": "FVector",
+            "Description": "Constant acceleration for particles in this system.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleAccelerationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

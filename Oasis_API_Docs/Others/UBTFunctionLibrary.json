@@ -1,0 +1,757 @@
+{
+    "Name": "UBTFunctionLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetOwnersBlackboard",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UBlackboardComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOwnerComponent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UBehaviorTreeComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsObject",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsActor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsClass",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UClass * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsEnum",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "uint8 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsInt",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsFloat",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsBool",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsString",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsName",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsVector",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBlackboardValueAsRotator",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsObject",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsClass",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "UClass *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsEnum",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "uint8",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsInt",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsFloat",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsBool",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsString",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsName",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsVector",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearBlackboardValueAsVector",
+            "Description": "(DEPRECATED) Use ClearBlackboardValue instead",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlackboardValueAsRotator",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearBlackboardValue",
+            "Description": "Resets indicated value to \"not set\" value, based on values type",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FBlackboardKeySelector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartUsingExternalEvent",
+            "Description": "Initialize variables marked as \"instance memory\" and set owning actor for blackboard operations",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OwningActor",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StopUsingExternalEvent",
+            "Description": "Save variables marked as \"instance memory\" and clear owning actor",
+            "Params": [
+                {
+                    "Name": "NodeOwner",
+                    "Type": "UBTNode *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

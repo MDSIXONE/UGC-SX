@@ -1,0 +1,293 @@
+{
+    "Name": "UKismetMetaDataLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "HasMetaData",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Field",
+                    "Type": "UField * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NameIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMetaData",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Field",
+                    "Type": "UField * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NameIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEnum",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "EnumProperty",
+                    "Type": "UEnumProperty *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UEnum * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEnumFromByte",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ByteProperty",
+                    "Type": "UByteProperty *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UEnum * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumOfEnum",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Enum",
+                    "Type": "UEnum *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEnumName",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Enum",
+                    "Type": "UEnum * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NameIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEnumValue",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Enum",
+                    "Type": "UEnum * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NameIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int64 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEnumIndexByValue",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Enum",
+                    "Type": "UEnum * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "int64",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetScriptStructOfStructProperty",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "StructProperty",
+                    "Type": "UStructProperty *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UScriptStruct * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetClassOfObjectPropertyBase",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ObjectPropertyBase",
+                    "Type": "UObjectPropertyBase *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UClass * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetObjectsWithOuter",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Outer",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIncludeNestedObjects",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ExclusionFlags",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ExclusionInternalFlags",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UObject * > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

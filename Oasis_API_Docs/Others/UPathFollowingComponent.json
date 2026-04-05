@@ -1,0 +1,111 @@
+{
+    "Name": "UPathFollowingComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MovementComp",
+            "Type": "UNavMovementComponent *",
+            "Description": "associated movement component",
+            "Redirect": ""
+        },
+        {
+            "Name": "MyNavData",
+            "Type": "ANavigationData *",
+            "Description": "navigation data for agent described in movement component",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "OnActorBump",
+            "Description": "called when moving agent collides with another actor",
+            "Params": [
+                {
+                    "Name": "SelfActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OtherActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NormalImpulse",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Hit",
+                    "Type": "FHitResult &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPathActionType",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EPathFollowingAction :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPathDestination",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnNavDataRegistered",
+            "Description": "called when NavigationSystem registers new navigation data type while this component\n\t \tinstance has empty MyNavData. This is usually the case for AI agents hand-placed\n\t \ton levels.",
+            "Params": [
+                {
+                    "Name": "NavData",
+                    "Type": "ANavigationData *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UActorComponent",
+        "IAIResourceInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

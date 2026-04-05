@@ -1,0 +1,19 @@
+{
+    "Name": "UComboBoxWidgetStyle",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ComboBoxStyle",
+            "Type": "FComboBoxStyle",
+            "Description": "The actual data describing the combo box's appearance.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USlateWidgetStyleContainerBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

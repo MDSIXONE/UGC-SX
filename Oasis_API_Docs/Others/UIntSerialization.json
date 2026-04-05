@@ -1,0 +1,61 @@
+{
+    "Name": "UIntSerialization",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "UnsignedInt16Variable",
+            "Type": "uint16",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UnsignedInt32Variable",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UnsignedInt64Variable",
+            "Type": "uint64",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SignedInt8Variable",
+            "Type": "int8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SignedInt16Variable",
+            "Type": "int16",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SignedInt64Variable",
+            "Type": "int64",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UnsignedInt8Variable",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SignedInt32Variable",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

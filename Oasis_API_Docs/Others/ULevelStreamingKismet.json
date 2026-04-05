@@ -1,0 +1,152 @@
+{
+    "Name": "ULevelStreamingKismet",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bInitiallyLoaded",
+            "Type": "uint32",
+            "Description": "Whether the level should be loaded at startup",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInitiallyVisible",
+            "Type": "uint32",
+            "Description": "Whether the level should be visible at startup if it is loaded",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "LoadLevelInstance",
+            "Description": "Stream in a level with a specific location and rotation. You can create multiple instances of the same level!\n \t\n \t The level to be loaded does not have to be in the persistent map's Levels list, however to ensure that the .umap does get\n \t packaged, please be sure to include the .umap in your Packaging Settings:\n \t\n \t   Project Settings -> Packaging -> List of Maps to Include in a Packaged Build (you may have to show advanced or type in filter)\n \t ",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LevelName",
+                    "Type": "FString & ",
+                    "Description": "- Level package name, ex: GameMapsMyMapName, specifying short name like MyMapName will force very slow search on disk",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector & ",
+                    "Description": "- World space location where the level should be spawned",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Rotation",
+                    "Type": "FRotator & ",
+                    "Description": "- World space rotation for rotating the entire level",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bOutSuccess",
+                    "Type": "bool &",
+                    "Description": "- Whether operation was successful (map was found and added to the sub-levels list)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API ULevelStreamingKismet * ",
+                    "Description": "Streaming level object for a level instance",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateLevelInstanceWithLevelName",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LevelName",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "UniqueName",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Trans",
+                    "Type": "FTransform & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bOutSuccess",
+                    "Type": "bool &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API ULevelStreamingKismet * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateLevelInstanceWithLevel",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "OriStreamingLevel",
+                    "Type": "ULevelStreaming * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "UniqueName",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Trans",
+                    "Type": "FTransform & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bOutSuccess",
+                    "Type": "bool &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API ULevelStreamingKismet * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "ULevelStreaming"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

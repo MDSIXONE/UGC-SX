@@ -1,0 +1,103 @@
+{
+    "Name": "UGCActivitySystem",
+    "Description": "活动系统库（需要启用活动GamePart）",
+    "Variables": [
+        {
+            "Name": "UGCActivitySystem.OnActivityInfoReadyDelegate",
+            "Type": "",
+            "Description": "活动信息准备好时触发的委托\n生效范围：客户端&&服务器",
+            "Redirect": ""
+        },
+        {
+            "Name": "UGCActivitySystem.OnUpdateValidActivityIDsDelegate",
+            "Type": "",
+            "Description": "更新有效活动时触发的委托\n活动系统会按照每个活动配置的生效周期来定期更新有效活动\n生效范围：客户端&&服务器",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "IsActivityInfoReady",
+            "Description": "活动信息是否已准备好\n生效范围：客户端&&服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "活动信息是否已准备好",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllActivityInfos",
+            "Description": "获取所有活动的信息\n生效范围：客户端&&服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UGCActivityInfo[]",
+                    "Description": "所有活动信息",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetActivityInfo",
+            "Description": "获取指定活动ID的活动信息\n生效范围：客户端&&服务器",
+            "Params": [
+                {
+                    "Name": "ActivityID",
+                    "Type": "int",
+                    "Description": "活动ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UGCActivityInfo",
+                    "Description": "活动信息",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetValidActivityIDs",
+            "Description": "获取所有有效的活动ID\n生效范围：客户端&&服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int[]",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNearestPeriodIndex",
+            "Description": "获取指定活动距当前时间最近的生效周期序号，\n如果已经没有符合条件的开启周期，则返回最后一个生效周期的序号\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ActivityID",
+                    "Type": "int",
+                    "Description": "活动ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int",
+                    "Description": "活动开启周期序号, 0表示永久时间，-1表示活动不存在或未开启",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

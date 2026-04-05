@@ -1,0 +1,43 @@
+{
+    "Name": "UEnvQueryTest_Pathfinding",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TestMode",
+            "Type": "TEnumAsByte < EEnvTestPathfinding :: Type >",
+            "Description": "testing mode",
+            "Redirect": ""
+        },
+        {
+            "Name": "Context",
+            "Type": "TSubclassOf < UEnvQueryContext >",
+            "Description": "context: other end of pathfinding test",
+            "Redirect": ""
+        },
+        {
+            "Name": "PathFromContext",
+            "Type": "FAIDataProviderBoolValue",
+            "Description": "pathfinding direction",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkipUnreachable",
+            "Type": "FAIDataProviderBoolValue",
+            "Description": "if set, items with failed path will be invalidated (PathCost, PathLength)",
+            "Redirect": ""
+        },
+        {
+            "Name": "FilterClass",
+            "Type": "TSubclassOf < UNavigationQueryFilter >",
+            "Description": "navigation filter to use in pathfinding",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UEnvQueryTest"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

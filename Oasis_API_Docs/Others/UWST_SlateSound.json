@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_SlateSound",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "FSlateSound",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,25 @@
+{
+    "Name": "UMaterialExpressionLightmassReplace",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Realtime",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Lightmass",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

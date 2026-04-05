@@ -1,0 +1,365 @@
+{
+    "Name": "AMatineeActor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MatineeData",
+            "Type": "UInterpData *",
+            "Description": "The matinee data used by this actor",
+            "Redirect": ""
+        },
+        {
+            "Name": "MatineeControllerName",
+            "Type": "FName",
+            "Description": "Name of controller node in level script, used to know what function to try and find for events",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayRate",
+            "Type": "float",
+            "Description": "Time multiplier for playback.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPlayOnLevelLoad",
+            "Type": "uint32",
+            "Description": "If true, the matinee will play when the level is loaded.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceStartPos",
+            "Type": "uint32",
+            "Description": "Lets you force the sequence to always start at ForceStartPosition",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForceStartPosition",
+            "Type": "float",
+            "Description": "Time position to always start at if bForceStartPos is set to true.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLooping",
+            "Type": "uint32",
+            "Description": "If sequence should pop back to beginning when finished.\n\t \tNote, if true, will never get CompletedReversed events - sequence must be explicitly Stopped.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRewindOnPlay",
+            "Type": "uint32",
+            "Description": "If true, sequence will rewind itself back to the start each time the Play input is activated.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNoResetOnRewind",
+            "Type": "uint32",
+            "Description": "If true, when rewinding this interpolation, reset the 'initial positions' of any RelateToInitial movements to the current location.\n\t \tThis allows the next loop of movement to proceed from the current locations.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRewindIfAlreadyPlaying",
+            "Type": "uint32",
+            "Description": "Only used if bRewindOnPlay if true. Defines what should happen if the Play input is activated while currently playing.\n\t \tIf true, hitting Play while currently playing will pop the position back to the start and begin playback over again.\n\t \tIf false, hitting Play while currently playing will do nothing.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableRadioFilter",
+            "Type": "uint32",
+            "Description": "If true, disables the realtime radio effect",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClientSideOnly",
+            "Type": "uint32",
+            "Description": "Indicates that this interpolation does not affect gameplay. This means that:\n\t  -it is not replicated via MatineeActor\n\t  -it is not ticked if no affected Actors are visible\n\t  -on dedicated servers, it is completely ignored",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSkipUpdateIfNotVisible",
+            "Type": "uint32",
+            "Description": "if bClientSideOnly is true, whether this matinee should be completely skipped if none of the affected Actors are visible",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsSkippable",
+            "Type": "uint32",
+            "Description": "Lets you skip the matinee with the CANCELMATINEE exec command. Triggers all events to the end along the way.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreferredSplitScreenNum",
+            "Type": "int32",
+            "Description": "Preferred local viewport number (when split screen is active) the director track should associate with, or zero for 'all'.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableMovementInput",
+            "Type": "uint32",
+            "Description": "Disable Input from player during play",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisableLookAtInput",
+            "Type": "uint32",
+            "Description": "Disable LookAt Input from player during play",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHidePlayer",
+            "Type": "uint32",
+            "Description": "Hide Player Pawn during play",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHideHud",
+            "Type": "uint32",
+            "Description": "Hide HUD during play",
+            "Redirect": ""
+        },
+        {
+            "Name": "GroupActorInfos",
+            "Type": "TArray < struct FInterpGroupActorInfo >",
+            "Description": "@todo UE4 matinee - shouldnt be directly editable.  Needs a nice interface in matinee",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldShowGore",
+            "Type": "uint32",
+            "Description": "Cached value that indicates whether or not gore was enabled when the sequence was started",
+            "Redirect": ""
+        },
+        {
+            "Name": "GroupInst",
+            "Type": "TArray < UInterpGroupInst * >",
+            "Description": "Instance data for interp groups. One for each variablegroup combination.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CameraCuts",
+            "Type": "TArray < struct FCameraCutInfo >",
+            "Description": "Contains the camera world-position for each camera cut in the cinematic.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsPlaying",
+            "Type": "uint32",
+            "Description": "properties that may change on InterpAction that we need to notify clients about, since the object's properties will not be replicated",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReversePlayback",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPaused",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPendingStop",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InterpPosition",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicationForceIsPlaying",
+            "Type": "uint8",
+            "Description": "Counter to indicate that play count has changed. Used to work around single frames that go from play-stop-play where bIsPlaying won't get replicated.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "Play",
+            "Description": "Begin playback of the matinee. Only called in game.\n\t  Will then advance Position by (PlayRate  Deltatime) each time the matinee is ticked.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Stop",
+            "Description": "Stops playback at the current position",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Reverse",
+            "Description": "Similar to play, but the playback will go backwards until the beginning of the sequence is reached.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Pause",
+            "Description": "Hold playback at its current position. Calling Pause again will continue playback in its current direction.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPosition",
+            "Description": "Set the position of the interpolation.",
+            "Params": [
+                {
+                    "Name": "NewPosition",
+                    "Type": "float ",
+                    "Description": "the new position to set the interpolation to",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bJump",
+                    "Type": "bool",
+                    "Description": "if true, teleport to the new position (don't trigger any events between the old and new positions, etc)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ChangePlaybackDirection",
+            "Description": "Changes the direction of playback (go in reverse if it was going forward, or vice versa)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLoopingState",
+            "Description": "Change the looping behaviour of this matinee",
+            "Params": [
+                {
+                    "Name": "bNewLooping",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableGroupByName",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "GroupName",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnPlay",
+            "Description": "Event triggered when the matinee is played for whatever reason",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnStop",
+            "Description": "Event triggered when the matinee is stopped for whatever reason",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnPause",
+            "Description": "Event triggered when the matinee is paused for whatever reason",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

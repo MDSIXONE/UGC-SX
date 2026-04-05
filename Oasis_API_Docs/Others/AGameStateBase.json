@@ -1,0 +1,272 @@
+{
+    "Name": "AGameStateBase",
+    "Description": "GameStateBase is a class that manages the game's global state, and is spawned by GameModeBase.\n  It exists on both the client and the server and is fully replicated.",
+    "Variables": [
+        {
+            "Name": "GameModeClass",
+            "Type": "TSubclassOf < AGameModeBase >",
+            "Description": "Class of the server's game mode, assigned by GameModeBase.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AuthorityGameMode",
+            "Type": "AGameModeBase *",
+            "Description": "Instance of the current game mode, exists only on the server. For non-authority clients, this will be NULL.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpectatorClass",
+            "Type": "TSubclassOf < ASpectatorPawn >",
+            "Description": "Class used by spectators, assigned by GameModeBase.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayerArray",
+            "Type": "TArray < APlayerState * >",
+            "Description": "Array of all PlayerStates, maintained on both server and clients (PlayerStates are always relevant)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReplicatedHasBegunPlay",
+            "Type": "bool",
+            "Description": "Replicated when GameModeBase->StartPlay has been called so the client will also start play",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedWorldTimeSeconds",
+            "Type": "float",
+            "Description": "Server TimeSeconds. Useful for syncing up animation and gameplay.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ServerWorldTimeSecondsDelta",
+            "Type": "float",
+            "Description": "The difference from the local world's TimeSeconds and the server world's TimeSeconds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ServerWorldTimeSecondsUpdateFrequency",
+            "Type": "float",
+            "Description": "Frequency that the server updates the replicated TimeSeconds from the world. Set to zero to disable periodic updates.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRecordControllerReplay",
+            "Type": "bool",
+            "Description": "If use rec ctrl in replay",
+            "Redirect": ""
+        },
+        {
+            "Name": "PauseInfo",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetServerWorldTimeSeconds",
+            "Description": "Returns the simulated TimeSeconds on the server, will be synchronized on client and server",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetServerWorldTimeSecondsForReplay",
+            "Description": "Returns the simulated TimeSeconds on the server while playing replay, with fastforward skipped time considered",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasBegunPlay",
+            "Description": "Returns true if the world has started play (called BeginPlay on actors)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasMatchStarted",
+            "Description": "Returns true if the world has started match (called MatchStarted callbacks)",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerStartTime",
+            "Description": "Returns the time that should be used as when a player started",
+            "Params": [
+                {
+                    "Name": "Controller",
+                    "Type": "AController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerRespawnDelay",
+            "Description": "Returns how much time needs to be spent before a player can respawn",
+            "Params": [
+                {
+                    "Name": "Controller",
+                    "Type": "AController *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_GameModeClass",
+            "Description": "GameModeBase class notification callback.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_SpectatorClass",
+            "Description": "Callback when we receive the spectator class",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicatedHasBegunPlay",
+            "Description": "By default calls BeginPlay and StartMatch",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicatedWorldTimeSeconds",
+            "Description": "Allows clients to calculate ServerWorldTimeSecondsDelta",
+            "Params": [
+                {
+                    "Name": "OldValue",
+                    "Type": "float &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_RecordControllerReplay",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_PauseInfo",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AInfo"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnPauseState",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bIsPause",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

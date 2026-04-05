@@ -1,0 +1,44 @@
+{
+    "Name": "UUGCBackpackAvatarHandle",
+    "Description": "外显装备基类",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "UBackpackAvatarHandle",
+        "IUGCItemDataInterface",
+        "IUGCObjectItemTableInterface",
+        "IUGCItemEquipmentInterface",
+        "IUGCItemEquipTargetInterface",
+        "IUGCCommonDeadDropItemInterface"
+    ],
+    "Event": [
+        {
+            "Name": "OnDurabilityChanged",
+            "Description": "当物品耐久度变化时执行\n\t  可重载并自定义\n\t  DS 被调用\n\t ",
+            "Params": [
+                {
+                    "Name": "OriginDurability",
+                    "Type": "float ",
+                    "Description": "原始耐久度",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ChangedDurability",
+                    "Type": "float",
+                    "Description": "改变后的耐久度",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

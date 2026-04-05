@@ -1,0 +1,70 @@
+{
+    "Name": "UProceduralFoliageSpawner",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RandomSeed",
+            "Type": "int32",
+            "Description": "The seed used for generating the randomness of the simulation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TileSize",
+            "Type": "float",
+            "Description": "Length of the tile (in cm) along one axis. The total area of the tile will be TileSizeTileSize.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumUniqueTiles",
+            "Type": "int32",
+            "Description": "The number of unique tiles to generate. The final simulation is a procedurally determined combination of the various unique tiles.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinimumQuadTreeSize",
+            "Type": "float",
+            "Description": "Minimum size of the quad tree used during the simulation. Reduce if too many instances are in splittable leaf quads (as warned in the log).",
+            "Redirect": ""
+        },
+        {
+            "Name": "FoliageTypes",
+            "Type": "TArray < FFoliageTypeObject >",
+            "Description": "The types of foliage to procedurally spawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNeedsSimulation",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "Simulate",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NumSteps",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

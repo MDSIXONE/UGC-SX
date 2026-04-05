@@ -1,0 +1,575 @@
+{
+    "Name": "AWorldSettings",
+    "Description": "Actor containing all script accessible world properties.",
+    "Variables": [
+        {
+            "Name": "BlueprintContainer",
+            "Type": "TSubclassOf < AActor >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableFOVDistanceCulling",
+            "Type": "uint32",
+            "Description": "FOV Distance Culling",
+            "Redirect": ""
+        },
+        {
+            "Name": "FOVCulling",
+            "Type": "TArray < FVector2D >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableWorldBoundsChecks",
+            "Type": "uint32",
+            "Description": "DEFAULT BASIC PHYSICS SETTINGS \n\t If true, enables CheckStillInWorld checks",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableNavigationSystem",
+            "Type": "uint32",
+            "Description": "if set to false navigation system will not get created (and all navigation functionality won't be accessible)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableAISystem",
+            "Type": "uint32",
+            "Description": "if set to false AI system will not get created. Use it to disable all AI-related activity on a map",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnalbeLevelLoadConditionControl",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableWorldComposition",
+            "Type": "uint32",
+            "Description": "Enables tools for composing a tiled world.\n\t  Level has to be saved and all sub-levels removed before enabling this option.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bWorldCompositionPIESupportLevelRotation",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPIECloseFixupLazyPointers",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableRescanRestriction",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOnlyIncludeWhiteList",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAlwaysExcludeBlackList",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WhiteListRescanFolders",
+            "Type": "TArray < FString >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WhiteListRescanLevelPaths",
+            "Type": "TArray < FString >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlackListRescanFolders",
+            "Type": "TArray < FString >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlackListRescanLevelPaths",
+            "Type": "TArray < FString >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseClientSideLevelStreamingVolumes",
+            "Type": "uint32",
+            "Description": "Enables client-side streaming volumes instead of server-side.\n\t  Expected usage scenario: server has all streaming levels always loaded, clients independently stream levels inout based on streaming volumes.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableWorldOriginRebasing",
+            "Type": "uint32",
+            "Description": "World origin will shift to a camera position when camera goes far away from current origin",
+            "Redirect": ""
+        },
+        {
+            "Name": "bWorldGravitySet",
+            "Type": "uint32",
+            "Description": "if set to true, when we call GetGravityZ we assume WorldGravityZ has already been initialized and skip the lookup of DefaultGravityZ and GlobalGravityZ",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGlobalGravitySet",
+            "Type": "uint32",
+            "Description": "If set to true we will use GlobalGravityZ instead of project setting DefaultGravityZ",
+            "Redirect": ""
+        },
+        {
+            "Name": "KillZ",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "KillZDamageType",
+            "Type": "TSubclassOf < UDamageType >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WorldGravityZ",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GlobalGravityZ",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultPhysicsVolumeClass",
+            "Type": "TSubclassOf < ADefaultPhysicsVolume >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PhysicsCollisionHandlerClass",
+            "Type": "TSubclassOf < UPhysicsCollisionHandler >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultGameMode",
+            "Type": "TSubclassOf < AGameModeBase >",
+            "Description": "GAMEMODE SETTINGS \n\t The default GameMode to use when starting this map in the game. If this value is NULL, the INI setting for default game type is used.",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameNetworkManagerClass",
+            "Type": "TSubclassOf < AGameNetworkManager >",
+            "Description": "Class of GameNetworkManager to spawn for network games",
+            "Redirect": ""
+        },
+        {
+            "Name": "PackedLightAndShadowMapTextureSize",
+            "Type": "int32",
+            "Description": "RENDERING SETTINGS \n\t Maximum size of textures for packed light and shadow maps",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMinimizeBSPSections",
+            "Type": "uint32",
+            "Description": "Causes the BSP build to generate as few sections as possible.\n\t  This is useful when you need to reduce draw calls but can reduce texture streaming efficiency and effective lightmap resolution.\n\t  Note - changes require a rebuild to propagate.  Also, be sure to select all surfaces and make sure they all have the same flags to minimize section count.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultColorScale",
+            "Type": "FVector",
+            "Description": "Default color scale for the level",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultMaxDistanceFieldOcclusionDistance",
+            "Type": "float",
+            "Description": "Max occlusion distance used by mesh distance fields, overridden if there is a movable skylight.",
+            "Redirect": ""
+        },
+        {
+            "Name": "GlobalDistanceFieldViewDistance",
+            "Type": "float",
+            "Description": "Distance from the camera that the global distance field should cover.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableUpdateTransformViewTranslated",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableWorldComposition2DLoading",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxWorldSize",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RegionSizeNear",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RegionSizeFar",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RegionXAdd",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RegionYAdd",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UnlimitedRegionZ",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Graduation",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompositionSize",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DynamicIndirectShadowsSelfShadowingIntensity",
+            "Type": "float",
+            "Description": "Controls the intensity of self-shadowing from capsule indirect shadows.\n\t  These types of shadows use approximate occluder representations, so reducing self-shadowing intensity can hide those artifacts.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPrecomputeVisibility",
+            "Type": "uint32",
+            "Description": "PRECOMPUTED VISIBILITY SETTINGS \n\t\n\t  Whether to place visibility cells inside Precomputed Visibility Volumes and along camera tracks in this level.\n\t  Precomputing visibility reduces rendering thread time at the cost of some runtime memory and somewhat increased lighting build times.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPlaceCellsOnlyAlongCameraTracks",
+            "Type": "uint32",
+            "Description": "Whether to place visibility cells only along camera tracks or only above shadow casting surfaces.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VisibilityCellSize",
+            "Type": "int32",
+            "Description": "World space size of precomputed visibility cells in x and y.\n\t  Smaller sizes produce more effective occlusion culling at the cost of increased runtime memory usage and lighting build times.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PlayAreaHeight",
+            "Type": "float",
+            "Description": "Play Area Height ( Cell Z",
+            "Redirect": ""
+        },
+        {
+            "Name": "DynamicCellSize",
+            "Type": "FVector2D",
+            "Description": "Dynamic Cell Size ( Dynamic Cell XY, Z",
+            "Redirect": ""
+        },
+        {
+            "Name": "PrecomputedVisibilitySettings",
+            "Type": "FLightmassPrecomputedVisibilitySettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VisibilityAggressiveness",
+            "Type": "TEnumAsByte < enum EVisibilityAggressiveness >",
+            "Description": "Determines how aggressive precomputed visibility should be.\n\t  More aggressive settings cull more objects but also cause more visibility errors like popping.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceNoPrecomputedLighting",
+            "Type": "uint32",
+            "Description": "LIGHTMASS RELATED SETTINGS \n\t\n\t  Whether to force lightmaps and other precomputed lighting to not be created even when the engine thinks they are needed.\n\t  This is useful for improving iteration in levels with fully dynamic lighting and shadowing.\n\t  Note that any lighting and shadowing interactions that are usually precomputed will be lost if this is enabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseLightmassSettingsIsolation",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightmassSettings",
+            "Type": "FLightmassWorldInfoSettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightmassSettingsForPC",
+            "Type": "FLightmassWorldInfoSettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IdeaBakingSettings",
+            "Type": "FIdeaBakingWorldInfoSettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SurfelRayTracingSettings",
+            "Type": "FSurfelRayTracingSettings",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultReverbSettings",
+            "Type": "FReverbSettings",
+            "Description": "AUDIO SETTINGS \n\t Default reverb settings used by audio volumes.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultAmbientZoneSettings",
+            "Type": "FInteriorSettings",
+            "Description": "Default interior settings used by audio volumes.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultBaseSoundMix",
+            "Type": "USoundMix *",
+            "Description": "Default Base SoundMix.",
+            "Redirect": ""
+        },
+        {
+            "Name": "WorldToMeters",
+            "Type": "float",
+            "Description": "DEFAULT SETTINGS \n\t scale of 1uu to 1m in real world measurements, for HMD and other physically tracked devices (e.g. 1uu = 1cm would be 100.0)",
+            "Redirect": ""
+        },
+        {
+            "Name": "MonoCullingDistance",
+            "Type": "float",
+            "Description": "Distance from the player after which content will be rendered in mono if monoscopic far field rendering is activated",
+            "Redirect": ""
+        },
+        {
+            "Name": "BookMarks",
+            "Type": "UBookMark *",
+            "Description": "EDITOR ONLY SETTINGS \n\t Level Bookmarks: 10 should be MAX_BOOKMARK_NUMBER @fixmeconst",
+            "Redirect": ""
+        },
+        {
+            "Name": "TimeDilation",
+            "Type": "float",
+            "Description": "Normally 1 - scales real time passage.\n\t  Warning - most use cases should use GetEffectiveTimeDilation() instead of reading from this directly",
+            "Redirect": ""
+        },
+        {
+            "Name": "MatineeTimeDilation",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DemoPlayTimeDilation",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinGlobalTimeDilation",
+            "Type": "float",
+            "Description": "Lowest acceptable global time dilation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxGlobalTimeDilation",
+            "Type": "float",
+            "Description": "Highest acceptable global time dilation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinUndilatedFrameTime",
+            "Type": "float",
+            "Description": "Smallest possible frametime, not considering dilation. Equiv to 1FastestFPS.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxUndilatedFrameTime",
+            "Type": "float",
+            "Description": "Largest possible frametime, not considering dilation. Equiv to 1SlowestFPS.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Pauser",
+            "Type": "APlayerState *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHighPriorityLoading",
+            "Type": "uint32",
+            "Description": "when this flag is set, more time is allocated to background loading (replicated)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHighPriorityLoadingLocal",
+            "Type": "uint32",
+            "Description": "copy of bHighPriorityLoading that is not replicated, for clientside-only loading operations",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicationViewers",
+            "Type": "TArray < struct FNetViewer >",
+            "Description": "valid only during replication - information about the player(s) being replicated to\n\t  (there could be more than one in the case of a splitscreen client)",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetUserData",
+            "Type": "TArray < UAssetUserData * >",
+            "Description": "Array of user data stored with the asset",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODRelativeDistances",
+            "Type": "TArray < float >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnablestreamingLevelLOD",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WorldCompositionNums",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompositionBlockLength",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OriginOfTheRegion",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableObjectPool",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LevelReorganizationData",
+            "Type": "UDataAsset *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableHierarchicalLODSystem",
+            "Type": "uint32",
+            "Description": "if set to true, hierarchical LODs will be built, which will create hierarchical LODActors",
+            "Redirect": ""
+        },
+        {
+            "Name": "HLODSetupAsset",
+            "Type": "TSoftClassPtr < UHierarchicalLODSetup >",
+            "Description": "If set overrides the level settings and global project settings",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverrideBaseMaterial",
+            "Type": "TSoftObjectPtr < UMaterialInterface >",
+            "Description": "If set overrides the project-wide base material used for Proxy Materials",
+            "Redirect": ""
+        },
+        {
+            "Name": "HierarchicalLODSetup",
+            "Type": "TArray < struct FHierarchicalSimplification >",
+            "Description": "Hierarchical LOD Setup",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumHLODLevels",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGenerateSingleClusterForLevel",
+            "Type": "uint32",
+            "Description": "if set to true, all eligible actors in this level will be added to a single cluster representing the entire level (used for small sublevels)",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SaveEntireWorld",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_WorldGravityZ",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AInfo",
+        "IInterface_AssetUserData"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

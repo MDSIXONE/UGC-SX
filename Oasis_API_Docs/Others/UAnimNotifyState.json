@@ -1,0 +1,289 @@
+{
+    "Name": "UAnimNotifyState",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "InOldFPPAnimMode_ChangeToNewFPPMesh",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableBoneRetargetAdaptFeature",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCheckAnimIsolation",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCheckAnimIsolation_OnlyNewFPP",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCheckAnimIsolation_OnlyNewFPP_IgnoreOldAnimMode",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetNotifyName",
+            "Description": "Implementable event to get a custom name for the notify",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Received_NotifyBegin",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MeshComp",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Animation",
+                    "Type": "UAnimSequenceBase * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TotalDuration",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InvokeAnimInstance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Received_NotifyTick",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MeshComp",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Animation",
+                    "Type": "UAnimSequenceBase * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FrameDeltaTime",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InvokeAnimInstance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Received_NotifyEnd",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MeshComp",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Animation",
+                    "Type": "UAnimSequenceBase * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InvokeAnimInstance",
+                    "Type": "UAnimInstance *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TryGetNewFPPAdaptSkelMeshComp",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTargetSkelMeshComp",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InIsInitCall",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HasRetarget",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ForceGetFPPMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TryGetBoneRetargetAdaptSkelMeshComp",
+            "Description": "For Bone Retarget Feature Start",
+            "Params": [
+                {
+                    "Name": "InTargetSkelMeshComp",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InIsInitCall",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearBoneRetargetAdaptState",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTargetSkelMeshComp",
+                    "Type": "USkeletalMeshComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsBoneRetargetAdaptInitDone",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTargetSkelMeshComp",
+                    "Type": "USkeletalMeshComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsEnableBoneRetargetAdaptFeature",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTargetSkelMeshComp",
+                    "Type": "USkeletalMeshComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

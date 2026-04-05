@@ -1,0 +1,19 @@
+{
+    "Name": "UButtonStyleAsset",
+    "Description": "An asset describing a button's appearance.\n  Just a wrapper for the struct with real data in it.style factory",
+    "Variables": [
+        {
+            "Name": "ButtonStyle",
+            "Type": "FButtonStyle",
+            "Description": "The actual data describing the button's appearance.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

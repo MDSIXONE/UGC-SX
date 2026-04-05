@@ -1,0 +1,31 @@
+{
+    "Name": "UMaterialExpressionTextureBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Texture",
+            "Type": "UTexture *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SamplerType",
+            "Type": "TEnumAsByte < enum EMaterialSamplerType >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsDefaultMeshpaintTexture",
+            "Type": "uint32",
+            "Description": "Is default selected texture when using mesh paint mode texture painting",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

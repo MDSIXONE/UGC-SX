@@ -1,0 +1,19 @@
+{
+    "Name": "AConsoleCMDVolume",
+    "Description": "ConsoleCMDVolume is a volume used to automatically change console variables\n\n @see ModifyConsoleVariable",
+    "Variables": [
+        {
+            "Name": "ConsoleVariables",
+            "Type": "TArray < FString >",
+            "Description": "Array of tags that can be used for grouping and categorizing.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

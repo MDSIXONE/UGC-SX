@@ -1,0 +1,607 @@
+{
+    "Name": "UGCBackPackSystem",
+    "Description": "背包系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetBackpackComponent",
+            "Description": "获取背包组件(客户端仅能获取到自己的）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UBackpackComponent",
+                    "Description": "背包组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddItem",
+            "Description": "添加道具\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DropItem",
+            "Description": "掉落道具（入参为ItemID，不关心具体哪个道具）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsDestroy",
+                    "Type": "boolean",
+                    "Description": "是否直接销毁，不掉落地面",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UseItem",
+            "Description": "使用道具（入参为ItemID，不关心具体哪个道具）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisuseItem",
+            "Description": "停止使用物品（入参为ItemID，默认选择同ID第一个，仅对物资编辑器生成的绷带，饮料类物资生效）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DropItemByInstanceID",
+            "Description": "根据InstanceID（物品实例ID）掉落道具\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "物品实例ID（唯一）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsDestroy",
+                    "Type": "boolean",
+                    "Description": "是否直接销毁，不掉落地面",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UseItemByInstanceID",
+            "Description": "根据InstanceID（物品实例ID）使用道具\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "物品实例ID（唯一）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisuseItemByInstanceID",
+            "Description": "根据InstanceID（物品实例ID）停止使用道具（仅对物资编辑器生成的绷带，饮料类物资生效）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "物品实例ID（唯一）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemCount",
+            "Description": "获取道具数量\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "背包内物品数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllItemData",
+            "Description": "获取背包里所有道具数据\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "table",
+                    "Type": "@LuaTable<ItemData>,",
+                    "Description": "ItemData结构：ItemID,InstanceID,Count,Type,SubType,IsAvatar",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllItemDataByItemID",
+            "Description": "获取ItemData列表\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "LuaTable<FBattleItemData>",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemDataByInstanceID",
+            "Description": "根据InstanceID（物品实例ID）获取ItemData\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "物品实例ID（唯一）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FBattleItemData",
+                    "Description": "战斗物品数据",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCapacity",
+            "Description": "获取背包剩余容量\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "剩余容量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaxCapacity",
+            "Description": "获取背包最大剩余容量\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "最大剩余容量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasItemBySubType",
+            "Description": "是否拥有某类物品\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemSubType",
+                    "Type": "number",
+                    "Description": "道具字类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWeaponsInBackpack",
+            "Description": "获取背包中的武器\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "FBattleItemData",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWeaponAttachmentsInBackpack",
+            "Description": "获取背包中的武器配件\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "FBattleItemData",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetArmorInBackpack",
+            "Description": "获取当前防弹衣\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FBattleItemData",
+                    "Description": "物品数据",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetHelmetInBackpack",
+            "Description": "获取当前头盔\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FBattleItemData",
+                    "Description": "物品数据",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetConsumablesInBackpack",
+            "Description": "获取背包中的所有消耗品\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "FBattleItemData",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsAttachItemType",
+            "Description": "通过传入物品ID判断是否拥有某类物品，例：可传入AKM的物品ID，判断是否拥有枪械\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsGunItemType",
+            "Description": "传入物品ID判断是否为枪械\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPickupWrapperClassPath",
+            "Description": "获取PickupWrapperClass路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllAttachmentDefineIDInBackpack",
+            "Description": "获取背包内所有枪械配件DefineID\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "AttachmentDefineID列表 LuaTable<ItemDefineID>",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllUnEquipedAttachmentDefineIDInBackpack",
+            "Description": "获取背包内所有未装备的枪械配件DefineID\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "AttachmentDefineID列表 LuaTable<ItemDefineID>",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

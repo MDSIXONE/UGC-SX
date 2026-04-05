@@ -1,0 +1,31 @@
+{
+    "Name": "UParticleModuleCameraOffset",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CameraOffset",
+            "Type": "FRawDistributionFloat",
+            "Description": "The camera-relative offset to apply to sprite location",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSpawnTimeOnly",
+            "Type": "uint32",
+            "Description": "If true, the offset will only be processed at spawn time",
+            "Redirect": ""
+        },
+        {
+            "Name": "UpdateMethod",
+            "Type": "TEnumAsByte < enum EParticleCameraOffsetUpdateMethod >",
+            "Description": "How to update the offset for this module.\n\t  DirectSet - Set the value directly (overwrite any previous setting)\n\t  Additive  - Add the offset of this module to the existing offset\n\t  Scalar    - Scale the existing offset by the value of this module",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleCameraBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

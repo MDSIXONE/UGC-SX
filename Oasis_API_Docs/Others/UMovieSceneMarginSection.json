@@ -1,0 +1,38 @@
+{
+    "Name": "UMovieSceneMarginSection",
+    "Description": "A section in a Margin track",
+    "Variables": [
+        {
+            "Name": "TopCurve",
+            "Type": "FRichCurve",
+            "Description": "Red curve data",
+            "Redirect": ""
+        },
+        {
+            "Name": "LeftCurve",
+            "Type": "FRichCurve",
+            "Description": "Green curve data",
+            "Redirect": ""
+        },
+        {
+            "Name": "RightCurve",
+            "Type": "FRichCurve",
+            "Description": "Blue curve data",
+            "Redirect": ""
+        },
+        {
+            "Name": "BottomCurve",
+            "Type": "FRichCurve",
+            "Description": "Alpha curve data",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection",
+        "IKeyframeSection<FMarginKey>"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

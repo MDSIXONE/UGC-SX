@@ -1,0 +1,25 @@
+{
+    "Name": "URendererOverrideSettings",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bSupportAllShaderPermutations",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceRecomputeTangents",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDeveloperSettings"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

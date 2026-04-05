@@ -1,0 +1,37 @@
+{
+    "Name": "UMaterialExpressionCustom",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Code",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OutputType",
+            "Type": "TEnumAsByte < enum ECustomMaterialOutputType >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Description",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Inputs",
+            "Type": "TArray < struct FCustomInput >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

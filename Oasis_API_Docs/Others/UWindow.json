@@ -1,0 +1,92 @@
+{
+    "Name": "UWindow",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Title",
+            "Type": "FText",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitSize",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ContentSlot",
+            "Type": "UWindowSlot *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetTitle",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTitle",
+                    "Type": "FText",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetContent",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Resize",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewSize",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UUserWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

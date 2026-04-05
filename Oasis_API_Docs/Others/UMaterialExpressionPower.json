@@ -1,0 +1,31 @@
+{
+    "Name": "UMaterialExpressionPower",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Base",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Exponent",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstExponent",
+            "Type": "float",
+            "Description": "only used if Exponent is not hooked up",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

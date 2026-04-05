@@ -1,0 +1,170 @@
+{
+    "Name": "UMenuAnchor",
+    "Description": "The Menu Anchor allows you to specify an location that a popup menu should be anchored to, \n  and should be summoned from.\n   Single Child\n   Popup",
+    "Variables": [
+        {
+            "Name": "MenuClass",
+            "Type": "TSubclassOf < UUserWidget >",
+            "Description": "The widget class to spawn when the menu is required.  Creates the widget freshly each time.  \n\t  If you want to customize the creation of the popup, you should bind a function to OnGetMenuContentEvent \n\t  instead.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnGetMenuContentEvent",
+            "Type": "FGetWidget",
+            "Description": "Called when the menu content is requested to allow a more customized handling over what to display",
+            "Redirect": ""
+        },
+        {
+            "Name": "Placement",
+            "Type": "TEnumAsByte < EMenuPlacement >",
+            "Description": "The placement location of the summoned widget.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShouldDeferPaintingAfterWindowContent",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UseApplicationMenuStack",
+            "Type": "bool",
+            "Description": "Does this menu behave like a normal stacked menu? Set it to false to control the menu's lifetime yourself.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ToggleOpen",
+            "Description": "Toggles the menus open state.\n\t ",
+            "Params": [
+                {
+                    "Name": "bFocusOnOpen",
+                    "Type": "bool",
+                    "Description": "Should we focus the popup as soon as it opens?",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Open",
+            "Description": "Opens the menu if it is not already open",
+            "Params": [
+                {
+                    "Name": "bFocusMenu",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Close",
+            "Description": "Closes the menu if it is currently open.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsOpen",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "true if the popup is open; false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ShouldOpenDueToClick",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "true if we should open the menu due to a click. Sometimes we should not, if",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMenuPosition",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector2D",
+                    "Description": "The current menu position",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HasOpenSubMenus",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "Whether this menu has open submenus",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UContentWidget"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnMenuOpenChanged",
+            "Description": "Called when the opened state of the menu changes",
+            "Params": [
+                {
+                    "Name": "bIsOpen",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

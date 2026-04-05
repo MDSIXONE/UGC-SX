@@ -1,0 +1,37 @@
+{
+    "Name": "UMaterialExpressionAdd",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "A",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "B",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstA",
+            "Type": "float",
+            "Description": "only used if A is not hooked up",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstB",
+            "Type": "float",
+            "Description": "only used if B is not hooked up",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

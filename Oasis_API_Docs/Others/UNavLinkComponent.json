@@ -1,0 +1,20 @@
+{
+    "Name": "UNavLinkComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Links",
+            "Type": "TArray < FNavigationLink >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPrimitiveComponent",
+        "INavLinkHostInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

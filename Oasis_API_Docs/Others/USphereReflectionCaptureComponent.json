@@ -1,0 +1,37 @@
+{
+    "Name": "USphereReflectionCaptureComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "InfluenceRadius",
+            "Type": "float",
+            "Description": "Radius of the area that can receive reflections from this capture.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerformShapeTestOnMobile",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CaptureDistanceScale",
+            "Type": "float",
+            "Description": "Not needed anymore, not yet removed in case the artist setup values are needed in the future",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewInfluenceRadius",
+            "Type": "UDrawSphereComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UReflectionCaptureComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

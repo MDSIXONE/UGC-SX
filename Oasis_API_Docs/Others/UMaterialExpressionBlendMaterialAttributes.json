@@ -1,0 +1,43 @@
+{
+    "Name": "UMaterialExpressionBlendMaterialAttributes",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "A",
+            "Type": "FMaterialAttributesInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "B",
+            "Type": "FMaterialAttributesInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Alpha",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PixelAttributeBlendType",
+            "Type": "TEnumAsByte < EMaterialAttributeBlend :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VertexAttributeBlendType",
+            "Type": "TEnumAsByte < EMaterialAttributeBlend :: Type >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

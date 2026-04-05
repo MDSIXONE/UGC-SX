@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleColor_Seeded",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RandomSeedInfo",
+            "Type": "FParticleRandomSeedInfo",
+            "Description": "The random seed(s) to use for looking up values in StartLocation",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleColor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

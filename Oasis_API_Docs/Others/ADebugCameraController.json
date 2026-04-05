@@ -1,0 +1,193 @@
+{
+    "Name": "ADebugCameraController",
+    "Description": "Camera controller that allows you to fly around a level mostly unrestricted by normal movement rules.\n\n To turn it on, please press Alt+C or both (left and right) analogs on XBox pad,\n or use the \"ToggleDebugCamera\" console command. Check the debug camera bindings\n in DefaultPawn.cpp for the camera controls.",
+    "Variables": [
+        {
+            "Name": "bShowSelectedInfo",
+            "Type": "uint32",
+            "Description": "Whether to show information about the selected actor on the debug camera HUD.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsFrozenRendering",
+            "Type": "uint32",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "DrawFrustum",
+            "Type": "UDrawFrustumComponent *",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpeedScale",
+            "Type": "float",
+            "Description": "Allows control over the speed of the spectator pawn. This scales the speed based on the InitialMaxSpeed. Use Set Pawn Movement Speed Scale during runtime",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitialMaxSpeed",
+            "Type": "float",
+            "Description": "Initial max speed of the spectator pawn when we start possession.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitialAccel",
+            "Type": "float",
+            "Description": "Initial acceleration of the spectator pawn when we start possession.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitialDecel",
+            "Type": "float",
+            "Description": "Initial deceleration of the spectator pawn when we start possession.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ShowDebugSelectedInfo",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ToggleDisplay",
+            "Description": "Toggles the display of debug info and input commands for the Debug Camera.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSelectedActor",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetPawnMovementSpeedScale",
+            "Description": "Sets the pawn movement speed scale.",
+            "Params": [
+                {
+                    "Name": "NewSpeedScale",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveOnActivate",
+            "Description": "Function called on activation of debug camera controller.",
+            "Params": [
+                {
+                    "Name": "OriginalPC",
+                    "Type": "APlayerController *",
+                    "Description": "The active player controller before this debug camera controller was possessed by the player.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveOnDeactivate",
+            "Description": "Function called on deactivation of debug camera controller.",
+            "Params": [
+                {
+                    "Name": "RestoredPC",
+                    "Type": "APlayerController *",
+                    "Description": "The Player Controller that the player input is being returned to.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveOnActorSelected",
+            "Description": "Called when an actor has been selected with the primary key (e.g. left mouse button).\n\t \n\t  The selection trace starts from the center of the debug camera's view.\n\t ",
+            "Params": [
+                {
+                    "Name": "NewSelectedActor",
+                    "Type": "AActor * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SelectHitLocation",
+                    "Type": "FVector & ",
+                    "Description": "The exact world-space location where the selection trace hit the New Selected Actor.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SelectHitNormal",
+                    "Type": "FVector & ",
+                    "Description": "The world-space surface normal of the New Selected Actor at the hit location.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Hit",
+                    "Type": "FHitResult &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "APlayerController"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

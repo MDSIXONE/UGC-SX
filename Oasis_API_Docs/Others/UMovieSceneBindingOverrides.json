@@ -1,0 +1,86 @@
+{
+    "Name": "UMovieSceneBindingOverrides",
+    "Description": "A one-to-many definition of movie scene object binding IDs to overridden objects that should be bound to that binding.",
+    "Variables": [
+        {
+            "Name": "BindingData",
+            "Type": "TArray < FMovieSceneBindingOverrideData >",
+            "Description": "The actual binding data",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetBindingData",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "const TArray < FMovieSceneBindingOverrideData > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MakeBindingID",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InBindingID",
+                    "Type": "FGuid & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSequenceID",
+                    "Type": "FMovieSceneSequenceID ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSpace",
+                    "Type": "EMovieSceneObjectBindingSpace",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FMovieSceneObjectBindingID ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGuidStr",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "BindingID",
+                    "Type": "FMovieSceneObjectBindingID &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IMovieSceneBindingOverridesInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

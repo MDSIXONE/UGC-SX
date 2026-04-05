@@ -1,0 +1,116 @@
+{
+    "Name": "UGCGamePartSystem",
+    "Description": "GamePart系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetGamePartConfig",
+            "Description": "获取指定GamePart的Config\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "GamePartName",
+                    "Type": "string",
+                    "Description": "GamePart名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UUGCGamePartConfig",
+                    "Description": "指定GamePart的Config",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGamePartGlobalActor",
+            "Description": "获取指定GamePart的GlobalActor\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "GamePartName",
+                    "Type": "string",
+                    "Description": "GamePart名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AActor",
+                    "Description": "指定GamePart的GlobalActor",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetGamePartPlayerComponent",
+            "Description": "获取指定GamePart的指定玩家的指定PlayerComponent",
+            "Params": [
+                {
+                    "Name": "GamePartName",
+                    "Type": "string",
+                    "Description": "GamePart名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PC",
+                    "Type": "PlayerController",
+                    "Description": "玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PlayerComponentName",
+                    "Type": "string",
+                    "Description": "PlayerComponent名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UActorComponent",
+                    "Description": "指定的PlayerComponent",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsGamePartLoaded",
+            "Description": "获取指定GamePart是否已加载",
+            "Params": [
+                {
+                    "Name": "GamePartName",
+                    "Type": "string",
+                    "Description": "GamePart名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "GamePart是否已加载",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllLoadedGameParts",
+            "Description": "获取所有已加载的GamePart",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string[]",
+                    "Description": "所有已加载的GamePart列表",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

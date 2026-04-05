@@ -1,0 +1,33 @@
+{
+    "Name": "UHorizontalBox",
+    "Description": "Allows widgets to be laid out in a flow horizontally.\n \n   Many Children\n   Flow Horizontal",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "AddChildToHorizontalBox",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UHorizontalBoxSlot * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPanelWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,31 @@
+{
+    "Name": "UMaterialExpressionCollectionParameter",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Collection",
+            "Type": "UMaterialParameterCollection *",
+            "Description": "The Parameter Collection to use.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParameterName",
+            "Type": "FName",
+            "Description": "Name of the parameter being referenced.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParameterId",
+            "Type": "FGuid",
+            "Description": "Id that is set from the name, and used to handle renaming of collection parameters.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

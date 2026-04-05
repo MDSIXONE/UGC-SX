@@ -1,0 +1,63 @@
+{
+    "Name": "UGCRankSystem",
+    "Description": "段位专用接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetUGCRank",
+            "Description": "查询段位分\n调用 UGCRankSystem.AddRankProgress 后，会获取到新段位分\n例：开局 2000 积分，中途调用 UGCRankSystem.AddRankProgress 增加 100 积分，再调用 UGCRankSystem.GetUGCRank 则得到 2100 积分\n详细使用流程参考 wiki (https://developer.gp.qq.com/wiki/#/lvzhou_duanwei.html)\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "段位分",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddRankProgress",
+            "Description": "修改段位分\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "段位分变化值",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetUGCGameSeasonId",
+            "Description": "查询当前玩法段位赛 ID\n生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "游戏赛季 ID",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

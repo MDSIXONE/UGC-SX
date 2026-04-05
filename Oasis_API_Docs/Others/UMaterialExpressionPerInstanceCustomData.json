@@ -1,0 +1,31 @@
+{
+    "Name": "UMaterialExpressionPerInstanceCustomData",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DefaultValue",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstDefaultValue",
+            "Type": "FVector4",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DataIndex",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

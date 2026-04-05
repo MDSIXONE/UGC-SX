@@ -1,0 +1,147 @@
+{
+    "Name": "UVehicleSeatComponent",
+    "Description": "载具座位组件类",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "UVehicleComponent"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "UGC_OnSeatAttachedDelegate",
+            "Description": "使用座位\n\t 生效范围S",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraPlayerCharacter*",
+                    "Description": "乘客",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatType",
+                    "Type": "ESTExtraVehicleSeatType",
+                    "Description": "座位类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIdx",
+                    "Type": "int32",
+                    "Description": "座位Index",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_OnSeatDetachedDelegate",
+            "Description": "离开座位\n\t 生效范围S",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraPlayerCharacter*",
+                    "Description": "乘客",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatType",
+                    "Type": "ESTExtraVehicleSeatType",
+                    "Description": "座位类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatIdx",
+                    "Type": "int32",
+                    "Description": "座位Index",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_OnSeatChangedDelegate",
+            "Description": "离开座位\n\t 生效范围S",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraPlayerCharacter*",
+                    "Description": "乘客",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LastSeatType",
+                    "Type": "ESTExtraVehicleSeatType",
+                    "Description": "旧座位类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LastSeatIdx",
+                    "Type": "int32",
+                    "Description": "旧座位Index",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewSeatType",
+                    "Type": "ESTExtraVehicleSeatType",
+                    "Description": "新座位类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewSeatIdx",
+                    "Type": "int32",
+                    "Description": "新座位Index",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnDriverChange",
+            "Description": "驾驶员变更事件Delegate",
+            "Params": [
+                {
+                    "Name": "OldChara",
+                    "Type": "ASTExtraPlayerCharacter*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewChara",
+                    "Type": "ASTExtraPlayerCharacter*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

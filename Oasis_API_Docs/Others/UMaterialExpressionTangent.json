@@ -1,0 +1,25 @@
+{
+    "Name": "UMaterialExpressionTangent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Input",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Period",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

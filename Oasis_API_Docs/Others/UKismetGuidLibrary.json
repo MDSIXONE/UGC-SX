@@ -1,0 +1,170 @@
+{
+    "Name": "UKismetGuidLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "EqualEqual_GuidGuid",
+            "Description": "Returns true if the values are equal (A == B)",
+            "Params": [
+                {
+                    "Name": "A",
+                    "Type": "FGuid & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "B",
+                    "Type": "FGuid &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "NotEqual_GuidGuid",
+            "Description": "Returns true if the values are not equal (A != B)",
+            "Params": [
+                {
+                    "Name": "A",
+                    "Type": "FGuid & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "B",
+                    "Type": "FGuid &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsValid_Guid",
+            "Description": "Checks whether the given GUID is valid",
+            "Params": [
+                {
+                    "Name": "InGuid",
+                    "Type": "FGuid &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Invalidate_Guid",
+            "Description": "Invalidates the given GUID",
+            "Params": [
+                {
+                    "Name": "InGuid",
+                    "Type": "FGuid &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "NewGuid",
+            "Description": "Returns a new unique GUID",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FGuid",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_GuidToString",
+            "Description": "Converts a GUID value to a string, in the form 'A-B-C-D'",
+            "Params": [
+                {
+                    "Name": "InGuid",
+                    "Type": "FGuid &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Parse_StringToGuid",
+            "Description": "Converts a String of format EGuidFormats to a Guid. Returns Guid OutGuid, Returns bool Success",
+            "Params": [
+                {
+                    "Name": "GuidString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutGuid",
+                    "Type": "FGuid & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Success",
+                    "Type": "bool &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

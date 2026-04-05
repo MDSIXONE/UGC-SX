@@ -1,0 +1,118 @@
+{
+    "Name": "UnrealNetwork",
+    "Description": "虚幻网络库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "RepLazyProperty",
+            "Description": "对声明为复制的Lazy属性执行复制",
+            "Params": [
+                {
+                    "Name": "TargetObject",
+                    "Type": "AActor | UActorComponent @属性所在的Actor或Component",
+                    "Description": "属性所在的Actor或Component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PropertyName",
+                    "Type": "string",
+                    "Description": "属性名或路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CallUnrealRPC",
+            "Description": "发送可靠单播RPC",
+            "Params": [
+                {
+                    "Name": "TargetPlayerController",
+                    "Type": "APlayerController",
+                    "Description": "目标玩家",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TargetObject",
+                    "Type": "AActor | UActorComponent @目标Actor或Component",
+                    "Description": "目标Actor或Component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FunctionName",
+                    "Type": "string",
+                    "Description": "RPC函数名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CallUnrealRPC_Unreliable",
+            "Description": "发送不可靠单播RPC",
+            "Params": [
+                {
+                    "Name": "TargetPlayerController",
+                    "Type": "APlayerController",
+                    "Description": "目标玩家",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TargetObject",
+                    "Type": "AActor | UActorComponent @目标Actor或Component",
+                    "Description": "目标Actor或Component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FunctionName",
+                    "Type": "string",
+                    "Description": "RPC函数名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CallUnrealRPC_Multicast",
+            "Description": "发送可靠广播RPC",
+            "Params": [
+                {
+                    "Name": "TargetObject",
+                    "Type": "AActor | UActorComponent @目标Actor或Component",
+                    "Description": "目标Actor或Component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FunctionName",
+                    "Type": "string",
+                    "Description": "RPC函数名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CallUnrealRPC_Multicast_Unreliable",
+            "Description": "发送不可靠广播RPC",
+            "Params": [
+                {
+                    "Name": "TargetObject",
+                    "Type": "AActor | UActorComponent @目标Actor或Component",
+                    "Description": "目标Actor或Component",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "FunctionName",
+                    "Type": "string",
+                    "Description": "RPC函数名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

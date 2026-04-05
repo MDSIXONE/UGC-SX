@@ -1,0 +1,97 @@
+{
+    "Name": "UAnimFuntionBoneModifyLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "Prototype_BoneModifyFuntion",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Context",
+                    "Type": "FBPAnimComponentSpacePoseContext & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AdditionalPoseBPContext",
+                    "Type": "TArray < FBPAnimComponentSpacePoseContext > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutBoneModifyData",
+                    "Type": "TArray < FFunctionBoneModifyData > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoneTransformLocalSpace",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Context",
+                    "Type": "FBPAnimComponentSpacePoseContext & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoneTransformComponentSpace",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Context",
+                    "Type": "FBPAnimComponentSpacePoseContext & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

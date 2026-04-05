@@ -1,0 +1,31 @@
+{
+    "Name": "UInterpTrackInstAnimControl",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LastUpdatePosition",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitPosition",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InitRotation",
+            "Type": "FRotator",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInst"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,1437 @@
+{
+    "Name": "UGCBackpackSystemV2",
+    "Description": "UGC V2背包系统接口库\n\n需启用及配合新背包系统使用，具体参见 https://developer.gp.qq.com/wikieditor/#/catalog/20104",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetBackpackComponentV2",
+            "Description": "获取背包组件(客户端仅能获取到自己的）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "UBackpackComponentV2",
+                    "Type": "@UGC",
+                    "Description": "V2背包组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBackpackUIComponentV2",
+            "Description": "获取背包UI组件(客户端）\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "UBackpackUIComponentV2",
+                    "Type": "@UGC",
+                    "Description": "V2背包UI组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddItemV2",
+            "Description": "凭空添加物品\n生效范围：服务器\n\n使用 ItemID（配置ID）创建物品。创建的物品会自动尝试合并到已有堆叠上。堆叠时，如果超过最大堆叠数，将进行分堆。\n函数返回会返回成功添加的物品数量，和所有新创建的分堆的实例ID（只有产生新的分堆，才会返回实例ID）。\n如果有多个已有的的分堆，将会尽量尝试将所有分堆都填充到最大堆叠数，才开辟新的分堆。\n新物品不会合并到拥有实例化数据的物品分堆。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "number,",
+                    "Type": "ItemDefineID[]",
+                    "Description": "已成功添加的物品数量，成功添加的物品实例列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddItemByDefineIDV2",
+            "Description": "指定 ItemDefineID(实例ID) 添加物品\n生效范围：服务器\n\n这个是高级版的添加物品接口，简单需求建议使用“UGCBackpackSystemV2.AddItemV2”。\n由于 ItemDefineID 需要保证唯一，因此需要使用全新的 ItemDefineID 创建物品（UGCItemSystemV2.GetItemDefineID）。\n如果使用另一物品的 ItemDefineID 创建物品，将导致 ID 混乱。\n接口最多创建一个新堆叠，此堆叠的实例ID即函数传入的实例ID。如果此堆叠无法容纳所有需要创建的物品数量，将有一部分物品创建失败。\n接受的实例ID可以提前塞入实例化数据。\n此功能可以用于创建一些随机属性的装备，然后添加进入背包（当然也可以发挥创意，实现其它趣味功能）。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AllowMerge",
+                    "Type": "boolean",
+                    "Description": "是否允许合并到已有堆叠(默认true)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "已成功添加的物品数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveItemV2",
+            "Description": "指定ItemID(配置ID)移除物品\n不生成可拾取物\n生效范围：服务器&客户端\n\n移除时背包将只关注数量，不关注具体是哪个实例。一般适用于不同实例物品都等价的情况。\n由于是由服务器实际执行移除操作，客户端调用后无法立刻获得实际移除的物品数量。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "服务器:实际移除的物品数量 | 客户端:返回 0",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveItemByDefineIDV2",
+            "Description": "移除指定物品实例\n不生成可拾取物\n生效范围：服务器&客户端\n\n只会移除指定的物品实例，不会波及到其它物品实例。\n由于是由服务器实际执行移除操作，客户端调用后无法立刻获得实际移除的物品数量。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "服务器:实际移除的物品数量 | 客户端:返回 0",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DropItemV2",
+            "Description": "指定ItemID(配置ID)丢弃物品\n生成可拾取物\n生效范围：服务器&客户端\n\n丢弃时背包将只关注数量，不关注具体是哪个实例。一般适用于不同实例物品都等价的情况。\n由于是由服务器实际执行丢弃操作，客户端调用后无法立刻获得实际丢弃的物品数量。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "服务器:实际丢弃的物品数量 | 客户端:返回 0",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DropItemByDefineIDV2",
+            "Description": "丢弃指定物品实例\n生成可拾取物\n生效范围：服务器&客户端\n\n只会丢弃指定的物品实例，不会波及到其它物品实例。\n丢弃后生成的可拾取物（PickupWrapper）对应的实例ID与丢弃时指定的实例ID并不相同。\n可拾取物将获得一个全新的实例ID，新实例ID依然具有原始实例物品的所有实例化数据。\n由于是由服务器实际执行丢弃操作，客户端调用后无法立刻获得实际丢弃的物品数量。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "服务器:实际丢弃的物品数量 | 客户端:返回 0",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TrySortOutItemV2",
+            "Description": "尝试整理物品\n尝试将背包中的物品整理整齐(将可堆叠的物品尽量堆叠起来)\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CanUseItemV2",
+            "Description": "背包内的物品是否可以使用\n生效范围：服务器&客户端\n\n默认情况下，返回值等同于物编中物品的\"是否可使用\"配置\n若在背包组件上重写了CanUseItemV2，将调用重写后的函数并返回",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "物品是否可以使用",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanRemoveItemV2",
+            "Description": "背包内的物品是否可以移除\n生效范围：服务器&客户端\n\n默认情况下，若物编中物品\"是否可移除\"配置为true，要移除多少就返回多少，否则返回0\n若在背包组件上重写了CanRemoveItemV2，将调用重写后的函数并返回",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "要移除的数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品可移除的数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanDropItemV2",
+            "Description": "背包内的物品是否可以丢弃\n生效范围：服务器&客户端\n\n默认情况下，若物编中物品\"是否可丢弃\"配置为true，要移除多少就返回多少，否则返回0\n若在背包组件上重写了CanDropItemV2，将调用重写后的函数并返回",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "number",
+                    "Description": "要丢弃的数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品可丢弃数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UseItemV2",
+            "Description": "使用指定物品\n生效范围：服务器&客户端\n\n只会使用指定的物品实例，不会波及到其它物品实例。\n由于是由服务器实际执行使用操作，客户端调用后无法立刻获得实际使用物品的结果。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "服务器:是否使用成功 | 客户端:不管成功失败都返回 true",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisuseItemV2",
+            "Description": "取消使用指定物品\n与 UseItem 对应，用于清理状态\n永远成功，没有失败条件\n支持多次调用，不产生额外副作用，移除物品时自动调用清理\n生效范围：服务器&客户端\n\n在和平的设计中，物品没有维护\"使用中\"的状态，因此 Disuse 和 Use 并非是完全对称的概念（和平经典背包与V2背包都遵循这个规则）。物品 Disuse 主要是用于物品清理状态。\n由于是由服务器实际执行取消使用操作，客户端调用后无法立刻获得实际取消使用物品的结果。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetItemCountV2",
+            "Description": "获取物品数量\n如果有多个实例，将获取它们的总数量\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "背包内物品数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemCountByDefineIDV2",
+            "Description": "获取物品实例数量\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "背包内物品实例数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemDefineIDsByIDV2",
+            "Description": "通过物品 ID，获取所有此 ID 物品实例\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID[]",
+                    "Description": "满足条件的物品实例 DefineID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemDefineIDsByTagV2",
+            "Description": "通过物品 Tag，获取所有含此 Tag 物品实例\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemTag",
+                    "Type": "string",
+                    "Description": "物品Tag",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID[]",
+                    "Description": "满足条件的物品实例 DefineID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllItemDefineIDsV2",
+            "Description": "获取所有物品实例\n客户端数据可能稍微滞后\n生效范围：服务器&客户端\n\n只会获得V2背包支持的物品类型，一般为玩法功能性物品（武器、配件、弹药、药品、装备等）。\n经典背包中的部分特殊物品不在此列（服装、皮肤、表情等）。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID[]",
+                    "Description": "背包内所有物品实例 DefineID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEquipSlots",
+            "Description": "获取所有装备槽位名称\n返回装备槽位的顺序与V2背包组件配置顺序一致。\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName[]",
+                    "Description": "背包所有装备槽位名称",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSlotDisplayName",
+            "Description": "获取槽位中文名\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "槽位中文名",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemCanEquipToSlot",
+            "Description": "物品是否能装在槽位上(根据配置信息判断)\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "true:可以装备 false:不可以装备",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEquippedItemBySlotName",
+            "Description": "获取指定装备槽位所装备的物品\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID",
+                    "Description": "槽位所装备的物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemEquippingSlot",
+            "Description": "获取指定物品在背包上装备的槽位\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品实例 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "物品在背包上装备的槽位。若为空字符串，则物品未装备在背包槽位上。",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EquipItemV2",
+            "Description": "将物品装在指定槽位\n生效范围：服务器&客户端\n\n如果此物品已经装备在某个槽位上，将不再能够再次装备。\n只有从部分模板中创建的物品拥有装备功能。\n如果槽位上配置了类型约束，那将只有对应类型的物品能够装备。\n如果对应槽位已经装备了其它物品，会触发卸下装备，然后再将指定物品装备到此槽位。\n一般物品都会占用背包格子容量，但装备后的物品不再占用背包容量。\n由于是由服务器实际执行装备操作，客户端调用后无法立刻获得实际装备的结果。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品实例 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "服务器:是否装备成功 | 客户端:不管成功失败都返回 true",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UnEquipItemV2",
+            "Description": "将指定槽位的物品卸下\n生效范围：服务器&客户端\n\n一般物品都会占用背包格子容量，但装备后的物品不再占用背包容量（参考容量限制功能 ）。\n一般情况下如果背包容量已满，卸下装备将会失败。\n由于是由服务器实际执行卸下装备操作，客户端调用后无法立刻获得实际卸下装备的结果。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "服务器:是否卸下成功 | 客户端:不管成功失败都返回 true",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EquipItemToAnySlotV2",
+            "Description": "将物品装在任意槽位\n生效范围：服务器&客户端\n\n功能类似 EquipItemV2，但无需指定槽位。\n它将会尽量找到一个可装备的空槽位去尝试装备。\n如果所有可装备的槽位都非空，它会尝试向一个非空槽位装备。此时此槽位的原物品，将被卸下。\n由于是由服务器实际执行装备操作，客户端调用后无法立刻获得实际装备的结果。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品实例 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "服务器:是否装备成功 | 客户端:不管成功失败都返回 true",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SwapEquipSlotV2",
+            "Description": "交换两个槽位的装备(若其中一个槽位为空,其意义变为将一个槽位的装备移至另一槽位)\n生效范围：服务器&客户端\n\n交换功能的效果，并不完全与分别卸下再重新装备相同。\n一方面，卸下时可能受背包容量限制。\n另一方面，装备和卸下将触发物品Handle上对应的事件（OnEquip、OnUnEquip）。\n但交换装备时不触发它们，而是对交换槽位的物品Handle分别触发 OnSwapEquipSlot 。\n由于是由服务器实际执行交换操作，客户端调用后无法立刻获得实际交换的结果。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotNameA",
+                    "Type": "string",
+                    "Description": "槽位名称A",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotNameB",
+                    "Type": "string",
+                    "Description": "槽位名称B",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "服务器:是否交换成功 | 客户端:不管成功失败都返回 true",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AttachEquipmentToTargetItem",
+            "Description": "将物品A附加到另一个物品B的槽位上\n要求物品A和物品B都在背包中\n生效范围：服务器&客户端\n\n当某物品A附加到一个已装备在背包槽位上的物品B时，物品A也视为进入装备状态，触发物品Handle的OnEquip事件。\n当某物品A附加到另一物品B后，物品B装备到了背包槽位上。此时A会随B一起，进入装备状态，触发物品Handle的OnEquip事件。\n由于是由服务器实际执行附加操作，客户端调用后无法立刻获得实际附加的结果。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Equipment",
+                    "Type": "ItemDefineID",
+                    "Description": "物品A",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TargetItem",
+                    "Type": "ItemDefineID",
+                    "Description": "物品B",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "物品B上的目标槽位",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "服务器:是否附加成功 | 客户端:不管成功失败都返回 true",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DetachEquipmentToTargetItem",
+            "Description": "解除附加在物品B槽位上的物品A\n生效范围：服务器&客户端\n\n当某物品A附加到一个已装备在背包槽位上的物品B时，物品A也视为进入装备状态。此时若A解除对B的附加，将取消A的装备状态，触发物品Handle的OnUnEquip事件。\n由于是由服务器实际执行附加操作，客户端调用后无法立刻获得实际附加的结果。且在服务器执行完毕并将结果同步到客户端之前，客户端本地数据不会立刻改变。",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TargetItem",
+                    "Type": "ItemDefineID",
+                    "Description": "物品B",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "物品B上的目标槽位",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "服务器:是否解除附加成功 | 客户端:不管成功失败都返回 true",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWarehouseItemCountByDefineID",
+            "Description": "获取仓库物品实例数量\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品实例 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "仓库内物品实例数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWarehouseItemCount",
+            "Description": "获取仓库物品数量\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "仓库内物品数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllWarehouseItemDefineIDs",
+            "Description": "获取仓库内所有物品实例\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID[]",
+                    "Description": "仓库内所有物品实例 DefineID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PutInWarehouse",
+            "Description": "将背包物品放入仓库\n请注意，实例ID将被转换，真正进入仓库的实例ID和传入的实例ID有所不同\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "放入的物品实例ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PutOnCount",
+                    "Type": "number",
+                    "Description": "放入的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FUGCItemTransferResult",
+                    "Description": "物品转移结果",
+                    "Redirect": "cppstruct/detail/FUGCItemTransferResult.json"
+                }
+            ]
+        },
+        {
+            "Name": "TakeOutWarehouse",
+            "Description": "将物品从仓库取出\n请注意，实例ID将被转换，真正回到背包的实例ID和传入的实例ID有所不同\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "取出的物品实例ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TakeOutCount",
+                    "Type": "number",
+                    "Description": "取出的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FUGCItemTransferResult",
+                    "Description": "物品转移结果",
+                    "Redirect": "cppstruct/detail/FUGCItemTransferResult.json"
+                }
+            ]
+        },
+        {
+            "Name": "TrySortOutWarehouseItem",
+            "Description": "尝试整理仓库物品\n尝试将仓库中的物品整理整齐\n整理过程中会将可堆叠的物品尽量堆叠起来\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetCellItemCount",
+            "Description": "获取物品占据背包格子数\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品占据背包格子数",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCellCapacity",
+            "Description": "获取解锁背包格子容量\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "背包格子容量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaxCellCapacity",
+            "Description": "获取背包格子容量上限\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "背包格子容量上限",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddCellCapacity",
+            "Description": "增加解锁背包格子容量\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AddCount",
+                    "Type": "number",
+                    "Description": "要增加的容量数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否增加成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddMaxCellCapacity",
+            "Description": "增加背包格子容量上限(同时增加解锁格子数)\n生效范围：服务器\n\n背包物品同款功能，扩充额外的容量\n扩充的容量不会持久化(与背包扩容不同)",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AddCount",
+                    "Type": "number",
+                    "Description": "要增加的容量数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否增加成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveMaxCellCapacity",
+            "Description": "减少背包格子容量上限(同时减少解锁格子数)\n生效范围：服务器\n\n背包物品同款功能，减掉扩充的额外容量\n减扩的容量不会持久化(与背包扩容不同)\n使用此接口后，如果有持久化物品，跨对局后可能因为新对局中容量不足而导致物品超限(超限后默认将自动丢弃超限物品)",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RemoveCount",
+                    "Type": "number",
+                    "Description": "要减少的容量数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否减少成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWarehouseCellCapacity",
+            "Description": "获取解锁仓库格子容量\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "仓库格子容量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWarehouseMaxCellCapacity",
+            "Description": "获取仓库格子容量上限\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "仓库格子容量上限",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddWarehouseCellCapacity",
+            "Description": "增加仓库格子容量\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AddCount",
+                    "Type": "number",
+                    "Description": "要增加的容量数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否增加成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllCellItemDefineIDsV2",
+            "Description": "获取所有占背包格子的物品实例\nAttach 附加到其它物品上的物品，或装备在背包上的物品，不占用背包格子。\n货币类型不占用背包格子。\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID[]",
+                    "Description": "所有占背包格子的物品 DefineID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllCellWarehouseItemDefineIDsV2",
+            "Description": "获取所有占仓库格子的物品实例\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID[]",
+                    "Description": "所有占仓库格子的物品 DefineID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsCellCapacityFull",
+            "Description": "背包格子是否已满\n客户端数据可能稍微滞后\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "背包格子是否已满",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrencyIDList",
+            "Description": "获取货币类型的物品ID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int[]",
+                    "Description": "所有货币物品ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsCurrency",
+            "Description": "物品是否为货币\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "物品是否为货币",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OpenBackpackPanelStyle",
+            "Description": "打开背包主界面\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Style",
+                    "Type": "number",
+                    "Description": "[0:全屏背包, 1:半屏背包, nil:读默认配置]",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Mode",
+                    "Type": "number",
+                    "Description": "[1:背包 + 装备 2:背包 + 仓库 3:背包 + 仓库 + 装备 nil:读默认配置]",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "OpenBackpackPanel",
+            "Description": "打开背包主界面\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Mode",
+                    "Type": "number",
+                    "Description": "1:背包 + 装备 2:背包 + 仓库 3:背包 + 仓库 + 装备 [4-6]同1-3，形式为半屏背包",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CloseBackpackPanel",
+            "Description": "关闭背包主界面\n生效范围：客户端",
+            "Params": null,
+            "Return": null
+        },
+        {
+            "Name": "SetEquipSlotEnable",
+            "Description": "启用背包槽位\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetEquipSlotEnable",
+            "Description": "获取背包槽位启用状态\n生效范围：服务端&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "槽位是否启用",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCustomUIWidget",
+            "Description": "获取指定类型的自定义控件（打开过背包才会添加自定义控件）\n生效范围：客户端\n注意，背包UI在物品变更后延时刷新，不要在添加物品后 立即获取格子自定义控件",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn | PlayerController @玩家角色或者玩家控制器",
+                    "Description": "玩家角色或者玩家控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Type",
+                    "Type": "ECustomUIType",
+                    "Description": "自定义控件种类",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "查询具体实例的格子自定义UI",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UserWidget",
+                    "Description": "自定义控件 | UserWidget[] @自定义控件数组",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBackpackButtonVisible",
+            "Description": "显隐背包按钮\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "Visible",
+                    "Type": "boolean",
+                    "Description": "是否可见",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetUISelectItemChangeDelegate",
+            "Description": "获取背包UI选中态变化委托\n生效范围：客户端\n背包控件的选中数据 SelectData:\n背包格子：table {ItemDefineID:物品DefineID, DataType:string, ItemIdx:格子位置索引, WeakWidget:控件弱引用,通过WeakWidget:Get()获取控件}\n其他控件(装备、武器、槽位): table {ItemDefineID:物品DefineID, DataType:string, WeakWidget:控件弱引用}\n可以通过DataType判断点击了哪个区域的UI控件，背包内核UI对应的DataType定义在EItemDataTypeStrs",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "Delegate",
+                    "Description": "选中变化委托 {table:控件选中数据, boolean:是否选中}",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

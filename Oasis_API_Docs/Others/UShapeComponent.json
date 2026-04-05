@@ -1,0 +1,49 @@
+{
+    "Name": "UShapeComponent",
+    "Description": "ShapeComponent is a PrimitiveComponent that is represented by a simple geometrical shape (sphere, capsule, box, etc).",
+    "Variables": [
+        {
+            "Name": "ShapeColor",
+            "Type": "FColor",
+            "Description": "Color used to draw the shape.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShapeBodySetup",
+            "Type": "UBodySetup *",
+            "Description": "Description of collision",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDrawOnlyIfSelected",
+            "Type": "uint8",
+            "Description": "Only show this component if the actor is selected",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldCollideWhenPlacing",
+            "Type": "uint8",
+            "Description": "If true it allows Collision when placing even if collision is not enabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDynamicObstacle",
+            "Type": "uint8",
+            "Description": "If set, shape will be exported for navigation as dynamic modifier instead of using regular collision data",
+            "Redirect": ""
+        },
+        {
+            "Name": "AreaClass",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "Navigation area type (empty = default obstacle)",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

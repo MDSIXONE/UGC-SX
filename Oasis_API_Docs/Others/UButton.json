@@ -1,0 +1,614 @@
+{
+    "Name": "UButton",
+    "Description": "The button is a click-able primitive widget to enable basic interaction, you\n  can place any other widget inside a button to make a more complex and\n  interesting click-able element in your UI.\n \n   Single Child\n   Clickable",
+    "Variables": [
+        {
+            "Name": "Style_DEPRECATED",
+            "Type": "USlateWidgetStyleAsset *",
+            "Description": "The template style asset, used to seed the mutable instance of the style.",
+            "Redirect": ""
+        },
+        {
+            "Name": "WidgetStyle",
+            "Type": "FButtonStyle",
+            "Description": "The button style used at runtime",
+            "Redirect": ""
+        },
+        {
+            "Name": "ColorAndOpacity",
+            "Type": "FLinearColor",
+            "Description": "The color multiplier for the button content",
+            "Redirect": ""
+        },
+        {
+            "Name": "BackgroundColor",
+            "Type": "FLinearColor",
+            "Description": "The color multiplier for the button background",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClickMethod",
+            "Type": "TEnumAsByte < EButtonClickMethod :: Type >",
+            "Description": "The type of mouse action required by the user to trigger the buttons 'Click'",
+            "Redirect": ""
+        },
+        {
+            "Name": "TouchMethod",
+            "Type": "TEnumAsByte < EButtonTouchMethod :: Type >",
+            "Description": "The type of touch action required by the user to trigger the buttons 'Click'",
+            "Redirect": ""
+        },
+        {
+            "Name": "ListenEscMethod",
+            "Type": "TEnumAsByte < EListenEscMethod :: Type >",
+            "Description": "通过命名识别关闭按钮，识别忽略大小写下划线，推荐命名(Button_Close,NewButton_Close...)",
+            "Redirect": ""
+        },
+        {
+            "Name": "ListenActions",
+            "Type": "TArray < FButtonListenAction >",
+            "Description": "通过监听Action，来统一模拟按键点击，扩展Esc模拟点击功能",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsTipsBgBtn",
+            "Type": "bool",
+            "Description": "是否为Tips背景按钮",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsFocusable",
+            "Type": "bool",
+            "Description": "Sometimes a button should only be mouse-clickable and never keyboard focusable.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsPassMouseEvent",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsImgAlphaBtn",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseCustomSettings",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomHitAreaTexture",
+            "Type": "UTexture2D *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomHitAreaAlpha",
+            "Type": "int",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsShowHover",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnMouseButtonDownEvent",
+            "Type": "FOnPointerEvent",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnMouseButtonUpEvent",
+            "Type": "FOnPointerEvent",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnMouseMoveEvent",
+            "Type": "FOnPointerEvent",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InputActionBindings",
+            "Type": "FButtonInputActionBindingsStruct",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EscRespondSetting",
+            "Type": "FEscRespondSetting",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsThisFrameClicked",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetStyle",
+            "Description": "Sets the color multiplier for the button background",
+            "Params": [
+                {
+                    "Name": "InStyle",
+                    "Type": "FButtonStyle &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetColorAndOpacity",
+            "Description": "Sets the color multiplier for the button content",
+            "Params": [
+                {
+                    "Name": "InColorAndOpacity",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBackgroundColor",
+            "Description": "Sets the color multiplier for the button background",
+            "Params": [
+                {
+                    "Name": "InBackgroundColor",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsPressed",
+            "Description": "Returns true if the user is actively pressing the button.  Do not use this for detecting 'Clicks', use the OnClicked event instead.\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "true if the user is actively pressing the button otherwise false.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Release",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetClickMethod",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InClickMethod",
+                    "Type": "EButtonClickMethod :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTouchMethod",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTouchMethod",
+                    "Type": "EButtonTouchMethod :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetReleasedReason",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "uint8",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetListenEscMethod",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InListenEscMethod",
+                    "Type": "EListenEscMethod :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetListenEscMethod",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "EListenEscMethod :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetShowHover",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InShowHover",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddListenAction",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InActionName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InType",
+                    "Type": "EButtonListenActionEvent :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveListenAction",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InActionName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearListenActions",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCacheLayerId",
+            "Description": "return CacheLayerId only windows",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RespondEscape",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetButtonsFromAction",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "OutButtons",
+                    "Type": "TArray < UButton * > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InAction",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearInvalidForListenActions",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetButtonsFromTipsBg",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < UButton * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UContentWidget",
+        "IWidgetSkinInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnClicked",
+            "Description": "Called when the button is clicked",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnPressed",
+            "Description": "Called when the button is pressed",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnReleased",
+            "Description": "Called when the button is released",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnHovered",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnUnhovered",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnPressedParam",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MyGeometry",
+                    "Type": "FGeometry",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MouseEvent",
+                    "Type": "const FPointerEvent&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnReleasedParam",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MyGeometry",
+                    "Type": "FGeometry",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MouseEvent",
+                    "Type": "const FPointerEvent&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnReplayRecordNotify",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "EventIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

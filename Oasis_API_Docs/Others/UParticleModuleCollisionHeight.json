@@ -1,0 +1,25 @@
+{
+    "Name": "UParticleModuleCollisionHeight",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CollisionTypes",
+            "Type": "TArray < TEnumAsByte < enum EObjectTypeQuery > >",
+            "Description": "Which ObjectTypes to collide with",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionStep",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleCollisionBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,25 @@
+{
+    "Name": "USlateSettings",
+    "Description": "Settings that control Slate functionality",
+    "Variables": [
+        {
+            "Name": "bExplicitCanvasChildZOrder",
+            "Type": "bool",
+            "Description": "Allow children of SConstraintCanvas to share render layers. Children must set explicit ZOrder on their slots to control render order. \n\t  Recommendation: Enable for mobile platforms.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableFixedLayerFeature",
+            "Type": "bool",
+            "Description": "Force Image Widgets render in a given render layers to make them share one render layer.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

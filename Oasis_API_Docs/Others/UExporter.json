@@ -1,0 +1,67 @@
+{
+    "Name": "UExporter",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SupportedClass",
+            "Type": "TSubclassOf < UObject >",
+            "Description": "Supported class of this exporter",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExportRootScope",
+            "Type": "UObject *",
+            "Description": "The root scope of objects to be exported, only used if PPF_ExportsNotFullyQualfied is set\n\t  Objects being exported that are contained within ExportRootScope will use just their name instead of a full path",
+            "Redirect": ""
+        },
+        {
+            "Name": "FormatExtension",
+            "Type": "TArray < FString >",
+            "Description": "The root scope of objects to be exported, only used if PPF_ExportsNotFullyQualfied is set\n\t  Objects being exported that are contained within ExportRootScope will use just their name instead of a full path\n\t \n\t File extension to use for this exporter",
+            "Redirect": ""
+        },
+        {
+            "Name": "FormatDescription",
+            "Type": "TArray < FString >",
+            "Description": "Descriptiong of the export format",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreferredFormatIndex",
+            "Type": "int32",
+            "Description": "Index into FormatExtensionFormatDescription of the preferred export format.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextIndent",
+            "Type": "int32",
+            "Description": "Current indentation of spaces of the exported text",
+            "Redirect": ""
+        },
+        {
+            "Name": "bText",
+            "Type": "uint32",
+            "Description": "If true, this will export the data as text",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSelectedOnly",
+            "Type": "uint32",
+            "Description": "If true, this will export only the selected objects",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceFileOperations",
+            "Type": "uint32",
+            "Description": "If true, this will force the exporter code to create a file-based Ar (this can keep large output files from taking too much memory)",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,605 @@
+{
+    "Name": "ULightComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Temperature",
+            "Type": "float",
+            "Description": "Color temperature in Kelvin of the blackbody illuminant.\n\t White (D65) is 6500K.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxDrawDistance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxDistanceFadeRange",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseTemperature",
+            "Type": "uint32",
+            "Description": "false: use white (D65) as illuminant.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadowMapChannel_DEPRECATED",
+            "Type": "int32",
+            "Description": "Legacy shadowmap channel from the lighting build, now stored in FLightComponentMapBuildData.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinRoughness",
+            "Type": "float",
+            "Description": "Min roughness effective for this light. Used for softening specular highlights.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpecularScale",
+            "Type": "float",
+            "Description": "Multiplier on specular highlights. Use only with great care! Any value besides 1 is not physical!\n\t Can be used to artistically remove highlights mimicking polarizing filters or photo touch up.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLocalLightDisableDiffuse",
+            "Type": "uint32",
+            "Description": "Local light disable diffuse",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadowResolutionScale",
+            "Type": "float",
+            "Description": "Scales the resolution of shadowmaps used to shadow this light.  By default shadowmap resolution is chosen based on screen size of the caster. \n\t  Note: shadowmap resolution is still clamped by 'r.Shadow.MaxResolution'",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightPriority",
+            "Type": "int32",
+            "Description": "Light priority for mobile light grid",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadowBias",
+            "Type": "float",
+            "Description": "Controls how accurate self shadowing of whole scene shadows from this light are.  \n\t  At 0, shadows will start at the their caster surface, but there will be many self shadowing artifacts.\n\t  larger values, shadows will start further from their caster, and there won't be self shadowing artifacts but object might appear to fly.\n\t  around 0.5 seems to be a good tradeoff. This also affects the soft transition of shadows",
+            "Redirect": ""
+        },
+        {
+            "Name": "ShadowSharpen",
+            "Type": "float",
+            "Description": "Amount to sharpen shadow filtering",
+            "Redirect": ""
+        },
+        {
+            "Name": "ContactShadowLength",
+            "Type": "float",
+            "Description": "Length of screen space ray trace for sharp contact shadows. Zero is disabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InverseSquaredFalloff_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCacheStaticShadows",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CastTranslucentShadows",
+            "Type": "uint32",
+            "Description": "Whether the light is allowed to cast dynamic shadows from translucency.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastShadowsFromCinematicObjectsOnly",
+            "Type": "uint32",
+            "Description": "Whether the light should only cast shadows from components marked as bCastCinematicShadows. \n\t  This is useful for setting up cinematic Movable spotlights aimed at characters and avoiding the shadow depth rendering costs of the background.\n\t  Note: this only works with dynamic shadow maps, not with static shadowing or Ray Traced Distance Field shadows.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAffectDynamicIndirectLighting",
+            "Type": "uint32",
+            "Description": "Whether the light should be injected into the Light Propagation Volume",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightingChannels",
+            "Type": "FLightingChannels",
+            "Description": "Channels that this light should affect.  \n\t  These channels only apply to opaque materials, direct lighting, and dynamic lighting and shadowing.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightFunctionMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "The light function material to be applied to this light.\n\t  Note that only non-lightmapped lights (UseDirectLightMap=False) can have a light function.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightFunctionScale",
+            "Type": "FVector",
+            "Description": "Scales the light function projection.  X and Y scale in the directions perpendicular to the light's direction, Z scales along the light direction.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IESTexture",
+            "Type": "UTextureLightProfile *",
+            "Description": "IES texture (light profiles from real world measured data)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseIESBrightness",
+            "Type": "uint32",
+            "Description": "true: take light brightness from IES profile, false: use the light brightness - the maximum light in one direction is used to define no masking. Use with InverseSquareFalloff. Will be disabled if a valid IES profile texture is not supplied.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IESBrightnessScale",
+            "Type": "float",
+            "Description": "Global scale for IES brightness contribution. Only available when \"Use IES Brightness\" is selected, and a valid IES profile texture is set",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightFunctionFadeDistance",
+            "Type": "float",
+            "Description": "Distance at which the light function should be completely faded to DisabledBrightness.  \n\t  This is useful for hiding aliasing from light functions applied in the distance.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DisabledBrightness",
+            "Type": "float",
+            "Description": "Brightness factor applied to the light when the light function is specified but disabled, for example in scene captures that use SceneCapView_LitNoShadows. \n\t  This should be set to the average brightness of the light function material's emissive input, which should be between 0 and 1.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableLightShaftBloom",
+            "Type": "uint32",
+            "Description": "Whether to render light shaft bloom from this light. \n\t  For directional lights, the color around the light direction will be blurred radially and added back to the scene.\n\t  for point lights, the color on pixels closer than the light's SourceRadius will be blurred radially and added back to the scene.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BloomScale",
+            "Type": "float",
+            "Description": "Scales the additive color.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BloomThreshold",
+            "Type": "float",
+            "Description": "Scene color must be larger than this to create bloom in the light shafts.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BloomTint",
+            "Type": "FColor",
+            "Description": "Multiplies against scene color to create the bloom color.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseRayTracedDistanceFieldShadows",
+            "Type": "bool",
+            "Description": "Whether to use ray traced distance field area shadows.  The project setting bGenerateMeshDistanceFields must be enabled for this to have effect.\n\t  Distance field shadows support area lights so they create soft shadows with sharp contacts.  \n\t  They have less aliasing artifacts than standard shadowmaps, but inherit all the limitations of distance field representations (only uniform scale, no deformation).\n\t  These shadows have a low per-object cost (and don't depend on triangle count) so they are effective for distant shadows from a dynamic sun.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RayStartOffsetDepthScale",
+            "Type": "float",
+            "Description": "Controls how large of an offset ray traced shadows have from the receiving surface as the camera gets further away.  \n\t  This can be useful to hide self-shadowing artifacts from low resolution distance fields on huge static meshes.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetIntensity",
+            "Description": "Set intensity of the light",
+            "Params": [
+                {
+                    "Name": "NewIntensity",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIndirectLightingIntensity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewIntensity",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVolumetricScatteringIntensity",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewIntensity",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightColor",
+            "Description": "Set color of the light",
+            "Params": [
+                {
+                    "Name": "NewLightColor",
+                    "Type": "FLinearColor ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSRGB",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTemperature",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewTemperature",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightFunctionMaterial",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewLightFunctionMaterial",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightFunctionScale",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewLightFunctionScale",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightFunctionFadeDistance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewLightFunctionFadeDistance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLightFunctionDisabledBrightness",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAffectDynamicIndirectLighting",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAffectTranslucentLighting",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEnableLightShaftBloom",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBloomScale",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBloomThreshold",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBloomTint",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "FColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIESTexture",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "UTextureLightProfile *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetShadowBias",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ForceUpdateShadowState",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSpecularScale",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLocalLightDisableDiffuse",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "ULightComponentBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,108 @@
+{
+    "Name": "ASTExtraVehicleBase",
+    "Description": "载具基类",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "APawn",
+        "IGeneratorVehicleInterface",
+        "IRegionObjectInterface",
+        "IDamageableInterface",
+        "ISeekAndLockOwnerInterface",
+        "IActorHiddenInterface",
+        "IFastRemoteReplicationTargetInterface",
+        "IRelativeMoveMgrInterface",
+        "IInteractorInterface",
+        "IAttrModifyInterface"
+    ],
+    "Event": [
+        {
+            "Name": "UGC_OnVehicleEnterEvent",
+            "Description": "玩家进入载具事件\n\t 生效范围CS",
+            "Params": [
+                {
+                    "Name": "IsSucc",
+                    "Type": "bool ",
+                    "Description": "上车是否成功",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraPlayerCharacter * ",
+                    "Description": "乘客",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SeatType",
+                    "Type": "ESTExtraVehicleSeatType",
+                    "Description": "座位类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_OnVehicleExitEvent",
+            "Description": "玩家离开载具事件\n\t 生效范围CS",
+            "Params": [
+                {
+                    "Name": "Character",
+                    "Type": "ASTExtraPlayerCharacter *",
+                    "Description": "乘客",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": [
+        {
+            "Name": "UGC_OnVehicleHealthStateChangedDelegate",
+            "Description": "载具健康状态变化\t \n\t  生效范围 CS",
+            "Params": [
+                {
+                    "Name": "InVehicleHealthState",
+                    "Type": "ESTExtraVehicleHealthState",
+                    "Description": "变化后的健康状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_OnVehicleExplosionDelegate",
+            "Description": "生效范围S\n\t 载具爆炸事件",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

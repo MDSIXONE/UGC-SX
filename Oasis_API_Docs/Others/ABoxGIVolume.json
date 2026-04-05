@@ -1,0 +1,19 @@
+{
+    "Name": "ABoxGIVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "VolumeComponent",
+            "Type": "UGIBoxVolumeComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

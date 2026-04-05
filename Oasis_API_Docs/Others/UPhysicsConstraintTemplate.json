@@ -1,0 +1,241 @@
+{
+    "Name": "UPhysicsConstraintTemplate",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DefaultInstance",
+            "Type": "FConstraintInstance",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProfileHandles",
+            "Type": "TArray < FPhysicsConstraintProfileHandle >",
+            "Description": "Handles to the constraint profiles applicable to this constraint",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultProfile",
+            "Type": "FConstraintProfileProperties",
+            "Description": "When no profile is selected, use these settings. Only needed in editor as we serialize it into DefaultInstance on save",
+            "Redirect": ""
+        },
+        {
+            "Name": "JointName_DEPRECATED",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstraintBone1_DEPRECATED",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstraintBone2_DEPRECATED",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Pos1_DEPRECATED",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PriAxis1_DEPRECATED",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SecAxis1_DEPRECATED",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Pos2_DEPRECATED",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PriAxis2_DEPRECATED",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SecAxis2_DEPRECATED",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableProjection_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProjectionLinearTolerance_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProjectionAngularTolerance_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearXMotion_DEPRECATED",
+            "Type": "TEnumAsByte < enum ELinearConstraintMotion >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearYMotion_DEPRECATED",
+            "Type": "TEnumAsByte < enum ELinearConstraintMotion >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearZMotion_DEPRECATED",
+            "Type": "TEnumAsByte < enum ELinearConstraintMotion >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearLimitSize_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLinearLimitSoft_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearLimitStiffness_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearLimitDamping_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLinearBreakable_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinearBreakThreshold_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngularSwing1Motion_DEPRECATED",
+            "Type": "TEnumAsByte < enum EAngularConstraintMotion >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngularSwing2Motion_DEPRECATED",
+            "Type": "TEnumAsByte < enum EAngularConstraintMotion >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngularTwistMotion_DEPRECATED",
+            "Type": "TEnumAsByte < enum EAngularConstraintMotion >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSwingLimitSoft_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTwistLimitSoft_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Swing1LimitAngle_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Swing2LimitAngle_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TwistLimitAngle_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SwingLimitStiffness_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SwingLimitDamping_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TwistLimitStiffness_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TwistLimitDamping_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAngularBreakable_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngularBreakThreshold_DEPRECATED",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

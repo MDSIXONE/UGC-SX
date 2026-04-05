@@ -1,0 +1,139 @@
+{
+    "Name": "UAssetManagerSettings",
+    "Description": "Settings for the Asset Management framework, which can be used to discover, load, and audit game-specific asset types",
+    "Variables": [
+        {
+            "Name": "PrimaryAssetTypesToScan",
+            "Type": "TArray < FPrimaryAssetTypeInfo >",
+            "Description": "List of asset types to scan at startup",
+            "Redirect": ""
+        },
+        {
+            "Name": "DirectoriesToExclude",
+            "Type": "TArray < FDirectoryPath >",
+            "Description": "List of directories to exclude from scanning for Primary Assets, useful to exclude test assets",
+            "Redirect": ""
+        },
+        {
+            "Name": "PrimaryAssetRules",
+            "Type": "TArray < FPrimaryAssetRulesOverride >",
+            "Description": "List of specific asset rule overrides",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOnlyCookProductionAssets",
+            "Type": "bool",
+            "Description": "If true, DevelopmentCook assets will error when they are cooked",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldGuessTypeAndNameInEditor",
+            "Type": "bool",
+            "Description": "If true, PrimaryAsset TypeName will be implied for assets in the editor (cooked builds always must be explicit). This allows guessing for content that hasn't been resaved yet",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldAcquireMissingChunksOnLoad",
+            "Type": "bool",
+            "Description": "If true, this will query the platform chunk install interface to request missing chunks for any requested primary asset loads",
+            "Redirect": ""
+        },
+        {
+            "Name": "IndexOfUsingAutoChunkName",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PrimaryAssetIdRedirects",
+            "Type": "TArray < FAssetManagerRedirect >",
+            "Description": "Redirect from Type:Name to Type:NameNew",
+            "Redirect": ""
+        },
+        {
+            "Name": "PrimaryAssetTypeRedirects",
+            "Type": "TArray < FAssetManagerRedirect >",
+            "Description": "Redirect from Type to TypeNew",
+            "Redirect": ""
+        },
+        {
+            "Name": "AssetPathRedirects",
+            "Type": "TArray < FAssetManagerRedirect >",
+            "Description": "Redirect from gameassetpath to gameassetpathnew",
+            "Redirect": ""
+        },
+        {
+            "Name": "MetaDataTagsForAssetRegistry",
+            "Type": "TSet < FName >",
+            "Description": "The metadata tags to be transferred to the Asset Registry.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bParsePAWhenDroped",
+            "Type": "bool",
+            "Description": "Asset Audit解析拖拽的PA.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultChunkName",
+            "Type": "FString",
+            "Description": "默认Core包名.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlacklistFilePath",
+            "Type": "FFilePath",
+            "Description": "编辑器检查用黑名单文件路径.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlacklistForPackageFilePath",
+            "Type": "FFilePath",
+            "Description": "打包用黑名单文件路径.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAlwaysReloadCSVConfig",
+            "Type": "bool",
+            "Description": "是否每次检查都重新读取黑名单配置.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseBlacklistMap",
+            "Type": "bool",
+            "Description": "构造所有黑名单文件夹的文件Map来查找.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableCheckBlacklist",
+            "Type": "bool",
+            "Description": "Whether check the asset depend on blacklist asset in content browser.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SearchingDepth",
+            "Type": "int32",
+            "Description": "The depth of searching blacklist asset tree in content browser.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAllMetaDataTagsForAssetRegistry",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableModelStage",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDeveloperSettings"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

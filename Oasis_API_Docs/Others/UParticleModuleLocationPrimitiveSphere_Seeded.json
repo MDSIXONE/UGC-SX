@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleLocationPrimitiveSphere_Seeded",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "RandomSeedInfo",
+            "Type": "FParticleRandomSeedInfo",
+            "Description": "The random seed(s) to use for looking up values in StartLocation",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleLocationPrimitiveSphere"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

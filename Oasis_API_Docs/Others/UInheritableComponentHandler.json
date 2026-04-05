@@ -1,0 +1,25 @@
+{
+    "Name": "UInheritableComponentHandler",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Records",
+            "Type": "TArray < FComponentOverrideRecord >",
+            "Description": "All component records",
+            "Redirect": ""
+        },
+        {
+            "Name": "UnnecessaryComponents",
+            "Type": "TArray < UActorComponent * >",
+            "Description": "List of components that were marked unnecessary, need to keep these around so it doesn't regenerate them when a child asks for one",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

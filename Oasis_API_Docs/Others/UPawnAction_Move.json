@@ -1,0 +1,79 @@
+{
+    "Name": "UPawnAction_Move",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "GoalActor",
+            "Type": "AActor *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GoalLocation",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AcceptableRadius",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "FilterClass",
+            "Type": "TSubclassOf < UNavigationQueryFilter >",
+            "Description": "\"None\" will result in default filter being used",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowStrafe",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFinishOnOverlap",
+            "Type": "uint32",
+            "Description": "if set to true (default) will make action succeed when the pawn's collision component overlaps with goal's collision component",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUsePathfinding",
+            "Type": "uint32",
+            "Description": "if set, movement will use path finding",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowPartialPath",
+            "Type": "uint32",
+            "Description": "if set, use incomplete path when goal can't be reached",
+            "Redirect": ""
+        },
+        {
+            "Name": "bProjectGoalToNavigation",
+            "Type": "uint32",
+            "Description": "if set, GoalLocation will be projected on navigation before using",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUpdatePathToGoal",
+            "Type": "uint32",
+            "Description": "if set, path to GoalActor will be updated with goal's movement",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAbortChildActionOnPathChange",
+            "Type": "uint32",
+            "Description": "if set, other actions with the same priority will be aborted when path is changed",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPawnAction"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_SlateChildSize",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "FSlateChildSize",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

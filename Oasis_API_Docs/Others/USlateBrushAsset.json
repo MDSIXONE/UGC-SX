@@ -1,0 +1,19 @@
+{
+    "Name": "USlateBrushAsset",
+    "Description": "An asset describing how a texture can exist in slate's DPI-aware environment\n  and how this texture responds to resizing. e.g. Scale9-stretching? Tiling?",
+    "Variables": [
+        {
+            "Name": "Brush",
+            "Type": "FSlateBrush",
+            "Description": "The slate brush resource describing the texture's behavior.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

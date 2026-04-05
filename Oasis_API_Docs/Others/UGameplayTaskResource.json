@@ -1,0 +1,31 @@
+{
+    "Name": "UGameplayTaskResource",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ManualResourceID",
+            "Type": "int32",
+            "Description": "Overrides AutoResourceID. -1 means auto ID will be applied",
+            "Redirect": ""
+        },
+        {
+            "Name": "AutoResourceID",
+            "Type": "int8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bManuallySetID",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

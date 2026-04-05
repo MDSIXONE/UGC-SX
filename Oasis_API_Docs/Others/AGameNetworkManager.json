@@ -1,0 +1,223 @@
+{
+    "Name": "AGameNetworkManager",
+    "Description": "Handles game-specific networking management (cheat detection, bandwidth management, etc.).",
+    "Variables": [
+        {
+            "Name": "AdjustedNetSpeed",
+            "Type": "int32",
+            "Description": "Current adjusted net speed - Used for dynamically managing netspeed for listen servers",
+            "Redirect": ""
+        },
+        {
+            "Name": "LastNetSpeedUpdateTime",
+            "Type": "float",
+            "Description": "Last time netspeed was updated for server (by client entering or leaving)",
+            "Redirect": ""
+        },
+        {
+            "Name": "TotalNetBandwidth",
+            "Type": "int32",
+            "Description": "Total available bandwidth for listen server, split dynamically across net connections",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinDynamicBandwidth",
+            "Type": "int32",
+            "Description": "Minimum bandwidth dynamically set per connection",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxDynamicBandwidth",
+            "Type": "int32",
+            "Description": "Maximum bandwidth dynamically set per connection",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsStandbyCheckingEnabled",
+            "Type": "uint32",
+            "Description": "Used to determine if checking for standby cheats should occur",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasStandbyCheatTriggered",
+            "Type": "uint32",
+            "Description": "Used to determine whether we've already caught a cheat or not",
+            "Redirect": ""
+        },
+        {
+            "Name": "StandbyRxCheatTime",
+            "Type": "float",
+            "Description": "The amount of time without packets before triggering the cheat code",
+            "Redirect": ""
+        },
+        {
+            "Name": "StandbyTxCheatTime",
+            "Type": "float",
+            "Description": "The amount of time without packets before triggering the cheat code",
+            "Redirect": ""
+        },
+        {
+            "Name": "BadPingThreshold",
+            "Type": "int32",
+            "Description": "The point we determine the server is either delaying packets or has bad upstream",
+            "Redirect": ""
+        },
+        {
+            "Name": "PercentMissingForRxStandby",
+            "Type": "float",
+            "Description": "The percentage of clients missing RX data before triggering the standby code",
+            "Redirect": ""
+        },
+        {
+            "Name": "PercentMissingForTxStandby",
+            "Type": "float",
+            "Description": "The percentage of clients missing TX data before triggering the standby code",
+            "Redirect": ""
+        },
+        {
+            "Name": "PercentForBadPing",
+            "Type": "float",
+            "Description": "The percentage of clients with bad ping before triggering the standby code",
+            "Redirect": ""
+        },
+        {
+            "Name": "JoinInProgressStandbyWaitTime",
+            "Type": "float",
+            "Description": "The amount of time to wait before checking a connection for standby issues",
+            "Redirect": ""
+        },
+        {
+            "Name": "MoveRepSize",
+            "Type": "float",
+            "Description": "Average size of replicated move packet (ServerMove() packet size) from player",
+            "Redirect": ""
+        },
+        {
+            "Name": "MAXPOSITIONERRORSQUARED",
+            "Type": "float",
+            "Description": "MAXPOSITIONERRORSQUARED is the square of the max position error that is accepted (not corrected) in net play",
+            "Redirect": ""
+        },
+        {
+            "Name": "MAXNEARZEROVELOCITYSQUARED",
+            "Type": "float",
+            "Description": "MAXNEARZEROVELOCITYSQUARED is the square of the max velocity that is considered zero (not corrected) in net play",
+            "Redirect": ""
+        },
+        {
+            "Name": "CLIENTADJUSTUPDATECOST",
+            "Type": "float",
+            "Description": "CLIENTADJUSTUPDATECOST is the bandwidth cost in bytes of sending a client adjustment update. 180 is greater than the actual cost, but represents a tweaked value reserving enough bandwidth for\n\tother updates sent to the client.  Increase this value to reduce client adjustment update frequency, or if the amount of data sent in the clientadjustment() call increases",
+            "Redirect": ""
+        },
+        {
+            "Name": "MAXCLIENTUPDATEINTERVAL",
+            "Type": "float",
+            "Description": "MAXCLIENTUPDATEINTERVAL is the maximum time between movement updates from the client before the server forces an update.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxMoveDeltaTime",
+            "Type": "float",
+            "Description": "MaxMoveDeltaTime is the default maximum time delta of CharacterMovement ServerMoves. Should be less than or equal to MAXCLIENTUPDATEINTERVAL, otherwise server will interfere by forcing position updates.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientNetSendMoveDeltaTime",
+            "Type": "float",
+            "Description": "ClientNetSendMoveDeltaTime is the default minimum time delta of CharacterMovement client moves to the server. When updates occur more frequently, they may be combined to save bandwidth.\n\t  This value is not used when player count is over ClientNetSendMoveThrottleOverPlayerCount or player net speed is <= ClientNetSendMoveThrottleAtNetSpeed (see ClientNetSendMoveDeltaTimeThrottled).",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientNetSendMoveDeltaTimeThrottled",
+            "Type": "float",
+            "Description": "ClientNetSendMoveDeltaTimeThrottled is used in place of ClientNetSendMoveDeltaTime when player count is high or net speed is low. See ClientNetSendMoveDeltaTime for more info.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientNetSendMoveDeltaTimeStationary",
+            "Type": "float",
+            "Description": "ClientNetSendMoveDeltaTimeStationary is used when players are determined to not be moving or changing their view. See ClientNetSendMoveDeltaTime for more info.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientNetSendMoveThrottleAtNetSpeed",
+            "Type": "int32",
+            "Description": "When player net speed (CurrentNetSpeed, based on ConfiguredInternetSpeed or ConfiguredLanSpeed) is less than or equal to this amount, ClientNetSendMoveDeltaTimeThrottled is used instead of ClientNetSendMoveDeltaTime.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientNetSendMoveThrottleOverPlayerCount",
+            "Type": "int32",
+            "Description": "When player count is greater than this amount, ClientNetSendMoveDeltaTimeThrottled is used instead of ClientNetSendMoveDeltaTime.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientAuthorativePosition",
+            "Type": "bool",
+            "Description": "If client update is within MAXPOSITIONERRORSQUARED then he is authorative on his final position",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClientErrorUpdateRateLimit",
+            "Type": "float",
+            "Description": "Minimum delay between the server sending error corrections to a client, in seconds.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMovementTimeDiscrepancyDetection",
+            "Type": "bool",
+            "Description": "Whether movement time discrepancy detection is enabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMovementTimeDiscrepancyResolution",
+            "Type": "bool",
+            "Description": "Whether movement time discrepancy resolution is enabled (when detected, make client movement \"pay back\" excessive time discrepancies)",
+            "Redirect": ""
+        },
+        {
+            "Name": "MovementTimeDiscrepancyMaxTimeMargin",
+            "Type": "float",
+            "Description": "Maximum time client can be ahead before triggering movement time discrepancy detectionresolution (if enabled).",
+            "Redirect": ""
+        },
+        {
+            "Name": "MovementTimeDiscrepancyMinTimeMargin",
+            "Type": "float",
+            "Description": "Maximum time client can be behind.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MovementTimeDiscrepancyResolutionRate",
+            "Type": "float",
+            "Description": "During time discrepancy resolution, we \"pay back\" the time discrepancy at this rate for future moves until total error is zero.\n\t  1.0 = 100% resolution rate, meaning the next X ServerMoves from the client are fully paying back the time, \n\t  0.5 = 50% resolution rate, meaning future ServerMoves will spend 50% of tick continuing to move the character and 50% paying back.\n\t  Lowering from 100% could be used to produce less severenoticeable corrections, although typically we would want to correct\n\t  the client as quickly as possible.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MovementTimeDiscrepancyDriftAllowance",
+            "Type": "float",
+            "Description": "Accepted drift in clocks between client and server as a percent per second allowed. \n\t \n\t  0.0 is \"no forgiveness\" and all logic would run on raw values, no tampering on the server side.\n\t  0.02 would be a 2% per second difference \"forgiven\" - if the time discrepancy in a given second was less than 2%,\n\t  the error handlingdetection code effectively ignores it.\n\t  \n\t  Increasing this value above 0% lessens the chance of false positives on time discrepancy (burst packet loss, performance\n\t  hitches), but also means anyone tampering with their client time below that percent will not be detected and no resolution\n\t  action will be taken, and anyone above that threshold will still gain the advantage of this % of time boost (if running at \n\t  10% speed-up and this value is 0.05 or 5% allowance, they would only be resolved down to a 5% speed boost).\n\t \n\t  Time discrepancy detection code DOES keep track of LifetimeRawTimeDiscrepancy, which is unaffected by this drift allowance,\n\t  so cheating below DriftAllowance percent could be tracked and acted on outside of an individual game. For example, if DriftAllowance\n\t  was 0.05 (meaning we're not going to actively prevent any cheating below 5% boosts to ensure less false positives for normal players),\n\t  we could still post-process analytics of the game showing that Player X regularly runs at 4% speed boost and take action.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMovementTimeDiscrepancyForceCorrectionsDuringResolution",
+            "Type": "bool",
+            "Description": "Whether client moves should be force corrected during time discrepancy resolution, useful for projects that have lenient \n\t  move error toleranceClientAuthorativePosition enabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseDistanceBasedRelevancy",
+            "Type": "bool",
+            "Description": "If true, actor network relevancy is constrained by whether they are within their NetCullDistanceSquared from the client's view point.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AInfo"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

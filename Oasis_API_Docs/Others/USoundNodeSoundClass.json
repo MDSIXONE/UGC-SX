@@ -1,0 +1,19 @@
+{
+    "Name": "USoundNodeSoundClass",
+    "Description": "Remaps the SoundClass of SoundWaves underneath this",
+    "Variables": [
+        {
+            "Name": "SoundClassOverride",
+            "Type": "USoundClass *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

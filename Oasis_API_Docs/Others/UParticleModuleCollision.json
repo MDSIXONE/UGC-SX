@@ -1,0 +1,163 @@
+{
+    "Name": "UParticleModuleCollision",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DampingFactor",
+            "Type": "FRawDistributionVector",
+            "Description": "How much to `slow' the velocity of the particle after a collision.\n\t \tValue is obtained using the EmitterTime at particle spawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DampingFactorRotation",
+            "Type": "FRawDistributionVector",
+            "Description": "How much to `slow' the rotation of the particle after a collision.\n\t \tValue is obtained using the EmitterTime at particle spawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxCollisions",
+            "Type": "FRawDistributionFloat",
+            "Description": "The maximum number of collisions a particle can have. \n\t   Value is obtained using the EmitterTime at particle spawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionCompletionOption",
+            "Type": "TEnumAsByte < enum EParticleCollisionComplete >",
+            "Description": "What to do once a particles MaxCollisions is reached.\n\t \tOne of the following:\n\t \tEPCC_Kill\n\t \t\tKill the particle when MaxCollisions is reached\n\t \tEPCC_Freeze\n\t \t\tFreeze in place, NO MORE UPDATES\n\t \tEPCC_HaltCollisions,\n\t \t\tStop collision checks, keep updating everything\n\t \tEPCC_FreezeTranslation,\n\t \t\tStop translations, keep updating everything else\n\t \tEPCC_FreezeRotation,\n\t \t\tStop rotations, keep updating everything else\n\t \tEPCC_FreezeMovement\n\t \t\tStop all movement, keep updating",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionTypes",
+            "Type": "TArray < TEnumAsByte < enum EObjectTypeQuery > >",
+            "Description": "Which ObjectTypes to collide with",
+            "Redirect": ""
+        },
+        {
+            "Name": "bApplyPhysics",
+            "Type": "uint32",
+            "Description": "If true, physic will be applied between a particle and the \n\t \tobject it collides with. \n\t \tThis is one-way - particle --> object. The particle does \n\t \tnot have physics applied to it - it just generates an \n\t \timpulse applied to the object it collides with. \n\t  NOTE: having this on prevents the code from running off the game thread.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoreTriggerVolumes",
+            "Type": "uint32",
+            "Description": "Any trigger volumes that are hit will be ignored. NOTE: This can be turned off if the TrigerVolume physics object type is not in the CollisionTypes array.\n\t Turning this off is strongly recommended as having it on prevents the code from running off the game thread.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClassesToIgnore",
+            "Type": "TArray < UClass * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActorTagsToIgnore",
+            "Type": "TArray < FName >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ComponentClassesToIgnore",
+            "Type": "TArray < UClass * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ComponentTagsToIgnore",
+            "Type": "TArray < FName >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTraceByChannel",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TraceChannel",
+            "Type": "TEnumAsByte < ECollisionChannel >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParticleMass",
+            "Type": "FRawDistributionFloat",
+            "Description": "The mass of the particle - for use when bApplyPhysics is true. \n\t \tValue is obtained using the EmitterTime at particle spawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DirScalar",
+            "Type": "float",
+            "Description": "The directional scalar value - used to scale the bounds to \n\t \t'assist' in avoiding inter-penetration or large gaps.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPawnsDoNotDecrementCount",
+            "Type": "uint32",
+            "Description": "If true, then collisions with Pawns will still react, but \n\t \tthe UsedMaxCollisions count will not be decremented. \n\t \t(ie., They don't 'count' as collisions)\n\t  NOTE: Having this on prevents the code from running in parallel.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOnlyVerticalNormalsDecrementCount",
+            "Type": "uint32",
+            "Description": "If true, then collisions that do not have a vertical hit \n\t \tnormal will still react, but UsedMaxCollisions count will \n\t \tnot be decremented. (ie., They don't 'count' as collisions)\n\t \tUseful for having particles come to rest on floors.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VerticalFudgeFactor",
+            "Type": "float",
+            "Description": "The fudge factor to use to determine vertical.\n\t \tTrue vertical will have a Hit.Normal.Z == 1.0\n\t \tThis will allow for Z components in the range of\n\t \t[1.0-VerticalFudgeFactor..1.0]\n\t \tto count as vertical collisions.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DelayAmount",
+            "Type": "FRawDistributionFloat",
+            "Description": "How long to delay before checking a particle for collisions.\n\t \tValue is retrieved using the EmitterTime.\n\t \tDuring update, the particle flag IgnoreCollisions will be \n\t \tset until the particle RelativeTime has surpassed the \n\t \tDelayAmount.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDropDetail",
+            "Type": "uint32",
+            "Description": "If true, when the World->bDropDetail flag is set, the module will be ignored.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCollideOnlyIfVisible",
+            "Type": "uint32",
+            "Description": "If true, Particle collision only if particle system is currently being rendered.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoreSourceActor",
+            "Type": "uint32",
+            "Description": "If true, then the source actor is ignored in collision checks.\n\t \tDefaults to true.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClearCacheIgnoreActorsAndCompsOnSpawn",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearCacheIgnoreActorsAndCompsInterval",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxCollisionDistance",
+            "Type": "float",
+            "Description": "Max distance at which particle collision will occur.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleCollisionBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

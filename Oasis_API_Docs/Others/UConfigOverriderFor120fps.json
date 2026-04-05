@@ -1,0 +1,143 @@
+{
+    "Name": "UConfigOverriderFor120fps",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ConfigFor120fps",
+            "Type": "TArray < FConfigOverriderSetting >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConfigForEnergySaving",
+            "Type": "TArray < FConfigOverriderSetting >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextureLODGroupFilterOverride",
+            "Type": "TArray < FTextureLODGroupFilterOverride >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHadApplyConfigFor120fps",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHadApplyForEnergySaving",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "Enable120fpsConfigs",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableEnergySavingModeConfigs",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bEnergySaving",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RecoverConfigs",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Recover120fpsConfigs",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RecoverEnergySavingModeConfigs",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableTextureFilterOverrider",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

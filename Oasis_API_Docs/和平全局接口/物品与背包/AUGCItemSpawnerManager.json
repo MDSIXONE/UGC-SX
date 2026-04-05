@@ -1,0 +1,219 @@
+{
+    "Name": "AUGCItemSpawnerManager",
+    "Description": "生成系统：物资生成管理器",
+    "Variables": [
+        {
+            "Name": "StartCondition",
+            "Type": "EUGCItemSpawnerManagerStartCondition",
+            "Description": "管理器的启动方式",
+            "Redirect": ""
+        },
+        {
+            "Name": "EventName",
+            "Type": "FString",
+            "Description": "启动方式选择事件触发时，监听的GMP事件名",
+            "Redirect": ""
+        },
+        {
+            "Name": "ItemSpawners",
+            "Type": "TArray < FUGCItemSpawnerInfo >",
+            "Description": "配置刷新点",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxWaveInternalTime",
+            "Type": "float",
+            "Description": "配置两次刷新之间的最大时间间隔",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinWaveInternalTime",
+            "Type": "float",
+            "Description": "配置两次刷新之间的最小时间间隔",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxSpawnerNumPerWave",
+            "Type": "int32",
+            "Description": "配置同一时间有物资刷出的刷新点的最大数量",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinSpawnerNumPerWave",
+            "Type": "int32",
+            "Description": "配置同一时间有物资刷出的刷新点的最小数量",
+            "Redirect": ""
+        },
+        {
+            "Name": "TotalSpawnWaveCount",
+            "Type": "int32",
+            "Description": "物资刷新的总轮数，设为-1则无限刷新",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideItemConfig",
+            "Type": "bool",
+            "Description": "是否覆盖所有刷新点上的物资配置",
+            "Redirect": ""
+        },
+        {
+            "Name": "ItemConfig",
+            "Type": "FUGCItemSpawnerItemConfig",
+            "Description": "配置所有刷新点上的物资配置",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "StartSpawnerManager",
+            "Description": "生效范围 服务器\n\t  启动管理器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResetSpawnerManager",
+            "Description": "生效范围 服务器\n\t  重置管理器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CleanAllItem",
+            "Description": "生效范围 服务器\n\t  清理刷出的物资",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PauseSpawnerManager",
+            "Description": "生效范围 服务器\n\t  暂停物资刷新管理器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ResumeSpawnerManager",
+            "Description": "生效范围 服务器\n\t  恢复物资刷新管理器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetItemConfigOverrideForSpawner",
+            "Description": "生效范围 服务器\n\t  修改特定刷新点的物资配置",
+            "Params": [
+                {
+                    "Name": "InItemConfig",
+                    "Type": "FUGCItemSpawnerItemConfig ",
+                    "Description": "新的物资刷新配置",
+                    "Redirect": "cppstruct/detail/FUGCItemSpawnerItemConfig.json"
+                },
+                {
+                    "Name": "SpawnerIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetItemConfigOverride",
+            "Description": "生效范围 服务器\n\t  修改所有刷新点的物资配置",
+            "Params": [
+                {
+                    "Name": "InItemConfig",
+                    "Type": "FUGCItemSpawnerItemConfig",
+                    "Description": "新的物资刷新配置",
+                    "Redirect": "cppstruct/detail/FUGCItemSpawnerItemConfig.json"
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CleanAllItemConfigOverride",
+            "Description": "生效范围 服务器\n\t  清除刷新点的物资配置设置，调用后将使用刷新点本身的配置",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AActor"
+    ],
+    "Event": [
+        {
+            "Name": "OnItemsSpawn",
+            "Description": "生效范围 服务器\n\t  物品刷新",
+            "Params": [
+                {
+                    "Name": "Items",
+                    "Type": "TArray < AActor * > &",
+                    "Description": "本轮刷新的物品",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": null,
+    "Language": "cpp"
+}

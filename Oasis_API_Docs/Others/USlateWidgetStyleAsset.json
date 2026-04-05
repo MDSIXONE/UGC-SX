@@ -1,0 +1,19 @@
+{
+    "Name": "USlateWidgetStyleAsset",
+    "Description": "Just a wrapper for the struct with real data in it.",
+    "Variables": [
+        {
+            "Name": "CustomStyle",
+            "Type": "USlateWidgetStyleContainerBase *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

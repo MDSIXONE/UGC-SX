@@ -1,0 +1,89 @@
+{
+    "Name": "UDamageType",
+    "Description": "A DamageType is intended to define and describe a particular form of damage and to provide an avenue \n  for customizing responses to damage from various sources.\n \n  For example, a game could make a DamageType_Fire set it up to ignite the damaged actor.\n \n  DamageTypes are never instanced and should be treated as immutable data holders with static code\n  functionality.  They should never be stateful.",
+    "Variables": [
+        {
+            "Name": "bCausedByWorld",
+            "Type": "uint32",
+            "Description": "True if this damagetype is caused by the world (falling off level, into lava, etc).",
+            "Redirect": ""
+        },
+        {
+            "Name": "bScaleMomentumByMass",
+            "Type": "uint32",
+            "Description": "True to scale imparted momentum by the receiving pawn's mass for pawns using character movement",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRadialDamageVelChange",
+            "Type": "uint32",
+            "Description": "When applying radial impulses, whether to treat as impulse or velocity change.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DamageImpulse",
+            "Type": "float",
+            "Description": "The magnitude of impulse to apply to the Actors damaged by this type.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DestructibleImpulse",
+            "Type": "float",
+            "Description": "How large the impulse should be applied to destructible meshes",
+            "Redirect": ""
+        },
+        {
+            "Name": "DestructibleDamageSpreadScale",
+            "Type": "float",
+            "Description": "How much the damage spreads on a destructible mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "DamageFalloff",
+            "Type": "float",
+            "Description": "Damage fall-off for radius damage (exponent).  Default 1.0=linear, 2.0=square of distance, etc.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "HasDamageTypeTags_DamageType",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDamageTypeTags_DamageType",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "OutTags",
+                    "Type": "TArray < FName > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

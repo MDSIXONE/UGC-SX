@@ -1,0 +1,19 @@
+{
+    "Name": "USubsurfaceProfile",
+    "Description": "Subsurface Scattering profile asset, can be specified at the material. Only for \"Subsurface Profile\" materials, is use during Screenspace Subsurface Scattering\n  Don't change at runtime. All properties in here are per material - texture like variations need to come from properties that are in the GBuffer.",
+    "Variables": [
+        {
+            "Name": "Settings",
+            "Type": "FSubsurfaceProfileStruct",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

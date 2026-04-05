@@ -1,0 +1,20 @@
+{
+    "Name": "UMovieSceneIntegerSection",
+    "Description": "A single integer section.",
+    "Variables": [
+        {
+            "Name": "IntegerCurve",
+            "Type": "FIntegralCurve",
+            "Description": "Ordered curve data",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection",
+        "IKeyframeSection<int32>"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

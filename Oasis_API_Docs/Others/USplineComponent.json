@@ -1,0 +1,2342 @@
+{
+    "Name": "USplineComponent",
+    "Description": "A spline component is a spline shape which can be used for other purposes (e.g. animating objects). It contains debug rendering capabilities.",
+    "Variables": [
+        {
+            "Name": "SplineCurves",
+            "Type": "FSplineCurves",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineInfo_DEPRECATED",
+            "Type": "FInterpCurveVector",
+            "Description": "Deprecated - please use GetSplinePointsPosition() to fetch this FInterpCurve",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineRotInfo_DEPRECATED",
+            "Type": "FInterpCurveQuat",
+            "Description": "Deprecated - please use GetSplinePointsRotation() to fetch this FInterpCurve",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineScaleInfo_DEPRECATED",
+            "Type": "FInterpCurveVector",
+            "Description": "Deprecated - please use GetSplinePointsScale() to fetch this FInterpCurve",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineReparamTable_DEPRECATED",
+            "Type": "FInterpCurveFloat",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowSplineEditingPerInstance_DEPRECATED",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReparamStepsPerSegment",
+            "Type": "int32",
+            "Description": "Number of steps per spline segment to place in the reparameterization table",
+            "Redirect": ""
+        },
+        {
+            "Name": "Duration",
+            "Type": "float",
+            "Description": "Specifies the duration of the spline in seconds",
+            "Redirect": ""
+        },
+        {
+            "Name": "bStationaryEndpoints",
+            "Type": "bool",
+            "Description": "Whether the endpoints of the spline are considered stationary when traversing the spline at non-constant velocity.  Essentially this sets the endpoints' tangents to zero vectors.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSplineHasBeenEdited",
+            "Type": "bool",
+            "Description": "Whether the spline has been edited from its default by the spline component visualizer",
+            "Redirect": ""
+        },
+        {
+            "Name": "bModifiedByConstructionScript",
+            "Type": "bool",
+            "Description": "Whether the UCS has made changes to the spline points",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInputSplinePointsToConstructionScript",
+            "Type": "bool",
+            "Description": "Whether the spline points should be passed to the User Construction Script so they can be further manipulated by it.\n\t  If false, they will not be visible to it, and it will not be able to influence the per-instance positions set in the editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDrawDebug",
+            "Type": "bool",
+            "Description": "If true, the spline will be rendered if the Splines showflag is set.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClosedLoop",
+            "Type": "bool",
+            "Description": "Whether the spline is to be considered as a closed loop.\n\t  Use SetClosedLoop() to set this property, and IsClosedLoop() to read it.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLoopPositionOverride",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LoopPosition",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultUpVector",
+            "Type": "FVector",
+            "Description": "Default up vector in local space to be used when calculating transforms along the spline",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseConfigRotation",
+            "Type": "bool",
+            "Description": "Engine Modify Start",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseConfigRotationXY",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorUnselectedSplineSegmentColor",
+            "Type": "FLinearColor",
+            "Description": "Engine Modify End\n\t \n\t Color of an unselected spline component segment in the editor",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorSelectedSplineSegmentColor",
+            "Type": "FLinearColor",
+            "Description": "Color of a selected spline component segment in the editor",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowDiscontinuousSpline",
+            "Type": "bool",
+            "Description": "Whether the spline's leave and arrive tangents can be different",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShouldVisualizeScale",
+            "Type": "bool",
+            "Description": "Whether scale visualization should be displayed",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScaleVisualizationWidth",
+            "Type": "float",
+            "Description": "Width of spline in editor for use with scale visualization",
+            "Redirect": ""
+        },
+        {
+            "Name": "PostionModifyer",
+            "Type": "USplineComponentEditorModifer *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectedIndexs",
+            "Type": "TSet < int32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SnappingType",
+            "Type": "ESplineSnappingType",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SnapInterval",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SnapTopDownRange",
+            "Type": "FVector2D",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TraceLength",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "UpdateSpline",
+            "Description": "Update the spline tangents and SplineReparamTable",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDistanceAlongSplineAtSplineInputKey",
+            "Description": "Get distance along the spline at the provided input key value",
+            "Params": [
+                {
+                    "Name": "InKey",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetUnselectedSplineSegmentColor",
+            "Description": "Specify unselected spline component segment color in the editor",
+            "Params": [
+                {
+                    "Name": "SegmentColor",
+                    "Type": "FLinearColor &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSelectedSplineSegmentColor",
+            "Description": "Specify selected spline component segment color in the editor",
+            "Params": [
+                {
+                    "Name": "SegmentColor",
+                    "Type": "FLinearColor &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EditorSnapToGround",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EditorNormalizeSplineTangent",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDrawDebug",
+            "Description": "Specify whether this spline should be rendered when the EditorGame spline show flag is set",
+            "Params": [
+                {
+                    "Name": "bShow",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetClosedLoop",
+            "Description": "Specify whether the spline is a closed loop or not. The loop position will be at 1.0 after the last point's input key",
+            "Params": [
+                {
+                    "Name": "bInClosedLoop",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetClosedLoopAtPosition",
+            "Description": "Specify whether the spline is a closed loop or not, and if so, the input key corresponding to the loop point",
+            "Params": [
+                {
+                    "Name": "bInClosedLoop",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Key",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsClosedLoop",
+            "Description": "Check whether the spline is a closed loop or not",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearSplinePoints",
+            "Description": "Clears all the points in the spline",
+            "Params": [
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddPoint",
+            "Description": "Adds an FSplinePoint to the spline. This contains its input key, position, tangent, rotation and scale.",
+            "Params": [
+                {
+                    "Name": "Point",
+                    "Type": "FSplinePoint & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddPoints",
+            "Description": "Adds an array of FSplinePoints to the spline.",
+            "Params": [
+                {
+                    "Name": "Points",
+                    "Type": "TArray < FSplinePoint > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddSplinePoint",
+            "Description": "Adds a point to the spline",
+            "Params": [
+                {
+                    "Name": "Position",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddSplinePointAtIndex",
+            "Description": "Adds a point to the spline at the specified index",
+            "Params": [
+                {
+                    "Name": "Position",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Index",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveSplinePoint",
+            "Description": "Removes point at specified index from the spline",
+            "Params": [
+                {
+                    "Name": "Index",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddSplineWorldPoint",
+            "Description": "Adds a world space point to the spline",
+            "Params": [
+                {
+                    "Name": "Position",
+                    "Type": "FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddSplineLocalPoint",
+            "Description": "Adds a local space point to the spline",
+            "Params": [
+                {
+                    "Name": "Position",
+                    "Type": "FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSplinePoints",
+            "Description": "Sets the spline to an array of points",
+            "Params": [
+                {
+                    "Name": "Points",
+                    "Type": "TArray < FVector > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSplineWorldPoints",
+            "Description": "Sets the spline to an array of world space points",
+            "Params": [
+                {
+                    "Name": "Points",
+                    "Type": "TArray < FVector > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSplineLocalPoints",
+            "Description": "Sets the spline to an array of local space points",
+            "Params": [
+                {
+                    "Name": "Points",
+                    "Type": "TArray < FVector > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLocationAtSplinePoint",
+            "Description": "Move an existing point to a new location",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWorldLocationAtSplinePoint",
+            "Description": "Move an existing point to a new world location",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InLocation",
+                    "Type": "FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTangentAtSplinePoint",
+            "Description": "Specify the tangent at a given spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTangent",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTangentsAtSplinePoint",
+            "Description": "Specify the tangents at a given spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InArriveTangent",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InLeaveTangent",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetUpVectorAtSplinePoint",
+            "Description": "Specify the up vector at a given spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InUpVector",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSplinePointType",
+            "Description": "Get the type of a spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ESplinePointType :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSplinePointType",
+            "Description": "Specify the type of a spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Type",
+                    "Type": "ESplinePointType :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateSpline",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetNumberOfSplinePoints",
+            "Description": "Get the number of points that make up this spline",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLocationAtSplinePoint",
+            "Description": "Get the location at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldLocationAtSplinePoint",
+            "Description": "Get the world location at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDirectionAtSplinePoint",
+            "Description": "Get the location at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTangentAtSplinePoint",
+            "Description": "Get the tangent at spline point. This fetches the Leave tangent of the point.",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetArriveTangentAtSplinePoint",
+            "Description": "Get the arrive tangent at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLeaveTangentAtSplinePoint",
+            "Description": "Get the leave tangent at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRotationAtSplinePoint",
+            "Description": "Get the rotation at spline point as a rotator",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUpVectorAtSplinePoint",
+            "Description": "Get the up vector at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRightVectorAtSplinePoint",
+            "Description": "Get the right vector at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRollAtSplinePoint",
+            "Description": "Get the amount of roll at spline point, in degrees",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetScaleAtSplinePoint",
+            "Description": "Get the scale at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTransformAtSplinePoint",
+            "Description": "Get the transform at spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseScale",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLocationAndTangentAtSplinePoint",
+            "Description": "Get location and tangent at a spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Location",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tangent",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLocalLocationAndTangentAtSplinePoint",
+            "Description": "Get local location and tangent at a spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocalLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LocalTangent",
+                    "Type": "FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDistanceAlongSplineAtSplinePoint",
+            "Description": "Get the distance along the spline at the spline point",
+            "Params": [
+                {
+                    "Name": "PointIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSplineLength",
+            "Description": "Returns total length along this spline",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDefaultUpVector",
+            "Description": "Sets the default up vector used by this spline",
+            "Params": [
+                {
+                    "Name": "UpVector",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDefaultUpVector",
+            "Description": "Gets the default up vector used by this spline",
+            "Params": [
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInputKeyAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return the corresponding input key at that point",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTimeAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return the corresponding time at that point",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLocationAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return the point in space where this puts you",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldLocationAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return the point in world space where this puts you",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDirectionAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return a unit direction vector of the spline tangent there.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldDirectionAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return a unit direction vector of the spline tangent there, in world space.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTangentAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return the tangent vector of the spline there.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldTangentAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return the tangent vector of the spline there, in world space.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRotationAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return a rotation corresponding to the spline's rotation there.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldRotationAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return a rotation corresponding to the spline's rotation there, in world space.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUpVectorAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return a unit direction vector corresponding to the spline's up vector there.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRightVectorAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return a unit direction vector corresponding to the spline's right vector there.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRollAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return the spline's roll there, in degrees.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetScaleAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return the spline's scale there.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTransformAtDistanceAlongSpline",
+            "Description": "Given a distance along the length of this spline, return an FTransform corresponding to that point on the spline.",
+            "Params": [
+                {
+                    "Name": "Distance",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseScale",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLocationAtTime",
+            "Description": "Given a time from 0 to the spline duration, return the point in space where this puts you",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldLocationAtTime",
+            "Description": "Given a time from 0 to the spline duration, return the point in space where this puts you",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDirectionAtTime",
+            "Description": "Given a time from 0 to the spline duration, return a unit direction vector of the spline tangent there.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldDirectionAtTime",
+            "Description": "Given a time from 0 to the spline duration, return a unit direction vector of the spline tangent there.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTangentAtTime",
+            "Description": "Given a time from 0 to the spline duration, return the spline's tangent there.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRotationAtTime",
+            "Description": "Given a time from 0 to the spline duration, return a rotation corresponding to the spline's position and direction there.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWorldRotationAtTime",
+            "Description": "Given a time from 0 to the spline duration, return a rotation corresponding to the spline's position and direction there.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUpVectorAtTime",
+            "Description": "Given a time from 0 to the spline duration, return the spline's up vector there.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRightVectorAtTime",
+            "Description": "Given a time from 0 to the spline duration, return the spline's right vector there.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTransformAtTime",
+            "Description": "Given a time from 0 to the spline duration, return the spline's transform at the corresponding position.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseScale",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetRollAtTime",
+            "Description": "Given a time from 0 to the spline duration, return the spline's roll there, in degrees.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetScaleAtTime",
+            "Description": "Given a time from 0 to the spline duration, return the spline's scale there.",
+            "Params": [
+                {
+                    "Name": "Time",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseConstantVelocity",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindInputKeyClosestToWorldLocation",
+            "Description": "Given a location, in world space, return the input key closest to that location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindLocationClosestToWorldLocation",
+            "Description": "Given a location, in world space, return the point on the curve that is closest to the location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindDirectionClosestToWorldLocation",
+            "Description": "Given a location, in world spcae, return a unit direction vector of the spline tangent closest to the location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindTangentClosestToWorldLocation",
+            "Description": "Given a location, in world space, return the tangent vector of the spline closest to the location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindRotationClosestToWorldLocation",
+            "Description": "Given a location, in world space, return rotation corresponding to the spline's rotation closest to the location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FRotator ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindUpVectorClosestToWorldLocation",
+            "Description": "Given a location, in world space, return a unit direction vector corresponding to the spline's up vector closest to the location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindRightVectorClosestToWorldLocation",
+            "Description": "Given a location, in world space, return a unit direction vector corresponding to the spline's right vector closest to the location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindRollClosestToWorldLocation",
+            "Description": "Given a location, in world space, return the spline's roll closest to the location, in degrees.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindScaleClosestToWorldLocation",
+            "Description": "Given a location, in world space, return the spline's scale closest to the location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindTransformClosestToWorldLocation",
+            "Description": "Given a location, in world space, return an FTransform closest to that location.",
+            "Params": [
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CoordinateSpace",
+                    "Type": "ESplineCoordinateSpace :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseScale",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FTransform ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

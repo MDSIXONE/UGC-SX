@@ -1,0 +1,55 @@
+{
+    "Name": "UParticleModuleTypeDataAnimTrail",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bDeadTrailsOnDeactivate",
+            "Type": "uint32",
+            "Description": "If true, when the system is deactivated, mark trails as dead.\n\t \tThis means they will still render, but will not have more particles\n\t \tadded to them, even if the system re-activates...",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnablePreviousTangentRecalculation",
+            "Type": "uint32",
+            "Description": "If true, recalculate the previous tangent when a new particle is spawned",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTangentRecalculationEveryFrame",
+            "Type": "uint32",
+            "Description": "If true, recalculate tangents every frame to allow velocityacceleration to be applied",
+            "Redirect": ""
+        },
+        {
+            "Name": "TilingDistance",
+            "Type": "float",
+            "Description": "The (estimated) covered distance to tile the 2nd UV set at.\n\t \tIf 0.0, a second UV set will not be passed in.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DistanceTessellationStepSize",
+            "Type": "float",
+            "Description": "The distance step size for tessellation.\n\t \t# Tessellation Points = TruncToInt((Distance Between Spawned Particles)  DistanceTessellationStepSize)). If 0 then there is no distance tessellation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TangentTessellationStepSize",
+            "Type": "float",
+            "Description": "The tangent scalar for tessellation.\n\t \tThis is the degree change in the tangent direction [0...180] required to warrant an additional tessellation point. If 0 then there is no tangent tessellation.",
+            "Redirect": ""
+        },
+        {
+            "Name": "WidthTessellationStepSize",
+            "Type": "float",
+            "Description": "The width step size for tessellation.\n\t \tThis is the number of world units change in the width required to warrant an additional tessellation point. If 0 then there is no width tessellation.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleTypeDataBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

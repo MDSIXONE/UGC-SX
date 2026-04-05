@@ -1,0 +1,247 @@
+{
+    "Name": "UInputKeySelector",
+    "Description": "A widget for selecting a single key or a single key with a modifier.",
+    "Variables": [
+        {
+            "Name": "WidgetStyle",
+            "Type": "FButtonStyle",
+            "Description": "The button style used at runtime",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextStyle",
+            "Type": "FTextBlockStyle",
+            "Description": "The button style used at runtime",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectedKey",
+            "Type": "FInputChord",
+            "Description": "The currently selected key chord.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Font_DEPRECATED",
+            "Type": "FSlateFontInfo",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Margin",
+            "Type": "FMargin",
+            "Description": "The amount of blank space around the text used to display the currently selected key.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ColorAndOpacity_DEPRECATED",
+            "Type": "FLinearColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "KeySelectionText",
+            "Type": "FText",
+            "Description": "Sets the text which is displayed while selecting keys.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NoKeySpecifiedText",
+            "Type": "FText",
+            "Description": "Sets the text to display when no key text is available or not selecting a key.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowModifierKeys",
+            "Type": "bool",
+            "Description": "When true modifier keys such as control and alt are allowed in the \n\t input chord representing the selected key, if false modifier keys are ignored.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowGamepadKeys",
+            "Type": "bool",
+            "Description": "When true gamepad keys are allowed in the input chord representing the selected key, otherwise they are ignored.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EscapeKeys",
+            "Type": "TArray < FKey >",
+            "Description": "When true gamepad keys are allowed in the input chord representing the selected key, otherwise they are ignored.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetSelectedKey",
+            "Description": "Sets the currently selected key.",
+            "Params": [
+                {
+                    "Name": "InSelectedKey",
+                    "Type": "FInputChord &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetKeySelectionText",
+            "Description": "Sets the text which is displayed while selecting keys.",
+            "Params": [
+                {
+                    "Name": "InKeySelectionText",
+                    "Type": "FText",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetNoKeySpecifiedText",
+            "Description": "Sets the text to display when no key text is available or not selecting a key.",
+            "Params": [
+                {
+                    "Name": "InNoKeySpecifiedText",
+                    "Type": "FText",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAllowModifierKeys",
+            "Description": "Sets whether or not modifier keys are allowed in the selected key.",
+            "Params": [
+                {
+                    "Name": "bInAllowModifierKeys",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetAllowGamepadKeys",
+            "Description": "Sets whether or not gamepad keys are allowed in the selected key.",
+            "Params": [
+                {
+                    "Name": "bInAllowGamepadKeys",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetIsSelectingKey",
+            "Description": "Returns true if the widget is currently selecting a key, otherwise returns false.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetTextBlockVisibility",
+            "Description": "Sets the visibility of the text block.",
+            "Params": [
+                {
+                    "Name": "InVisibility",
+                    "Type": "ESlateVisibility",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnKeySelected",
+            "Description": "Called whenever a new key is selected by the user.",
+            "Params": [
+                {
+                    "Name": "SelectedKey",
+                    "Type": "FInputChord",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnIsSelectingKeyChanged",
+            "Description": "Called whenever the key selection mode starts or stops.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

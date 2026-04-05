@@ -1,0 +1,131 @@
+{
+    "Name": "AAudioVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Priority",
+            "Type": "float",
+            "Description": "Priority of this volume. In the case of overlapping volumes the one with the highest priority\n\t  is chosen. The order is undefined if two or more overlapping volumes have the same priority.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnabled",
+            "Type": "uint32",
+            "Description": "whether this volume is currently enabled and able to affect sounds",
+            "Redirect": ""
+        },
+        {
+            "Name": "Settings",
+            "Type": "FReverbSettings",
+            "Description": "Reverb settings to use for this volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AmbientZoneSettings",
+            "Type": "FInteriorSettings",
+            "Description": "Interior settings used for this volume",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetPriority",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewPriority",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEnabled",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bNewEnabled",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetReverbSettings",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewReverbSettings",
+                    "Type": "FReverbSettings &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetInteriorSettings",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewInteriorSettings",
+                    "Type": "FInteriorSettings &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_bEnabled",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

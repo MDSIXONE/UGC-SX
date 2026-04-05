@@ -1,0 +1,19 @@
+{
+    "Name": "UWST_String",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UWigetSkinType"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

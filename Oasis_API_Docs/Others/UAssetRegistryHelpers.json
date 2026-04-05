@@ -1,0 +1,290 @@
+{
+    "Name": "UAssetRegistryHelpers",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetAssetRegistry",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TScriptInterface < IAssetRegistry >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CreateAssetData",
+            "Description": "Creates asset data from a UObject. \n\t ",
+            "Params": [
+                {
+                    "Name": "InAsset",
+                    "Type": "UObject * ",
+                    "Description": "The asset to create asset data for",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bAllowBlueprintClass",
+                    "Type": "bool",
+                    "Description": "By default trying to create asset data for a blueprint class will create one for the UBlueprint instead",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FAssetData ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsValid",
+            "Description": "Checks to see if this AssetData refers to an asset or is NULL",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsUAsset",
+            "Description": "Returns true if this asset was found in a UAsset file",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsRedirector",
+            "Description": "Returns true if the this asset is a redirector.",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetFullName",
+            "Description": "Returns the full name for the asset in the form: Class ObjectPath",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ToSoftObjectPath",
+            "Description": "Convert to a SoftObjectPath for loading",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FSoftObjectPath ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetClass",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UClass * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAsset",
+            "Description": "Returns the asset UObject if it is loaded or loads the asset if it is unloaded then returns the result",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsAssetLoaded",
+            "Description": "Returns true if the asset is loaded",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetExportTextName",
+            "Description": "Returns the name for the asset in the form: Class'ObjectPath'",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTagValue < FName >",
+            "Description": "Gets the value associated with the given tag as a string",
+            "Params": [
+                {
+                    "Name": "InAssetData",
+                    "Type": "FAssetData & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTagName",
+                    "Type": "FName & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutTagValue",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetFilterTagsAndValues",
+            "Description": "Populates the FARFilters tags and values map with the passed in tags and values",
+            "Params": [
+                {
+                    "Name": "InFilter",
+                    "Type": "FARFilter & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InTagsAndValues",
+                    "Type": "TArray < FTagAndValue > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FARFilter ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

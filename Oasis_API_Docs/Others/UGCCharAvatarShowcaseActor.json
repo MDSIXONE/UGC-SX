@@ -1,0 +1,56 @@
+{
+    "Name": "UGCCharAvatarShowcaseActor",
+    "Description": "复制玩家角色Avatar的Actor",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "ClientShowAvatar",
+            "Description": "显示PlayerUID的Avatar\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerUID",
+                    "Type": "number",
+                    "Description": "玩家的 PlayerUID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ServerShowAvatar",
+            "Description": "显示PlayerUID的Avatar\n生效范围：服务端",
+            "Params": [
+                {
+                    "Name": "PlayerUID",
+                    "Type": "number",
+                    "Description": "玩家的 PlayerUID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "PlayAnim",
+            "Description": "播放动画\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "NewAnimToPlay",
+                    "Type": "UAnimationAsset",
+                    "Description": "动画资源",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bLooping",
+                    "Type": "boolean",
+                    "Description": "是否循环播放",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

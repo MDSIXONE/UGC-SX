@@ -1,0 +1,19 @@
+{
+    "Name": "UBTService_RunEQS",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "EQSRequest",
+            "Type": "FEQSParametrizedQueryExecutionRequest",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTService_BlackboardBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

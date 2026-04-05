@@ -1,0 +1,143 @@
+{
+    "Name": "UBTAttachment_LuaBase",
+    "Description": "Base class for lua based Attachment nodes. Do NOT use it for creating native c++ classes!\n \n   When Attachment receives Deactivation event, all latent actions associated this instance are being removed.\n   This prevents from resuming activity started by Activation, but does not handle external events.\n   Please use them safely (unregister at abort) and call IsAttachmentActive() when in doubt.",
+    "Variables": [
+        {
+            "Name": "AIOwner",
+            "Type": "AAIController *",
+            "Description": "Cached AIController owner of BehaviorTreeComponent.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "ReceiveTickAI",
+            "Description": "tick function",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DeltaSeconds",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveSearchStartAI",
+            "Description": "task search enters branch of tree",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveActivationAI",
+            "Description": "attachment became active",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReceiveDeactivationAI",
+            "Description": "attachment became inactive",
+            "Params": [
+                {
+                    "Name": "OwnerController",
+                    "Type": "AAIController * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ControlledPawn",
+                    "Type": "APawn *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsAttachmentActive",
+            "Description": "check if attachment is currently being active",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBTService"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

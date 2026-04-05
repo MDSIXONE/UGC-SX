@@ -1,0 +1,92 @@
+{
+    "Name": "UButtonSlot",
+    "Description": "The Slot for the UButtonSlot, contains the widget displayed in a button's single slot",
+    "Variables": [
+        {
+            "Name": "Padding",
+            "Type": "FMargin",
+            "Description": "The padding area between the slot and the content it contains.",
+            "Redirect": ""
+        },
+        {
+            "Name": "HorizontalAlignment",
+            "Type": "TEnumAsByte < EHorizontalAlignment >",
+            "Description": "The alignment of the object horizontally.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VerticalAlignment",
+            "Type": "TEnumAsByte < EVerticalAlignment >",
+            "Description": "The alignment of the object vertically.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetPadding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InPadding",
+                    "Type": "FMargin",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetHorizontalAlignment",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InHorizontalAlignment",
+                    "Type": "EHorizontalAlignment",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVerticalAlignment",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InVerticalAlignment",
+                    "Type": "EVerticalAlignment",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPanelSlot"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

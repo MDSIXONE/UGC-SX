@@ -1,0 +1,25 @@
+{
+    "Name": "ULandscapeAOTextureDataAsset",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DataSize",
+            "Type": "uint32",
+            "Description": "Platform Data where don't support texture sampling in vertex buffer",
+            "Redirect": ""
+        },
+        {
+            "Name": "LandscapeAOPlatformData",
+            "Type": "TArray < uint8 >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDataAsset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

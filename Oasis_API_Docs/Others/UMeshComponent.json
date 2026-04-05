@@ -1,0 +1,488 @@
+{
+    "Name": "UMeshComponent",
+    "Description": "MeshComponent is an abstract base for any component that is an instance of a renderable collection of triangles.\n \n  @see UStaticMeshComponent\n  @see USkeletalMeshComponent",
+    "Variables": [
+        {
+            "Name": "OverrideMaterials",
+            "Type": "TArray < UMaterialInterface * >",
+            "Description": "Per-Component material overrides.  These must NOT be set directly or a race condition can occur between GC and the rendering thread.",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverlayMaterial",
+            "Type": "UMaterialInterface *",
+            "Description": "Translucent material to blend on top of this mesh. Mesh will be rendered twice - once with a base material and once with overlay material",
+            "Redirect": ""
+        },
+        {
+            "Name": "IndexedOverlayMaterials",
+            "Type": "TArray < UMaterialInterface * >",
+            "Description": "Overlay materials applied to each material slot.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseIndexedOverlayMaterials",
+            "Type": "bool",
+            "Description": "Whether to use IndexedOverlayMaterials (or OverlayMaterial).",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseOverlayMaterials",
+            "Type": "bool",
+            "Description": "Whether to render overlay materials. (Indexed or not)",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverlayMaterialMaxDrawDistance",
+            "Type": "float",
+            "Description": "The max draw distance for overlay material. A distance of 0 indicates that overlay will be culled using primitive max distance.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsEnableRetrieveDefaultMat",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetMaterials",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < class UMaterialInterface * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaterialIndex",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MaterialSlotName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaterialSlotNames",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FName >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsMaterialSlotNameValid",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MaterialSlotName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClipPlane",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ClipPlane",
+                    "Type": "FPlane & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PlaneIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClipPlane",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "PlaneIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClipArc",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ClipPlane",
+                    "Type": "FPlane & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ClipSphere",
+                    "Type": "FVector4 &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClipArc",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClip4Planes",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ClipPlanes",
+                    "Type": "TArray < FPlane > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bBox",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClip4Planes",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetOverlayMaterial",
+            "Description": "Get the overlay material used by this instance",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOverlayMaterial",
+            "Description": "Change the overlay material used by this instance",
+            "Params": [
+                {
+                    "Name": "NewOverlayMaterial",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUseIndexedOverlayMaterials",
+            "Description": "Get UseIndexedOverlayMaterials",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetUseIndexedOverlayMaterials",
+            "Description": "Set UseIndexedOverlayMaterials",
+            "Params": [
+                {
+                    "Name": "bNewUseIndexedOverlayMaterials",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetUseOverlayMaterials",
+            "Description": "Get UseOverlayMaterials",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetUseOverlayMaterials",
+            "Description": "Set UseOverlayMaterials",
+            "Params": [
+                {
+                    "Name": "bNewUseOverlayMaterials",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetIndexedOverlayMaterials",
+            "Description": "Get IndexedOverlayMaterials",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < class UMaterialInterface * >",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIndexedOverlayMaterial",
+            "Description": "Set IndexedOverlayMaterials",
+            "Params": [
+                {
+                    "Name": "ElementIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Material",
+                    "Type": "UMaterialInterface *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetOverlayMaterialMaxDrawDistance",
+            "Description": "Change the overlay material max draw distance used by this instance",
+            "Params": [
+                {
+                    "Name": "InMaxDrawDistance",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "PrestreamTextures",
+            "Description": "Tell the streaming system to start loading all textures with all mip-levels.",
+            "Params": [
+                {
+                    "Name": "Seconds",
+                    "Type": "float ",
+                    "Description": "   Number of seconds to force all mip-levels to be resident",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bPrioritizeCharacterTextures",
+                    "Type": "bool ",
+                    "Description": "Whether character textures should be prioritized for a while by the streaming system",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CinematicTextureGroups",
+                    "Type": "int32",
+                    "Description": " Bitfield indicating which texture groups that use extra high-resolution mips",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetScalarParameterValueOnMaterials",
+            "Description": "Material parameter setting and caching \n\t Set all occurrences of Scalar Material Parameters with ParameterName in the set of materials of the SkeletalMesh to ParameterValue",
+            "Params": [
+                {
+                    "Name": "ParameterName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParameterValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVectorParameterValueOnMaterials",
+            "Description": "Set all occurrences of Vector Material Parameters with ParameterName in the set of materials of the SkeletalMesh to ParameterValue",
+            "Params": [
+                {
+                    "Name": "ParameterName",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ParameterValue",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPrimitiveComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,129 @@
+{
+    "Name": "UGCProjectileSystem",
+    "Description": "抛体系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "SpawnProjectile",
+            "Description": "生成抛体\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ProjectileSpawnInfo",
+                    "Type": "ProjectileSpawnInfo",
+                    "Description": "抛体生成参数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APVEProjectileBase",
+                    "Description": "抛体对象实例",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDestroyAfterHit",
+            "Description": "获取抛体命中之后是否销毁\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Projectile",
+                    "Type": "APVEProjectileBase",
+                    "Description": "抛体",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否命中后销毁",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDestroyAfterHit",
+            "Description": "设置抛体命中之后是否销毁\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Projectile",
+                    "Type": "APVEProjectileBase",
+                    "Description": "抛体",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNewDestroyAfterHit",
+                    "Type": "boolean",
+                    "Description": "是否销毁",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetPMComp",
+            "Description": "获取抛体运动组件\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Projectile",
+                    "Type": "APVEProjectileBase",
+                    "Description": "抛体",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "抛体运动组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMoveAfterImpactWithNoLost",
+            "Description": "设置抛体命中之后是否继续移动\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Projectile",
+                    "Type": "APVEProjectileBase",
+                    "Description": "抛体",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNeedUpdateImmide",
+                    "Type": "boolean",
+                    "Description": "是否更新组件速度",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetLastUpdateCompBeforeStop",
+            "Description": "停止前最后更新的组件\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Projectile",
+                    "Type": "APVEProjectileBase",
+                    "Description": "抛体",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "最后更新的组件",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

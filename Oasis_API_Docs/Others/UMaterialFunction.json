@@ -1,0 +1,97 @@
+{
+    "Name": "UMaterialFunction",
+    "Description": "A Material Function is a collection of material expressions that can be reused in different materials",
+    "Variables": [
+        {
+            "Name": "StateId",
+            "Type": "FGuid",
+            "Description": "Used by materials using this function to know when to recompile.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Description",
+            "Type": "FString",
+            "Description": "Description of the function which will be displayed as a tooltip wherever the function is used.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bExposeToLibrary",
+            "Type": "uint32",
+            "Description": "Whether to list this function in the material function library, which is a window in the material editor that lists categorized functions.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseFullPrecision",
+            "Type": "uint32",
+            "Description": "Whether forces the function to use full (highp) precision in the pixel shader.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FunctionExpressions",
+            "Type": "TArray < UMaterialExpression * >",
+            "Description": "Array of material expressions, excluding Comments.  Used by the material editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bReentrantFlag",
+            "Type": "uint32",
+            "Description": "Transient flag used to track re-entrance in recursive functions like IsDependent.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParentFunction",
+            "Type": "UMaterialFunction *",
+            "Description": "Used in the material editor, points to the function asset being edited, which this function is just a preview for.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LibraryCategories_DEPRECATED",
+            "Type": "TArray < FString >",
+            "Description": "Categories that this function belongs to in the material function library.  \n\t  Ideally categories should be chosen carefully so that there are not too many.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LibraryCategoriesText",
+            "Type": "TArray < FText >",
+            "Description": "Categories that this function belongs to in the material function library.  \n\t  Ideally categories should be chosen carefully so that there are not too many.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FunctionEditorComments",
+            "Type": "TArray < UMaterialExpressionComment * >",
+            "Description": "Array of comments associated with this material; viewed in the material editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewMaterial",
+            "Type": "UMaterial *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CombinedInputTypes",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CombinedOutputTypes",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ThumbnailInfo",
+            "Type": "UThumbnailInfo *",
+            "Description": "Information for thumbnail rendering",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

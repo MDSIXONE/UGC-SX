@@ -1,0 +1,19 @@
+{
+    "Name": "UBTDecorator_BlackboardBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "BlackboardKey",
+            "Type": "FBlackboardKeySelector",
+            "Description": "blackboard key selector",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTDecorator"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

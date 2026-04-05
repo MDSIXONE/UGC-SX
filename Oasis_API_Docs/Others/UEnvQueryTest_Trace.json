@@ -1,0 +1,43 @@
+{
+    "Name": "UEnvQueryTest_Trace",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TraceData",
+            "Type": "FEnvTraceData",
+            "Description": "trace data",
+            "Redirect": ""
+        },
+        {
+            "Name": "TraceFromContext",
+            "Type": "FAIDataProviderBoolValue",
+            "Description": "trace direction",
+            "Redirect": ""
+        },
+        {
+            "Name": "ItemHeightOffset",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "Z offset from item",
+            "Redirect": ""
+        },
+        {
+            "Name": "ContextHeightOffset",
+            "Type": "FAIDataProviderFloatValue",
+            "Description": "Z offset from querier",
+            "Redirect": ""
+        },
+        {
+            "Name": "Context",
+            "Type": "TSubclassOf < UEnvQueryContext >",
+            "Description": "context: other end of trace test",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UEnvQueryTest"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

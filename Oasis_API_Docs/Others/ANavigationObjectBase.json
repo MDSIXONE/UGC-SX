@@ -1,0 +1,38 @@
+{
+    "Name": "ANavigationObjectBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CapsuleComponent",
+            "Type": "UCapsuleComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GoodSprite",
+            "Type": "UBillboardComponent *",
+            "Description": "Normal editor sprite.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BadSprite",
+            "Type": "UBillboardComponent *",
+            "Description": "Used to draw bad collision intersection in editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsPIEPlayerStart",
+            "Type": "uint32",
+            "Description": "True if this nav point was spawned to be a PIE player start.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor",
+        "INavAgentInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "APaperGroupedSpriteActor",
+    "Description": "A group of sprites that will be rendered and culled as a single unit\n \n  This actor is created when you Merge several sprite components together.\n  it is just a thin wrapper around a UPaperGroupedSpriteComponent.",
+    "Variables": [
+        {
+            "Name": "RenderComponent",
+            "Type": "UPaperGroupedSpriteComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

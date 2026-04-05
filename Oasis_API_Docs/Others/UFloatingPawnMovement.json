@@ -1,0 +1,49 @@
+{
+    "Name": "UFloatingPawnMovement",
+    "Description": "FloatingPawnMovement is a movement component that provides simple movement for any Pawn class.\n  Limits on speed and acceleration are provided, while gravity is not implemented.\n \n  Normally the root component of the owning actor is moved, however another component may be selected (see SetUpdatedComponent()).\n  During swept (non-teleporting) movement only collision of UpdatedComponent is considered, attached components will teleport to the end location ignoring collision.",
+    "Variables": [
+        {
+            "Name": "MaxSpeed",
+            "Type": "float",
+            "Description": "Maximum velocity magnitude allowed for the controlled Pawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Acceleration",
+            "Type": "float",
+            "Description": "Acceleration applied by input (rate of change of velocity)",
+            "Redirect": ""
+        },
+        {
+            "Name": "Deceleration",
+            "Type": "float",
+            "Description": "Deceleration applied when there is no input (rate of change of velocity)",
+            "Redirect": ""
+        },
+        {
+            "Name": "TurningBoost",
+            "Type": "float",
+            "Description": "Setting affecting extra force applied when changing direction, making turns have less drift and become more responsive.\n\t  Velocity magnitude is not allowed to increase, that only happens due to normal acceleration. It may decrease with large direction changes.\n\t  Larger values apply extra force to reach the target direction more quickly, while a zero value disables any extra turn force.",
+            "Redirect": ""
+        },
+        {
+            "Name": "FloatingMoveSpeedScale",
+            "Type": "float",
+            "Description": "Engine Modify Start\n\t \n\t Maximum velocity magnitude allowed for the controlled Pawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPositionCorrected",
+            "Type": "uint32",
+            "Description": "Set to true when a position correction is applied. Used to avoid recalculating velocity when this occurs.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPawnMovementComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

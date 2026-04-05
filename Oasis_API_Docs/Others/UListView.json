@@ -1,0 +1,37 @@
+{
+    "Name": "UListView",
+    "Description": "Allows thousands of items to be displayed in a list.  Generates widgets dynamically for each item.",
+    "Variables": [
+        {
+            "Name": "ItemHeight",
+            "Type": "float",
+            "Description": "The height of each widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "Items",
+            "Type": "TArray < UObject * >",
+            "Description": "The list of items to generate widgets for",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectionMode",
+            "Type": "TEnumAsByte < ESelectionMode :: Type >",
+            "Description": "The selection method for the list",
+            "Redirect": ""
+        },
+        {
+            "Name": "OnGenerateRowEvent",
+            "Type": "FOnGenerateRowUObject",
+            "Description": "Called when a widget needs to be generated",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UTableViewBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,31 @@
+{
+    "Name": "UBehaviorTreeManager",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MaxDebuggerSteps",
+            "Type": "int32",
+            "Description": "limit for recording execution steps for debugger",
+            "Redirect": ""
+        },
+        {
+            "Name": "LoadedTemplates",
+            "Type": "TArray < FBehaviorTreeTemplateInfo >",
+            "Description": "initialized tree templates",
+            "Redirect": ""
+        },
+        {
+            "Name": "ActiveComponents",
+            "Type": "TArray < UBehaviorTreeComponent * >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

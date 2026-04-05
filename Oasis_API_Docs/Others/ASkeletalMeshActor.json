@@ -1,0 +1,109 @@
+{
+    "Name": "ASkeletalMeshActor",
+    "Description": "SkeletalMeshActor is an instance of a USkeletalMesh in the world.\n  Skeletal meshes are deformable meshes that can be animated and change their geometry at run-time.\n  Skeletal meshes dragged into the level from the Content Browser are automatically converted to StaticMeshActors.\n  \n  @see USkeletalMesh",
+    "Variables": [
+        {
+            "Name": "bShouldDoAnimNotifies",
+            "Type": "uint32",
+            "Description": "Whether or not this actor should respond to anim notifies - CURRENTLY ONLY AFFECTS PlayParticleEffect NOTIFIES",
+            "Redirect": ""
+        },
+        {
+            "Name": "bWakeOnLevelStart_DEPRECATED",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkeletalMeshComponent",
+            "Type": "USkeletalMeshComponent *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedMesh",
+            "Type": "USkeletalMesh *",
+            "Description": "Used to replicate mesh to clients",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedPhysAsset",
+            "Type": "UPhysicsAsset *",
+            "Description": "Used to replicate physics asset to clients",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedMaterial0",
+            "Type": "UMaterialInterface *",
+            "Description": "used to replicate the material in index 0",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReplicatedMaterial1",
+            "Type": "UMaterialInterface *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "OnRep_ReplicatedMesh",
+            "Description": "Replication Notification Callbacks",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicatedPhysAsset",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicatedMaterial0",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRep_ReplicatedMaterial1",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "AActor",
+        "IMatineeAnimInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

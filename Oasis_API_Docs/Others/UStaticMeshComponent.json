@@ -1,0 +1,672 @@
+{
+    "Name": "UStaticMeshComponent",
+    "Description": "StaticMeshComponent is used to create an instance of a UStaticMesh.\n  A static mesh is a piece of geometry that consists of a static set of polygons.\n \n  @see UStaticMesh",
+    "Variables": [
+        {
+            "Name": "ForcedLodModel",
+            "Type": "int32",
+            "Description": "If 0, auto-select LOD level. if >0, force to (ForcedLodModel-1).",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviousLODLevel",
+            "Type": "int32",
+            "Description": "LOD that was desired for rendering this StaticMeshComponent last frame.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinLOD",
+            "Type": "int32",
+            "Description": "Specifies the smallest LOD that will be used for this component.\n\t  This is ignored if ForcedLodModel is enabled.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxLOD",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticMesh",
+            "Type": "UStaticMesh *",
+            "Description": "The static mesh that this component uses to render",
+            "Redirect": ""
+        },
+        {
+            "Name": "TightBoundsOrigin",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TightBoundsBoxExtent",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TightBoundsSphereRadius",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CanUseTightBound",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "VisibilityCollisionColor",
+            "Type": "FColor",
+            "Description": "Whether you want to turn on the collision display preview",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableSimpleMaterial",
+            "Type": "bool",
+            "Description": "If true, WireframeColorOverride will be used. If false, color is determined based on mobility and physics simulation settings",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideWireframeColor",
+            "Type": "uint8",
+            "Description": "If true, WireframeColorOverride will be used. If false, color is determined based on mobility and physics simulation settings",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideMinLOD",
+            "Type": "uint8",
+            "Description": "Whether to override the MinLOD setting of the static mesh asset with the MinLOD of this component.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideNavigationExport",
+            "Type": "uint8",
+            "Description": "If true, bForceNavigationObstacle flag will take priority over navigation data stored in StaticMesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceNavigationObstacle",
+            "Type": "uint8",
+            "Description": "Allows overriding navigation export behavior per component: full collisions or dynamic obstacle",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisallowMeshPaintPerInstance",
+            "Type": "uint8",
+            "Description": "If true, mesh painting is disallowed on this instance. Set if vertex colors are overridden in a construction script.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIgnoreInstanceForTextureStreaming",
+            "Type": "uint8",
+            "Description": "Ignore this instance of this static mesh when calculating streaming information.\n\t \tThis can be useful when doing things like applying character textures to static geometry,\n\t \tto avoid them using distance-based streaming.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideLightMapRes",
+            "Type": "uint8",
+            "Description": "Whether to override the lightmap resolution defined in the static mesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideCullingScreenSize",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCastDistanceFieldIndirectShadow",
+            "Type": "uint8",
+            "Description": "Whether to use the mesh distance field representation (when present) for shadowing indirect lighting (from lightmaps or skylight) on Movable components.\n\t  This works like capsule shadows on skeletal meshes, except using the mesh distance field so no physics asset is required.\n\t  The StaticMesh must have 'Generate Mesh Distance Field' enabled, or the project must have 'Generate Mesh Distance Fields' enabled for this feature to work.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideDistanceFieldSelfShadowBias",
+            "Type": "uint8",
+            "Description": "Whether to override the DistanceFieldSelfShadowBias setting of the static mesh asset with the DistanceFieldSelfShadowBias of this component.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseSubDivisions",
+            "Type": "uint8",
+            "Description": "Whether to use subdivisions or just the triangle's vertices.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseDefaultCollision",
+            "Type": "uint8",
+            "Description": "Use the collision profile specified in the StaticMesh asset.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceNotHzbOccluder",
+            "Type": "uint8",
+            "Description": "not a hzb Occluder",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseAsOccluderIgnoreMobility",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCanBeOccludeed",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCustomWaterBeOccludeed",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowCopyExpectedQualityFromMesh",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "OverriddenLightMapRes",
+            "Type": "int32",
+            "Description": "Light map resolution to use on this component, used if bOverrideLightMapRes is true and there is a valid StaticMesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StreamingDistanceMultiplier",
+            "Type": "float",
+            "Description": "Allows adjusting the desired streaming distance of streaming textures that uses UV 0.\n\t  1.0 is the default, whereas a higher value makes the textures stream in sooner from far away.\n\t  A lower value (0.0-1.0) makes the textures stream in later (you have to be closer).\n\t  Value can be < 0 (from legcay content, or code changes)",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODData",
+            "Type": "TArray < FStaticMeshComponentLODInfo >",
+            "Description": "Static mesh LOD data.  Contains static lighting data along with instanced mesh vertex colors.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StreamingTextureData",
+            "Type": "TArray < FStreamingTextureBuildInfo >",
+            "Description": "The list of texture, bounds and scales. As computed in the texture streaming build process.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsDynamicInstancingParametersEnabled",
+            "Type": "bool",
+            "Description": "Is dynamic instancing parameters enabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "DynamicInstancingParameters",
+            "Type": "TMap < FString , FVector4 >",
+            "Description": "Dynamic instancing parameters",
+            "Redirect": ""
+        },
+        {
+            "Name": "LightmassSettings",
+            "Type": "FLightmassPrimitiveSettings",
+            "Description": "The Lightmass settings for this object.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IdeaBakingSettings",
+            "Type": "FIdeaBakingPrimitiveSettings",
+            "Description": "Add by luciuszhang: The IdeaBaking settings for this object.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AffectPointLightBPActors",
+            "Type": "TArray < TWeakObjectPtr < AActor > >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PointLightStaticMeshLODResources",
+            "Type": "TArray < FStaticMeshPointLightVertexDataBuffer >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableISMbatching",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LODSectionHiddenFlags",
+            "Type": "TArray < uint8 >",
+            "Description": "Hidden Flags for Rendering Section (8 bits = flags, Support 8 Sections), add by connerxiong 2022.6.16.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SubDivisionStepSize",
+            "Type": "int32",
+            "Description": "Subdivision step size for static vertex lighting.",
+            "Redirect": ""
+        },
+        {
+            "Name": "WireframeColorOverride",
+            "Type": "FColor",
+            "Description": "Wireframe color to use if bOverrideWireframeColor is true",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectedEditorSection",
+            "Type": "int32",
+            "Description": "The section currently selected in the Editor. Used for highlighting",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectedEditorMaterial",
+            "Type": "int32",
+            "Description": "The material currently selected in the Editor. Used for highlighting",
+            "Redirect": ""
+        },
+        {
+            "Name": "SectionIndexPreview",
+            "Type": "int32",
+            "Description": "Index of the section to preview. If set to INDEX_NONE, all section will be rendered. Used for isolating in Static Mesh Tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialIndexPreview",
+            "Type": "int32",
+            "Description": "Index of the material to preview. If set to INDEX_NONE, all section will be rendered. Used for isolating in Static Mesh Tool",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticMeshImportVersion",
+            "Type": "int32",
+            "Description": "The import version of the static mesh when it was assign this is update when:\n\t  - The user assign a new staticmesh to the component\n\t  - The component is serialize (IsSaving)\n\t  - Default value is BeforeImportStaticMeshVersionWasAdded\n\t \n\t  If when the component get load (PostLoad) the version of the attach staticmesh is newer\n\t  then this value, we will remap the material override because the order of the materials list\n\t  in the staticmesh can be changed. Hopefully there is a remap table save in the staticmesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCustomOverrideVertexColorPerLOD",
+            "Type": "uint8",
+            "Description": "The component has some custom painting on LODs or not.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDisplayVertexColors",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DistanceFieldIndirectShadowMinVisibility",
+            "Type": "float",
+            "Description": "Controls how dark the dynamic indirect shadow can be.",
+            "Redirect": ""
+        },
+        {
+            "Name": "DistanceFieldSelfShadowBias",
+            "Type": "float",
+            "Description": "Useful for reducing self shadowing from distance field methods when using world position offset to animate the mesh's vertices.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IrrelevantLights_DEPRECATED",
+            "Type": "TArray < FGuid >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticMeshDerivedDataKey",
+            "Type": "FString",
+            "Description": "Derived data key of the static mesh, used to determine if an update from the source static mesh is required.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaterialStreamingRelativeBoxes",
+            "Type": "TArray < uint32 >",
+            "Description": "Material Bounds used for texture streaming.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "OnRep_StaticMesh",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "OldStaticMesh",
+                    "Type": "UStaticMesh *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStaticMesh",
+            "Description": "Change the StaticMesh used by this instance.",
+            "Params": [
+                {
+                    "Name": "NewMesh",
+                    "Type": "UStaticMesh *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDirty",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVisibilityCollisionColor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "CollisionColor",
+                    "Type": "FColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetVisibilityCollisionColor",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "K2_GetStaticMesh",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UStaticMesh *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetForcedLodModel",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "NewForcedLodModel",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDistanceFieldSelfShadowBias",
+            "Description": "Sets the component's DistanceFieldSelfShadowBias.  bOverrideDistanceFieldSelfShadowBias must be enabled for this to have an effect.",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLocalBounds",
+            "Description": "Get Local bounds",
+            "Params": [
+                {
+                    "Name": "Min",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Max",
+                    "Type": "FVector &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetDynamicInstancingParameter",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "MaterialIndex",
+                    "Type": "int ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Name",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Value",
+                    "Type": "FVector4 &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClipPlane",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ClipPlane",
+                    "Type": "FPlane & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PlaneIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClipPlane",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "PlaneIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClipArc",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "ClipPlane",
+                    "Type": "FPlane & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ClipSphere",
+                    "Type": "FVector4 &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClipArc",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableMeshClip4Planes",
+            "Description": "Num of ClipPlanes is 4\n\t  0: Top Plane\n\t  1: Down Plane\n\t  2: Left Plane\n\t  3: Right Plane",
+            "Params": [
+                {
+                    "Name": "ClipPlanes",
+                    "Type": "TArray < FPlane > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bBox",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableMeshClip4Planes",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CheckSwitchSimpleMaterial",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

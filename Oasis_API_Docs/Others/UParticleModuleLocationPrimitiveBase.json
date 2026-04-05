@@ -1,0 +1,73 @@
+{
+    "Name": "UParticleModuleLocationPrimitiveBase",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Positive_X",
+            "Type": "uint32",
+            "Description": "Whether the positive X axis is valid for spawning.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Positive_Y",
+            "Type": "uint32",
+            "Description": "Whether the positive Y axis is valid for spawning.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Positive_Z",
+            "Type": "uint32",
+            "Description": "Whether the positive Z axis is valid for spawning.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Negative_X",
+            "Type": "uint32",
+            "Description": "Whether the negative X axis is valid for spawning.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Negative_Y",
+            "Type": "uint32",
+            "Description": "Whether the negative Y axis is valid for spawning.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Negative_Z",
+            "Type": "uint32",
+            "Description": "Whether the negative Zaxis is valid for spawning.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SurfaceOnly",
+            "Type": "uint32",
+            "Description": "Whether particles will only spawn on the surface of the primitive.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Velocity",
+            "Type": "uint32",
+            "Description": "Whether the particle should get its velocity from the position within the primitive.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VelocityScale",
+            "Type": "FRawDistributionFloat",
+            "Description": "The scale applied to the velocity. (Only used if 'Velocity' is checked).",
+            "Redirect": ""
+        },
+        {
+            "Name": "StartLocation",
+            "Type": "FRawDistributionVector",
+            "Description": "The location of the bounding primitive relative to the position of the emitter.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleLocationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

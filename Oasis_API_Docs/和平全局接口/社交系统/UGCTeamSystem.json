@@ -1,0 +1,611 @@
+{
+    "Name": "UGCTeamSystem",
+    "Description": "队伍系统接口库",
+    "Variables": [
+        {
+            "Name": "UGCTeamSystem.NotifyInviteToJoinLobbyTeamDelegate",
+            "Type": "",
+            "Description": "通知被邀请加入大厅队伍\n生效范围：客户端\n@param InviterUID number @邀请者 UID\n@param InviteToJoinLobbyTeamToken table @邀请到大厅队伍的 Token。InviteToJoinLobbyTeamToken.InviterUID int @邀请者 UID",
+            "Redirect": ""
+        },
+        {
+            "Name": "UGCTeamSystem.NotifyRequestToJoinLobbyTeamDelegate",
+            "Type": "",
+            "Description": "通知请求加入大厅队伍\n生效范围：客户端\n@param RequestToJoinLobbyTeamToken table @请求加入大厅队伍的 Token。RequestToJoinLobbyTeamToken.TeamID int @队伍 ID",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetTeamComponent",
+            "Description": "【废弃】获取队伍组件\n生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TeamModeComponent",
+                    "Description": "队伍组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ChangePlayerTeamID",
+            "Description": "改变玩家 TeamID\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetUIDsByTeamID",
+            "Description": "根据TeamID获取对应队伍里所有的玩家UID\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "number[]",
+                    "Type": "@UID",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerKeysByTeamID",
+            "Description": "根据TeamID获取对应队伍里所有的玩家PlayerKey，PlayerKey需要客户端连上DS后，才会被初始化，若在客户端连上DS前调用该接口，返回的PlayerKey列表不准确\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bReturnAsLuaTable",
+                    "Type": "boolean",
+                    "Description": "是否以LuaTable返回",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "number[]",
+                    "Type": "@PlayerKey",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAIPlayerKeysByTeamID",
+            "Description": "根据 TeamID 获取对应队伍里所有的假人玩家 AIPlayerKey，PlayerKey需要客户端连上DS后，才会被初始化，若在客户端连上DS前调用该接口，返回的PlayerKey列表不准确\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "number[]",
+                    "Type": "@PlayerKey",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerControllersByTeamID",
+            "Description": "根据TeamID获取对应队伍里所有的玩家PlayerController\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "ASTExtraPlayerController[]",
+                    "Type": "@PlayerController",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerPawnsByTeamID",
+            "Description": "根据TeamID获取对应队伍里所有的玩家PlayerPawn\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "PlayerPawn[]",
+                    "Type": "@PlayerPawn",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerStatesByTeamID",
+            "Description": "根据TeamID获取对应队伍里所有的玩家PlayerState\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "ASTExtraPlayerState[]",
+                    "Type": "@PlayerState",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLobbyTeamUIDsByUID",
+            "Description": "【废弃】请使用 UGCTeamSystem.GetLobbyTeammateUIDsByUID\n根据玩家的UID获取其大厅里组队的成员 UID 列表\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "UID",
+                    "Type": "number",
+                    "Description": "玩家 UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number[]",
+                    "Description": "玩家 UID 列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLobbyTeammateUIDsByUID",
+            "Description": "根据玩家的UID获取其大厅里组队的成员 UID 列表\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "UID",
+                    "Type": "number",
+                    "Description": "玩家 UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number[]",
+                    "Description": "玩家 UID 列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDynamicLobbyTeammateUIDsByUID",
+            "Description": "根据玩家的UID获取其大厅里组队的成员 UID 列表。跟 UGCTeamSystem.GetLobbyTeammateUIDsByUID 不同的是，此接口会返回动态组队（UGCTeamSystem.InviteToJoinLobbyTeam、UGCTeamSystem.RequestToJoinLobbyTeam）的成员 UID 列表，而 UGCTeamSystem.GetLobbyTeammateUIDsByUID 以及其他接口只会返回从大厅进入战斗对局那一刻的该玩家在大厅组队的成员 UID 列表。\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "UID",
+                    "Type": "number",
+                    "Description": "玩家 UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number[]",
+                    "Description": "玩家 UID 列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLobbyTeamKeysByPlayerKey",
+            "Description": "【废弃】请使用 UGCTeamSystem.GetLobbyTeammatePlayerKeysByPlayerKey\n根据玩家的 PlayerKey 获取其大厅里组队的成员 PlayerKey 列表，PlayerKey需要客户端连上DS后，才会被初始化，若在客户端连上DS前调用该接口，返回的PlayerKey列表不准确\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "number[]",
+                    "Type": "@PlayerKey",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLobbyTeammatePlayerKeysByPlayerKey",
+            "Description": "根据玩家的 PlayerKey 获取其大厅里组队的成员 PlayerKey 列表，PlayerKey需要客户端连上DS后，才会被初始化，若在客户端连上DS前调用该接口，返回的PlayerKey列表不准确\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "number[]",
+                    "Type": "@PlayerKey",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InviteToJoinLobbyTeam",
+            "Description": "邀请玩家加入（我的）大厅队伍\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "InviteeUID",
+                    "Type": "number",
+                    "Description": "被邀请玩家 UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RespondToInvitingToJoinLobbyTeam",
+            "Description": "响应加入大厅队伍的邀请\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "ResponseOfBeingInvitedToJoinLobby",
+                    "Type": "EResponseOfBeingInvitedToJoinLobby",
+                    "Description": "被邀请加入大厅队伍的响应类型：EResponseOfBeingInvitedToJoinLobby",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InviteToJoinLobbyTeamToken",
+                    "Type": "table",
+                    "Description": "邀请到大厅队伍的 Token",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RequestToJoinLobbyTeam",
+            "Description": "请求加入大厅队伍\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "TeamMemberUID",
+                    "Type": "number",
+                    "Description": "大厅队伍中的玩家 UID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RespondToRequestingToJoinLobbyTeam",
+            "Description": "响应被加入大厅队伍的请求\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "ResponseOfBeingRequestedToJoinLobby",
+                    "Type": "EResponseOfBeingRequestedToJoinLobby",
+                    "Description": "被请求加入大厅队伍的响应类型：EResponseOfBeingRequestedToJoinLobby",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RequestToJoinLobbyTeamToken",
+                    "Type": "table",
+                    "Description": "请求加入大厅队伍的 Token",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetTeamIDs",
+            "Description": "获取所有队伍的 ID\n生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "int[]",
+                    "Type": "@TeamID",
+                    "Description": "列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerList",
+            "Description": "获取所有玩家信息列表\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "bWithOB?",
+                    "Type": "boolean",
+                    "Description": "是否包含 OB",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number[]",
+                    "Description": "玩家信息列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTeamSizeByID",
+            "Description": "【废弃】请使用 UGCTeamSystem.GetTeamSizeByTeamID\n获取队伍中的玩家数量\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "玩家数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTeamSizeByTeamID",
+            "Description": "获取队伍中的玩家数量\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "玩家数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTeamLeaderKeyByTeamID",
+            "Description": "通过队伍编号获取队长PlayerKey列表（每个在大厅点击开始游戏的玩家都会被设置为队长，例如四人匹配，队伍里只有一个队长，三人匹配，再随机匹配一个队友，三人里面点击开始游戏的是队长，随机匹配的那个队友也是队长，属于他自己那个小队的队长）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number[]",
+                    "Description": "队长PlayerKey",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetIsLeaderOrNotByPlayerKey",
+            "Description": "通过玩家PlayerKey查询身份\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否是队长",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllTeammatePlayerState",
+            "Description": "获取所有队友的的PlayerState\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "bExcludeSelf",
+                    "Type": "boolean",
+                    "Description": "是否排除玩家自身",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraPlayerState[]",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTeammatePlayerStateByPlayerKey",
+            "Description": "获取指定PlayerKey队友的的PlayerState\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraPlayerState",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsTeamIDValid",
+            "Description": "判断TeamID是否合法\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "TeamID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraPlayerState",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTeamIDByPlayerKey",
+            "Description": "根据PlayerKey获取队伍ID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTeammateIndexByPlayerKey",
+            "Description": "根据PlayerKey获取队友ID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerState",
+                    "Type": "ASTExtraPlayerState",
+                    "Description": "玩家 PlayerState",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PlayerKey",
+                    "Type": "number",
+                    "Description": "玩家 PlayerKey",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "队友 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAllTeammateIndex",
+            "Description": "获取所有队友的的队友ID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerState",
+                    "Type": "ASTExtraPlayerState",
+                    "Description": "玩家 PlayerState",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "table<number,",
+                    "Type": "number>",
+                    "Description": "以PlayerKey为键，队友ID为值的表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPlayerKeyByTeamIndex",
+            "Description": "根据队友ID获取队友PlayerKey\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerState",
+                    "Type": "ASTExtraPlayerState",
+                    "Description": "玩家 PlayerState",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TeamIndex",
+                    "Type": "number",
+                    "Description": "队友ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "队友 PlayerKey",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

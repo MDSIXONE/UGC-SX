@@ -1,0 +1,31 @@
+{
+    "Name": "APrecomputedVisibilityItemPoolVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bExternalVisibility",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGroupOnlyUesdInDS",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PVSMode",
+            "Type": "EPVSMode",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

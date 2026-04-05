@@ -1,0 +1,150 @@
+{
+    "Name": "ADefaultPawn",
+    "Description": "DefaultPawn implements a simple Pawn with spherical collision and built-in flying movement.\n  @see UFloatingPawnMovement",
+    "Variables": [
+        {
+            "Name": "BaseTurnRate",
+            "Type": "float",
+            "Description": "Base turn rate, in degsec. Other scaling may affect final turn rate.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseLookUpRate",
+            "Type": "float",
+            "Description": "Base lookup rate, in degsec. Other scaling may affect final lookup rate.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MovementComponent",
+            "Type": "UPawnMovementComponent *",
+            "Description": "DefaultPawn movement component",
+            "Redirect": ""
+        },
+        {
+            "Name": "CollisionComponent",
+            "Type": "USphereComponent *",
+            "Description": "DefaultPawn collision component",
+            "Redirect": ""
+        },
+        {
+            "Name": "MeshComponent",
+            "Type": "UStaticMeshComponent *",
+            "Description": "The mesh associated with this Pawn.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAddDefaultMovementBindings",
+            "Type": "uint32",
+            "Description": "If true, adds default input bindings for movement and camera look.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "MoveForward",
+            "Description": "Input callback to move forward in local space (or backward if Val is negative).",
+            "Params": [
+                {
+                    "Name": "Val",
+                    "Type": "float",
+                    "Description": "Amount of movement in the forward direction (or backward if negative).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MoveRight",
+            "Description": "Input callback to strafe right in local space (or left if Val is negative).",
+            "Params": [
+                {
+                    "Name": "Val",
+                    "Type": "float",
+                    "Description": "Amount of movement in the right direction (or left if negative).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MoveUp_World",
+            "Description": "Input callback to move up in world space (or down if Val is negative).",
+            "Params": [
+                {
+                    "Name": "Val",
+                    "Type": "float",
+                    "Description": "Amount of movement in the world up direction (or down if negative).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TurnAtRate",
+            "Description": "Called via input to turn at a given rate.",
+            "Params": [
+                {
+                    "Name": "Rate",
+                    "Type": "float",
+                    "Description": "This is a normalized rate, i.e. 1.0 means 100% of desired turn rate",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LookUpAtRate",
+            "Description": "Called via input to look up at a given rate (or down if Rate is negative).",
+            "Params": [
+                {
+                    "Name": "Rate",
+                    "Type": "float",
+                    "Description": "This is a normalized rate, i.e. 1.0 means 100% of desired turn rate",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "APawn"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

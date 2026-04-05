@@ -1,0 +1,37 @@
+{
+    "Name": "UProceduralFoliageComponent",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "FoliageSpawner",
+            "Type": "UProceduralFoliageSpawner *",
+            "Description": "The procedural foliage spawner used to generate foliage instances within this volume.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TileOverlap",
+            "Type": "float",
+            "Description": "The amount of overlap between simulation tiles (in cm).",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpawningVolume",
+            "Type": "AVolume *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ProceduralGuid",
+            "Type": "FGuid",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UActorComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

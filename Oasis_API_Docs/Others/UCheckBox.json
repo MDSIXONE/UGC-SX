@@ -1,0 +1,216 @@
+{
+    "Name": "UCheckBox",
+    "Description": "The checkbox widget allows you to display a toggled state of 'unchecked', 'checked' and \n  'indeterminable.  You can use the checkbox for a classic checkbox, or as a toggle button,\n  or as radio buttons.\n  \n   Single Child\n   Toggle",
+    "Variables": [
+        {
+            "Name": "CheckedState",
+            "Type": "ECheckBoxState",
+            "Description": "Whether the check box is currently in a checked state",
+            "Redirect": ""
+        },
+        {
+            "Name": "CheckedStateDelegate",
+            "Type": "FGetCheckBoxState",
+            "Description": "A bindable delegate for the IsChecked.",
+            "Redirect": ""
+        },
+        {
+            "Name": "WidgetStyle",
+            "Type": "FCheckBoxStyle",
+            "Description": "The checkbox bar style",
+            "Redirect": ""
+        },
+        {
+            "Name": "Style_DEPRECATED",
+            "Type": "USlateWidgetStyleAsset *",
+            "Description": "Style of the check box",
+            "Redirect": ""
+        },
+        {
+            "Name": "UncheckedImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is unchecked",
+            "Redirect": ""
+        },
+        {
+            "Name": "UncheckedHoveredImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is unchecked and hovered",
+            "Redirect": ""
+        },
+        {
+            "Name": "UncheckedPressedImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is unchecked and pressed",
+            "Redirect": ""
+        },
+        {
+            "Name": "CheckedImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is checked",
+            "Redirect": ""
+        },
+        {
+            "Name": "CheckedHoveredImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is checked and hovered",
+            "Redirect": ""
+        },
+        {
+            "Name": "CheckedPressedImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is checked and pressed",
+            "Redirect": ""
+        },
+        {
+            "Name": "UndeterminedImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is in an ambiguous state and hovered",
+            "Redirect": ""
+        },
+        {
+            "Name": "UndeterminedHoveredImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is checked and hovered",
+            "Redirect": ""
+        },
+        {
+            "Name": "UndeterminedPressedImage_DEPRECATED",
+            "Type": "USlateBrushAsset *",
+            "Description": "Image to use when the checkbox is in an ambiguous state and pressed",
+            "Redirect": ""
+        },
+        {
+            "Name": "HorizontalAlignment",
+            "Type": "TEnumAsByte < EHorizontalAlignment >",
+            "Description": "How the content of the toggle button should align within the given space",
+            "Redirect": ""
+        },
+        {
+            "Name": "Padding_DEPRECATED",
+            "Type": "FMargin",
+            "Description": "Spacing between the check box image and its content",
+            "Redirect": ""
+        },
+        {
+            "Name": "BorderBackgroundColor_DEPRECATED",
+            "Type": "FSlateColor",
+            "Description": "The color of the background border",
+            "Redirect": ""
+        },
+        {
+            "Name": "IsFocusable",
+            "Type": "bool",
+            "Description": "Sometimes a button should only be mouse-clickable and never keyboard focusable.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "IsPressed",
+            "Description": "Returns true if this button is currently pressed",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsChecked",
+            "Description": "Returns true if the checkbox is currently checked",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCheckedState",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ECheckBoxState",
+                    "Description": "the full current checked state.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsChecked",
+            "Description": "Sets the checked state.",
+            "Params": [
+                {
+                    "Name": "InIsChecked",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCheckedState",
+            "Description": "Sets the checked state.",
+            "Params": [
+                {
+                    "Name": "InCheckedState",
+                    "Type": "ECheckBoxState",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UContentWidget"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnCheckStateChanged",
+            "Description": "Called when the checked state has changed",
+            "Params": [
+                {
+                    "Name": "bIsChecked",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "APixelProjectedReflectionVisibilityVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "MaxDrawDistance",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

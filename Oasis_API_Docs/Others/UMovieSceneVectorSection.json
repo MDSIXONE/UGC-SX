@@ -1,0 +1,26 @@
+{
+    "Name": "UMovieSceneVectorSection",
+    "Description": "A vector section.",
+    "Variables": [
+        {
+            "Name": "Curves",
+            "Type": "FRichCurve",
+            "Description": "Vector t",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChannelsUsed",
+            "Type": "int32",
+            "Description": "How many curves are actually used",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection",
+        "IKeyframeSection<FVectorKey>"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

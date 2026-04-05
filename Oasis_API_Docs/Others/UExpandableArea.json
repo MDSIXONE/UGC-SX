@@ -1,0 +1,149 @@
+{
+    "Name": "UExpandableArea",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Style",
+            "Type": "FExpandableAreaStyle",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BorderBrush",
+            "Type": "FSlateBrush",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BorderColor",
+            "Type": "FSlateColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsExpanded",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxHeight",
+            "Type": "float",
+            "Description": "The maximum height of the area",
+            "Redirect": ""
+        },
+        {
+            "Name": "HeaderPadding",
+            "Type": "FMargin",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AreaPadding",
+            "Type": "FMargin",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "HeaderContent",
+            "Type": "UWidget *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BodyContent",
+            "Type": "UWidget *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetIsExpanded",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsExpanded",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "IsExpanded",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsExpanded_Animated",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "IsExpanded",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget",
+        "INamedSlotInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnExpansionChanged",
+            "Description": "A bindable delegate for the IsChecked.",
+            "Params": [
+                {
+                    "Name": "Area",
+                    "Type": "UExpandableArea*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIsExpanded",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

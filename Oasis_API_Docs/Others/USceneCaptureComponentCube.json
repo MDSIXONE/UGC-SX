@@ -1,0 +1,33 @@
+{
+    "Name": "USceneCaptureComponentCube",
+    "Description": "Used to capture a 'snapshot' of the scene from a 6 planes and feed it to a render target.",
+    "Variables": [
+        {
+            "Name": "TextureTarget",
+            "Type": "UTextureRenderTargetCube *",
+            "Description": "Temporary render target that can be used by the editor.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "CaptureScene",
+            "Description": "Render the scene to the texture target immediately.  \n\t  This should not be used if bCaptureEveryFrame is enabled, or the scene capture will render redundantly.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USceneCaptureComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

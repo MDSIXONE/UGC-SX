@@ -1,0 +1,529 @@
+{
+    "Name": "URendererSettings",
+    "Description": "Rendering settings.",
+    "Variables": [
+        {
+            "Name": "bMobileHDR",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileDisableVertexFog",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileVTFLandscape",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileLandscapeVertexHole",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIdeaDecalOptimizedIO",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxMobileCascades",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MobileMSAASampleCount",
+            "Type": "TEnumAsByte < EMobileMSAASampleCount :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CharacterDiffuseScale",
+            "Type": "float",
+            "Description": "ToolTip = \"Character diffuse scale parameter for versatile diffuse model formula DiffuseFactor = pow( saturate( DiffuseScale  (dot(N,L) + DiffuseOffset) ), DiffusePower ).\",",
+            "Redirect": ""
+        },
+        {
+            "Name": "CharacterDiffuseOffset",
+            "Type": "float",
+            "Description": "ToolTip = \"Character diffuse offset parameter for versatile diffuse model formula DiffuseFactor = pow( saturate( DiffuseScale  (dot(N,L) + DiffuseOffset) ), DiffusePower ).\",",
+            "Redirect": ""
+        },
+        {
+            "Name": "CharacterDiffusePower",
+            "Type": "float",
+            "Description": "ToolTip = \"Character diffuse power parameter for versatile diffuse model formula DiffuseFactor = pow( saturate( DiffuseScale  (dot(N,L) + DiffuseOffset) ), DiffusePower ).\",",
+            "Redirect": ""
+        },
+        {
+            "Name": "CharacterMinShadowFactor",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticMeshDiffuseScale",
+            "Type": "float",
+            "Description": "ToolTip = \"Character diffuse scale parameter for versatile diffuse model formula DiffuseFactor = pow( saturate( DiffuseScale  (dot(N,L) + DiffuseOffset) ), DiffusePower ).\",",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticMeshDiffuseOffset",
+            "Type": "float",
+            "Description": "ToolTip = \"Static Mesh diffuse offset parameter for versatile diffuse model formula DiffuseFactor = pow( saturate( DiffuseScale  (dot(N,L) + DiffuseOffset) ), DiffusePower ).\",",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticMeshDiffusePower",
+            "Type": "float",
+            "Description": "ToolTip = \"Static Mesh diffuse power parameter for versatile diffuse model formula DiffuseFactor = pow( saturate( DiffuseScale  (dot(N,L) + DiffuseOffset) ), DiffusePower ).\",",
+            "Redirect": ""
+        },
+        {
+            "Name": "StaticMeshMinShadowFactor",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileAllowROCCook",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDiscardUnusedQualityLevels",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GlobalStaticMeshCullingScreenSize",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOcclusionCulling",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinScreenRadiusForLights",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinScreenRadiusForEarlyZPass",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinScreenRadiusForCSMdepth",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bPrecomputedVisibilityWarning",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bTextureStreaming",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseDXT5NormalMaps",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClearCoatEnableSecondNormal",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReflectionCaptureResolution",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ReflectionEnvironmentLightmapMixBasedOnRoughness",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForwardShading",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bVertexFoggingForOpaque",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowStaticLighting",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseNormalMapsForStaticLighting",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGenerateMeshDistanceFields",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEightBitMeshDistanceFields",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGenerateLandscapeGIData",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCompressMeshDistanceFields",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TessellationAdaptivePixelsPerTriangle",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSeparateTranslucency",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentSortPolicy",
+            "Type": "TEnumAsByte < ETranslucentSortPolicy :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "TranslucentSortAxis",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomDepthStencil",
+            "Type": "TEnumAsByte < ECustomDepthStencil :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCustomDepthTaaJitter",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnableAlphaChannelInPostProcessing",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultFeatureBloom",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultFeatureAmbientOcclusion",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultFeatureAmbientOcclusionStaticFraction",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultFeatureAutoExposure",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultFeatureAutoExposure",
+            "Type": "TEnumAsByte < EAutoExposureMethodUI :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultFeatureMotionBlur",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultFeatureLensFlare",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DefaultFeatureAntiAliasing",
+            "Type": "TEnumAsByte < EAntiAliasingMethod >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bRenderUnbuiltPreviewShadowsInGame",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bStencilForLODDither",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EarlyZPass",
+            "Type": "TEnumAsByte < EEarlyZPass :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEarlyZPassMovable",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEarlyZPassOnlyMaterialMasking",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDBuffer",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearSceneMethod",
+            "Type": "TEnumAsByte < EClearSceneOptions :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bBasePassOutputsVelocity",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSelectiveBasePassOutputs",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDefaultParticleCutouts",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGlobalClipPlane",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "GBufferFormat",
+            "Type": "TEnumAsByte < EGBufferFormat :: Type >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseGPUMorphTargets",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNvidiaAftermathEnabled",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInstancedStereo",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMultiView",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileMultiView",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileMultiViewDirect",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMonoscopicFarField",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDebugCanvasInLayer",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "WireframeCullThreshold",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportStationarySkylight",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportLowQualityLightmaps",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportPointLightWholeSceneShadows",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportAtmosphericFog",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportSkinCacheShaders",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileEnableStaticAndCSMShadowReceivers",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileAllowDistanceFieldShadows",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileAllowMovableDirectionalLights",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MobileNumDynamicPointLights",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMobileAllowMovableSpotlights",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkinCacheSceneMemoryLimitInMB",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bGPUSkinLimit2BoneInfluences",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportDepthOnlyIndexBuffers",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSupportReversedIndexBuffers",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDeveloperSettings"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

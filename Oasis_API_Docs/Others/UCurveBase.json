@@ -1,0 +1,66 @@
+{
+    "Name": "UCurveBase",
+    "Description": "Defines a curve of interpolated points to evaluate over a given range",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetTimeRange",
+            "Description": "Get the time range across all curves",
+            "Params": [
+                {
+                    "Name": "MinTime",
+                    "Type": "float & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MaxTime",
+                    "Type": "float &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetValueRange",
+            "Description": "Get the value range across all curves",
+            "Params": [
+                {
+                    "Name": "MinValue",
+                    "Type": "float & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MaxValue",
+                    "Type": "float &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "FCurveOwnerInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

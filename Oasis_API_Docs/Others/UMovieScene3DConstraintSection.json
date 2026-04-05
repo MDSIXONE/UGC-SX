@@ -1,0 +1,19 @@
+{
+    "Name": "UMovieScene3DConstraintSection",
+    "Description": "Base class for 3D constraint section",
+    "Variables": [
+        {
+            "Name": "ConstraintId",
+            "Type": "FGuid",
+            "Description": "The possessable guid that this constraint uses",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

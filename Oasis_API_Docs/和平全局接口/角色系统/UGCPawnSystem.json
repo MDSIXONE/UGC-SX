@@ -1,0 +1,441 @@
+{
+    "Name": "UGCPawnSystem",
+    "Description": "角色系统接口库（废弃，已迁移到 UGCPlayerPawnSystem）",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "HasPawnState",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n是否在指定状态下\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PawnState",
+                    "Type": "EPawnState",
+                    "Description": "角色状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AllowPawnState",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n是否允许进入指定状态\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PawnState",
+                    "Type": "EPawnState",
+                    "Description": "角色状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SwitchPoseState",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n切换 Pose 状态\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PoseState",
+                    "Type": "ESTEPoseState",
+                    "Description": "角色状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnterPawnState",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n进入指定状态\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PawnState",
+                    "Type": "EPawnState",
+                    "Description": "角色状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LeavePawnState",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n离开指定状态\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PawnState",
+                    "Type": "EPawnState",
+                    "Description": "角色状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisabledPawnState",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n禁用指定状态\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PawnState",
+                    "Type": "EPawnState",
+                    "Description": "角色状态",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsDisabled",
+                    "Type": "bool",
+                    "Description": "是否禁用",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetIsFPP",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n获取是否第一人称视角\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "是不是 FPP 模式",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsFPP",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n设置是否第一人称视角\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsFPP",
+                    "Type": "bool",
+                    "Description": "是否第一人称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForce",
+                    "Type": "bool",
+                    "Description": "强制设置人称",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "设置是否成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetIsTPP",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n获取是否第三人称视角\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "是否第三人称",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsTPP",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n设置是否第三人称视角\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsTPP",
+                    "Type": "bool",
+                    "Description": "是否第三人称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForce",
+                    "Type": "bool",
+                    "Description": "强制设置 TPP 模式",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "设置是否成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetIsInvincible",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n获取是否无敌\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "是否无敌",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetIsInvincible",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n设置是否无敌\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsInvincible",
+                    "Type": "bool",
+                    "Description": "是否无敌",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "TryEnterParachuteState",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n尝试进入跳伞状态\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CheckPawnState",
+                    "Type": "EPawnState[]",
+                    "Description": "不允许进入跳伞的角色状态",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CanOpenParachuteHeight",
+                    "Type": "float",
+                    "Description": "允许开伞高度",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ForceOpenParachuteHeight",
+                    "Type": "float",
+                    "Description": "强制开伞高度",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CloseParachuteHeight",
+                    "Type": "float",
+                    "Description": "关伞高度",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bParachuteAvatarNotShown",
+                    "Type": "bool",
+                    "Description": "是否不显示伞包",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ExitParachuteState",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n退出跳伞状态\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "HideBoneByBoneName",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n根据玩家角色的骨骼名称修改骨骼的显隐性\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BoneName",
+                    "Type": "FName",
+                    "Description": "骨骼名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bHide",
+                    "Type": "bool",
+                    "Description": "true隐藏，false显示",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ChangeAvatarMesh",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n切换玩家角色使用的全身骨骼体\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SkeletalMeshPath",
+                    "Type": "string",
+                    "Description": "全身骨骼体路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RecoverAvatarMesh",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n恢复玩家角色使用的全身骨骼体\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "SkipSpawnDeadTombBox",
+            "Description": "【废弃】已迁移到 UGCPlayerPawnSystem\n玩家死亡取消生成盒子\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIsSkip",
+                    "Type": "bool",
+                    "Description": "玩家是否取消生成死亡盒子",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

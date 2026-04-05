@@ -1,0 +1,49 @@
+{
+    "Name": "UMaterialExpressionSphereMask",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "A",
+            "Type": "FExpressionInput",
+            "Description": "1 to 4 dimensional vector, should be the same type as B",
+            "Redirect": ""
+        },
+        {
+            "Name": "B",
+            "Type": "FExpressionInput",
+            "Description": "1 to 4 dimensional vector, should be the same type as A",
+            "Redirect": ""
+        },
+        {
+            "Name": "Radius",
+            "Type": "FExpressionInput",
+            "Description": "in the units that A and B are measured, if not hooked up the internal constant is used",
+            "Redirect": ""
+        },
+        {
+            "Name": "Hardness",
+            "Type": "FExpressionInput",
+            "Description": "0..1 for the range of 0\\% to 100\\%, if not hooked up the internal constant is used",
+            "Redirect": ""
+        },
+        {
+            "Name": "AttenuationRadius",
+            "Type": "float",
+            "Description": "in the unit that A and B are measured",
+            "Redirect": ""
+        },
+        {
+            "Name": "HardnessPercent",
+            "Type": "float",
+            "Description": "in percent 0%=soft .. 100%=hard",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

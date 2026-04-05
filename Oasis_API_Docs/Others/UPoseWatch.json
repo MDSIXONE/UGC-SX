@@ -1,0 +1,37 @@
+{
+    "Name": "UPoseWatch",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Node",
+            "Type": "UEdGraphNode *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PoseWatchColour",
+            "Type": "FColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomPoseDrawColour",
+            "Type": "FColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CustomBoneText",
+            "Type": "FText",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

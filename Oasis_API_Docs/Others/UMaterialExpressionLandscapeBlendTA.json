@@ -1,0 +1,61 @@
+{
+    "Name": "UMaterialExpressionLandscapeBlendTA",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "UV",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "DiffuseTexture",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NormalTexture",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "HeightTexture",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RoughnessTexture",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Layers",
+            "Type": "TArray < FTerrainLayerTA >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ConstCoordinate",
+            "Type": "uint32",
+            "Description": "only used if Coordinates is not hooked up",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExpressionGUID",
+            "Type": "FGuid",
+            "Description": "GUID that should be unique within the material, this is used for parameter renaming.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionTerrainBlendBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

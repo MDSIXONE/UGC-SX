@@ -1,0 +1,110 @@
+{
+    "Name": "UNavLinkCustomComponent",
+    "Description": "Encapsulates NavLinkCustomInterface interface, can be used with Actors not relevant for navigation\n   \n   Additional functionality:\n   - can be toggled\n   - can create obstacle area for easierforced separation of link end points\n   - can broadcast state changes to nearby agents",
+    "Variables": [
+        {
+            "Name": "NavLinkUserId",
+            "Type": "uint32",
+            "Description": "link Id assigned by navigation system",
+            "Redirect": ""
+        },
+        {
+            "Name": "EnabledAreaClass",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "area class to use when link is enabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "DisabledAreaClass",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "area class to use when link is disabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinkRelativeStart",
+            "Type": "FVector",
+            "Description": "start point, relative to owner",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinkRelativeEnd",
+            "Type": "FVector",
+            "Description": "end point, relative to owner",
+            "Redirect": ""
+        },
+        {
+            "Name": "LinkDirection",
+            "Type": "TEnumAsByte < ENavLinkDirection :: Type >",
+            "Description": "direction of link",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLinkEnabled",
+            "Type": "uint32",
+            "Description": "is link currently in enabled state? (area class)",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNotifyWhenEnabled",
+            "Type": "uint32",
+            "Description": "should link notify nearby agents when it changes state to enabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "bNotifyWhenDisabled",
+            "Type": "uint32",
+            "Description": "should link notify nearby agents when it changes state to disabled",
+            "Redirect": ""
+        },
+        {
+            "Name": "bCreateBoxObstacle",
+            "Type": "uint32",
+            "Description": "if set, box obstacle area will be added to generation",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObstacleOffset",
+            "Type": "FVector",
+            "Description": "offset of simple box obstacle",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObstacleExtent",
+            "Type": "FVector",
+            "Description": "extent of simple box obstacle",
+            "Redirect": ""
+        },
+        {
+            "Name": "ObstacleAreaClass",
+            "Type": "TSubclassOf < UNavArea >",
+            "Description": "area class for simple box obstacle",
+            "Redirect": ""
+        },
+        {
+            "Name": "BroadcastRadius",
+            "Type": "float",
+            "Description": "radius of state change broadcast",
+            "Redirect": ""
+        },
+        {
+            "Name": "BroadcastInterval",
+            "Type": "float",
+            "Description": "interval for state change broadcast (0 = single broadcast)",
+            "Redirect": ""
+        },
+        {
+            "Name": "BroadcastChannel",
+            "Type": "TEnumAsByte < ECollisionChannel >",
+            "Description": "trace channel for state change broadcast",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UNavRelevantComponent",
+        "INavLinkCustomInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

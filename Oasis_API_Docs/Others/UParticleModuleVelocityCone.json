@@ -1,0 +1,31 @@
+{
+    "Name": "UParticleModuleVelocityCone",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Angle",
+            "Type": "FRawDistributionFloat",
+            "Description": "The Min value represents the inner cone angle value and the Max value represents the outer cone angle value.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Velocity",
+            "Type": "FRawDistributionFloat",
+            "Description": "The initial velocity of the particles.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Direction",
+            "Type": "FVector",
+            "Description": "The direction FVector of the cone.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVelocityBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

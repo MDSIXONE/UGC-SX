@@ -1,0 +1,32 @@
+{
+    "Name": "UBTNode",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "NodeName",
+            "Type": "FString",
+            "Description": "node name",
+            "Redirect": ""
+        },
+        {
+            "Name": "TreeAsset",
+            "Type": "UBehaviorTree *",
+            "Description": "source asset",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParentNode",
+            "Type": "UBTCompositeNode *",
+            "Description": "parent node",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IGameplayTaskOwnerInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

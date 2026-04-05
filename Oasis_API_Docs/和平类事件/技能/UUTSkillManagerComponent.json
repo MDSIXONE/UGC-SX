@@ -1,0 +1,95 @@
+{
+    "Name": "UUTSkillManagerComponent",
+    "Description": "技能组件",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "UActorComponent",
+        "IUTSkillInstanceNodeContainerInterface",
+        "IObjectPoolInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "UGC_SkillActiveDelegate",
+            "Description": "技能激活\n\t   生效范围：SC",
+            "Params": [
+                {
+                    "Name": "SkillPath",
+                    "Type": "FString",
+                    "Description": "技能路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_SkillStartDelegate",
+            "Description": "技能开始\n\t   生效范围：SC",
+            "Params": [
+                {
+                    "Name": "SkillPath",
+                    "Type": "FString",
+                    "Description": "技能路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_SkillEndDelegate",
+            "Description": "技能结束\n\t   生效范围：SC",
+            "Params": [
+                {
+                    "Name": "SkillPath",
+                    "Type": "FString",
+                    "Description": "技能路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_SkillCDDelegate",
+            "Description": "技能进入冷却\n\t   生效范围：SC",
+            "Params": [
+                {
+                    "Name": "SkillPath",
+                    "Type": "FString",
+                    "Description": "技能路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

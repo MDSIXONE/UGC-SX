@@ -1,0 +1,451 @@
+{
+    "Name": "USpinBox",
+    "Description": "A numerical entry box that allows for direct entry of the number or allows the user to click and slide the number.",
+    "Variables": [
+        {
+            "Name": "Value",
+            "Type": "float",
+            "Description": "Value stored in this spin box",
+            "Redirect": ""
+        },
+        {
+            "Name": "ValueDelegate",
+            "Type": "FGetFloat",
+            "Description": "A bindable delegate to allow logic to drive the value of the widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "WidgetStyle",
+            "Type": "FSpinBoxStyle",
+            "Description": "The Style",
+            "Redirect": ""
+        },
+        {
+            "Name": "Style_DEPRECATED",
+            "Type": "USlateWidgetStyleAsset *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Delta",
+            "Type": "float",
+            "Description": "The amount by which to change the spin box value as the slider moves.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SliderExponent",
+            "Type": "float",
+            "Description": "The exponent by which to increase the delta as the mouse moves. 1 is constant (never increases the delta).",
+            "Redirect": ""
+        },
+        {
+            "Name": "Font",
+            "Type": "FSlateFontInfo",
+            "Description": "Font color and opacity (overrides style)",
+            "Redirect": ""
+        },
+        {
+            "Name": "Justification",
+            "Type": "TEnumAsByte < ETextJustify :: Type >",
+            "Description": "The justification the value text should appear as.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinDesiredWidth",
+            "Type": "float",
+            "Description": "The minimum width of the spin box",
+            "Redirect": ""
+        },
+        {
+            "Name": "ClearKeyboardFocusOnCommit",
+            "Type": "bool",
+            "Description": "Whether to remove the keyboard focus from the spin box when the value is committed",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectAllTextOnCommit",
+            "Type": "bool",
+            "Description": "Whether to select the text in the spin box when the value is committed",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForegroundColor",
+            "Type": "FSlateColor",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverride_MinValue",
+            "Type": "uint32",
+            "Description": "Whether the optional MinValue attribute of the widget is set",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverride_MaxValue",
+            "Type": "uint32",
+            "Description": "Whether the optional MaxValue attribute of the widget is set",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverride_MinSliderValue",
+            "Type": "uint32",
+            "Description": "Whether the optional MinSliderValue attribute of the widget is set",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverride_MaxSliderValue",
+            "Type": "uint32",
+            "Description": "Whether the optional MaxSliderValue attribute of the widget is set",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinValue",
+            "Type": "float",
+            "Description": "The minimum allowable value that can be manually entered into the spin box",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxValue",
+            "Type": "float",
+            "Description": "The maximum allowable value that can be manually entered into the spin box",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinSliderValue",
+            "Type": "float",
+            "Description": "The minimum allowable value that can be specified using the slider",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxSliderValue",
+            "Type": "float",
+            "Description": "The maximum allowable value that can be specified using the slider",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetValue",
+            "Description": "Get the current value of the spin box.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetValue",
+            "Description": "Set the value of the spin box.",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMinValue",
+            "Description": "Get the current minimum value that can be manually set in the spin box.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMinValue",
+            "Description": "Set the minimum value that can be manually set in the spin box.",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearMinValue",
+            "Description": "Clear the minimum value that can be manually set in the spin box.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaxValue",
+            "Description": "Get the current maximum value that can be manually set in the spin box.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMaxValue",
+            "Description": "Set the maximum value that can be manually set in the spin box.",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearMaxValue",
+            "Description": "Clear the maximum value that can be manually set in the spin box.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMinSliderValue",
+            "Description": "Get the current minimum value that can be specified using the slider.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMinSliderValue",
+            "Description": "Set the minimum value that can be specified using the slider.",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearMinSliderValue",
+            "Description": "Clear the minimum value that can be specified using the slider.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaxSliderValue",
+            "Description": "Get the current maximum value that can be specified using the slider.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetMaxSliderValue",
+            "Description": "Set the maximum value that can be specified using the slider.",
+            "Params": [
+                {
+                    "Name": "NewValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearMaxSliderValue",
+            "Description": "Clear the maximum value that can be specified using the slider.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetForegroundColor",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InForegroundColor",
+                    "Type": "FSlateColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UWidget"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnValueChanged",
+            "Description": "Called when the value is changed interactively by the user",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnValueCommitted",
+            "Description": "Called when the value is committed. Occurs when the user presses Enter or the text box loses focus.",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CommitMethod",
+                    "Type": "ETextCommit::Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnBeginSliderMovement",
+            "Description": "Called right before the slider begins to move",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnEndSliderMovement",
+            "Description": "Called right after the slider handle is released by the user",
+            "Params": [
+                {
+                    "Name": "InValue",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

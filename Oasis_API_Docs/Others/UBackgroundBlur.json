@@ -1,0 +1,292 @@
+{
+    "Name": "UBackgroundBlur",
+    "Description": "A background blur is a container widget that can contain one child widget, providing an opportunity \n  to surround it with adjustable padding and apply a post-process Gaussian blur to all content beneath the widget.\n \n   Single Child\n   Blur Effect",
+    "Variables": [
+        {
+            "Name": "Padding",
+            "Type": "FMargin",
+            "Description": "The padding area between the slot and the content it contains.",
+            "Redirect": ""
+        },
+        {
+            "Name": "HorizontalAlignment",
+            "Type": "TEnumAsByte < EHorizontalAlignment >",
+            "Description": "The alignment of the content horizontally.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VerticalAlignment",
+            "Type": "TEnumAsByte < EVerticalAlignment >",
+            "Description": "The alignment of the content vertically.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bApplyAlphaToBlur",
+            "Type": "bool",
+            "Description": "True to modulate the strength of the blur based on the widget alpha.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlurStrength",
+            "Type": "float",
+            "Description": "How blurry the background is.  Larger numbers mean more blurry but will result in larger runtime cost on the gpu.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOverrideAutoRadiusCalculation",
+            "Type": "bool",
+            "Description": "Whether or not the radius should be computed automatically or if it should use the radius",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlurType",
+            "Type": "TEnumAsByte < EBlurType >",
+            "Description": "Blur type",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlurDirection",
+            "Type": "float",
+            "Description": "Blur direction for directional blur",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlurCenter",
+            "Type": "FVector2D",
+            "Description": "Blur center for radial and rotate blur",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlurRadius",
+            "Type": "int32",
+            "Description": "This is the number of pixels which will be weighted in each direction from any given pixel when computing the blur\n\t  A larger value is more costly but allows for stronger blurs.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlurMask",
+            "Type": "UTexture *",
+            "Description": "A blur mask texture",
+            "Redirect": ""
+        },
+        {
+            "Name": "LowQualityFallbackBrush",
+            "Type": "FSlateBrush",
+            "Description": "An image to draw instead of applying a blur when low quality override mode is enabled. \n\t  You can enable low quality mode for background blurs by setting the cvar Slate.ForceBackgroundBlurLowQualityOverride to 1. \n\t  This is usually done in the project's scalability settings",
+            "Redirect": ""
+        },
+        {
+            "Name": "BlurMaskBrush",
+            "Type": "FSlateBrush",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetPadding",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InPadding",
+                    "Type": "FMargin",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetHorizontalAlignment",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InHorizontalAlignment",
+                    "Type": "EHorizontalAlignment",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetVerticalAlignment",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InVerticalAlignment",
+                    "Type": "EVerticalAlignment",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetApplyAlphaToBlur",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bInApplyAlphaToBlur",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlurRadius",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InBlurRadius",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlurStrength",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InStrength",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlurDirection",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InDirection",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlurCenter",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InCenter",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBlurMask",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InTexture",
+                    "Type": "UTexture *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetLowQualityFallbackBrush",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InBrush",
+                    "Type": "FSlateBrush &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UContentWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

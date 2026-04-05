@@ -1,0 +1,1903 @@
+{
+    "Name": "UKismetStringLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "Conv_FloatToString",
+            "Description": "Converts a float value to a string",
+            "Params": [
+                {
+                    "Name": "InFloat",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_IntToString",
+            "Description": "Converts an integer value to a string",
+            "Params": [
+                {
+                    "Name": "InInt",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_Int64ToString",
+            "Description": "Converts an integer64 value to a string",
+            "Params": [
+                {
+                    "Name": "InInt64",
+                    "Type": "int64",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_UInt64ToString",
+            "Description": "Converts an uinteger64 value to a string",
+            "Params": [
+                {
+                    "Name": "InUInt64",
+                    "Type": "uint64",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_ByteToString",
+            "Description": "Converts a byte value to a string",
+            "Params": [
+                {
+                    "Name": "InByte",
+                    "Type": "uint8",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_BoolToString",
+            "Description": "Converts a boolean value to a string, either 'true' or 'false'",
+            "Params": [
+                {
+                    "Name": "InBool",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_VectorToString",
+            "Description": "Converts a vector value to a string, in the form 'X= Y= Z='",
+            "Params": [
+                {
+                    "Name": "InVec",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_IntVectorToString",
+            "Description": "Converts an IntVector value to a string, in the form 'X= Y= Z='",
+            "Params": [
+                {
+                    "Name": "InIntVec",
+                    "Type": "FIntVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_Vector2dToString",
+            "Description": "Converts a vector2d value to a string, in the form 'X= Y='",
+            "Params": [
+                {
+                    "Name": "InVec",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_RotatorToString",
+            "Description": "Converts a rotator value to a string, in the form 'P= Y= R='",
+            "Params": [
+                {
+                    "Name": "InRot",
+                    "Type": "FRotator",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_TransformToString",
+            "Description": "Converts a transform value to a string, in the form 'Translation: X= Y= Z= Rotation: P= Y= R= Scale: X= Y= Z='",
+            "Params": [
+                {
+                    "Name": "InTrans",
+                    "Type": "FTransform &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_ObjectToString",
+            "Description": "Converts a UObject value to a string by calling the object's GetName method",
+            "Params": [
+                {
+                    "Name": "InObj",
+                    "Type": "UObject *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_ColorToString",
+            "Description": "Converts a linear color value to a string, in the form '(R=,G=,B=,A=)'",
+            "Params": [
+                {
+                    "Name": "InColor",
+                    "Type": "FLinearColor",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_DateTimeToString",
+            "Description": "Converts a date time value to a string, in the form '%Y.%m.%d-%H.%M.%S'",
+            "Params": [
+                {
+                    "Name": "InDateTime",
+                    "Type": "FDateTime",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_NameToString",
+            "Description": "Converts a name value to a string",
+            "Params": [
+                {
+                    "Name": "InName",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_StringToName",
+            "Description": "Converts a string to a name value",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_StringToInt",
+            "Description": "Converts a string to a int value",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_StringToInt64",
+            "Description": "Converts a string to a int64 value",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int64 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_StringToFloat",
+            "Description": "Converts a string to a float value",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_StringToVector",
+            "Description": "Convert String Back To Vector. IsValid indicates whether or not the string could be successfully converted.",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutConvertedVector",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutIsValid",
+                    "Type": "bool &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_StringToVector2D",
+            "Description": "Convert String Back To Vector2D. IsValid indicates whether or not the string could be successfully converted.",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutConvertedVector2D",
+                    "Type": "FVector2D & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutIsValid",
+                    "Type": "bool &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_StringToRotator",
+            "Description": "Convert String Back To Rotator. IsValid indicates whether or not the string could be successfully converted.",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutConvertedRotator",
+                    "Type": "FRotator & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutIsValid",
+                    "Type": "bool &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Conv_StringToColor",
+            "Description": "Convert String Back To Color. IsValid indicates whether or not the string could be successfully converted.",
+            "Params": [
+                {
+                    "Name": "InString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutConvertedColor",
+                    "Type": "FLinearColor & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutIsValid",
+                    "Type": "bool &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Float",
+            "Description": "Converts a float->string, create a new string in the form AppendTo+Prefix+InFloat+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InFloat",
+                    "Type": "float ",
+                    "Description": "- The float value to convert",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Int",
+            "Description": "Converts a int->string, creating a new string in the form AppendTo+Prefix+InInt+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InInt",
+                    "Type": "int32 ",
+                    "Description": "- The int value to convert",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Int64",
+            "Description": "Converts a int->string, creating a new string in the form AppendTo+Prefix+InInt+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InInt64",
+                    "Type": "int64 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Bool",
+            "Description": "Converts a boolean->string, creating a new string in the form AppendTo+Prefix+InBool+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InBool",
+                    "Type": "bool ",
+                    "Description": "- The bool value to convert. Will add \"true\" or \"false\" to the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Vector",
+            "Description": "Converts a vector->string, creating a new string in the form AppendTo+Prefix+InVector+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InVector",
+                    "Type": "FVector ",
+                    "Description": "- The vector value to convert. Uses the standard FVector::ToString conversion",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_IntVector",
+            "Description": "Converts an IntVector->string, creating a new string in the form AppendTo+Prefix+InIntVector+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InIntVector",
+                    "Type": "FIntVector ",
+                    "Description": "- The intVector value to convert. Uses the standard FVector::ToString conversion",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Vector2d",
+            "Description": "Converts a vector2d->string, creating a new string in the form AppendTo+Prefix+InVector2d+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InVector2d",
+                    "Type": "FVector2D ",
+                    "Description": "- The vector2d value to convert. Uses the standard FVector2D::ToString conversion",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Rotator",
+            "Description": "Converts a rotator->string, creating a new string in the form AppendTo+Prefix+InRot+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InRot",
+                    "Type": "FRotator ",
+                    "Description": "- The rotator value to convert. Uses the standard ToString conversion",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Object",
+            "Description": "Converts a object->string, creating a new string in the form AppendTo+Prefix+object name+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InObj",
+                    "Type": "UObject * ",
+                    "Description": "- The object to convert. Will insert the name of the object into the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Color",
+            "Description": "Converts a color->string, creating a new string in the form AppendTo+Prefix+InColor+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InColor",
+                    "Type": "FLinearColor ",
+                    "Description": "- The linear color value to convert. Uses the standard ToString conversion",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BuildString_Name",
+            "Description": "Converts a color->string, creating a new string in the form AppendTo+Prefix+InName+Suffix",
+            "Params": [
+                {
+                    "Name": "AppendTo",
+                    "Type": "FString & ",
+                    "Description": "- An existing string to use as the start of the conversion string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Prefix",
+                    "Type": "FString & ",
+                    "Description": "- A string to use as a prefix, after the AppendTo string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InName",
+                    "Type": "FName ",
+                    "Description": "- The name value to convert",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Suffix",
+                    "Type": "FString &",
+                    "Description": "- A suffix to append to the end of the conversion string",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "A new string built from the passed parameters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Concat_StrStr",
+            "Description": "Concatenates two strings together to make a new string",
+            "Params": [
+                {
+                    "Name": "A",
+                    "Type": "FString & ",
+                    "Description": "- The original string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "B",
+                    "Type": "FString &",
+                    "Description": "- The string to append to A",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": " A new string which is the concatenation of A+B",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EqualEqual_StrStr",
+            "Description": "Test if the input strings are equal (A == B)",
+            "Params": [
+                {
+                    "Name": "A",
+                    "Type": "FString & ",
+                    "Description": "- The string to compare against",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "B",
+                    "Type": "FString &",
+                    "Description": "- The string to compare",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": " True if the strings are equal, false otherwise",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EqualEqual_StriStri",
+            "Description": "Test if the input strings are equal (A == B), ignoring case",
+            "Params": [
+                {
+                    "Name": "A",
+                    "Type": "FString & ",
+                    "Description": "- The string to compare against",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "B",
+                    "Type": "FString &",
+                    "Description": "- The string to compare",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": " True if the strings are equal, false otherwise",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "NotEqual_StrStr",
+            "Description": "Test if the input string are not equal (A != B)",
+            "Params": [
+                {
+                    "Name": "A",
+                    "Type": "FString & ",
+                    "Description": "- The string to compare against",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "B",
+                    "Type": "FString &",
+                    "Description": "- The string to compare",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "Returns true if the input strings are not equal, false if they are equal",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "NotEqual_StriStri",
+            "Description": "Test if the input string are not equal (A != B), ignoring case differences",
+            "Params": [
+                {
+                    "Name": "A",
+                    "Type": "FString & ",
+                    "Description": "- The string to compare against",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "B",
+                    "Type": "FString &",
+                    "Description": "- The string to compare",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "Returns true if the input strings are not equal, false if they are equal",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Len",
+            "Description": "Returns the number of characters in the string",
+            "Params": [
+                {
+                    "Name": "S",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "The number of chars in the string",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSubstring",
+            "Description": "Returns a substring from the string starting at the specified position",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "- The string to get the substring from",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartIndex",
+                    "Type": "int32 ",
+                    "Description": "- The location in SourceString to use as the start of the substring",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Length",
+                    "Type": "int32",
+                    "Description": "The length of the requested substring",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "The requested substring",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindSubstring",
+            "Description": "Finds the starting index of a substring in the a specified string",
+            "Params": [
+                {
+                    "Name": "SearchIn",
+                    "Type": "FString & ",
+                    "Description": "The string to search within",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Substring",
+                    "Type": "FString & ",
+                    "Description": "The string to look for in the SearchIn string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseCase",
+                    "Type": "bool ",
+                    "Description": "Whether or not to be case-sensitive",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSearchFromEnd",
+                    "Type": "bool ",
+                    "Description": "Whether or not to start the search from the end of the string instead of the beginning",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartPosition",
+                    "Type": "int32",
+                    "Description": "The position to start the search from",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "The index (starting from 0 if bSearchFromEnd is false) of the first occurence of the substring",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Contains",
+            "Description": "Returns whether this string contains the specified substring.\n\t",
+            "Params": [
+                {
+                    "Name": "SearchIn",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Substring",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUseCase",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSearchFromEnd",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "\t\t\t\tReturns whether the string contains the substring",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCharacterAsNumber",
+            "Description": "Gets a single character from the string (as an integer)",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "- The string to convert",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Index",
+                    "Type": "int32",
+                    "Description": "- Location of the character whose value is required",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "The integer value of the character or 0 if index is out of range",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ParseIntoArray",
+            "Description": "Gets an array of strings from a source string divided up by a separator and empty strings can optionally be culled.",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "- The string to chop up",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Delimiter",
+                    "Type": "FString & ",
+                    "Description": "- The string to delimit on",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CullEmptyStrings",
+                    "Type": "bool",
+                    "Description": "= true - Cull (true) empty strings or add them to the array (false)",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FString > ",
+                    "Description": "The array of string that have been separated",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "JoinStringArray",
+            "Description": "Concatenates an array of strings into a single string.",
+            "Params": [
+                {
+                    "Name": "SourceArray",
+                    "Type": "TArray < FString > & ",
+                    "Description": "- The array of strings to concatenate.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Separator",
+                    "Type": "FString &",
+                    "Description": "- The string used to separate each element.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "The final, joined, separated string.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCharacterArrayFromString",
+            "Description": "Returns an array that contains one entry for each character in SourceString",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString &",
+                    "Description": "The string to break apart into characters",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < FString > ",
+                    "Description": "An array containing one entry for each character in SourceString",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ToUpper",
+            "Description": "Returns a string converted to Upper case",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString &",
+                    "Description": "The string to convert",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "The string in upper case",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ToLower",
+            "Description": "Returns a string converted to Lower case",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString &",
+                    "Description": "The string to convert",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "The string in lower case",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LeftPad",
+            "Description": "Pad the left of this string for a specified number of characters ",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "The string to pad",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ChCount",
+                    "Type": "int32",
+                    "Description": " Amount of padding required",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "The padded string",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RightPad",
+            "Description": "Pad the right of this string for a specified number of characters",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "The string to pad",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ChCount",
+                    "Type": "int32",
+                    "Description": " Amount of padding required",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "The padded string",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsNumeric",
+            "Description": "Checks if a string contains only numeric characters",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString &",
+                    "Description": "The string to check",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the string only contains numeric characters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartsWith",
+            "Description": "Test whether this string starts with given string.\n\t ",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InPrefix",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchCase",
+                    "Type": "ESearchCase :: Type",
+                    "Description": "Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if this string begins with specified text, false otherwise",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EndsWith",
+            "Description": "Test whether this string ends with given string.\n\t ",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InSuffix",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchCase",
+                    "Type": "ESearchCase :: Type",
+                    "Description": "Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if this string ends with specified text, false otherwise",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MatchesWildcard",
+            "Description": "Searches this string for a given wild card\n\t ",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Wildcard",
+                    "Type": "FString & ",
+                    "Description": "?-type wildcard",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchCase",
+                    "Type": "ESearchCase :: Type",
+                    "Description": "Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if this string matches the ?-type wildcard given.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Trim",
+            "Description": "Removes whitespace characters from the front of this string.",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TrimTrailing",
+            "Description": "Removes trailing whitespace characters",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CullArray",
+            "Description": "Takes an array of strings and removes any zero length entries.\n\t ",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InArray",
+                    "Type": "TArray < FString > &",
+                    "Description": "The array to cull",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "The number of elements left in InArray",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Reverse",
+            "Description": "Returns a copy of this string, with the characters in reverse order",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Replace",
+            "Description": "Replace all occurrences of a substring in this string\n\t ",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "From",
+                    "Type": "FString & ",
+                    "Description": "substring to replace",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "To",
+                    "Type": "FString & ",
+                    "Description": "substring to replace From with",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchCase",
+                    "Type": "ESearchCase :: Type",
+                    "Description": "Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "a copy of this string with the replacement made",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ReplaceInline",
+            "Description": "Replace all occurrences of SearchText with ReplacementText in this string.\n\t ",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchText",
+                    "Type": "FString & ",
+                    "Description": "the text that should be removed from this string",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ReplacementText",
+                    "Type": "FString & ",
+                    "Description": "the text to insert in its place",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchCase",
+                    "Type": "ESearchCase :: Type",
+                    "Description": "Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "the number of occurrences of SearchText that were replaced.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Split",
+            "Description": "Splits this string at given string position case sensitive.\n\t",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InStr",
+                    "Type": "FString & ",
+                    "Description": "The string to search and split at",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LeftS",
+                    "Type": "FString & ",
+                    "Description": "out the string to the left of InStr, not updated if return is false",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RightS",
+                    "Type": "FString & ",
+                    "Description": "out the string to the right of InStr, not updated if return is false",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchCase",
+                    "Type": "ESearchCase :: Type ",
+                    "Description": "Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SearchDir",
+                    "Type": "ESearchDir :: Type",
+                    "Description": " Indicates whether the search starts at the begining or at the end ( defaults to ESearchDir::FromStart )",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if string is split, otherwise false",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Left",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "the left most given number of characters",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LeftChop",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "the left most characters from the string chopping the given number of characters from the end",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Right",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "the string to the right of the specified location, counting back from the right (end of the word).",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RightChop",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "the string to the right of the specified location, counting forward from the left (from the beginning of the word).",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Mid",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SourceString",
+                    "Type": "FString & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Start",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "the substring from Start position for Count characters.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TimeSecondsToString",
+            "Description": "Convert a number of seconds into minutes:seconds.milliseconds format string",
+            "Params": [
+                {
+                    "Name": "InSeconds",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TimeSecondsToStringSec",
+            "Description": "Convert a number of seconds into minutes:seconds",
+            "Params": [
+                {
+                    "Name": "InSeconds",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

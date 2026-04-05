@@ -1,0 +1,240 @@
+{
+    "Name": "UGCWeaponManagerSystem",
+    "Description": "武器管理系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetWeaponManagerComponent",
+            "Description": "获取武器管理组件\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UWeaponManagerComponent",
+                    "Description": "武器管理组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWeaponBySlot",
+            "Description": "获取对应插槽的武器实例\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Slot",
+                    "Type": "ESurviveWeaponPropSlot",
+                    "Description": "武器槽位",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraWeapon",
+                    "Description": "武器",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentWeapon",
+            "Description": "获取当前使用的武器实例\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraWeapon",
+                    "Description": "武器",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLastUsedWeapon",
+            "Description": "获取上一把武器\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ASTExtraWeapon",
+                    "Description": "武器",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentWeaponSlot",
+            "Description": "获取当前使用武器插槽\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ESurviveWeaponPropSlot",
+                    "Description": "武器槽位",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SwitchWeaponBySlot",
+            "Description": "切换对应槽位的武器\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Slot",
+                    "Type": "ESurviveWeaponPropSlot",
+                    "Description": "武器槽位",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsUseAnimation",
+                    "Type": "boolean",
+                    "Description": "是否播放使用动画",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "CurrentWeaponAttachToBack",
+            "Description": "收起武器\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetWeaponItemID",
+            "Description": "获取武器ItemID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Weapon",
+                    "Type": "ASTExtraWeapon",
+                    "Description": "武器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品ID,对应物品表中ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWeaponName",
+            "Description": "获取武器名\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Weapon",
+                    "Type": "ASTExtraWeapon",
+                    "Description": "武器",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "武器名称",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentUsingAmmoID",
+            "Description": "获取当前消耗弹药\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "弹药ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetWeaponSlotVisible",
+            "Description": "设置武器的可见性\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WeaponSlot",
+                    "Type": "ESurviveWeaponPropSlot",
+                    "Description": "武器槽位",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bVisible",
+                    "Type": "boolean",
+                    "Description": "是否可见",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

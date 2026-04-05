@@ -1,0 +1,73 @@
+{
+    "Name": "UPersistEffectWithState",
+    "Description": "实现了状态机的PersistEffect，是PersistEffectSkill的基类",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetCurrentStateName",
+            "Description": "获取当前状态的名字\n\t  生效范围: 服务器&客户端",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FName",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentStateTime",
+            "Description": "获取状态的运行时间\n\t  生效范围: 服务器&客户端",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "JumpToState",
+            "Description": "获取跳转到指定状态\n\t  生效范围: 服务器",
+            "Params": [
+                {
+                    "Name": "StateName",
+                    "Type": "FName ",
+                    "Description": "跳转的目标状态名",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EnterTime",
+                    "Type": "float ",
+                    "Description": "跳转到目标状态的时间",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bPause",
+                    "Type": "bool",
+                    "Description": "是否暂停sequence播放",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPersistEffectBase",
+        "IActivityStateInterface",
+        "IClientConditionInerterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

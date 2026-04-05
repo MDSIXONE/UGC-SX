@@ -1,0 +1,37 @@
+{
+    "Name": "UMaterialExpressionSceneTexture",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Coordinates",
+            "Type": "FExpressionInput",
+            "Description": "UV in 0..1 range",
+            "Redirect": ""
+        },
+        {
+            "Name": "SceneTextureId",
+            "Type": "TEnumAsByte < ESceneTextureId >",
+            "Description": "Which scene texture (screen aligned texture) we want to make a lookup into",
+            "Redirect": ""
+        },
+        {
+            "Name": "bClampUVs",
+            "Type": "bool",
+            "Description": "Clamps texture coordinates to the range 0 to 1. Incurs a performance cost.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bFiltered",
+            "Type": "bool",
+            "Description": "Whether to use point sampled texture lookup (default) or using [bi-linear] filtered (can be slower, avoid faceted lock with distortions), some SceneTextures cannot be filtered",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

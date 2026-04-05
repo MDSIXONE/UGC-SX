@@ -1,0 +1,25 @@
+{
+    "Name": "UProceduralFoliageTile",
+    "Description": "Procedurally determines where to spawn foliage meshes within a discrete area.\n \tGenerally, a procedural foliage simulation as a whole is composed of multiple tiles.\n \tTiles are able to overlap one another as well to create a seamless appearance.\n \t\n \tNote that the tile is not responsible for actually spawning any instances, it only determines where they should be placed.\n \tFollowing a simulation, call ExtractDesiredInstances for information about where each instance should spawn.\n \t\n \tNote also that, barring any core changes to the ordering of TSet, foliage generation is deterministic \n \t(i.e. given the same inputs, the result of the simulation will always be the same).",
+    "Variables": [
+        {
+            "Name": "FoliageSpawner",
+            "Type": "UProceduralFoliageSpawner *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstancesArray",
+            "Type": "TArray < FProceduralFoliageInstance >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

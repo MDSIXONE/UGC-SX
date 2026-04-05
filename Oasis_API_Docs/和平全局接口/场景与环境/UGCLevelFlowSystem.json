@@ -1,0 +1,186 @@
+{
+    "Name": "UGCLevelFlowSystem",
+    "Description": "关卡流程系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "EnableLevelFlow",
+            "Description": "启用关卡流程\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "InMgrPath",
+                    "Type": "string",
+                    "Description": "需要注册的 GameModeActorMgr 的路径",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GoToNextLevelForAllPlayers",
+            "Description": "当前关卡所有玩家直接跳转到下个关卡，需所有玩家都已达到通关条件\n生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "所有玩家跳转到下个关卡是否成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GoToNextLevelForOnePlayer",
+            "Description": "单个玩家直接跳转到下个关卡，需当前玩家已达到通关条件，当前队伍其他玩家仍停留在当前关卡\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "ASTExtraPlayerController",
+                    "Description": "玩家",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "当前玩家跳转到下个关卡是否成功",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LevelAddScore",
+            "Description": "给指定队伍关卡加分\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Score",
+                    "Type": "number",
+                    "Description": "加分的分数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "LevelSettle",
+            "Description": "队伍所在关卡立即结算\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "结算的队伍",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "IsFinish",
+                    "Type": "boolean",
+                    "Description": "是否通关",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetCurrentLevelStage",
+            "Description": "获取当前玩家处于第几关\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerController",
+                    "Type": "ASTExtraPlayerController",
+                    "Description": "玩家",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "当前玩家处于第几关",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetTotalLevelCount",
+            "Description": "获取总关卡数，随机切换关卡暂时不支持获取总关卡数，需要自定义逻辑\n生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "总关卡数",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GameAddScore",
+            "Description": "给指定队伍游戏加分\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "TeamID",
+                    "Type": "number",
+                    "Description": "队伍 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Score",
+                    "Type": "number",
+                    "Description": "加分的分数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GameSettle",
+            "Description": "游戏立即结算\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "IsFinish",
+                    "Type": "boolean",
+                    "Description": "是否通关",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetAllPlayerControllerInCurrentLevel",
+            "Description": "获取关卡里的所有玩家\n生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APlayerController[]",
+                    "Description": "玩家列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentLevelActor",
+            "Description": "获取当前副本\n生效范围：服务器",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UGCLevelActor",
+                    "Description": "关卡Actor",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

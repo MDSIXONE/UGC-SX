@@ -1,0 +1,43 @@
+{
+    "Name": "UBreakpoint",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bEnabled",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Node",
+            "Type": "UEdGraphNode *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bStepOnce",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bStepOnce_WasPreviouslyDisabled",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bStepOnce_RemoveAfterHit",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

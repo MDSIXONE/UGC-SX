@@ -1,0 +1,684 @@
+{
+    "Name": "USplineMeshComponent",
+    "Description": "A Spline Mesh Component is a derivation of a Static Mesh Component which can be deformed using a spline. Only a start and end position (and tangent) can be specified.",
+    "Variables": [
+        {
+            "Name": "SplineParams",
+            "Type": "FSplineMeshParams",
+            "Description": "Spline that is used to deform mesh",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineUpDir",
+            "Type": "FVector",
+            "Description": "Axis (in component space) that is used to determine X axis for co-ordinates along spline",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowSplineEditingPerInstance",
+            "Type": "uint32",
+            "Description": "If true, spline keys may be edited per instance in the level viewport. Otherwise, the spline should be initialized in the construction script.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSmoothInterpRollScale",
+            "Type": "uint32",
+            "Description": "If true, will use smooth interpolation (ease inout) for Scale, Roll, and Offset along this section of spline. If false, uses linear",
+            "Redirect": ""
+        },
+        {
+            "Name": "ForwardAxis",
+            "Type": "TEnumAsByte < ESplineMeshAxis :: Type >",
+            "Description": "Chooses the forward axis for the spline mesh orientation",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineBoundaryMin",
+            "Type": "float",
+            "Description": "Minimum coordinate along the spline forward axis which corresponds to start of spline. If set to 0.0, will use bounding box to determine bounds",
+            "Redirect": ""
+        },
+        {
+            "Name": "SplineBoundaryMax",
+            "Type": "float",
+            "Description": "Maximum coordinate along the spline forward axis which corresponds to end of spline. If set to 0.0, will use bounding box to determine bounds",
+            "Redirect": ""
+        },
+        {
+            "Name": "BodySetup",
+            "Type": "UBodySetup *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CachedMeshBodySetupGuid",
+            "Type": "FGuid",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bMeshDirty",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasBeenBakedWithLandcape",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "UpdateMesh",
+            "Description": "Update the collision and render state on the spline mesh following changes to its geometry",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetStartPosition",
+            "Description": "Get the start position of spline in local space",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStartPosition",
+            "Description": "Set the start position of spline in local space",
+            "Params": [
+                {
+                    "Name": "StartPos",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetStartTangent",
+            "Description": "Get the start tangent vector of spline in local space",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStartTangent",
+            "Description": "Set the start tangent vector of spline in local space",
+            "Params": [
+                {
+                    "Name": "StartTangent",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEndPosition",
+            "Description": "Get the end position of spline in local space",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEndPosition",
+            "Description": "Set the end position of spline in local space",
+            "Params": [
+                {
+                    "Name": "EndPos",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEndTangent",
+            "Description": "Get the end tangent vector of spline in local space",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEndTangent",
+            "Description": "Set the end tangent vector of spline in local space",
+            "Params": [
+                {
+                    "Name": "EndTangent",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStartAndEnd",
+            "Description": "Set the start and end, position and tangent, all in local space",
+            "Params": [
+                {
+                    "Name": "StartPos",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartTangent",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EndPos",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EndTangent",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetStartScale",
+            "Description": "Get the start scaling",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStartScale",
+            "Description": "Set the start scaling",
+            "Params": [
+                {
+                    "Name": "StartScale",
+                    "Type": "FVector2D ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetStartRoll",
+            "Description": "Get the start roll",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStartRoll",
+            "Description": "Set the start roll",
+            "Params": [
+                {
+                    "Name": "StartRoll",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetStartOffset",
+            "Description": "Get the start offset",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetStartOffset",
+            "Description": "Set the start offset",
+            "Params": [
+                {
+                    "Name": "StartOffset",
+                    "Type": "FVector2D ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEndScale",
+            "Description": "Get the end scaling",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEndScale",
+            "Description": "Set the end scaling",
+            "Params": [
+                {
+                    "Name": "EndScale",
+                    "Type": "FVector2D ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEndRoll",
+            "Description": "Get the end roll",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEndRoll",
+            "Description": "Set the end roll",
+            "Params": [
+                {
+                    "Name": "EndRoll",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEndOffset",
+            "Description": "Get the end offset",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector2D",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEndOffset",
+            "Description": "Set the end offset",
+            "Params": [
+                {
+                    "Name": "EndOffset",
+                    "Type": "FVector2D ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetForwardAxis",
+            "Description": "Get the forward axis",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ESplineMeshAxis :: Type",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetForwardAxis",
+            "Description": "Set the forward axis",
+            "Params": [
+                {
+                    "Name": "InForwardAxis",
+                    "Type": "ESplineMeshAxis :: Type ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetSplineUpDir",
+            "Description": "Get the spline up direction",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetSplineUpDir",
+            "Description": "Set the spline up direction",
+            "Params": [
+                {
+                    "Name": "InSplineUpDir",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoundaryMin",
+            "Description": "Get the boundary min",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBoundaryMin",
+            "Description": "Set the boundary min",
+            "Params": [
+                {
+                    "Name": "InBoundaryMin",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBoundaryMax",
+            "Description": "Get the boundary max",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetBoundaryMax",
+            "Description": "Set the boundary max",
+            "Params": [
+                {
+                    "Name": "InBoundaryMax",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bUpdateMesh",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UStaticMeshComponent",
+        "IInterface_CollisionDataProvider"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

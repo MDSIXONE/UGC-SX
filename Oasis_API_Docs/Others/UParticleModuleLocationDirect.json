@@ -1,0 +1,37 @@
+{
+    "Name": "UParticleModuleLocationDirect",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Location",
+            "Type": "FRawDistributionVector",
+            "Description": "The location of the particle at a give time. Retrieved using the particle RelativeTime. \n\t \tIMPORTANT: the particle location is set to this value, thereby over-writing any previous module impacts.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LocationOffset",
+            "Type": "FRawDistributionVector",
+            "Description": "An offset to apply to the position retrieved from the Location calculation. \n\t \tThe offset is retrieved using the EmitterTime. \n\t \tThe offset will remain constant over the life of the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ScaleFactor",
+            "Type": "FRawDistributionVector",
+            "Description": "Scales the velocity of the object at a given point in the time-line.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Direction",
+            "Type": "FRawDistributionVector",
+            "Description": "Currently unused.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleLocationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

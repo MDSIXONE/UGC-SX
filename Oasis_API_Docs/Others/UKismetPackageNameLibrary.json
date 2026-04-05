@@ -1,0 +1,103 @@
+{
+    "Name": "UKismetPackageNameLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "IsValidLongPackageName",
+            "Description": "Helper function for converting short to long script package name (InputCore -> ScriptInputCore)\n\t ",
+            "Params": [
+                {
+                    "Name": "InLongPackageName",
+                    "Type": "FString & ",
+                    "Description": "Long Package Name",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIncludeReadOnlyRoots",
+                    "Type": "bool ",
+                    "Description": "If true, will include roots that you should not save to. (Temp, Script)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutReason",
+                    "Type": "FText &",
+                    "Description": "  When returning false, this will provide a description of what was wrong with the name.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "\t\t\t\t\t\ttrue if a valid long package name",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsValidObjectPath",
+            "Description": "Returns true if the path starts with a valid root (i.e. Game, Engine, etc) and contains no illegal characters.\n\t  This validates that the packagename is valid, and also makes sure the object after package name is also correct.\n\t  This will return false if passed a path starting with Classname'\n\t ",
+            "Params": [
+                {
+                    "Name": "InObjectPath",
+                    "Type": "FString & ",
+                    "Description": " The object path to test",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutReason",
+                    "Type": "FText &",
+                    "Description": "  When returning false, this will provide a description of what was wrong with the name.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "\t\t\t\t\t\ttrue if a valid object path",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DoesPackageExist",
+            "Description": "Checks if the given string is a long package name or not.\n\t ",
+            "Params": [
+                {
+                    "Name": "LongPackageName",
+                    "Type": "FString & ",
+                    "Description": "Package name.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Guid",
+                    "Type": "FGuid & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutFilename",
+                    "Type": "FString &",
+                    "Description": "Package filename on disk.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "true if the specified package name points to an existing package, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

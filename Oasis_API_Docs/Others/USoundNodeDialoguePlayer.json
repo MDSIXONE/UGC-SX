@@ -1,0 +1,25 @@
+{
+    "Name": "USoundNodeDialoguePlayer",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DialogueWaveParameter",
+            "Type": "FDialogueWaveParameter",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLooping",
+            "Type": "uint32",
+            "Description": "Whether the dialogue line should be played looping",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNode"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

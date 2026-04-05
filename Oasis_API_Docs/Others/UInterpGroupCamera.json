@@ -1,0 +1,31 @@
+{
+    "Name": "UInterpGroupCamera",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "CameraAnimInst",
+            "Type": "UCameraAnim *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "CompressTolerance",
+            "Type": "float",
+            "Description": "When compress, tolerance option",
+            "Redirect": ""
+        },
+        {
+            "Name": "Target",
+            "Type": "FCameraPreviewInfo",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpGroup"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

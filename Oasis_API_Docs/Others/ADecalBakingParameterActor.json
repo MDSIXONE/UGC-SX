@@ -1,0 +1,31 @@
+{
+    "Name": "ADecalBakingParameterActor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "DecalBakingParam",
+            "Type": "UDecalBakingParameterComponent *",
+            "Description": "The decal component for this decal actor",
+            "Redirect": ""
+        },
+        {
+            "Name": "ArrowComponent",
+            "Type": "UArrowComponent *",
+            "Description": "Reference to the editor only arrow visualization component",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteComponent",
+            "Type": "UBillboardComponent *",
+            "Description": "Reference to the billboard component",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AActor"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

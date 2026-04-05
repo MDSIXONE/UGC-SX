@@ -1,0 +1,31 @@
+{
+    "Name": "UPathNameMappingDataAsset",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "VersionID",
+            "Type": "int32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AllPathNameMapForLoad",
+            "Type": "TArray < FName >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AllPathNameMapForWrite",
+            "Type": "TMap < FName , int32 >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDataAsset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

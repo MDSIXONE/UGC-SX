@@ -1,0 +1,31 @@
+{
+    "Name": "UEnvQuery",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "QueryName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Options",
+            "Type": "TArray < UEnvQueryOption * >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "EdGraph",
+            "Type": "UEdGraph *",
+            "Description": "Graph for query",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDataAsset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

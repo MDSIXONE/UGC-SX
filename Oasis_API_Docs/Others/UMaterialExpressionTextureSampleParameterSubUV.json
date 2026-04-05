@@ -1,0 +1,19 @@
+{
+    "Name": "UMaterialExpressionTextureSampleParameterSubUV",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bBlend",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpressionTextureSampleParameter2D"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

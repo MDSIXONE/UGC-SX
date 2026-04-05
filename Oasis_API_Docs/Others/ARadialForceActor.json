@@ -1,0 +1,78 @@
+{
+    "Name": "ARadialForceActor",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ForceComponent",
+            "Type": "URadialForceComponent *",
+            "Description": "Force component",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteComponent",
+            "Type": "UBillboardComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "FireImpulse",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "EnableForce",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "DisableForce",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ToggleForce",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "ARigidBodyBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

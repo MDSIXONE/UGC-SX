@@ -1,0 +1,234 @@
+{
+    "Name": "UKismetInternationalizationLibrary",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "SetCurrentCulture",
+            "Description": "Set the current culture.",
+            "Params": [
+                {
+                    "Name": "Culture",
+                    "Type": "FString & ",
+                    "Description": "The culture to set, as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SaveToConfig",
+                    "Type": "bool",
+                    "Description": "If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if the culture was set, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentCulture",
+            "Description": "Get the current culture as an IETF language tag:\n\t   - A two-letter ISO 639-1 language code (eg, \"zh\").\n\t   - An optional four-letter ISO 15924 script code (eg, \"Hans\").\n\t   - An optional two-letter ISO 3166-1 country code (eg, \"CN\").",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "The culture as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCurrentLanguage",
+            "Description": "Set only the current language (for localization).",
+            "Params": [
+                {
+                    "Name": "Culture",
+                    "Type": "FString & ",
+                    "Description": "The language to set, as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SaveToConfig",
+                    "Type": "bool",
+                    "Description": "If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if the language was set, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentLanguage",
+            "Description": "Get the current language (for localization) as an IETF language tag:\n\t   - A two-letter ISO 639-1 language code (eg, \"zh\").\n\t   - An optional four-letter ISO 15924 script code (eg, \"Hans\").\n\t   - An optional two-letter ISO 3166-1 country code (eg, \"CN\").",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "The language as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCurrentLocale",
+            "Description": "Set only the current locale (for internationalization).",
+            "Params": [
+                {
+                    "Name": "Culture",
+                    "Type": "FString & ",
+                    "Description": "The locale to set, as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SaveToConfig",
+                    "Type": "bool",
+                    "Description": "If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if the locale was set, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentLocale",
+            "Description": "Get the current locale (for internationalization) as an IETF language tag:\n\t   - A two-letter ISO 639-1 language code (eg, \"zh\").\n\t   - An optional four-letter ISO 15924 script code (eg, \"Hans\").\n\t   - An optional two-letter ISO 3166-1 country code (eg, \"CN\").",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "The locale as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCurrentLanguageAndLocale",
+            "Description": "Set the current language (for localization) and locale (for internationalization).",
+            "Params": [
+                {
+                    "Name": "Culture",
+                    "Type": "FString & ",
+                    "Description": "The language and locale to set, as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SaveToConfig",
+                    "Type": "bool",
+                    "Description": "If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if the language and locale were set, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCurrentAssetGroupCulture",
+            "Description": "Set the given asset group category culture from an IETF language tag (eg, \"zh-Hans-CN\").",
+            "Params": [
+                {
+                    "Name": "AssetGroup",
+                    "Type": "FName ",
+                    "Description": "The asset group to set the culture for.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Culture",
+                    "Type": "FString & ",
+                    "Description": "The culture to set, as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SaveToConfig",
+                    "Type": "bool",
+                    "Description": "If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "True if the culture was set, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurrentAssetGroupCulture",
+            "Description": "Get the given asset group category culture.",
+            "Params": [
+                {
+                    "Name": "AssetGroup",
+                    "Type": "FName",
+                    "Description": "The asset group to get the culture for.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString ",
+                    "Description": "The culture as an IETF language tag (eg, \"zh-Hans-CN\").",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearCurrentAssetGroupCulture",
+            "Description": "Clear the given asset group category culture.",
+            "Params": [
+                {
+                    "Name": "AssetGroup",
+                    "Type": "FName ",
+                    "Description": "The asset group to clear the culture for.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SaveToConfig",
+                    "Type": "bool",
+                    "Description": "If true, save the new setting to the users' \"GameUserSettings\" config so that it persists after a reload.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

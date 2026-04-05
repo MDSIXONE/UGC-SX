@@ -1,0 +1,31 @@
+{
+    "Name": "UBlackboardData",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Parent",
+            "Type": "UBlackboardData *",
+            "Description": "parent blackboard (keys can be overridden)",
+            "Redirect": ""
+        },
+        {
+            "Name": "Keys",
+            "Type": "TArray < FBlackboardEntry >",
+            "Description": "blackboard keys",
+            "Redirect": ""
+        },
+        {
+            "Name": "bHasSynchronizedKeys",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDataAsset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

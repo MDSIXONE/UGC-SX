@@ -1,0 +1,25 @@
+{
+    "Name": "UNavLinkDefinition",
+    "Description": "Class containing definition of a navigation area",
+    "Variables": [
+        {
+            "Name": "Links",
+            "Type": "TArray < FNavigationLink >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SegmentLinks",
+            "Type": "TArray < FNavigationSegmentLink >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

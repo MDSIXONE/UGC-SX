@@ -1,0 +1,25 @@
+{
+    "Name": "ALandscapeStreamingProxy",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LandscapeActor",
+            "Type": "TLazyObjectPtr < ALandscape >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LandscapeAOTexture",
+            "Type": "UTexture2D *",
+            "Description": "Texture used to render grass color",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "ALandscapeProxy"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

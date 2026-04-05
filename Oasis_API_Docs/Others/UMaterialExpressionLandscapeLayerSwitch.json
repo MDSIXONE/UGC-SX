@@ -1,0 +1,43 @@
+{
+    "Name": "UMaterialExpressionLandscapeLayerSwitch",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "LayerUsed",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "LayerNotUsed",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParameterName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PreviewUsed",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ExpressionGUID",
+            "Type": "FGuid",
+            "Description": "GUID that should be unique within the material, this is used for parameter renaming.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

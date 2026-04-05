@@ -1,0 +1,25 @@
+{
+    "Name": "UInterpFilter_Classes",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ClassToFilterBy",
+            "Type": "TSubclassOf < UObject >",
+            "Description": "Which class to filter groups by.",
+            "Redirect": ""
+        },
+        {
+            "Name": "TrackClasses",
+            "Type": "TArray < TSubclassOf < UObject > >",
+            "Description": "List of allowed track classes.  If empty, then all track classes will be included.  Only groups that\n\t\tcontain at least one of these types of tracks will be displayed.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpFilter"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

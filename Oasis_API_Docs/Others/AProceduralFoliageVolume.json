@@ -1,0 +1,19 @@
+{
+    "Name": "AProceduralFoliageVolume",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ProceduralComponent",
+            "Type": "UProceduralFoliageComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

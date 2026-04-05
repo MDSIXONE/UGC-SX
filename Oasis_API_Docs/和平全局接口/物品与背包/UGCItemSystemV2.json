@@ -1,0 +1,1108 @@
+{
+    "Name": "UGCItemSystemV2",
+    "Description": "V2道具系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetConfigItemHandle",
+            "Description": "获取物品 ItemHandle 配置\n可以通过它取得所有物品中配置的数据（只读）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UBattleItemHandleBase",
+                    "Description": "配置数据",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemInstanceDataManager",
+            "Description": "获取物品实例数据管理器\n生效范围：服务器&客户端",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UUGCBattleItemInstanceDataManager",
+                    "Description": "实例数据管理器",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsUGCItemV2",
+            "Description": "是否为绿洲物品（物资编辑器中自定义物品）\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否为绿洲物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsShouldPersist",
+            "Description": "是否持久化\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否持久化",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsObjEditorItemV2",
+            "Description": "是否为V2版本物编创建的物品\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否为V2版本物编创建的物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemNameV2",
+            "Description": "返回物品名称\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "物品名称",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemSubTypeV2",
+            "Description": "返回物品子类型SubType，(比如武器类别为1，M146子类型为101)\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品子类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemIconTextureV2",
+            "Description": "返回物品图标路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FSoftObjectPath",
+                    "Description": "物品图标路径",
+                    "Redirect": "cppstruct/detail/FSoftObjectPath.json"
+                }
+            ]
+        },
+        {
+            "Name": "GetOwnBackpackComponent",
+            "Description": "读取物品所在背包\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemHandle",
+                    "Type": "UBattleItemHandleBase",
+                    "Description": "物品 Handle",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "BackpackComponentV2",
+                    "Description": "V2背包组件",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemIconWithPlayerSkinV2",
+            "Description": "返回物品图标路径(带玩家皮肤)\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家 PlayerController",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FSoftObjectPath",
+                    "Description": "物品图标路径",
+                    "Redirect": "cppstruct/detail/FSoftObjectPath.json"
+                }
+            ]
+        },
+        {
+            "Name": "GetWhiteIconTextureV2",
+            "Description": "返回物品剪影图标路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FSoftObjectPath",
+                    "Description": "剪影图标路径",
+                    "Redirect": "cppstruct/detail/FSoftObjectPath.json"
+                }
+            ]
+        },
+        {
+            "Name": "GetBigIconTextureV2",
+            "Description": "返回物品装备栏图标路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FSoftObjectPath",
+                    "Description": "装备栏图标路径",
+                    "Redirect": "cppstruct/detail/FSoftObjectPath.json"
+                }
+            ]
+        },
+        {
+            "Name": "GetBigIconTextureWithPlayerSkinV2",
+            "Description": "返回物品装备栏图标路径(带玩家皮肤)\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "PlayerController",
+                    "Type": "PlayerController",
+                    "Description": "玩家 PlayerController",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FSoftObjectPath",
+                    "Description": "装备栏图标路径",
+                    "Redirect": "cppstruct/detail/FSoftObjectPath.json"
+                }
+            ]
+        },
+        {
+            "Name": "GetItemDetailV2",
+            "Description": "返回物品详情\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "物品详情",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemPickupDetailV2",
+            "Description": "返回物品拾取描述\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "物品拾取描述",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemHasTagV2",
+            "Description": "是否含有某个 Tag\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Tag",
+                    "Type": "string",
+                    "Description": "物品 Tag",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否含有 Tag",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemTagsV2",
+            "Description": "返回物品所有 Tag\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string[]",
+                    "Description": "物品所有 Tag",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemCanDropV2",
+            "Description": "返回物品是否可丢弃\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "物品是否可丢弃",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemCanRemoveV2",
+            "Description": "返回物品是否可销毁\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "物品是否可销毁",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "IsCanUseV2",
+            "Description": "返回物品在背包中是否可以使用\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否可以使用",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemMaxNumberOfStacksV2",
+            "Description": "返回物品最大堆叠数量\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品最大堆叠数量",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemQualityV2",
+            "Description": "返回物品品质\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "物品品质",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemCustomizedTypeV2",
+            "Description": "返回物品自定义类型\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "物品自定义类型",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "LoadItemCustomData",
+            "Description": "获取物品自定义实例化数据\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID",
+                    "Description": "物品DefineID",
+                    "Redirect": "cppstruct/detail/FItemDefineID.json"
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "table",
+                    "Description": "物品自定义实例化数据table",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SaveItemCustomData",
+            "Description": "保存物品自定义实例化数据\n如果在设置了自定义数据后，需要完全清空数据，可以将 ItemCustomData 设为 nil\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID",
+                    "Description": "物品DefineID",
+                    "Redirect": "cppstruct/detail/FItemDefineID.json"
+                },
+                {
+                    "Name": "ItemCustomData",
+                    "Type": "table",
+                    "Description": "物品自定义实例化数据table",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "保存成功or失败",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetItemDefineID",
+            "Description": "通过物品ID创建一个全新的物品实例，并返回 DefineID\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": "cppstruct/detail/FItemDefineID.json"
+                }
+            ]
+        },
+        {
+            "Name": "SetItemCommonReason",
+            "Description": "设置物品通用 Reason\n用于操作物品时指定其中一些行为\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": "cppstruct/detail/FItemDefineID.json"
+                },
+                {
+                    "Name": "Reason",
+                    "Type": "number",
+                    "Description": "Reason",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetItemCommonReason",
+            "Description": "获取物品通用 Reason\n用于操作物品时指定其中一些行为\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": "cppstruct/detail/FItemDefineID.json"
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "Reason",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEquipTargetSlots",
+            "Description": "获取装备物品拥有的槽位列表\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string[]",
+                    "Description": "物品拥有的所有槽位",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetDisplayNameBySlotName",
+            "Description": "获取槽位对应的展示名\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "物品槽位的展示名称",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachTargetItem",
+            "Description": "获取物品附加在哪个物品上\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "物品 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool,ItemDefineID,FName",
+                    "Description": "物品是否正附加在另一个物品上,物品附加的目标物品 DefineID,物品附加的目标物品槽位",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachChildItem",
+            "Description": "获取附加在物品上的子物品\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "AttachParentID",
+                    "Type": "ItemDefineID",
+                    "Description": "父物品的 DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AttachSlot",
+                    "Type": "string",
+                    "Description": "父物品的槽位名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID",
+                    "Description": "附加在此槽位上的子物品 DefineID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachChildrenItem",
+            "Description": "获取所有附加在物品上的子物品\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "AttachParentID",
+                    "Type": "ItemDefineID",
+                    "Description": "父物品的 DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ItemDefineID[]",
+                    "Description": "所有子物品 DefineID, 数组元素与父物品槽位一一对应，可能存在无效的 ItemDefineID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachAllowSlots",
+            "Description": "获取子物品可以 Attach 到父物品的哪些 Slot(不考虑槽位启用状态)\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "AttachParentID",
+                    "Type": "number",
+                    "Description": "父物品的 ItemID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AttachChildID",
+                    "Type": "number",
+                    "Description": "子物品的 ItemID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string[]",
+                    "Description": "所有可装备槽位 FName",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetAttachAllowSlotsByDefineID",
+            "Description": "获取子物品可以 Attach 到父物品`实例` 的哪些 Slot(考虑槽位启用状态)\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "Player",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AttachParentDefineID",
+                    "Type": "ItemDefineID",
+                    "Description": "父物品的 ItemDefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AttachChildID",
+                    "Type": "number",
+                    "Description": "子物品的 ItemID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string[]",
+                    "Description": "所有可装备槽位 FName",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetQualityTexturePath",
+            "Description": "获取品质色的128*128纹理路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "QualityRank",
+                    "Type": "number",
+                    "Description": "品质等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "品质纹理路径",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBackpackSimpleNameV2",
+            "Description": "返回物品背包简述\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "物品背包简写",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBigQualityTexturePath",
+            "Description": "获取品质色的128*256纹理路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "QualityRank",
+                    "Type": "number",
+                    "Description": "品质等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "品质纹理路径string",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetQualityBarTexturePath",
+            "Description": "获取品质色条纹理路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "QualityRank",
+                    "Type": "number",
+                    "Description": "品质等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "品质纹理路径string",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetEquipmentQualityTexturePath",
+            "Description": "获取装备品质色条纹理路径\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "QualityRank",
+                    "Type": "number",
+                    "Description": "品质等级",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "string",
+                    "Description": "品质纹理路径string",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetWeaponSlotAttachItemIDs",
+            "Description": "获取武器配件槽位可用配件的物品ID\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "武器的物品ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "武器槽位名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number[]",
+                    "Description": "可用的配件物品ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPickupWrapperListByItemID",
+            "Description": "根据物品ID查询拾取物\n生效范围：服务器&客户端, 客户端仅查询本地生成的",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "number",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AUGCPickUpWrapperActor[]",
+                    "Description": "拾取物列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPickupWrapperListByCustomType",
+            "Description": "根据自定义类型查询拾取物\n生效范围：服务器&客户端, 客户端仅查询本地生成的",
+            "Params": [
+                {
+                    "Name": "CustomType",
+                    "Type": "string",
+                    "Description": "自定义类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AUGCPickUpWrapperActor[]",
+                    "Description": "拾取物列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetPickupWrapperListByItemTag",
+            "Description": "根据物品Tag查询拾取物\n生效范围：服务器&客户端, 客户端仅查询本地生成的",
+            "Params": [
+                {
+                    "Name": "ItemTag",
+                    "Type": "string",
+                    "Description": "物品Tag",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "AUGCPickUpWrapperActor[]",
+                    "Description": "拾取物列表",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetEquipSlotEnable",
+            "Description": "启用物品槽位\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "FItemDefineID",
+                    "Description": "物品DefineID",
+                    "Redirect": "cppstruct/detail/FItemDefineID.json"
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetEquipSlotEnable",
+            "Description": "获取物品槽位是否启用\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "FItemDefineID",
+                    "Description": "物品DefineID",
+                    "Redirect": "cppstruct/detail/FItemDefineID.json"
+                },
+                {
+                    "Name": "SlotName",
+                    "Type": "string",
+                    "Description": "槽位名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否启用",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "StartCustomizeDrop",
+            "Description": "指定掉落方案进行一次 Wrapper 掉落\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "ProduceID",
+                    "Type": "number",
+                    "Description": "掉落方案ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ProduceGroupID",
+                    "Type": "number",
+                    "Description": "掉落组方案ID(掉落组ID不为-1，掉落组ID生效。掉落组ID为-1,则掉落ID生效)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EntityType",
+                    "Type": "EUGCGenerateItemEntityType",
+                    "Description": "掉落物类型(可缺省，默认为Wrapper)",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RelatedPlayer",
+                    "Type": "PlayerPawn",
+                    "Description": "当掉落物方向为面相玩家时必须，当掉落物类型为进入背包时必须，其他时候可以为nil",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DropActorClass",
+                    "Type": "UClass",
+                    "Description": "掉落主体Actor类型，应继承自 UGCDropActor_BP, 可以为nil。通过创建自定义蓝图，配置掉落详细参数（掉落间隔、随机掉落范围等等）。",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "FindAllNearPickupItemData",
+            "Description": "找到所有玩家角色附近的地面拾取物\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FUGCPickupItemData[]",
+                    "Description": "地面拾取物信息",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FindPickupWrapperActorByRange",
+            "Description": "查找指定距离范围内的地面拾取物\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "Center",
+                    "Type": "FVector",
+                    "Description": "中心点坐标",
+                    "Redirect": "cppstruct/detail/FVector.json"
+                },
+                {
+                    "Name": "DistanceRange",
+                    "Type": "number",
+                    "Description": "查找距离",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "APickUpWrapperActor[]",
+                    "Description": "地面拾取物Actor",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "TryPickupWrapperItem",
+            "Description": "玩家角色尝试拾取地面物品（不播拾取动作）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "TargetWrapper",
+                    "Type": "AActor",
+                    "Description": "目标地面拾取物",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID",
+                    "Description": "要拾取的物品 DefineID，可缺省，默认取 TargetWrapper 中的物品实例数据",
+                    "Redirect": "cppstruct/detail/FItemDefineID.json"
+                },
+                {
+                    "Name": "PickupCount",
+                    "Type": "number",
+                    "Description": "拾取数量，可缺省，默认拾取1个",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CheckPickupCondition",
+                    "Type": "boolean",
+                    "Description": "是否检查拾取条件(距离、是否穿墙等)，可缺省，默认为 true",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

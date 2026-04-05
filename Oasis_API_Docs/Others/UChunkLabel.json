@@ -1,0 +1,55 @@
+{
+    "Name": "UChunkLabel",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Rules",
+            "Type": "FPrimaryAssetRules",
+            "Description": "Management rules for this specific asset, if set it will override the type rules",
+            "Redirect": ""
+        },
+        {
+            "Name": "LogicChunkName",
+            "Type": "FString",
+            "Description": "True to Label everything in this directory and sub directories",
+            "Redirect": ""
+        },
+        {
+            "Name": "FinalChunkName",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ChunkOutputPath",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsRuntimeLabel",
+            "Type": "uint32",
+            "Description": "Set to true if the label asset itself should be cooked and available at runtime. This does not affect the assets that are labeled, they are set with cook rule",
+            "Redirect": ""
+        },
+        {
+            "Name": "Key",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "IV",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UPrimaryDataAsset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

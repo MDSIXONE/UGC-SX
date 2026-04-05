@@ -1,0 +1,115 @@
+{
+    "Name": "UParticleModuleLocationSkelVertSurface",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SourceType",
+            "Type": "TEnumAsByte < enum ELocationSkelVertSurfaceSource >",
+            "Description": "Whether the module uses Verts or Surfaces for locations.\n\t \n\t \tVERTSURFACESOURCE_Vert\t\t- Use Verts as the source locations.\n\t \tVERTSURFACESOURCE_Surface\t- Use Surfaces as the source locations.",
+            "Redirect": ""
+        },
+        {
+            "Name": "UniversalOffset",
+            "Type": "FVector",
+            "Description": "An offset to apply to each vertsurface",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUpdatePositionEachFrame",
+            "Type": "uint32",
+            "Description": "If true, update the particle locations each frame with that of the vertsurface",
+            "Redirect": ""
+        },
+        {
+            "Name": "bOrientMeshEmitters",
+            "Type": "uint32",
+            "Description": "If true, rotate mesh emitter meshes to orient w the vertsurface",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritBoneVelocity",
+            "Type": "uint32",
+            "Description": "If true, particles inherit the associated bone velocity when spawned",
+            "Redirect": ""
+        },
+        {
+            "Name": "InheritVelocityScale",
+            "Type": "float",
+            "Description": "A scale on how much of the bone's velocity a particle will inherit.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SkelMeshActorParamName",
+            "Type": "FName",
+            "Description": "The parameter name of the skeletal mesh actor that supplies the SkelMeshComponent for in-game.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ValidAssociatedBones",
+            "Type": "TArray < FName >",
+            "Description": "This module will only spawn from verts or surfaces associated with the bones in this list",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEnforceNormalCheck",
+            "Type": "uint32",
+            "Description": "When true use the RestrictToNormal and NormalTolerance values to check surface normals",
+            "Redirect": ""
+        },
+        {
+            "Name": "NormalToCompare",
+            "Type": "FVector",
+            "Description": "Use this normal to restrict spawning locations",
+            "Redirect": ""
+        },
+        {
+            "Name": "NormalCheckToleranceDegrees",
+            "Type": "float",
+            "Description": "Normal tolerance.  0 degrees means it must be an exact match, 180 degrees means it can be any angle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "NormalCheckTolerance",
+            "Type": "float",
+            "Description": "Normal tolerance.  Value between 1.0 and -1.0 with 1.0 being exact match, 0.0 being everything up to\n\t\tperpendicular and -1.0 being any direction or don't restrict at all.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ValidMaterialIndices",
+            "Type": "TArray < int32 >",
+            "Description": "Array of material indices that are valid materials to spawn from.\n\t \tIf empty, any material will be considered valid",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritVertexColor",
+            "Type": "uint32",
+            "Description": "If true, particles inherit the associated vertex color on spawn. This feature is not supported for GPU particles.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritUV",
+            "Type": "uint32",
+            "Description": "If true, particles inherit the associated UV data on spawn. Accessed through dynamic parameter module X and Y, must be a \"Spawn Time Only\" parameter on \"AutoSet\" mode. This feature is not supported for GPU particles.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InheritUVChannel",
+            "Type": "uint32",
+            "Description": "UV channel to inherit from the spawn mesh, internally clamped to those available.",
+            "Redirect": ""
+        },
+        {
+            "Name": "EditorSkelMesh",
+            "Type": "USkeletalMesh *",
+            "Description": "The name of the skeletal mesh to use in the editor",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleLocationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

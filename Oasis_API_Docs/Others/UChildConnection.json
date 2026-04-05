@@ -1,0 +1,19 @@
+{
+    "Name": "UChildConnection",
+    "Description": "Represents a secondary split screen connection that reroutes calls to the parent connection.",
+    "Variables": [
+        {
+            "Name": "Parent",
+            "Type": "UNetConnection *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UNetConnection"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,31 @@
+{
+    "Name": "UInterpTrackParticleReplay",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TrackKeys",
+            "Type": "TArray < struct FParticleReplayTrackKey >",
+            "Description": "Array of keys",
+            "Redirect": ""
+        },
+        {
+            "Name": "bIsCapturingReplay",
+            "Type": "uint32",
+            "Description": "True in the editor if track should be used to capture replay frames instead of play them back",
+            "Redirect": ""
+        },
+        {
+            "Name": "FixedTimeStep",
+            "Type": "float",
+            "Description": "Current replay fixed time quantum between frames (one over frame rate)",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

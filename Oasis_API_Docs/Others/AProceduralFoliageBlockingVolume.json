@@ -1,0 +1,19 @@
+{
+    "Name": "AProceduralFoliageBlockingVolume",
+    "Description": "An invisible volume used to block ProceduralFoliage instances from being spawned.",
+    "Variables": [
+        {
+            "Name": "ProceduralFoliageVolume",
+            "Type": "AProceduralFoliageVolume *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AVolume"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

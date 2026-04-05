@@ -1,0 +1,85 @@
+{
+    "Name": "UGameViewportClient",
+    "Description": "A game viewport (FViewport) is a high-level abstract interface for the\n  platform specific rendering, audio, and input subsystems.\n  GameViewportClient is the engine's interface to a game viewport.\n  Exactly one GameViewportClient is created for each instance of the game.  The\n  only case (so far) where you might have a single instance of Engine, but\n  multiple instances of the game (and thus multiple GameViewportClients) is when\n  you have more than one PIE window running.\n \n  Responsibilities:\n  propagating input events to the global interactions list\n \n  @see UGameViewportClient",
+    "Variables": [
+        {
+            "Name": "ViewportConsole",
+            "Type": "UConsole *",
+            "Description": "The viewport's console.   Might be null on consoles",
+            "Redirect": ""
+        },
+        {
+            "Name": "DebugProperties",
+            "Type": "TArray < struct FDebugDisplayProperty >",
+            "Description": "@todo document",
+            "Redirect": ""
+        },
+        {
+            "Name": "World",
+            "Type": "UWorld *",
+            "Description": "The relative world context for this viewport",
+            "Redirect": ""
+        },
+        {
+            "Name": "GameInstance",
+            "Type": "UGameInstance *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SSSwapControllers",
+            "Description": "Rotates controller ids among gameplayers, useful for testing splitscreen with only one controller.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ShowTitleSafeArea",
+            "Description": "Exec for toggling the display of the title safe area",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetConsoleTarget",
+            "Description": "Sets the player which console commands will be executed in the context of.",
+            "Params": [
+                {
+                    "Name": "PlayerIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UScriptViewportClient",
+        "FExec"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

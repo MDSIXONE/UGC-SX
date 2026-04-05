@@ -1,0 +1,125 @@
+{
+    "Name": "UFoliageInstancedStaticMeshComponent",
+    "Description": "",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "UHierarchicalInstancedStaticMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "OnInstanceTakePointDamage",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InstanceIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Damage",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstigatedBy",
+                    "Type": "AController*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "HitLocation",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ShotFromDirection",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "const class UDamageType*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnInstanceTakeRadialDamage",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Instances",
+                    "Type": "const TArray<int32>&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Damages",
+                    "Type": "const TArray<float>&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstigatedBy",
+                    "Type": "AController*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Origin",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MaxRadius",
+                    "Type": "float",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageType",
+                    "Type": "const class UDamageType*",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DamageCauser",
+                    "Type": "AActor*",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

@@ -1,0 +1,43 @@
+{
+    "Name": "UParticleModuleColorScaleOverLife",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ColorScaleOverLife",
+            "Type": "FRawDistributionVector",
+            "Description": "The scale factor for the color.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AlphaScaleOverLife",
+            "Type": "FRawDistributionFloat",
+            "Description": "The scale factor for the alpha.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ColorScaleOverLifeHDR",
+            "Type": "FRawDistributionVector",
+            "Description": "The scale factor for the color.",
+            "Redirect": ""
+        },
+        {
+            "Name": "AlphaScaleOverLifeHDR",
+            "Type": "FRawDistributionFloat",
+            "Description": "The scale factor for the alpha.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bEmitterTime",
+            "Type": "uint32",
+            "Description": "Whether it is EmitterTime or ParticleTime related.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleColorBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

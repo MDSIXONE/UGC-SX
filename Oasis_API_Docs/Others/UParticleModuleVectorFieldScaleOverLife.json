@@ -1,0 +1,25 @@
+{
+    "Name": "UParticleModuleVectorFieldScaleOverLife",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "VectorFieldScaleOverLife_DEPRECATED",
+            "Type": "UDistributionFloat *",
+            "Description": "Per-particle vector field scale. Evaluated using particle relative time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "VectorFieldScaleOverLifeRaw",
+            "Type": "FRawDistributionFloat",
+            "Description": "Per-particle vector field scale. Evaluated using particle relative time.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVectorFieldBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

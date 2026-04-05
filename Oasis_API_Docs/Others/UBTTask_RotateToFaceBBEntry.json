@@ -1,0 +1,19 @@
+{
+    "Name": "UBTTask_RotateToFaceBBEntry",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Precision",
+            "Type": "float",
+            "Description": "Success condition precision in degrees",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UBTTask_BlackboardBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

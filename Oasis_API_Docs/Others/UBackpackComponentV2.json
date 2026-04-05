@@ -1,0 +1,677 @@
+{
+    "Name": "UBackpackComponentV2",
+    "Description": "V2背包内核组件",
+    "Variables": [
+        {
+            "Name": "Warehouse",
+            "Type": "UUGCItemWarehouse_Backpack *",
+            "Description": "仓库对象\n\t  基类：UUGCItemWarehouseBase",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UCommonBackpackComponent",
+        "IUGCItemContainerInterface",
+        "IUGCItemEquipTargetInterface",
+        "IUGCGamePartPlayerComponentInterface"
+    ],
+    "Event": [
+        {
+            "Name": "CanAddItemV2",
+            "Description": "能否添加物品，能添加多少物品\n\t  可重载并自定义\n\t  DS 被调用\n\t  \n\t  能通过此事件，决定调用 AddItemV2 时，允许添加多少物品。\n\t  即使此事件允许添加物品，也可能因为其它限制因素导致物品添加数量减少或添加失败。\n\t  部分强制添加物品的情形，会跳过此事件。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemID",
+                    "Type": "int32 ",
+                    "Description": "物品ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": "需要添加的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "允许添加的物品数量，如果等于 Count 表示允许添加所有需要的物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanAddItemByDefineIDV2",
+            "Description": "能否添加物品，能添加多少物品\n\t  可重载并自定义\n\t  DS 被调用\n\t  \n\t  能通过此事件，决定添加某个实例物品时，允许添加多少物品。\n\t  此接口针对具体实例，调用AddItemV2、调用AddItemByDefineIDV2、物品转移等情形都可能触发此事件。\n\t  单次调用 AddItemV2 可能触发多次针对不同实例的 CanAddItemByDefineIDV2 判断。\n\t  即使此事件允许添加物品，也可能因为其它限制因素导致物品添加数量减少或添加失败。\n\t  部分强制添加物品的情形，会跳过此事件。\n\t ",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": "需要添加的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "允许添加的物品数量，如果等于 Count 表示允许添加所有需要的物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnAddItemV2",
+            "Description": "当添加物品实例后回调\n\t  可重载并自定义\n\t  DS 被调用\n\t  \n\t  当物品实例被成功添加时触发此事件。\n\t  单次 AddItemV2 可能触发多次针对不同实例的 OnAddItem 调用（生成多个堆叠的情况）。\n\t  如果物品触发了自动装备，可能装备相关事件会先于 OnAddItemV2 被触发。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": " 已添加的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanMergeItemV2",
+            "Description": "能否合并物品(将新增的物品叠加到已有格子上)\n\t  可重载并自定义\n\t  DS 被调用\n\t  \n\t  能通过此事件，决定多少物品能堆叠到已有堆叠（ItemDefineID）上。\n\t  此接口针对具体实例，调用AddItemV2、调用AddItemByDefineIDV2、物品转移等情形都可能触发此事件。\n\t  单次 AddItemV2 可能触发多次针对不同实例的 CanMergeItem 判断（向多个堆叠合并时）。\n\t  即使此事件允许堆叠物品，也可能因为其它限制因素导致物品堆叠数量减少或堆叠失败。\n\t  部分情形下会跳过此事件。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CountNow",
+                    "Type": "int32 ",
+                    "Description": "当前实例的物品数量",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MergeCount",
+                    "Type": "int32",
+                    "Description": "即将合并到此实例，新增的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "允许合并到格子的物品数量，如果等于 Count 表示允许合并所有需要的物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnMergeItemV2",
+            "Description": "当合并物品后回调(将新增的物品叠加到已有格子上)\n\t  可重载并自定义\n\t  DS 被调用\n\t  \n\t  此接口针对具体实例，调用AddItemV2、调用AddItemByDefineIDV2、物品转移等情形都可能触发此事件。\n\t  单次 AddItemV2 可能触发多次针对不同实例的 OnMergeItemV2 事件（向多个堆叠合并时）。\n\t  ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OldCount",
+                    "Type": "int32 ",
+                    "Description": "合并前的物品数量",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MergeCount",
+                    "Type": "int32",
+                    "Description": "此次合并操作新增的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanRemoveItemV2",
+            "Description": "能否移除物品，能移除多少物品\n\t  可重载并自定义\n\t  DS、Client 被调用\n\t  \n\t  能通过此事件，决定多少物品能被移除。\n\t  此接口针对具体实例，调用RemoveItemV2、调用RemoveItemByDefineIDV2、物品转移等情形都可能触发此事件。\n\t  单次 RemoveItemV2 可能触发多次针对不同实例的 CanRemoveItemV2 判断（单个堆叠数量不足时）。\n\t  即使此事件允许移除物品，也可能因为其它限制因素导致移除数量减少或移除失败。\n\t  部分情形下会跳过此事件。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": " 需要移除的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "允许移除的物品数量，如果等于 Count 表示允许移除所有需要的物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnRemoveItemV2",
+            "Description": "当移除物品后回调\n\t  可重载并自定义\n\t  DS 被调用\n\t  \n\t  此接口针对具体实例，调用RemoveItemV2、调用RemoveItemByDefineIDV2、物品转移等情形都可能触发此事件。\n\t  单次 RemoveItemV2 可能触发多次针对不同实例的 OnRemoveItemV2 事件（单个堆叠数量不足时）。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "物品DefineID，移除后可能已不存在于背包",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": " 已移除的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanDropItemV2",
+            "Description": "能否丢弃物品，能丢弃多少物品\n\t  可重载并自定义\n\t  DS、Client 被调用\n\t  \n\t  能通过此事件，决定多少物品能被丢弃。\n\t  此接口针对具体实例，调用DropItemV2、调用DropItemByDefineIDV2等情形都可能触发此事件。\n\t  单次 调用 DropItemV2 可能触发多次针对不同实例的 CanDropItemV2 判断（单个堆叠数量不足时）。\n\t  即使此事件允许丢弃物品，也可能因为其它限制因素导致丢弃数量减少或丢弃失败。\n\t  部分情形下会跳过此事件。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": " 需要丢弃的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "允许丢弃的物品数量，如果等于 Count 表示允许丢弃所有需要的物品",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnDropItemV2",
+            "Description": "当丢弃物品后回调\n\t  可重载并自定义\n\t  DS 被调用\n\t  \n\t  当物品被成功丢弃时，触发此事件。\n\t  此接口针对具体实例，调用DropItemV2、调用DropItemByDefineIDV2等情形都可能触发此事件。\n\t  单次 DropItemV2 可能触发多次针对不同实例的 OnDropItemV2 事件（单个堆叠数量不足时）。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "物品DefineID，丢弃后可能已不存在于背包",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": " 已丢弃的物品数量",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanUseItemV2",
+            "Description": "能否使用物品\n\t  可重载并自定义\n\t  DS、Client 被调用\n\t  \n\t  DS 触发使用物品时，会触发并判断能否使用。\n\t  即使此事件允许使用物品，也可能因为其它限制因素导致使用失败。\n\t  部分情形下会跳过此事件。\n\t  \n\t  Client 背包UI选中物品时，会触发并判断是否显示使用按钮。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID &",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "物品是否能够被使用",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnUseItemV2",
+            "Description": "当物品触发使用后回调\n\t  可重载并自定义\n\t  DS 被调用\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID &",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnDisuseItemV2",
+            "Description": "当物品触发 DisUseItem 完成后回调\n\t  可重载并自定义\n\t  DS 被调用\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID &",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanAttachToSlot_Implementation",
+            "Description": "其它物品是否能装备到此槽位\n\t  当物品尝试装备在背包槽位时触发\n\t  \n\t  DS 被调用\n\t  \n\t  开发者能通过此事件，决定调用 EquipItemV2 时，是否允许装备。\n\t  即使此事件允许装备物品，也可能因为其它限制因素导致物品装备失败。\n\t  部分强制装备物品的情形，会跳过此事件。\n\t ",
+            "Params": [
+                {
+                    "Name": "SlotName",
+                    "Type": "FName & ",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID &",
+                    "Description": "即将装备在此槽位的物品",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnAttachToSlot_Implementation",
+            "Description": "当其它物品装备到此槽位\n\t  当物品成功装备在背包槽位时触发\n\t  \n\t  DS 被调用\n\t ",
+            "Params": [
+                {
+                    "Name": "SlotName",
+                    "Type": "FName & ",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID &",
+                    "Description": "已装备在此槽位的物品",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnDetachBySlot_Implementation",
+            "Description": "当物品成功从背包槽位卸下时触发\n\t  \n\t  DS 被调用\n\t ",
+            "Params": [
+                {
+                    "Name": "SlotName",
+                    "Type": "FName & ",
+                    "Description": "槽位名称",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID &",
+                    "Description": "已从此槽位卸下的物品",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "CanAutoEquip",
+            "Description": "物品能否自动装备\n\t  当配置了自动装备的物品尝试自动装备时触发\n\t \n\t  DS 被调用\n\t \n\t  开发者能通过此事件，阻止物品自动装备到背包或Attach到其它物品上。\n\t  手动装备或主动调用装备时，不受此函数影响。\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID &",
+                    "Description": "即将装备在此槽位的物品",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HandleExceedCellCapacity",
+            "Description": "处理超过格子容量的物品\n\t  普通情况下，背包内容量已满时，无法添加物品。\n\t  但存在特殊情况，背包满容量时依然成功添加物品、原本不占格子的物品变为占用格子、背包容量发生变化。\n\t  超容量物品会被直接移除，移除后在此函数处理保底逻辑\n\t  默认保底逻辑为丢弃到地上\n\t  重写此事件时，请不要将超容量物品在此处重新添加到背包里\n\t  \n\t  可重载并自定义\n\t  DS 被调用\n\t ",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "FItemDefineID & ",
+                    "Description": "超过容量的物品ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Count",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Delegate": [
+        {
+            "Name": "OnCellCapacityChange",
+            "Description": "当背包格子容量改变时广播\n\t  广播范围：服务端 & 客户端",
+            "Params": [
+                {
+                    "Name": "NewCapacity",
+                    "Type": "const int32&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnMaxCellCapacityChange",
+            "Description": "当背包格子容量上限改变时广播\n\t  广播范围：服务端 & 客户端",
+            "Params": [
+                {
+                    "Name": "NewCapacity",
+                    "Type": "const int32&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "OnWarehouseCellCapacityChange",
+            "Description": "当仓库格子容量改变时广播\n\t  广播范围：服务端 & 客户端",
+            "Params": [
+                {
+                    "Name": "NewCapacity",
+                    "Type": "const int32&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemChangeDelegateV2",
+            "Description": "当物品实例数据发生改变时广播\n\t  广播范围：服务端 & 客户端",
+            "Params": [
+                {
+                    "Name": "ChangeType",
+                    "Type": "const EUGCItemChangeType&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "DefineID",
+                    "Type": "const FItemDefineID&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemAddDelegateV2",
+            "Description": "当新增物品实例时广播\n\t  广播范围：服务端 & 客户端",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "const FItemDefineID&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemUpdateDelegateV2",
+            "Description": "当物品实例数据更新时广播\n\t  广播范围：服务端 & 客户端",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "const FItemDefineID&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemRemoveDelegateV2",
+            "Description": "当移除物品实例时广播\n\t  广播范围：服务端 & 客户端",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "const FItemDefineID&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemInstanceDataChangeV2",
+            "Description": "当背包物品实例化数据发生改变时广播\n\t  广播范围：客户端",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemAttachParentChangeDelegateV2",
+            "Description": "当物品附加的Parent发生改变时广播\n\t  广播范围：服务端 & 客户端\n\t  \n\t  ItemDefineID: 哪个物品的 Parent 发生了改变\n\t  OldAttachItem: 改变之前物品的 Parent\n\t  OldAttachSlotName: 改变之前物品所在的槽位\n\t  NewAttachItem: 改变之后物品的 Parent\n\t  NewAttachSlotName: 改变之后物品所在的槽位\n\t  如果物品是直接装备在背包上，AttachItem 将为空物品 ( TypeSpecificID 为 0 ) ，AttachSlotName 为背包槽位名称。",
+            "Params": [
+                {
+                    "Name": "ItemDefineID",
+                    "Type": "const FItemDefineID&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OldAttachItem",
+                    "Type": "const FItemDefineID&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OldAttachSlotName",
+                    "Type": "const FName&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewAttachItem",
+                    "Type": "const FItemDefineID&",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewAttachSlotName",
+                    "Type": "const FName&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ItemOperationInfoDelegateV2",
+            "Description": "当对物品操作成功后广播\n\t  广播范围：服务端",
+            "Params": [
+                {
+                    "Name": "ItemOperationInfo",
+                    "Type": "FItemOperationInfoV2 const&",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

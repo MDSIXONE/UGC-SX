@@ -1,0 +1,510 @@
+{
+    "Name": "UCustomInstancedStaticMeshComponent",
+    "Description": "A custom component that efficiently renders multiple instances of the same StaticMesh.",
+    "Variables": [
+        {
+            "Name": "bUseCustomBounds",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerInstanceSMData",
+            "Type": "TArray < FInstancedStaticMeshInstanceData >",
+            "Description": "Array of instances, bulk serialized.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerInstanceSMCustomData",
+            "Type": "TArray < FVector4 >",
+            "Description": "Array of custom data for instances. This will contains NumCustomDataFloatsInstanceCount entries. The entries are represented sequantially, in instance order. Can be read in a material and manipulated through Blueprints.\n\t \tExample: If NumCustomDataFloats is 1, then each entry will belong to an instance. Custom data 0 will belong to Instance 0. Custom data 1 will belong to Instance 1 etc.\n\t \tExample: If NumCustomDataFloats is 2, then each pair of sequential entries belong to an instance. Custom data 0 and 1 will belong to Instance 0. Custom data 2 and 3 will belong to Instance 2 etc.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PerInstanceSMCustomDataAdd",
+            "Type": "TArray < FVector4 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstancingRandomSeed",
+            "Type": "int32",
+            "Description": "Value used to seed the random number stream that generates random numbers for each of this mesh's instances.\n\t\tthis is set to zero (default), it will be populated automatically by the editor.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstanceStartCullDistance",
+            "Type": "int32",
+            "Description": "Distance from camera at which each instance begins to fade out.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstanceEndCullDistance",
+            "Type": "int32",
+            "Description": "Distance from camera at which each instance completely fades out.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstanceNearCullDistance",
+            "Type": "int32",
+            "Description": "Distance from camera at which each instance.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstanceReorderTable",
+            "Type": "TArray < int32 >",
+            "Description": "Mapping from PerInstanceSMData order to instance render buffer order. If empty, the PerInstanceSMData order is used.",
+            "Redirect": ""
+        },
+        {
+            "Name": "RemovedInstances",
+            "Type": "TArray < int32 >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "InstanceVisibilityMapping",
+            "Type": "TMap < int32 , FInstanceVisibilityData >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "UseDynamicInstanceBuffer",
+            "Type": "bool",
+            "Description": "Set to true to permit updating the vertex buffer used in the instance buffer without recreating it completely. This should be used if you plan on dynamically changing the instances at run-time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "KeepInstanceBufferCPUAccess",
+            "Type": "bool",
+            "Description": "Set to true to keep instance buffer accessible by the CPU, otherwise it's discarded and considered never changing, only GPU has a copy of the data.",
+            "Redirect": ""
+        },
+        {
+            "Name": "PhysicsSerializer",
+            "Type": "UPhysicsSerializer *",
+            "Description": "Serialization of all the InstanceBodies. Helps speed up physics creation time.",
+            "Redirect": ""
+        },
+        {
+            "Name": "StashInstanceTransform",
+            "Type": "TMap < int32 , FMatrix >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "NumPendingLightmaps",
+            "Type": "int32",
+            "Description": "Number of pending lightmaps still to be calculated (Apply()'d).",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "AddInstance",
+            "Description": "Add an instance to this component. Transform is given in local space of this component.",
+            "Params": [
+                {
+                    "Name": "InstanceTransform",
+                    "Type": "FTransform &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddInstanceWorldSpace",
+            "Description": "Add an instance to this component. Transform is given in world space.",
+            "Params": [
+                {
+                    "Name": "WorldTransform",
+                    "Type": "FTransform &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCustomDataValue",
+            "Description": "Update custom data for specific instance",
+            "Params": [
+                {
+                    "Name": "InstanceIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CustomDataValue",
+                    "Type": "FVector4 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CustomDataAddValue",
+                    "Type": "FVector4 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bMarkRenderStateDirty",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceTransform",
+            "Description": "Get the transform for the instance specified. Instance is returned in local space of this component unless bWorldSpace is set.  Returns True on success.",
+            "Params": [
+                {
+                    "Name": "InstanceIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OutInstanceTransform",
+                    "Type": "FTransform & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWorldSpace",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UpdateInstanceTransform",
+            "Description": "Update the transform for the instance specified.\n\t",
+            "Params": [
+                {
+                    "Name": "InstanceIndex",
+                    "Type": "int32 ",
+                    "Description": " The index of the instance to update",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewInstanceTransform",
+                    "Type": "FTransform & ",
+                    "Description": "The new transform",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bWorldSpace",
+                    "Type": "bool ",
+                    "Description": " If true, the new transform interpreted as a World Space transform, otherwise it is interpreted as Local Space",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bMarkRenderStateDirty",
+                    "Type": "bool ",
+                    "Description": "If true, the change should be visible immediately. If you are updating many instances you should only set this to true for the last instance.",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": " Whether or not the instance's physics should be moved normally, or teleported (moved instantly, ignoring velocity).",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "\t\t\t\t\tTrue on success.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "BatchUpdateInstancesData",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "StartInstanceIndex",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NumInstances",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartCustomData",
+                    "Type": "TArray < FVector4 > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StartCustomDataAdd",
+                    "Type": "TArray < FVector4 > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bMarkRenderStateDirty",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bTeleport",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveInstance",
+            "Description": "Remove the instance specified. Returns True on success. Note that this will leave the array in order, but may shrink it.",
+            "Params": [
+                {
+                    "Name": "InstanceIndex",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ClearInstances",
+            "Description": "Clear all instances being rendered by this component.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstanceCount",
+            "Description": "Get the number of instances in this component.",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetCullDistances",
+            "Description": "Sets the fading start and culling end distances for this component.",
+            "Params": [
+                {
+                    "Name": "StartCullDistance",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "EndCullDistance",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "SetNearCullDistance",
+            "Description": "Sets the cull near distance for this component.",
+            "Params": [
+                {
+                    "Name": "CullDistance",
+                    "Type": "int32",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstancesOverlappingSphere",
+            "Description": "Returns the instances with instance bounds overlapping the specified sphere. The return value is an array of instance indices.",
+            "Params": [
+                {
+                    "Name": "Center",
+                    "Type": "FVector & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "float ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bSphereInWorldSpace",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < int32 > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetInstancesOverlappingBox",
+            "Description": "Returns the instances with instance bounds overlapping the specified box. The return value is an array of instance indices.",
+            "Params": [
+                {
+                    "Name": "Box",
+                    "Type": "FBox & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bBoxInWorldSpace",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "TArray < int32 > ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "HideInstance",
+            "Description": "Update the transform for the instance specified.\n\t",
+            "Params": [
+                {
+                    "Name": "InstanceIndices",
+                    "Type": "TArray < int32 > & ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bForceLocalLocation",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "\t\t\t\t\tTrue on success.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "ShowInstance",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InstanceIndices",
+                    "Type": "TArray < int32 > &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UStaticMeshComponent"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

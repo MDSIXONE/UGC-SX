@@ -1,0 +1,40 @@
+{
+    "Name": "UMediaSource",
+    "Description": "Abstract base class for media sources.\n \n  Media sources describe the location andor settings of media objects that can\n  be played in a media player, such as a video file on disk, a video stream on\n  the internet, or a web cam attached to or built into the target device. The\n  location is encoded as a media URL string, whose URI scheme and optional file\n  extension will be used to locate a suitable media player.",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetUrl",
+            "Description": "Get the media source's URL string (must be implemented in child classes).\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FString",
+                    "Description": "The media URL.",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "Validate",
+            "Description": "Validate the media source settings (must be implemented in child classes).\n\t ",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "bool",
+                    "Description": "true if validation passed, false otherwise.",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject",
+        "IMediaOptions"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

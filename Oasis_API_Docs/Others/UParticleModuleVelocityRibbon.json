@@ -1,0 +1,67 @@
+{
+    "Name": "UParticleModuleVelocityRibbon",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "ParentLinearVel",
+            "Type": "FRawDistributionVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParentLinearSpeed",
+            "Type": "FRawDistributionFloat",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParentAngularVel",
+            "Type": "FRawDistributionFloat",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AngularSpeedEpsilon",
+            "Type": "float",
+            "Description": "The scaling  value applied to the velocity.\n\t \tValue is retrieved using the RelativeTime of the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "ParticleTurnRadiusRatio",
+            "Type": "float",
+            "Description": "The scaling  value applied to the velocity.\n\t \tValue is retrieved using the RelativeTime of the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "IntensityOverSpeed",
+            "Type": "FRawDistributionFloat",
+            "Description": "The scaling  value applied to the velocity.\n\t \tValue is retrieved using the RelativeTime of the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LengthOverSpeed",
+            "Type": "FRawDistributionFloat",
+            "Description": "The scaling  value applied to the velocity.\n\t \tValue is retrieved using the RelativeTime of the particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "MinRibbonBendRadius",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MaxRibbonLength",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleVelocityBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

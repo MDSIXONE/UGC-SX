@@ -1,0 +1,371 @@
+{
+    "Name": "UGCMapMarkManagerSystem",
+    "Description": "地图标记管理器系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "AddCustomMark",
+            "Description": "添加一个自定义 Mark，需要自行管理位置（Widget 需继承自 MapUIMarkBaseWidget）\n必须先调用一次 UpdateMarkLocation，调用 GetMarkLocation 才有效（Rotation 同理）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WidgetClassPath",
+                    "Type": "string",
+                    "Description": "控件类路径，Widget 需继承自 MapUIMarkBaseWidget",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RangeType",
+                    "Type": "EMarkDispatchRange",
+                    "Description": "标记同步范围",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RangeRad",
+                    "Type": "number",
+                    "Description": "标记显示范围，超出范围不会显示标记（目标实际距离，单位：cm）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OwnerPlayerState",
+                    "Type": "PlayerState",
+                    "Description": "同步相关性 PlayerState，主要用于仅同步自身或者队友同步，非必传",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddLocalCustomMark",
+            "Description": "添加一个自定义 Mark，需要自行管理位置（Widget 需继承自 MapUIMarkBaseWidget）\n必须先调用一次 UpdateMarkLocation，调用 GetMarkLocation 才有效（Rotation 同理）\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "WidgetClassPath",
+                    "Type": "string",
+                    "Description": "控件类路径，Widget 需继承自 MapUIMarkBaseWidget",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RangeRad",
+                    "Type": "number",
+                    "Description": "标记显示范围，超出范围不会显示标记（目标实际距离，单位：cm）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddPlayerMark",
+            "Description": "添加一个玩家 Mark，会根据玩家位置实时更新位置。（Widget 需继承自 UGCMapUIMarkDynamicWidget）\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "WidgetClassPath",
+                    "Type": "string",
+                    "Description": "控件类路径，Widget 需继承自 UGCMapUIMarkDynamicWidget",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RangeType",
+                    "Type": "EMarkDispatchRange",
+                    "Description": "标记同步范围",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RangeRad",
+                    "Type": "number",
+                    "Description": "标记显示范围，超出范围不会显示标记（目标实际距离，单位：cm）",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OwnerPlayerState",
+                    "Type": "PlayerState",
+                    "Description": "标记目标 PlayerState",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddLocalPlayerMark",
+            "Description": "添加一个玩家Mark，会根据玩家位置实时更新位置。（Widget 需继承自 UGCMapUIMarkDynamicWidget）\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "WidgetClassPath",
+                    "Type": "string",
+                    "Description": "控件类路径，Widget 需继承自 UGCMapUIMarkDynamicWidget",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OwnerPlayerState",
+                    "Type": "PlayerState",
+                    "Description": "标记目标 PlayerState",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "RangeRad",
+                    "Type": "number",
+                    "Description": "标记显示范围，超出范围不会显示标记（目标实际距离，单位：cm）",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveMark",
+            "Description": "移除一个标记，此接口的调用者同传入的 InstanceID 匹配。\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "UpdateMarkLocation",
+            "Description": "更新标记位置，此接口的调用者同传入的 InstanceID 匹配。\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MarkLocation",
+                    "Type": "Vector",
+                    "Description": "新 Location",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bNeedPrintLog",
+                    "Type": "boolean",
+                    "Description": "是否输出日志",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "UpdateMarkRotation",
+            "Description": "更新标记旋转，此接口的调用者同传入的 InstanceID 匹配。\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "NewRotation",
+                    "Type": "Rotator",
+                    "Description": "新 Rotator 可使用 Rotator.New(Roll,Pitch,Yaw) 创建，结构 {Roll=Roll, Pitch=Pitch, Yaw=Yaw}",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "GetMarkLocation",
+            "Description": "获取标记位置，此接口的调用者同传入的 InstanceID 匹配。\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "Vector",
+                    "Description": "标记点 Location",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMarkRotation",
+            "Description": "获取标记旋转，此接口的调用者同传入的 InstanceID 匹配。\n调用此接口来更新通过 UGCMapMarkManagerSystem.Add[Local]CustomMark 创建的小地图标记控件时，须确保该控件的 Rotate Widget to Angle 选项已勾选。\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "Rotator",
+                    "Description": "标记点 Rotator 可使用 Rotator.New(Roll,Pitch,Yaw) 创建,结构 {Roll=Roll, Pitch=Pitch, Yaw=Yaw}",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMarkOwner",
+            "Description": "获取标记 Owner，此接口的调用者同传入的 InstanceID 匹配。\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "标记 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "PlayerState",
+                    "Description": "标记点对应的 PlayerState",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "MakeMapMarkGraph",
+            "Description": "在地图上画图\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "WorldCorners",
+                    "Type": "FVector[]",
+                    "Description": "世界坐标点，按顺序绘制，1个点画圆，2个点画直线，3个点或以上画多边形",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "MarkColor",
+                    "Type": "FColor",
+                    "Description": "图像颜色",
+                    "Redirect": "cppstruct/detail/FColor.json"
+                },
+                {
+                    "Name": "RadiusOrLineWidth",
+                    "Type": "number",
+                    "Description": "半径或直线宽度",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bRecolorOrBlending",
+                    "Type": "boolean",
+                    "Description": "覆盖颜色或Alpha混合",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "AddMarkFlag",
+                    "Type": "EAddMarkFlag",
+                    "Description": "生效地图类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "ClearMapMarkGraph",
+            "Description": "清除地图上的图案\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "ClearMarkFlag",
+                    "Type": "EAddMarkFlag",
+                    "Description": "生效地图类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "SetVoiceVisualization",
+            "Description": "开关小地图上的指定类型音效图标\n生效范围：服务端&客户端",
+            "Params": [
+                {
+                    "Name": "InFlag",
+                    "Type": "EVoiceVisualizationFlag",
+                    "Description": "指定音效类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "bIsEnable",
+                    "Type": "boolean",
+                    "Description": "开关控制",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "IsVoiceVisualizationFlagEnable",
+            "Description": "获取小地图上指定类型音效图标的开关状态\n生效范围：服务端&客户端",
+            "Params": [
+                {
+                    "Name": "InFlag",
+                    "Type": "EVoiceVisualizationFlag",
+                    "Description": "指定音效类型",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否开启",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMapMarkLocation",
+            "Description": "获取和平原生小地图标点位置\n生效范围：客户端",
+            "Params": [
+                {
+                    "Name": "PlayerState",
+                    "Type": "ASTExtraPlayerState",
+                    "Description": "玩家状态",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "Vector",
+                    "Description": "标记点位置",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

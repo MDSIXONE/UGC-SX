@@ -1,0 +1,255 @@
+{
+    "Name": "UGCBuffSystem",
+    "Description": "【废弃】Buff 系统接口库",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "GetBuffSystemComponent",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n获取 Buff 组件\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色。所有的接口里的 PlayerPawn 都可以扩展成任意的 Actor，只要这个 Actor 有一个名字叫 BuffSystemComponent 的 Buff 组件即可。",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "BuffSystemComponent",
+                    "Description": "USTBaseBuffSystemComponent",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "AddBuff",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n为玩家添加 Buff\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色。所有的接口里的 PlayerPawn 都可以扩展成任意的 Actor，只要这个 Actor 有一个名字叫 BuffSystemComponent 的 Buff 组件即可。",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffName",
+                    "Type": "string",
+                    "Description": "Buff 名",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LayerCount",
+                    "Type": "number",
+                    "Description": "层数",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffCauser",
+                    "Type": "Controller",
+                    "Description": "施加 Buff 的玩家或 AI 的控制器",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CauserActor",
+                    "Type": "Actor",
+                    "Description": "施加 Buff 的 Actor，比如说 PlayerPawn、燃烧瓶 Actor 等等",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "Buff 唯一 ID",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "RemoveBuff",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n为玩家移除 Buff,本帧内不即时移除\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffName",
+                    "Type": "string",
+                    "Description": "Buff 名",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LayerCount",
+                    "Type": "number",
+                    "Description": "层数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "RemoveBuffByInstanceID",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n使用唯一 ID 移除 Buff，本帧内不即时移除\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "Buff 唯一 ID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "LayerCount",
+                    "Type": "number",
+                    "Description": "层数",
+                    "Redirect": ""
+                }
+            ],
+            "Return": null
+        },
+        {
+            "Name": "HasBuff",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n是否存在该 Buff\n生效范围：服务器",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffName",
+                    "Type": "string",
+                    "Description": "Buff 名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "boolean",
+                    "Description": "是否存在 Buff",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetCurLayer",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n获取 Buff 当前层数\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffName",
+                    "Type": "string",
+                    "Description": "Buff 名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "层数",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetMaxLayer",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n获取 Buff 最大层数\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffName",
+                    "Type": "string",
+                    "Description": "Buff 名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "最大层数",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetLeftTime",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n获取 Buff 剩余持续时间\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "玩家角色",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "BuffName",
+                    "Type": "string",
+                    "Description": "Buff 名",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "number",
+                    "Description": "剩余持续时间",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "GetBuffCauserActor",
+            "Description": "【废弃】请使用 UGCPersistEffectSystem\n获取 Buff 的施加者\n生效范围：服务器&客户端",
+            "Params": [
+                {
+                    "Name": "PlayerPawn",
+                    "Type": "PlayerPawn",
+                    "Description": "Buff",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "InstanceID",
+                    "Type": "number",
+                    "Description": "Buff 唯一 ID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "Actor",
+                    "Description": "Buff 施加者（弱引用，需使用 Actor:Get() 获取实际对象）",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": null,
+    "Event": null,
+    "Delegate": null,
+    "Language": "lua"
+}

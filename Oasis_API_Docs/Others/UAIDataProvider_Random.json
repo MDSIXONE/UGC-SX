@@ -1,0 +1,31 @@
+{
+    "Name": "UAIDataProvider_Random",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Min",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Max",
+            "Type": "float",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInteger",
+            "Type": "uint8",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UAIDataProvider_QueryParams"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

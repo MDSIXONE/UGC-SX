@@ -1,0 +1,83 @@
+{
+    "Name": "UFoliageStatistics",
+    "Description": "",
+    "Variables": null,
+    "Functions": [
+        {
+            "Name": "FoliageOverlappingSphereCount",
+            "Description": "Counts how many foliage instances overlap a given sphere\n\t",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StaticMesh",
+                    "Type": "UStaticMesh * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "CenterPosition",
+                    "Type": "FVector ",
+                    "Description": "The center position of the sphere",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Radius",
+                    "Type": "float",
+                    "Description": " The radius of the sphere.",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "FoliageOverlappingBoxCount",
+            "Description": "Gets the number of instances overlapping a provided box",
+            "Params": [
+                {
+                    "Name": "WorldContextObject",
+                    "Type": "UObject * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "StaticMesh",
+                    "Type": "UStaticMesh * ",
+                    "Description": "Mesh to count",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Box",
+                    "Type": "FBox",
+                    "Description": "Box to overlap",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "int32 ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UBlueprintFunctionLibrary"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

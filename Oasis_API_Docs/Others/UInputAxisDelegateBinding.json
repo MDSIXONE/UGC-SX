@@ -1,0 +1,19 @@
+{
+    "Name": "UInputAxisDelegateBinding",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "InputAxisDelegateBindings",
+            "Type": "TArray < FBlueprintInputAxisDelegateBinding >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInputDelegateBinding"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

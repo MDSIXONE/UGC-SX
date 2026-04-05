@@ -1,0 +1,31 @@
+{
+    "Name": "UHapticFeedbackEffect_Curve",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "HapticDetails",
+            "Type": "FHapticFeedbackDetails_Curve",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "AndroidTesting",
+            "Type": "FJsonHaptic",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "JsonValue",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UHapticFeedbackEffect_Base"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

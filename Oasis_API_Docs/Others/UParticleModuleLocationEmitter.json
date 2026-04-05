@@ -1,0 +1,55 @@
+{
+    "Name": "UParticleModuleLocationEmitter",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "EmitterName",
+            "Type": "FName",
+            "Description": "The name of the emitter to use that the source location for particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "SelectionMethod",
+            "Type": "TEnumAsByte < enum ELocationEmitterSelectionMethod >",
+            "Description": "The method to use when selecting a spawn target particle from the emitter.\n\t \tCan be one of the following:\n\t \t\tELESM_Random\t\tRandomly select a particle from the source emitter.\n\t \t\tELESM_Sequential\tStep through each particle from the source emitter in order.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InheritSourceVelocity",
+            "Type": "uint32",
+            "Description": "If true, the spawned particle should inherit the velocity of the source particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InheritSourceVelocityScale",
+            "Type": "float",
+            "Description": "Amount to scale the source velocity by when inheriting it.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bInheritSourceRotation",
+            "Type": "uint32",
+            "Description": "If true, the spawned particle should inherit the rotation of the source particle.",
+            "Redirect": ""
+        },
+        {
+            "Name": "InheritSourceRotationScale",
+            "Type": "float",
+            "Description": "Amount to scale the source rotation by when inheriting it.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bApplySourceOrbitOffset",
+            "Type": "uint32",
+            "Description": "If true, the spawned particle should uses the location with the orbit offset of the source particle.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleLocationBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

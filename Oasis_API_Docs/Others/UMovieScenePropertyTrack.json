@@ -1,0 +1,31 @@
+{
+    "Name": "UMovieScenePropertyTrack",
+    "Description": "Base class for tracks that animate an object property",
+    "Variables": [
+        {
+            "Name": "PropertyName",
+            "Type": "FName",
+            "Description": "Name of the property being changed",
+            "Redirect": ""
+        },
+        {
+            "Name": "PropertyPath",
+            "Type": "FString",
+            "Description": "Path to the property from the source object being changed",
+            "Redirect": ""
+        },
+        {
+            "Name": "Sections",
+            "Type": "TArray < UMovieSceneSection * >",
+            "Description": "All the sections in this list",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneNameableTrack"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

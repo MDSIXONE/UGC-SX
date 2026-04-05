@@ -1,0 +1,57 @@
+{
+    "Name": "URichTextBlock",
+    "Description": "The rich text block\n \n   Fancy Text\n   No Children",
+    "Variables": [
+        {
+            "Name": "Text",
+            "Type": "FText",
+            "Description": "The text to display",
+            "Redirect": ""
+        },
+        {
+            "Name": "TextDelegate",
+            "Type": "FGetText",
+            "Description": "A bindable delegate to allow logic to drive the text of the widget",
+            "Redirect": ""
+        },
+        {
+            "Name": "Font",
+            "Type": "FSlateFontInfo",
+            "Description": "The default font for the text.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Color",
+            "Type": "FLinearColor",
+            "Description": "The default color for the text.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Decorators",
+            "Type": "TArray < URichTextBlockDecorator * >",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetLocalText",
+            "Description": "",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "FText",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UTextLayoutWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,26 @@
+{
+    "Name": "UMovieSceneBoolSection",
+    "Description": "A single bool section.",
+    "Variables": [
+        {
+            "Name": "DefaultValue_DEPRECATED",
+            "Type": "bool",
+            "Description": "The default value to use when no keys are present - use GetCurve().SetDefaultValue()",
+            "Redirect": ""
+        },
+        {
+            "Name": "BoolCurve",
+            "Type": "FIntegralCurve",
+            "Description": "Ordered curve data",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMovieSceneSection",
+        "IKeyframeSection<bool>"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

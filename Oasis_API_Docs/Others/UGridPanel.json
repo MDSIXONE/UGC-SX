@@ -1,0 +1,46 @@
+{
+    "Name": "UGridPanel",
+    "Description": "A panel that evenly divides up available space between all of its children.\n  \n   Many Children",
+    "Variables": [
+        {
+            "Name": "ColumnFill",
+            "Type": "TArray < float >",
+            "Description": "The column fill rules",
+            "Redirect": ""
+        },
+        {
+            "Name": "RowFill",
+            "Type": "TArray < float >",
+            "Description": "The row fill rules",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "AddChildToGrid",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "Content",
+                    "Type": "UWidget *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "UGridSlot * ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UPanelWidget"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "ASphereReflectionCapture",
+    "Description": "Actor used to capture the scene for reflection in a sphere shape.",
+    "Variables": [
+        {
+            "Name": "DrawCaptureRadius",
+            "Type": "UDrawSphereComponent *",
+            "Description": "Sphere component used to visualize the capture radius",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "AReflectionCapture"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

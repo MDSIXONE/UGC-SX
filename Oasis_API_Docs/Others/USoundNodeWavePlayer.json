@@ -1,0 +1,31 @@
+{
+    "Name": "USoundNodeWavePlayer",
+    "Description": "Sound node that contains a reference to the raw wave file to be played",
+    "Variables": [
+        {
+            "Name": "SoundWaveAssetPtr",
+            "Type": "TSoftObjectPtr < USoundWave >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SoundWave",
+            "Type": "USoundWave *",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLooping",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "USoundNodeAssetReferencer"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

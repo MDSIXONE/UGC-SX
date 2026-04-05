@@ -1,0 +1,25 @@
+{
+    "Name": "UMaterialExpressionTextureProperty",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "TextureObject",
+            "Type": "FExpressionInput",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Property",
+            "Type": "TEnumAsByte < EMaterialExposedTextureProperty >",
+            "Description": "Texture property to be accessed",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UMaterialExpression"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

@@ -1,0 +1,55 @@
+{
+    "Name": "UBrushBuilder",
+    "Description": "Base class of UnrealEd brush builders.\n \n \n  Tips for writing brush builders:\n \n  - Always validate the user-specified and call BadParameters function\n    if anything is wrong, instead of actually building geometry.\n    If you build an invalid brush due to bad user parameters, you'll\n    cause an extraordinary amount of pain for the poor user.\n \n  - When generating polygons with more than 3 vertices, BE SURE all the\n    polygon's vertices are coplanar!  Out-of-plane polygons will cause\n    geometry to be corrupted.",
+    "Variables": [
+        {
+            "Name": "BitmapFilename",
+            "Type": "FString",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "ToolTip",
+            "Type": "FString",
+            "Description": "localized FString that will be displayed as the name of this brush builder in the editor",
+            "Redirect": ""
+        },
+        {
+            "Name": "NotifyBadParams",
+            "Type": "uint32",
+            "Description": "If false, disabled the bad param notifications",
+            "Redirect": ""
+        },
+        {
+            "Name": "Vertices",
+            "Type": "TArray < FVector >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Polys",
+            "Type": "TArray < struct FBuilderPoly >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "Layer",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MergeCoplanars",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

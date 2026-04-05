@@ -1,0 +1,19 @@
+{
+    "Name": "UInterpTrackInstDirector",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "OldViewTarget",
+            "Type": "AActor *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UInterpTrackInst"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

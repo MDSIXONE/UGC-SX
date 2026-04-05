@@ -1,0 +1,49 @@
+{
+    "Name": "UDistributionVectorUniform",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Max",
+            "Type": "FVector",
+            "Description": "Upper end of FVector magnitude range.",
+            "Redirect": ""
+        },
+        {
+            "Name": "Min",
+            "Type": "FVector",
+            "Description": "Lower end of FVector magnitude range.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bLockAxes",
+            "Type": "uint32",
+            "Description": "If true, X == Y == Z ie. only one degree of freedom. If false, each axis is picked independently.",
+            "Redirect": ""
+        },
+        {
+            "Name": "LockedAxes",
+            "Type": "TEnumAsByte < enum EDistributionVectorLockFlags >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "MirrorFlags",
+            "Type": "TEnumAsByte < enum EDistributionVectorMirrorFlags >",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bUseExtremes",
+            "Type": "uint32",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UDistributionVector"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

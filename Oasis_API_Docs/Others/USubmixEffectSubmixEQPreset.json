@@ -1,0 +1,40 @@
+{
+    "Name": "USubmixEffectSubmixEQPreset",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "Settings",
+            "Type": "FSubmixEffectSubmixEQSettings",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "SetSettings",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "InSettings",
+                    "Type": "FSubmixEffectSubmixEQSettings &",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "USoundEffectSubmixPreset"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

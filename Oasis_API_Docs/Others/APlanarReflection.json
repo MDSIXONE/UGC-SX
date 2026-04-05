@@ -1,0 +1,52 @@
+{
+    "Name": "APlanarReflection",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "PlanarReflectionComponent",
+            "Type": "UPlanarReflectionComponent *",
+            "Description": "Planar reflection component.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bShowPreviewPlane",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "SpriteComponent",
+            "Type": "UBillboardComponent *",
+            "Description": "",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "OnInterpToggle",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "bEnable",
+                    "Type": "bool",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "ASceneCapture"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

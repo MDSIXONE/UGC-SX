@@ -1,0 +1,19 @@
+{
+    "Name": "UParticleModuleMeshRotationRate",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "StartRotationRate",
+            "Type": "FRawDistributionVector",
+            "Description": "Initial rotation rate, in rotations per second.\n\t \tThe value is retrieved using the EmitterTime.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UParticleModuleRotationRateBase"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

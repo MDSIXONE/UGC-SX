@@ -1,0 +1,19 @@
+{
+    "Name": "UNavigationDataChunk",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "NavigationDataName",
+            "Type": "FName",
+            "Description": "Name of NavigationData actor that owns this chunk",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

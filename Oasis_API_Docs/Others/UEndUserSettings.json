@@ -1,0 +1,32 @@
+{
+    "Name": "UEndUserSettings",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "bSendAnonymousUsageDataToEpic",
+            "Type": "bool",
+            "Description": "Determines whether the engine sends anonymous usage information about game sessions to Epic Games in order to improve Unreal Engine. Information will never be shared with 3rd parties.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bSendMeanTimeBetweenFailureDataToEpic",
+            "Type": "bool",
+            "Description": "Determines whether the engine sends anonymous crashabnormal-shutdown data about game sessions to Epic Games in order to improve Unreal Engine. Information will never be shared with 3rd parties.",
+            "Redirect": ""
+        },
+        {
+            "Name": "bAllowUserIdInUsageData",
+            "Type": "bool",
+            "Description": "If enabled, adds user identifying data to the otherwise anonymous reports sent to Epic Games.",
+            "Redirect": ""
+        }
+    ],
+    "Functions": null,
+    "Parents": [
+        "UObject",
+        "IImportantToggleSettingInterface"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}

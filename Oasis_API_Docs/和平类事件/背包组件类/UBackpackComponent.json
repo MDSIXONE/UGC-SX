@@ -1,0 +1,113 @@
+{
+    "Name": "UBackpackComponent",
+    "Description": "背包组件",
+    "Variables": null,
+    "Functions": null,
+    "Parents": [
+        "UActorComponent",
+        "IItemContainerInterface",
+        "IItemFactoryInterface",
+        "ICommonBackpackInterface"
+    ],
+    "Event": null,
+    "Delegate": [
+        {
+            "Name": "UGC_ItemOperationFailedDelegate",
+            "Description": "Delegate\n\t  生效范围SC\n\t  物品操作失败时通知",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "const FItemDefineID&",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OperationType",
+                    "Type": "EBattleItemOperationType",
+                    "Description": "操作类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OperationFailedReason",
+                    "Type": "EBattleItemOperationFailedReason",
+                    "Description": "失败原因",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_ItemOperationDelegate",
+            "Description": "Delegate\n\t  生效范围SC\n\t  物品操作时通知",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "const FItemDefineID&",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "OperationType",
+                    "Type": "EBattleItemOperationType",
+                    "Description": "操作类型",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "Reason",
+                    "Type": "uint8",
+                    "Description": "操作原因",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_ItemBeforeRemovedDelegate",
+            "Description": "Delegate\n\t  生效范围S\n\t  物品被移除前通知",
+            "Params": [
+                {
+                    "Name": "DefineID",
+                    "Type": "const FItemDefineID&",
+                    "Description": "物品DefineID",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "UGC_CapacityUpdatedDelegate",
+            "Description": "Delegate\n\t  生效范围SC\n\t  背包最大容量变化时通知",
+            "Params": null,
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "void",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Language": "cpp"
+}

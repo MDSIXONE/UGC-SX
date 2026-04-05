@@ -1,0 +1,132 @@
+{
+    "Name": "USkeletalMeshSocket",
+    "Description": "",
+    "Variables": [
+        {
+            "Name": "SocketName",
+            "Type": "FName",
+            "Description": "Defines a named attachment location on the USkeletalMesh. \n\t \tThese are set up in editor and used as a shortcut instead of specifying \n\t \teverything explicitly to AttachComponent in the SkeletalMeshComponent.\n\t \tThe Outer of a SkeletalMeshSocket should always be the USkeletalMesh.",
+            "Redirect": ""
+        },
+        {
+            "Name": "BoneName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeLocation",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeRotation",
+            "Type": "FRotator",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeScale",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseLocation",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseRotation",
+            "Type": "FRotator",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "BaseScale",
+            "Type": "FVector",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bDynamicCreate",
+            "Type": "bool",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "RelativeBoneName",
+            "Type": "FName",
+            "Description": "",
+            "Redirect": ""
+        },
+        {
+            "Name": "bForceAlwaysAnimated",
+            "Type": "bool",
+            "Description": "If true then the hierarchy of bones this socket is attached to will always be \n\t    evaluated, even if it had previously been removed due to the current lod setting",
+            "Redirect": ""
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "GetSocketLocation",
+            "Description": "",
+            "Params": [
+                {
+                    "Name": "SkelComp",
+                    "Type": "USkeletalMeshComponent *",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        },
+        {
+            "Name": "InitializeSocketFromLocation",
+            "Description": "Sets BoneName, RelativeLocation and RelativeRotation based on closest bone to WorldLocation and WorldNormal",
+            "Params": [
+                {
+                    "Name": "SkelComp",
+                    "Type": "USkeletalMeshComponent * ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WorldLocation",
+                    "Type": "FVector ",
+                    "Description": "",
+                    "Redirect": ""
+                },
+                {
+                    "Name": "WorldNormal",
+                    "Type": "FVector",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ],
+            "Return": [
+                {
+                    "Name": "",
+                    "Type": "ENGINE_API void ",
+                    "Description": "",
+                    "Redirect": ""
+                }
+            ]
+        }
+    ],
+    "Parents": [
+        "UObject"
+    ],
+    "Event": null,
+    "Delegate": null,
+    "Language": "cpp"
+}
