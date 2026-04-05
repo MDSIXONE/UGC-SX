@@ -1,14 +1,0 @@
-C251 COMPILER V5.60.0,  task                                                               21/12/25  16:55:14  PAGE 1   
-
-
-C251 COMPILER V5.60.0, COMPILATION OF MODULE task
-OBJECT MODULE PLACED IN .\Out_File\task.obj
-COMPILER INVOKED BY: G:\Keil_v5\C251\BIN\C251.EXE ..\CODE\task.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Librar
-                    -ies\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) DE
-                    -BUG PRINT(.\Out_File\task.lst) TABS(2) OBJECT(.\Out_File\task.obj) 
-
-stmt  level    source
-
-*** ERROR C318 OF ..\CODE\task.c: can't open file '..\CODE\task.c'
-
-C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

@@ -1,14 +1,0 @@
-C251 COMPILER V5.60.0,  xunji                                                              21/12/25  16:55:14  PAGE 1   
-
-
-C251 COMPILER V5.60.0, COMPILATION OF MODULE xunji
-OBJECT MODULE PLACED IN .\Out_File\xunji.obj
-COMPILER INVOKED BY: G:\Keil_v5\C251\BIN\C251.EXE ..\CODE\xunji.c XSMALL INTR2 WARNINGLEVEL(3) BROWSE INCDIR(..\..\Libra
-                    -ries\libraries;..\..\Libraries\seekfree_libraries;..\..\Libraries\seekfree_peripheral;..\CODE;..\USER\inc;..\USER\src) D
-                    -EBUG PRINT(.\Out_File\xunji.lst) TABS(2) OBJECT(.\Out_File\xunji.obj) 
-
-stmt  level    source
-
-*** ERROR C318 OF ..\CODE\xunji.c: can't open file '..\CODE\xunji.c'
-
-C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
