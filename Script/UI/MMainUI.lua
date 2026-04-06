@@ -329,7 +329,7 @@ function MMainUI:Construct()
         self:ScheduleMode1002ButtonEnforce()
         self:StartCountdown(100)
         -- Create and show the custom team panel
-        self:CreateFriendListUI()
+        self:CreateFriendListUI(true)
         -- Initialize the kill count display
         if self.TextBlock_mobnum then
             self.TextBlock_mobnum:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
@@ -348,7 +348,7 @@ function MMainUI:Construct()
                 self:ScheduleMode1002ButtonEnforce()
                 self:StartCountdown(100)
                 -- Create and show the custom team panel
-                self:CreateFriendListUI()
+                self:CreateFriendListUI(true)
                 -- Initialize the kill count display
                 if self.TextBlock_mobnum then
                     self.TextBlock_mobnum:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
@@ -1251,18 +1251,28 @@ function MMainUI:ShowTip(text)
 end
 
 -- Related UI logic.
-function MMainUI:CreateFriendListUI()
-    if not self:IsMode1002() then
+function MMainUI:CreateFriendListUI(forceCreate)
+    if not forceCreate and not self:IsMode1002() then
         self:HideFriendListPanel()
         return
     end
 
-    -- Prefer standalone FriendList in mode 1002; keep embedded entry hidden.
+    -- Fallback: keep the embedded FriendList visible in case standalone creation fails.
     if self.FriendList then
-        self.FriendList:SetVisibility(ESlateVisibility.Collapsed)
+        self.FriendList:SetVisibility(ESlateVisibility.Visible)
     end
 
-    if self.FriendListUI then return end
+    if self.FriendListUI then
+        if UGCObjectUtility.IsObjectValid(self.FriendListUI) then
+            self.FriendListUI:SetVisibility(ESlateVisibility.Visible)
+            if self.FriendList then
+                self.FriendList:SetVisibility(ESlateVisibility.Collapsed)
+            end
+            return
+        end
+        self.FriendListUI = nil
+    end
+
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return end
     local friendListPath = UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/FriendList.FriendList_C')
@@ -1281,7 +1291,11 @@ function MMainUI:CreateFriendListUI()
         return
     end
     friendListUI:AddToViewport(1050)
+    friendListUI:SetVisibility(ESlateVisibility.Visible)
     self.FriendListUI = friendListUI
+    if self.FriendList then
+        self.FriendList:SetVisibility(ESlateVisibility.Collapsed)
+    end
     ugcprint("[MMainUI] FriendList team panel created")
 end
 

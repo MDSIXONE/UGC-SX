@@ -88,6 +88,43 @@ function p1:BPDie(KillingDamage, EventInstigator, DamageCauser, DamageEvent, Dam
                 end
             end
         end
+
+        -- 服务端兜底：确保P1失败后也按超时关卡流程收口，不依赖客户端RPC是否丢失
+        UGCTimerUtility.CreateLuaTimer(2.5, function()
+            local timeoutActor = nil
+            local timeoutClassPaths = {
+                "Script.MODE.SingleModeTimeOut",
+                "Script.MODE.SingleModeTimeOut.SingleModeTimeOut_C",
+            }
+
+            for _, classPath in ipairs(timeoutClassPaths) do
+                local actorList = UGCGameSystem.GetAllActorsOfClass(classPath)
+                if actorList and #actorList > 0 then
+                    for _, actor in pairs(actorList) do
+                        if actor and UGCObjectUtility.IsObjectValid(actor) then
+                            timeoutActor = actor
+                            break
+                        end
+                    end
+                end
+
+                if timeoutActor then
+                    break
+                end
+            end
+
+            if timeoutActor and UGCObjectUtility.IsObjectValid(timeoutActor) then
+                if timeoutActor.bTimeOutFinished then
+                    ugcprint("[p1] TimeOutActor 已完成，跳过P1兜底")
+                else
+                    timeoutActor.bTimeOutFinished = true
+                    ugcprint("[p1] P1死亡，服务端兜底调用 TimeOutActor:OnFinish()，走关卡流程")
+                    timeoutActor:OnFinish()
+                end
+            else
+                ugcprint("[p1] 警告：未找到 SingleModeTimeOut actor，P1兜底无法执行")
+            end
+        end, false, "P1Die_LevelFlowFallback")
     end
 end
 

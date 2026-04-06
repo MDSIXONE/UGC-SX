@@ -4,6 +4,7 @@ local SingleModeTimeOut = {}
 
 function SingleModeTimeOut:LuaExecute()
     ugcprint("[SingleModeTimeOut] ========== 超时触发 ==========")
+    self.bTimeOutFinished = false
 
     -- 获取当前关卡内的所有玩家
     local AllPlayer = UGCLevelFlowSystem.GetAllPlayerControllerInCurrentLevel()
@@ -25,8 +26,20 @@ function SingleModeTimeOut:LuaExecute()
     else
         ugcprint("[SingleModeTimeOut] 警告：当前关卡没有玩家")
         -- 如果没有玩家，直接完成
+        self.bTimeOutFinished = true
         self:OnFinish()
     end
+
+    -- Watchdog: avoid dead-end if client timeout callbacks are lost.
+    UGCTimerUtility.CreateLuaTimer(10.0, function()
+        if self.bTimeOutFinished then
+            return
+        end
+
+        self.bTimeOutFinished = true
+        ugcprint("[SingleModeTimeOut] 10秒看门狗触发，自动调用 OnFinish()")
+        self:OnFinish()
+    end, false, "SingleMode_TimeOutWatchdog")
     
     ugcprint("[SingleModeTimeOut] 超时触发完成")
 end

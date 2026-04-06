@@ -30,6 +30,26 @@ local function GetPlayerNameByPlayerKey(PlayerKey)
     return tostring(PlayerKey)
 end
 
+local function ResolveSingleModeTimeOutActor()
+    local classPathCandidates = {
+        "Script.MODE.SingleModeTimeOut",
+        "Script.MODE.SingleModeTimeOut.SingleModeTimeOut_C",
+    }
+
+    for _, classPath in ipairs(classPathCandidates) do
+        local actorList = UGCGameSystem.GetAllActorsOfClass(classPath)
+        if actorList and #actorList > 0 then
+            for _, actor in pairs(actorList) do
+                if actor and UGCObjectUtility.IsObjectValid(actor) then
+                    return actor, classPath
+                end
+            end
+        end
+    end
+
+    return nil, nil
+end
+
 -- Global team captain data table, key=TeamID, value=PlayerKey of captain
 TeamCaptainData = TeamCaptainData or {}
 
@@ -738,14 +758,27 @@ end
 --- Client: show Settlement_2 UI (timeout settlement)
 function UGCPlayerController:Client_ShowSettlement2UI()
     ugcprint("[UGCPlayerController] Client_ShowSettlement2UI 被调用")
-    
-    if not self:IsLocalController() then
-        return
+
+    local bIsLocalController = false
+    local okIsLocal, isLocalResult = pcall(function()
+        return self:IsLocalController()
+    end)
+    if okIsLocal then
+        bIsLocalController = (isLocalResult == true)
+    end
+    ugcprint("[UGCPlayerController] Client_ShowSettlement2UI IsLocalController=" .. tostring(bIsLocalController) .. ", ok=" .. tostring(okIsLocal))
+    if not bIsLocalController then
+        ugcprint("[UGCPlayerController] 警告：Settlement_2 IsLocalController=false，继续执行超时关卡流程兜底")
     end
 
-    if self.MMainUI and self.MMainUI.StopCountdown then
-        self.MMainUI.CountdownTimeoutTriggered = true
-        self.MMainUI:StopCountdown()
+    local okStopCountdown, stopCountdownErr = pcall(function()
+        if self.MMainUI and self.MMainUI.StopCountdown then
+            self.MMainUI.CountdownTimeoutTriggered = true
+            self.MMainUI:StopCountdown()
+        end
+    end)
+    if not okStopCountdown then
+        ugcprint("[UGCPlayerController] Settlement_2 StopCountdown 执行失败: " .. tostring(stopCountdownErr))
     end
     
     local settlement2Path = UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/Settlement_2.Settlement_2_C')
@@ -753,34 +786,61 @@ function UGCPlayerController:Client_ShowSettlement2UI()
     
     -- 保存 PlayerController 引用，供回调函数使用
     local PlayerController = self
-    
-    -- 异步创建 Settlement_2 UI
-    UGCWidgetManagerSystem.CreateWidgetAsync(settlement2Path, function(Widget)
-        if Widget then
-            ugcprint("[UGCPlayerController] 成功创建 Settlement_2 UI, widget=" .. tostring(Widget))
-            
-            -- 设置回调函数，UI显示后立即执行
-            Widget.OnSureClicked = function()
-                ugcprint("[UGCPlayerController] Settlement_2 触发后续流程, widget=" .. tostring(Widget))
-                
-                -- 调用服务器RPC通知超时完成
-                local okRPC, rpcErr = pcall(function()
-                    UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_NotifyTimeOutFinish")
-                end)
-                if okRPC then
-                    ugcprint("[UGCPlayerController] 已调用 Server_NotifyTimeOutFinish")
-                else
-                    ugcprint("[UGCPlayerController] 调用 Server_NotifyTimeOutFinish 失败: " .. tostring(rpcErr))
-                end
-            end
-            
-            -- 添加到视口
-            Widget:AddToViewport(6000)
-            ugcprint("[UGCPlayerController] Settlement_2 UI 已添加到视口")
-        else
-            ugcprint("[UGCPlayerController] 创建 Settlement_2 UI 失败，Widget为nil")
+    local bNotified = false
+
+    local function NotifyTimeOutFinish(reason)
+        if bNotified then
+            ugcprint("[UGCPlayerController] Settlement_2 已通知，忽略重复触发, reason=" .. tostring(reason))
+            return
         end
+
+        bNotified = true
+        ugcprint("[UGCPlayerController] Settlement_2 执行超时完成通知, reason=" .. tostring(reason))
+
+        local okRPC, rpcErr = pcall(function()
+            UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_NotifyTimeOutFinish")
+        end)
+        if okRPC then
+            ugcprint("[UGCPlayerController] 已调用 Server_NotifyTimeOutFinish")
+        else
+            ugcprint("[UGCPlayerController] 调用 Server_NotifyTimeOutFinish 失败: " .. tostring(rpcErr))
+        end
+    end
+
+    -- Global watchdog: if timeout UI callback is lost, still continue level flow.
+    UGCTimerUtility.CreateLuaTimer(8.0, function()
+        if bNotified then
+            return
+        end
+        ugcprint("[UGCPlayerController] Settlement_2 全局看门狗触发")
+        NotifyTimeOutFinish("GlobalWatchdog")
+    end, false, "Settlement2GlobalWatchdog")
+    
+    local okCreateWidgetAsync, createWidgetAsyncErr = pcall(function()
+        -- 异步创建 Settlement_2 UI
+        UGCWidgetManagerSystem.CreateWidgetAsync(settlement2Path, function(Widget)
+            if Widget then
+                ugcprint("[UGCPlayerController] 成功创建 Settlement_2 UI, widget=" .. tostring(Widget))
+
+                -- 设置回调函数，UI显示后立即执行
+                Widget.OnSureClicked = function()
+                    ugcprint("[UGCPlayerController] Settlement_2 触发后续流程, widget=" .. tostring(Widget))
+                    NotifyTimeOutFinish("SureClicked")
+                end
+
+                -- 添加到视口
+                Widget:AddToViewport(6000)
+                ugcprint("[UGCPlayerController] Settlement_2 UI 已添加到视口")
+            else
+                ugcprint("[UGCPlayerController] 创建 Settlement_2 UI 失败，Widget为nil")
+                NotifyTimeOutFinish("CreateWidgetFailed")
+            end
+        end)
     end)
+    if not okCreateWidgetAsync then
+        ugcprint("[UGCPlayerController] Settlement_2 CreateWidgetAsync 调用失败: " .. tostring(createWidgetAsyncErr))
+        NotifyTimeOutFinish("CreateWidgetAsyncError")
+    end
 end
 
 --- Server: notify level reward finished
@@ -818,20 +878,29 @@ function UGCPlayerController:Server_NotifyTimeOutFinish()
         return
     end
 
-    -- 获取保存的 TimeOutActor 引用
-    if self.CurrentTimeOutActor then
-        ugcprint("[Server] 找到 CurrentTimeOutActor")
+    local timeOutActor = self.CurrentTimeOutActor
 
-        -- 超时不需要调用 OnFinish()，系统会自动处理
-        -- 直接清理引用
+    if (not timeOutActor) or (not UGCObjectUtility.IsObjectValid(timeOutActor)) then
+        local resolvedActor, classPath = ResolveSingleModeTimeOutActor()
+        if resolvedActor then
+            timeOutActor = resolvedActor
+            ugcprint("[Server] CurrentTimeOutActor 为空，已通过类路径定位到 TimeOutActor: " .. tostring(classPath))
+        end
+    end
+
+    if timeOutActor and UGCObjectUtility.IsObjectValid(timeOutActor) then
+        if timeOutActor.bTimeOutFinished then
+            ugcprint("[Server] TimeOutActor 已完成，忽略重复 OnFinish")
+        else
+            timeOutActor.bTimeOutFinished = true
+            ugcprint("[Server] 调用 TimeOutActor:OnFinish()，按关卡流程进入结算阶段")
+            timeOutActor:OnFinish()
+        end
+
         self.CurrentTimeOutActor = nil
-        ugcprint("[Server] 已清理 CurrentTimeOutActor 引用")
-
-        -- 超时完成后，显示 SettlementTip UI 并发起模式1001匹配
-        ugcprint("[Server] 调用客户端RPC显示 SettlementTip UI")
-        UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
     else
-        ugcprint("[Server] 警告：CurrentTimeOutActor 不存在")
+        ugcprint("[Server] 警告：未找到 TimeOutActor，回退为直接显示 SettlementTip")
+        UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
     end
 end
 
