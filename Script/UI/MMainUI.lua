@@ -1160,6 +1160,90 @@ function MMainUI:ShowTeleportButtons()
     ugcprint("[MMainUI] Teleport buttons are visible again")
 end
 
+local function ClearTimerSafe(owner, timerHandle, timerName)
+    if not timerHandle then
+        return
+    end
+
+    local okClearTimer, clearTimerErr = pcall(function()
+        if UGCGameSystem and UGCGameSystem.ClearTimer then
+            UGCGameSystem.ClearTimer(owner, timerHandle)
+            return
+        end
+
+        if UGCTimerUtility and UGCTimerUtility.StopLuaTimer then
+            UGCTimerUtility.StopLuaTimer(timerHandle)
+            return
+        end
+
+        if UGCTimerUtility and UGCTimerUtility.RemoveLuaTimer then
+            UGCTimerUtility.RemoveLuaTimer(timerHandle)
+            return
+        end
+
+        error("no available timer clear API")
+    end)
+
+    if not okClearTimer then
+        ugcprint("[MMainUI] 清理定时器失败, timer=" .. tostring(timerName) .. ", err=" .. tostring(clearTimerErr))
+    end
+end
+
+-- Notify server timeout flow entry when the countdown reaches zero.
+function MMainUI:RequestCountdownTimeoutExit(reason)
+    if self.CountdownExitRequestSent then
+        ugcprint("[MMainUI] Timeout exit RPC already sent, skip duplicate. reason=" .. tostring(reason))
+        return
+    end
+
+    if self.CountdownExitRequestPending then
+        ugcprint("[MMainUI] Timeout exit RPC is pending, skip duplicate. reason=" .. tostring(reason))
+        return
+    end
+
+    self.CountdownExitRequestPending = true
+    self.CountdownExitRequestRetryCount = 0
+
+    local function TryNotify(tag)
+        if self.CountdownExitRequestSent then
+            self.CountdownExitRequestPending = false
+            return
+        end
+
+        self.CountdownExitRequestRetryCount = (self.CountdownExitRequestRetryCount or 0) + 1
+
+        local playerController = UGCGameSystem.GetLocalPlayerController()
+        if playerController then
+            local okRPC, rpcErr = pcall(function()
+                UnrealNetwork.CallUnrealRPC(playerController, playerController, "Server_NotifyTimeOutFinish")
+            end)
+
+            if okRPC then
+                self.CountdownExitRequestSent = true
+                self.CountdownExitRequestPending = false
+                ugcprint("[MMainUI] Timeout exit RPC sent. attempt=" .. tostring(self.CountdownExitRequestRetryCount) .. ", tag=" .. tostring(tag))
+                return
+            end
+
+            ugcprint("[MMainUI] Timeout exit RPC failed. attempt=" .. tostring(self.CountdownExitRequestRetryCount) .. ", tag=" .. tostring(tag) .. ", err=" .. tostring(rpcErr))
+        else
+            ugcprint("[MMainUI] Timeout exit RPC failed: local player controller is nil. attempt=" .. tostring(self.CountdownExitRequestRetryCount) .. ", tag=" .. tostring(tag))
+        end
+
+        if (self.CountdownExitRequestRetryCount or 0) >= 3 then
+            self.CountdownExitRequestPending = false
+            ugcprint("[MMainUI] Timeout exit RPC retry limit reached, stop retrying")
+            return
+        end
+
+        UGCGameSystem.SetTimer(self, function()
+            TryNotify("Retry")
+        end, 0.8, false)
+    end
+
+    TryNotify(reason or "Unknown")
+end
+
 -- ============ Dungeon countdown functions ============
 
 -- Start the dungeon countdown
@@ -1178,6 +1262,7 @@ function MMainUI:StartCountdown(totalSeconds)
     self.CountdownTimeoutTriggered = false
     self.CountdownExitRequestPending = false
     self.CountdownExitRequestSent = false
+    self.CountdownExitRequestRetryCount = 0
     self.TextBlock_timeout:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
     
     -- Update the display immediately once
@@ -1197,6 +1282,7 @@ function MMainUI:StartCountdown(totalSeconds)
             self.CountdownTimeoutTriggered = true
             -- Run the timeout flow before stopping the timer
             ugcprint("[MMainUI] Countdown ended, triggering the timeout exit flow")
+            self:RequestCountdownTimeoutExit("CountdownEnded")
             self:ShowTip("时间到了，挑战失败。")
 
             self:StopCountdown()
@@ -1221,7 +1307,7 @@ end
 -- Stop the countdown
 function MMainUI:StopCountdown()
     if self.CountdownTimerHandle then
-        UGCGameSystem.StopTimer(self.CountdownTimerHandle)
+        ClearTimerSafe(self, self.CountdownTimerHandle, "CountdownTimer")
         self.CountdownTimerHandle = nil
     end
 end
@@ -1240,7 +1326,7 @@ function MMainUI:ShowTip(text)
     end
     -- Clear the old hide timer so repeated clicks do not hide the tip too early
     if self.TipTimerHandle then
-        UGCGameSystem.StopTimer(self.TipTimerHandle)
+        ClearTimerSafe(self, self.TipTimerHandle, "TipTimer")
     end
     self.TipTimerHandle = UGCGameSystem.SetTimer(self, function()
         if self.tip then
@@ -1318,7 +1404,7 @@ function MMainUI:ShowTipDuration(text, duration)
         self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 1)
     end
     if self.TipTimerHandle then
-        UGCGameSystem.StopTimer(self.TipTimerHandle)
+        ClearTimerSafe(self, self.TipTimerHandle, "TipDurationTimer")
     end
     self.TipTimerHandle = UGCGameSystem.SetTimer(self, function()
         if self.tip then

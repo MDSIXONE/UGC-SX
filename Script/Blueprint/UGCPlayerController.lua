@@ -9,6 +9,27 @@ local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 local UGCPlayerController = {}
 local TEAM_ABSORB_EXP_SHARE_RATE = 0.1
 
+local function IsObjectValidSafe(obj)
+    if not obj then
+        return false
+    end
+
+    if UGCObjectUtility and UGCObjectUtility.IsObjectValid then
+        local okValid, validOrErr = pcall(function()
+            return UGCObjectUtility.IsObjectValid(obj)
+        end)
+
+        if okValid then
+            return validOrErr == true
+        end
+
+        ugcprint("[UGCPlayerController] IsObjectValid 调用异常: " .. tostring(validOrErr))
+        return false
+    end
+
+    return true
+end
+
 local function GetPlayerNameByPlayerKey(PlayerKey)
     if not PlayerKey or PlayerKey <= 0 then
         return tostring(PlayerKey)
@@ -30,21 +51,58 @@ local function GetPlayerNameByPlayerKey(PlayerKey)
     return tostring(PlayerKey)
 end
 
-local function ResolveSingleModeTimeOutActor()
+local function ResolveSingleModeTimeOutActor(worldContextObject)
     local classPathCandidates = {
         "Script.MODE.SingleModeTimeOut",
         "Script.MODE.SingleModeTimeOut.SingleModeTimeOut_C",
     }
 
+    local worldContext = worldContextObject or UGCGameSystem.GameState or UGCGameSystem.GameMode
+    if not worldContext then
+        ugcprint("[UGCPlayerController] ResolveSingleModeTimeOutActor 失败：WorldContextObject 为空")
+        return nil, nil
+    end
+
+    if not UGCActorComponentUtility or not UGCActorComponentUtility.GetAllActorsOfClass then
+        ugcprint("[UGCPlayerController] ResolveSingleModeTimeOutActor 失败：UGCActorComponentUtility.GetAllActorsOfClass 不可用")
+        return nil, nil
+    end
+
     for _, classPath in ipairs(classPathCandidates) do
-        local actorList = UGCGameSystem.GetAllActorsOfClass(classPath)
+        local okLoadClass, actorClassOrErr = pcall(function()
+            return UGCObjectUtility.LoadClass(classPath)
+        end)
+
+        if not okLoadClass then
+            ugcprint("[UGCPlayerController] ResolveSingleModeTimeOutActor 加载类失败, classPath=" .. tostring(classPath) .. ", err=" .. tostring(actorClassOrErr))
+            goto continue_classpath
+        end
+
+        local actorClass = actorClassOrErr
+        if not actorClass then
+            ugcprint("[UGCPlayerController] ResolveSingleModeTimeOutActor 加载类为空, classPath=" .. tostring(classPath))
+            goto continue_classpath
+        end
+
+        local okGetActor, actorListOrErr = pcall(function()
+            return UGCActorComponentUtility.GetAllActorsOfClass(worldContext, actorClass)
+        end)
+
+        if not okGetActor then
+            ugcprint("[UGCPlayerController] ResolveSingleModeTimeOutActor 获取Actor失败, classPath=" .. tostring(classPath) .. ", err=" .. tostring(actorListOrErr))
+            goto continue_classpath
+        end
+
+        local actorList = actorListOrErr
         if actorList and #actorList > 0 then
             for _, actor in pairs(actorList) do
-                if actor and UGCObjectUtility.IsObjectValid(actor) then
+                if IsObjectValidSafe(actor) then
                     return actor, classPath
                 end
             end
         end
+
+        ::continue_classpath::
     end
 
     return nil, nil
@@ -726,8 +784,15 @@ function UGCPlayerController:Client_ShowSettlementTipUI()
             local hasRetried = false
             local function DoRequestMatch(tag)
                 ugcprint("[UGCPlayerController] RequestMatch(1001) 开始调用, tag=" .. tostring(tag))
-                local bRequestSuccess = UGCMultiMode.RequestMatch(1001, function(bSuccess)
-                    ugcprint("[UGCPlayerController] RequestMatch(1001) 回调, tag=" .. tostring(tag) .. ", bSuccess=" .. tostring(bSuccess))
+                local bRequestSuccess = UGCMultiMode.RequestMatch(1001, function(arg1, arg2)
+                    local bSuccess = false
+                    if type(arg1) == "boolean" then
+                        bSuccess = arg1
+                    elseif type(arg2) == "boolean" then
+                        bSuccess = arg2
+                    end
+
+                    ugcprint("[UGCPlayerController] RequestMatch(1001) 回调, tag=" .. tostring(tag) .. ", arg1=" .. tostring(arg1) .. ", arg2=" .. tostring(arg2) .. ", parsedSuccess=" .. tostring(bSuccess))
                     if (not bSuccess) and (not hasRetried) then
                         hasRetried = true
                         ugcprint("[UGCPlayerController] RequestMatch 回调失败，1.5秒后重试一次")
@@ -871,36 +936,67 @@ end
 
 --- Server: notify timeout finished
 function UGCPlayerController:Server_NotifyTimeOutFinish()
-    ugcprint("[Server] Server_NotifyTimeOutFinish 被调用")
+    local playerKey = "Unknown"
+    local okPlayerKey, playerKeyOrErr = pcall(function()
+        return UGCGameSystem.GetPlayerKeyByPlayerController(self)
+    end)
+    if okPlayerKey then
+        playerKey = tostring(playerKeyOrErr)
+    end
+
+    ugcprint("[Server] Server_NotifyTimeOutFinish 被调用, playerKey=" .. tostring(playerKey))
     
     if not self:HasAuthority() then
         --ugcprint("[Server] 错误：不是服务端，退出")
         return
     end
 
-    local timeOutActor = self.CurrentTimeOutActor
-
-    if (not timeOutActor) or (not UGCObjectUtility.IsObjectValid(timeOutActor)) then
-        local resolvedActor, classPath = ResolveSingleModeTimeOutActor()
-        if resolvedActor then
-            timeOutActor = resolvedActor
-            ugcprint("[Server] CurrentTimeOutActor 为空，已通过类路径定位到 TimeOutActor: " .. tostring(classPath))
-        end
+    if self.bHandlingTimeOutFinishRPC then
+        ugcprint("[Server] Server_NotifyTimeOutFinish 正在处理中，忽略重复调用, playerKey=" .. tostring(playerKey))
+        return
     end
 
-    if timeOutActor and UGCObjectUtility.IsObjectValid(timeOutActor) then
-        if timeOutActor.bTimeOutFinished then
-            ugcprint("[Server] TimeOutActor 已完成，忽略重复 OnFinish")
-        else
-            timeOutActor.bTimeOutFinished = true
-            ugcprint("[Server] 调用 TimeOutActor:OnFinish()，按关卡流程进入结算阶段")
-            timeOutActor:OnFinish()
+    self.bHandlingTimeOutFinishRPC = true
+
+    local okHandle, handleErr = pcall(function()
+        local timeOutActor = self.CurrentTimeOutActor
+
+        if (not timeOutActor) or (not IsObjectValidSafe(timeOutActor)) then
+            local resolvedActor, classPath = ResolveSingleModeTimeOutActor(self)
+            if resolvedActor then
+                timeOutActor = resolvedActor
+                ugcprint("[Server] CurrentTimeOutActor 为空，已通过类路径定位到 TimeOutActor: " .. tostring(classPath) .. ", playerKey=" .. tostring(playerKey))
+            else
+                ugcprint("[Server] 通过类路径定位 TimeOutActor 失败, playerKey=" .. tostring(playerKey))
+            end
         end
 
-        self.CurrentTimeOutActor = nil
-    else
-        ugcprint("[Server] 警告：未找到 TimeOutActor，回退为直接显示 SettlementTip")
-        UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
+        if timeOutActor and IsObjectValidSafe(timeOutActor) then
+            if timeOutActor.bTimeOutFinished then
+                ugcprint("[Server] TimeOutActor 已完成，忽略重复 OnFinish, playerKey=" .. tostring(playerKey))
+            else
+                timeOutActor.bTimeOutFinished = true
+                ugcprint("[Server] 调用 TimeOutActor:OnFinish()，按关卡流程进入结算阶段, playerKey=" .. tostring(playerKey))
+                timeOutActor:OnFinish()
+            end
+
+            self.CurrentTimeOutActor = nil
+        else
+            ugcprint("[Server] 警告：未找到 TimeOutActor，回退为直接显示 SettlementTip, playerKey=" .. tostring(playerKey))
+            UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
+        end
+    end)
+
+    self.bHandlingTimeOutFinishRPC = false
+
+    if not okHandle then
+        ugcprint("[Server] Server_NotifyTimeOutFinish 执行异常: " .. tostring(handleErr) .. ", playerKey=" .. tostring(playerKey))
+        local okFallback, fallbackErr = pcall(function()
+            UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
+        end)
+        if not okFallback then
+            ugcprint("[Server] Server_NotifyTimeOutFinish 异常后兜底调用失败: " .. tostring(fallbackErr) .. ", playerKey=" .. tostring(playerKey))
+        end
     end
 end
 
@@ -1641,7 +1737,12 @@ function UGCPlayerController:Client_OnP1Died()
     -- Delay 2 seconds then enter exit flow
     local PlayerController = self
     if self.P1DiedDelayHandle then
-        UGCGameSystem.StopTimer(self.P1DiedDelayHandle)
+        local okClearTimer, clearTimerErr = pcall(function()
+            UGCGameSystem.ClearTimer(self, self.P1DiedDelayHandle)
+        end)
+        if not okClearTimer then
+            ugcprint("[UGCPlayerController] 清理 P1DiedDelayHandle 失败: " .. tostring(clearTimerErr))
+        end
         self.P1DiedDelayHandle = nil
     end
 

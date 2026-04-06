@@ -38,15 +38,26 @@ function SingleModeMgr:ReceiveBeginPlay()
                     -- ugcprint("[SingleModeMgr] Player TeamID=" .. tostring(TeamID) .. ", CampID=" .. tostring(CampID))
 
                     -- Find p1 and print camp relationship
-                    local allActors = UGCGameSystem.GetAllActorsOfClass("Script.Blueprint.Prefabs.Monsters.patner.p1")
-                    if allActors and #allActors > 0 then
-                        for _, p1Actor in pairs(allActors) do
-                            local p1CampID = UGCCampSystem.GetCampIDByActor(p1Actor)
-                            local relation = UGCCampSystem.GetCampRelationWithActor(Pawn, p1Actor)
-                            -- ugcprint("[SingleModeMgr] p1 CampID=" .. tostring(p1CampID) .. ", relation with player=" .. tostring(relation) .. " (0=Friendly/1=Neutral/2=Enemy)")
+                    local p1Class = UGCObjectUtility.LoadClass("Script.Blueprint.Prefabs.Monsters.patner.p1")
+                    if p1Class and UGCActorComponentUtility and UGCActorComponentUtility.GetAllActorsOfClass then
+                        local okGetActors, allActorsOrErr = pcall(function()
+                            return UGCActorComponentUtility.GetAllActorsOfClass(self, p1Class)
+                        end)
+
+                        if okGetActors then
+                            local allActors = allActorsOrErr
+                            if allActors and #allActors > 0 then
+                                for _, p1Actor in pairs(allActors) do
+                                    local p1CampID = UGCCampSystem.GetCampIDByActor(p1Actor)
+                                    local relation = UGCCampSystem.GetCampRelationWithActor(Pawn, p1Actor)
+                                    -- ugcprint("[SingleModeMgr] p1 CampID=" .. tostring(p1CampID) .. ", relation with player=" .. tostring(relation) .. " (0=Friendly/1=Neutral/2=Enemy)")
+                                end
+                            else
+                                -- ugcprint("[SingleModeMgr] p1 Actor not found")
+                            end
+                        else
+                            ugcprint("[SingleModeMgr] 查询 p1 actor 失败: " .. tostring(allActorsOrErr))
                         end
-                    else
-                        -- ugcprint("[SingleModeMgr] p1 Actor not found")
                     end
                 end
             end

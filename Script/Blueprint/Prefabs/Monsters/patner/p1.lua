@@ -97,15 +97,33 @@ function p1:BPDie(KillingDamage, EventInstigator, DamageCauser, DamageEvent, Dam
                 "Script.MODE.SingleModeTimeOut.SingleModeTimeOut_C",
             }
 
+            local worldContext = self
+            if (not worldContext) or (UGCObjectUtility and UGCObjectUtility.IsObjectValid and (not UGCObjectUtility.IsObjectValid(worldContext))) then
+                worldContext = UGCGameSystem.GameState or UGCGameSystem.GameMode
+            end
+
             for _, classPath in ipairs(timeoutClassPaths) do
-                local actorList = UGCGameSystem.GetAllActorsOfClass(classPath)
-                if actorList and #actorList > 0 then
-                    for _, actor in pairs(actorList) do
-                        if actor and UGCObjectUtility.IsObjectValid(actor) then
-                            timeoutActor = actor
-                            break
+                local actorClass = UGCObjectUtility.LoadClass(classPath)
+                if actorClass and worldContext and UGCActorComponentUtility and UGCActorComponentUtility.GetAllActorsOfClass then
+                    local okGetActors, actorListOrErr = pcall(function()
+                        return UGCActorComponentUtility.GetAllActorsOfClass(worldContext, actorClass)
+                    end)
+
+                    if okGetActors then
+                        local actorList = actorListOrErr
+                        if actorList and #actorList > 0 then
+                            for _, actor in pairs(actorList) do
+                                if actor and UGCObjectUtility.IsObjectValid(actor) then
+                                    timeoutActor = actor
+                                    break
+                                end
+                            end
                         end
+                    else
+                        ugcprint("[p1] 获取 SingleModeTimeOut actor 失败, classPath=" .. tostring(classPath) .. ", err=" .. tostring(actorListOrErr))
                     end
+                else
+                    ugcprint("[p1] 跳过 classPath=" .. tostring(classPath) .. "，原因：类加载失败或查询接口不可用")
                 end
 
                 if timeoutActor then

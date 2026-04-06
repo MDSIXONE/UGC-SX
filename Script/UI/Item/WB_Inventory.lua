@@ -1,4 +1,4 @@
-﻿---@class WB_Inventory_C:UUserWidget
+---@class WB_Inventory_C:UUserWidget
 ---@field Button_0 UButton
 ---@field cancel UButton
 ---@field detail UOverlay
