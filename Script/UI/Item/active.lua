@@ -109,11 +109,22 @@ function active:RefreshBuySlots()
         return
     end
 
-    -- Configuration table used by this widget.
+    -- Normalize each row to keep UI and server checks consistent.
     local sortedRows = {}
-    for rowName, config in pairs(allConfig) do
-        table.insert(sortedRows, { rowIndex = tonumber(rowName), config = config })
+    for rowName, _ in pairs(allConfig) do
+        local rowIndex = tonumber(rowName)
+        if rowIndex and rowIndex > 0 then
+            local normalizedConfig = UGCGameData.GetChongzhiRewardConfig(rowIndex)
+            if normalizedConfig then
+                table.insert(sortedRows, { rowIndex = rowIndex, config = normalizedConfig })
+            end
+        end
     end
+
+    if #sortedRows <= 0 then
+        return
+    end
+
     table.sort(sortedRows, function(a, b) return a.rowIndex < b.rowIndex end)
 
     local SlotClass = UGCObjectUtility.LoadClass(UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/buyslot.buyslot_C'))
@@ -132,7 +143,7 @@ function active:RefreshBuySlots()
         local slot = UserWidget.NewWidgetObjectBP(PlayerController, SlotClass)
         if slot then
             self.WrapBox_0:AddChild(slot)
-            local claimed = claimedMap[rowData.rowIndex] or false
+            local claimed = claimedMap[rowData.rowIndex] or claimedMap[tostring(rowData.rowIndex)] or false
             if slot.SetData then
                 slot:SetData(rowData.rowIndex, rowData.config, currentSpend, claimed)
             end
@@ -148,7 +159,19 @@ function active:GetClaimedChongzhi()
         return playerState:DeserializeClaimedChongzhi(playerState.UGCClaimedChongzhiStr)
     end
     if playerState and playerState.ClaimedChongzhi then
-        return playerState.ClaimedChongzhi
+        local normalizedMap = {}
+        for key, value in pairs(playerState.ClaimedChongzhi) do
+            local keyID = tonumber(key)
+            if keyID and (value == true or value == 1 or value == "1" or value == "true") then
+                normalizedMap[keyID] = true
+            end
+
+            local valueID = tonumber(value)
+            if valueID and valueID > 0 then
+                normalizedMap[valueID] = true
+            end
+        end
+        return normalizedMap
     end
     return {}
 end

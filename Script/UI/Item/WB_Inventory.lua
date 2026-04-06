@@ -206,8 +206,13 @@ function WB_Inventory:CreateCraftSlots()
 	-- Local helper value for this logic block.
 	local slotPath = 'Asset/UI/Item/WB_Slot.WB_Slot_C'
 	local fullPath = UGCGameSystem.GetUGCResourcesFullPath(slotPath)
+	if not fullPath or fullPath == "" then
+		ugcprint("[WB_Inventory] Error: slot class path is empty, slotPath=" .. tostring(slotPath))
+		return
+	end
 	local SlotClass = UGCObjectUtility.LoadClass(fullPath)
 	if not SlotClass then
+		ugcprint("[WB_Inventory] Error: failed to load slot class, fullPath=" .. tostring(fullPath))
 		-- Exit early when requirements are not met.
 		return
 	end

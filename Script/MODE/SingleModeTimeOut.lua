@@ -3,34 +3,32 @@
 local SingleModeTimeOut = {}
 
 function SingleModeTimeOut:LuaExecute()
-    -- ugcprint("[SingleModeTimeOut] ========== Timeout triggered ==========")
+    ugcprint("[SingleModeTimeOut] ========== 超时触发 ==========")
 
-    -- Get all players in current level
+    -- 获取当前关卡内的所有玩家
     local AllPlayer = UGCLevelFlowSystem.GetAllPlayerControllerInCurrentLevel()
     
     if AllPlayer and #AllPlayer > 0 then
-        -- ugcprint("[SingleModeTimeOut] Player count: " .. tostring(#AllPlayer))
+        ugcprint("[SingleModeTimeOut] 当前关卡玩家数量: " .. tostring(#AllPlayer))
         
         for k, Player in pairs(AllPlayer) do
-            -- ugcprint("[SingleModeTimeOut] Player " .. tostring(k) .. " timeout triggered")
+            ugcprint("[SingleModeTimeOut] 玩家 " .. tostring(k) .. " 触发超时")
             
-            -- Save TimeOutActor reference
-            Player.TimeoutFinishTriggered = false
-            Player.TimeoutFinishProcessing = false
+            -- 保存 TimeOutActor 引用
             Player.CurrentTimeOutActor = self
-            -- ugcprint("[SingleModeTimeOut] Saved TimeOutActor reference in PlayerController")
+            ugcprint("[SingleModeTimeOut] 在 PlayerController 中保存了 TimeOutActor 引用")
             
-            -- Show Settlement_2 UI via client RPC
-            -- ugcprint("[SingleModeTimeOut] Call client RPC to show Settlement_2 UI")
+            -- 通过客户端RPC显示 Settlement_2 UI
+            ugcprint("[SingleModeTimeOut] 调用客户端RPC显示 Settlement_2 UI")
             UnrealNetwork.CallUnrealRPC(Player, Player, "Client_ShowSettlement2UI")
         end
     else
-        -- ugcprint("[SingleModeTimeOut] Warning: no players in current level")
-        -- No players, finish directly
+        ugcprint("[SingleModeTimeOut] 警告：当前关卡没有玩家")
+        -- 如果没有玩家，直接完成
         self:OnFinish()
     end
     
-    -- ugcprint("[SingleModeTimeOut] Timeout trigger completed")
+    ugcprint("[SingleModeTimeOut] 超时触发完成")
 end
 
 return SingleModeTimeOut

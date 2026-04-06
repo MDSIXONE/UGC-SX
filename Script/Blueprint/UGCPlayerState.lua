@@ -167,6 +167,27 @@ function UGCPlayerState:DeserializeClaimedChongzhi(claimedStr)
     return claimedMap
 end
 
+local function NormalizeClaimedChongzhiMap(claimedRaw)
+    local claimedMap = {}
+    if type(claimedRaw) ~= "table" then
+        return claimedMap
+    end
+
+    for key, value in pairs(claimedRaw) do
+        local keyID = tonumber(key)
+        if keyID and (value == true or value == 1 or value == "1" or value == "true") then
+            claimedMap[keyID] = true
+        end
+
+        local valueID = tonumber(value)
+        if valueID and valueID > 0 then
+            claimedMap[valueID] = true
+        end
+    end
+
+    return claimedMap
+end
+
 function UGCPlayerState:ReceiveBeginPlay()
     UGCPlayerState.SuperClass.ReceiveBeginPlay(self)
     
@@ -237,7 +258,7 @@ function UGCPlayerState:DataInit()
     if type(claimedRaw) == "string" then
         self.ClaimedChongzhi = self:DeserializeClaimedChongzhi(claimedRaw)
     else
-        self.ClaimedChongzhi = claimedRaw
+        self.ClaimedChongzhi = NormalizeClaimedChongzhiMap(claimedRaw)
     end
     -- Total spend is used for cumulative recharge and VIP, daily task spend resets separately.
     self.TotalSpendCount = tonumber(Data.GameRecordData.TotalSpendCount) or 0
@@ -1569,6 +1590,39 @@ end
 
 -- ============ Additional Server RPCs (extended from base) ============
 
+local function GrantRewardToPlayerState(playerState, itemID, itemCount)
+    itemID = tonumber(itemID) or 0
+    itemCount = math.floor(tonumber(itemCount) or 0)
+    if itemID <= 0 or itemCount <= 0 then
+        return false
+    end
+
+    local PC = UGCGameSystem.GetPlayerControllerByPlayerState(playerState)
+    local VirtualItemManager = UGCBlueprintFunctionLibrary.GetGamePartGlobalActor(UGCGameSystem.GameState, "VirtualItemManager")
+    if VirtualItemManager and PC then
+        local addResult = nil
+        local addOk = pcall(function()
+            addResult = VirtualItemManager:AddVirtualItem(PC, itemID, itemCount)
+        end)
+        if addOk and (addResult == nil or addResult == true or (type(addResult) == "number" and addResult > 0)) then
+            return true
+        end
+    end
+
+    local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
+    if PlayerPawn and UGCObjectUtility.IsObjectValid(PlayerPawn) then
+        local addedCount = UGCBackpackSystemV2.AddItemV2(PlayerPawn, itemID, itemCount)
+        if addedCount == true then
+            return true
+        end
+        if type(addedCount) == "number" and addedCount > 0 then
+            return true
+        end
+    end
+
+    return false
+end
+
 -- Server: remove virtual item
 function UGCPlayerState:Server_RemoveVirtualItem(virtualItemID, count)
     if not UGCGameSystem.IsServer(self) then return end
@@ -1576,14 +1630,114 @@ function UGCPlayerState:Server_RemoveVirtualItem(virtualItemID, count)
     virtualItemID = tonumber(virtualItemID) or 0
     count = math.floor(tonumber(count) or 0)
     if virtualItemID <= 0 or count <= 0 then return end
-    
+
     local VirtualItemManager = UGCBlueprintFunctionLibrary.GetGamePartGlobalActor(UGCGameSystem.GameState, "VirtualItemManager")
-    if VirtualItemManager then
-        local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
-        if PC then
-            VirtualItemManager:RemoveVirtualItem(PC, virtualItemID, count)
-        end
+    local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
+    if (not VirtualItemManager) or (not PC) then
+        return
     end
+
+    -- Jiange forge stone (5666) needs an explicit server confirmation callback.
+    if virtualItemID == 5666 then
+        local function GetRemainCount()
+            local queryOk, queryRet = pcall(function()
+                return VirtualItemManager:GetItemNum(virtualItemID, PC)
+            end)
+            if queryOk then
+                return tonumber(queryRet) or 0
+            end
+
+            local fallbackOk, fallbackRet = pcall(function()
+                return VirtualItemManager:GetItemNum(virtualItemID)
+            end)
+            if fallbackOk then
+                return tonumber(fallbackRet) or 0
+            end
+            return 0
+        end
+
+        local function NotifyForgeConsumeResult(success, tipText)
+            UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeForgeConsumeResult", success == true, GetRemainCount(), tipText or "")
+        end
+
+        local function ParseRemoveResult(result)
+            if result == nil then
+                return true
+            end
+
+            local resultType = type(result)
+            if resultType == "boolean" then
+                return result
+            end
+            if resultType == "number" then
+                return result > 0
+            end
+            if resultType == "table" then
+                if result.bSucceeded ~= nil then
+                    return result.bSucceeded == true
+                end
+                if result.bSuccess ~= nil then
+                    return result.bSuccess == true
+                end
+                if result.Success ~= nil then
+                    return result.Success == true
+                end
+                if result.Result ~= nil then
+                    return result.Result == true
+                end
+            end
+
+            return false
+        end
+
+        local callbackDone = false
+        local beforeCount = GetRemainCount()
+
+        local callOk = pcall(function()
+            VirtualItemManager:RemoveVirtualItem(PC, virtualItemID, count, function(result)
+                callbackDone = true
+                local success = ParseRemoveResult(result)
+                if success then
+                    NotifyForgeConsumeResult(true, "")
+                else
+                    NotifyForgeConsumeResult(false, "锻造石不足，无法升级")
+                end
+            end)
+        end)
+
+        if not callOk then
+            local fallbackResult = nil
+            local fallbackOk = pcall(function()
+                fallbackResult = VirtualItemManager:RemoveVirtualItem(PC, virtualItemID, count)
+            end)
+
+            if (not fallbackOk) or (not ParseRemoveResult(fallbackResult)) then
+                NotifyForgeConsumeResult(false, "锻造石不足，无法升级")
+                return
+            end
+
+            NotifyForgeConsumeResult(true, "")
+            return
+        end
+
+        -- Fallback path: if callback is not triggered, infer by item count delta.
+        UGCGameSystem.SetTimer(self, function()
+            if callbackDone then
+                return
+            end
+
+            local afterCount = GetRemainCount()
+            if afterCount <= (beforeCount - count) then
+                NotifyForgeConsumeResult(true, "")
+            else
+                NotifyForgeConsumeResult(false, "锻造石不足，无法升级")
+            end
+        end, 0.35, false)
+
+        return
+    end
+
+    VirtualItemManager:RemoveVirtualItem(PC, virtualItemID, count)
 end
 
 -- Server: remove backpack item
@@ -1607,26 +1761,55 @@ function UGCPlayerState:Server_ClaimChongzhiReward(rewardID)
     
     rewardID = math.floor(tonumber(rewardID) or 0)
     if rewardID <= 0 then return end
+
+    local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
+    local function NotifyChongzhiClaimResult(success, tipText)
+        if PC then
+            UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnChongzhiClaimResult", success == true, rewardID, tipText or "")
+        end
+    end
+
+    self.ChongzhiClaimPending = self.ChongzhiClaimPending or {}
+    if self.ChongzhiClaimPending[rewardID] then
+        NotifyChongzhiClaimResult(false, "领取处理中，请稍后")
+        return
+    end
+    self.ChongzhiClaimPending[rewardID] = true
+
+    local function FinishClaim(success, tipText)
+        self.ChongzhiClaimPending[rewardID] = nil
+        NotifyChongzhiClaimResult(success, tipText)
+    end
     
-    if self.ClaimedChongzhi and self.ClaimedChongzhi[rewardID] then
+    if self.ClaimedChongzhi and (self.ClaimedChongzhi[rewardID] or self.ClaimedChongzhi[tostring(rewardID)]) then
+        FinishClaim(false, "该奖励已领取")
         return
     end
     
     local rewardConfig = UGCGameData.GetChongzhiRewardConfig(rewardID)
-    if not rewardConfig then return end
+    if not rewardConfig then
+        FinishClaim(false, "奖励配置不存在")
+        return
+    end
     
     local requiredSpend = rewardConfig.RequiredSpend or 0
     local currentSpend = self:GetTotalSpendCount()
-    if currentSpend < requiredSpend then return end
+    if currentSpend < requiredSpend then
+        FinishClaim(false, "累计充值不足，无法领取")
+        return
+    end
     
-    local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
-    if not rewardConfig.ItemID or not rewardConfig.ItemCount then
+    local rewardItemID = tonumber(rewardConfig.RewardItemID or rewardConfig.ItemID or rewardConfig.itemid) or 0
+    local rewardItemCount = math.floor(tonumber(rewardConfig.RewardItemCount or rewardConfig.ItemCount or rewardConfig.itemnum) or 0)
+    if rewardItemID <= 0 or rewardItemCount <= 0 then
+        FinishClaim(false, "奖励配置异常")
         return
     end
-    if not PlayerPawn then
+
+    if not GrantRewardToPlayerState(self, rewardItemID, rewardItemCount) then
+        FinishClaim(false, "发放奖励失败，请稍后再试")
         return
     end
-    UGCBackpackSystemV2.AddItemV2(PlayerPawn, rewardConfig.ItemID, rewardConfig.ItemCount)
     
     if not self.ClaimedChongzhi then
         self.ClaimedChongzhi = {}
@@ -1634,16 +1817,20 @@ function UGCPlayerState:Server_ClaimChongzhiReward(rewardID)
     self.ClaimedChongzhi[rewardID] = true
     self:ReplicateSpendProperties()
     self:DataSave()
+    FinishClaim(true, "充值奖励领取成功")
 end
 
 -- Server: give Jiange settlement reward
 function UGCPlayerState:Server_GiveTaReward(floorNum)
     if not UGCGameSystem.IsServer(self) then return end
+    self:EnsureDataInitialized()
     
     floorNum = math.floor(tonumber(floorNum) or 0)
+    if floorNum <= 0 then
+        floorNum = math.floor(tonumber(self.GameData and self.GameData.PlayerJiangeFloor) or 0)
+    end
     if floorNum <= 0 then return end
-    
-    self:EnsureDataInitialized()
+
     if floorNum > (self.GameData.PlayerJiangeFloor or 0) then
         self.GameData.PlayerJiangeFloor = floorNum
         local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
@@ -1655,18 +1842,16 @@ function UGCPlayerState:Server_GiveTaReward(floorNum)
     
     local rewardConfig = UGCGameData.GetTaSettlementReward(floorNum)
     if rewardConfig then
-        local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
-        if rewardConfig.ItemID and rewardConfig.ItemCount and PlayerPawn then
-            UGCBackpackSystemV2.AddItemV2(PlayerPawn, rewardConfig.ItemID, rewardConfig.ItemCount)
+        local rewardItemID = tonumber(rewardConfig.ItemID or rewardConfig.itemid) or 0
+        local rewardItemCount = math.floor(tonumber(rewardConfig.ItemCount or rewardConfig.itemcount or rewardConfig.itemnum) or 0)
+        if rewardItemID > 0 and rewardItemCount > 0 then
+            GrantRewardToPlayerState(self, rewardItemID, rewardItemCount)
         end
-        if rewardConfig.Exp and rewardConfig.Exp > 0 then
-            self:AddExp(rewardConfig.Exp)
+
+        local rewardExp = tonumber(rewardConfig.Exp or rewardConfig.exp) or 0
+        if rewardExp > 0 then
+            self:AddExp(rewardExp)
         end
-    end
-    
-    local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
-    if PC then
-        UnrealNetwork.CallUnrealRPC(PC, PC, "Client_ShowTaSettlementUI", floorNum)
     end
     
     self:DataSave()
@@ -1677,8 +1862,13 @@ function UGCPlayerState:Server_SaveJiangeData(jiangeLevel, jiangeProgress)
     if not UGCGameSystem.IsServer(self) then return end
     self:EnsureDataInitialized()
     
-    self.GameData.PlayerJiangeLevel = math.floor(tonumber(jiangeLevel) or 1)
-    self.GameData.PlayerJiangeProgress = math.floor(tonumber(jiangeProgress) or 0)
+    local targetLevel = math.floor(tonumber(jiangeLevel) or 1)
+    local targetProgress = tonumber(jiangeProgress) or 0
+    targetProgress = math.max(0, math.min(100, targetProgress))
+    targetProgress = math.floor(targetProgress * 10 + 0.5) / 10
+
+    self.GameData.PlayerJiangeLevel = targetLevel
+    self.GameData.PlayerJiangeProgress = targetProgress
     
     local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
     if PC then
@@ -1735,18 +1925,17 @@ function UGCPlayerState:Server_ClaimJiangeFloorReward(floorNum)
     end
     
     local rewardConfig = UGCGameData.GetJiangeFloorReward(floorNum)
-    if not rewardConfig or not rewardConfig.ItemID or not rewardConfig.ItemCount then
+    local rewardItemID = tonumber(rewardConfig and (rewardConfig.ItemID or rewardConfig.itemid)) or 0
+    local rewardItemCount = math.floor(tonumber(rewardConfig and (rewardConfig.ItemCount or rewardConfig.itemcount or rewardConfig.itemnum)) or 0)
+    if rewardItemID <= 0 or rewardItemCount <= 0 then
         NotifyFloorClaimResult(false, "奖励配置异常")
         return
     end
 
-    local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
-    if not PlayerPawn then
+    if not GrantRewardToPlayerState(self, rewardItemID, rewardItemCount) then
         NotifyFloorClaimResult(false, "领取失败，请稍后再试")
         return
     end
-
-    UGCBackpackSystemV2.AddItemV2(PlayerPawn, rewardConfig.ItemID, rewardConfig.ItemCount)
     
     if claimed == "" then
         self.GameData.PlayerJiangeFloorClaimed = tostring(floorNum)
@@ -1784,23 +1973,23 @@ function UGCPlayerState:Server_ClaimJiangeDailyReward()
     end
     
     local dailyRewardConfig = UGCGameData.GetJiangeDailyReward()
-    if not dailyRewardConfig or not dailyRewardConfig.ItemID or not dailyRewardConfig.ItemCount then
+    local rewardItemID = tonumber(dailyRewardConfig and (dailyRewardConfig.ItemID or dailyRewardConfig.itemid)) or 0
+    local rewardItemCount = math.floor(tonumber(dailyRewardConfig and (dailyRewardConfig.ItemCount or dailyRewardConfig.itemcount or dailyRewardConfig.itemnum)) or 0)
+    if rewardItemID <= 0 or rewardItemCount <= 0 then
         if PC then
             UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeDailyClaimResult", false, 0, "奖励配置异常")
         end
         return
     end
 
-    local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
-    if not PlayerPawn then
+    if not GrantRewardToPlayerState(self, rewardItemID, rewardItemCount) then
         if PC then
             UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeDailyClaimResult", false, 0, "领取失败，请稍后再试")
         end
         return
     end
 
-    UGCBackpackSystemV2.AddItemV2(PlayerPawn, dailyRewardConfig.ItemID, dailyRewardConfig.ItemCount)
-    local amount = dailyRewardConfig.ItemCount
+    local amount = rewardItemCount
     
     self.GameData.PlayerJiangeDailyClaimDate = todayStr
     

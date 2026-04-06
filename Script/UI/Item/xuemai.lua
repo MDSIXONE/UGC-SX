@@ -24,6 +24,12 @@ function xuemai:OnToggleClicked()
 	local playerController = playerPawn:GetController()
 	if not playerController then return end
 	UnrealNetwork.CallUnrealRPC(playerController, playerController, "Server_SetBloodlineEnabled", self.bBloodlineEnabled)
+
+	if self.bBloodlineEnabled then
+		self:ShowTipViaMain("血脉已开启。")
+	else
+		self:ShowTipViaMain("血脉已关闭。")
+	end
 end
 
 function xuemai:UpdateImages()
@@ -41,6 +47,13 @@ function xuemai:LuaInit()
 	self.bInitDoOnce = true
 	if self.XUEMAIBUTTUN then
 		self.XUEMAIBUTTUN.OnClicked:Add(self.OnToggleClicked, self)
+	end
+end
+
+function xuemai:ShowTipViaMain(text)
+	local pc = UGCGameSystem.GetLocalPlayerController()
+	if pc and pc.MMainUI and pc.MMainUI.ShowTip then
+		pc.MMainUI:ShowTip(text)
 	end
 end
 

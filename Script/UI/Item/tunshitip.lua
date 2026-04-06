@@ -9,6 +9,8 @@ local tunshitip = {
     isProcessing = false -- 是否正在处理队列
 } 
 
+local MESSAGE_DISPLAY_DURATION = 0.3
+
 
 function tunshitip:Construct()
 	self:LuaInit();
@@ -38,11 +40,12 @@ function tunshitip:ShowTips(message)
 	end
 end
 
--- 处理队列（立即显示，不等待前一条结束）
+-- 处理队列（每条消息完整显示 0.3 秒）
 function tunshitip:ProcessQueue()
 	-- 检查队列是否为空
 	if #self.messageQueue == 0 then
 		self.isProcessing = false
+		self:SetVisibility(ESlateVisibility.Collapsed)
 		--ugcprint("[tunshitip] 队列已空，停止处理")
 		return
 	end
@@ -57,11 +60,11 @@ function tunshitip:ProcessQueue()
 	-- 立即显示这条消息
 	self:ShowSingleMessage(message)
 	
-	-- 0.1秒后处理下一条（不等待当前消息结束）
+	-- 0.3 秒后再处理下一条，保证每条提示完整显示
 	local nextDelegate = ObjectExtend.CreateDelegate(self, function()
 		self:ProcessQueue()
 	end)
-	KismetSystemLibrary.K2_SetTimerDelegateForLua(nextDelegate, self, 0.1, false)
+	KismetSystemLibrary.K2_SetTimerDelegateForLua(nextDelegate, self, MESSAGE_DISPLAY_DURATION, false)
 end
 
 -- 显示单条消息
@@ -85,17 +88,6 @@ function tunshitip:ShowSingleMessage(message)
 		self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 1)
 		--ugcprint("[tunshitip] 动画已播放")
 	end
-	
-	-- 0.3秒后隐藏（但不影响下一条的显示）
-	local hideDelegate = ObjectExtend.CreateDelegate(self, function()
-		-- 只有在队列为空且不在处理时才隐藏容器
-		if #self.messageQueue == 0 and not self.isProcessing then
-			self:SetVisibility(ESlateVisibility.Collapsed)
-			--ugcprint("[tunshitip] 所有提示已完成，容器已隐藏")
-		end
-	end)
-	
-	KismetSystemLibrary.K2_SetTimerDelegateForLua(hideDelegate, self, 0.3, false)
 end
 
 -- [Editor Generated Lua] function define Begin:

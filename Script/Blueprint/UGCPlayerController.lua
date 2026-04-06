@@ -208,7 +208,7 @@ end
 
 -- Available client RPCs
 function UGCPlayerController:GetAvailableClientRPCs()
-    return "Client_ShowTunshiSuccess", "Client_SetPlayerRotation", "Client_ShowSettlementUI", "Client_ShowSettlementTipUI", "Client_ShowSettlement2UI", "Client_OnPlayerLevelUp", "Client_ReceiveTeamInvite", "Client_TeamInviteResult", "Client_ReceiveJoinRequest", "Client_RefreshTeamUI", "Client_OnKickedFromTeam", "Client_ShowTaSettlementUI", "Client_UpdateJiangeFloor", "Client_OnP1Died", "Client_StartCountdown", "Client_SyncJiangeData", "Client_SyncShenyinData", "Client_ShowBaoxiangNumchoose", "Client_BeginTeamPanelPlayers", "Client_AddTeamPanelPlayer", "Client_EndTeamPanelPlayers", "Client_ShowBaoxiangReward", "Client_SyncJiangeRewardData", "Client_OnJiangeDailyClaimResult", "Client_OnJiangeFloorClaimResult", "Client_OnJiangeForgeConsumeResult", "Client_RestoreMainUIAfterRespawn", "Client_OnExpBlockedByRebirth", "Client_SyncMobKillCount"
+    return "Client_ShowTunshiSuccess", "Client_SetPlayerRotation", "Client_ShowSettlementUI", "Client_ShowSettlementTipUI", "Client_ShowSettlement2UI", "Client_OnPlayerLevelUp", "Client_ReceiveTeamInvite", "Client_TeamInviteResult", "Client_ReceiveJoinRequest", "Client_RefreshTeamUI", "Client_OnKickedFromTeam", "Client_ShowTaSettlementUI", "Client_UpdateJiangeFloor", "Client_OnP1Died", "Client_StartCountdown", "Client_SyncJiangeData", "Client_SyncShenyinData", "Client_ShowBaoxiangNumchoose", "Client_BeginTeamPanelPlayers", "Client_AddTeamPanelPlayer", "Client_EndTeamPanelPlayers", "Client_ShowBaoxiangReward", "Client_SyncJiangeRewardData", "Client_OnJiangeDailyClaimResult", "Client_OnJiangeFloorClaimResult", "Client_OnJiangeForgeConsumeResult", "Client_OnChongzhiClaimResult", "Client_RestoreMainUIAfterRespawn", "Client_OnExpBlockedByRebirth", "Client_SyncMobKillCount"
 end
 
 -- Client: show absorb success notification
@@ -530,204 +530,214 @@ end
 
 --- Client: show Settlement UI (level reward)
 function UGCPlayerController:Client_ShowSettlementUI()
-    -- ugcprint("[UGCPlayerController] Client_ShowSettlementUI called")
-    
-    if not self:IsLocalController() then
-        return
+    ugcprint("[UGCPlayerController] Client_ShowSettlementUI 被调用")
+
+    local bIsLocalController = false
+    local okIsLocal, isLocalResult = pcall(function()
+        return self:IsLocalController()
+    end)
+    if okIsLocal then
+        bIsLocalController = (isLocalResult == true)
+    end
+    ugcprint("[UGCPlayerController] Client_ShowSettlementUI IsLocalController=" .. tostring(bIsLocalController) .. ", ok=" .. tostring(okIsLocal))
+    if not bIsLocalController then
+        ugcprint("[UGCPlayerController] 警告：IsLocalController=false，仍继续执行结算兜底流程")
     end
 
-    if self.MMainUI and self.MMainUI.StopCountdown then
-        self.MMainUI.CountdownTimeoutTriggered = true
-        self.MMainUI:StopCountdown()
-    end
-    
-    local settlementPath = UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/Settlement.Settlement_C')
-    -- ugcprint("[UGCPlayerController] Settlement UI path: " .. tostring(settlementPath))
-    
-    -- Capture PlayerController reference for async callback
-    local PlayerController = self
-    
-    -- Create Settlement UI asynchronously
-    UGCWidgetManagerSystem.CreateWidgetAsync(settlementPath, function(Widget)
-        --ugcprint("[UGCPlayerController] CreateWidgetAsync callback triggered")
-        if Widget then
-            -- ugcprint("[UGCPlayerController] Settlement UI created successfully")
-            
-            -- Bind sure button click callback
-            Widget.OnSureClicked = function()
-                -- ugcprint("[UGCPlayerController] Settlement UI sure button clicked")
-                --ugcprint("[UGCPlayerController] Preparing to call server RPC")
-                
-                -- Notify server that level reward is finished
-                UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_NotifyLevelRewardFinish")
-            end
-            
-            -- Add to viewport with high Z-order
-            Widget:AddToViewport(6000)
-            ugcprint("[UGCPlayerController] Settlement UI added to viewport")
-        else
-            -- ugcprint("[UGCPlayerController] Failed to create Settlement UI, Widget is nil")
+    local okStopCountdown, stopCountdownErr = pcall(function()
+        if self.MMainUI and self.MMainUI.StopCountdown then
+            self.MMainUI.CountdownTimeoutTriggered = true
+            self.MMainUI:StopCountdown()
         end
     end)
-end
-
-local function CleanupSettlementTipState(PlayerController, reason)
-    if reason then
-        -- ugcprint("[UGCPlayerController] SettlementTip flow ended: " .. tostring(reason))
+    if not okStopCountdown then
+        ugcprint("[UGCPlayerController] StopCountdown 执行失败: " .. tostring(stopCountdownErr))
     end
 
-    if PlayerController and PlayerController.SettlementTipWidget and UGCObjectUtility.IsObjectValid(PlayerController.SettlementTipWidget) then
-        PlayerController.SettlementTipWidget:RemoveFromParent()
+    local settlementPath = UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/Settlement.Settlement_C')
+    ugcprint("[UGCPlayerController] Settlement UI 路径: " .. tostring(settlementPath))
+
+    local PlayerController = self
+    local bHandled = false
+
+    local function HandleSettlementFinish(reason, needGiveRewards)
+        if bHandled then
+            ugcprint("[UGCPlayerController] Settlement 已处理，忽略重复触发, reason=" .. tostring(reason))
+            return
+        end
+
+        bHandled = true
+        ugcprint("[UGCPlayerController] Settlement 触发完成流程, reason=" .. tostring(reason) .. ", needGiveRewards=" .. tostring(needGiveRewards))
+
+        if needGiveRewards then
+            local okGiveReward, giveRewardErr = pcall(function()
+                UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_GiveRewards")
+            end)
+
+            if okGiveReward then
+                ugcprint("[UGCPlayerController] 已调用 Server_GiveRewards")
+            else
+                ugcprint("[UGCPlayerController] 调用 Server_GiveRewards 失败: " .. tostring(giveRewardErr))
+            end
+        end
+
+        local okNotifyFinish, notifyFinishErr = pcall(function()
+            UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_NotifyLevelRewardFinish")
+        end)
+
+        if okNotifyFinish then
+            ugcprint("[UGCPlayerController] 已调用 Server_NotifyLevelRewardFinish")
+        else
+            ugcprint("[UGCPlayerController] 调用 Server_NotifyLevelRewardFinish 失败: " .. tostring(notifyFinishErr))
+        end
     end
 
-    if PlayerController then
-        PlayerController.SettlementTipWidget = nil
-        PlayerController.SettlementTipMatchingInProgress = false
-        PlayerController.SettlementTipRequestSent = false
-        PlayerController.SettlementTipRetryUsed = false
+    -- Global watchdog: continue level flow even if async callback never returns.
+    UGCTimerUtility.CreateLuaTimer(
+        10.0,
+        function()
+            if bHandled then
+                return
+            end
+
+            ugcprint("[UGCPlayerController] Settlement 全局看门狗触发，执行自动兜底")
+            HandleSettlementFinish("GlobalWatchdog", true)
+        end,
+        false,
+        "SettlementGlobalWatchdog"
+    )
+
+    local okCreateWidgetAsync, createWidgetAsyncErr = pcall(function()
+        UGCWidgetManagerSystem.CreateWidgetAsync(settlementPath, function(Widget)
+            ugcprint("[UGCPlayerController] Settlement CreateWidgetAsync 回调触发")
+
+            if Widget then
+                ugcprint("[UGCPlayerController] Settlement UI 创建成功")
+
+                Widget.OnSureClicked = function()
+                    -- Settlement widget sure click already calls Server_GiveRewards.
+                    HandleSettlementFinish("SureClicked", false)
+                end
+
+                Widget:AddToViewport(6000)
+                ugcprint("[UGCPlayerController] Settlement UI 已添加到视口")
+
+                UGCTimerUtility.CreateLuaTimer(
+                    8.0,
+                    function()
+                        if bHandled then
+                            return
+                        end
+
+                        ugcprint("[UGCPlayerController] Settlement 8秒未完成，执行自动兜底")
+                        if Widget and UGCObjectUtility.IsObjectValid(Widget) then
+                            Widget:RemoveFromParent()
+                        end
+
+                        HandleSettlementFinish("AutoFallback", true)
+                    end,
+                    false,
+                    "SettlementAutoFallbackTimer"
+                )
+            else
+                ugcprint("[UGCPlayerController] 创建 Settlement UI 失败，直接执行兜底流程")
+                HandleSettlementFinish("CreateWidgetFailed", true)
+            end
+        end)
+    end)
+    if not okCreateWidgetAsync then
+        ugcprint("[UGCPlayerController] 调用 CreateWidgetAsync 失败: " .. tostring(createWidgetAsyncErr))
+        HandleSettlementFinish("CreateWidgetAsyncError", true)
     end
 end
 
 --- Client: show SettlementTip UI and start matching
 function UGCPlayerController:Client_ShowSettlementTipUI()
-    -- ugcprint("[UGCPlayerController] Client_ShowSettlementTipUI called")
-    
-    if not self:IsLocalController() then
-        return
+    ugcprint("[UGCPlayerController] Client_ShowSettlementTipUI 被调用")
+
+    local bIsLocalController = false
+    local okIsLocal, isLocalResult = pcall(function()
+        return self:IsLocalController()
+    end)
+    if okIsLocal then
+        bIsLocalController = (isLocalResult == true)
+    end
+    ugcprint("[UGCPlayerController] Client_ShowSettlementTipUI IsLocalController=" .. tostring(bIsLocalController) .. ", ok=" .. tostring(okIsLocal))
+    if not bIsLocalController then
+        ugcprint("[UGCPlayerController] 警告：SettlementTip IsLocalController=false，仍继续执行匹配")
     end
 
-    if self.MMainUI and self.MMainUI.StopCountdown then
-        self.MMainUI.CountdownTimeoutTriggered = true
-        self.MMainUI:StopCountdown()
-    end
-
-    if self.SettlementTipMatchingInProgress then
-        -- ugcprint("[UGCPlayerController] Matching already in progress, ignore duplicate trigger")
-        return
-    end
-    self.SettlementTipMatchingInProgress = true
-    self.SettlementTipRequestSent = false
-    self.SettlementTipRetryUsed = false
-    
-    local settlementTipPath = UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/SettlementTip.SettlementTip_C')
-    -- ugcprint("[UGCPlayerController] SettlementTip UI path: " .. tostring(settlementTipPath))
-    
-    -- Capture PlayerController reference
-    local PlayerController = self
-    
-    -- Create SettlementTip UI
-    UGCWidgetManagerSystem.CreateWidgetAsync(settlementTipPath, function(Widget)
-        if Widget then
-            -- ugcprint("[UGCPlayerController] SettlementTip UI created successfully")
-            
-            -- Add to viewport, will stay visible
-            Widget:AddToViewport(6000)
-            self.SettlementTipWidget = Widget
-            -- ugcprint("[UGCPlayerController] SettlementTip UI added to viewport, will stay visible")
-        else
-            -- ugcprint("[UGCPlayerController] Failed to create SettlementTip UI, continue with match request")
+    local okStopCountdown, stopCountdownErr = pcall(function()
+        if self.MMainUI and self.MMainUI.StopCountdown then
+            self.MMainUI.CountdownTimeoutTriggered = true
+            self.MMainUI:StopCountdown()
         end
     end)
-
-    if not UGCMultiMode then
-        -- ugcprint("[UGCPlayerController] Error: UGCMultiMode does not exist")
-        CleanupSettlementTipState(self, "UGCMultiMode nil")
-        return
+    if not okStopCountdown then
+        ugcprint("[UGCPlayerController] SettlementTip StopCountdown 执行失败: " .. tostring(stopCountdownErr))
     end
 
-    if not self.SettlementTipMatchDelegateBound then
-        UGCMultiMode.NotifyMatchSucceededDelegate:Add(function()
-            -- ugcprint("[UGCPlayerController] Match succeeded! Hide SettlementTip UI")
-            CleanupSettlementTipState(PlayerController, "MatchSucceeded")
-        end, PlayerController)
-        self.SettlementTipMatchDelegateBound = true
-    end
+    local settlementTipPath = UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/SettlementTip.SettlementTip_C')
+    ugcprint("[UGCPlayerController] SettlementTip UI 路径: " .. tostring(settlementTipPath))
+    
+    -- 保存 PlayerController 引用，供回调函数使用
+    local PlayerController = self
+    
+    -- 异步创建 SettlementTip UI（仅负责展示，不阻塞匹配）
+    UGCWidgetManagerSystem.CreateWidgetAsync(settlementTipPath, function(Widget)
+        ugcprint("[UGCPlayerController] SettlementTip CreateWidgetAsync 回调被调用")
 
-    local function SendMatchRequest()
-        if not self.SettlementTipMatchingInProgress or self.SettlementTipRequestSent then
-            return
+        if Widget then
+            ugcprint("[UGCPlayerController] 成功创建 SettlementTip UI")
+            Widget:AddToViewport(6000)
+            ugcprint("[UGCPlayerController] SettlementTip UI 已添加到视口，将一直显示")
+        else
+            ugcprint("[UGCPlayerController] 创建 SettlementTip UI 失败，Widget为nil")
         end
 
-        self.SettlementTipRequestSent = true
-
-        local ok, requestResult = pcall(function()
-            return UGCMultiMode.RequestMatch(1001, function(bSuccess)
-                if bSuccess then
-                    -- ugcprint("[UGCPlayerController] Mode 1001 match request success, waiting for match callback...")
-                    return
-                end
-
-                -- ugcprint("[UGCPlayerController] Mode 1001 match request failed")
-                self.SettlementTipRequestSent = false
-
-                if self.SettlementTipRetryUsed then
-                    CleanupSettlementTipState(self, "RequestMatch callback failed")
-                else
-                    self.SettlementTipRetryUsed = true
-                    -- ugcprint("[UGCPlayerController] Retry mode 1001 match in 2 seconds")
-                    UGCTimerUtility.CreateLuaTimer(2.0, function()
-                        SendMatchRequest()
-                    end, false, "SettlementTip_RequestRetry")
+        if UGCMultiMode then
+            UGCMultiMode.NotifyMatchSucceededDelegate:Add(function()
+                ugcprint("[UGCPlayerController] 匹配成功！隐藏 SettlementTip UI")
+                if Widget and UGCObjectUtility.IsObjectValid(Widget) then
+                    Widget:RemoveFromParent()
                 end
             end, PlayerController)
-        end)
 
-        if not ok then
-            -- ugcprint("[UGCPlayerController] RequestMatch exception: " .. tostring(requestResult))
-            self.SettlementTipRequestSent = false
-            CleanupSettlementTipState(self, "RequestMatch exception")
-            return
+            local hasRetried = false
+            local function DoRequestMatch(tag)
+                ugcprint("[UGCPlayerController] RequestMatch(1001) 开始调用, tag=" .. tostring(tag))
+                local bRequestSuccess = UGCMultiMode.RequestMatch(1001, function(bSuccess)
+                    ugcprint("[UGCPlayerController] RequestMatch(1001) 回调, tag=" .. tostring(tag) .. ", bSuccess=" .. tostring(bSuccess))
+                    if (not bSuccess) and (not hasRetried) then
+                        hasRetried = true
+                        ugcprint("[UGCPlayerController] RequestMatch 回调失败，1.5秒后重试一次")
+                        UGCTimerUtility.CreateLuaTimer(1.5, function()
+                            DoRequestMatch("RetryByCallback")
+                        end, false, "SettlementTipMatchRetry")
+                    end
+                end, PlayerController)
+
+                ugcprint("[UGCPlayerController] RequestMatch(1001) 返回值, tag=" .. tostring(tag) .. ": " .. tostring(bRequestSuccess))
+
+                if (not bRequestSuccess) and (not hasRetried) then
+                    hasRetried = true
+                    ugcprint("[UGCPlayerController] RequestMatch 返回 false，1.5秒后重试一次")
+                    UGCTimerUtility.CreateLuaTimer(1.5, function()
+                        DoRequestMatch("RetryByReturn")
+                    end, false, "SettlementTipMatchRetry")
+                end
+            end
+
+            DoRequestMatch("First")
+        else
+            ugcprint("[UGCPlayerController] 错误：UGCMultiMode 不存在")
         end
-
-        if not requestResult then
-            -- ugcprint("[UGCPlayerController] RequestMatch call failed")
-            self.SettlementTipRequestSent = false
-            if self.SettlementTipRetryUsed then
-                CleanupSettlementTipState(self, "RequestMatch return false")
-            else
-                self.SettlementTipRetryUsed = true
-                -- ugcprint("[UGCPlayerController] Retry mode 1001 match in 2 seconds")
-                UGCTimerUtility.CreateLuaTimer(2.0, function()
-                    SendMatchRequest()
-                end, false, "SettlementTip_RequestRetry")
-            end
-            return
-        end
-
-        local watchdogToken = (self.SettlementTipWatchdogToken or 0) + 1
-        self.SettlementTipWatchdogToken = watchdogToken
-
-        UGCTimerUtility.CreateLuaTimer(8.0, function()
-            if not self.SettlementTipMatchingInProgress then
-                return
-            end
-
-            if self.SettlementTipWatchdogToken ~= watchdogToken then
-                return
-            end
-
-            if not self.SettlementTipRequestSent then
-                return
-            end
-
-            -- ugcprint("[UGCPlayerController] Match request timeout, preparing retry")
-            self.SettlementTipRequestSent = false
-
-            if self.SettlementTipRetryUsed then
-                CleanupSettlementTipState(self, "Match watchdog timeout")
-            else
-                self.SettlementTipRetryUsed = true
-                SendMatchRequest()
-            end
-        end, false, "SettlementTip_MatchWatchdog")
-    end
-
-    SendMatchRequest()
+    end)
 end
 
 --- Client: show Settlement_2 UI (timeout settlement)
 function UGCPlayerController:Client_ShowSettlement2UI()
-    -- ugcprint("[UGCPlayerController] Client_ShowSettlement2UI called")
+    ugcprint("[UGCPlayerController] Client_ShowSettlement2UI 被调用")
     
     if not self:IsLocalController() then
         return
@@ -739,166 +749,90 @@ function UGCPlayerController:Client_ShowSettlement2UI()
     end
     
     local settlement2Path = UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/Settlement_2.Settlement_2_C')
-    -- ugcprint("[UGCPlayerController] Settlement_2 UI path: " .. tostring(settlement2Path))
+    ugcprint("[UGCPlayerController] Settlement_2 UI 路径: " .. tostring(settlement2Path))
     
-    -- Capture PlayerController reference
+    -- 保存 PlayerController 引用，供回调函数使用
     local PlayerController = self
     
-    -- Create Settlement_2 UI asynchronously
+    -- 异步创建 Settlement_2 UI
     UGCWidgetManagerSystem.CreateWidgetAsync(settlement2Path, function(Widget)
         if Widget then
-            -- ugcprint("[UGCPlayerController] Settlement_2 UI created successfully")
+            ugcprint("[UGCPlayerController] 成功创建 Settlement_2 UI, widget=" .. tostring(Widget))
             
-            -- Bind sure button click callback
+            -- 设置回调函数，UI显示后立即执行
             Widget.OnSureClicked = function()
-                -- ugcprint("[UGCPlayerController] Settlement_2 sure button triggered")
+                ugcprint("[UGCPlayerController] Settlement_2 触发后续流程, widget=" .. tostring(Widget))
                 
-                -- Notify server that timeout is finished
-                UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_NotifyTimeOutFinish")
+                -- 调用服务器RPC通知超时完成
+                local okRPC, rpcErr = pcall(function()
+                    UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_NotifyTimeOutFinish")
+                end)
+                if okRPC then
+                    ugcprint("[UGCPlayerController] 已调用 Server_NotifyTimeOutFinish")
+                else
+                    ugcprint("[UGCPlayerController] 调用 Server_NotifyTimeOutFinish 失败: " .. tostring(rpcErr))
+                end
             end
             
-            -- Add to viewport
+            -- 添加到视口
             Widget:AddToViewport(6000)
-            -- ugcprint("[UGCPlayerController] Settlement_2 UI added to viewport")
+            ugcprint("[UGCPlayerController] Settlement_2 UI 已添加到视口")
         else
-            -- ugcprint("[UGCPlayerController] Failed to create Settlement_2 UI, Widget is nil")
+            ugcprint("[UGCPlayerController] 创建 Settlement_2 UI 失败，Widget为nil")
         end
     end)
-end
-
--- Stop all TriggerBox_Single1 spawners before matching
-local function StopSingle1SpawnersBeforeMatch()
-    local okGet, allTriggers = pcall(function()
-        return UGCGameSystem.GetAllActorsOfClass("Script.MODE.TriggerBox_Single1")
-    end)
-
-    if not okGet then
-        -- ugcprint("[Server] Failed to get TriggerBox_Single1: " .. tostring(allTriggers))
-        return
-    end
-
-    if not allTriggers or #allTriggers == 0 then
-        -- ugcprint("[Server] TriggerBox_Single1 not found before matching")
-        return
-    end
-
-    for _, trigger in pairs(allTriggers) do
-        if trigger and trigger.StopAndCleanAll then
-            local okStop, stopErr = pcall(function()
-                trigger:StopAndCleanAll()
-            end)
-
-            if not okStop then
-                -- ugcprint("[Server] TriggerBox_Single1 StopAndCleanAll failed: " .. tostring(stopErr))
-            end
-        end
-    end
-
-    -- ugcprint("[Server] Pre-match TriggerBox_Single1 stop/clean executed")
 end
 
 --- Server: notify level reward finished
 function UGCPlayerController:Server_NotifyLevelRewardFinish()
-    -- ugcprint("[Server] Server_NotifyLevelRewardFinish called")
+    ugcprint("[Server] Server_NotifyLevelRewardFinish 被调用")
     
     if not self:HasAuthority() then
-        --ugcprint("[Server] Error: not server, exit")
+        --ugcprint("[Server] 错误：不是服务端，退出")
         return
     end
 
-    if self.LevelRewardFinishTriggered then
-        -- ugcprint("[Server] Server_NotifyLevelRewardFinish already completed, ignore duplicate call")
-        return
-    end
-
-    if self.LevelRewardFinishProcessing then
-        -- ugcprint("[Server] Server_NotifyLevelRewardFinish is processing, ignore duplicate call")
-        return
-    end
-
-    self.LevelRewardFinishProcessing = true
-
-    local ok, err = pcall(function()
-        -- Stop spawners before matching
-        StopSingle1SpawnersBeforeMatch()
-
-        local hasLevelRewardActor = false
-        
-        -- Call OnFinish on current level reward actor
-        if self.CurrentLevelRewardActor then
-            hasLevelRewardActor = true
-            -- ugcprint("[Server] Found CurrentLevelRewardActor, calling OnFinish()")
-            self.CurrentLevelRewardActor:OnFinish()
-            self.CurrentLevelRewardActor = nil
+    -- 获取保存的 LevelRewardActor 引用
+    if self.CurrentLevelRewardActor then
+        local rewardActor = self.CurrentLevelRewardActor
+        if rewardActor.bLevelRewardFinished then
+            ugcprint("[Server] CurrentLevelRewardActor 已完成，忽略重复 OnFinish")
         else
-            -- ugcprint("[Server] Warning: CurrentLevelRewardActor does not exist")
+            rewardActor.bLevelRewardFinished = true
+            ugcprint("[Server] 找到 CurrentLevelRewardActor，调用 OnFinish()")
+            rewardActor:OnFinish()
         end
-
-        -- Fallback: if the level reward actor is missing, continue to match flow directly
-        if not hasLevelRewardActor then
-            UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
-        end
-    end)
-
-    self.LevelRewardFinishProcessing = false
-
-    if not ok then
-        -- ugcprint("[Server] Server_NotifyLevelRewardFinish exception: " .. tostring(err))
-        return
+        self.CurrentLevelRewardActor = nil
+    else
+        ugcprint("[Server] 警告：CurrentLevelRewardActor 不存在，直接显示 SettlementTip 防止卡死")
+        UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
     end
-
-    self.LevelRewardFinishTriggered = true
 end
 
 --- Server: notify timeout finished
 function UGCPlayerController:Server_NotifyTimeOutFinish()
-    ugcprint("[Server] Server_NotifyTimeOutFinish called")
+    ugcprint("[Server] Server_NotifyTimeOutFinish 被调用")
     
     if not self:HasAuthority() then
+        --ugcprint("[Server] 错误：不是服务端，退出")
         return
     end
 
-    if self.TimeoutFinishTriggered then
-        ugcprint("[Server] Server_NotifyTimeOutFinish already completed, ignore duplicate call")
-        return
-    end
+    -- 获取保存的 TimeOutActor 引用
+    if self.CurrentTimeOutActor then
+        ugcprint("[Server] 找到 CurrentTimeOutActor")
 
-    if self.TimeoutFinishProcessing then
-        ugcprint("[Server] Server_NotifyTimeOutFinish is processing, ignore duplicate call")
-        return
-    end
+        -- 超时不需要调用 OnFinish()，系统会自动处理
+        -- 直接清理引用
+        self.CurrentTimeOutActor = nil
+        ugcprint("[Server] 已清理 CurrentTimeOutActor 引用")
 
-    self.TimeoutFinishProcessing = true
-
-    local ok, err = pcall(function()
-        -- Stop spawners before matching
-        StopSingle1SpawnersBeforeMatch()
-        
-        -- Call OnFinish on current timeout actor
-        if self.CurrentTimeOutActor then
-            if self.CurrentTimeOutActor.OnFinish then
-                -- ugcprint("[Server] Found CurrentTimeOutActor, calling OnFinish()")
-                self.CurrentTimeOutActor:OnFinish()
-            end
-            self.CurrentTimeOutActor = nil
-            -- ugcprint("[Server] Cleared CurrentTimeOutActor reference")
-        else
-            -- ugcprint("[Server] Warning: CurrentTimeOutActor does not exist, continue matching flow")
-        end
-        
-        -- Show SettlementTip UI on client for matching
-        ugcprint("[Server] Call client RPC to show SettlementTip UI")
+        -- 超时完成后，显示 SettlementTip UI 并发起模式1001匹配
+        ugcprint("[Server] 调用客户端RPC显示 SettlementTip UI")
         UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
-    end)
-
-    self.TimeoutFinishProcessing = false
-
-    if not ok then
-        ugcprint("[Server] Server_NotifyTimeOutFinish exception: " .. tostring(err))
-        return
+    else
+        ugcprint("[Server] 警告：CurrentTimeOutActor 不存在")
     end
-
-    self.TimeoutFinishTriggered = true
 end
 
 --- Client: on player level up notification
@@ -1432,6 +1366,7 @@ function UGCPlayerController:Client_ShowTaSettlementUI(LevelNum)
     -- Show ta_settlement panel in JiangeUI
     if self.JiangeUI and self.JiangeUI.ta_settlement then
         local taUI = self.JiangeUI.ta_settlement
+        taUI.SettlementActionPending = false
         taUI.DisplayLevelNum = LevelNum
         if taUI.settlementtip then
             taUI.settlementtip:SetText("恭喜通过第" .. tostring(LevelNum) .. "层，奖励如下")
@@ -1552,6 +1487,39 @@ function UGCPlayerController:Client_OnJiangeForgeConsumeResult(success, remainCo
 
     if self.MMainUI and self.MMainUI.ShowTip and tipText and tipText ~= "" then
         self.MMainUI:ShowTip(tostring(tipText))
+    end
+end
+
+-- Client: charge reward claim result
+function UGCPlayerController:Client_OnChongzhiClaimResult(success, rewardID, tipText)
+    if not self:IsLocalController() then return end
+
+    if success then
+        local playerState = UGCGameSystem.GetLocalPlayerState()
+        local claimID = math.floor(tonumber(rewardID) or 0)
+        if playerState and claimID > 0 then
+            playerState.ClaimedChongzhi = playerState.ClaimedChongzhi or {}
+            playerState.ClaimedChongzhi[claimID] = true
+            if playerState.SerializeClaimedChongzhi then
+                playerState.UGCClaimedChongzhiStr = playerState:SerializeClaimedChongzhi(playerState.ClaimedChongzhi)
+            end
+        end
+    end
+
+    if self.MMainUI and self.MMainUI.ShowTip then
+        if tipText and tipText ~= "" then
+            self.MMainUI:ShowTip(tostring(tipText))
+        elseif success then
+            self.MMainUI:ShowTip("充值奖励领取成功")
+        else
+            self.MMainUI:ShowTip("充值奖励领取失败")
+        end
+    end
+
+    if self.MMainUI and self.MMainUI.active and self.MMainUI.active.RefreshBuySlots then
+        if self.MMainUI.active:GetVisibility() == ESlateVisibility.Visible then
+            self.MMainUI.active:RefreshBuySlots()
+        end
     end
 end
 

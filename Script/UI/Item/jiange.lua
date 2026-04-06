@@ -82,6 +82,7 @@ local SWORD_LEVELS = {
     },
 }
 local MAX_LEVEL = #SWORD_LEVELS
+local FORGE_COUNT_SYNC_LOCK_SECONDS = 0.9
 
 function jiange:Construct()
     self:LuaInit()
@@ -89,6 +90,9 @@ function jiange:Construct()
     self.UpgradeProgress = 0 -- 
     self.IsWearing = false
     self.ForgeConsumePending = false
+    self.ForgeCountSyncLocked = false
+    self.ForgeCountSyncValue = nil
+    self.ForgeCountSyncLockVersion = 0
 
     -- Acquire local player references.
     local PC = UGCGameSystem.GetLocalPlayerController()
@@ -208,7 +212,12 @@ end
 function jiange:UpdateCostDisplay()
     -- Guard condition before running this branch.
     if self.TextBlock_current then
-        local count = self:GetForgeStoneCount()
+        local count = nil
+        if self.ForgeCountSyncLocked and self.ForgeCountSyncValue ~= nil then
+            count = self.ForgeCountSyncValue
+        else
+            count = self:GetForgeStoneCount()
+        end
         self.TextBlock_current:SetText(tostring(count))
     end
 
@@ -220,6 +229,34 @@ function jiange:UpdateCostDisplay()
             self.TextBlock_need:SetText("--")
         end
     end
+end
+
+function jiange:LockForgeCountDisplay(remainCount, lockSeconds)
+    local normalizedCount = math.max(0, math.floor(tonumber(remainCount) or 0))
+    self.ForgeCountSyncLocked = true
+    self.ForgeCountSyncValue = normalizedCount
+    self.ForgeCountSyncLockVersion = (self.ForgeCountSyncLockVersion or 0) + 1
+    local lockVersion = self.ForgeCountSyncLockVersion
+
+    if self.TextBlock_current then
+        self.TextBlock_current:SetText(tostring(normalizedCount))
+    end
+
+    UGCGameSystem.SetTimer(self, function()
+        if not self then
+            return
+        end
+
+        if self.ForgeCountSyncLockVersion ~= lockVersion then
+            return
+        end
+
+        self.ForgeCountSyncLocked = false
+        self.ForgeCountSyncValue = nil
+        if self.UpdateCostDisplay then
+            self:UpdateCostDisplay()
+        end
+    end, lockSeconds or FORGE_COUNT_SYNC_LOCK_SECONDS, false)
 end
 
 function jiange:RefreshCostDisplayDelayed(delay)
@@ -269,8 +306,8 @@ end
 function jiange:OnForgeConsumeResult(success, remainCount, tipText)
     self:SetForgeConsumePending(false)
 
-    if self.TextBlock_current and remainCount ~= nil then
-        self.TextBlock_current:SetText(tostring(tonumber(remainCount) or 0))
+    if remainCount ~= nil then
+        self:LockForgeCountDisplay(remainCount)
     end
 
     if not success then
@@ -374,8 +411,22 @@ end
 -- Load saved data.
 function jiange:LoadSavedData(level, progress)
     -- ugcprint("[jiange] LoadSavedData: level=" .. tostring(level) .. ", progress=" .. tostring(progress))
-    self.CurrentLevel = level or 1
-    self.UpgradeProgress = progress or 0
+    local incomingLevel = math.floor(tonumber(level) or 1)
+    local incomingProgress = tonumber(progress) or 0
+    incomingProgress = math.max(0, math.min(100, incomingProgress))
+
+    -- Ignore stale same-level progress sync to avoid immediate rollback.
+    if self.CurrentLevel and self.UpgradeProgress then
+        if incomingLevel < self.CurrentLevel then
+            return
+        end
+        if incomingLevel == self.CurrentLevel and incomingProgress + 0.05 < self.UpgradeProgress then
+            return
+        end
+    end
+
+    self.CurrentLevel = incomingLevel
+    self.UpgradeProgress = incomingProgress
     self:UpdateSwordDisplay()
     self:UpdateProgressBar()
     self:UpdateCostDisplay()

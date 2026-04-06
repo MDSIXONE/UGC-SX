@@ -25,19 +25,6 @@ function UGCGameMode:ReceiveBeginPlay()
             -- ugcprint("[UGCGameMode] Detected dungeon mode 1002, initializing level flow")
             Mode1002_TotalKillCount = 0
             self:InitLevelFlow(ModeID)
-
-            -- Reset per-player settlement/timeout dedupe flags at the beginning of each 1002 run
-            local allPCs = UGCGameSystem.GetAllPlayerController()
-            if allPCs then
-                for _, pc in pairs(allPCs) do
-                    if pc and UGCObjectUtility.IsObjectValid(pc) then
-                        pc.LevelRewardFinishTriggered = false
-                        pc.LevelRewardFinishProcessing = false
-                        pc.TimeoutFinishTriggered = false
-                        pc.TimeoutFinishProcessing = false
-                    end
-                end
-            end
         else
             -- ugcprint("[UGCGameMode] Mode " .. tostring(ModeID) .. ", skip level flow init")
         end

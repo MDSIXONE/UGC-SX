@@ -317,6 +317,9 @@ function MMainUI:Construct()
         self.TextBlock_mobnum:SetVisibility(ESlateVisibility.Collapsed)
     end
 
+    -- FriendList should not appear on the normal (non-1002) main UI.
+    self:HideFriendListPanel()
+
     -- Hide teleport-related buttons based on the mode ID (mode 1002 does not use teleport)
     local currentModeID = UGCMultiMode.GetModeID()
     ugcprint("[MMainUI] Current mode ID: " .. tostring(currentModeID))
@@ -353,6 +356,8 @@ function MMainUI:Construct()
                 end
                 -- Show the mission tip for 10 seconds
                 self:ShowTipDuration("在限定时间内击败40只狼怪，并保护防御塔存活", 10)
+            else
+                self:HideFriendListPanel()
             end
         end, false, "MMainUI_CheckMode")
     end
@@ -948,6 +953,20 @@ function MMainUI:IsMode1002()
     return modeID and modeID == 1002
 end
 
+function MMainUI:HideFriendListPanel()
+    if self.FriendList then
+        self.FriendList:SetVisibility(ESlateVisibility.Collapsed)
+    end
+
+    if self.FriendListUI then
+        if UGCObjectUtility.IsObjectValid(self.FriendListUI) then
+            self.FriendListUI:SetVisibility(ESlateVisibility.Collapsed)
+            self.FriendListUI:RemoveFromParent()
+        end
+        self.FriendListUI = nil
+    end
+end
+
 function MMainUI:ScheduleMode1002ButtonEnforce()
     local delays = {0.2, 0.8, 2.0}
     for index, delay in ipairs(delays) do
@@ -1181,42 +1200,6 @@ function MMainUI:StartCountdown(totalSeconds)
             self:ShowTip("时间到了，挑战失败。")
 
             self:StopCountdown()
-
-            if self.CountdownExitRequestPending then
-                return
-            end
-            self.CountdownExitRequestPending = true
-            ugcprint("[MMainUI] Countdown timeout: schedule exit RPC in 2s")
-
-            local PC = UGCGameSystem.GetLocalPlayerController()
-            if not PC then
-                ugcprint("[MMainUI] Warning: local PlayerController not found; cannot execute the timeout exit")
-                self.CountdownExitRequestPending = false
-                return
-            end
-
-            if self.CountdownExitDelayHandle then
-                UGCGameSystem.StopTimer(self.CountdownExitDelayHandle)
-                self.CountdownExitDelayHandle = nil
-            end
-
-            self.CountdownExitDelayHandle = UGCGameSystem.SetTimer(self, function()
-                self.CountdownExitDelayHandle = nil
-                if self.CountdownExitRequestSent then
-                    return
-                end
-
-                self.CountdownExitRequestSent = true
-                ugcprint("[MMainUI] Timeout reached, entering the exit flow")
-                local okRPC, rpcErr = pcall(function()
-                    UnrealNetwork.CallUnrealRPC(PC, PC, "Server_NotifyTimeOutFinish")
-                end)
-                if not okRPC then
-                    ugcprint("[MMainUI] Error: failed to call Server_NotifyTimeOutFinish: " .. tostring(rpcErr))
-                    self.CountdownExitRequestPending = false
-                    self.CountdownExitRequestSent = false
-                end
-            end, 2.0, false)
         else
             self:UpdateCountdownText()
         end
@@ -1269,10 +1252,24 @@ end
 
 -- Related UI logic.
 function MMainUI:CreateFriendListUI()
+    if not self:IsMode1002() then
+        self:HideFriendListPanel()
+        return
+    end
+
+    -- Prefer standalone FriendList in mode 1002; keep embedded entry hidden.
+    if self.FriendList then
+        self.FriendList:SetVisibility(ESlateVisibility.Collapsed)
+    end
+
     if self.FriendListUI then return end
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return end
     local friendListPath = UGCGameSystem.GetUGCResourcesFullPath('Asset/UI/Item/FriendList.FriendList_C')
+    if not friendListPath or friendListPath == "" then
+        ugcprint("[MMainUI] Error: FriendList class path is empty")
+        return
+    end
     local FriendListClass = UGCObjectUtility.LoadClass(friendListPath)
     if not FriendListClass then
         ugcprint("[MMainUI] Error: failed to load the FriendList class")

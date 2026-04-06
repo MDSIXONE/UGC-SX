@@ -57,6 +57,23 @@ UGCGameData.FenjieTablePath = UGCGameSystem.GetUGCResourcesFullPath('Asset/Data/
 -- Charge table path
 UGCGameData.ChongzhiTablePath = UGCGameSystem.GetUGCResourcesFullPath('Asset/Data/Table/Chongzhibiao.Chongzhibiao')
 
+-- Jiange reward config (template-aligned virtual item flow)
+UGCGameData.JiangeRewardVirtualItemID = 5666
+UGCGameData.JiangeDailyRewardCount = 1
+UGCGameData.JiangeSettlementRewardCount = 1
+UGCGameData.JiangeFloorRewardConfig = {
+    [100] = 100,
+    [200] = 200,
+    [300] = 300,
+    [400] = 400,
+    [500] = 500,
+    [600] = 600,
+    [700] = 700,
+    [800] = 800,
+    [900] = 900,
+    [1000] = 1000,
+}
+
 --- Get task config
 --- @param taskRowIndex number Task row index
 --- @return table|nil Task config data
@@ -207,6 +224,107 @@ end
 --- @return table|nil All charge config data
 function UGCGameData.GetAllChongzhiConfig()
     return UGCGameSystem.GetTableData(UGCGameData.ChongzhiTablePath)
+end
+
+--- Get charge reward config (normalized fields for UI/server compatibility)
+--- @param rowIndex number Row index
+--- @return table|nil Charge reward config data
+function UGCGameData.GetChongzhiRewardConfig(rowIndex)
+    local rawConfig = UGCGameData.GetChongzhiConfig(rowIndex)
+    if not rawConfig then
+        return nil
+    end
+
+    local rewardConfig = {}
+    for k, v in pairs(rawConfig) do
+        rewardConfig[k] = v
+    end
+
+    local requiredSpend = tonumber(rawConfig.itemcount or rawConfig.NeedSpend or rawConfig.RequiredSpend) or 0
+    local rewardItemID = tonumber(rawConfig.itemid or rawConfig.RewardItemID or rawConfig.ItemID) or 0
+    local rewardItemCount = tonumber(rawConfig.itemnum or rawConfig.RewardItemCount or rawConfig.ItemNum or rawConfig.ItemCount) or 0
+
+    rewardConfig.RequiredSpend = requiredSpend
+    rewardConfig.RewardItemID = rewardItemID
+    rewardConfig.RewardItemCount = rewardItemCount
+
+    -- Keep compatibility aliases for old callers.
+    rewardConfig.ItemID = rewardItemID
+    rewardConfig.ItemCount = rewardItemCount
+
+    return rewardConfig
+end
+
+--- Get Jiange settlement reward config
+--- @param floorNum number Current cleared floor
+--- @return table|nil Reward config data
+function UGCGameData.GetTaSettlementReward(floorNum)
+    floorNum = math.floor(tonumber(floorNum) or 0)
+    if floorNum <= 0 then
+        return nil
+    end
+
+    local itemID = tonumber(UGCGameData.JiangeRewardVirtualItemID) or 0
+    local itemCount = tonumber(UGCGameData.JiangeSettlementRewardCount) or 0
+    if itemID <= 0 or itemCount <= 0 then
+        return nil
+    end
+
+    return {
+        ItemID = itemID,
+        ItemCount = itemCount,
+        itemid = itemID,
+        itemcount = itemCount,
+        itemnum = itemCount,
+        Exp = 0,
+    }
+end
+
+--- Get Jiange floor reward config
+--- @param floorNum number Target floor number
+--- @return table|nil Reward config data
+function UGCGameData.GetJiangeFloorReward(floorNum)
+    floorNum = math.floor(tonumber(floorNum) or 0)
+    if floorNum <= 0 then
+        return nil
+    end
+
+    local floorRewardCount = UGCGameData.JiangeFloorRewardConfig and UGCGameData.JiangeFloorRewardConfig[floorNum]
+    floorRewardCount = math.floor(tonumber(floorRewardCount) or 0)
+    if floorRewardCount <= 0 then
+        return nil
+    end
+
+    local itemID = tonumber(UGCGameData.JiangeRewardVirtualItemID) or 0
+    if itemID <= 0 then
+        return nil
+    end
+
+    return {
+        ItemID = itemID,
+        ItemCount = floorRewardCount,
+        itemid = itemID,
+        itemcount = floorRewardCount,
+        itemnum = floorRewardCount,
+    }
+end
+
+--- Get Jiange daily reward config
+--- @return table|nil Reward config data
+function UGCGameData.GetJiangeDailyReward()
+    local itemID = tonumber(UGCGameData.JiangeRewardVirtualItemID) or 0
+    local itemCount = math.floor(tonumber(UGCGameData.JiangeDailyRewardCount) or 0)
+    if itemID <= 0 or itemCount <= 0 then
+        return nil
+    end
+
+    return {
+        ItemID = itemID,
+        ItemCount = itemCount,
+        itemid = itemID,
+        itemcount = itemCount,
+        itemnum = itemCount,
+    }
 end
 
 --- Get dungeon mode level flow manager config

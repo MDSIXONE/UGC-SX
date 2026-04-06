@@ -33,8 +33,9 @@ function buyslot:SetData(rowIndex, config, currentSpend, claimed)
     self.Config = config
     self.CurrentSpend = currentSpend or 0
     self.Claimed = claimed or false
+    self.ClaimPending = false
 
-    local needCount = config.itemcount or 0
+    local needCount = tonumber(config.RequiredSpend or config.itemcount or config.NeedSpend) or 0
     self.NeedCount = needCount
     self.CanClaim = (self.CurrentSpend >= needCount) and (not self.Claimed)
 
@@ -66,17 +67,26 @@ function buyslot:SetData(rowIndex, config, currentSpend, claimed)
 
     -- Set Itemslot to display item info
     if self.Itemslot and self.Itemslot.SetItemData then
-        self.Itemslot:SetItemData(config.itemid, config.itemnum)
+        local rewardItemID = tonumber(config.RewardItemID or config.ItemID or config.itemid) or 0
+        local rewardItemCount = tonumber(config.RewardItemCount or config.ItemCount or config.itemnum) or 0
+        self.Itemslot:SetItemData(rewardItemID, rewardItemCount)
     end
 end
 
 function buyslot:OnButtonClicked()
-    if self.Claimed then return end
+    if self.Claimed or self.ClaimPending then return end
 
     if self.CanClaim then
         -- Claim reward: send RPC to server
         local playerState = UGCGameSystem.GetLocalPlayerState()
         if playerState then
+            self.ClaimPending = true
+            if self.Button_0 then
+                self.Button_0:SetIsEnabled(false)
+            end
+            if self.TextBlock_0 then
+                self.TextBlock_0:SetText("领取中...")
+            end
             UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_ClaimChongzhiReward", self.RowIndex)
             -- ugcprint("[buyslot] Claiming charge reward, row " .. tostring(self.RowIndex))
         end

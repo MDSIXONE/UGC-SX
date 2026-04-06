@@ -24,6 +24,12 @@ function addexp:OnToggleClicked()
 	local playerController = playerPawn:GetController()
 	if not playerController then return end
 	UnrealNetwork.CallUnrealRPC(playerController, playerController, "Server_SetDirectExpEnabled", self.bDirectExpEnabled)
+
+	if self.bDirectExpEnabled then
+		self:ShowTipViaMain("直接经验已开启。")
+	else
+		self:ShowTipViaMain("直接经验已关闭。")
+	end
 end
 
 function addexp:UpdateImages()
@@ -41,6 +47,13 @@ function addexp:LuaInit()
 	self.bInitDoOnce = true
 	if self.TUNSHIBUTTUN then
 		self.TUNSHIBUTTUN.OnClicked:Add(self.OnToggleClicked, self)
+	end
+end
+
+function addexp:ShowTipViaMain(text)
+	local pc = UGCGameSystem.GetLocalPlayerController()
+	if pc and pc.MMainUI and pc.MMainUI.ShowTip then
+		pc.MMainUI:ShowTip(text)
 	end
 end
 

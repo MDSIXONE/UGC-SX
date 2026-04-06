@@ -3,31 +3,31 @@
 local SingleModeSettlement = {}
 
 function SingleModeSettlement:LuaExecuteWithFinish(_, IsFinish)
-    -- ugcprint("[SingleModeSettlement] ========== Settlement phase started ==========")
+    ugcprint("[SingleModeSettlement] ========== 结算阶段开始 ==========")
 
-    -- Get all players in current level
+    -- 获取当前关卡内的所有玩家
     local AllPlayer = UGCLevelFlowSystem.GetAllPlayerControllerInCurrentLevel()
     
     if AllPlayer and #AllPlayer > 0 then
-        -- ugcprint("[SingleModeSettlement] Player count: " .. #AllPlayer)
+        ugcprint("[SingleModeSettlement] 玩家数量: " .. #AllPlayer)
         for k, v in pairs(AllPlayer) do
-            -- ugcprint("[SingleModeSettlement] Player " .. k .. " settling")
+            ugcprint("[SingleModeSettlement] 玩家 " .. k .. " 进行结算")
             
-            -- Call client RPC to show SettlementTip UI and start matching
+            -- 直接通过客户端RPC显示 SettlementTip UI 并发起匹配
             if v then
-                -- ugcprint("[SingleModeSettlement] Call client RPC to show SettlementTip UI")
+                ugcprint("[SingleModeSettlement] 调用客户端RPC显示 SettlementTip UI")
                 UnrealNetwork.CallUnrealRPC(v, v, "Client_ShowSettlementTipUI")
             end
         end
     else
-        -- ugcprint("[SingleModeSettlement] Warning: AllPlayer is empty")
-        -- ugcprint("[SingleModeSettlement] No players, skip settlement phase")
+        ugcprint("[SingleModeSettlement] 警告：AllPlayer 为空")
+        -- 如果没有玩家，直接完成
         self:OnFinish()
         return
     end
     
-    -- ugcprint("[SingleModeSettlement] IsFinish: " .. tostring(IsFinish))
-    -- ugcprint("[SingleModeSettlement] Settlement phase done, wait for match success")
+    ugcprint("[SingleModeSettlement] IsFinish: " .. tostring(IsFinish))
+    ugcprint("[SingleModeSettlement] 结算阶段触发完成，等待匹配成功")
 end
 
 return SingleModeSettlement

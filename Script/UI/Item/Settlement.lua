@@ -1,4 +1,4 @@
-﻿---@class Settlement_C:UUserWidget
+---@class Settlement_C:UUserWidget
 ---@field Image_0 UImage
 ---@field sure UButton
 ---@field UniformGridPanel_1 UUniformGridPanel

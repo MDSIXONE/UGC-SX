@@ -10,6 +10,7 @@ local ta_settlement = { bInitDoOnce = false }
 function ta_settlement:Construct()
     -- Initialize widget state and bindings.
     self:LuaInit()
+    self.SettlementActionPending = false
     self:CreateRewardSlots()
 end
 
@@ -78,15 +79,28 @@ end
 
 -- Handle sure button click.
 function ta_settlement:OnSureClicked()
+    if self.SettlementActionPending then
+        return
+    end
+    self.SettlementActionPending = true
+
     -- Configure initial widget visibility.
     self:SetVisibility(2) -- Collapsed
 
     local PC = UGCGameSystem.GetLocalPlayerController()
+    local rewardFloor = math.floor(tonumber(self.DisplayLevelNum) or 0)
+    if rewardFloor <= 0 and PC then
+        rewardFloor = math.floor(tonumber(PC.JiangeFloor) or 0)
+    end
+    if rewardFloor <= 0 then
+        rewardFloor = 1
+    end
+
     if PC then
         -- Local helper value for this logic block.
         local PS = UGCGameSystem.GetLocalPlayerState()
         if PS then
-            UnrealNetwork.CallUnrealRPC(PS, PS, "Server_GiveTaReward")
+            UnrealNetwork.CallUnrealRPC(PS, PS, "Server_GiveTaReward", rewardFloor)
         end
         UnrealNetwork.CallUnrealRPC(PC, PC, "Server_ResumeTriggerBoxSpawning")
         -- Execute the next UI update step.
@@ -96,14 +110,15 @@ end
 
 -- Handle quit button click.
 function ta_settlement:OnQuitClicked()
+    if self.SettlementActionPending then
+        return
+    end
+    self.SettlementActionPending = true
+
     -- Configure initial widget visibility.
     self:SetVisibility(2) -- Collapsed
 
-    -- Local helper value for this logic block.
-    local PS = UGCGameSystem.GetLocalPlayerState()
-    if PS then
-        UnrealNetwork.CallUnrealRPC(PS, PS, "Server_GiveTaReward")
-    end
+    local rewardFloor = math.floor(tonumber(self.DisplayLevelNum) or 0)
 
     -- Local helper value for this logic block.
     local PC = self:GetOwningPlayer()
@@ -120,7 +135,20 @@ function ta_settlement:OnQuitClicked()
     end
     if not PC then
         -- Exit early when requirements are not met.
+        self.SettlementActionPending = false
         return
+    end
+
+    if rewardFloor <= 0 then
+        rewardFloor = math.floor(tonumber(PC.JiangeFloor) or 0)
+    end
+    if rewardFloor <= 0 then
+        rewardFloor = 1
+    end
+
+    local PS = UGCGameSystem.GetLocalPlayerState()
+    if PS then
+        UnrealNetwork.CallUnrealRPC(PS, PS, "Server_GiveTaReward", rewardFloor)
     end
 
     -- Keep this section consistent with the original UI flow.
