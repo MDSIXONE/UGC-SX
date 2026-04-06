@@ -23,7 +23,7 @@ function BaseMonster.New(monsterID, className)
         local monsterConfig = UGCGameData.GetMonsterConfig(self.MonsterID)
         local killExp = monsterConfig and tonumber(monsterConfig.KillExp) or 0
         self.bCanTunshiExp = (killExp > 0)
-        if monsterConfig and monsterConfig.MonsterHealth then
+        if monsterConfig and monsterConfig.MonsterHealth and UGCGameSystem.IsServer(self) then
             local health = monsterConfig.MonsterHealth
             UGCAttributeSystem.SetGameAttributeValue(self, 'HealthMax', health)
             UGCAttributeSystem.SetGameAttributeValue(self, 'Health', health)
@@ -166,7 +166,7 @@ function BaseMonster.New(monsterID, className)
                 if PlayerState and PlayerState.TeamID then
                     local TeamID = PlayerState.TeamID
                     -- ugcprint("[" .. className .. "] 击杀怪物ID=322，给队伍 " .. tostring(TeamID) .. " 加10分")
-                    UGCLevelFlowSystem.LevelAddScore(TeamID, 1)
+                    UGCLevelFlowSystem.LevelAddScore(TeamID, 10)
                 else
                     -- ugcprint("[" .. className .. "] 警告：无法获取击杀者的队伍ID")
                 end

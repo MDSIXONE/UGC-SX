@@ -81,7 +81,16 @@ end
 function active:GetCurrentSpend()
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
-        return playerState.UGCSpendCount or 0
+        if playerState.UGCSpendCount ~= nil then
+            return tonumber(playerState.UGCSpendCount) or 0
+        end
+        if playerState.GetTotalSpendCount then
+            return tonumber(playerState:GetTotalSpendCount()) or 0
+        end
+        if playerState.TotalSpendCount ~= nil then
+            return tonumber(playerState.TotalSpendCount) or 0
+        end
+        return tonumber(playerState.SpendCount) or 0
     end
     return 0
 end
@@ -135,12 +144,11 @@ end
 -- Get claimed chongzhi.
 function active:GetClaimedChongzhi()
     local playerState = UGCGameSystem.GetLocalPlayerState()
-    if playerState and playerState.ClaimedChongzhi then
-        return playerState.ClaimedChongzhi
-    end
-    -- Guard condition before running this branch.
     if playerState and playerState.UGCClaimedChongzhiStr and playerState.DeserializeClaimedChongzhi then
         return playerState:DeserializeClaimedChongzhi(playerState.UGCClaimedChongzhiStr)
+    end
+    if playerState and playerState.ClaimedChongzhi then
+        return playerState.ClaimedChongzhi
     end
     return {}
 end

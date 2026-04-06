@@ -80,14 +80,9 @@ function buyslot:OnButtonClicked()
             UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_ClaimChongzhiReward", self.RowIndex)
             -- ugcprint("[buyslot] Claiming charge reward, row " .. tostring(self.RowIndex))
         end
-        -- Update display to claimed
-        self.Claimed = true
-        self.CanClaim = false
-        if self.TextBlock_0 then
-            self.TextBlock_0:SetText("Claimed")
-        end
-        if self.Button_0 then
-            self.Button_0:SetIsEnabled(false)
+        local pc = UGCGameSystem.GetLocalPlayerController()
+        if pc and pc.MMainUI and pc.MMainUI.ShowTip then
+            pc.MMainUI:ShowTip("已发送领取请求")
         end
     else
         -- Go spend: close activity panel, open shop

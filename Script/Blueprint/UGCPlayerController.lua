@@ -208,7 +208,7 @@ end
 
 -- Available client RPCs
 function UGCPlayerController:GetAvailableClientRPCs()
-    return "Client_ShowTunshiSuccess", "Client_SetPlayerRotation", "Client_ShowSettlementUI", "Client_ShowSettlementTipUI", "Client_ShowSettlement2UI", "Client_OnPlayerLevelUp", "Client_ReceiveTeamInvite", "Client_TeamInviteResult", "Client_ReceiveJoinRequest", "Client_RefreshTeamUI", "Client_OnKickedFromTeam", "Client_ShowTaSettlementUI", "Client_UpdateJiangeFloor", "Client_OnP1Died", "Client_StartCountdown", "Client_SyncJiangeData", "Client_SyncShenyinData", "Client_ShowBaoxiangNumchoose", "Client_BeginTeamPanelPlayers", "Client_AddTeamPanelPlayer", "Client_EndTeamPanelPlayers", "Client_ShowBaoxiangReward", "Client_SyncJiangeRewardData", "Client_OnJiangeDailyClaimResult", "Client_OnJiangeForgeConsumeResult", "Client_RestoreMainUIAfterRespawn", "Client_OnExpBlockedByRebirth", "Client_SyncMobKillCount"
+    return "Client_ShowTunshiSuccess", "Client_SetPlayerRotation", "Client_ShowSettlementUI", "Client_ShowSettlementTipUI", "Client_ShowSettlement2UI", "Client_OnPlayerLevelUp", "Client_ReceiveTeamInvite", "Client_TeamInviteResult", "Client_ReceiveJoinRequest", "Client_RefreshTeamUI", "Client_OnKickedFromTeam", "Client_ShowTaSettlementUI", "Client_UpdateJiangeFloor", "Client_OnP1Died", "Client_StartCountdown", "Client_SyncJiangeData", "Client_SyncShenyinData", "Client_ShowBaoxiangNumchoose", "Client_BeginTeamPanelPlayers", "Client_AddTeamPanelPlayer", "Client_EndTeamPanelPlayers", "Client_ShowBaoxiangReward", "Client_SyncJiangeRewardData", "Client_OnJiangeDailyClaimResult", "Client_OnJiangeFloorClaimResult", "Client_OnJiangeForgeConsumeResult", "Client_RestoreMainUIAfterRespawn", "Client_OnExpBlockedByRebirth", "Client_SyncMobKillCount"
 end
 
 -- Client: show absorb success notification
@@ -821,14 +821,22 @@ function UGCPlayerController:Server_NotifyLevelRewardFinish()
     local ok, err = pcall(function()
         -- Stop spawners before matching
         StopSingle1SpawnersBeforeMatch()
+
+        local hasLevelRewardActor = false
         
         -- Call OnFinish on current level reward actor
         if self.CurrentLevelRewardActor then
+            hasLevelRewardActor = true
             -- ugcprint("[Server] Found CurrentLevelRewardActor, calling OnFinish()")
             self.CurrentLevelRewardActor:OnFinish()
             self.CurrentLevelRewardActor = nil
         else
             -- ugcprint("[Server] Warning: CurrentLevelRewardActor does not exist")
+        end
+
+        -- Fallback: if the level reward actor is missing, continue to match flow directly
+        if not hasLevelRewardActor then
+            UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
         end
     end)
 
@@ -844,19 +852,19 @@ end
 
 --- Server: notify timeout finished
 function UGCPlayerController:Server_NotifyTimeOutFinish()
-    -- ugcprint("[Server] Server_NotifyTimeOutFinish called")
+    ugcprint("[Server] Server_NotifyTimeOutFinish called")
     
     if not self:HasAuthority() then
         return
     end
 
     if self.TimeoutFinishTriggered then
-        -- ugcprint("[Server] Server_NotifyTimeOutFinish already completed, ignore duplicate call")
+        ugcprint("[Server] Server_NotifyTimeOutFinish already completed, ignore duplicate call")
         return
     end
 
     if self.TimeoutFinishProcessing then
-        -- ugcprint("[Server] Server_NotifyTimeOutFinish is processing, ignore duplicate call")
+        ugcprint("[Server] Server_NotifyTimeOutFinish is processing, ignore duplicate call")
         return
     end
 
@@ -879,14 +887,14 @@ function UGCPlayerController:Server_NotifyTimeOutFinish()
         end
         
         -- Show SettlementTip UI on client for matching
-        -- ugcprint("[Server] Call client RPC to show SettlementTip UI")
+        ugcprint("[Server] Call client RPC to show SettlementTip UI")
         UnrealNetwork.CallUnrealRPC(self, self, "Client_ShowSettlementTipUI")
     end)
 
     self.TimeoutFinishProcessing = false
 
     if not ok then
-        -- ugcprint("[Server] Server_NotifyTimeOutFinish exception: " .. tostring(err))
+        ugcprint("[Server] Server_NotifyTimeOutFinish exception: " .. tostring(err))
         return
     end
 
@@ -1509,6 +1517,29 @@ function UGCPlayerController:Client_OnJiangeDailyClaimResult(success, amount, ti
     end
 end
 
+-- Client: Jiange floor claim result
+function UGCPlayerController:Client_OnJiangeFloorClaimResult(success, floorNum, tipText)
+    if not self:IsLocalController() then return end
+
+    if self.MMainUI and self.MMainUI.wujingjiange then
+        self.MMainUI.wujingjiange.FloorClaimPending = false
+    end
+
+    if self.MMainUI and self.MMainUI.ShowTip then
+        if tipText and tipText ~= "" then
+            self.MMainUI:ShowTip(tostring(tipText))
+        elseif success then
+            self.MMainUI:ShowTip(tostring(floorNum or 0) .. "层奖励领取成功")
+        else
+            self.MMainUI:ShowTip("领取失败，请稍后再试")
+        end
+    end
+
+    if success and self.MMainUI and self.MMainUI.wujingjiange and self.MMainUI.wujingjiange.RefreshRewardStates then
+        self.MMainUI.wujingjiange:RefreshRewardStates()
+    end
+end
+
 -- Client: Jiange forge consume result
 function UGCPlayerController:Client_OnJiangeForgeConsumeResult(success, remainCount, tipText)
     -- ugcprint("[UGCPlayerController] Client_OnJiangeForgeConsumeResult: success=" .. tostring(success) .. ", remainCount=" .. tostring(remainCount) .. ", tip=" .. tostring(tipText))
@@ -1572,10 +1603,21 @@ function UGCPlayerController:Client_OnP1Died()
 
     -- Delay 2 seconds then enter exit flow
     local PlayerController = self
-    UGCTimerUtility.CreateLuaTimer(2.0, function()
+    if self.P1DiedDelayHandle then
+        UGCGameSystem.StopTimer(self.P1DiedDelayHandle)
+        self.P1DiedDelayHandle = nil
+    end
+
+    self.P1DiedDelayHandle = UGCGameSystem.SetTimer(self, function()
+        self.P1DiedDelayHandle = nil
         -- ugcprint("[UGCPlayerController] Defense failed, entering exit flow")
-        PlayerController:Client_ShowSettlementTipUI()
-    end, false, "P1Died_DelayExit")
+        local okRPC, rpcErr = pcall(function()
+            UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_NotifyTimeOutFinish")
+        end)
+        if not okRPC then
+            ugcprint("[UGCPlayerController] Error: failed to call Server_NotifyTimeOutFinish: " .. tostring(rpcErr))
+        end
+    end, 2.0, false)
 end
 
 local function IsWidgetShown(Widget)

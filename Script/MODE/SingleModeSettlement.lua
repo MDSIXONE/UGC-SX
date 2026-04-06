@@ -27,8 +27,7 @@ function SingleModeSettlement:LuaExecuteWithFinish(_, IsFinish)
     end
     
     -- ugcprint("[SingleModeSettlement] IsFinish: " .. tostring(IsFinish))
-    -- ugcprint("[SingleModeSettlement] Settlement phase done, call OnFinish to continue level flow")
-    self:OnFinish()
+    -- ugcprint("[SingleModeSettlement] Settlement phase done, wait for match success")
 end
 
 return SingleModeSettlement

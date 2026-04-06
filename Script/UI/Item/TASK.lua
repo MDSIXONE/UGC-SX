@@ -6,7 +6,7 @@
 ---@field Image_95 UImage
 ---@field WrapBox_0 UWrapBox
 --Edit Below--
-local TASK = { bInitDoOnce = false }
+local TASK = { bInitDoOnce = false, bFullScreenLayerApplied = false }
 
 local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 
@@ -41,6 +41,53 @@ end
 function TASK:LuaInit()
     if self.bInitDoOnce then return end
     self.bInitDoOnce = true
+end
+
+function TASK:ApplyFullScreenLayer()
+    if self.bFullScreenLayerApplied then
+        return
+    end
+
+    local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
+    if MainControlPanel then
+        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+    end
+    local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
+    if SkillPanel then
+        UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
+    end
+
+    self.bFullScreenLayerApplied = true
+end
+
+function TASK:ReleaseFullScreenLayer()
+    if not self.bFullScreenLayerApplied then
+        return
+    end
+
+    local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
+    if MainControlPanel then
+        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+    end
+    local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
+    if SkillPanel then
+        UGCWidgetManagerSystem.SubWidgetHiddenLayer(SkillPanel)
+    end
+
+    self.bFullScreenLayerApplied = false
+end
+
+function TASK:ShowPanel()
+    self:SetVisibility(ESlateVisibility.Visible)
+    self:RefreshTaskUI()
+    self:ApplyFullScreenLayer()
+end
+
+function TASK:HidePanel()
+    self:ReleaseFullScreenLayer()
+    self:SetVisibility(ESlateVisibility.Collapsed)
 end
 
 -- Switch page.
@@ -138,16 +185,7 @@ function TASK:OnTaskSlotClicked(taskRowIndex)
 end
 
 function TASK:OnCancelClicked()
-    self:SetVisibility(ESlateVisibility.Collapsed)
-    local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
-    if MainControlPanel then
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
-    end
-    local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
-    if SkillPanel then
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(SkillPanel)
-    end
+    self:HidePanel()
 end
 
 function TASK:GetLocalPlayerState()
@@ -208,6 +246,7 @@ function TASK:RefreshTask5(playerState)
 end
 
 function TASK:Destruct()
+    self:ReleaseFullScreenLayer()
 end
 
 return TASK

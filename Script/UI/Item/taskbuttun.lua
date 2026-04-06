@@ -82,36 +82,26 @@ function taskbuttun:OnButtonClicked()
     
     --[[    --ugcprint(string.format("[taskbuttun] 获取到 TASK UI, 是否嵌入: %s", tostring(isEmbedded)))]]
     
-    if isEmbedded then
-        -- 嵌入组件：切换可见性
-        local currentVisibility = taskUI:GetVisibility()
-        --[[        --ugcprint(string.format("[taskbuttun] TASK 当前可见性: %s", tostring(currentVisibility)))]]
-        
-        if currentVisibility == ESlateVisibility.Collapsed or currentVisibility == ESlateVisibility.Hidden then
-            -- 刷新任务UI后显示
-            --ugcprint("[taskbuttun] 准备显示任务面板...")
+    if not isEmbedded and not taskUI:IsInViewport() then
+        taskUI:AddToViewport(2000)
+        --ugcprint("[taskbuttun] 任务UI已添加到视口")
+    end
+
+    local currentVisibility = taskUI:GetVisibility()
+    if currentVisibility == ESlateVisibility.Collapsed or currentVisibility == ESlateVisibility.Hidden then
+        if taskUI.ShowPanel then
+            taskUI:ShowPanel()
+        else
             if taskUI.RefreshTaskUI then
-                --ugcprint("[taskbuttun] 调用 RefreshTaskUI...")
                 taskUI:RefreshTaskUI()
-            else
-                --ugcprint("[taskbuttun] 警告: TASK 没有 RefreshTaskUI 方法")
             end
             taskUI:SetVisibility(ESlateVisibility.Visible)
-            --ugcprint("[taskbuttun] 任务面板已显示")
-        else
-            taskUI:SetVisibility(ESlateVisibility.Collapsed)
-            --ugcprint("[taskbuttun] 任务面板已隐藏")
         end
     else
-        -- 动态创建组件：添加到视口或移除
-        if not taskUI:IsInViewport() then
-            if taskUI.RefreshTaskUI then
-                taskUI:RefreshTaskUI()
-            end
-            taskUI:AddToViewport(2000)
-            --ugcprint("[taskbuttun] 任务UI已添加到视口")
+        if taskUI.HidePanel then
+            taskUI:HidePanel()
         else
-            --ugcprint("[taskbuttun] 任务UI已在视口中")
+            taskUI:SetVisibility(ESlateVisibility.Collapsed)
         end
     end
 end

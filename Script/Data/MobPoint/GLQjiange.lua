@@ -90,21 +90,23 @@ function GLQjiange:OnMobSpawn(Mob)
         Mob.MobAttack = at
         -- Set the mob attack value.
 
-        self.MobSpawnTimerIndex = (self.MobSpawnTimerIndex or 0) + 1
-        local timerName = "GLQjiange_SetHP_" .. tostring(self.MobSpawnTimerIndex)
-        local mobRef = Mob
-        UGCTimerUtility.CreateLuaTimer(0.2, function()
-            -- Delay the attribute update slightly to ensure the mob exists.
-            local ok, err = pcall(function()
-                UGCAttributeSystem.SetGameAttributeValue(mobRef, 'HealthMax', hp)
-                UGCAttributeSystem.SetGameAttributeValue(mobRef, 'Health', hp)
-            end)
-            if ok then
-                -- Log that the HP update succeeded.
-            else
-                -- Log that the HP update failed.
-            end
-        end, false, timerName)
+        if UGCGameSystem.IsServer(self) then
+            self.MobSpawnTimerIndex = (self.MobSpawnTimerIndex or 0) + 1
+            local timerName = "GLQjiange_SetHP_" .. tostring(self.MobSpawnTimerIndex)
+            local mobRef = Mob
+            UGCTimerUtility.CreateLuaTimer(0.2, function()
+                -- Delay the attribute update slightly to ensure the mob exists.
+                local ok, err = pcall(function()
+                    UGCAttributeSystem.SetGameAttributeValue(mobRef, 'HealthMax', hp)
+                    UGCAttributeSystem.SetGameAttributeValue(mobRef, 'Health', hp)
+                end)
+                if ok then
+                    -- Log that the HP update succeeded.
+                else
+                    -- Log that the HP update failed.
+                end
+            end, false, timerName)
+        end
     end
 end
 

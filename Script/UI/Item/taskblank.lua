@@ -29,20 +29,13 @@ function taskblank:OnButtonClicked()
     -- Related UI logic.
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.TASK then
-        pc.MMainUI.TASK:SetVisibility(ESlateVisibility.Visible)
-        -- Related UI logic.
-        if pc.MMainUI.TASK.RefreshTaskUI then
-            pc.MMainUI.TASK:RefreshTaskUI()
-        end
-        -- Related UI logic.
-        local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
-        if MainControlPanel then
-            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
-        end
-        local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
-        if SkillPanel then
-            UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
+        if pc.MMainUI.TASK.ShowPanel then
+            pc.MMainUI.TASK:ShowPanel()
+        else
+            pc.MMainUI.TASK:SetVisibility(ESlateVisibility.Visible)
+            if pc.MMainUI.TASK.RefreshTaskUI then
+                pc.MMainUI.TASK:RefreshTaskUI()
+            end
         end
     end
 end

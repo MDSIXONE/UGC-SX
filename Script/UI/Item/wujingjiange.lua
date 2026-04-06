@@ -387,6 +387,13 @@ function wujingjiange:OnGet2Clicked()
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return end
 
+    if self.FloorClaimPending then
+        if PC.MMainUI and PC.MMainUI.ShowTip then
+            PC.MMainUI:ShowTip("层奖励领取中，请稍候...")
+        end
+        return
+    end
+
     local playerFloor = PC.JiangeFloor or 0
 
     -- Guard condition before running this branch.
@@ -411,10 +418,10 @@ function wujingjiange:OnGet2Clicked()
     -- Local helper value for this logic block.
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
-        local rewardAmount = FLOOR_REWARD_CONFIG[targetFloor] or 0
+        self.FloorClaimPending = true
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_ClaimJiangeFloorReward", targetFloor)
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip(tostring(targetFloor) .. "层奖励领取成功，获得" .. tostring(rewardAmount) .. "份奖励")
+            PC.MMainUI:ShowTip("已发送层奖励领取请求")
         end
         -- Keep this section consistent with the original UI flow.
     end

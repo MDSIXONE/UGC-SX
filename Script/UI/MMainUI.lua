@@ -1186,6 +1186,7 @@ function MMainUI:StartCountdown(totalSeconds)
                 return
             end
             self.CountdownExitRequestPending = true
+            ugcprint("[MMainUI] Countdown timeout: schedule exit RPC in 2s")
 
             local PC = UGCGameSystem.GetLocalPlayerController()
             if not PC then
@@ -1194,19 +1195,28 @@ function MMainUI:StartCountdown(totalSeconds)
                 return
             end
 
-            UGCTimerUtility.CreateLuaTimer(2.0, function()
+            if self.CountdownExitDelayHandle then
+                UGCGameSystem.StopTimer(self.CountdownExitDelayHandle)
+                self.CountdownExitDelayHandle = nil
+            end
+
+            self.CountdownExitDelayHandle = UGCGameSystem.SetTimer(self, function()
+                self.CountdownExitDelayHandle = nil
                 if self.CountdownExitRequestSent then
                     return
                 end
 
                 self.CountdownExitRequestSent = true
                 ugcprint("[MMainUI] Timeout reached, entering the exit flow")
-                if PC.Server_NotifyTimeOutFinish then
+                local okRPC, rpcErr = pcall(function()
                     UnrealNetwork.CallUnrealRPC(PC, PC, "Server_NotifyTimeOutFinish")
-                elseif PC.Client_ShowSettlementTipUI then
-                    PC:Client_ShowSettlementTipUI()
+                end)
+                if not okRPC then
+                    ugcprint("[MMainUI] Error: failed to call Server_NotifyTimeOutFinish: " .. tostring(rpcErr))
+                    self.CountdownExitRequestPending = false
+                    self.CountdownExitRequestSent = false
                 end
-            end, false, "Countdown_TimeoutExit")
+            end, 2.0, false)
         else
             self:UpdateCountdownText()
         end

@@ -15,6 +15,8 @@ function SingleModeTimeOut:LuaExecute()
             -- ugcprint("[SingleModeTimeOut] Player " .. tostring(k) .. " timeout triggered")
             
             -- Save TimeOutActor reference
+            Player.TimeoutFinishTriggered = false
+            Player.TimeoutFinishProcessing = false
             Player.CurrentTimeOutActor = self
             -- ugcprint("[SingleModeTimeOut] Saved TimeOutActor reference in PlayerController")
             

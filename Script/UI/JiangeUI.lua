@@ -9,7 +9,7 @@ local JiangeUI = { bInitDoOnce = false }
 function JiangeUI:Construct()
     self:LuaInit()
     self:UpdateFloorText()
-    -- 鍒濆鍖栨椂闅愯棌缁撶畻鐣岄潰
+    -- Hide settlement panel on initialization.
     if self.ta_settlement then
         self.ta_settlement:SetVisibility(ESlateVisibility.Collapsed)
     end
@@ -23,7 +23,7 @@ function JiangeUI:LuaInit()
     end
 end
 
--- 鏇存柊灞傛暟鏄剧ず
+-- Update floor text display.
 function JiangeUI:UpdateFloorText()
     if not self.TextBlock_chengshu then return end
     local floor = 0
@@ -35,30 +35,30 @@ function JiangeUI:UpdateFloorText()
 end
 
 function JiangeUI:OnExitClicked()
-    -- ugcprint("[JiangeUI] Button_EXIT 鐐瑰嚮")
+    -- ugcprint("[JiangeUI] Exit button clicked")
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return end
 
-    -- 淇濆瓨褰撳墠鍓戦榿灞傛暟
+    -- Save current Jiange floor.
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if PlayerState then
-        -- ugcprint("[JiangeUI] 淇濆瓨鍓戦榿灞傛暟: " .. tostring(PC.JiangeFloor or 0))
+        -- ugcprint("[JiangeUI] Saving Jiange floor: " .. tostring(PC.JiangeFloor or 0))
         PlayerState:DataSave()
     end
 
-    -- 浼犻€佸洖涓诲煄
+    -- Teleport back to main city.
     UnrealNetwork.CallUnrealRPC(PC, PC, "Server_TeleportPlayer", 19053.320312, 50346.1875, 535.063049)
 
-    -- 鎭㈠MMainUI
+    -- Restore main UI visibility.
     if PC.MMainUI then
         PC.MMainUI:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
-        -- ugcprint("[JiangeUI] MMainUI 宸叉仮澶嶆樉绀?)
+        -- ugcprint("[JiangeUI] MMainUI restored")
     end
 
-    -- 浠庤鍙ｅ畬鍏ㄧЩ闄iangeUI锛岄伩鍏嶆嫤鎴Щ鍔ㄦ憞鏉嗚緭鍏?
+    -- Remove JiangeUI from viewport to avoid input blocking.
     PC.JiangeUI = nil
     self:RemoveFromParent()
-    -- ugcprint("[JiangeUI] JiangeUI 宸蹭粠瑙嗗彛绉婚櫎")
+    -- ugcprint("[JiangeUI] JiangeUI removed from viewport")
 end
 
 return JiangeUI

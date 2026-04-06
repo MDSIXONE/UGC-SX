@@ -125,6 +125,48 @@ local function CalcVIPLevelBySpend(spendCount)
     return 0
 end
 
+function UGCPlayerState:GetTotalSpendCount()
+    return tonumber(self.TotalSpendCount) or 0
+end
+
+function UGCPlayerState:SerializeClaimedChongzhi(claimedMap)
+    if not claimedMap then
+        return ""
+    end
+
+    local ids = {}
+    for rewardID, claimed in pairs(claimedMap) do
+        if claimed then
+            table.insert(ids, tonumber(rewardID) or rewardID)
+        end
+    end
+
+    table.sort(ids, function(a, b)
+        return (tonumber(a) or 0) < (tonumber(b) or 0)
+    end)
+
+    local serialized = {}
+    for _, rewardID in ipairs(ids) do
+        table.insert(serialized, tostring(rewardID))
+    end
+    return table.concat(serialized, ",")
+end
+
+function UGCPlayerState:DeserializeClaimedChongzhi(claimedStr)
+    local claimedMap = {}
+    if not claimedStr or claimedStr == "" then
+        return claimedMap
+    end
+
+    for token in string.gmatch(claimedStr, "([^,]+)") do
+        local rewardID = tonumber(token)
+        if rewardID then
+            claimedMap[rewardID] = true
+        end
+    end
+    return claimedMap
+end
+
 function UGCPlayerState:ReceiveBeginPlay()
     UGCPlayerState.SuperClass.ReceiveBeginPlay(self)
     
@@ -144,6 +186,7 @@ function UGCPlayerState:ReceiveBeginPlay()
     self.OnlineTime = 0
     self.KillCount = 0
     self.SpendCount = 0
+    self.TotalSpendCount = 0
     self.ShopBuyCount = 0
     self.LastResetDate = nil
     self.LastWeeklyResetWeek = nil
@@ -189,10 +232,16 @@ function UGCPlayerState:DataInit()
     end
     self.live = Data.live
     
-    -- Read charge reward claim records
-    self.ClaimedChongzhi = Data.GameRecordData.ClaimedChongzhi or {}
-    -- Read cumulative spend amount
-    self.SpendCount = Data.GameRecordData.TotalSpendCount or 0
+    -- Read charge reward claim records (compatible with both table and serialized string formats)
+    local claimedRaw = Data.GameRecordData.ClaimedChongzhi or {}
+    if type(claimedRaw) == "string" then
+        self.ClaimedChongzhi = self:DeserializeClaimedChongzhi(claimedRaw)
+    else
+        self.ClaimedChongzhi = claimedRaw
+    end
+    -- Total spend is used for cumulative recharge and VIP, daily task spend resets separately.
+    self.TotalSpendCount = tonumber(Data.GameRecordData.TotalSpendCount) or 0
+    self.SpendCount = 0
     
     -- Map archive fields to runtime fields
     for runtimeField, defaultValue in pairs(DefaultGameData) do
@@ -201,7 +250,7 @@ function UGCPlayerState:DataInit()
     end
 
     -- Recalculate VIP level from cumulative spend (compatible with old saves)
-    self.GameData.PlayerVIP = CalcVIPLevelBySpend(self.SpendCount)
+    self.GameData.PlayerVIP = CalcVIPLevelBySpend(self.TotalSpendCount)
     
     -- Fix old save attribute values
     if isServer and self.GameData.PlayerLevel then
@@ -281,7 +330,7 @@ function UGCPlayerState:DataSave()
     -- Save charge reward claim records
     Data.GameRecordData.ClaimedChongzhi = self.ClaimedChongzhi or {}
     -- Save cumulative spend amount
-    Data.GameRecordData.TotalSpendCount = self.SpendCount or 0
+    Data.GameRecordData.TotalSpendCount = self:GetTotalSpendCount()
     
     UGCPlayerStateSystem.SavePlayerArchiveData(Uid, Data)
 end
@@ -553,7 +602,7 @@ function UGCPlayerState:UpdateSpendRank()
         return
     end
 
-    local spend = self.SpendCount or 0
+    local spend = self:GetTotalSpendCount()
     local PlayerController = UGCGameSystem.GetPlayerControllerByPlayerState(self)
     local UID = UGCGameSystem.GetUIDByPlayerState(self)
 
@@ -859,6 +908,9 @@ function UGCPlayerState:GetReplicatedProperties()
         {"UGCTask6Status", "Lazy"},
         {"UGCDirectExpEnabled", "Lazy"},
         {"UGCPlayerEcexp", "Lazy"},
+        {"UGCSpendCount", "Lazy"},
+        {"UGCPlayerVIP", "Lazy"},
+        {"UGCClaimedChongzhiStr", "Lazy"},
         {"UGCPlayerManualAttack", "Lazy"},
         {"UGCPlayerManualMagic", "Lazy"},
         {"UGCPlayerManualHp", "Lazy"},
@@ -891,6 +943,29 @@ end
 function UGCPlayerState:OnRep_UGCPlayerCombatPower()
 end
 
+function UGCPlayerState:OnRep_UGCSpendCount()
+    self.TotalSpendCount = tonumber(self.UGCSpendCount) or 0
+    if self.GameData then
+        local vip = self.UGCPlayerVIP
+        if vip == nil then
+            vip = CalcVIPLevelBySpend(self.TotalSpendCount)
+        end
+        self.GameData.PlayerVIP = tonumber(vip) or 0
+    end
+    self:NotifySpendUIRefresh()
+end
+
+function UGCPlayerState:OnRep_UGCPlayerVIP()
+    if self.GameData then
+        self.GameData.PlayerVIP = tonumber(self.UGCPlayerVIP) or 0
+    end
+end
+
+function UGCPlayerState:OnRep_UGCClaimedChongzhiStr()
+    self.ClaimedChongzhi = self:DeserializeClaimedChongzhi(self.UGCClaimedChongzhiStr)
+    self:NotifySpendUIRefresh()
+end
+
 function UGCPlayerState:NotifyTalentTreeRefresh()
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.TalentTree then
@@ -899,6 +974,33 @@ function UGCPlayerState:NotifyTalentTreeRefresh()
             talentTree:RefreshUI()
         end
     end
+end
+
+function UGCPlayerState:NotifySpendUIRefresh()
+    local pc = UGCGameSystem.GetLocalPlayerController()
+    if not pc or not pc.MMainUI then
+        return
+    end
+
+    local activeUI = pc.MMainUI.active
+    if activeUI and UGCObjectUtility.IsObjectValid(activeUI) and activeUI:GetVisibility() == ESlateVisibility.Visible then
+        if activeUI.RefreshBuySlots then
+            activeUI:RefreshBuySlots()
+        end
+    end
+end
+
+function UGCPlayerState:SyncSpendReplicatedProperties()
+    self.UGCSpendCount = self:GetTotalSpendCount()
+    self.UGCPlayerVIP = self.GameData and (self.GameData.PlayerVIP or 0) or 0
+    self.UGCClaimedChongzhiStr = self:SerializeClaimedChongzhi(self.ClaimedChongzhi)
+end
+
+function UGCPlayerState:ReplicateSpendProperties()
+    self:SyncSpendReplicatedProperties()
+    UnrealNetwork.RepLazyProperty(self, "UGCSpendCount")
+    UnrealNetwork.RepLazyProperty(self, "UGCPlayerVIP")
+    UnrealNetwork.RepLazyProperty(self, "UGCClaimedChongzhiStr")
 end
 
 -- Dynamic talent OnRep callbacks
@@ -920,6 +1022,7 @@ function UGCPlayerState:SyncReplicatedProperties()
     self.UGCPlayerCombatPower = self:GetCombatPower()
     self.UGCDirectExpEnabled = self.GameData.DirectExpEnabled
     self.UGCPlayerEcexp = self.GameData.PlayerEcexp
+    self:SyncSpendReplicatedProperties()
     self.UGCPlayerManualAttack = self.GameData.PlayerManualAttack or 0
     self.UGCPlayerManualMagic = self.GameData.PlayerManualMagic or 0
     self.UGCPlayerManualHp = self.GameData.PlayerManualHp or 0
@@ -939,6 +1042,7 @@ function UGCPlayerState:SyncReplicatedProperties()
     -- Batch replicate properties
     local repProps = {"UGCPlayerLevel", "UGCPlayerRebirthCount", "UGCPlayerTalentPoints", "UGCPlayerCombatPower",
                       "UGCPlayerSpeedTalent", "UGCPlayerAttackTalent", "UGCPlayerHpTalent", "UGCDirectExpEnabled", "UGCPlayerEcexp",
+                      "UGCSpendCount", "UGCPlayerVIP", "UGCClaimedChongzhiStr",
                       "UGCPlayerManualAttack", "UGCPlayerManualMagic", "UGCPlayerManualHp", "UGCPlayerManualBland", "UGCBloodlineEnabled"}
     
     for i = 1, 9 do
@@ -1110,7 +1214,13 @@ function UGCPlayerState:GetSpendCount()
 end
 
 function UGCPlayerState:AddSpendCount(amount)
+    amount = tonumber(amount) or 0
+    if amount <= 0 then
+        return
+    end
+
     self.SpendCount = (self.SpendCount or 0) + amount
+    self.TotalSpendCount = self:GetTotalSpendCount() + amount
     self:CheckTaskCompletion("SpendCount")
 end
 
@@ -1150,9 +1260,20 @@ function UGCPlayerState:GetTaskStatus(taskRowIndex)
 end
 
 function UGCPlayerState:Server_AddSpendCount(amount)
-    if amount and amount > 0 then
-        self:AddSpendCount(amount)
+    if not UGCGameSystem.IsServer(self) then return end
+
+    amount = tonumber(amount) or 0
+    if amount <= 0 then
+        return
     end
+
+    self:EnsureDataInitialized()
+    self:AddSpendCount(amount)
+
+    self.GameData.PlayerVIP = CalcVIPLevelBySpend(self:GetTotalSpendCount())
+    self:ReplicateSpendProperties()
+    self:UpdateSpendRank()
+    self:DataSave()
 end
 
 function UGCPlayerState:Server_AddShopBuyCount()
@@ -1241,6 +1362,7 @@ end
 
 -- Server: add extra exp bonus (Ecexp)
 function UGCPlayerState:Server_AddEcexp(amount)
+    if not UGCGameSystem.IsServer(self) then return end
     if not amount or amount <= 0 then
         return
     end
@@ -1266,6 +1388,7 @@ end
 
 -- Server: set Shenyin temp Ecexp bonus (not saved, clears on disconnect)
 function UGCPlayerState:Server_SetShenyinEcexp(amount)
+    if not UGCGameSystem.IsServer(self) then return end
     if not amount then return end
     self.ShenyinEcexpBonus = amount
     ugcprint("[Server_SetShenyinEcexp] Shenyin temp Ecexp=" .. tostring(amount))
@@ -1279,6 +1402,7 @@ end
 
 -- Server: set bloodline enabled
 function UGCPlayerState:Server_SetBloodlineEnabled(isEnabled)
+    if not UGCGameSystem.IsServer(self) then return end
     local Player = UGCGameSystem.GetPlayerPawnByPlayerState(self)
     if not Player then
         return
@@ -1479,6 +1603,7 @@ end
 -- Server: claim charge reward
 function UGCPlayerState:Server_ClaimChongzhiReward(rewardID)
     if not UGCGameSystem.IsServer(self) then return end
+    self:EnsureDataInitialized()
     
     rewardID = math.floor(tonumber(rewardID) or 0)
     if rewardID <= 0 then return end
@@ -1491,18 +1616,23 @@ function UGCPlayerState:Server_ClaimChongzhiReward(rewardID)
     if not rewardConfig then return end
     
     local requiredSpend = rewardConfig.RequiredSpend or 0
-    local currentSpend = self.SpendCount or 0
+    local currentSpend = self:GetTotalSpendCount()
     if currentSpend < requiredSpend then return end
     
     local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
-    if rewardConfig.ItemID and rewardConfig.ItemCount and PlayerPawn then
-        UGCBackpackSystemV2.AddItemV2(PlayerPawn, rewardConfig.ItemID, rewardConfig.ItemCount)
+    if not rewardConfig.ItemID or not rewardConfig.ItemCount then
+        return
     end
+    if not PlayerPawn then
+        return
+    end
+    UGCBackpackSystemV2.AddItemV2(PlayerPawn, rewardConfig.ItemID, rewardConfig.ItemCount)
     
     if not self.ClaimedChongzhi then
         self.ClaimedChongzhi = {}
     end
     self.ClaimedChongzhi[rewardID] = true
+    self:ReplicateSpendProperties()
     self:DataSave()
 end
 
@@ -1577,25 +1707,46 @@ end
 function UGCPlayerState:Server_ClaimJiangeFloorReward(floorNum)
     if not UGCGameSystem.IsServer(self) then return end
     self:EnsureDataInitialized()
+
+    local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
+
+    local function NotifyFloorClaimResult(success, tipText)
+        if PC then
+            UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeFloorClaimResult", success, floorNum, tipText or "")
+        end
+    end
     
     floorNum = math.floor(tonumber(floorNum) or 0)
-    if floorNum <= 0 then return end
+    if floorNum <= 0 then
+        NotifyFloorClaimResult(false, "参数错误")
+        return
+    end
     
     local currentFloor = self.GameData.PlayerJiangeFloor or 0
-    if currentFloor < floorNum then return end
+    if currentFloor < floorNum then
+        NotifyFloorClaimResult(false, "当前层数不足，无法领取该层奖励")
+        return
+    end
     
     local claimed = self.GameData.PlayerJiangeFloorClaimed or ""
     if string.find("," .. claimed .. ",", "," .. tostring(floorNum) .. ",") then
+        NotifyFloorClaimResult(false, "该层奖励已领取")
         return
     end
     
     local rewardConfig = UGCGameData.GetJiangeFloorReward(floorNum)
-    if rewardConfig then
-        local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
-        if rewardConfig.ItemID and rewardConfig.ItemCount and PlayerPawn then
-            UGCBackpackSystemV2.AddItemV2(PlayerPawn, rewardConfig.ItemID, rewardConfig.ItemCount)
-        end
+    if not rewardConfig or not rewardConfig.ItemID or not rewardConfig.ItemCount then
+        NotifyFloorClaimResult(false, "奖励配置异常")
+        return
     end
+
+    local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
+    if not PlayerPawn then
+        NotifyFloorClaimResult(false, "领取失败，请稍后再试")
+        return
+    end
+
+    UGCBackpackSystemV2.AddItemV2(PlayerPawn, rewardConfig.ItemID, rewardConfig.ItemCount)
     
     if claimed == "" then
         self.GameData.PlayerJiangeFloorClaimed = tostring(floorNum)
@@ -1603,13 +1754,14 @@ function UGCPlayerState:Server_ClaimJiangeFloorReward(floorNum)
         self.GameData.PlayerJiangeFloorClaimed = claimed .. "," .. tostring(floorNum)
     end
     
-    local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
     if PC then
         UnrealNetwork.CallUnrealRPC(PC, PC, "Client_SyncJiangeRewardData",
             self.GameData.PlayerJiangeFloorClaimed,
             self.GameData.PlayerJiangeDailyClaimDate or "",
             1)
     end
+
+    NotifyFloorClaimResult(true, tostring(floorNum) .. "层奖励领取成功")
     
     self:DataSave()
 end
@@ -1632,14 +1784,23 @@ function UGCPlayerState:Server_ClaimJiangeDailyReward()
     end
     
     local dailyRewardConfig = UGCGameData.GetJiangeDailyReward()
-    local amount = 1
-    if dailyRewardConfig then
-        local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
-        if dailyRewardConfig.ItemID and dailyRewardConfig.ItemCount and PlayerPawn then
-            UGCBackpackSystemV2.AddItemV2(PlayerPawn, dailyRewardConfig.ItemID, dailyRewardConfig.ItemCount)
-            amount = dailyRewardConfig.ItemCount
+    if not dailyRewardConfig or not dailyRewardConfig.ItemID or not dailyRewardConfig.ItemCount then
+        if PC then
+            UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeDailyClaimResult", false, 0, "奖励配置异常")
         end
+        return
     end
+
+    local PlayerPawn = UGCGameSystem.GetPlayerPawnByPlayerState(self)
+    if not PlayerPawn then
+        if PC then
+            UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeDailyClaimResult", false, 0, "领取失败，请稍后再试")
+        end
+        return
+    end
+
+    UGCBackpackSystemV2.AddItemV2(PlayerPawn, dailyRewardConfig.ItemID, dailyRewardConfig.ItemCount)
+    local amount = dailyRewardConfig.ItemCount
     
     self.GameData.PlayerJiangeDailyClaimDate = todayStr
     

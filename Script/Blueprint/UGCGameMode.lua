@@ -23,7 +23,21 @@ function UGCGameMode:ReceiveBeginPlay()
         -- Initialize level flow for dungeon mode (1002)
         if ModeID == 1002 then
             -- ugcprint("[UGCGameMode] Detected dungeon mode 1002, initializing level flow")
+            Mode1002_TotalKillCount = 0
             self:InitLevelFlow(ModeID)
+
+            -- Reset per-player settlement/timeout dedupe flags at the beginning of each 1002 run
+            local allPCs = UGCGameSystem.GetAllPlayerController()
+            if allPCs then
+                for _, pc in pairs(allPCs) do
+                    if pc and UGCObjectUtility.IsObjectValid(pc) then
+                        pc.LevelRewardFinishTriggered = false
+                        pc.LevelRewardFinishProcessing = false
+                        pc.TimeoutFinishTriggered = false
+                        pc.TimeoutFinishProcessing = false
+                    end
+                end
+            end
         else
             -- ugcprint("[UGCGameMode] Mode " .. tostring(ModeID) .. ", skip level flow init")
         end
@@ -181,9 +195,9 @@ function UGCGameMode:OnPostBeKilledDS(Victim, CauserController)
             --ugcprint("[UGCGameMode] Kill count incremented")
         end
 
-        -- Mode 1002: sync global kill count
+        -- Mode 1002: only count GW2_2 kills (MonsterID 322) for progress display
         local modeID = UGCMultiMode.GetModeID()
-        if modeID and modeID == 1002 then
+        if modeID and modeID == 1002 and tonumber(Victim.MonsterID) == 322 then
             Mode1002_TotalKillCount = Mode1002_TotalKillCount + 1
             -- ugcprint("[UGCGameMode] 1002 global kills: " .. tostring(Mode1002_TotalKillCount) .. "/" .. tostring(MODE1002_REQUIRED_KILLS))
             -- Sync to all clients

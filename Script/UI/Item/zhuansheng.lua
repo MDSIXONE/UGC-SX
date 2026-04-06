@@ -1,4 +1,5 @@
 ---@class zhuansheng_C:UUserWidget
+---@field Image_0 UImage
 ---@field zhuansheng1 UImage
 ---@field zhuansheng2 UImage
 ---@field zhuansheng3 UImage
@@ -33,6 +34,7 @@ function zhuansheng:HideAllControls()
 	if self.zhuansheng_Text2 then self.zhuansheng_Text2:SetVisibility(ESlateVisibility.Collapsed) end
 	if self.zhuansheng_Text1 then self.zhuansheng_Text1:SetVisibility(ESlateVisibility.Collapsed) end
 	if self.zhuansheng_help then self.zhuansheng_help:SetVisibility(ESlateVisibility.Collapsed) end
+	if self.Image_0 then self.Image_0:SetVisibility(ESlateVisibility.Collapsed) end
 	-- 隐藏所有转生图片
 	for _, imageName in ipairs(zhuanshengImages) do
 		local imageWidget = self[imageName]
@@ -97,6 +99,14 @@ function zhuansheng:UpdateZhuanshengImages()
 	if playerState.GetRebirthInfo then
 		local rebirthInfo = playerState:GetRebirthInfo()
 		rebirthCount = rebirthInfo.rebirthCount or 0
+	end
+
+	if self.Image_0 then
+		if rebirthCount > 0 then
+			self.Image_0:SetVisibility(ESlateVisibility.Visible)
+		else
+			self.Image_0:SetVisibility(ESlateVisibility.Collapsed)
+		end
 	end
 	
 	-- 根据转生次数显示对应数量的图片（从zhuansheng1开始显示）
@@ -218,6 +228,10 @@ function zhuansheng:zhuansheng_Button_OnClicked()
 			"Server_Rebirth"
 		)
 		--ugcprint("[zhuansheng] 已发送转生请求到服务器")
+
+		if self.Image_0 then
+			self.Image_0:SetVisibility(ESlateVisibility.Visible)
+		end
 
 		-- 立即显示对应转生图片（当前转生次数+1，因为Lua数组从1开始）
 		-- 第1次转生显示zhuansheng1，第2次转生显示zhuansheng2，以此类推
