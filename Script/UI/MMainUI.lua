@@ -1,4 +1,4 @@
-﻿---@class MMainUI_C:UUserWidget
+---@class MMainUI_C:UUserWidget
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field active ctive_C
 ---@field activebuttun ctivebuttun_C
@@ -32,8 +32,8 @@
 ---@field taskbuttun taskbuttun_C
 ---@field teambuttun teambuttun_C
 ---@field TestButton TestButton_C
----@field TextBlock_timeout UTextBlock
 ---@field TextBlock_mobnum UTextBlock
+---@field TextBlock_timeout UTextBlock
 ---@field tip tip_C
 ---@field touxiang touxiang_C
 ---@field touxiangdetail touxiangdetail_C
@@ -1390,6 +1390,18 @@ function MMainUI:UpdateMobKillCount(currentKills, requiredKills)
     if not self.TextBlock_mobnum then return end
     self.TextBlock_mobnum:SetText(tostring(currentKills) .. "/" .. tostring(requiredKills))
     ugcprint("[MMainUI] Kill count updated: " .. tostring(currentKills) .. "/" .. tostring(requiredKills))
+end
+
+-- Sync per-player kill count to FriendList panel.
+function MMainUI:SyncFriendListPlayerKillCount(playerKey, killCount)
+    if self.FriendListUI and UGCObjectUtility.IsObjectValid(self.FriendListUI) and self.FriendListUI.SyncPlayerKillCount then
+        self.FriendListUI:SyncPlayerKillCount(playerKey, killCount)
+        return
+    end
+
+    if self.FriendList and UGCObjectUtility.IsObjectValid(self.FriendList) and self.FriendList.SyncPlayerKillCount then
+        self.FriendList:SyncPlayerKillCount(playerKey, killCount)
+    end
 end
 
 -- Tip message with a custom duration

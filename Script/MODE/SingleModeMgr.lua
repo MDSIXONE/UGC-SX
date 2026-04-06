@@ -1,4 +1,4 @@
-﻿---@class SingleModeMgr_C:UGCLevelActorMgr
+---@class SingleModeMgr_C:UGCLevelActorMgr
 --Edit Below--
 local SingleModeMgr = {}
 
@@ -28,6 +28,14 @@ function SingleModeMgr:ReceiveBeginPlay()
     -- Delay 3 seconds to print player and p1 camp info (wait for p1 to spawn)
     UGCTimerUtility.CreateLuaTimer(3.0, function()
         -- ugcprint("[SingleModeMgr] ========== Camp Debug Info ==========")
+        local p1Class = nil
+        local p1ClassPath = UGCGameSystem.GetUGCResourcesFullPath('Asset/Blueprint/Prefabs/Monsters/patner/p1.p1_C')
+        if p1ClassPath and p1ClassPath ~= "" then
+            p1Class = UGCObjectUtility.LoadClass(p1ClassPath)
+        else
+            ugcprint("[SingleModeMgr] p1 类路径为空，跳过阵营调试查询")
+        end
+
         local PCs = UGCLevelFlowSystem.GetAllPlayerControllerInCurrentLevel()
         if PCs then
             for _, PC in pairs(PCs) do
@@ -38,7 +46,6 @@ function SingleModeMgr:ReceiveBeginPlay()
                     -- ugcprint("[SingleModeMgr] Player TeamID=" .. tostring(TeamID) .. ", CampID=" .. tostring(CampID))
 
                     -- Find p1 and print camp relationship
-                    local p1Class = UGCObjectUtility.LoadClass("Script.Blueprint.Prefabs.Monsters.patner.p1")
                     if p1Class and UGCActorComponentUtility and UGCActorComponentUtility.GetAllActorsOfClass then
                         local okGetActors, allActorsOrErr = pcall(function()
                             return UGCActorComponentUtility.GetAllActorsOfClass(self, p1Class)

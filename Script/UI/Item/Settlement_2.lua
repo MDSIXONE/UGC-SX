@@ -19,14 +19,6 @@ function Settlement_2:LuaInit()
 	self.bInitDoOnce = true
 	
 	ugcprint("[Settlement_2] LuaInit 完成")
-	
-	-- 隐藏sure按钮(不再需要)
-	if self.sure then
-		self.sure:SetVisibility(ESlateVisibility.Collapsed)
-		ugcprint("[Settlement_2] sure 按钮已隐藏")
-	else
-		ugcprint("[Settlement_2] 未找到 sure 按钮，跳过隐藏")
-	end
 end
 
 -- 执行后续流程

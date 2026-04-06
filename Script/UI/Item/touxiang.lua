@@ -267,8 +267,12 @@ function touxiang:touxiangdetail_OnClicked()
     --ugcprint("[touxiang] 详情按钮被点击")
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.touxiangdetail then
-        -- 显示详情界面
-        pc.MMainUI.touxiangdetail:SetVisibility(ESlateVisibility.Visible)
+        -- 优先走面板自身的 Show，确保全屏隐藏层生效。
+        if pc.MMainUI.touxiangdetail.Show then
+            pc.MMainUI.touxiangdetail:Show()
+        else
+            pc.MMainUI.touxiangdetail:SetVisibility(ESlateVisibility.Visible)
+        end
         --ugcprint("[touxiang] 显示详情界面成功")
     else
         --ugcprint("[touxiang] 无法找到详情界面")

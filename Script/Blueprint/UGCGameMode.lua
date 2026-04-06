@@ -180,6 +180,25 @@ function UGCGameMode:OnPostBeKilledDS(Victim, CauserController)
         if PlayerState.AddKillCount then
             PlayerState:AddKillCount()
             --ugcprint("[UGCGameMode] Kill count incremented")
+
+            local killerPlayerKey = UGCGameSystem.GetPlayerKeyByPlayerController(CauserController)
+            local currentKillCount = 0
+            if PlayerState.GetKillCount then
+                currentKillCount = tonumber(PlayerState:GetKillCount()) or 0
+            else
+                currentKillCount = tonumber(PlayerState.KillCount) or 0
+            end
+
+            if killerPlayerKey and killerPlayerKey > 0 then
+                local allPCs = UGCGameSystem.GetAllPlayerController()
+                if allPCs then
+                    for _, pc in ipairs(allPCs) do
+                        if pc and UGCObjectUtility.IsObjectValid(pc) then
+                            UnrealNetwork.CallUnrealRPC(pc, pc, "Client_SyncPlayerKillCount", killerPlayerKey, currentKillCount)
+                        end
+                    end
+                end
+            end
         end
 
         -- Mode 1002: only count GW2_2 kills (MonsterID 322) for progress display

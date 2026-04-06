@@ -212,10 +212,7 @@ function BaseMonster.New(monsterID, className)
                             --ugcprint("[" .. className .. "] 怪物死亡，直接经验开关已关闭，需要吞噬获取经验")
                         end
                         
-                        -- 增加击杀计数（用于任务系统）
-                        if playerState.AddKillCount then
-                            playerState:AddKillCount()
-                        end
+                        -- 击杀计数统一由 UGCGameMode:OnPostBeKilledDS 处理，避免重复累计
                     end
                 end
             end

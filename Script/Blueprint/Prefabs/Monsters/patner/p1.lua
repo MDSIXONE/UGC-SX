@@ -3,6 +3,83 @@
 --Edit Below--
 local p1 = {}
 
+local function StopAndCleanSingle1TriggerBoxes(worldContextObject, reasonTag)
+    local triggerClassPath = UGCGameSystem.GetUGCResourcesFullPath("Asset/MODE/TriggerBox_Single1.TriggerBox_Single1_C")
+    if not triggerClassPath or triggerClassPath == "" then
+        ugcprint("[p1] StopAndCleanSingle1 失败：TriggerBox_Single1 类路径为空")
+        return 0
+    end
+
+    local classPathCandidates = { triggerClassPath }
+
+    local cleanedByGlobal = 0
+    if _G and _G.StopAndCleanAllSingle1TriggerBoxes then
+        local okGlobalStop, globalStopOrErr = pcall(function()
+            return _G.StopAndCleanAllSingle1TriggerBoxes(reasonTag)
+        end)
+
+        if okGlobalStop then
+            cleanedByGlobal = tonumber(globalStopOrErr) or 0
+        else
+            ugcprint("[p1] Global StopAndCleanSingle1 调用失败: " .. tostring(globalStopOrErr))
+        end
+    end
+
+    if cleanedByGlobal > 0 then
+        return cleanedByGlobal
+    end
+
+    local worldContext = worldContextObject or UGCGameSystem.GameState or UGCGameSystem.GameMode
+    if not worldContext then
+        ugcprint("[p1] StopAndCleanSingle1 失败：WorldContextObject 为空")
+        return 0
+    end
+
+    if (not UGCActorComponentUtility) or (not UGCActorComponentUtility.GetAllActorsOfClass) then
+        ugcprint("[p1] StopAndCleanSingle1 失败：GetAllActorsOfClass 不可用")
+        return 0
+    end
+
+    local cleanedCount = 0
+    for _, classPath in ipairs(classPathCandidates) do
+        local triggerClass = UGCObjectUtility.LoadClass(classPath)
+        if triggerClass then
+            local okGetActors, actorListOrErr = pcall(function()
+                return UGCActorComponentUtility.GetAllActorsOfClass(worldContext, triggerClass)
+            end)
+
+            if okGetActors then
+                local actorList = actorListOrErr
+                if actorList and #actorList > 0 then
+                    for _, triggerActor in pairs(actorList) do
+                        if triggerActor and UGCObjectUtility.IsObjectValid(triggerActor) and triggerActor.StopAndCleanAll then
+                            local okStop, stopErr = pcall(function()
+                                triggerActor:StopAndCleanAll()
+                            end)
+
+                            if okStop then
+                                cleanedCount = cleanedCount + 1
+                            else
+                                ugcprint("[p1] StopAndCleanAll 调用失败: " .. tostring(stopErr))
+                            end
+                        end
+                    end
+                end
+            else
+                ugcprint("[p1] 查询 TriggerBox_Single1 失败, classPath=" .. tostring(classPath) .. ", err=" .. tostring(actorListOrErr))
+            end
+        end
+    end
+
+    if cleanedCount > 0 then
+        ugcprint("[p1] 已停止并清怪 TriggerBox_Single1 数量=" .. tostring(cleanedCount) .. ", reason=" .. tostring(reasonTag))
+    else
+        ugcprint("[p1] 未找到可处理的 TriggerBox_Single1, reason=" .. tostring(reasonTag))
+    end
+
+    return cleanedCount
+end
+
 function p1:ReceiveBeginPlay()
     p1.SuperClass.ReceiveBeginPlay(self)
     -- 将p1设为阵营1（与玩家同阵营）
@@ -78,6 +155,9 @@ function p1:BPDie(KillingDamage, EventInstigator, DamageCauser, DamageEvent, Dam
         -- 只有服务端才可以掉落
         self.UGCPresetCommonDropItemComponent:StartDrop(self, EventInstigator, {})
 
+        -- P1死亡后立即停刷并清怪，防止失败流程期间继续刷怪。
+        StopAndCleanSingle1TriggerBoxes(self, "P1Died")
+
         -- p1死亡，通知所有玩家保卫失败并进入退出流程
         ugcprint("[p1] p1死亡，通知所有玩家保卫失败")
         local AllPCs = UGCLevelFlowSystem.GetAllPlayerControllerInCurrentLevel()
@@ -92,10 +172,13 @@ function p1:BPDie(KillingDamage, EventInstigator, DamageCauser, DamageEvent, Dam
         -- 服务端兜底：确保P1失败后也按超时关卡流程收口，不依赖客户端RPC是否丢失
         UGCTimerUtility.CreateLuaTimer(2.5, function()
             local timeoutActor = nil
-            local timeoutClassPaths = {
-                "Script.MODE.SingleModeTimeOut",
-                "Script.MODE.SingleModeTimeOut.SingleModeTimeOut_C",
-            }
+            local timeoutClassPath = UGCGameSystem.GetUGCResourcesFullPath("Asset/MODE/SingleModeTimeOut.SingleModeTimeOut_C")
+            if not timeoutClassPath or timeoutClassPath == "" then
+                ugcprint("[p1] SingleModeTimeOut 类路径为空，无法执行P1兜底")
+                return
+            end
+
+            local timeoutClassPaths = { timeoutClassPath }
 
             local worldContext = self
             if (not worldContext) or (UGCObjectUtility and UGCObjectUtility.IsObjectValid and (not UGCObjectUtility.IsObjectValid(worldContext))) then

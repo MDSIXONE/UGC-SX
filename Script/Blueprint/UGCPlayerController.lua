@@ -52,10 +52,13 @@ local function GetPlayerNameByPlayerKey(PlayerKey)
 end
 
 local function ResolveSingleModeTimeOutActor(worldContextObject)
-    local classPathCandidates = {
-        "Script.MODE.SingleModeTimeOut",
-        "Script.MODE.SingleModeTimeOut.SingleModeTimeOut_C",
-    }
+    local timeoutClassPath = UGCGameSystem.GetUGCResourcesFullPath("Asset/MODE/SingleModeTimeOut.SingleModeTimeOut_C")
+    if not timeoutClassPath or timeoutClassPath == "" then
+        ugcprint("[UGCPlayerController] ResolveSingleModeTimeOutActor 失败：SingleModeTimeOut 类路径为空")
+        return nil, nil
+    end
+
+    local classPathCandidates = { timeoutClassPath }
 
     local worldContext = worldContextObject or UGCGameSystem.GameState or UGCGameSystem.GameMode
     if not worldContext then
@@ -106,6 +109,83 @@ local function ResolveSingleModeTimeOutActor(worldContextObject)
     end
 
     return nil, nil
+end
+
+local function StopAndCleanSingle1TriggerBoxesForServer(worldContextObject, reasonTag)
+    local cleanedByGlobal = 0
+    if _G and _G.StopAndCleanAllSingle1TriggerBoxes then
+        local okGlobalStop, globalStopOrErr = pcall(function()
+            return _G.StopAndCleanAllSingle1TriggerBoxes(reasonTag)
+        end)
+
+        if okGlobalStop then
+            cleanedByGlobal = tonumber(globalStopOrErr) or 0
+        else
+            ugcprint("[UGCPlayerController] Global StopAndCleanSingle1 调用失败: " .. tostring(globalStopOrErr))
+        end
+    end
+
+    if cleanedByGlobal > 0 then
+        return cleanedByGlobal
+    end
+
+    local triggerClassPath = UGCGameSystem.GetUGCResourcesFullPath("Asset/MODE/TriggerBox_Single1.TriggerBox_Single1_C")
+    if not triggerClassPath or triggerClassPath == "" then
+        ugcprint("[UGCPlayerController] StopAndCleanSingle1 失败：TriggerBox_Single1 类路径为空")
+        return 0
+    end
+
+    local classPathCandidates = { triggerClassPath }
+
+    local worldContext = worldContextObject or UGCGameSystem.GameState or UGCGameSystem.GameMode
+    if not worldContext then
+        ugcprint("[UGCPlayerController] StopAndCleanSingle1 失败：WorldContextObject 为空")
+        return 0
+    end
+
+    if (not UGCActorComponentUtility) or (not UGCActorComponentUtility.GetAllActorsOfClass) then
+        ugcprint("[UGCPlayerController] StopAndCleanSingle1 失败：GetAllActorsOfClass 不可用")
+        return 0
+    end
+
+    local cleanedCount = 0
+    for _, classPath in ipairs(classPathCandidates) do
+        local triggerClass = UGCObjectUtility.LoadClass(classPath)
+        if triggerClass then
+            local okGetActors, actorListOrErr = pcall(function()
+                return UGCActorComponentUtility.GetAllActorsOfClass(worldContext, triggerClass)
+            end)
+
+            if okGetActors then
+                local actorList = actorListOrErr
+                if actorList and #actorList > 0 then
+                    for _, triggerActor in pairs(actorList) do
+                        if triggerActor and UGCObjectUtility.IsObjectValid(triggerActor) and triggerActor.StopAndCleanAll then
+                            local okStop, stopErr = pcall(function()
+                                triggerActor:StopAndCleanAll()
+                            end)
+
+                            if okStop then
+                                cleanedCount = cleanedCount + 1
+                            else
+                                ugcprint("[UGCPlayerController] StopAndCleanAll 调用失败: " .. tostring(stopErr))
+                            end
+                        end
+                    end
+                end
+            else
+                ugcprint("[UGCPlayerController] 查询 TriggerBox_Single1 失败, classPath=" .. tostring(classPath) .. ", err=" .. tostring(actorListOrErr))
+            end
+        end
+    end
+
+    if cleanedCount > 0 then
+        ugcprint("[UGCPlayerController] 已停止并清怪 TriggerBox_Single1 数量=" .. tostring(cleanedCount) .. ", reason=" .. tostring(reasonTag))
+    else
+        ugcprint("[UGCPlayerController] 未找到可处理的 TriggerBox_Single1, reason=" .. tostring(reasonTag))
+    end
+
+    return cleanedCount
 end
 
 -- Global team captain data table, key=TeamID, value=PlayerKey of captain
@@ -286,7 +366,7 @@ end
 
 -- Available client RPCs
 function UGCPlayerController:GetAvailableClientRPCs()
-    return "Client_ShowTunshiSuccess", "Client_SetPlayerRotation", "Client_ShowSettlementUI", "Client_ShowSettlementTipUI", "Client_ShowSettlement2UI", "Client_OnPlayerLevelUp", "Client_ReceiveTeamInvite", "Client_TeamInviteResult", "Client_ReceiveJoinRequest", "Client_RefreshTeamUI", "Client_OnKickedFromTeam", "Client_ShowTaSettlementUI", "Client_UpdateJiangeFloor", "Client_OnP1Died", "Client_StartCountdown", "Client_SyncJiangeData", "Client_SyncShenyinData", "Client_ShowBaoxiangNumchoose", "Client_BeginTeamPanelPlayers", "Client_AddTeamPanelPlayer", "Client_EndTeamPanelPlayers", "Client_ShowBaoxiangReward", "Client_SyncJiangeRewardData", "Client_OnJiangeDailyClaimResult", "Client_OnJiangeFloorClaimResult", "Client_OnJiangeForgeConsumeResult", "Client_OnChongzhiClaimResult", "Client_RestoreMainUIAfterRespawn", "Client_OnExpBlockedByRebirth", "Client_SyncMobKillCount"
+    return "Client_ShowTunshiSuccess", "Client_SetPlayerRotation", "Client_ShowSettlementUI", "Client_ShowSettlementTipUI", "Client_ShowSettlement2UI", "Client_OnPlayerLevelUp", "Client_ReceiveTeamInvite", "Client_TeamInviteResult", "Client_ReceiveJoinRequest", "Client_RefreshTeamUI", "Client_OnKickedFromTeam", "Client_ShowTaSettlementUI", "Client_UpdateJiangeFloor", "Client_OnP1Died", "Client_StartCountdown", "Client_SyncJiangeData", "Client_SyncShenyinData", "Client_ShowBaoxiangNumchoose", "Client_BeginTeamPanelPlayers", "Client_AddTeamPanelPlayer", "Client_EndTeamPanelPlayers", "Client_ShowBaoxiangReward", "Client_SyncJiangeRewardData", "Client_OnJiangeDailyClaimResult", "Client_OnJiangeFloorClaimResult", "Client_OnJiangeForgeConsumeResult", "Client_OnChongzhiClaimResult", "Client_RestoreMainUIAfterRespawn", "Client_OnExpBlockedByRebirth", "Client_SyncMobKillCount", "Client_SyncPlayerKillCount"
 end
 
 -- Client: show absorb success notification
@@ -917,6 +997,9 @@ function UGCPlayerController:Server_NotifyLevelRewardFinish()
         return
     end
 
+    -- 结算收口时统一停刷清怪，避免匹配前继续刷怪。
+    StopAndCleanSingle1TriggerBoxesForServer(self, "LevelRewardFinish")
+
     -- 获取保存的 LevelRewardActor 引用
     if self.CurrentLevelRewardActor then
         local rewardActor = self.CurrentLevelRewardActor
@@ -950,6 +1033,9 @@ function UGCPlayerController:Server_NotifyTimeOutFinish()
         --ugcprint("[Server] 错误：不是服务端，退出")
         return
     end
+
+    -- 超时收口时统一停刷清怪，避免回退路径遗漏。
+    StopAndCleanSingle1TriggerBoxesForServer(self, "TimeOutFinish")
 
     if self.bHandlingTimeOutFinishRPC then
         ugcprint("[Server] Server_NotifyTimeOutFinish 正在处理中，忽略重复调用, playerKey=" .. tostring(playerKey))
@@ -1029,6 +1115,19 @@ function UGCPlayerController:Client_SyncMobKillCount(currentKills, requiredKills
     if not self:IsLocalController() then return end
     if self.MMainUI and self.MMainUI.UpdateMobKillCount then
         self.MMainUI:UpdateMobKillCount(currentKills, requiredKills)
+    end
+end
+
+--- Client: sync per-player kill count for FriendList
+function UGCPlayerController:Client_SyncPlayerKillCount(playerKey, killCount)
+    if not self:IsLocalController() then
+        return
+    end
+
+    ugcprint("[UGCPlayerController] Client_SyncPlayerKillCount key=" .. tostring(playerKey) .. ", kill=" .. tostring(killCount))
+
+    if self.MMainUI and self.MMainUI.SyncFriendListPlayerKillCount then
+        self.MMainUI:SyncFriendListPlayerKillCount(playerKey, killCount)
     end
 end
 

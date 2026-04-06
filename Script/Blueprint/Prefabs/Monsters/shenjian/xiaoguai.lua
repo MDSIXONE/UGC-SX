@@ -32,7 +32,6 @@ function xiaoguai:BPDie(KillingDamage, EventInstigator, DamageCauser, DamageEven
             local floor = GLQjiange and GLQjiange.CurrentFloor or 1
             local exp = 100 * floor
             if ps.AddExp then ps:AddExp(exp) end
-            if ps.AddKillCount then ps:AddKillCount() end
         end
     end
 end
