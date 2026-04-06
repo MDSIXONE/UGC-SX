@@ -1,4 +1,4 @@
-﻿---@class shouchongbuttun_C:UUserWidget
+---@class shouchongbuttun_C:UUserWidget
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field shouchong_buttun UButton
 --Edit Below--
@@ -16,7 +16,7 @@ function shouchongbuttun:LuaInit()
     end
     self.bInitDoOnce = true
 
-    -- Related UI logic.
+    -- 绑定按钮事件
     self.shouchong_buttun.OnClicked:Add(self.shouchong_buttun_OnClicked, self)
     self.shouchong_buttun.OnHovered:Add(self.shouchong_buttun_OnHovered, self)
     self.shouchong_buttun.OnUnhovered:Add(self.shouchong_buttun_OnUnhovered, self)
@@ -25,13 +25,13 @@ function shouchongbuttun:LuaInit()
 end
 
 function shouchongbuttun:shouchong_buttun_OnClicked()
-    -- Log this action.
+    --ugcprint("[shouchongbuttun] 按钮被点击，打开商店标签2")
 
-    -- Related UI logic.
+    -- 打开 ShopV2 商店并跳转到标签2
     if ShopV2Manager then
         ShopV2Manager:OpenMainUI(2)
     else
-        -- Log this action.
+        --ugcprint("[shouchongbuttun] 错误 - ShopV2Manager 不存在")
     end
 end
 

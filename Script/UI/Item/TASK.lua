@@ -12,9 +12,9 @@ local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 
 -- Configuration table used by this widget.
 local TASK_STATUS_TEXT = {
-    [0] = "閺堫亜鐣幋?,
-    [1] = "閸欘垶顣崣?,
-    [2] = "瀹告煡顣崣?
+    [0] = "未完成",
+    [1] = "可领取",
+    [2] = "已领取"
 }
 
 function TASK:Construct()
@@ -102,12 +102,12 @@ function TASK:RefreshTaskUI()
             self.WrapBox_0:AddChild(slot)
 
             if slot.TextBlock_taskdetail then
-                local desc = taskConfig.taskdetail or taskConfig.taskname or ("娴犺濮? .. tostring(i))
+                local desc = taskConfig.taskdetail or taskConfig.taskname or ("任务" .. tostring(i))
                 slot.TextBlock_taskdetail:SetText(tostring(desc))
             end
 
             if slot.TextBlock_buttun then
-                slot.TextBlock_buttun:SetText(TASK_STATUS_TEXT[taskStatus] or "閺堫亞鐓?)
+                slot.TextBlock_buttun:SetText(TASK_STATUS_TEXT[taskStatus] or "未知")
             end
 
             if slot.Button_0 then
@@ -156,6 +156,55 @@ function TASK:GetLocalPlayerState()
         return UGCGameSystem.GetPlayerStateByPlayerController(pc)
     end
     return nil
+end
+
+function TASK:GetLocalPlayerPawn()
+    local pc = UGCGameSystem.GetLocalPlayerController()
+    if pc then
+        return pc:K2_GetPawn()
+    end
+    return nil
+end
+
+-- Compatibility wrappers kept for parity with ExampleScript/UI/Item/TASK.lua.
+function TASK:OnButton1Clicked()
+    self:OnTaskSlotClicked(1)
+end
+
+function TASK:OnButton2Clicked()
+    self:OnTaskSlotClicked(2)
+end
+
+function TASK:OnButton3Clicked()
+    self:OnTaskSlotClicked(3)
+end
+
+function TASK:OnButton4Clicked()
+    self:OnTaskSlotClicked(4)
+end
+
+function TASK:OnButton5Clicked()
+    self:OnTaskSlotClicked(5)
+end
+
+function TASK:RefreshTask1(playerState)
+    self:RefreshTaskUI()
+end
+
+function TASK:RefreshTask2(playerState)
+    self:RefreshTaskUI()
+end
+
+function TASK:RefreshTask3(playerState)
+    self:RefreshTaskUI()
+end
+
+function TASK:RefreshTask4(playerState)
+    self:RefreshTaskUI()
+end
+
+function TASK:RefreshTask5(playerState)
+    self:RefreshTaskUI()
 end
 
 function TASK:Destruct()

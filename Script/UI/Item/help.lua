@@ -6,7 +6,7 @@ local help = { bInitDoOnce = false }
 
 function help:Construct()
 	self:LuaInit()
-	-- Initialize the UI UI.
+	-- 初始化时隐藏
 	self:SetVisibility(ESlateVisibility.Collapsed)
 end
 
@@ -16,15 +16,15 @@ function help:LuaInit()
 	end
 	self.bInitDoOnce = true
 	
-	-- Bind the button event.
+	-- 绑定取消按钮事件
 	if self.help_cancel then
 		self.help_cancel.OnClicked:Add(self.help_cancel_OnClicked, self)
 	end
 end
 
--- Handle the cancel action.
+-- 取消按钮点击事件
 function help:help_cancel_OnClicked()
-	-- Log that the button was clicked.
+	--ugcprint("help: 取消按钮被点击")
 	self:SetVisibility(ESlateVisibility.Collapsed)
 end
 

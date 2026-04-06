@@ -1,4 +1,4 @@
-﻿---@class xuemai_C:UUserWidget
+---@class xuemai_C:UUserWidget
 ---@field Image_0 UImage
 ---@field Image_1 UImage
 ---@field XUEMAIBUTTUN UButton
@@ -10,32 +10,19 @@ function xuemai:Construct()
 	self.bBloodlineEnabled = false
 	local playerState = UGCGameSystem.GetLocalPlayerState()
 	if playerState then
-		if playerState.UGCBloodlineEnabled ~= nil then
-			self.bBloodlineEnabled = (playerState.UGCBloodlineEnabled == true)
-		elseif playerState.GameData then
-			self.bBloodlineEnabled = (playerState.GameData.BloodlineEnabled == true)
-		end
+		self.bBloodlineEnabled = playerState.UGCBloodlineEnabled or false
 	end
 	self:UpdateImages()
 end
 
 function xuemai:OnToggleClicked()
-	local playerController = UGCGameSystem.GetLocalPlayerController()
-	if not playerController then return end
-
 	self.bBloodlineEnabled = not self.bBloodlineEnabled
 	self:UpdateImages()
 
-	-- Related UI logic.
-	local pc = UGCGameSystem.GetLocalPlayerController()
-	if pc and pc.MMainUI and pc.MMainUI.ShowTip then
-		if self.bBloodlineEnabled then
-			pc.MMainUI:ShowTip("琛€鑴夊凡寮€鍚?)
-		else
-			pc.MMainUI:ShowTip("琛€鑴夊凡鍏抽棴")
-		end
-	end
-
+	local playerPawn = UGCGameSystem.GetLocalPlayerPawn()
+	if not playerPawn then return end
+	local playerController = playerPawn:GetController()
+	if not playerController then return end
 	UnrealNetwork.CallUnrealRPC(playerController, playerController, "Server_SetBloodlineEnabled", self.bBloodlineEnabled)
 end
 

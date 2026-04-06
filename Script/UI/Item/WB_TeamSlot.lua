@@ -17,9 +17,9 @@ local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 local function FormatCombatPowerText(combatPower)
 	local powerValue = math.floor(tonumber(combatPower) or 0)
 	if UGCGameData and UGCGameData.FormatNumber then
-		return "閹存ê濮? " .. tostring(UGCGameData.FormatNumber(powerValue))
+		return "战斗力: " .. tostring(UGCGameData.FormatNumber(powerValue))
 	end
-	return "閹存ê濮? " .. tostring(powerValue)
+	return "战斗力: " .. tostring(powerValue)
 end
 function WB_TeamSlot:Construct()
 	-- Keep this section consistent with the original UI flow.
@@ -33,7 +33,7 @@ function WB_TeamSlot:SetPlayerInfo(playerName, iconUrl, playerKey, isSelf, sameT
 	self.SameTeam = sameTeam
 	self.TargetCombatPower = math.floor(tonumber(combatPower) or 0)
 	if self.name then
-		self.name:SetText(playerName or "閺堫亞鐓￠悳鈺侇啀")
+		self.name:SetText(playerName or "未知玩家")
 	end
 	if self.zhandoulidetail then
 		self.zhandoulidetail:SetText(FormatCombatPowerText(self.TargetCombatPower))
@@ -65,10 +65,10 @@ function WB_TeamSlot:SetPlayerInfo(playerName, iconUrl, playerKey, isSelf, sameT
 	-- Guard condition before running this branch.
 	if self.boss then
 		if isCaptain then
-			self.boss:SetText("闂冪喖鏆?)
+			self.boss:SetText("队长")
 			self.boss:SetVisibility(0)  -- Visible
 		else
-			self.boss:SetText("")
+			self.boss:SetText("队长")
 			self.boss:SetVisibility(1)  -- Collapsed
 		end
 	end
@@ -140,7 +140,7 @@ function WB_TeamSlot:OnInviteClicked()
 	if PC then
 		UnrealNetwork.CallUnrealRPC(PC, PC, "Server_SendTeamInvite", self.TargetPlayerKey)
 		if PC.MMainUI and PC.MMainUI.ShowTip then
-			PC.MMainUI:ShowTip("瀹告彃褰傞崙娲€嬬拠?)
+			PC.MMainUI:ShowTip("已发送组队邀请")
 		end
 	end
 end
@@ -163,7 +163,7 @@ function WB_TeamSlot:OnKickClicked()
 		UnrealNetwork.CallUnrealRPC(PC, PC, "Server_KickFromTeam", self.TargetPlayerKey)
 		if PC.MMainUI and PC.MMainUI.ShowTip then
 			local targetName = self.TargetPlayerName or tostring(self.TargetPlayerKey)
-			PC.MMainUI:ShowTip("瀹告彃鐨? .. tostring(targetName) .. "闊垹鍤梼鐔剁礊")
+			PC.MMainUI:ShowTip("已将 " .. tostring(targetName) .. " 踢出队伍")
 		end
 	end
 end
@@ -174,7 +174,7 @@ function WB_TeamSlot:OnLeaveClicked()
 	if PC then
 		UnrealNetwork.CallUnrealRPC(PC, PC, "Server_LeaveTeam")
 		if PC.MMainUI and PC.MMainUI.ShowTip then
-			PC.MMainUI:ShowTip("瀹告煡鈧偓閸戞椽妲︽导?)
+			PC.MMainUI:ShowTip("已退出队伍")
 		end
 	end
 end

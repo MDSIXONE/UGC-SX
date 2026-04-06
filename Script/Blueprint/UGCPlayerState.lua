@@ -316,18 +316,18 @@ function UGCPlayerState:CanRebirth()
     local currentCombatPower = self:GetCombatPower()
     
     if rebirthCount >= #UGCPlayerState.RebirthLevels then
-        return false, "Max rebirth count reached"
+        return false, "已达到最大转生次数"
     end
     
     if currentLevel < requiredLevel then
-        return false, "Level insufficient, need level " .. requiredLevel
+        return false, "等级不足，需要" .. requiredLevel .. "级"
     end
     
     if currentCombatPower < requiredCombatPower then
-        return false, "Combat power insufficient, need " .. UGCGameData.FormatNumber(requiredCombatPower)
+        return false, "战斗力不足，需要" .. UGCGameData.FormatNumber(requiredCombatPower)
     end
     
-    return true, "Can rebirth"
+    return true, "可以转生"
 end
 
 function UGCPlayerState:GetRebirthInfo()
@@ -408,7 +408,7 @@ function UGCPlayerState:DoRebirth()
     self:UpdateClientAttributes()
     self:DataSave()
     
-    return true, "Rebirth successful"
+    return true, "转生成功"
 end
 
 function UGCPlayerState:NotifyExpBlockedByRebirth()
@@ -1626,7 +1626,7 @@ function UGCPlayerState:Server_ClaimJiangeDailyReward()
     
     if lastClaimDate == todayStr then
         if PC then
-            UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeDailyClaimResult", false, 0, "Already claimed today")
+			UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeDailyClaimResult", false, 0, "今日已领取过每日奖励")
         end
         return
     end
@@ -1644,7 +1644,7 @@ function UGCPlayerState:Server_ClaimJiangeDailyReward()
     self.GameData.PlayerJiangeDailyClaimDate = todayStr
     
     if PC then
-        UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeDailyClaimResult", true, amount, "Claim successful!")
+		UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnJiangeDailyClaimResult", true, amount, "领取成功！")
         UnrealNetwork.CallUnrealRPC(PC, PC, "Client_SyncJiangeRewardData",
             self.GameData.PlayerJiangeFloorClaimed or "",
             self.GameData.PlayerJiangeDailyClaimDate,

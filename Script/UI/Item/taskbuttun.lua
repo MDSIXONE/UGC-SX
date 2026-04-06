@@ -1,126 +1,117 @@
-﻿---@class taskbuttun_C:UUserWidget
+---@class taskbuttun_C:UUserWidget
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field Button_231 UButton
 --Edit Below--
 local taskbuttun = { bInitDoOnce = false }
 
--- Related UI logic.
+-- 手动引入 UGCGameData (与 Exampleproject 一致)
 local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 
--- Related UI logic.
+-- 保存 TASK UI 引用（用于动态创建方式）
 taskbuttun.TaskUI = nil
 
 function taskbuttun:Construct()
 	self:LuaInit();
-    -- Log this action.
+    --ugcprint("[taskbuttun] ========== UI Construct 开始 ==========")
     
-    -- Related UI logic.
+    -- 绑定按钮点击事件
     if self.Button_231 then
         self.Button_231.OnClicked:Add(self.OnButtonClicked, self)
-        -- Log this action.
+        --ugcprint("[taskbuttun] Button_231 绑定成功")
     else
-        -- Log this action.
+        --ugcprint("[taskbuttun] 警告: Button_231 不存在")
     end
     
-    -- Log this action.
+    --ugcprint("[taskbuttun] ========== UI Construct 完成 ==========")
 end
 
--- Related UI logic.
+---获取 TASK 组件（优先从 MMainUI 获取嵌入组件，否则动态创建）
 function taskbuttun:GetTaskUI()
-    -- Log this action.
+    --ugcprint("[taskbuttun] GetTaskUI 开始...")
     
-    -- Related UI logic.
+    -- 获取本地玩家控制器
+    local pc = UGCGameSystem.GetLocalPlayerController()
     if not pc then
-        -- Log this action.
+        --ugcprint("[taskbuttun] 错误: 无法获取本地控制器")
         return nil
     end
-    -- Log this action.
+    --ugcprint("[taskbuttun] 成功获取 PlayerController: " .. tostring(pc))
     
-    -- Related UI logic.
+    -- 方式1: 尝试从 MMainUI 获取嵌入的 TASK 组件
     if pc.MMainUI then
-        -- Log this action.
+        --ugcprint("[taskbuttun] 找到 pc.MMainUI: " .. tostring(pc.MMainUI))
         if pc.MMainUI.TASK then
-            -- Log this action.
-            return pc.MMainUI.TASK, true  -- 杩斿洖 taskUI 鍜?isEmbedded 鏍囧織
+            --ugcprint("[taskbuttun] 找到嵌入的 TASK 组件: " .. tostring(pc.MMainUI.TASK))
+            return pc.MMainUI.TASK, true  -- 返回 taskUI 和 isEmbedded 标志
         else
-            -- Log this action.
+            --ugcprint("[taskbuttun] pc.MMainUI.TASK 不存在")
         end
     else
-        -- Log this action.
+        --ugcprint("[taskbuttun] pc.MMainUI 不存在")
     end
     
-    -- Related UI logic.
-    -- Log this action.
+    -- 方式2: 动态创建 TASK UI（与 Exampleproject 一致）
+    --ugcprint("[taskbuttun] 使用动态创建方式...")
     
-    -- Related UI logic.
-        -- Log this action.
+    -- 如果已经创建过且有效，直接返回
+    if self.TaskUI and UGCObjectUtility.IsObjectValid(self.TaskUI) then
+        --ugcprint("[taskbuttun] 返回已创建的 TaskUI")
         return self.TaskUI, false
     end
     
-    -- Related UI logic.
+    -- 创建新的 TASK UI
     self.TaskUI = UGCGameData.GetUI(pc, "TASK")
     if self.TaskUI then
-        -- Log this action.
+        --ugcprint("[taskbuttun] 动态创建 TASK UI 成功: " .. tostring(self.TaskUI))
     else
-        -- Log this action.
+        --ugcprint("[taskbuttun] 动态创建 TASK UI 失败")
     end
     
     return self.TaskUI, false
 end
 
--- Related UI logic.
+---按钮点击事件 - 切换任务UI显示
 function taskbuttun:OnButtonClicked()
-    -- Log this action.
+    --ugcprint("[taskbuttun] ========== 点击任务按钮 ==========")
     
     local taskUI, isEmbedded = self:GetTaskUI()
     if not taskUI then
-        -- Log this action.
+        --ugcprint("[taskbuttun] 错误: 无法获取 TASK UI")
         return
     end
     
-    -- Log this action.
+    --[[    --ugcprint(string.format("[taskbuttun] 获取到 TASK UI, 是否嵌入: %s", tostring(isEmbedded)))]]
     
     if isEmbedded then
-        -- Related UI logic.
-        -- Log this action.
+        -- 嵌入组件：切换可见性
+        local currentVisibility = taskUI:GetVisibility()
+        --[[        --ugcprint(string.format("[taskbuttun] TASK 当前可见性: %s", tostring(currentVisibility)))]]
         
         if currentVisibility == ESlateVisibility.Collapsed or currentVisibility == ESlateVisibility.Hidden then
-            -- Related UI logic.
+            -- 刷新任务UI后显示
+            --ugcprint("[taskbuttun] 准备显示任务面板...")
+            if taskUI.RefreshTaskUI then
+                --ugcprint("[taskbuttun] 调用 RefreshTaskUI...")
                 taskUI:RefreshTaskUI()
+            else
+                --ugcprint("[taskbuttun] 警告: TASK 没有 RefreshTaskUI 方法")
             end
             taskUI:SetVisibility(ESlateVisibility.Visible)
-            -- Related UI logic.
-            local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
-            if MainControlPanel then
-                UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-                UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
-            end
-            local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
-            if SkillPanel then
-                UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
-            end
+            --ugcprint("[taskbuttun] 任务面板已显示")
         else
             taskUI:SetVisibility(ESlateVisibility.Collapsed)
-            -- Related UI logic.
-            if MainControlPanel then
-                UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-                UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
-            end
-            local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
-            if SkillPanel then
-                UGCWidgetManagerSystem.SubWidgetHiddenLayer(SkillPanel)
-            end
+            --ugcprint("[taskbuttun] 任务面板已隐藏")
         end
     else
-        -- Related UI logic.
+        -- 动态创建组件：添加到视口或移除
         if not taskUI:IsInViewport() then
             if taskUI.RefreshTaskUI then
                 taskUI:RefreshTaskUI()
             end
             taskUI:AddToViewport(2000)
-            -- Log this action.
+            --ugcprint("[taskbuttun] 任务UI已添加到视口")
         else
-            -- Log this action.
+            --ugcprint("[taskbuttun] 任务UI已在视口中")
         end
     end
 end
@@ -148,7 +139,7 @@ function taskbuttun:LuaInit()
 end
 
 function taskbuttun:Button_231_OnHovered()
-	-- Related UI logic.
+	-- 播放悬停动画（正向）
 	if self.NewAnimation_1 then
 		if not self:IsAnimationPlaying(self.NewAnimation_1) then
 			self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 1)
@@ -162,7 +153,7 @@ function taskbuttun:Button_231_OnHovered()
 end
 
 function taskbuttun:Button_231_OnUnhovered()
-	-- Related UI logic.
+	-- 播放倒放动画
 	if self.NewAnimation_1 then
 		if not self:IsAnimationPlaying(self.NewAnimation_1) then
 			self:PlayAnimation(self.NewAnimation_1, 0, 1, 1, 1)
@@ -176,7 +167,7 @@ function taskbuttun:Button_231_OnUnhovered()
 end
 
 function taskbuttun:Button_231_OnPressed()
-	-- Related UI logic.
+	-- 按压时快速播放到末尾
 	if self.NewAnimation_1 then
 		self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 2)
 	end
@@ -184,7 +175,8 @@ function taskbuttun:Button_231_OnPressed()
 end
 
 function taskbuttun:Button_231_OnReleased()
-	-- Related UI logic.
+	-- 释放时快速倒放回初始状态
+	if self.NewAnimation_1 then
 		self:PlayAnimation(self.NewAnimation_1, 0, 1, 1, 2)
 	end
 	return nil;

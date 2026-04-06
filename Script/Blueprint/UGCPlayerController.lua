@@ -221,7 +221,7 @@ function UGCPlayerController:Client_ShowTunshiSuccess(totalExp)
     
     if self.MMainUI and self.MMainUI.tunshitip then
         if self.MMainUI.tunshitip.ShowTips then
-            self.MMainUI.tunshitip:ShowTips("Absorb success +" .. tostring(totalExp))
+            self.MMainUI.tunshitip:ShowTips("吞噬成功 +" .. tostring(totalExp))
             --ugcprint("[Client] Showing absorb tip: Absorb success +" .. tostring(totalExp))
         end
     end
@@ -912,7 +912,7 @@ function UGCPlayerController:Client_OnExpBlockedByRebirth()
     end
 
     if self.MMainUI and self.MMainUI.ShowTip then
-        self.MMainUI:ShowTip("Cannot gain exp, please go rebirth")
+        self.MMainUI:ShowTip("当前无法获得经验，请先转生")
     end
 end
 
@@ -1065,7 +1065,7 @@ function UGCPlayerController:Client_TeamInviteResult(TargetPlayerKey, bAccepted,
         if bAccepted then
             if bIsCaptain and self.MMainUI.ShowTip then
                 local TargetPlayerName = GetPlayerNameByPlayerKey(TargetPlayerKey)
-                self.MMainUI:ShowTip(tostring(TargetPlayerName) .. " has joined the team")
+                self.MMainUI:ShowTip(tostring(TargetPlayerName) .. " 已加入队伍")
             end
 
             if bIsCaptain then
@@ -1268,7 +1268,7 @@ end
 --- Client: kicked from team notification
 function UGCPlayerController:Client_OnKickedFromTeam()
     if self.MMainUI and self.MMainUI.ShowTip then
-        self.MMainUI:ShowTip("You have been kicked from the team")
+        self.MMainUI:ShowTip("你已被踢出队伍")
     end
 end
 
@@ -1426,7 +1426,7 @@ function UGCPlayerController:Client_ShowTaSettlementUI(LevelNum)
         local taUI = self.JiangeUI.ta_settlement
         taUI.DisplayLevelNum = LevelNum
         if taUI.settlementtip then
-            taUI.settlementtip:SetText("Congratulations on passing floor " .. tostring(LevelNum) .. ", rewards below")
+            taUI.settlementtip:SetText("恭喜通过第" .. tostring(LevelNum) .. "层，奖励如下")
         end
         if taUI.CreateRewardSlots then
             taUI:CreateRewardSlots()
@@ -1502,9 +1502,9 @@ function UGCPlayerController:Client_OnJiangeDailyClaimResult(success, amount, ti
         if tipText and tipText ~= "" then
             self.MMainUI:ShowTip(tostring(tipText))
         elseif success then
-            self.MMainUI:ShowTip("Claim successful!")
+            self.MMainUI:ShowTip("领取成功！")
         else
-            self.MMainUI:ShowTip("Claim failed, please try again later")
+            self.MMainUI:ShowTip("领取失败，请稍后再试")
         end
     end
 end
@@ -1567,7 +1567,7 @@ function UGCPlayerController:Client_OnP1Died()
 
     -- Show defense failed tip
     if self.MMainUI and self.MMainUI.ShowTip then
-        self.MMainUI:ShowTip("Defense failed")
+        self.MMainUI:ShowTip("防守失败")
     end
 
     -- Delay 2 seconds then enter exit flow

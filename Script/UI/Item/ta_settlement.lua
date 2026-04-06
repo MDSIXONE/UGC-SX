@@ -29,7 +29,7 @@ function ta_settlement:LuaInit()
 
     local levelNum = self.DisplayLevelNum or 1
     if self.settlementtip then
-        self.settlementtip:SetText("閹厼鏋╅柅姘崇箖缁? .. tostring(levelNum) .. "鐏炲偊绱濋懢宄扮繁婵傛牕濮虫俊鍌欑瑓")
+        self.settlementtip:SetText("恭喜通过第" .. tostring(levelNum) .. "层，获得奖励如下")
     end
 end
 

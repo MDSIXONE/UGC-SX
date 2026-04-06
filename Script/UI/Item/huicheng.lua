@@ -20,7 +20,7 @@ function huicheng:LuaInit()
 	end
 	self.bInitDoOnce = true
 	
-	-- Related UI logic.
+	-- 绑定按钮事件
 	if self.huicheng_buttun then
 		self.huicheng_buttun.OnClicked:Add(self.huicheng_buttun_OnClicked, self)
 		self.huicheng_buttun.OnHovered:Add(self.huicheng_buttun_OnHovered, self)
@@ -30,61 +30,61 @@ function huicheng:LuaInit()
 	end
 end
 
--- Related UI logic.
+-- 传送到指定位置（回城点）
 function huicheng:TeleportToLocation(x, y, z)
-	-- Log this action.
-	-- Log this action.
+	--ugcprint("huicheng: TeleportToLocation 开始")
+	--ugcprint("huicheng: 目标位置 X=" .. x .. " Y=" .. y .. " Z=" .. z)
 	
 	local ok, err = pcall(function()
 		local PlayerController = UGCGameSystem.GetLocalPlayerController()
 		if not PlayerController then
-			-- Log this action.
+			--ugcprint("huicheng: 错误 - 无法获取 PlayerController")
 			return
 		end
 		
-		-- Related UI logic.
-		-- Log this action.
+		-- 通过 RPC 调用服务器传送
+		--ugcprint("huicheng: 调用 Server_TeleportPlayer RPC")
 		UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_TeleportPlayer", x, y, z)
-		-- Log this action.
+		--ugcprint("huicheng: 已发送传送请求到服务器")
 	end)
 	
 	if not ok then
-		-- Log this action.
+		--ugcprint("huicheng: 发送传送请求失败: " .. tostring(err))
 	end
 end
 
--- Related UI logic.
+-- 回满血
 function huicheng:RestoreFullHealth()
-	-- Log this action.
+	--ugcprint("huicheng: 请求回满血")
 	
 	local ok, err = pcall(function()
 		local PlayerController = UGCGameSystem.GetLocalPlayerController()
 		if not PlayerController then
-			-- Log this action.
+			--ugcprint("huicheng: 错误 - 无法获取 PlayerController")
 			return
 		end
 		
-		-- Related UI logic.
+		-- 通过 RPC 调用服务器回满血
 		UnrealNetwork.CallUnrealRPC(PlayerController, PlayerController, "Server_RestoreFullHealth")
-		-- Log this action.
+		--ugcprint("huicheng: 已发送回满血请求到服务器")
 	end)
 	
 	if not ok then
-		-- Log this action.
+		--ugcprint("huicheng: 发送回满血请求失败: " .. tostring(err))
 	end
 end
 
--- Related UI logic.
+-- 回城按钮点击事件
 function huicheng:huicheng_buttun_OnClicked()
-	-- Log this action.
-	-- Related UI logic.
+	--ugcprint("huicheng: 回城按钮被点击")
+	-- 回满血
 	self:RestoreFullHealth()
-	-- Related UI logic.
+	-- 传送到回城点坐标
 	self:TeleportToLocation(19053.320312, 50346.1875, 535.063049)
 end
 
 function huicheng:huicheng_buttun_OnHovered()
-	-- Related UI logic.
+	-- 播放悬停动画（正向）
 	if self.NewAnimation_1 then
 		if not self:IsAnimationPlaying(self.NewAnimation_1) then
 			self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 1)
@@ -97,7 +97,7 @@ function huicheng:huicheng_buttun_OnHovered()
 end
 
 function huicheng:huicheng_buttun_OnUnhovered()
-	-- Related UI logic.
+	-- 播放倒放动画
 	if self.NewAnimation_1 then
 		if not self:IsAnimationPlaying(self.NewAnimation_1) then
 			self:PlayAnimation(self.NewAnimation_1, 0, 1, 1, 1)
@@ -110,14 +110,14 @@ function huicheng:huicheng_buttun_OnUnhovered()
 end
 
 function huicheng:huicheng_buttun_OnPressed()
-	-- Related UI logic.
+	-- 按压时快速播放到末尾
 	if self.NewAnimation_1 then
 		self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 2)
 	end
 end
 
 function huicheng:huicheng_buttun_OnReleased()
-	-- Related UI logic.
+	-- 释放时快速倒放回初始状态
 	if self.NewAnimation_1 then
 		self:PlayAnimation(self.NewAnimation_1, 0, 1, 1, 2)
 	end

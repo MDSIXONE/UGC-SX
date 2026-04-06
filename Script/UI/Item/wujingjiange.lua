@@ -184,7 +184,7 @@ function wujingjiange:OnStartClicked()
             jiangeUI:ApplySkill(false)
             jiangeUI:ApplyAtkBonus(false)
             jiangeUI.IsWearing = false
-            if jiangeUI.weartip then jiangeUI.weartip:SetText("缁屾寧鍩?) end
+			if jiangeUI.weartip then jiangeUI.weartip:SetText("穿戴") end
             -- Keep this section consistent with the original UI flow.
             needTip = true
         end
@@ -236,7 +236,7 @@ function wujingjiange:OnStartClicked()
     if needTip then
         -- Guard condition before running this branch.
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("閹告垶鍨崜鎴︽娑擃厹鈧倶鈧倶鈧倻顨ｉ崜鎴欌偓浣侯殻瑜板彉绗岀悰鈧懘澶婂嚒鐞氼偆顩﹂悽?)
+            PC.MMainUI:ShowTip("进入剑阁前已自动卸下当前装备并关闭血脉")
         end
         UGCTimerUtility.CreateLuaTimer(2.0, function()
             self:DoEnterJiange(PC)
@@ -320,11 +320,11 @@ function wujingjiange:RefreshRewardStates()
         local stateWidget = self[stateName]
         if stateWidget then
             if claimed[floor] then
-                stateWidget:SetText("瀹告煡顣崣?)
+                stateWidget:SetText("已领取")
             elseif playerFloor >= floor then
-                stateWidget:SetText("閸欘垶顣崣?)
+                stateWidget:SetText("可领取")
             else
-                stateWidget:SetText(tostring(floor) .. "鐏?)
+                stateWidget:SetText(tostring(floor) .. "层")
             end
         end
     end
@@ -347,7 +347,7 @@ function wujingjiange:OnGet1Clicked()
     -- Guard condition before running this branch.
     if self.DailyClaimPending then
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("妫板棗褰囩拠閿嬬湴婢跺嫮鎮婃稉?..")
+            PC.MMainUI:ShowTip("每日奖励领取中，请稍候...")
         end
         return
     end
@@ -357,7 +357,7 @@ function wujingjiange:OnGet1Clicked()
     local lastDate = PC.JiangeDailyClaimDate or ""
     if lastDate == today then
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("娴犲﹤銇夊鑼病妫板棗褰囨潻鍥︾啊")
+            PC.MMainUI:ShowTip("今日已领取过每日奖励")
         end
         -- Exit early when requirements are not met.
         return
@@ -369,12 +369,12 @@ function wujingjiange:OnGet1Clicked()
         self.DailyClaimPending = true
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_ClaimJiangeDailyReward")
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("妫板棗褰囩拠閿嬬湴瀹告彃褰傞柅?)
+            PC.MMainUI:ShowTip("已发送每日奖励领取请求")
         end
         -- Keep this section consistent with the original UI flow.
     else
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("妫板棗褰囨径杈Е閿涘矁顕粙宥呮倵闁插秷鐦?)
+            PC.MMainUI:ShowTip("领取失败，请稍后再试")
         end
     end
 end
@@ -392,7 +392,7 @@ function wujingjiange:OnGet2Clicked()
     -- Guard condition before running this branch.
     if playerFloor < targetFloor then
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("閺堫亣鎻崚? .. tostring(targetFloor) .. "鐏?)
+            PC.MMainUI:ShowTip("当前层数不足，无法领取该层奖励")
         end
         -- Exit early when requirements are not met.
         return
@@ -402,7 +402,7 @@ function wujingjiange:OnGet2Clicked()
     local claimed = self:ParseClaimedFloors()
     if claimed[targetFloor] then
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip("鐠囥儱鐪版總鏍уС瀹告煡顣崣?)
+            PC.MMainUI:ShowTip("该层奖励已领取")
         end
         -- Exit early when requirements are not met.
         return
@@ -414,7 +414,7 @@ function wujingjiange:OnGet2Clicked()
         local rewardAmount = FLOOR_REWARD_CONFIG[targetFloor] or 0
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_ClaimJiangeFloorReward", targetFloor)
         if PC.MMainUI and PC.MMainUI.ShowTip then
-            PC.MMainUI:ShowTip(tostring(targetFloor) .. "鐏炲倸顨涢崝閬嶎暙閸欐牗鍨氶崝鐕傜磼閼惧嘲绶?" .. tostring(rewardAmount) .. " 娑?)
+            PC.MMainUI:ShowTip(tostring(targetFloor) .. "层奖励领取成功，获得" .. tostring(rewardAmount) .. "份奖励")
         end
         -- Keep this section consistent with the original UI flow.
     end

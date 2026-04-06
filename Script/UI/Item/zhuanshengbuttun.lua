@@ -1,4 +1,4 @@
-﻿---@class zhuanshengbuttun_C:UUserWidget
+---@class zhuanshengbuttun_C:UUserWidget
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field CanvasPanel_0 UCanvasPanel
 ---@field zhuanshengbuttun UButton
@@ -37,72 +37,72 @@ function zhuanshengbuttun:LuaInit()
 end
 
 function zhuanshengbuttun:zhuanshengbuttun_OnClicked()
-	-- Log this action.
+	--ugcprint("[zhuanshengbuttun] 按钮被点击")
 	
-	-- Related UI logic.
+	-- 通过 PlayerController 获取 MMainUI（因为这些是兄弟组件，不是父子关系）
 	local pc = UGCGameSystem.GetLocalPlayerController()
 	if pc and pc.MMainUI then
-		-- Log this action.
+		--ugcprint("[zhuanshengbuttun] 找到 MMainUI，显示转生界面")
 		pc.MMainUI.zhuansheng:ShowAllControls()
 		self:SetVisibility(ESlateVisibility.Collapsed)
 	else
-		-- Log this action.
+		--ugcprint("[zhuanshengbuttun] 错误 - 无法找到 MMainUI")
 	end
 end
 
--- Related UI logic.
+-- 鼠标悬停事件 - 播放动画
 function zhuanshengbuttun:zhuanshengbuttun_OnHovered()
-	-- Related UI logic.
+	-- 播放悬停动画（正向）
 	if self.NewAnimation_1 then
-		-- Related UI logic.
+		-- 检查动画是否正在播放，避免重复触发
 		if not self:IsAnimationPlaying(self.NewAnimation_1) then
 			self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 1)
-			-- Log this action.
+			--ugcprint("[zhuanshengbuttun] 播放悬停动画")
 		else
-			-- Related UI logic.
+			-- 如果正在倒放，则反转为正向
 			if not self:IsAnimationPlayingForward(self.NewAnimation_1) then
 				self:ReverseAnimation(self.NewAnimation_1)
-				-- Log this action.
+				--ugcprint("[zhuanshengbuttun] 反转为正向播放")
 			end
 		end
 	end
 end
 
--- Related UI logic.
+-- 鼠标离开事件 - 倒放动画
 function zhuanshengbuttun:zhuanshengbuttun_OnUnhovered()
-	-- Related UI logic.
+	-- 播放倒放动画（从末尾倒放回初始状态）
 	if self.NewAnimation_1 then
-		-- Related UI logic.
+		-- 检查动画是否正在播放
 		if not self:IsAnimationPlaying(self.NewAnimation_1) then
-			-- Related UI logic.
+			-- 动画已停止，重新播放倒放
 			self:PlayAnimation(self.NewAnimation_1, 0, 1, 1, 1)
-			-- Log this action.
+			--ugcprint("[zhuanshengbuttun] 倒放悬停动画")
 		else
-			-- Related UI logic.
+			-- 动画正在播放，检查是否正向播放
 			if self:IsAnimationPlayingForward(self.NewAnimation_1) then
-				-- Related UI logic.
+				-- 正在正向播放，反转为倒放
 				self:ReverseAnimation(self.NewAnimation_1)
-				-- Log this action.
+				--ugcprint("[zhuanshengbuttun] 反转为倒放")
 			end
 		end
 	end
 end
 
--- Related UI logic.
+-- 鼠标按下事件 - 播放按压动画
 function zhuanshengbuttun:zhuanshengbuttun_OnPressed()
 	if self.NewAnimation_1 then
-		-- Related UI logic.
+		-- 按压时快速播放到末尾（模拟按下效果）
 		self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 2)
-		-- Log this action.
+		--ugcprint("[zhuanshengbuttun] 按压动画")
 	end
 end
 
--- Related UI logic.
+-- 鼠标释放事件 - 恢复动画
 function zhuanshengbuttun:zhuanshengbuttun_OnReleased()
 	if self.NewAnimation_1 then
-		-- Related UI logic.
+		-- 释放时快速倒放回初始状态
 		self:PlayAnimation(self.NewAnimation_1, 0, 1, 1, 2)
-		-- Log this action.
+		--ugcprint("[zhuanshengbuttun] 释放动画")
 	end
 end
 

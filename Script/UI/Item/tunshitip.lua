@@ -1,12 +1,12 @@
-﻿---@class tunshitip_C:UUserWidget
+---@class tunshitip_C:UUserWidget
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field Image_0 UImage
 ---@field tunshitiptext UTextBlock
 --Edit Below--
 local tunshitip = { 
     bInitDoOnce = false,
-    messageQueue = {},   -- 娑堟伅闃熷垪
-    isProcessing = false -- 鏄惁姝ｅ湪澶勭悊闃熷垪
+    messageQueue = {},   -- 消息队列
+    isProcessing = false -- 是否正在处理队列
 } 
 
 
@@ -24,76 +24,74 @@ end
 
 -- end
 
--- Related UI logic.
+-- 显示提示信息
 function tunshitip:ShowTips(message)
-	-- Log this action.
+	--ugcprint("[tunshitip] ShowTips 被调用，消息: " .. tostring(message))
 	
-	-- Related UI logic.
+	-- 将消息加入队列
 	table.insert(self.messageQueue, message)
-	-- Log this action.
+	--ugcprint("[tunshitip] 消息已加入队列，当前队列长度: " .. #self.messageQueue)
 	
-	-- Related UI logic.
+	-- 如果没有正在处理队列，开始处理
 	if not self.isProcessing then
 		self:ProcessQueue()
 	end
 end
 
--- Related UI logic.
+-- 处理队列（立即显示，不等待前一条结束）
 function tunshitip:ProcessQueue()
-	-- Related UI logic.
+	-- 检查队列是否为空
 	if #self.messageQueue == 0 then
 		self.isProcessing = false
-		-- Related UI logic.
-		self:SetVisibility(ESlateVisibility.Collapsed)
-		-- Log this action.
+		--ugcprint("[tunshitip] 队列已空，停止处理")
 		return
 	end
 	
-	-- Related UI logic.
+	-- 标记正在处理
 	self.isProcessing = true
 	
-	-- Related UI logic.
+	-- 取出队列第一条消息
 	local message = table.remove(self.messageQueue, 1)
-	-- Log this action.
+	--ugcprint("[tunshitip] 立即显示消息: " .. tostring(message) .. ", 剩余队列: " .. #self.messageQueue)
 	
-	-- Related UI logic.
+	-- 立即显示这条消息
 	self:ShowSingleMessage(message)
 	
-	-- Related UI logic.
+	-- 0.1秒后处理下一条（不等待当前消息结束）
 	local nextDelegate = ObjectExtend.CreateDelegate(self, function()
 		self:ProcessQueue()
 	end)
-	KismetSystemLibrary.K2_SetTimerDelegateForLua(nextDelegate, self, 0.4, false)
+	KismetSystemLibrary.K2_SetTimerDelegateForLua(nextDelegate, self, 0.1, false)
 end
 
--- Related UI logic.
+-- 显示单条消息
 function tunshitip:ShowSingleMessage(message)
 	if not self.tunshitiptext then
-		-- Log this action.
+		--ugcprint("[tunshitip] 错误：tunshitiptext 不存在")
 		return
 	end
 	
-	-- Related UI logic.
+	-- 显示容器
 	self:SetVisibility(ESlateVisibility.Visible)
 	
-	-- Related UI logic.
+	-- 显示文本组件
 	self.tunshitiptext:SetVisibility(ESlateVisibility.Visible)
 	
-	-- Related UI logic.
+	-- 设置提示文本
 	self.tunshitiptext:SetText(message)
 	
-	-- Related UI logic.
+	-- 播放动画（如果存在）
 	if self.NewAnimation_1 then
 		self:PlayAnimation(self.NewAnimation_1, 0, 1, 0, 1)
-		-- Log this action.
+		--ugcprint("[tunshitip] 动画已播放")
 	end
 	
-	-- Related UI logic.
+	-- 0.3秒后隐藏（但不影响下一条的显示）
 	local hideDelegate = ObjectExtend.CreateDelegate(self, function()
-		-- Related UI logic.
+		-- 只有在队列为空且不在处理时才隐藏容器
 		if #self.messageQueue == 0 and not self.isProcessing then
 			self:SetVisibility(ESlateVisibility.Collapsed)
-			-- Log this action.
+			--ugcprint("[tunshitip] 所有提示已完成，容器已隐藏")
 		end
 	end)
 	

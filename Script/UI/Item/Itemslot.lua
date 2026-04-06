@@ -10,7 +10,6 @@ local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 function Itemslot:Construct()
 end
 
-- -- 
 ---@param itemID number Virtual item ID.
 ---@param itemNum number Item count.
 function Itemslot:SetItemData(itemID, itemNum)

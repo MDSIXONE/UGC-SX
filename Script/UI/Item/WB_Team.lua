@@ -223,7 +223,7 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 
 					local playerName = data.PlayerName
 					if not playerName or playerName == "" then
-						playerName = "閺堫亞鐓￠悳鈺侇啀"
+						playerName = "未知玩家"
 					end
 
 					local iconUrl = data.IconUrl or ""
@@ -296,7 +296,7 @@ function WB_Team:CreatePlayerSlots(bSkipServerRequest)
 					playerName = PlayerState.PlayerName
 				end
 				if not playerName or playerName == "" then
-					playerName = "閺堫亞鐓￠悳鈺侇啀"
+					playerName = "未知玩家"
 				end
 
 				local iconUrl = ""

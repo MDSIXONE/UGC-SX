@@ -1,4 +1,4 @@
-﻿---@class SettlementTip_C:UUserWidget
+---@class SettlementTip_C:UUserWidget
 ---@field Image_0 UImage
 ---@field Image_2 UImage
 ---@field Settlementtip UTextBlock
@@ -6,7 +6,7 @@
 local SettlementTip = { bInitDoOnce = false }
 
 function SettlementTip:Construct()
-	-- Initialize widget state and bindings.
+	ugcprint("[SettlementTip] Construct 被调用")
 	self:LuaInit()
 end
 
@@ -16,12 +16,12 @@ function SettlementTip:LuaInit()
 	end
 	self.bInitDoOnce = true
 	
-	-- Guard condition before running this branch.
+	ugcprint("[SettlementTip] LuaInit 完成")
 	
-	-- Guard condition before running this branch.
+	-- 绑定文本颜色属性
 	if self.Settlementtip then
 		self.Settlementtip:BindingProperty("ColorAndOpacity", self.Settlementtip_ColorAndOpacity, self)
-		-- Continue binding additional widget properties.
+		ugcprint("[SettlementTip] 文本颜色绑定成功")
 	end
 end
 

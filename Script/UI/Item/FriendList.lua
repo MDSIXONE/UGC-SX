@@ -72,7 +72,7 @@ function FriendList:GetTeamPlayers()
         if pawn and UGCObjectUtility.IsObjectValid(pawn) then
             local playerKey = UGCGameSystem.GetPlayerKeyByPlayerPawn(pawn)
             if playerKey ~= localPlayerKey then
-                local playerName = UGCPawnAttrSystem.GetPlayerName(pawn) or "鏈煡"
+                local playerName = UGCPawnAttrSystem.GetPlayerName(pawn) or "未知"
                 table.insert(players, { pawn = pawn, name = playerName })
             end
         end

@@ -78,7 +78,7 @@ function Settlement:CreateRewardSlots()
 	-- Local helper value for this logic block.
 	local totalRewardCount = 0
 	for _, rewardData in pairs(allRewards) do
-		local itemCount = math.floor(tonumber(rewardData["閺佷即鍣?]) or 0)
+		local itemCount = math.floor(tonumber(rewardData["数量"]) or 0)
 		if itemCount > 0 then
 			totalRewardCount = totalRewardCount + itemCount
 		end

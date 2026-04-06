@@ -211,12 +211,12 @@ end
 function chuansong:CheckRequirement(requiredRebirth, requiredLevel)
     local rebirthCount = self:GetPlayerRebirthCount()
     if rebirthCount < requiredRebirth then
-        self:ShowTip("杞敓娆℃暟涓嶈冻锛岄渶瑕佽浆鐢? .. requiredRebirth .. "娆?)
+		self:ShowTip("转生次数不足，需要转生" .. requiredRebirth .. "次")
         return false
     end
     local level = self:GetPlayerLevel()
     if level < requiredLevel then
-        self:ShowTip("绛夌骇涓嶈冻锛岄渶瑕? .. requiredLevel .. "绾?)
+		self:ShowTip("等级不足，需要" .. requiredLevel .. "级")
         return false
     end
     return true

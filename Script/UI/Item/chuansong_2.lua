@@ -151,7 +151,7 @@ function chuansong:CheckRebirthRequirement(requiredRebirth, fubenName)
         -- Acquire local player references.
         local pc = UGCGameSystem.GetLocalPlayerController()
         if pc and pc.MMainUI and pc.MMainUI.ShowTip then
-            pc.MMainUI:ShowTip("You do not meet the rebirth requirement for this teleport.")
+            pc.MMainUI:ShowTip("转生次数不足，无法传送到该副本。")
         end
         return false
     end

@@ -67,15 +67,15 @@ function WB_Slot:LoadRecipeData(recipeID)
 		-- Local helper value for this logic block.
 		
 		-- Local helper value for this logic block.
-		local virtualOutputItemID = recipeConfig["閾忔碍瀚欓悧鈺佹惂ID"]
+		local virtualOutputItemID = recipeConfig["虚拟物品ID"]
 		-- Local helper value for this logic block.
 		
 		-- Local helper value for this logic block.
-		local outputCount = recipeConfig["閺佷即鍣?] or recipeConfig["鏉堟挸鍤弶鎰灐閿涘牊鏆熼柌蹇ョ礆"] or 1
+		local outputCount = recipeConfig["数量"] or recipeConfig["输出材料（数量）"] or 1
 		-- Local helper value for this logic block.
 		
 		-- Local helper value for this logic block.
-		local craftRecipeArray = recipeConfig["閸氬牊鍨氶柊宥嗘煙"]
+		local craftRecipeArray = recipeConfig["合成配方"]
 		if not craftRecipeArray then
 			-- Keep this section consistent with the original UI flow.
 			self.RecipeData = {
@@ -101,8 +101,8 @@ function WB_Slot:LoadRecipeData(recipeID)
 				-- Keep this section consistent with the original UI flow.
 				
 				-- Keep this section consistent with the original UI flow.
-				local ok, virtualInputItemID = pcall(function() return material["閺夋劖鏋￠搹姘珯閻椻晛鎼D"] end)
-				local ok2, inputCount = pcall(function() return material["閹碘偓闂団偓閺佷即鍣?] end)
+				local ok, virtualInputItemID = pcall(function() return material["材料虚拟物品ID"] end)
+				local ok2, inputCount = pcall(function() return material["所需数量"] end)
 				
 				if not ok then
 					-- Keep this section consistent with the original UI flow.
@@ -193,15 +193,15 @@ function WB_Slot:LoadFenjieData(recipeID)
 		-- Local helper value for this logic block.
 		
 		-- Local helper value for this logic block.
-		local virtualOutputItemID = fenjieConfig["閾忔碍瀚欓悧鈺佹惂ID"]
+		local virtualOutputItemID = fenjieConfig["虚拟物品ID"]
 		-- Local helper value for this logic block.
 		
 		-- Local helper value for this logic block.
-		local outputCount = fenjieConfig["閺佷即鍣?] or 1
+		local outputCount = fenjieConfig["数量"] or 1
 		-- Local helper value for this logic block.
 		
 		-- Local helper value for this logic block.
-		local fenjieRecipeArray = fenjieConfig["閸氬牊鍨氶柊宥嗘煙"] or fenjieConfig["閸掑棜袙闁板秵鏌?]
+		local fenjieRecipeArray = fenjieConfig["分解配方"] or fenjieConfig["合成配方"]
 		if not fenjieRecipeArray then
 			-- Keep this section consistent with the original UI flow.
 			self.RecipeData = {
@@ -224,8 +224,8 @@ function WB_Slot:LoadFenjieData(recipeID)
 		for i = 1, #fenjieRecipeArray do
 			local material = fenjieRecipeArray[i]
 			if material then
-				local ok, virtualItemID = pcall(function() return material["閺夋劖鏋￠搹姘珯閻椻晛鎼D"] end)
-				local ok2, count = pcall(function() return material["閹碘偓闂団偓閺佷即鍣?] end)
+				local ok, virtualItemID = pcall(function() return material["材料虚拟物品ID"] end)
+				local ok2, count = pcall(function() return material["所需数量"] end)
 				
 				if not ok then virtualItemID = nil end
 				if not ok2 then count = nil end
@@ -366,8 +366,8 @@ function WB_Slot:UpdateItemCount()
 	-- Local helper value for this logic block.
 	local countText = "x" .. tostring(self.RecipeData.OutputCount)
 	self.TextBlock_0:SetText(countText)
-	
-	-- Local helper value for this logic block.
+				local ok, virtualInputItemID = pcall(function() return material["材料虚拟物品ID"] end)
+				local ok2, inputCount = pcall(function() return material["所需数量"] end)
 	local whiteColor = UGCObjectUtility.NewStruct("SlateColor")
 	whiteColor.SpecifiedColor = UGCObjectUtility.NewStruct("LinearColor", 1, 1, 1, 1)
 	self.TextBlock_0:SetColorAndOpacity(whiteColor)

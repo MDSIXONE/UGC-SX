@@ -18,67 +18,67 @@ local jiange = { bInitDoOnce = false }
 -- Configuration table used by this widget.
 local SWORD_LEVELS = {
     {
-        name = "閸熷憡婀€鐎垫帡鏀?,
+        name = "啸月寒锋",
         skill = "bailangjian",
         icon = "bailangjian",
         atkPercent = 100,
         upgradeCost = 1,
-        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插100%",
-        skillDesc = "閻欒偐鍏㈤崯鍛婃箑閿涘苯澧ら崗澶婎洤閺堝牅绗呯€垫帡婀濋敍宀勬敱閸掆晠姣﹂幐掳鈧倹鐦＄粔鎺戞倻閸撳秵鏌熼崣鎴濈殸娑撯偓閺嬫岸顥ｉ崜鎴礉娴笺倕顔婃稉鐑樻暰閸戣濮忛惃?00%",
+        detail = "神剑攻击提升100%",
+        skillDesc = "释放寒霜剑气，造成范围伤害并提升神剑攻击100%。",
     },
     {
-        name = "楠炶棄鍟ｅВ鎺戝ⅳ",
+        name = "幽冥毒剑",
         skill = "kuishejian",
         icon = "kuishejian",
         atkPercent = 200,
         upgradeCost = 2,
-        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插200%",
-        skillDesc = "濮ｆ帟娉ф俊鍌氳弴閸愩儲娼冮幍瀣剁礉閸撴垵鍨夐懛顏勭敨閸撗勭槰閵嗗倹鐦＄粔鎺戞倻閸撳秵鏌熼崣鎴濈殸娑撯偓閺嬫岸顥ｉ崜鎴礉娴笺倕顔婃稉鐑樻暰閸戣濮忛惃?00%",
+        detail = "神剑攻击提升200%",
+        skillDesc = "释放毒雾剑气，持续伤害周围目标并提升神剑攻击200%。",
     },
     {
-        name = "閻у€熸闂囨粓鐡岄崜?,
+        name = "白虎霜魄剑",
         skill = "baihujian",
         icon = "baihujian",
         atkPercent = 200,
         upgradeCost = 3,
-        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插200%",
-        skillDesc = "閻у€熸閸戞繄宸归崘棰佺閸旀冻绱濇稉缁樻絻娴兼劧绱濋拺鏉戞儓閺冪姴鏁栫€垫帒鍟叉稊瀣毜閵嗗倹鐦＄粔鎺戞倻閸撳秵鏌熼崣鎴濈殸娑撯偓閺嬫岸顥ｉ崜鎴礉娴笺倕顔婃稉鐑樻暰閸戣濮忛惃?00%",
+        detail = "神剑攻击提升200%",
+        skillDesc = "召唤白虎剑魂冲锋，命中造成高额伤害并提升神剑攻击200%。",
     },
     {
-        name = "閻ц姤杈伴惍鎾亼閸?,
+        name = "白泽破邪剑",
         skill = "bifangjian",
         icon = "baizejian",
         atkPercent = 300,
         upgradeCost = 4,
-        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插300%",
-        skillDesc = "閻ц姤杈伴惌銉︽娑撳洨澧块敍灞藉讲閻挳娅庢稉鈧崚鍥у鐠炩€虫嫲闁亞顨ら妴鍌涚槨缁夋帒鎮滈崜宥嗘煙閸欐垵鐨犳稉鈧弸姘额棧閸撴埊绱濇导銈咁唺娑撶儤鏁鹃崙璇插閻?00%",
+        detail = "神剑攻击提升300%",
+        skillDesc = "引导白泽之力斩击前方，造成范围伤害并提升神剑攻击300%。",
     },
     {
-        name = "妤规帡绨鹃梹鍥с亯閸?,
+        name = "麒麟镇天剑",
         skill = "qilingjian",
         icon = "qilingjian",
         atkPercent = 400,
         upgradeCost = 5,
-        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插400%",
-        skillDesc = "妤规帡绨炬稉铏规喓閸忔垝绠ｆ＃鏍电礉閽戞潙鎯堝ù鎴濆袱婢堆冩勾娑斿濮忛妴鍌涚槨缁夋帒鎮滈崜宥嗘煙閸欐垵鐨犳稉鈧弸姘额棧閸撴埊绱濇导銈咁唺娑撶儤鏁鹃崙璇插閻?00%",
+        detail = "神剑攻击提升400%",
+        skillDesc = "麒麟剑气震地，对周围敌人造成伤害并提升神剑攻击400%。",
     },
     {
-        name = "閸戙倕鍤㈠☉鍛潏閸?,
+        name = "凤凰涅槃剑",
         skill = "zhuquejian",
         icon = "fenhuanjian",
         atkPercent = 500,
         upgradeCost = 10,
-        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插500%",
-        skillDesc = "閸戙倕鍤㈤幒灞惧付濞戝懏顫堟稊瀣紑閿涘本绻忓缁樻濞村浼€闁插秶鏁撻妴鍌涚槨缁夋帒鎮滈崜宥嗘煙閸欐垵鐨犳稉鈧弸姘额棧閸撴埊绱濇导銈咁唺娑撶儤鏁鹃崙璇插閻?00%",
+        detail = "神剑攻击提升500%",
+        skillDesc = "凤凰火羽剑雨，造成持续灼烧伤害并提升神剑攻击500%。",
     },
     {
-        name = "缁佺偤绶抽懟宥団敃閸?,
+        name = "神龙苍穹剑",
         skill = "shenlongjian",
         icon = "shenlongjian",
         atkPercent = 1000,
         upgradeCost = 0,
-        detail = "娴ｂ晜鍩撻崥搴☆杻閸旂姵娓舵径褎鏁鹃崙璇插1000%",
-        skillDesc = "閾诲秴鎮庢潻婊冨綔缁佺偤绶虫鍌炵搶娑撳孩纭堕崚娆欑礉閹枫儲婀佸В浣轰純婢垛晛婀存稊瀣閵嗗倹鐦＄粔鎺戞倻閸撳秵鏌熼崣鎴濈殸娑撯偓閺嬫岸顥ｉ崜鎴礉娴笺倕顔婃稉鐑樻暰閸戣濮忛惃?000%",
+        detail = "神剑攻击提升1000%",
+        skillDesc = "神龙天降剑阵，造成巨额范围伤害并提升神剑攻击1000%。",
     },
 }
 local MAX_LEVEL = #SWORD_LEVELS
@@ -98,7 +98,7 @@ function jiange:Construct()
         -- Keep this section consistent with the original UI flow.
     end
 
-    if self.weartip then self.weartip:SetText("缁屾寧鍩?) end
+    if self.weartip then self.weartip:SetText("穿戴") end
     self:UpdateSwordDisplay()
     self:UpdateProgressBar()
     self:UpdateCostDisplay()
@@ -242,7 +242,7 @@ function jiange:ApplyForgeProgress()
     local addTenths = math.random(1, 10) -- Generate random value.
     self.UpgradeProgress = self.UpgradeProgress + addTenths / 10
 
-    local tipText = string.format("闁垮鈧姾绻樻惔?+%.1f%%", addTenths / 10)
+    local tipText = string.format("锻造进度 +%.1f%%", addTenths / 10)
 
     -- Guard condition before running this branch.
     if self.UpgradeProgress >= 100 then
@@ -258,7 +258,7 @@ function jiange:ApplyForgeProgress()
             self:ApplyAtkBonus(true)
         end
 
-        tipText = "閸楀洨楠囬幋鎰"
+        tipText = "神剑升级成功"
     end
 
     self:UpdateProgressBar()
@@ -277,7 +277,7 @@ function jiange:OnForgeConsumeResult(success, remainCount, tipText)
         if tipText and tipText ~= "" then
             self:ShowTipViaMain(tipText)
         else
-            self:ShowTipViaMain("闁垮鈧姷鐓跺☉鍫ｂ偓妤€銇戠拹銉礉鐠囬鈼㈤崥搴ㄥ櫢鐠?)
+            self:ShowTipViaMain("锻造失败，请检查材料数量")
         end
         self:RefreshCostDisplayDelayed(0.2)
         return
@@ -313,21 +313,21 @@ function jiange:OnWearClicked()
         self:ApplySkill(false)
         self:ApplyAtkBonus(false)
         self.IsWearing = false
-        if self.weartip then self.weartip:SetText("缁屾寧鍩?) end
-        self:ShowTipViaMain("瀹告彃宓忔稉?)
+        if self.weartip then self.weartip:SetText("穿戴") end
+        self:ShowTipViaMain("已卸下神剑")
     else
         self:ApplySkill(true)
         self:ApplyAtkBonus(true)
         self.IsWearing = true
-        if self.weartip then self.weartip:SetText("閸楅晲绗?) end
-        self:ShowTipViaMain("瀹歌尙鈹涢幋?)
+        if self.weartip then self.weartip:SetText("卸下") end
+        self:ShowTipViaMain("已穿戴神剑")
     end
 end
 
 function jiange:OnLevelUpClicked()
     if self.CurrentLevel >= MAX_LEVEL then return end
     if self.ForgeConsumePending then
-        self:ShowTipViaMain("濮濓絽婀柨濠氣偓鐘辫厬閿涘矁顕粙宥呪偓?)
+        self:ShowTipViaMain("消耗处理中，请稍后")
         return
     end
 
@@ -338,14 +338,14 @@ function jiange:OnLevelUpClicked()
     local count = self:GetForgeStoneCount()
     -- Guard condition before running this branch.
     if count < cost then
-        self:ShowTipViaMain("闁垮鈧姷鐓舵稉宥堝喕")
+        self:ShowTipViaMain("锻造石不足，无法升级")
         return
     end
 
     -- Local helper value for this logic block.
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if not PlayerState then
-        self:ShowTipViaMain("閺冪姵纭舵潻鐐村复閺堝秴濮熺粩?)
+        self:ShowTipViaMain("无法获取玩家状态")
         return
     end
 

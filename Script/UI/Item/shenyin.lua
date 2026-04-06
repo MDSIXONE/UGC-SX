@@ -59,13 +59,13 @@ local ButtonBorderMap = {
 }
 -- Configuration table used by this widget.
 local DetailTexts = {
-    bailang  = { "閻х晫瀚?, "闂囨粎澧惂鐣屽", "鐎垫帡鏀遍崯鍝ュ", "閺嬩礁顧侀棁婊堢搳璺惂鐣屽", "婢垛晝鈹曢崙娑樺璺崳顒佹箑閹存瀚? },
-    Button_2 = { "闂堟帟娉?, "楠炶棄濂栭棃鎺曟厂", "濮ｆ帒濂栭獮鍊熸厂", "閼诲秵绗傞獮钘夊璺棃鎺曟厂", "娑撳洦鐦ㄩ崘銉ュ璺崳顒勭搳姒瑨娉? },
-    Button_3 = { "閽冩繆妾?, "闂嗙兘顥撻拑婵婃", "濞屟囨祫閹存妾?, "濞屟勭熬闂嗗嘲鏆╄矾閹存妾?, "娑旀繈娓奸梹鍥ф袱璺憗鍌溾敄婢垛晞妾? },
-    Button_4 = { "閻ц姤杈?, "缁鳖偅娲旈惂鑺ヨ景", "閺勭喎顕ラ惂鑺ヨ景", "缁鳖偄顔忔径鈺佹儙璺惂鑺ヨ景", "妤﹁儻鎸嬮搹姘暔璺稉鍥╀紥缁佺偞杈? },
-    Button_5 = { "妤规帡绨?, "閻愬氦顫楁ス鎺楃熬", "閻掓艾銇夐悷鐐虹熬", "閻愬海瀚抽梹鍥︾瑯璺ス鎺楃熬", "婢额亜褰滃ú顏囧礆璺稉鍥у悢缁佹牠绨? },
-    Button_6 = { "閸戙倕鍤?, "鐠с倗鍔欓崙銈呭殺", "閻戭剛浼€閸戜即绗?, "閻掓艾銇夊☉鍛潏璺悘顐㈠殺", "娑旀繂銇夊鍝ュ劯璺稉宥嗩劥缁佺偛鍤? },
-    Button_7 = { "缁佺偤绶?, "閸岃弓绗橀柌鎴︾烦", "缁岀懓銇夐懟宥夌烦", "鐎垫澘鐣ら梹鍥︾瑯璺柌鎴︾烦", "濞ｉ攱鐭婇崗鍐潗璺稉鍥烦娑斿顨? },
+    bailang  = { "白狼", "霜牙白狼", "寒锋啸狼", "极夜霜魂·白狼", "天穹凛影·噬月战狼" },
+    Button_2 = { "青蛇", "幽影青蛇", "毒影幽蛇", "苍渊幽影·青蛇", "万毒冥影·噬魂龙蛇" },
+    Button_3 = { "蓝虎", "雷风蓝虎", "沧雷战虎", "沧溟雷啸·战虎", "九霄镇岳·裂空天虎" },
+    Button_4 = { "白泽", "紫曜白泽", "星寰白泽", "紫宸天启·白泽", "鸿蒙虚境·万灵神泽" },
+    Button_5 = { "麒麟", "炎角麒麟", "焚天瑞麟", "炎狱镇世·麒麟", "太古洪荒·万兽祖麟" },
+    Button_6 = { "凤凰", "赤焰凤凰", "烬火凰鸟", "焚天涅槃·火凰", "九天永烬·不死神凰" },
+    Button_7 = { "神龙", "傲世金龙", "穹天苍龙", "寰宇镇世·金龙", "混沌元始·万龙之祖" },
 }
 -- Configuration table used by this widget.
 local DetailImages = {
@@ -109,13 +109,13 @@ local ItemVirtualIDs = {
 }
 -- Configuration table used by this widget.
 local SkillDescriptions = {
-    bailang  = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊40%閻ㄥ嫪婵€鐎?,
-    Button_2 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊80%閻ㄥ嫪婵€鐎?,
-    Button_3 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊120%閻ㄥ嫪婵€鐎?,
-    Button_4 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊160%閻ㄥ嫪婵€鐎?,
-    Button_5 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊200%閻ㄥ嫪婵€鐎?,
-    Button_6 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊300%閻ㄥ嫪婵€鐎?,
-    Button_7 = "濮?缁夋帒鎮滈崨銊ユ纯閻ㄥ嫪琚辨稉顏呮櫕娴滄椽妾锋稉瀣殻閸忚棄鈻夐崢瀣剁礉闁姵鍨氶張鈧径褏鏁撻崨钘夊500%閻ㄥ嫪婵€鐎?,
+    bailang  = "白狼神影：提升吞噬经验加成40%。",
+    Button_2 = "青蛇神影：提升吞噬经验加成80%。",
+    Button_3 = "蓝虎神影：提升吞噬经验加成120%。",
+    Button_4 = "白泽神影：提升吞噬经验加成160%。",
+    Button_5 = "麒麟神影：提升吞噬经验加成200%。",
+    Button_6 = "凤凰神影：提升吞噬经验加成300%。",
+    Button_7 = "神龙神影：提升吞噬经验加成500%。",
 }
 local STATE_UNLOCK = "unlock"
 local STATE_UNWEAR = "unwear"
@@ -442,7 +442,7 @@ function shenyin:OnUnlockClicked()
             local count = VIM:GetItemNum(virtualID) or 0
             local pending = (self.PendingCost and self.PendingCost[virtualID]) or 0
             if count - pending < 100 then
-                self:ShowTip("绾板海澧栨稉宥堝喕閿涘矁袙闁夸線娓剁憰?00娑擃亞顣抽悧?)
+                self:ShowTip("解锁所需材料不足")
                 return
             end
         end
@@ -499,7 +499,7 @@ function shenyin:OnWearClicked()
     self:ApplyEcexp(self.CurrentEcexpBonus)
     self:UpdateActionButtons()
     self:SaveToServer()
-    self:ShowTip("瀹歌尙鈹涢幋?)
+    self:ShowTip("穿戴成功")
 end
 function shenyin:OnRemoveClicked()
     if not self.SelectedButton then return end
@@ -519,7 +519,7 @@ function shenyin:OnRemoveClicked()
     self:ApplyEcexp(0)
     self:UpdateActionButtons()
     self:SaveToServer()
-    self:ShowTip("瀹告彃宓忔稉?)
+    self:ShowTip("卸下成功")
 end
 -- Handle add level button click.
 function shenyin:OnAddLevelClicked()
@@ -537,7 +537,7 @@ function shenyin:OnAddLevelClicked()
             -- Local helper value for this logic block.
             local pending = (self.PendingCost and self.PendingCost[virtualID]) or 0
             if count - pending < 1 then
-                self:ShowTip("绾板海澧栨稉宥堝喕")
+                self:ShowTip("升级所需材料不足")
                 return
             end
         end
@@ -564,7 +564,7 @@ function shenyin:OnAddLevelClicked()
     self:UpdateItemImages(self.SelectedButton)
     self:UpdateActionButtons()
     self:SaveToServer()
-    self:ShowTip("閸楀洨楠囬幋鎰")
+    self:ShowTip("等级提升成功")
 end
 -- Handle add quality button click.
 function shenyin:OnAddQualityClicked()
@@ -581,7 +581,7 @@ function shenyin:OnAddQualityClicked()
             local count = VIM:GetItemNum(virtualID) or 0
             local pending = (self.PendingCost and self.PendingCost[virtualID]) or 0
             if count - pending < 100 then
-                self:ShowTip("绾板海澧栨稉宥堝喕")
+                self:ShowTip("升级所需材料不足")
                 return
             end
         end
@@ -610,7 +610,7 @@ function shenyin:OnAddQualityClicked()
     self:UpdateItemImages(self.SelectedButton)
     self:UpdateActionButtons()
     self:SaveToServer()
-    self:ShowTip("鏉╂盯妯侀幋鎰")
+    self:ShowTip("品质提升成功")
 end
 function shenyin:OnCancelClicked()
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()

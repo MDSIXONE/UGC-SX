@@ -11,7 +11,7 @@ local WB_Teamiinvite = { bInitDoOnce = false }
 function WB_Teamiinvite:GetInviterDisplayName()
 	local playerKey = self.InviterPlayerKey
 	if not playerKey or playerKey == 0 then
-		return "鐜╁"
+		return "玩家"
 	end
 
 	local playerPawn = UGCGameSystem.GetPlayerPawnByPlayerKey(playerKey)
@@ -37,9 +37,9 @@ function WB_Teamiinvite:UpdateInviteDetailText()
 
 	local inviterName = self:GetInviterDisplayName()
 	if self.IsJoinRequest then
-		self.TextBlock_invitedetail:SetText(tostring(inviterName) .. " 鐢宠鍏ラ槦")
+		self.TextBlock_invitedetail:SetText(tostring(inviterName) .. " 申请加入队伍")
 	else
-		self.TextBlock_invitedetail:SetText(tostring(inviterName) .. " 閭€璇蜂綘鍏ラ槦")
+		self.TextBlock_invitedetail:SetText(tostring(inviterName) .. " 邀请你加入队伍")
 	end
 end
 
@@ -121,11 +121,14 @@ function WB_Teamiinvite:OnSureClicked()
 		if self.IsJoinRequest then
 			-- Related UI logic.
 			UnrealNetwork.CallUnrealRPC(PC, PC, "Server_AcceptJoinRequest", self.InviterPlayerKey)
+			if PC.MMainUI and PC.MMainUI.ShowTip then
+				PC.MMainUI:ShowTip("已同意入队申请")
+			end
 		else
 			-- Related UI logic.
 			UnrealNetwork.CallUnrealRPC(PC, PC, "Server_RespondTeamInvite", self.InviterPlayerKey, true)
 			if PC.MMainUI and PC.MMainUI.ShowTip then
-				PC.MMainUI:ShowTip("宸插姞鍏ラ槦浼?)
+				PC.MMainUI:ShowTip("已加入队伍")
 			end
 		end
 	end
@@ -142,13 +145,13 @@ function WB_Teamiinvite:OnRejectClicked()
 		if self.IsJoinRequest then
 			-- Related UI logic.
 			if PC.MMainUI and PC.MMainUI.ShowTip then
-				PC.MMainUI:ShowTip("宸叉嫆缁?)
+				PC.MMainUI:ShowTip("已拒绝入队申请")
 			end
 		else
 			-- Related UI logic.
 			UnrealNetwork.CallUnrealRPC(PC, PC, "Server_RespondTeamInvite", self.InviterPlayerKey, false)
 			if PC.MMainUI and PC.MMainUI.ShowTip then
-				PC.MMainUI:ShowTip("宸叉嫆缁?)
+				PC.MMainUI:ShowTip("已拒绝组队邀请")
 			end
 		end
 	end

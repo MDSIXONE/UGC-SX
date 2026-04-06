@@ -1,4 +1,4 @@
-﻿---@class touxiang_C:UUserWidget
+---@class touxiang_C:UUserWidget
 ---@field CanvasPanel_0 UCanvasPanel
 ---@field EXP UProgressBar
 ---@field exptiptext UTextBlock
@@ -18,23 +18,23 @@ function touxiang:Construct()
     self.General_ShopPlay_UIBP.Level_Text:BindingProperty("Text", self.Level_Text_Text, self);
     self.General_ShopPlay_UIBP.Live_Text:BindingProperty("Text", self.Live_Text_Text, self);
     
-    -- Related UI logic.
+    -- 绑定经验值显示
     if self.exptiptext then
         self.exptiptext:BindingProperty("Text", self.EXP_Text_Text, self);
     end
     
-    -- Related UI logic.
+    -- 如果有战斗力字段，绑定战斗力显示
     if self.General_ShopPlay_UIBP.CombatPower_Text then
         self.General_ShopPlay_UIBP.CombatPower_Text:BindingProperty("Text", self.CombatPower_Text_Text, self);
     end
 
-    -- Related UI logic.
+    -- 延迟初始化玩家头像（等待PlayerState数据就绪）
     UGCGameSystem.SetTimer(self, function()
         self:InitAvatar()
     end, 2.0, false)
 end
 
--- Related UI logic.
+-- 初始化头像控件（Common_Avatar_BP.InitView）
 -- InitView(Style, UID, IconURL, Gender, FrameLevel, PlayerLevel, IgnoreFrame, IsMySelf)
 function touxiang:InitAvatar()
     if not self.tou then return end
@@ -55,7 +55,7 @@ function touxiang:HP_Text_Text(ReturnValue)
     if playerpawn then
         local hp = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Health') or 0)
         local maxHp = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'HealthMax') or 0)
-        -- Related UI logic.
+        -- 如果属性还没同步（值为0），使用 GameData 或默认值
         if hp == 0 then
             if playerState and playerState.GameData then
                 hp = playerState.GameData.PlayerHp or 100
@@ -83,11 +83,11 @@ function touxiang:EXP_Text_Text(ReturnValue)
     local currentLevel = 1
     
     if playerpawn then
-        -- Related UI logic.
+        -- 从属性系统获取经验值
         currentExp = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'EXP') or 0)
         currentLevel = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Level') or 0)
         
-        -- Related UI logic.
+        -- 如果属性还没同步,使用 GameData
         if currentExp == 0 then
             if playerState and playerState.GameData then
                 currentExp = playerState.GameData.PlayerExp or 0
@@ -102,7 +102,7 @@ function touxiang:EXP_Text_Text(ReturnValue)
         end
     end
     
-    -- Related UI logic.
+    -- 获取当前等级配置,查看升级所需经验
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
     local levelConfig = UGCGameData.GetLevelConfig(currentLevel)
     
@@ -110,7 +110,7 @@ function touxiang:EXP_Text_Text(ReturnValue)
         return UGCGameData.FormatNumber(currentExp) .. "/" .. UGCGameData.FormatNumber(levelConfig.Exp)
     end
     
-    -- Related UI logic.
+    -- 如果没有配置,只显示当前经验
     return UGCGameData.FormatNumber(currentExp)
 end
 
@@ -119,7 +119,7 @@ function touxiang:MG_Text_Text(ReturnValue)
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
     if playerpawn then
         local magic = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Magic') or 0)
-        -- Related UI logic.
+        -- 如果属性还没同步（值为0），使用 GameData 或默认值
         if magic == 0 then
             if playerState and playerState.GameData then
                 magic = playerState.GameData.PlayerMagic or 10
@@ -138,7 +138,7 @@ function touxiang:Attack_Text_Text(ReturnValue)
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
     if playerpawn then
         local attack = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Attack') or 0)
-        -- Related UI logic.
+        -- 如果属性还没同步（值为0），使用 GameData 或默认值
         if attack == 0 then
             if playerState and playerState.GameData then
                 attack = playerState.GameData.PlayerAttack or 20
@@ -157,7 +157,7 @@ function touxiang:Level_Text_Text(ReturnValue)
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
     if playerpawn then
         local level = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Level') or 0)
-        -- Related UI logic.
+        -- 如果属性还没同步（值为0），使用 GameData 或默认值
         if level == 0 then
             if playerState and playerState.GameData then
                 level = playerState.GameData.PlayerLevel or 1
@@ -173,10 +173,10 @@ end
 function touxiang:Live_Text_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if not playerState then
-        return "杞敓: 0娆?
+        return "转生: 0次"
     end
     
-    -- Related UI logic.
+    -- 优先使用复制属性（自动同步），如果没有则使用 GameData，最后使用默认值0
     local rebirthCount = 0
     if playerState.UGCPlayerRebirthCount ~= nil then
         rebirthCount = playerState.UGCPlayerRebirthCount
@@ -184,11 +184,11 @@ function touxiang:Live_Text_Text(ReturnValue)
         rebirthCount = playerState.GameData.PlayerRebirthCount
     end
     
-    return "杞敓: " .. tostring(rebirthCount) .. "娆?
+    return "转生: " .. tostring(rebirthCount) .. "次"
 end
 
--- Related UI logic.
--- Related UI logic.
+-- 战斗力显示
+-- 战斗力 = 最大生命*5% + 攻击力*70% + 魔法值*25%
 function touxiang:CombatPower_Text_Text(ReturnValue)
     local playerState = UGCGameSystem.GetLocalPlayerState()
     local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -198,12 +198,12 @@ function touxiang:CombatPower_Text_Text(ReturnValue)
     local magic = 10
     
     if playerpawn then
-        -- Related UI logic.
+        -- 从 Pawn 属性获取
         maxHp = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'HealthMax') or 0)
         attack = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Attack') or 0)
         magic = math.floor(UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Magic') or 0)
         
-        -- Related UI logic.
+        -- 如果属性还没同步（值为0），使用 GameData 或默认值
         if maxHp == 0 then
             if playerState and playerState.GameData then
                 maxHp = playerState.GameData.PlayerMaxHp or 100
@@ -229,7 +229,7 @@ function touxiang:CombatPower_Text_Text(ReturnValue)
     
     local combatPower = math.floor(maxHp * 0.05 + attack * 0.7 + magic * 0.25)
     
-    -- Related UI logic.
+    -- 使用格式化函数
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
     return UGCGameData.FormatNumber(combatPower)
 end
@@ -264,18 +264,18 @@ function touxiang:LuaInit()
 end
 
 function touxiang:touxiangdetail_OnClicked()
-    -- Log this action.
+    --ugcprint("[touxiang] 详情按钮被点击")
     local pc = UGCGameSystem.GetLocalPlayerController()
     if pc and pc.MMainUI and pc.MMainUI.touxiangdetail then
-        -- Related UI logic.
-        pc.MMainUI.touxiangdetail:Show()
-        -- Log this action.
+        -- 显示详情界面
+        pc.MMainUI.touxiangdetail:SetVisibility(ESlateVisibility.Visible)
+        --ugcprint("[touxiang] 显示详情界面成功")
     else
-        -- Log this action.
+        --ugcprint("[touxiang] 无法找到详情界面")
     end
 end
 
--- Related UI logic.
+-- 血量条百分比
 function touxiang:Hp_Percent(ReturnValue)
 	local playerState = UGCGameSystem.GetLocalPlayerState()
 	local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -287,7 +287,7 @@ function touxiang:Hp_Percent(ReturnValue)
 		hp = UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Health') or 0
 		maxHp = UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'HealthMax') or 0
 		
-		-- Related UI logic.
+		-- 如果属性还没同步，使用 GameData
 		if hp == 0 then
 			if playerState and playerState.GameData then
 				hp = playerState.GameData.PlayerHp or 100
@@ -304,14 +304,14 @@ function touxiang:Hp_Percent(ReturnValue)
 		end
 	end
 	
-	-- Related UI logic.
+	-- 返回 0-1 之间的百分比
 	if maxHp > 0 then
 		return hp / maxHp
 	end
 	return 1.0
 end
 
--- Related UI logic.
+-- 经验条百分比
 function touxiang:EXP_Percent(ReturnValue)
 	local playerState = UGCGameSystem.GetLocalPlayerState()
 	local playerpawn = UGCGameSystem.GetPlayerPawnByPlayerState(playerState)
@@ -320,11 +320,11 @@ function touxiang:EXP_Percent(ReturnValue)
 	local currentLevel = 1
 	
 	if playerpawn then
-		-- Related UI logic.
+		-- 从属性系统获取经验值
 		currentExp = UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'EXP') or 0
 		currentLevel = UGCAttributeSystem.GetGameAttributeValue(playerpawn, 'Level') or 0
 		
-		-- Related UI logic.
+		-- 如果属性还没同步,使用 GameData
 		if currentExp == 0 then
 			if playerState and playerState.GameData then
 				currentExp = playerState.GameData.PlayerExp or 0
@@ -339,22 +339,22 @@ function touxiang:EXP_Percent(ReturnValue)
 		end
 	end
 	
-	-- Related UI logic.
+	-- 确保等级是整数
 	currentLevel = math.floor(currentLevel)
 	
-	-- Related UI logic.
+	-- 获取当前等级配置,查看升级所需经验
 	local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 	local levelConfig = UGCGameData.GetLevelConfig(currentLevel)
 	
 	if not levelConfig or not levelConfig.Exp or levelConfig.Exp <= 0 then
-		-- Related UI logic.
+		-- 如果没有配置或已达最高等级,返回满经验
 		return 1.0
 	end
 	
 	local requiredExp = levelConfig.Exp
 	local percent = math.min(currentExp / requiredExp, 1.0)
 	
-	-- Related UI logic.
+	-- 返回 0-1 之间的百分比
 	return percent
 end
 

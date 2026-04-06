@@ -333,7 +333,7 @@ function MMainUI:Construct()
             self.TextBlock_mobnum:SetText("0/10")
         end
         -- Show the mission tip for 10 seconds
-        self:ShowTipDuration("Kill all 40 wolf monsters within the time limit and keep the defense tower alive", 10)
+        self:ShowTipDuration("在限定时间内击败40只狼怪，并保护防御塔存活", 10)
     else
         -- The mode ID may not be ready yet; check again after 2 seconds
         UGCTimerUtility.CreateLuaTimer(2.0, function()
@@ -352,7 +352,7 @@ function MMainUI:Construct()
                     self.TextBlock_mobnum:SetText("0/10")
                 end
                 -- Show the mission tip for 10 seconds
-                self:ShowTipDuration("Kill all 40 wolf monsters within the time limit and keep the defense tower alive", 10)
+                self:ShowTipDuration("在限定时间内击败40只狼怪，并保护防御塔存活", 10)
             end
         end, false, "MMainUI_CheckMode")
     end
@@ -442,7 +442,7 @@ end
 
 function MMainUI:OnAutoTunshiClicked()
     if not self:IsFeatureUnlocked(AUTO_TUNSHI_UNLOCK_ITEM_ID) then
-        self:ShowTip("Auto absorb is locked. Redirecting to purchase.")
+		self:ShowTip("自动吞噬功能未解锁，前往购买。")
         self:JumpToFeaturePurchase(AUTO_TUNSHI_PRODUCT_ID)
         return
     end
@@ -463,15 +463,15 @@ function MMainUI:OnAutoTunshiClicked()
     end
 
     if newState then
-        self:ShowTip("Auto absorb enabled.")
+        self:ShowTip("自动吞噬已开启。")
     else
-        self:ShowTip("Auto absorb disabled.")
+        self:ShowTip("自动吞噬已关闭。")
     end
 end
 
 function MMainUI:OnAutoPickupClicked()
     if not self:IsFeatureUnlocked(AUTO_PICKUP_UNLOCK_ITEM_ID) then
-        self:ShowTip("Auto pickup is locked. Redirecting to purchase.")
+		self:ShowTip("自动拾取功能未解锁，前往购买。")
         self:JumpToFeaturePurchase(AUTO_PICKUP_PRODUCT_ID)
         return
     end
@@ -492,9 +492,9 @@ function MMainUI:OnAutoPickupClicked()
     end
 
     if newState then
-        self:ShowTip("Auto pickup enabled.")
+        self:ShowTip("自动拾取已开启。")
     else
-        self:ShowTip("Auto pickup disabled.")
+        self:ShowTip("自动拾取已关闭。")
     end
 end
 
@@ -1178,7 +1178,7 @@ function MMainUI:StartCountdown(totalSeconds)
             self.CountdownTimeoutTriggered = true
             -- Run the timeout flow before stopping the timer
             ugcprint("[MMainUI] Countdown ended, triggering the timeout exit flow")
-            self:ShowTip("Time is up. Challenge failed.")
+            self:ShowTip("时间到了，挑战失败。")
 
             self:StopCountdown()
 

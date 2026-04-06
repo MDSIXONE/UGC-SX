@@ -1,4 +1,4 @@
-﻿---@class addexp_C:UUserWidget
+---@class addexp_C:UUserWidget
 ---@field Image_1 UImage
 ---@field Image_2 UImage
 ---@field TUNSHIBUTTUN UButton
@@ -7,21 +7,10 @@ local addexp = { bInitDoOnce = false }
 
 function addexp:Construct()
 	self:LuaInit()
-	local modeID = UGCMultiMode.GetModeID()
-	if modeID and modeID == 1002 then
-		self:SetVisibility(ESlateVisibility.Collapsed)
-		return
-	end
-	UGCTimerUtility.CreateLuaTimer(2.0, function()
-		local delayedModeID = UGCMultiMode.GetModeID()
-		if delayedModeID and delayedModeID == 1002 then
-			self:SetVisibility(ESlateVisibility.Collapsed)
-		end
-	end, false, "addexp_mode1002_hide")
-	self.bDirectExpEnabled = true
+	self.bDirectExpEnabled = false
 	local playerState = UGCGameSystem.GetLocalPlayerState()
 	if playerState then
-		self.bDirectExpEnabled = (playerState.UGCDirectExpEnabled == nil) and true or playerState.UGCDirectExpEnabled
+		self.bDirectExpEnabled = playerState.UGCDirectExpEnabled or false
 	end
 	self:UpdateImages()
 end
@@ -29,16 +18,6 @@ end
 function addexp:OnToggleClicked()
 	self.bDirectExpEnabled = not self.bDirectExpEnabled
 	self:UpdateImages()
-
-	-- Related UI logic.
-	local pc = UGCGameSystem.GetLocalPlayerController()
-	if pc and pc.MMainUI and pc.MMainUI.ShowTip then
-		if self.bDirectExpEnabled then
-			pc.MMainUI:ShowTip("鍚炲櫖妯″紡宸插叧闂?)
-		else
-			pc.MMainUI:ShowTip("鍚炲櫖妯″紡宸插紑鍚?)
-		end
-	end
 
 	local playerPawn = UGCGameSystem.GetLocalPlayerPawn()
 	if not playerPawn then return end

@@ -39,7 +39,7 @@ function WB_Inventory:Construct()
 	
 	-- Guard condition before running this branch.
 	if self.horfbuttun then
-		self.horfbuttun:SetText("閸氬牊鍨?)
+		self.horfbuttun:SetText("合成")
 	end
 	
 	-- Guard condition before running this branch.
@@ -169,8 +169,8 @@ function WB_Inventory:CreateCraftSlots()
 	-- Configuration table used by this widget.
 	local recipeArray = {}
 	for recipeName, recipeData in pairs(allRecipes) do
-		local order = recipeData["妞ゅ搫绨?] or 999
-		local page = recipeData["妞ょ數顒?]
+		local order = recipeData["顺序"] or 999
+		local page = recipeData["页签"]
 		
 		local pageStr = "page0"
 		if page ~= nil then
@@ -265,7 +265,7 @@ end
 
 -- Horfbuttun text.
 function WB_Inventory:horfbuttun_Text(ReturnValue)
-	return self.IsFenjieMode and "閸掑棜袙" or "閸氬牊鍨?
+	return self.IsFenjieMode and "分解" or "合成"
 end
 
 -- Handle fenjie or hecheng button click.
@@ -281,7 +281,7 @@ function WB_Inventory:OnFenjieOrHechengClicked()
 	
 	self.IsFenjieMode = not self.IsFenjieMode
 	
-	local modeName = self.IsFenjieMode and "閸掑棜袙" or "閸氬牊鍨?
+	local modeName = self.IsFenjieMode and "分解" or "合成"
 	-- Guard condition before running this branch.
 	
 	-- Guard condition before running this branch.
@@ -290,7 +290,7 @@ function WB_Inventory:OnFenjieOrHechengClicked()
 	end
 	
 	-- Execute the next UI update step.
-	self:ShowTip("瀹告彃鍨忛幑銏犲煂" .. modeName .. "濡€崇础")
+	self:ShowTip("当前模式已切换为" .. modeName .. "模式")
 	
 	-- Execute the next UI update step.
 	self:ClearDetailSlots()
@@ -481,7 +481,7 @@ function WB_Inventory:OnCraftButtonClicked()
 		
 		if currentCount < material.Count then
 			-- Execute the next UI update step.
-			self:ShowTip("閺夋劖鏋℃稉宥堝喕")
+			self:ShowTip("材料不足")
 			return
 		end
 		
@@ -536,7 +536,7 @@ function WB_Inventory:OnCraftButtonClicked()
 		
 		if not allEnough then
 			-- Execute the next UI update step.
-			self:ShowTip("閺夋劖鏋℃稉宥堝喕")
+			self:ShowTip("材料不足")
 			return
 		end
 		

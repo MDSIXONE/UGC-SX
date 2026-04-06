@@ -1,14 +1,13 @@
-﻿---@class Settlement_2_C:UUserWidget
+---@class Settlement_2_C:UUserWidget
 ---@field Image_0 UImage
----@field TextBlock_0 UTextBlock
 --Edit Below--
 local Settlement_2 = { bInitDoOnce = false }
 
 function Settlement_2:Construct()
-	-- Initialize widget state and bindings.
+	ugcprint("[Settlement_2] Construct 被调用")
 	self:LuaInit()
 	
-	-- Execute the next UI update step.
+	-- 显示后立即执行后续流程
 	self:ExecuteNextStep()
 end
 
@@ -18,20 +17,20 @@ function Settlement_2:LuaInit()
 	end
 	self.bInitDoOnce = true
 	
-	-- Guard condition before running this branch.
+	ugcprint("[Settlement_2] LuaInit 完成")
 	
-	-- Guard condition before running this branch.
+	-- 隐藏sure按钮(不再需要)
 	if self.sure then
 		self.sure:SetVisibility(ESlateVisibility.Collapsed)
-		-- Continue applying initial visibility settings.
+		ugcprint("[Settlement_2] sure 按钮已隐藏")
 	end
 end
 
--- Execute next step.
+-- 执行后续流程
 function Settlement_2:ExecuteNextStep()
-	-- Guard condition before running this branch.
+	ugcprint("[Settlement_2] 立即执行后续流程")
 	
-	-- Guard condition before running this branch.
+	-- 不关闭UI,直接通知执行后续流程
 	if self.OnSureClicked then
 		self.OnSureClicked()
 	end

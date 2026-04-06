@@ -148,7 +148,7 @@ function touxiangdetail:ATTACK_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "閺€璇插毊閸? " .. UGCGameData.FormatNumber(attack)
+    return "攻击力: " .. UGCGameData.FormatNumber(attack)
 end
 
 -- Magic text.
@@ -164,7 +164,7 @@ function touxiangdetail:MAGIC_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "姒勬梹纭堕崐? " .. UGCGameData.FormatNumber(magic)
+    return "魔法值: " .. UGCGameData.FormatNumber(magic)
 end
 
 -- Live text.
@@ -179,7 +179,7 @@ function touxiangdetail:LIVE_Text(ReturnValue)
             rebirthCount = playerState.GameData.PlayerRebirthCount
         end
     end
-    return "鏉烆剛鏁? " .. tostring(rebirthCount) .. "濞?
+    return "转生: " .. tostring(rebirthCount) .. "次"
 end
 
 -- Ecexp text.
@@ -191,7 +191,7 @@ function touxiangdetail:Ecexp_Text(ReturnValue)
         bonusPercent = playerState.GameData.PlayerEcexp or 1
     end
     
-    return "閸氱偛娅栭崝鐘冲灇: " .. tostring(bonusPercent) .. "%"
+    return "吞噬加成: " .. tostring(bonusPercent) .. "%"
 end
 
 -- Base attack text.
@@ -207,7 +207,7 @@ function touxiangdetail:Base_Attack_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "閸╄櫣顢呴弨璇插毊閸? " .. UGCGameData.FormatNumber(baseAttack)
+    return "基础攻击力: " .. UGCGameData.FormatNumber(baseAttack)
 end
 
 -- Base hp text.
@@ -223,7 +223,7 @@ function touxiangdetail:Base_HP_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "閸╄櫣顢呴悽鐔锋嚒閸? " .. UGCGameData.FormatNumber(baseHp)
+    return "基础生命值: " .. UGCGameData.FormatNumber(baseHp)
 end
 
 -- Base magic text.
@@ -239,7 +239,7 @@ function touxiangdetail:Base_Magic_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "閸╄櫣顢呮鏃€纭堕崐? " .. UGCGameData.FormatNumber(baseMagic)
+    return "基础魔法值: " .. UGCGameData.FormatNumber(baseMagic)
 end
 
 -- Current maxhp text.
@@ -255,7 +255,7 @@ function touxiangdetail:Current_MAXHP_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "閺堚偓婢堆嗩攨闁? " .. UGCGameData.FormatNumber(maxHp)
+    return "当前最大生命: " .. UGCGameData.FormatNumber(maxHp)
 end
 
 -- Bland text.
@@ -271,7 +271,7 @@ function touxiangdetail:Bland_Text(ReturnValue)
         end
     end
     local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    return "鐞涒偓閼? " .. UGCGameData.FormatNumber(bland)
+    return "吞噬值: " .. UGCGameData.FormatNumber(bland)
 end
 
 -- Leijixiaofei text.
@@ -281,7 +281,7 @@ function touxiangdetail:leijixiaofei_Text(ReturnValue)
     if playerState then
         spendCount = playerState.UGCSpendCount or 0
     end
-    return "缁鳖垵顓搁崗鍛偓? " .. tostring(spendCount)
+    return "累计消费: " .. tostring(spendCount)
 end
 
 -- Vip text.
@@ -332,7 +332,7 @@ function touxiangdetail:ATTACKup_Text(ReturnValue)
     if playerState then
         count = playerState.UGCPlayerManualAttack or (playerState.GameData and playerState.GameData.PlayerManualAttack) or 0
     end
-    return "閺€璇插毊閸旂姷鍋? " .. tostring(count)
+    return "攻击强化次数: " .. tostring(count)
 end
 
 function touxiangdetail:MAGICup_Text(ReturnValue)
@@ -341,7 +341,7 @@ function touxiangdetail:MAGICup_Text(ReturnValue)
     if playerState then
         count = playerState.UGCPlayerManualMagic or (playerState.GameData and playerState.GameData.PlayerManualMagic) or 0
     end
-    return "姒勬梹纭堕崝鐘靛仯: " .. tostring(count)
+    return "魔法强化次数: " .. tostring(count)
 end
 
 function touxiangdetail:hpup_Text(ReturnValue)
@@ -350,7 +350,7 @@ function touxiangdetail:hpup_Text(ReturnValue)
     if playerState then
         count = playerState.UGCPlayerManualHp or (playerState.GameData and playerState.GameData.PlayerManualHp) or 0
     end
-    return "閻㈢喎鎳￠崝鐘靛仯: " .. tostring(count)
+    return "生命强化次数: " .. tostring(count)
 end
 
 function touxiangdetail:bland_up_Text(ReturnValue)
@@ -359,7 +359,7 @@ function touxiangdetail:bland_up_Text(ReturnValue)
     if playerState then
         count = playerState.UGCPlayerManualBland or (playerState.GameData and playerState.GameData.PlayerManualBland) or 0
     end
-    return "鐞涒偓閼村濮為悙? " .. tostring(count)
+    return "吞噬强化次数: " .. tostring(count)
 end
 
 -- Show tip.
@@ -376,7 +376,7 @@ function touxiangdetail:OnATTACKupClicked()
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "attack")
-        self:ShowTip("閺€璇插毊閸?2")
+        self:ShowTip("攻击+2")
     end
 end
 
@@ -385,7 +385,7 @@ function touxiangdetail:OnMAGICupClicked()
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "magic")
-        self:ShowTip("姒勬梹纭堕崐?1")
+        self:ShowTip("魔法+1")
     end
 end
 
@@ -394,7 +394,7 @@ function touxiangdetail:OnHpupClicked()
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "hp")
-        self:ShowTip("閻㈢喎鎳￠崐?5")
+        self:ShowTip("生命+5")
     end
 end
 
@@ -403,7 +403,7 @@ function touxiangdetail:OnBlandupClicked()
     local playerState = UGCGameSystem.GetLocalPlayerState()
     if playerState then
         UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "bland")
-        self:ShowTip("鐞涒偓閼?10")
+        self:ShowTip("血脉+10")
     end
 end
 
@@ -455,9 +455,9 @@ function touxiangdetail:zhandouli_Text(ReturnValue)
     if playerState then
         local combatPower = playerState.UGCPlayerCombatPower or 0
         local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-        return "閹存ɑ鏋熼崝? " .. UGCGameData.FormatNumber(combatPower)
+        return "战斗力: " .. UGCGameData.FormatNumber(combatPower)
     end
-    return "閹存ɑ鏋熼崝? 0"
+    return "战斗力: 0"
 end
 
 return touxiangdetail
