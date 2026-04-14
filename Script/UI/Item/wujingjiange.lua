@@ -252,7 +252,7 @@ function wujingjiange:DoEnterJiange(PC)
     if not PC then return end
     -- Keep this section consistent with the original UI flow.
     -- Keep this section consistent with the original UI flow.
-    UnrealNetwork.CallUnrealRPC(PC, PC, "Server_TeleportPlayer", 268737.21875, 238584.484375, 1118.539795)
+    UnrealNetwork.CallUnrealRPC(PC, PC, "Server_EnterJiangeInstance")
     -- Configure initial widget visibility.
     self:SetVisibility(2)
 

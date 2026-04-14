@@ -2,37 +2,33 @@
 
 -- sorted by struct name asc 
 
+---@class FSignInEventData
+---@field EventID int32
+---@field DayNum int32
+---@field NextDayTime int32
+---@field SupplementDayNum int32
+
+---@class FSignInAward
+---@field ItemID int32
+---@field ItemNum int32
+
+---@class FSignInEventConfig
+---@field EventID int32
+---@field EventName FString
+---@field Type ESignInEventType
+---@field StartTime FDateTime
+---@field EndTime FDateTime
+---@field Desc FString
+---@field SupplementDay int32
+---@field SupplementItemID int32
+---@field SupplementItemNum int32
+---@field AwardTablePath FSoftObjectPath
+---@field HighLight7thDay bool
+
 ---@class chongzhi
 ---@field itemid int32
 ---@field itemnum int32
 ---@field itemcount int32
-
----@class taskconfig
----@field taskname FString
----@field taskdetail FString
----@field taskawardid int32
----@field awardname FString
----@field awardnum int32
----@field page int32
----@field type int32
-
----@class FModeConfig
----@field ModeID int32
----@field ModeName FText
----@field Difficulty FText
----@field LevelCount int32
----@field UnlockDesc FText
----@field UnlockMode int32[]
----@field EnemyRefresh int32
----@field ItemRefresh int32
----@field ShopAfterLevel int32[]
----@field TrapRefresh int32
----@field SettlementExpCount int32
----@field SettlementTalentCount int32
----@field GameModeActorMgr FString
----@field FreeReviveCount int32
----@field PaidReviveCount  int32
----@field Price int32[]
 
 ---@class fubenreward
 ---@field 虚拟物品ID int32
@@ -70,6 +66,15 @@
 ---@field KillExp int32
 ---@field MonsterHealth int32
 ---@field MonsterBaseAttack int32
+
+---@class taskconfig
+---@field taskname FString
+---@field taskdetail FString
+---@field taskawardid int32
+---@field awardname FString
+---@field awardnum int32
+---@field page int32
+---@field type int32
 
 ---@class GiftPackData
 ---@field ID int32
@@ -162,27 +167,4 @@
 ---@field EventID int32
 ---@field TabName FString
 ---@field ShowPeriod bool
-
----@class FSignInAward
----@field ItemID int32
----@field ItemNum int32
-
----@class FSignInEventConfig
----@field EventID int32
----@field EventName FString
----@field Type ESignInEventType
----@field StartTime FDateTime
----@field EndTime FDateTime
----@field Desc FString
----@field SupplementDay int32
----@field SupplementItemID int32
----@field SupplementItemNum int32
----@field AwardTablePath FSoftObjectPath
----@field HighLight7thDay bool
-
----@class FSignInEventData
----@field EventID int32
----@field DayNum int32
----@field NextDayTime int32
----@field SupplementDayNum int32
 

@@ -5,16 +5,20 @@
 ---@field Button_cancel UButton
 ---@field Image_0 UImage
 ---@field Image_1 UImage
----@field Image_2 UImage
 ---@field Image_3 UImage
 ---@field Image_5 UImage
 ---@field Image_6 UImage
 ---@field WidgetSwitcher_0 UWidgetSwitcher
 ---@field WrapBox_0 UWrapBox
+---@field WrapBox_1 UWrapBox
 --Edit Below--
 local active = { bInitDoOnce = false }
 
 local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
+UGCGameSystem.UGCRequire("ExtendResource.SignInEvent.OfficialPackage." .. "Script.SignInEvent.SignInEventManager")
+local SignInEventMainUIPath = 'ExtendResource/SignInEvent/OfficialPackage/Asset/SignInEvent/Arts_UI/UIBP/SignInEvent_Main_UIBP.SignInEvent_Main_UIBP_C'
+
+active.SignInEventMainUI = nil
 
 function active:Construct()
     self:LuaInit()
@@ -74,7 +78,71 @@ function active:SwitchTab(index)
     -- Guard condition before running this branch.
     if index == 0 then
         self:RefreshBuySlots()
+    elseif index == 1 then
+        self:InitSignInEventMainUI()
     end
+end
+
+function active:InitSignInEventMainUI()
+    if not self.WrapBox_1 then
+        return
+    end
+
+    if self.SignInEventMainUI and UGCObjectUtility.IsObjectValid(self.SignInEventMainUI) then
+        if self.SignInEventMainUI.Refresh then
+            pcall(function()
+                self.SignInEventMainUI:Refresh()
+            end)
+        end
+        self.SignInEventMainUI:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
+        return
+    end
+
+    local playerController = UGCGameSystem.GetLocalPlayerController()
+    if not playerController then
+        return
+    end
+
+    local signInEventMainUI = nil
+
+    if playerController.SignInEventComponent and UGCObjectUtility.IsObjectValid(playerController.SignInEventComponent) then
+        signInEventMainUI = playerController.SignInEventComponent.MainUI
+    elseif SignInEventManager and SignInEventManager.GetSignInEventComponent then
+        local signInEventComponent = SignInEventManager:GetSignInEventComponent(playerController)
+        if signInEventComponent and UGCObjectUtility.IsObjectValid(signInEventComponent) then
+            signInEventMainUI = signInEventComponent.MainUI
+        end
+    end
+
+    if not (signInEventMainUI and UGCObjectUtility.IsObjectValid(signInEventMainUI)) then
+        local SignInEventMainClass = UGCObjectUtility.LoadClass(UGCGameSystem.GetUGCResourcesFullPath(SignInEventMainUIPath))
+        if SignInEventMainClass then
+            signInEventMainUI = UserWidget.NewWidgetObjectBP(playerController, SignInEventMainClass)
+        end
+    end
+
+    if not signInEventMainUI then
+        UGCTimerUtility.CreateLuaTimer(0.3,
+            function()
+                if self and self.InitSignInEventMainUI then
+                    self:InitSignInEventMainUI()
+                end
+            end,
+            false,
+            "active_signin_retry_" .. tostring(self)
+        )
+        return
+    end
+
+    self.WrapBox_1:ClearChildren()
+    self.WrapBox_1:AddChild(signInEventMainUI)
+    if signInEventMainUI.Refresh then
+        pcall(function()
+            signInEventMainUI:Refresh()
+        end)
+    end
+    signInEventMainUI:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
+    self.SignInEventMainUI = signInEventMainUI
 end
 
 -- Get current spend.
@@ -177,6 +245,7 @@ function active:GetClaimedChongzhi()
 end
 
 function active:Destruct()
+    self.SignInEventMainUI = nil
 end
 
 return active

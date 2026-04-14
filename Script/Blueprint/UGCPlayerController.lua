@@ -1,4 +1,6 @@
-﻿---@class UGCPlayerController_C:BP_UGCPlayerController_C
+---@class UGCPlayerController_C:BP_UGCPlayerController_C
+---@field TaskTemplateComponent TaskTemplateComponent_C
+---@field SignInEventComponent SignInEventComponent_C
 ---@field LotteryComponent LotteryComponent_C
 ---@field GiftPackComponent GiftPackComponent_C
 ---@field RankingListComponent RankingListComponent_C
@@ -188,6 +190,68 @@ local function StopAndCleanSingle1TriggerBoxesForServer(worldContextObject, reas
     return cleanedCount
 end
 
+local JiangeInstancePlayerMap = JiangeInstancePlayerMap or {}
+local JiangeInstanceNextIndex = JiangeInstanceNextIndex or 1
+local JIANGE_ENTRY_Z_OFFSET = 120
+local JIANGE_FALLBACK_ENTRY = {
+    X = 268737.21875,
+    Y = 238584.484375,
+    Z = 1118.539795,
+}
+
+local function ResolveJiangeTriggerBoxes(worldContextObject)
+    local classPath = UGCGameSystem.GetUGCResourcesFullPath("Asset/Data/MobPoint/TriggerBox_jiange.TriggerBox_jiange_C")
+    if not classPath or classPath == "" then
+        return {}
+    end
+
+    local worldContext = worldContextObject or UGCGameSystem.GameState or UGCGameSystem.GameMode
+    if not worldContext then
+        return {}
+    end
+
+    if not UGCActorComponentUtility or not UGCActorComponentUtility.GetAllActorsOfClass then
+        return {}
+    end
+
+    local triggerClass = UGCObjectUtility.LoadClass(classPath)
+    if not triggerClass then
+        return {}
+    end
+
+    local okGetActors, actorListOrErr = pcall(function()
+        return UGCActorComponentUtility.GetAllActorsOfClass(worldContext, triggerClass)
+    end)
+    if not okGetActors then
+        ugcprint("[UGCPlayerController] ResolveJiangeTriggerBoxes failed: " .. tostring(actorListOrErr))
+        return {}
+    end
+
+    local actorList = actorListOrErr
+    local validBoxes = {}
+    if actorList and #actorList > 0 then
+        for _, actor in pairs(actorList) do
+            if IsObjectValidSafe(actor) then
+                table.insert(validBoxes, actor)
+            end
+        end
+    end
+
+    table.sort(validBoxes, function(a, b)
+        local aName = ""
+        local bName = ""
+        pcall(function()
+            aName = tostring(a:GetName())
+        end)
+        pcall(function()
+            bName = tostring(b:GetName())
+        end)
+        return aName < bName
+    end)
+
+    return validBoxes
+end
+
 -- Global team captain data table, key=TeamID, value=PlayerKey of captain
 TeamCaptainData = TeamCaptainData or {}
 
@@ -361,7 +425,7 @@ end
 
 -- Available server RPCs
 function UGCPlayerController:GetAvailableServerRPCs()
-    return "Server_TeleportPlayer", "Server_RestoreFullHealth", "Server_DestroyNearbyCorpses", "Server_SetDirectExpEnabled", "Server_SetAutoTunshiEnabled", "Server_SetAutoPickupEnabled", "Server_SetBloodlineEnabled", "Server_NotifyLevelRewardFinish", "Server_NotifyTimeOutFinish", "Server_GiveRewards", "Server_SendTeamInvite", "Server_RespondTeamInvite", "Server_RequestJoinTeam", "Server_AcceptJoinRequest", "Server_KickFromTeam", "Server_LeaveTeam", "Server_ResumeTriggerBoxSpawning", "Server_BatchOpenBaoxiang", "Server_RequestTeamPanelPlayers"
+    return "Server_TeleportPlayer", "Server_EnterJiangeInstance", "Server_RestoreFullHealth", "Server_DestroyNearbyCorpses", "Server_SetDirectExpEnabled", "Server_SetAutoTunshiEnabled", "Server_SetAutoPickupEnabled", "Server_SetBloodlineEnabled", "Server_NotifyLevelRewardFinish", "Server_NotifyTimeOutFinish", "Server_GiveRewards", "Server_SendTeamInvite", "Server_RespondTeamInvite", "Server_RequestJoinTeam", "Server_AcceptJoinRequest", "Server_KickFromTeam", "Server_LeaveTeam", "Server_ResumeTriggerBoxSpawning", "Server_BatchOpenBaoxiang", "Server_RequestTeamPanelPlayers"
 end
 
 -- Available client RPCs
@@ -403,6 +467,58 @@ function UGCPlayerController:Server_RestoreFullHealth()
     
     if not ok then
         --ugcprint("[Server] Server_RestoreFullHealth error: " .. tostring(err))
+    end
+end
+
+-- Server: enter Jiange with multi-instance distribution
+function UGCPlayerController:Server_EnterJiangeInstance()
+    local ok, err = pcall(function()
+        local playerKey = UGCGameSystem.GetPlayerKeyByPlayerController(self)
+        local playerInstanceKey = nil
+        if playerKey and tonumber(playerKey) and tonumber(playerKey) > 0 then
+            playerInstanceKey = "P_" .. tostring(playerKey)
+        else
+            playerInstanceKey = "PC_" .. tostring(self)
+        end
+
+        local triggerBoxes = ResolveJiangeTriggerBoxes(self)
+        if not triggerBoxes or #triggerBoxes == 0 then
+            ugcprint("[UGCPlayerController] Server_EnterJiangeInstance fallback: no TriggerBox_jiange found")
+            self:Server_TeleportPlayer(JIANGE_FALLBACK_ENTRY.X, JIANGE_FALLBACK_ENTRY.Y, JIANGE_FALLBACK_ENTRY.Z)
+            return
+        end
+
+        local instanceIndex = JiangeInstancePlayerMap[playerInstanceKey]
+        if not instanceIndex or instanceIndex < 1 or instanceIndex > #triggerBoxes then
+            instanceIndex = JiangeInstanceNextIndex
+            JiangeInstancePlayerMap[playerInstanceKey] = instanceIndex
+            JiangeInstanceNextIndex = JiangeInstanceNextIndex + 1
+            if JiangeInstanceNextIndex > #triggerBoxes then
+                JiangeInstanceNextIndex = 1
+            end
+            ugcprint("[UGCPlayerController] Jiange instance assigned: player=" .. tostring(playerInstanceKey) .. ", index=" .. tostring(instanceIndex))
+        end
+
+        local targetTrigger = triggerBoxes[instanceIndex]
+        if not targetTrigger or not IsObjectValidSafe(targetTrigger) then
+            ugcprint("[UGCPlayerController] Server_EnterJiangeInstance fallback: target trigger invalid")
+            self:Server_TeleportPlayer(JIANGE_FALLBACK_ENTRY.X, JIANGE_FALLBACK_ENTRY.Y, JIANGE_FALLBACK_ENTRY.Z)
+            return
+        end
+
+        local targetLocation = targetTrigger:K2_GetActorLocation()
+        if not targetLocation then
+            ugcprint("[UGCPlayerController] Server_EnterJiangeInstance fallback: target location invalid")
+            self:Server_TeleportPlayer(JIANGE_FALLBACK_ENTRY.X, JIANGE_FALLBACK_ENTRY.Y, JIANGE_FALLBACK_ENTRY.Z)
+            return
+        end
+
+        self:Server_TeleportPlayer(targetLocation.X, targetLocation.Y, targetLocation.Z + JIANGE_ENTRY_Z_OFFSET)
+    end)
+
+    if not ok then
+        ugcprint("[UGCPlayerController] Server_EnterJiangeInstance error: " .. tostring(err))
+        self:Server_TeleportPlayer(JIANGE_FALLBACK_ENTRY.X, JIANGE_FALLBACK_ENTRY.Y, JIANGE_FALLBACK_ENTRY.Z)
     end
 end
 
