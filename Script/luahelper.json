@@ -1,4 +1,8 @@
 {
+    -- UGC-SX 项目模块文档索引:
+    -- 查看各 UI 模块和 Common 系统的详细说明，包括文件位置、数据结构、
+    -- 持久化方式、网络通信和跨模块交互关系，请参考:
+    -- Script/ugc_module_doc.lua
     "BaseDir":"./",
     "ShowWarnFlag":          1,
     "ShareSymbolsFlag":      1,

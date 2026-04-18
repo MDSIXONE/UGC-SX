@@ -3,7 +3,6 @@
 ---@field Image_0 UImage
 ---@field ta_settlement ta_settlement_C
 ---@field TextBlock_chengshu UTextBlock
---Edit Below--
 local JiangeUI = { bInitDoOnce = false }
 
 function JiangeUI:Construct()
@@ -35,14 +34,12 @@ function JiangeUI:UpdateFloorText()
 end
 
 function JiangeUI:OnExitClicked()
-    -- ugcprint("[JiangeUI] Exit button clicked")
     local PC = UGCGameSystem.GetLocalPlayerController()
     if not PC then return end
 
     -- Save current Jiange floor.
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if PlayerState then
-        -- ugcprint("[JiangeUI] Saving Jiange floor: " .. tostring(PC.JiangeFloor or 0))
         PlayerState:DataSave()
     end
 
@@ -52,13 +49,11 @@ function JiangeUI:OnExitClicked()
     -- Restore main UI visibility.
     if PC.MMainUI then
         PC.MMainUI:SetVisibility(ESlateVisibility.SelfHitTestInvisible)
-        -- ugcprint("[JiangeUI] MMainUI restored")
     end
 
     -- Remove JiangeUI from viewport to avoid input blocking.
     PC.JiangeUI = nil
     self:RemoveFromParent()
-    -- ugcprint("[JiangeUI] JiangeUI removed from viewport")
 end
 
 return JiangeUI

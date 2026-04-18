@@ -338,7 +338,6 @@ function jiange:ApplySkill(isWear)
     if not PlayerState then return end
     local skillPath = self:GetSkillPath(self.CurrentLevel)
     if not skillPath then return end
-    -- ugcprint("[jiange] ApplySkill: level=" .. tostring(self.CurrentLevel) .. ", isWear=" .. tostring(isWear))
     UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_SetJiangeSkill", skillPath, isWear)
 end
 
@@ -351,7 +350,6 @@ function jiange:ApplyAtkBonus(isWear)
     if isWear and cfg then
         bonus = cfg.atkPercent
     end
-    -- ugcprint("[jiange] SetJiangeAtkBonus: " .. tostring(bonus) .. "%")
     UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_SetJiangeAtkBonus", bonus)
 end
 
@@ -420,7 +418,6 @@ end
 
 -- Load saved data.
 function jiange:LoadSavedData(level, progress)
-    -- ugcprint("[jiange] LoadSavedData: level=" .. tostring(level) .. ", progress=" .. tostring(progress))
     local incomingLevel = math.floor(tonumber(level) or 1)
     local incomingProgress = tonumber(progress) or 0
     incomingProgress = math.max(0, math.min(100, incomingProgress))

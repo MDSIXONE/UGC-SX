@@ -1,6 +1,5 @@
 ﻿---@class UGCPlayerPawn_C:BP_UGCPlayerPawn_C
 ---@field chenghao chenghao_C
---Edit Below--
 local UGCPlayerPawn = {
     bEnableAutoPickup = false;
     AutoPickupRange = 1000;
@@ -131,8 +130,6 @@ end
 
 -- 当HealthMax属性变化时调用（服务器端）
 function UGCPlayerPawn:OnHealthMaxChanged(OldValue, NewValue)
-    --ugcprint("[UGCPlayerPawn] HealthMax 变化: " .. tostring(OldValue) .. " -> " .. tostring(NewValue))
-    
     -- 只在服务器端处理
     if not UGCGameSystem.IsServer(self) then
         return
@@ -144,7 +141,6 @@ function UGCPlayerPawn:OnHealthMaxChanged(OldValue, NewValue)
         -- 同步GameData中的PlayerMaxHp
         if PlayerState.GameData then
             PlayerState.GameData.PlayerMaxHp = NewValue
-            --ugcprint("[UGCPlayerPawn] 同步 PlayerState.GameData.PlayerMaxHp: " .. tostring(NewValue))
         end
         
         -- 同步战斗力到客户端
