@@ -1,7 +1,7 @@
 ---@class UGCPlayerController_C:BP_UGCPlayerController_C
+---@field LotteryComponent LotteryComponent_C
 ---@field TaskTemplateComponent TaskTemplateComponent_C
 ---@field SignInEventComponent SignInEventComponent_C
----@field LotteryComponent LotteryComponent_C
 ---@field GiftPackComponent GiftPackComponent_C
 ---@field RankingListComponent RankingListComponent_C
 ---@field ShopV2Component ShopV2Component_C
@@ -430,7 +430,7 @@ end
 
 -- Available client RPCs
 function UGCPlayerController:GetAvailableClientRPCs()
-    return "Client_ShowTunshiSuccess", "Client_SetPlayerRotation", "Client_ShowSettlementUI", "Client_ShowSettlementTipUI", "Client_ShowSettlement2UI", "Client_OnPlayerLevelUp", "Client_ReceiveTeamInvite", "Client_TeamInviteResult", "Client_ReceiveJoinRequest", "Client_RefreshTeamUI", "Client_OnKickedFromTeam", "Client_ShowTaSettlementUI", "Client_UpdateJiangeFloor", "Client_OnP1Died", "Client_StartCountdown", "Client_SyncJiangeData", "Client_SyncShenyinData", "Client_ShowBaoxiangNumchoose", "Client_BeginTeamPanelPlayers", "Client_AddTeamPanelPlayer", "Client_EndTeamPanelPlayers", "Client_ShowBaoxiangReward", "Client_SyncJiangeRewardData", "Client_OnJiangeDailyClaimResult", "Client_OnJiangeFloorClaimResult", "Client_OnJiangeForgeConsumeResult", "Client_OnChongzhiClaimResult", "Client_RestoreMainUIAfterRespawn", "Client_OnExpBlockedByRebirth", "Client_SyncMobKillCount", "Client_SyncPlayerKillCount"
+    return "Client_ShowTunshiSuccess", "Client_SetPlayerRotation", "Client_ShowSettlementUI", "Client_ShowSettlementTipUI", "Client_ShowSettlement2UI", "Client_OnPlayerLevelUp", "Client_ReceiveTeamInvite", "Client_TeamInviteResult", "Client_ReceiveJoinRequest", "Client_RefreshTeamUI", "Client_OnKickedFromTeam", "Client_ShowTaSettlementUI", "Client_UpdateJiangeFloor", "Client_OnP1Died", "Client_StartCountdown", "Client_SyncJiangeData", "Client_SyncShenyinData", "Client_ShowBaoxiangNumchoose", "Client_BeginTeamPanelPlayers", "Client_AddTeamPanelPlayer", "Client_EndTeamPanelPlayers", "Client_ShowBaoxiangReward", "Client_SyncJiangeRewardData", "Client_OnJiangeDailyClaimResult", "Client_OnJiangeFloorClaimResult", "Client_OnJiangeForgeConsumeResult", "Client_OnChongzhiClaimResult", "Client_OnTalentUpgradeResult", "Client_OnManualPointResult", "Client_RestoreMainUIAfterRespawn", "Client_OnExpBlockedByRebirth", "Client_SyncMobKillCount", "Client_SyncPlayerKillCount"
 end
 
 -- Client: show absorb success notification
@@ -1899,6 +1899,52 @@ function UGCPlayerController:Client_OnChongzhiClaimResult(success, rewardID, tip
     if self.MMainUI and self.MMainUI.active and self.MMainUI.active.RefreshBuySlots then
         if self.MMainUI.active:GetVisibility() == ESlateVisibility.Visible then
             self.MMainUI.active:RefreshBuySlots()
+        end
+    end
+end
+
+function UGCPlayerController:Client_OnTalentUpgradeResult(success, talentType, currentLevel, remainCount, tipText)
+    if not self:IsLocalController() then return end
+
+    local handled = false
+    if self.MMainUI and self.MMainUI.TalentTree and self.MMainUI.TalentTree.OnTalentUpgradeResult then
+        handled = self.MMainUI.TalentTree:OnTalentUpgradeResult(success, talentType, currentLevel, remainCount, tipText) == true
+    end
+
+    if handled then
+        return
+    end
+
+    if self.MMainUI and self.MMainUI.ShowTip then
+        if tipText and tipText ~= "" then
+            self.MMainUI:ShowTip(tostring(tipText))
+        elseif success then
+            self.MMainUI:ShowTip("天赋升级成功")
+        else
+            self.MMainUI:ShowTip("天赋升级失败")
+        end
+    end
+end
+
+function UGCPlayerController:Client_OnManualPointResult(success, pointType, remainTalentPoints, tipText)
+    if not self:IsLocalController() then return end
+
+    local handled = false
+    if self.MMainUI and self.MMainUI.touxiangdetail and self.MMainUI.touxiangdetail.OnManualPointResult then
+        handled = self.MMainUI.touxiangdetail:OnManualPointResult(success, pointType, remainTalentPoints, tipText) == true
+    end
+
+    if handled then
+        return
+    end
+
+    if self.MMainUI and self.MMainUI.ShowTip then
+        if tipText and tipText ~= "" then
+            self.MMainUI:ShowTip(tostring(tipText))
+        elseif success then
+            self.MMainUI:ShowTip("加点成功")
+        else
+            self.MMainUI:ShowTip("加点失败")
         end
     end
 end

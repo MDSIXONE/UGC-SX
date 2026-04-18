@@ -15,6 +15,7 @@
 ---@field jiange jiange_C
 ---@field jiangebuttun jiangebuttun_C
 ---@field jiaocheng1 jiaocheng1_C
+---@field jiaochengbuttun jiaochengbuttun_C
 ---@field Numchoose Numchoose_C
 ---@field Settlement Settlement_C
 ---@field Settlement_2 Settlement_2_C
@@ -28,7 +29,6 @@
 ---@field TalentTip TalentTip_C
 ---@field TalentTree TalentTree_C
 ---@field TASK TASK_C
----@field taskblank taskblank_C
 ---@field taskbuttun taskbuttun_C
 ---@field teambuttun teambuttun_C
 ---@field TestButton TestButton_C
@@ -48,6 +48,7 @@
 ---@field wujingbuttun wujingbuttun_C
 ---@field wujingjiange wujingjiange_C
 ---@field xuemai xuemai_C
+---@field xuzhang xuzhang_C
 ---@field zdshiqu zdshiqu_C
 ---@field zdtunshi zdtunshi_C
 ---@field zhuansheng zhuansheng_C
@@ -1001,7 +1002,6 @@ function MMainUI:ApplyMode1002MainButtons()
         self.addexp,
         self.zdshiqu,
         self.zdtunshi,
-        self.taskblank,
     }
 
     for _, widget in ipairs(hideWidgets) do

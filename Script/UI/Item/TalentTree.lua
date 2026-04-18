@@ -1,106 +1,79 @@
 ---@class TalentTree_C:UUserWidget
----@field Attack UNewButton
 ---@field canPointcount UTextBlock
----@field HF UNewButton
----@field Hp UNewButton
----@field Hp2 UNewButton
+---@field currentlevel UTextBlock
+---@field huo UNewButton
+---@field Image_0 UImage
+---@field Image_1 UImage
+---@field Image_2 UImage
 ---@field Image_3 UImage
 ---@field Image_4 UImage
 ---@field Image_5 UImage
+---@field Image_6 UImage
+---@field Image_7 UImage
 ---@field Image_8 UImage
+---@field Image_9 UImage
 ---@field introduce_Text UTextBlock
----@field Sikll UNewButton
----@field Speed UNewButton
----@field SS UNewButton
+---@field jing UNewButton
+---@field mu UNewButton
+---@field nextlevel UTextBlock
+---@field shui UNewButton
 ---@field Talent_cancel UButton
 ---@field Talent_name UTextBlock
 ---@field Talent_Sure UButton
 ---@field TalentPoint_Text UTextBlock
----@field YaoShe UNewButton
----@field ZD UNewButton
+---@field tu UNewButton
 --Edit Below--
 local TalentTree = { bInitDoOnce = false }
 -- 天赋类型枚举
 local TALENT_TYPE = {
     NONE = 0,
-    HP = 1,           -- 生命加成 (Hp按钮)
-    ATTACK = 2,       -- 攻击加成 (Attack按钮)
-    MAGIC = 3,        -- 魔法加成 (Hp2按钮)
-    SPEED = 4,        -- 移速加成 (Speed按钮)
-    ACCURACY = 5,     -- 准度加成 (ZD按钮)
-    HIP_FIRE = 6,     -- 腰射加成 (YaoShe按钮)
-    SKILL_HASTE = 7,  -- 技能急速 (Sikll按钮)
-    HP_REGEN = 8,     -- 生命恢复 (HF按钮)
-    FIRE_RATE = 9,    -- 射速加成 (SS按钮)
+    WOOD_SOURCE = 1,   -- 木之本源：最终生命属性增长
+    METAL_SOURCE = 2,  -- 金之本源：最终速度属性增长
+    WATER_SOURCE = 4,  -- 水之本源：最终魔法属性增长
+    FIRE_SOURCE = 7,   -- 火之本源：最终攻击属性增长
+    EARTH_SOURCE = 8,  -- 土之本源：周期恢复生命
 }
+local TALENT_UPGRADE_VIRTUAL_ITEM_ID = 5555
 -- 天赋配置表
 -- cost: 升级所需天赋点
 -- maxLevel: 最大等级
 -- desc: 描述
 -- buffPath: 对应的buff路径 (用于buff类型天赋)
 local TALENT_CONFIG = {
-    [TALENT_TYPE.HP] = {
-        name = "生命加成",
+    [TALENT_TYPE.WOOD_SOURCE] = {
+        name = "木之本源",
         cost = 1,
-        maxLevel = 1000,
-        desc = "每次升级增加最大生命3%",
+        maxLevel = 5,
+        desc = "每次觉醒本源可以获取50%的最终生命属性增长",
         dataField = "PlayerTalent1",
     },
-    [TALENT_TYPE.ATTACK] = {
-        name = "攻击加成",
+    [TALENT_TYPE.METAL_SOURCE] = {
+        name = "金之本源",
         cost = 1,
-        maxLevel = 1000,
-        desc = "每次升级增加最大攻击1%",
+        maxLevel = 5,
+        desc = "每次觉醒本源可以获取20%的最终速度属性增长",
         dataField = "PlayerTalent2",
     },
-    [TALENT_TYPE.MAGIC] = {
-        name = "魔法加成",
-        cost = 1,
-        maxLevel = 1000,
-        desc = "每次升级增加最大魔法2%",
-        dataField = "PlayerTalent3",
-    },
-    [TALENT_TYPE.SPEED] = {
-        name = "移速加成",
+    [TALENT_TYPE.WATER_SOURCE] = {
+        name = "水之本源",
         cost = 3,
-        maxLevel = 50,
-        desc = "每次升级增加1%移动速度",
+        maxLevel = 5,
+        desc = "每次觉醒本源可以获取50%的最终魔法属性增长",
         dataField = "PlayerTalent4",
     },
-    [TALENT_TYPE.ACCURACY] = {
-        name = "准度加成",
-        cost = 3,
-        maxLevel = 100,
-        desc = "每次升级水平、垂直后坐力-0.01",
-        dataField = "PlayerTalent5",
-    },
-    [TALENT_TYPE.HIP_FIRE] = {
-        name = "腰射加成",
-        cost = 3,
-        maxLevel = 100,
-        desc = "每次升级连发散射-0.01",
-        dataField = "PlayerTalent6",
-    },
-    [TALENT_TYPE.SKILL_HASTE] = {
-        name = "技能急速",
+    [TALENT_TYPE.FIRE_SOURCE] = {
+        name = "火之本源",
         cost = 5,
-        maxLevel = 100,
-        desc = "每次升级技能急速+0.01",
+        maxLevel = 5,
+        desc = "每次觉醒本源可以获取50%的最终攻击属性增长",
         dataField = "PlayerTalent7",
     },
-    [TALENT_TYPE.HP_REGEN] = {
-        name = "生命恢复",
+    [TALENT_TYPE.EARTH_SOURCE] = {
+        name = "土之本源",
         cost = 5,
-        maxLevel = 100,
-        desc = "每次升级每秒恢复最大生命0.001",
+        maxLevel = 5,
+        desc = "每次觉醒本源可以每3秒恢复最大生命5%的血量",
         dataField = "PlayerTalent8",
-    },
-    [TALENT_TYPE.FIRE_RATE] = {
-        name = "射速加成",
-        cost = 5,
-        maxLevel = 50,
-        desc = "每次升级射击间隔-0.01",
-        dataField = "PlayerTalent9",
     },
 }
 function TalentTree:Construct()
@@ -120,58 +93,43 @@ function TalentTree:LuaInit()
     self:HideDetailControls()
     
     -- 绑定按钮事件
-    -- 天赋1: 生命加成 - Hp按钮
-    if self.Hp then
-        self.Hp.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.HP) end, self)
-        --ugcprint("[TalentTree] Hp(生命加成) 按钮绑定成功")
+    -- 木之本源 - mu按钮
+    if self.mu then
+        self.mu.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.WOOD_SOURCE) end, self)
+        --ugcprint("[TalentTree] mu(木之本源) 按钮绑定成功")
     end
     
-    -- 天赋2: 攻击加成 - Attack按钮
-    if self.Attack then
-        self.Attack.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.ATTACK) end, self)
-        --ugcprint("[TalentTree] Attack(攻击加成) 按钮绑定成功")
+    -- 金之本源 - jing按钮
+    if self.jing then
+        self.jing.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.METAL_SOURCE) end, self)
+        --ugcprint("[TalentTree] jing(金之本源) 按钮绑定成功")
     end
-    
-    -- 天赋3: 魔法加成 - Hp2按钮
-    if self.Hp2 then
-        self.Hp2.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.MAGIC) end, self)
-        --ugcprint("[TalentTree] Hp2(魔法加成) 按钮绑定成功")
+    -- 水之本源 - shui按钮
+    if self.shui then
+        self.shui.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.WATER_SOURCE) end, self)
+        --ugcprint("[TalentTree] shui(水之本源) 按钮绑定成功")
     end
-    
-    -- 天赋4: 移速加成 - Speed按钮
-    if self.Speed then
-        self.Speed.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.SPEED) end, self)
-        --ugcprint("[TalentTree] Speed(移速加成) 按钮绑定成功")
+    -- 火之本源 - huo按钮
+    if self.huo then
+        self.huo.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.FIRE_SOURCE) end, self)
+        --ugcprint("[TalentTree] huo(火之本源) 按钮绑定成功")
     end
-    
-    -- 天赋5: 准度加成 - ZD按钮
-    if self.ZD then
-        self.ZD.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.ACCURACY) end, self)
-        --ugcprint("[TalentTree] ZD(准度加成) 按钮绑定成功")
+    -- 土之本源 - tu按钮
+    if self.tu then
+        self.tu.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.EARTH_SOURCE) end, self)
+        --ugcprint("[TalentTree] tu(土之本源) 按钮绑定成功")
     end
-    
-    -- 天赋6: 腰射加成 - YaoShe按钮
-    if self.YaoShe then
-        self.YaoShe.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.HIP_FIRE) end, self)
-        --ugcprint("[TalentTree] YaoShe(腰射加成) 按钮绑定成功")
-    end
-    
-    -- 天赋7: 技能急速 - Sikll按钮
-    if self.Sikll then
-        self.Sikll.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.SKILL_HASTE) end, self)
-        --ugcprint("[TalentTree] Sikll(技能急速) 按钮绑定成功")
-    end
-    
-    -- 天赋8: 生命恢复 - HF按钮
-    if self.HF then
-        self.HF.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.HP_REGEN) end, self)
-        --ugcprint("[TalentTree] HF(生命恢复) 按钮绑定成功")
-    end
-    
-    -- 天赋9: 射速加成 - SS按钮
     if self.SS then
-        self.SS.OnClicked:Add(function() self:OnTalentClicked(TALENT_TYPE.FIRE_RATE) end, self)
-        --ugcprint("[TalentTree] SS(射速加成) 按钮绑定成功")
+        self.SS:SetVisibility(ESlateVisibility.Collapsed)
+    end
+    if self.Hp2 then
+        self.Hp2:SetVisibility(ESlateVisibility.Collapsed)
+    end
+    if self.ZD then
+        self.ZD:SetVisibility(ESlateVisibility.Collapsed)
+    end
+    if self.YaoShe then
+        self.YaoShe:SetVisibility(ESlateVisibility.Collapsed)
     end
     
     -- 确认和取消按钮
@@ -206,6 +164,12 @@ function TalentTree:HideDetailControls()
     if self.canPointcount then
         self.canPointcount:SetVisibility(ESlateVisibility.Collapsed)
     end
+    if self.currentlevel then
+        self.currentlevel:SetVisibility(ESlateVisibility.Collapsed)
+    end
+    if self.nextlevel then
+        self.nextlevel:SetVisibility(ESlateVisibility.Collapsed)
+    end
 end
 -- 显示详情控件
 function TalentTree:ShowDetailControls(talentType)
@@ -219,7 +183,7 @@ function TalentTree:ShowDetailControls(talentType)
     end
     
     if self.introduce_Text then
-        local costText = "需要" .. config.cost .. "点天赋点升级\n" .. config.desc
+        local costText = "需要" .. config.cost .. "个五行本源升级\n" .. config.desc
         self.introduce_Text:SetText(costText)
         self.introduce_Text:SetVisibility(ESlateVisibility.Visible)
     end
@@ -229,41 +193,68 @@ function TalentTree:ShowDetailControls(talentType)
     if self.Talent_Sure then
         self.Talent_Sure:SetVisibility(ESlateVisibility.Visible)
     end
-    -- 显示当前等级/最大等级
+    local currentLevel = self:GetTalentLevel(talentType)
+    -- 显示升级消耗
     if self.canPointcount then
-        local currentLevel = self:GetTalentLevel(talentType)
-        self.canPointcount:SetText("当前等级: " .. currentLevel .. "/" .. config.maxLevel)
+        self.canPointcount:SetText("升级消耗: " .. config.cost .. "个五行本源")
         self.canPointcount:SetVisibility(ESlateVisibility.Visible)
     end
-end
--- 获取剩余天赋点
-function TalentTree:GetRemainingTalentPoints()
-    local playerState = UGCGameSystem.GetLocalPlayerState()
-    if playerState then
-        if playerState.GameData and playerState.GameData.PlayerTalentPoints ~= nil then
-            return playerState.GameData.PlayerTalentPoints
-        elseif playerState.UGCPlayerTalentPoints ~= nil then
-            return playerState.UGCPlayerTalentPoints
-        end
+    if self.currentlevel then
+        self.currentlevel:SetText("" .. tostring(currentLevel) .. "/" .. tostring(config.maxLevel))
+        self.currentlevel:SetVisibility(ESlateVisibility.Visible)
     end
-    return 0
+    if self.nextlevel then
+        if currentLevel >= config.maxLevel then
+            self.nextlevel:SetText("已满级")
+        else
+            self.nextlevel:SetText("" .. tostring(currentLevel + 1))
+        end
+        self.nextlevel:SetVisibility(ESlateVisibility.Visible)
+    end
+end
+-- 获取天赋升级材料(五行本源)数量
+function TalentTree:GetTalentVirtualItemCount()
+    local virtualItemManager = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
+    if not virtualItemManager then
+        return 0
+    end
+    local playerController = UGCGameSystem.GetLocalPlayerController()
+    local count = 0
+    if playerController then
+        count = virtualItemManager:GetItemNum(TALENT_UPGRADE_VIRTUAL_ITEM_ID, playerController) or 0
+    else
+        count = virtualItemManager:GetItemNum(TALENT_UPGRADE_VIRTUAL_ITEM_ID) or 0
+    end
+    return math.max(0, math.floor(tonumber(count) or 0))
 end
 -- 获取某天赋当前等级
 function TalentTree:GetTalentLevel(talentType)
     local config = TALENT_CONFIG[talentType]
     if not config then return 0 end
-    
     local playerState = UGCGameSystem.GetLocalPlayerState()
-    if playerState and playerState.GameData then
+    if not playerState then
+        return 0
+    end
+    if playerState.GameData and playerState.GameData[config.dataField] ~= nil then
         return playerState.GameData[config.dataField] or 0
+    end
+    local repField = "UGC" .. config.dataField
+    if playerState[repField] ~= nil then
+        return playerState[repField] or 0
     end
     return 0
 end
 -- 更新天赋点显示
 function TalentTree:UpdateTalentPointText()
     if self.TalentPoint_Text then
-        local points = self:GetRemainingTalentPoints()
-        self.TalentPoint_Text:SetText("剩余天赋点: " .. tostring(points))
+        local count = self:GetTalentVirtualItemCount()
+        self.TalentPoint_Text:SetText("" .. tostring(count))
+    end
+end
+function TalentTree:ShowTip(text)
+    local pc = UGCGameSystem.GetLocalPlayerController()
+    if pc and pc.MMainUI and pc.MMainUI.ShowTip then
+        pc.MMainUI:ShowTip(text)
     end
 end
 -- 点击天赋按钮
@@ -297,52 +288,56 @@ function TalentTree:OnSureClicked()
     --ugcprint("[TalentTree] ========== OnSureClicked 开始 ==========")
     
     if self.CurrentTalentType == TALENT_TYPE.NONE then
-        --ugcprint("[TalentTree] 错误：未选择天赋")
+        self:ShowTip("请先选择天赋")
         return
     end
     
     local config = TALENT_CONFIG[self.CurrentTalentType]
     if not config then
-        --ugcprint("[TalentTree] 错误：天赋配置不存在，类型: " .. tostring(self.CurrentTalentType))
+        self:ShowTip("该天赋暂未开放")
         return
     end
     
     --ugcprint("[TalentTree] 选中天赋: " .. config.name .. " (类型: " .. self.CurrentTalentType .. ")")
     --ugcprint("[TalentTree] 天赋配置 - 消耗: " .. config.cost .. ", 最大等级: " .. config.maxLevel)
     
-    -- 检查天赋点是否足够
-    local remainingPoints = self:GetRemainingTalentPoints()
-    --ugcprint("[TalentTree] 当前天赋点: " .. remainingPoints .. ", 需要: " .. config.cost)
-    if remainingPoints < config.cost then
-        --ugcprint("[TalentTree] 错误：天赋点不足")
+    -- 检查虚拟物品数量是否足够
+    local materialCount = self:GetTalentVirtualItemCount()
+    if materialCount < config.cost then
+        self:ShowTip("五行本源不足")
         return
     end
     
     -- 检查是否已满级
     local currentLevel = self:GetTalentLevel(self.CurrentTalentType)
-    --ugcprint("[TalentTree] 当前等级: " .. currentLevel .. ", 最大等级: " .. config.maxLevel)
     if currentLevel >= config.maxLevel then
-        --ugcprint("[TalentTree] 错误：该天赋已满级")
+        self:ShowTip("该天赋已满级")
         return
     end
     
     -- 发送加点请求到服务器
     local playerState = UGCGameSystem.GetLocalPlayerState()
-    --ugcprint("[TalentTree] 获取PlayerState: " .. tostring(playerState))
     if playerState then
-        --ugcprint("[TalentTree] 发送RPC请求: Server_AddTalentPointNew, 参数: " .. self.CurrentTalentType)
         UnrealNetwork.CallUnrealRPC(
             playerState,
             playerState,
             "Server_AddTalentPointNew",
             self.CurrentTalentType
         )
-        --ugcprint("[TalentTree] RPC请求已发送")
     else
-        --ugcprint("[TalentTree] 错误：无法获取PlayerState")
+        self:ShowTip("无法获取玩家状态")
     end
-    
-    --ugcprint("[TalentTree] ========== OnSureClicked 完成 ==========")
+end
+function TalentTree:OnTalentUpgradeResult(success, talentType, currentLevel, remainCount, tipText)
+    if tipText and tipText ~= "" then
+        self:ShowTip(tostring(tipText))
+    elseif success then
+        self:ShowTip("天赋升级成功")
+    else
+        self:ShowTip("天赋升级失败")
+    end
+    self:RefreshUI()
+    return true
 end
 -- 关闭界面
 function TalentTree:OnCancelClicked()

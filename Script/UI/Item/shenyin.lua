@@ -1,13 +1,13 @@
-﻿---@class shenyin_C:UUserWidget
+---@class shenyin_C:UUserWidget
 ---@field AddLevel UButton
 ---@field Addquality UButton
 ---@field Addqualityitem UHorizontalBox
----@field Border_2 UBorder
----@field Border_3 UBorder
----@field Border_4 UBorder
----@field Border_5 UBorder
----@field Border_6 UBorder
----@field Border_7 UBorder
+---@field Border_2p UImage
+---@field Border_3p UImage
+---@field Border_4p UImage
+---@field Border_5p UImage
+---@field Border_6p UImage
+---@field Border_7p UImage
 ---@field Button_2 UButton
 ---@field Button_3 UButton
 ---@field Button_4 UButton
@@ -16,7 +16,7 @@
 ---@field Button_7 UButton
 ---@field cancel UButton
 ---@field detail UTextBlock
----@field Image_1 UImage
+---@field Image_0 UImage
 ---@field Image_2 UImage
 ---@field Image_3 UImage
 ---@field Image_4 UImage
@@ -24,6 +24,18 @@
 ---@field Image_6 UImage
 ---@field Image_7 UImage
 ---@field Image_8 UImage
+---@field Image_9 UImage
+---@field Image_10 UImage
+---@field Image_11 UImage
+---@field Image_12 UImage
+---@field Image_13 UImage
+---@field Image_14 UImage
+---@field Image_98 UImage
+---@field Image_99 UImage
+---@field Image_101 UImage
+---@field Image_104 UImage
+---@field Image_108 UImage
+---@field Image_111 UImage
 ---@field Image_122 UImage
 ---@field Image_Addqualityitem UImage
 ---@field Image_baihu UImage
@@ -50,12 +62,12 @@
 --Edit Below--
 local shenyin = { bInitDoOnce = false }
 local ButtonBorderMap = {
-    { button = "Button_2", border = "Border_2", image = "Image_2", skill = "lvse",    icon = "Image_qingshe" },
-    { button = "Button_3", border = "Border_3", image = "Image_3", skill = "lanse",   icon = "Image_baihu" },
-    { button = "Button_4", border = "Border_4", image = "Image_4", skill = "zise",    icon = "Image_baize" },
-    { button = "Button_5", border = "Border_5", image = "Image_5", skill = "chengse", icon = "Image_qiling" },
-    { button = "Button_6", border = "Border_6", image = "Image_6", skill = "hongse",  icon = "Image_fenghuang" },
-    { button = "Button_7", border = "Border_7", image = "Image_7", skill = "jinse",   icon = "Image_shenlong" },
+    { button = "Button_2", border = "Border_2p", image = "Image_2", skill = "lvse",    icon = "Image_qingshe" },
+    { button = "Button_3", border = "Border_3p", image = "Image_3", skill = "lanse",   icon = "Image_baihu" },
+    { button = "Button_4", border = "Border_4p", image = "Image_4", skill = "zise",    icon = "Image_baize" },
+    { button = "Button_5", border = "Border_5p", image = "Image_5", skill = "chengse", icon = "Image_qiling" },
+    { button = "Button_6", border = "Border_6p", image = "Image_6", skill = "hongse",  icon = "Image_fenghuang" },
+    { button = "Button_7", border = "Border_7p", image = "Image_7", skill = "jinse",   icon = "Image_shenlong" },
 }
 -- Configuration table used by this widget.
 local DetailTexts = {

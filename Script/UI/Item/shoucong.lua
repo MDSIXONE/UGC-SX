@@ -2,6 +2,8 @@
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field Button_42 UButton
 --Edit Below--
+UGCGameSystem.UGCRequire("ExtendResource.SignInEvent.OfficialPackage." .. "Script.SignInEvent.SignInEventManager")
+
 local shoucong =
 {
     bInitDoOnce = false;
@@ -13,91 +15,12 @@ function shoucong:Construct()
 end
 
 function shoucong:OnClick()
-    --ugcprint("[shoucong] 按钮被点击")
-    
-    -- 获取 CommodityOperationManager
-    local CommodityOperationManager = UGCGamePartSystem.CommodityOperationManager.GetGlobalActor()
-    if not CommodityOperationManager then
-        --ugcprint("[shoucong] 错误：无法获取 CommodityOperationManager")
-        return
-    end
-    
-    -- 获取商品配置
-    local ProductData = CommodityOperationManager:GetProductData(self.ProductID)
-    if not ProductData then
-        --[[        --ugcprint(string.format("[shoucong] 错误：无法获取商品配置，ProductID: %d", self.ProductID))]]
-        return
-    end
-    
-    --[[    --ugcprint(string.format("[shoucong] 商品配置 - ID:%d, 物品ID:%d, 价格:%d", self.ProductID, ProductData.ItemID, ProductData.SellingPrice or 0))]]
-    
-    -- 检查是否能够购买
-    if not CommodityOperationManager:CanAfford(self.ProductID, 1) then
-        --ugcprint("[shoucong] 绿洲币不足")
-        return
-    end
-    
-    -- 获取 VirtualItemManager
-    local VirtualItemManager = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
-    if not VirtualItemManager then
-        --ugcprint("[shoucong] 错误：无法获取 VirtualItemManager")
-        return
-    end
-    
-    -- 获取物品配置
-    local ObjectData = VirtualItemManager:GetItemData(ProductData.ItemID)
-    if not ObjectData then
-        --ugcprint("[shoucong] 错误：无法获取物品配置")
-        return
-    end
-    
-    -- 获取限购信息
-    local LimitType = ProductData.LimitType or 0  -- 0:不限购
-    local PurchaseLimit = ProductData.PurchaseLimit or 0  -- 限购总次数
-    local PurchasedTimes = CommodityOperationManager:GetPurchasedTimes(self.ProductID) or 0  -- 已购买次数
-    local RemainingTimes = PurchaseLimit - PurchasedTimes  -- 剩余次数
-    
-    if RemainingTimes < 0 then
-        RemainingTimes = 0
-    end
-    
-    --[[    --ugcprint(string.format("[shoucong] 限购信息 - 类型:%d, 限购:%d, 已购:%d, 剩余:%d", LimitType, PurchaseLimit, PurchasedTimes, RemainingTimes))]]
-    
-    -- 检查是否还能购买
-    if LimitType ~= 0 and RemainingTimes <= 0 then
-        --ugcprint("[shoucong] 已达到购买上限")
-        return
-    end
-    
-    -- 显示自定义确认界面
-    --ugcprint("[shoucong] 显示自定义确认界面")
-    local PlayerController = UGCGameSystem.GetLocalPlayerController()
-    if not PlayerController then
-        --ugcprint("[shoucong] 错误：无法获取 PlayerController")
-        return
-    end
-    
-    local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
-    local confirmUI = UGCGameData.GetUI(PlayerController, "ConfirmPurchase")
-    if confirmUI then
-        confirmUI:AddToViewport(15000)
-        -- 传递完整的购买信息
-        confirmUI:SetPurchaseInfo({
-            ProductID = self.ProductID,
-            ItemID = ProductData.ItemID,
-            Price = ProductData.SellingPrice or 1,
-            ItemName = ObjectData.ItemName or "物品",
-            ItemDesc = ObjectData.ItemDesc or "",
-            ItemIcon = ObjectData.ItemIcon,
-            LimitType = LimitType,
-            PurchaseLimit = PurchaseLimit,
-            PurchasedTimes = PurchasedTimes,
-            RemainingTimes = RemainingTimes,
-            Caller = self
-        })
-        --ugcprint("[shoucong] 自定义确认界面已显示")
+    --ugcprint("[shoucong] 按钮被点击，打开签到主界面")
+
+    if SignInEventManager and SignInEventManager.OpenMainUI then
+        SignInEventManager:OpenMainUI()
     else
-        --ugcprint("[shoucong] 错误：无法创建确认界面")
+        --ugcprint("[shoucong] 错误 - SignInEventManager 不存在")
     end
 end
 

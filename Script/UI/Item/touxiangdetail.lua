@@ -1,4 +1,4 @@
-﻿---@class touxiangdetail_C:UUserWidget
+---@class touxiangdetail_C:UUserWidget
 ---@field ATTACK UTextBlock
 ---@field ATTACKup UTextBlock
 ---@field Base_Attack UTextBlock
@@ -11,6 +11,7 @@
 ---@field Button_hpup UButton
 ---@field Button_MAGICup UButton
 ---@field Current_MAXHP UTextBlock
+---@field currentpoint UTextBlock
 ---@field Detail_Cancel General_SecondLevelButton_3_C
 ---@field Ecexp UTextBlock
 ---@field hpup UTextBlock
@@ -42,6 +43,10 @@ function touxiangdetail:Construct()
     
     -- Bind widget property text or values.
     self.Current_MAXHP:BindingProperty("Text", self.Current_MAXHP_Text, self)
+
+    if self.currentpoint then
+        self.currentpoint:BindingProperty("Text", self.currentpoint_Text, self)
+    end
     
     -- Bind widget property text or values.
     self.Bland:BindingProperty("Text", self.Bland_Text, self)
@@ -362,6 +367,23 @@ function touxiangdetail:bland_up_Text(ReturnValue)
     return "吞噬强化次数: " .. tostring(count)
 end
 
+function touxiangdetail:GetCurrentTalentPoints()
+    local playerState = UGCGameSystem.GetLocalPlayerState()
+    if not playerState then
+        return 0
+    end
+
+    if playerState.GameData and playerState.GameData.PlayerTalentPoints ~= nil then
+        return math.max(0, math.floor(tonumber(playerState.GameData.PlayerTalentPoints) or 0))
+    end
+
+    return math.max(0, math.floor(tonumber(playerState.UGCPlayerTalentPoints) or 0))
+end
+
+function touxiangdetail:currentpoint_Text(ReturnValue)
+    return "天赋点: " .. tostring(self:GetCurrentTalentPoints())
+end
+
 -- Show tip.
 function touxiangdetail:ShowTip(text)
     local pc = UGCGameSystem.GetLocalPlayerController()
@@ -372,39 +394,68 @@ end
 
 -- Handle attac kup button click.
 function touxiangdetail:OnATTACKupClicked()
-    -- Local helper value for this logic block.
-    local playerState = UGCGameSystem.GetLocalPlayerState()
-    if playerState then
-        UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "attack")
-        self:ShowTip("攻击+2")
-    end
+    self:RequestManualPoint("attack")
 end
 
 function touxiangdetail:OnMAGICupClicked()
-    -- Local helper value for this logic block.
-    local playerState = UGCGameSystem.GetLocalPlayerState()
-    if playerState then
-        UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "magic")
-        self:ShowTip("魔法+1")
-    end
+    self:RequestManualPoint("magic")
 end
 
 function touxiangdetail:OnHpupClicked()
-    -- Local helper value for this logic block.
-    local playerState = UGCGameSystem.GetLocalPlayerState()
-    if playerState then
-        UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "hp")
-        self:ShowTip("生命+5")
-    end
+    self:RequestManualPoint("hp")
 end
 
 function touxiangdetail:OnBlandupClicked()
-    -- Local helper value for this logic block.
+    self:RequestManualPoint("bland")
+end
+
+function touxiangdetail:RequestManualPoint(pointType)
     local playerState = UGCGameSystem.GetLocalPlayerState()
-    if playerState then
-        UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", "bland")
-        self:ShowTip("血脉+10")
+    if not playerState then
+        self:ShowTip("无法获取玩家状态")
+        return
     end
+
+    if self:GetCurrentTalentPoints() <= 0 then
+        self:ShowTip("天赋点不足")
+        return
+    end
+
+    UnrealNetwork.CallUnrealRPC(playerState, playerState, "Server_AddManualPoint", pointType)
+end
+
+function touxiangdetail:OnManualPointResult(success, pointType, remainTalentPoints, tipText)
+    local playerState = UGCGameSystem.GetLocalPlayerState()
+    local normalizedPoints = math.max(0, math.floor(tonumber(remainTalentPoints) or 0))
+    if playerState then
+        playerState.UGCPlayerTalentPoints = normalizedPoints
+        if playerState.GameData then
+            playerState.GameData.PlayerTalentPoints = normalizedPoints
+        end
+    end
+
+    if tipText and tipText ~= "" then
+        self:ShowTip(tostring(tipText))
+        return true
+    end
+
+    if success then
+        if pointType == "attack" then
+            self:ShowTip("攻击+2")
+        elseif pointType == "magic" then
+            self:ShowTip("魔法+1")
+        elseif pointType == "hp" then
+            self:ShowTip("生命+5")
+        elseif pointType == "bland" then
+            self:ShowTip("血脉+10")
+        else
+            self:ShowTip("加点成功")
+        end
+    else
+        self:ShowTip("加点失败")
+    end
+
+    return true
 end
 
 -- Show.

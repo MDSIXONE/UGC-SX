@@ -1,8 +1,18 @@
-﻿---@class jiange_C:UUserWidget
+---@class jiange_C:UUserWidget
 ---@field cancel UButton
 ---@field duanzhaoshi UImage
 ---@field Image_0 UImage
+---@field Image_1 UImage
 ---@field Image_2 UImage
+---@field Image_3 UImage
+---@field Image_4 UImage
+---@field Image_6 UImage
+---@field Image_7 UImage
+---@field Image_8 UImage
+---@field Image_9 UImage
+---@field Image_10 UImage
+---@field Image_11 UImage
+---@field Image_12 UImage
 ---@field levelup UButton
 ---@field name UTextBlock
 ---@field ProgressBar_level UProgressBar

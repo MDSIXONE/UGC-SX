@@ -83,16 +83,27 @@ local DefaultGameData =
 
 -- Talent config table
 local TALENT_CONFIG = {
-    [1] = { cost = 1, maxLevel = 1000 },
-    [2] = { cost = 1, maxLevel = 1000 },
-    [3] = { cost = 1, maxLevel = 1000 },
-    [4] = { cost = 3, maxLevel = 50 },
-    [5] = { cost = 3, maxLevel = 100 },
-    [6] = { cost = 3, maxLevel = 100 },
-    [7] = { cost = 5, maxLevel = 100 },
-    [8] = { cost = 5, maxLevel = 100 },
-    [9] = { cost = 5, maxLevel = 50 },
+    [1] = { cost = 1, maxLevel = 5 },
+    [2] = { cost = 1, maxLevel = 5 },
+    [4] = { cost = 3, maxLevel = 5 },
+    [7] = { cost = 5, maxLevel = 5 },
+    [8] = { cost = 5, maxLevel = 5 },
 }
+local ENABLED_TALENT_TYPES = {1, 2, 4, 7, 8}
+local TALENT_UPGRADE_VIRTUAL_ITEM_ID = 5555
+local TALENT_BUFF_PATH_BY_TYPE = {
+    -- jing
+    [2] = UGCGameSystem.GetUGCResourcesFullPath('Asset/Blueprint/Prefabs/Buffs/tianfu/buff1.buff1_C'),
+    -- mu
+    [1] = UGCGameSystem.GetUGCResourcesFullPath('Asset/Blueprint/Prefabs/Buffs/tianfu/buff1.buff4_C'),
+    -- shui
+    [4] = UGCGameSystem.GetUGCResourcesFullPath('Asset/Blueprint/Prefabs/Buffs/tianfu/buff1.buff3_C'),
+    -- tu
+    [8] = UGCGameSystem.GetUGCResourcesFullPath('Asset/Blueprint/Prefabs/Buffs/tianfu/buff1.buff5_C'),
+    -- huo
+    [7] = UGCGameSystem.GetUGCResourcesFullPath('Asset/Blueprint/Prefabs/Buffs/tianfu/buff1.buff2_C'),
+}
+local MANUAL_POINT_COST = 1
 
 -- Task config table
 local TASK_CONFIG = {
@@ -752,6 +763,11 @@ function UGCPlayerState:Server_RequestInit()
     self:StartTaskResetTimer()
     self:StartOnlineTimer()
     self:UpdateClientAttributes()
+
+    local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
+    if PC then
+        UnrealNetwork.CallUnrealRPC(PC, PC, "Client_SyncJiangeData", self.GameData.PlayerJiangeLevel or 1, self.GameData.PlayerJiangeProgress or 0)
+    end
 end
 
 function UGCPlayerState:Server_Rebirth()
@@ -762,21 +778,46 @@ end
 --- pointType: "attack", "magic", "hp", "bland"
 function UGCPlayerState:Server_AddManualPoint(pointType)
     if not UGCGameSystem.IsServer(self) then return end
-    
+
     local MANUAL_POINT_MAP = {
-        attack = { dataField = "PlayerManualAttack", repField = "UGCPlayerManualAttack", addPerPoint = 2, targetField = "PlayerAttack" },
-        magic  = { dataField = "PlayerManualMagic",  repField = "UGCPlayerManualMagic",  addPerPoint = 1, targetField = "PlayerMagic" },
-        hp     = { dataField = "PlayerManualHp",     repField = "UGCPlayerManualHp",     addPerPoint = 5, targetField = "PlayerMaxHp" },
-        bland  = { dataField = "PlayerManualBland",  repField = "UGCPlayerManualBland",  addPerPoint = 10, targetField = "PlayerBland" },
+        attack = { dataField = "PlayerManualAttack", repField = "UGCPlayerManualAttack", addPerPoint = 2, targetField = "PlayerAttack", successTip = "攻击+2" },
+        magic  = { dataField = "PlayerManualMagic",  repField = "UGCPlayerManualMagic",  addPerPoint = 1, targetField = "PlayerMagic", successTip = "魔法+1" },
+        hp     = { dataField = "PlayerManualHp",     repField = "UGCPlayerManualHp",     addPerPoint = 5, targetField = "PlayerMaxHp", successTip = "生命+5" },
+        bland  = { dataField = "PlayerManualBland",  repField = "UGCPlayerManualBland",  addPerPoint = 10, targetField = "PlayerBland", successTip = "血脉+10" },
     }
+
+    local function NotifyManualPointResult(success, tipText)
+        local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
+        if not PC then
+            return
+        end
+
+        local remainPoints = 0
+        if self.GameData then
+            remainPoints = self.GameData.PlayerTalentPoints or 0
+        end
+
+        UnrealNetwork.CallUnrealRPC(PC, PC, "Client_OnManualPointResult", success == true, tostring(pointType or ""), remainPoints, tipText or "")
+    end
 
     local info = MANUAL_POINT_MAP[pointType]
     if not info then
-        -- ugcprint("[Server_AddManualPoint] Invalid point type: " .. tostring(pointType))
+        NotifyManualPointResult(false, "加点类型无效")
         return
     end
 
     self:EnsureDataInitialized()
+
+    local currentTalentPoints = self.GameData.PlayerTalentPoints or 0
+    if currentTalentPoints < MANUAL_POINT_COST then
+        NotifyManualPointResult(false, "天赋点不足")
+        return
+    end
+
+    self.GameData.PlayerTalentPoints = currentTalentPoints - MANUAL_POINT_COST
+
+    self.UGCPlayerTalentPoints = self.GameData.PlayerTalentPoints
+    UnrealNetwork.RepLazyProperty(self, "UGCPlayerTalentPoints")
 
     -- Update point count
     local current = self.GameData[info.dataField] or 0
@@ -805,42 +846,137 @@ function UGCPlayerState:Server_AddManualPoint(pointType)
 
     self:UpdateClientAttributes()
     self:DataSave()
+    NotifyManualPointResult(true, info.successTip)
 end
 
 -- ============ Talent System ============
 
 -- Server RPC: upgrade talent (new version with buff system)
 function UGCPlayerState:Server_AddTalentPointNew(talentType)
+    if not UGCGameSystem.IsServer(self) then return end
+
+    talentType = math.floor(tonumber(talentType) or 0)
+    self:EnsureDataInitialized()
+
+    local function NotifyTalentUpgradeResult(success, level, remainCount, tipText)
+        local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
+        if not PC then
+            return
+        end
+
+        local currentLevel = level
+        if currentLevel == nil and self.GameData then
+            currentLevel = self.GameData["PlayerTalent" .. tostring(talentType)] or 0
+        end
+
+        UnrealNetwork.CallUnrealRPC(
+            PC,
+            PC,
+            "Client_OnTalentUpgradeResult",
+            success == true,
+            talentType,
+            math.floor(tonumber(currentLevel) or 0),
+            math.max(0, math.floor(tonumber(remainCount) or 0)),
+            tipText or ""
+        )
+    end
+
     local config = TALENT_CONFIG[talentType]
     if not config then
+        NotifyTalentUpgradeResult(false, nil, 0, "该天赋暂未开放")
         return
     end
-    
-    local currentPoints = self.GameData.PlayerTalentPoints or 0
-    if currentPoints < config.cost then
-        return
-    end
-    
+
     local dataField = "PlayerTalent" .. talentType
     local currentLevel = self.GameData[dataField] or 0
-    
+
     if currentLevel >= config.maxLevel then
+        NotifyTalentUpgradeResult(false, currentLevel, 0, "该天赋已满级")
         return
     end
-    
-    self.GameData.PlayerTalentPoints = currentPoints - config.cost
-    self.GameData[dataField] = currentLevel + 1
-    
-    self.UGCPlayerTalentPoints = self.GameData.PlayerTalentPoints
-    UnrealNetwork.RepLazyProperty(self, "UGCPlayerTalentPoints")
-    
+
+    local PC = UGCGameSystem.GetPlayerControllerByPlayerState(self)
+    local VirtualItemManager = UGCBlueprintFunctionLibrary.GetGamePartGlobalActor(UGCGameSystem.GameState, "VirtualItemManager")
+    if (not PC) or (not VirtualItemManager) then
+        NotifyTalentUpgradeResult(false, currentLevel, 0, "材料系统未就绪")
+        return
+    end
+
+    local function GetTalentItemCount()
+        local queryOk, queryRet = pcall(function()
+            return VirtualItemManager:GetItemNum(TALENT_UPGRADE_VIRTUAL_ITEM_ID, PC)
+        end)
+        if queryOk then
+            return math.max(0, math.floor(tonumber(queryRet) or 0))
+        end
+
+        local fallbackOk, fallbackRet = pcall(function()
+            return VirtualItemManager:GetItemNum(TALENT_UPGRADE_VIRTUAL_ITEM_ID)
+        end)
+        if fallbackOk then
+            return math.max(0, math.floor(tonumber(fallbackRet) or 0))
+        end
+
+        return 0
+    end
+
+    local function ParseRemoveResult(result)
+        if result == nil then
+            return true
+        end
+
+        local resultType = type(result)
+        if resultType == "boolean" then
+            return result
+        end
+        if resultType == "number" then
+            return result > 0
+        end
+        if resultType == "table" then
+            if result.bSucceeded ~= nil then
+                return result.bSucceeded == true
+            end
+            if result.bSuccess ~= nil then
+                return result.bSuccess == true
+            end
+            if result.Success ~= nil then
+                return result.Success == true
+            end
+            if result.Result ~= nil then
+                return result.Result == true
+            end
+        end
+
+        return false
+    end
+
+    local currentItemCount = GetTalentItemCount()
+    if currentItemCount < config.cost then
+        NotifyTalentUpgradeResult(false, currentLevel, currentItemCount, "虚拟物品5555不足")
+        return
+    end
+
+    local removeResult = nil
+    local removeOk = pcall(function()
+        removeResult = VirtualItemManager:RemoveVirtualItem(PC, TALENT_UPGRADE_VIRTUAL_ITEM_ID, config.cost)
+    end)
+    if (not removeOk) or (not ParseRemoveResult(removeResult)) then
+        NotifyTalentUpgradeResult(false, currentLevel, GetTalentItemCount(), "虚拟物品5555不足")
+        return
+    end
+
+    local newLevel = currentLevel + 1
+    self.GameData[dataField] = newLevel
+
     local repField = "UGCPlayerTalent" .. talentType
     self[repField] = self.GameData[dataField]
     UnrealNetwork.RepLazyProperty(self, repField)
-    
+
     self:ApplyTalentBuff(talentType)
     self:UpdateCombatPowerRank()
     self:DataSave()
+
+    NotifyTalentUpgradeResult(true, newLevel, GetTalentItemCount(), "")
 end
 
 -- Legacy talent upgrade (redirects to new version)
@@ -870,13 +1006,13 @@ end
 -- Apply all talent buffs using buff asset system
 function UGCPlayerState:ApplyAllTalentBuffsInternal(Player)
     if not Player then return end
-    
-    for talentType = 1, 9 do
+
+    for _, talentType in ipairs(ENABLED_TALENT_TYPES) do
         local dataField = "PlayerTalent" .. talentType
         local level = self.GameData[dataField] or 0
-        local buffPath = UGCGameSystem.GetUGCResourcesFullPath('Asset/Blueprint/Prefabs/Buffs/tianfu/buff' .. talentType .. '.buff' .. talentType .. '_C')
-        
-        if level > 0 then
+        local buffPath = TALENT_BUFF_PATH_BY_TYPE[talentType]
+
+        if level > 0 and buffPath and buffPath ~= "" then
             UGCPersistEffectSystem.RemoveBuffByClass(Player, buffPath, -1, nil)
             local buffObj = UGCPersistEffectSystem.AddBuffByClass(Player, buffPath, nil, -1, level)
         end
@@ -884,7 +1020,7 @@ function UGCPlayerState:ApplyAllTalentBuffsInternal(Player)
 end
 
 function UGCPlayerState:ApplyAllTalentBuffs()
-    for talentType = 1, 9 do
+    for _, talentType in ipairs(ENABLED_TALENT_TYPES) do
         local dataField = "PlayerTalent" .. talentType
         local level = self.GameData[dataField] or 0
         if level > 0 then

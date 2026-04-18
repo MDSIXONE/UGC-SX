@@ -2,7 +2,7 @@
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field shouchong_buttun UButton
 --Edit Below--
-UGCGameSystem.UGCRequire("ExtendResource.SignInEvent.OfficialPackage." .. "Script.SignInEvent.SignInEventManager")
+UGCGameSystem.UGCRequire("ExtendResource.ShopV2.OfficialPackage.Script.ShopV2.ShopV2Manager")
 
 local shouchongbuttun = { bInitDoOnce = false }
 
@@ -25,13 +25,13 @@ function shouchongbuttun:LuaInit()
 end
 
 function shouchongbuttun:shouchong_buttun_OnClicked()
-    --ugcprint("[shouchongbuttun] 按钮被点击，打开签到主界面")
+    --ugcprint("[shouchongbuttun] 按钮被点击，打开商店标签2")
 
-    -- 参考 SignInEvent TestButton 的打开逻辑
-    if SignInEventManager and SignInEventManager.OpenMainUI then
-        SignInEventManager:OpenMainUI()
+    -- 打开 ShopV2 商店并跳转到标签2
+    if ShopV2Manager then
+        ShopV2Manager:OpenMainUI(2)
     else
-        --ugcprint("[shouchongbuttun] 错误 - SignInEventManager 不存在")
+        --ugcprint("[shouchongbuttun] 错误 - ShopV2Manager 不存在")
     end
 end
 

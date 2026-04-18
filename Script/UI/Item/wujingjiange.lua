@@ -1,4 +1,4 @@
-﻿---@class wujingjiange_C:UUserWidget
+---@class wujingjiange_C:UUserWidget
 ---@field Button_0 UButton
 ---@field Button_1 UButton
 ---@field Button_2 UButton

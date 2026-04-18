@@ -1,4 +1,4 @@
-﻿---@class huicheng_C:UUserWidget
+---@class huicheng_C:UUserWidget
 ---@field NewAnimation_1 UWidgetAnimation
 ---@field huicheng_buttun UButton
 --Edit Below--
@@ -80,7 +80,7 @@ function huicheng:huicheng_buttun_OnClicked()
 	-- 回满血
 	self:RestoreFullHealth()
 	-- 传送到回城点坐标
-	self:TeleportToLocation(19053.320312, 50346.1875, 535.063049)
+	self:TeleportToLocation(275444.46875, 167618.28125, 3926.219482)
 end
 
 function huicheng:huicheng_buttun_OnHovered()

@@ -8,9 +8,44 @@
 ---@field NextDayTime int32
 ---@field SupplementDayNum int32
 
----@class FSignInAward
+---@class FTaskTemplateConfig
+---@field TaskLineName FString
+
+---@class ProgressItem
 ---@field ItemID int32
----@field ItemNum int32
+---@field ItemCount int32
+
+---@class ProgressReward
+---@field Progress int32
+---@field ItemList ProgressItem[]
+---@field Desc FString
+
+---@class LotteryData
+---@field ID int32
+---@field GiftProgressRewards ProgressReward[]
+---@field LotteryRule FString
+---@field DailyDrawLimit int32
+---@field DailyDrawGroup int32
+---@field OverrideDropID int32
+---@field DropGroupID int32
+---@field DrawCostID int32
+---@field TenDrawCostNum int32
+---@field OverrideGuarantDropID int32
+---@field GuarantDropGroupID int32
+---@field IsFirstDrawDiscountOpen bool
+---@field FirstDrawDiscountCost int32
+---@field FirstDrawDiscountResetType ELotteryResetType
+---@field OverrideFirstDrawGuarantDropID int32
+---@field FirstDrawGuarantDropGroupID int32
+---@field FirstDrawGuarantResetType ELotteryResetType
+---@field OneDrawCostNum int32
+---@field Name FString
+---@field Icon FSoftObjectPath
+
+---@class chongzhi
+---@field itemid int32
+---@field itemnum int32
+---@field itemcount int32
 
 ---@class FSignInEventConfig
 ---@field EventID int32
@@ -24,11 +59,6 @@
 ---@field SupplementItemNum int32
 ---@field AwardTablePath FSoftObjectPath
 ---@field HighLight7thDay bool
-
----@class chongzhi
----@field itemid int32
----@field itemnum int32
----@field itemcount int32
 
 ---@class fubenreward
 ---@field 虚拟物品ID int32
@@ -122,37 +152,6 @@
 ---@field DrawItemInfo LotteryDrawItemInfo
 ---@field DrawTime int32
 
----@class LotteryData
----@field ID int32
----@field GiftProgressRewards ProgressReward[]
----@field LotteryRule FString
----@field DailyDrawLimit int32
----@field DailyDrawGroup int32
----@field OverrideDropID int32
----@field DropGroupID int32
----@field DrawCostID int32
----@field TenDrawCostNum int32
----@field OverrideGuarantDropID int32
----@field GuarantDropGroupID int32
----@field IsFirstDrawDiscountOpen bool
----@field FirstDrawDiscountCost int32
----@field FirstDrawDiscountResetType ELotteryResetType
----@field OverrideFirstDrawGuarantDropID int32
----@field FirstDrawGuarantDropGroupID int32
----@field FirstDrawGuarantResetType ELotteryResetType
----@field OneDrawCostNum int32
----@field Name FString
----@field Icon FSoftObjectPath
-
----@class ProgressItem
----@field ItemID int32
----@field ItemCount int32
-
----@class ProgressReward
----@field Progress int32
----@field ItemList ProgressItem[]
----@field Desc FString
-
 ---@class ShopV2_ItemQuality
 ---@field ItemID int32
 ---@field QualityRank int32
@@ -167,4 +166,8 @@
 ---@field EventID int32
 ---@field TabName FString
 ---@field ShowPeriod bool
+
+---@class FSignInAward
+---@field ItemID int32
+---@field ItemNum int32
 
