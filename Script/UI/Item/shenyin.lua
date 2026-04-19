@@ -410,6 +410,15 @@ function shenyin:UpdateActionButtons()
         local canQuality = (state ~= STATE_UNLOCK) and (quality < MAX_QUALITY)
         self.Addquality:SetVisibility(canQuality and ESlateVisibility.Visible or ESlateVisibility.Collapsed)
     end
+    if self.unlock then
+        self.unlock:SetIsEnabled(state == STATE_UNLOCK)
+    end
+    if self.wear then
+        self.wear:SetIsEnabled(state == STATE_UNWEAR)
+    end
+    if self.remove then
+        self.remove:SetIsEnabled(state == STATE_WEAR)
+    end
 end
 function shenyin:UpdateLevelDisplay()
     if not self.SelectedButton then return end
@@ -473,12 +482,21 @@ function shenyin:OnUnlockClicked()
     if pair.icon and self[pair.icon] then
         self:SetIconBrushWhite(self[pair.icon])
     end
+    if self.unlock then
+        self.unlock:SetVisibility(ESlateVisibility.Collapsed)
+    end
+    if self.wear then
+        self.wear:SetVisibility(ESlateVisibility.Visible)
+    end
+    if self.remove then
+        self.remove:SetVisibility(ESlateVisibility.Collapsed)
+    end
     self:UpdateActionButtons()
     self:UpdateItemImages(self.SelectedButton)
     self:UpdateInfoDisplay(self.SelectedButton)
     self:UpdateLevelDisplay()
     self:SaveToServer()
-    --ugcprint("[shenyin] OnUnlockClicked: btn=" .. tostring(self.SelectedButton) .. ", state=" .. tostring(self.SlotStates[self.SelectedButton]))
+    ugcprint("[shenyin] OnUnlockClicked: btn=" .. tostring(self.SelectedButton) .. ", state=" .. tostring(self.SlotStates[self.SelectedButton]))
 end
 -- Handle wear button click.
 function shenyin:OnWearClicked()
@@ -501,13 +519,22 @@ function shenyin:OnWearClicked()
         self[pair.border]:SetVisibility(ESlateVisibility.Visible)
         self[pair.border]:SetBrushColor({R = 1, G = 1, B = 0, A = 1})
     end
+    if self.wear then
+        self.wear:SetVisibility(ESlateVisibility.Collapsed)
+    end
+    if self.remove then
+        self.remove:SetVisibility(ESlateVisibility.Visible)
+    end
+    if self.unlock then
+        self.unlock:SetVisibility(ESlateVisibility.Collapsed)
+    end
     self:ApplySkill(pair.skill, true, self.SlotQualities[self.SelectedButton])
     self.CurrentEcexpBonus = self:GetEcexpBonus(self.SelectedButton)
     self:ApplyEcexp(self.CurrentEcexpBonus)
     self:UpdateActionButtons()
     self:SaveToServer()
     self:ShowTip("穿戴成功")
-    --ugcprint("[shenyin] OnWearClicked: btn=" .. tostring(self.SelectedButton) .. ", state=" .. tostring(self.SlotStates[self.SelectedButton]) .. ", quality=" .. tostring(self.SlotQualities[self.SelectedButton]))
+    ugcprint("[shenyin] OnWearClicked: btn=" .. tostring(self.SelectedButton) .. ", state=" .. tostring(self.SlotStates[self.SelectedButton]) .. ", quality=" .. tostring(self.SlotQualities[self.SelectedButton]))
 end
 function shenyin:OnRemoveClicked()
     if not self.SelectedButton then return end
@@ -525,9 +552,16 @@ function shenyin:OnRemoveClicked()
     -- Keep this section consistent with the original UI flow.
     self.CurrentEcexpBonus = 0
     self:ApplyEcexp(0)
+    if self.wear then
+        self.wear:SetVisibility(ESlateVisibility.Visible)
+    end
+    if self.remove then
+        self.remove:SetVisibility(ESlateVisibility.Collapsed)
+    end
     self:UpdateActionButtons()
     self:SaveToServer()
     self:ShowTip("卸下成功")
+    --ugcprint("[shenyin] OnRemoveClicked: btn=" .. tostring(self.SelectedButton))
 end
 -- Handle add level button click.
 function shenyin:OnAddLevelClicked()
@@ -641,37 +675,57 @@ function shenyin:OnCancelClicked()
 end
 -- Serialize data.
 function shenyin:SerializeData()
-    local parts = {}
-    -- Local helper value for this logic block.
+    local data = {
+        slots = {},
+    }
+
     local s = self.SlotStates["bailang"] or STATE_UNWEAR
     local l = self.SlotLevels["bailang"] or 1
     local q = self.SlotQualities["bailang"] or 1
-    table.insert(parts, "bailang:" .. s .. ":" .. tostring(l) .. ":" .. tostring(q))
-    -- Iterate through related data or widgets.
+    data.slots["bailang"] = {state = s, level = l, quality = q}
+
     for _, pair in ipairs(ButtonBorderMap) do
         local st = self.SlotStates[pair.button] or STATE_UNLOCK
         local lv = self.SlotLevels[pair.button] or 1
         local qu = self.SlotQualities[pair.button] or 1
-        table.insert(parts, pair.button .. ":" .. st .. ":" .. tostring(lv) .. ":" .. tostring(qu))
+        data.slots[pair.button] = {state = st, level = lv, quality = qu}
     end
-    return table.concat(parts, ";")
+
+    -- Store wearing skill info so respawn can reapply it
+    if self.CurrentWearing then
+        local quality = self.SlotQualities[self.CurrentWearing] or 1
+        local pair = self:GetPairByButton(self.CurrentWearing)
+        if pair then
+            data.skillName = pair.skill
+            data.skillQuality = quality
+            data.skillPath = self:GetSkillPath(pair.skill, quality)
+        end
+    end
+
+    return JsonUtil.EncodeJson(data)
 end
 
 -- Deserialize data.
 function shenyin:DeserializeData(dataStr)
     if not dataStr or dataStr == "" then return end
-    for entry in string.gmatch(dataStr, "([^;]+)") do
-        local btn, st, lv, qu = string.match(entry, "([^:]+):([^:]+):([^:]+):([^:]+)")
-        if btn and st then
-            self.SlotStates[btn] = st
-            self.SlotLevels[btn] = tonumber(lv) or 1
-            self.SlotQualities[btn] = tonumber(qu) or 1
-            if st == STATE_WEAR then
-                self.CurrentWearing = btn
-                local pair = self:GetPairByButton(btn)
-                if pair and self[pair.border] then
-                    self[pair.border]:SetBrushColor({R = 1, G = 1, B = 0, A = 1})
-                end
+    local success, data = pcall(JsonUtil.DecodeJson, dataStr)
+    if not success or not data or not data.slots then return end
+
+    for buttonName, slotData in pairs(data.slots) do
+        if slotData.state then
+            self.SlotStates[buttonName] = slotData.state
+        end
+        if slotData.level then
+            self.SlotLevels[buttonName] = slotData.level
+        end
+        if slotData.quality then
+            self.SlotQualities[buttonName] = slotData.quality
+        end
+        if slotData.state == STATE_WEAR then
+            self.CurrentWearing = buttonName
+            local pair = self:GetPairByButton(buttonName)
+            if pair and self[pair.border] then
+                self[pair.border]:SetBrushColor({R = 1, G = 1, B = 0, A = 1})
             end
         end
     end
