@@ -455,16 +455,17 @@ function shenyin:OnUnlockClicked()
                 return
             end
         end
-        -- Keep this section consistent with the original UI flow.
-        self.PendingCost = self.PendingCost or {}
-        self.PendingCost[virtualID] = (self.PendingCost[virtualID] or 0) + 100
-        -- Get player state.
-        local PlayerState = UGCGameSystem.GetLocalPlayerState()
-        if PlayerState then
-            UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_RemoveVirtualItem", virtualID, 100)
-        end
     end
     self.SlotStates[self.SelectedButton] = STATE_UNWEAR
+    self.PendingCost = self.PendingCost or {}
+    self.PendingCost[virtualID] = (self.PendingCost[virtualID] or 0) + 100
+    local displayCount = math.max((VIM:GetItemNum(virtualID) or 0) - self.PendingCost[virtualID], 0)
+    self.itemnumb:SetText(tostring(displayCount))
+    -- Get player state.
+    local PlayerState = UGCGameSystem.GetLocalPlayerState()
+    if PlayerState then
+        UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_RemoveVirtualItem", virtualID, 100)
+    end
     if self[pair.border] then
         self[pair.border]:SetVisibility(ESlateVisibility.Visible)
         self[pair.border]:SetBrushColor({R = 0, G = 0, B = 0, A = 0})
@@ -477,6 +478,7 @@ function shenyin:OnUnlockClicked()
     self:UpdateInfoDisplay(self.SelectedButton)
     self:UpdateLevelDisplay()
     self:SaveToServer()
+    --ugcprint("[shenyin] OnUnlockClicked: btn=" .. tostring(self.SelectedButton) .. ", state=" .. tostring(self.SlotStates[self.SelectedButton]))
 end
 -- Handle wear button click.
 function shenyin:OnWearClicked()
@@ -505,6 +507,7 @@ function shenyin:OnWearClicked()
     self:UpdateActionButtons()
     self:SaveToServer()
     self:ShowTip("穿戴成功")
+    --ugcprint("[shenyin] OnWearClicked: btn=" .. tostring(self.SelectedButton) .. ", state=" .. tostring(self.SlotStates[self.SelectedButton]) .. ", quality=" .. tostring(self.SlotQualities[self.SelectedButton]))
 end
 function shenyin:OnRemoveClicked()
     if not self.SelectedButton then return end
@@ -605,6 +608,9 @@ function shenyin:OnAddQualityClicked()
     -- Guard condition before running this branch.
     if state == STATE_WEAR then
         self:ApplySkill(pair.skill, true, quality + 1)
+        if self[pair.border] then
+            self[pair.border]:SetBrushColor({R = 1, G = 1, B = 0, A = 1})
+        end
     end
     -- Guard condition before running this branch.
     if self.detail then
@@ -660,9 +666,15 @@ function shenyin:DeserializeData(dataStr)
             self.SlotStates[btn] = st
             self.SlotLevels[btn] = tonumber(lv) or 1
             self.SlotQualities[btn] = tonumber(qu) or 1
+            if st == STATE_WEAR then
+                self.CurrentWearing = btn
+                local pair = self:GetPairByButton(btn)
+                if pair and self[pair.border] then
+                    self[pair.border]:SetBrushColor({R = 1, G = 1, B = 0, A = 1})
+                end
+            end
         end
     end
-    -- Keep this section consistent with the original UI flow.
 end
 
 -- Load saved data.
