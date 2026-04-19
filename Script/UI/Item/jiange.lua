@@ -93,6 +93,7 @@ local SWORD_LEVELS = {
 }
 local MAX_LEVEL = #SWORD_LEVELS
 local FORGE_COUNT_SYNC_LOCK_SECONDS = 0.9
+local WEAR_FLAG = 10000
 
 function jiange:Construct()
     self:LuaInit()
@@ -112,7 +113,17 @@ function jiange:Construct()
         -- Keep this section consistent with the original UI flow.
     end
 
-    if self.weartip then self.weartip:SetText("穿戴") end
+    -- Restore IsWearing from progress flag (wearing = progress >= WEAR_FLAG)
+    if self.UpgradeProgress >= WEAR_FLAG then
+        self.IsWearing = true
+        self.UpgradeProgress = self.UpgradeProgress - WEAR_FLAG
+    else
+        self.IsWearing = false
+    end
+
+    if self.weartip then
+        self.weartip:SetText(self.IsWearing and "卸下" or "穿戴")
+    end
     self:UpdateSwordDisplay()
     self:UpdateProgressBar()
     self:UpdateCostDisplay()
@@ -375,6 +386,7 @@ function jiange:OnWearClicked()
         if self.weartip then self.weartip:SetText("卸下") end
         self:ShowTipViaMain("已穿戴神剑")
     end
+    self:SaveToServer()
 end
 
 function jiange:OnLevelUpClicked()
@@ -440,8 +452,19 @@ function jiange:LoadSavedData(level, progress)
         end
     end
 
+    -- Restore IsWearing from progress flag (wearing = progress >= WEAR_FLAG)
+    local wasWearing = false
+    if incomingProgress >= WEAR_FLAG then
+        wasWearing = true
+        incomingProgress = incomingProgress - WEAR_FLAG
+    end
+
     self.CurrentLevel = incomingLevel
     self.UpgradeProgress = incomingProgress
+    self.IsWearing = wasWearing
+    if self.weartip then
+        self.weartip:SetText(self.IsWearing and "卸下" or "穿戴")
+    end
     self:UpdateSwordDisplay()
     self:UpdateProgressBar()
     self:UpdateCostDisplay()
@@ -451,7 +474,12 @@ end
 function jiange:SaveToServer()
     local PlayerState = UGCGameSystem.GetLocalPlayerState()
     if PlayerState then
-        UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_SaveJiangeData", self.CurrentLevel, self.UpgradeProgress)
+        -- Encode IsWearing into progress to persist state without server changes.
+        local savedProgress = self.UpgradeProgress
+        if self.IsWearing then
+            savedProgress = savedProgress + WEAR_FLAG
+        end
+        UnrealNetwork.CallUnrealRPC(PlayerState, PlayerState, "Server_SaveJiangeData", self.CurrentLevel, savedProgress)
     end
 end
 
