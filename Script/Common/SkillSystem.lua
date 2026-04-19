@@ -1,5 +1,6 @@
 ---@class SkillSystem
 ---Player skill system: talent buffs, Shenyin/Jiange passive skills.
+local Config_PlayerData = UGCGameSystem.UGCRequire('Script.Common.Config_PlayerData')
 
 local SkillSystem = {}
 

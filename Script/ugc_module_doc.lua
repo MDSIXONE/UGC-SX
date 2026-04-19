@@ -38,7 +38,7 @@
 --   UGCGameSystem        — 全局游戏系统，提供所有子系统的访问入口
 --   UGCPlayerState       — 玩家状态 Actor，处理所有与玩家数据相关的服务器逻辑
 --   UGCPlayerController  — 玩家控制器，持有客户端 UI 引用，处理输入和网络通信
---   UGCGameData          — 游戏配置数据，提供等级配置、任务配置、充值奖励配置等读取接口
+--   UGCGameData          — 游戏配置数据，提供等级配置、充值奖励配置等读取接口
 --   UGCGameMode          — 游戏模式，处理全局规则（如复活时恢复装备技能）
 --   UGCGameState         — 游戏状态
 
@@ -173,11 +173,11 @@
 --   通过 UGCBackpackSystemV2.RemoveItemV2 扣除背包中的实体物品
 
 -- 【消费计次】 Server_AddSpendCount(amount)
---   累加消费金额，用于 VIP 等级计算和任务进度
+--   累加消费金额，用于 VIP 等级计算
 --   更新 TotalSpendCount、VIP等级、排名的消费排名
 
 -- 【商店购买计次】 Server_AddShopBuyCount()
---   累加商店购买次数，用于任务进度追踪
+--   累加商店购买次数
 
 --------------------------------------------------------------------------------
 -- II-D. RewardSystem  (文件: Script/Common/RewardSystem.lua)
@@ -229,9 +229,9 @@
 -- 【面板引用字段】
 --   shenyin, jiange, wujingjiange, touxiang, touxiangdetail,
 --   WB_Inventory, WB_Team, active, TalentTree, shouna,
---   shenyingbuttun, taskbuttun, jiangebuttun, wujingbuttun, zhuanshengbuttun,
+--   shenyingbuttun, jiangebuttun, wujingbuttun, zhuanshengbuttun,
 --   chuansongbuttun, chuansongbuttun_2, shouchongbuttun, shoucong,
---   taskbuttun, Inventorybuttun, teambuttun, activebuttun, jiaochengbuttun,
+--   Inventorybuttun, teambuttun, activebuttun, jiaochengbuttun,
 --   xuemai, addexp, zdtunshi, zdshiqu, huicheng, help, jdutiao,
 --   ta_settlement, Settlement, Settlement_2, SettlementTip, tunshi, tunshitip,
 --   WB_Teamiinvite, Numchoose, ConfirmPurchase_UIBP

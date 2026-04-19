@@ -29,6 +29,7 @@
 local Delegate = require("common.Delegate")
 local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 local Config_PlayerData = UGCGameSystem.UGCRequire('Script.Common.Config_PlayerData')
+-- local TaskSystem = UGCGameSystem.UGCRequire('Script.Common.TaskSystem')
 local SkillSystem = UGCGameSystem.UGCRequire('Script.Common.SkillSystem')
 local RewardSystem = UGCGameSystem.UGCRequire('Script.Common.RewardSystem')
 local VirtualItemSystem = UGCGameSystem.UGCRequire('Script.Common.VirtualItemSystem')

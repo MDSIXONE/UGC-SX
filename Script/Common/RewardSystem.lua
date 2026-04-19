@@ -1,5 +1,6 @@
 ---@class RewardSystem
 ---Reward claiming, serialization, and grant helpers.
+local UGCGameData = UGCGameSystem.UGCRequire('Script.Blueprint.UGCGameData')
 
 local RewardSystem = {}
 

@@ -13,15 +13,8 @@ function taskbuttun:Construct()
 end
 
 function taskbuttun:OnButtonClicked()
-	local pc = UGCGameSystem.GetLocalPlayerController()
-	if not pc then return end
-
-	local playerState = UGCGameSystem.GetPlayerStateByPlayerController(pc)
-	if not playerState or not playerState.GetTaskManager then return end
-
-	local taskComp = playerState:GetTaskManager()
-	if taskComp and taskComp.OpenTaskUI then
-		taskComp:OpenTaskUI()
+	if TaskManager then
+		TaskManager:OpenTaskMainUI()
 	end
 end
 

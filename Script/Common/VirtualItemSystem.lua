@@ -1,5 +1,6 @@
 ---@class VirtualItemSystem
 ---Virtual item and backpack operations.
+local Config_PlayerData = UGCGameSystem.UGCRequire('Script.Common.Config_PlayerData')
 
 local VirtualItemSystem = {}
 

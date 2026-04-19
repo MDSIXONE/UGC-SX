@@ -6,6 +6,8 @@
 --- 自动拾取通过 Config_PlayerData.AUTO_PICKUP_UNLOCK_ITEM_ID 判断解锁
 --- 功能状态通过 Server_SetAutoTunshiEnabled / Server_SetAutoPickupEnabled RPC 同步到服务端
 
+local Config_PlayerData = UGCGameSystem.UGCRequire('Script.Common.Config_PlayerData')
+
 local UIFeatureToggle = {}
 
 --- 从 playerState 读取功能开关状态

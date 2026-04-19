@@ -1,5 +1,6 @@
 ---@class DataConfig
 ---Table path constants and Get*Config functions.
+local Config_PlayerData = UGCGameSystem.UGCRequire('Script.Common.Config_PlayerData')
 
 local DataConfig = {}
 

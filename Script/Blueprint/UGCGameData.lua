@@ -1,5 +1,6 @@
 ﻿---@class UGCGameData
 ---Thin facade that re-exports all DataConfig functions for backward compatibility.
+local Config_PlayerData = UGCGameSystem.UGCRequire('Script.Common.Config_PlayerData')
 local DataConfig = UGCGameSystem.UGCRequire('Script.Common.DataConfig')
 
 local UGCGameData = {}
