@@ -137,9 +137,8 @@ local MAX_LEVEL = 100
 function shenyin:Construct()
     self:LuaInit()
     self.SlotStates = {}
-    self.SlotLevels = {} -- 
-    self.SlotQualities = {} -- 
-    -- Keep this section consistent with the original UI flow.
+    self.SlotLevels = {}
+    self.SlotQualities = {}
     self.SlotStates["bailang"] = STATE_UNWEAR
     self.SlotLevels["bailang"] = 1
     self.SlotQualities["bailang"] = 1
@@ -152,7 +151,6 @@ function shenyin:Construct()
     self.CurrentWearing = nil
     self.CurrentEcexpBonus = 0
 
-    -- Acquire local player references.
     local PC = UGCGameSystem.GetLocalPlayerController()
     if PC and PC.SavedShenyinData and PC.SavedShenyinData ~= "" then
         self:LoadSavedData(PC.SavedShenyinData)
@@ -160,37 +158,38 @@ function shenyin:Construct()
 
     for _, pair in ipairs(ButtonBorderMap) do
         if self[pair.border] then
-            self[pair.border]:SetVisibility(1)
+            self[pair.border]:SetVisibility(ESlateVisibility.Visible)
         end
     end
-    if self.unlock then self.unlock:SetVisibility(1) end
-    if self.wear   then self.wear:SetVisibility(1) end
-    if self.remove then self.remove:SetVisibility(1) end
-    if self.AddLevel then self.AddLevel:SetVisibility(1) end
-    if self.Addquality then self.Addquality:SetVisibility(1) end
+    if self.unlock then self.unlock:SetVisibility(ESlateVisibility.Visible) end
+    if self.wear   then self.wear:SetVisibility(ESlateVisibility.Visible) end
+    if self.remove then self.remove:SetVisibility(ESlateVisibility.Visible) end
+    if self.AddLevel then self.AddLevel:SetVisibility(ESlateVisibility.Visible) end
+    if self.Addquality then self.Addquality:SetVisibility(ESlateVisibility.Visible) end
     if self.detail then self.detail:SetText("") end
     if self.level then self.level:SetText("") end
-    self:SetVisibility(1)
-    -- Local helper value for this logic block.
+    self:SetVisibility(ESlateVisibility.Visible)
     local VIM = UGCGamePartSystem.VirtualItemManager.GetGlobalActor()
     if VIM then
         VIM.OnItemNumUpdatedDelegate:Add(self.OnItemNumUpdated, self)
     end
 end
 function shenyin:Show()
-    self:SetVisibility(0)
+    self:SetVisibility(ESlateVisibility.Visible)
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
     if MainControlPanel then
-        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        if MainControlPanel.MainControlBaseUI then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        end
+        if MainControlPanel.ShootingUIPanel then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        end
     end
     local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
     if SkillPanel then
         UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
     end
-    -- Refresh UI to match current data state.
     self:RefreshAllIconColors()
-    -- Execute the next UI update step.
     self:OnSlotButtonClicked("bailang")
 end
 -- Set icon brush white.
@@ -395,23 +394,21 @@ function shenyin:UpdateActionButtons()
     local lv = self.SlotLevels[self.SelectedButton] or 1
     local quality = self.SlotQualities[self.SelectedButton] or 1
     if self.unlock then
-        self.unlock:SetVisibility(state == STATE_UNLOCK and 0 or 1)
+        self.unlock:SetVisibility(state == STATE_UNLOCK and ESlateVisibility.Visible or ESlateVisibility.Collapsed)
     end
     if self.wear then
-        self.wear:SetVisibility(state == STATE_UNWEAR and 0 or 1)
+        self.wear:SetVisibility(state == STATE_UNWEAR and ESlateVisibility.Visible or ESlateVisibility.Collapsed)
     end
     if self.remove then
-        self.remove:SetVisibility(state == STATE_WEAR and 0 or 1)
+        self.remove:SetVisibility(state == STATE_WEAR and ESlateVisibility.Visible or ESlateVisibility.Collapsed)
     end
-    -- Guard condition before running this branch.
     if self.AddLevel then
         local canLevel = (state ~= STATE_UNLOCK) and (lv < MAX_LEVEL)
-        self.AddLevel:SetVisibility(canLevel and 0 or 1)
+        self.AddLevel:SetVisibility(canLevel and ESlateVisibility.Visible or ESlateVisibility.Collapsed)
     end
-    -- Guard condition before running this branch.
     if self.Addquality then
         local canQuality = (state ~= STATE_UNLOCK) and (quality < MAX_QUALITY)
-        self.Addquality:SetVisibility(canQuality and 0 or 1)
+        self.Addquality:SetVisibility(canQuality and ESlateVisibility.Visible or ESlateVisibility.Collapsed)
     end
 end
 function shenyin:UpdateLevelDisplay()
@@ -469,12 +466,10 @@ function shenyin:OnUnlockClicked()
     end
     self.SlotStates[self.SelectedButton] = STATE_UNWEAR
     if self[pair.border] then
-        self[pair.border]:SetVisibility(0)
+        self[pair.border]:SetVisibility(ESlateVisibility.Visible)
         self[pair.border]:SetBrushColor({R = 0, G = 0, B = 0, A = 0})
     end
-    -- Guard condition before running this branch.
     if pair.icon and self[pair.icon] then
-        -- Execute the next UI update step.
         self:SetIconBrushWhite(self[pair.icon])
     end
     self:UpdateActionButtons()
@@ -501,12 +496,10 @@ function shenyin:OnWearClicked()
     self.SlotStates[self.SelectedButton] = STATE_WEAR
     self.CurrentWearing = self.SelectedButton
     if self[pair.border] then
-        self[pair.border]:SetVisibility(0)
+        self[pair.border]:SetVisibility(ESlateVisibility.Visible)
         self[pair.border]:SetBrushColor({R = 1, G = 1, B = 0, A = 1})
     end
-    -- Execute the next UI update step.
     self:ApplySkill(pair.skill, true, self.SlotQualities[self.SelectedButton])
-    -- Keep this section consistent with the original UI flow.
     self.CurrentEcexpBonus = self:GetEcexpBonus(self.SelectedButton)
     self:ApplyEcexp(self.CurrentEcexpBonus)
     self:UpdateActionButtons()
@@ -627,14 +620,18 @@ end
 function shenyin:OnCancelClicked()
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
     if MainControlPanel then
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        if MainControlPanel.MainControlBaseUI then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        end
+        if MainControlPanel.ShootingUIPanel then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        end
     end
     local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
     if SkillPanel then
         UGCWidgetManagerSystem.SubWidgetHiddenLayer(SkillPanel)
     end
-    self:SetVisibility(2)
+    self:SetVisibility(ESlateVisibility.Collapsed)
 end
 -- Serialize data.
 function shenyin:SerializeData()

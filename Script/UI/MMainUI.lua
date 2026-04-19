@@ -28,6 +28,7 @@
 ---@field TalenTreeButtun TalenTreeButtun_C
 ---@field TalentTip TalentTip_C
 ---@field TalentTree TalentTree_C
+---@field TASK TASK_C
 ---@field taskbuttun taskbuttun_C
 ---@field teambuttun teambuttun_C
 ---@field TestButton TestButton_C

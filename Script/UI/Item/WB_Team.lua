@@ -66,82 +66,81 @@ end
 
 -- Show.
 function WB_Team:Show()
-	self:SetVisibility(ESlateVisibility.Visible)
+    self:SetVisibility(ESlateVisibility.Visible)
 
-	if self.bHasShownAtLeastOnce == nil then
-		self.bHasShownAtLeastOnce = true
-		self.bHideSelfLeaveThisOpen = true
-	else
-		self.bHideSelfLeaveThisOpen = false
-	end
+    if self.bHasShownAtLeastOnce == nil then
+        self.bHasShownAtLeastOnce = true
+        self.bHideSelfLeaveThisOpen = true
+    else
+        self.bHideSelfLeaveThisOpen = false
+    end
 
-	if not self.bFullScreenLayerApplied then
-		local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
-		if MainControlPanel then
-			if MainControlPanel.MainControlBaseUI then
-				UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-			end
-			if MainControlPanel.ShootingUIPanel then
-				UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
-			end
-		end
+    if not self.bFullScreenLayerApplied then
+        local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
+        if MainControlPanel then
+            if MainControlPanel.MainControlBaseUI then
+                UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+            end
+            if MainControlPanel.ShootingUIPanel then
+                UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+            end
+        end
 
-		local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
-		if SkillPanel then
-			UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
-		end
+        local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
+        if SkillPanel then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
+        end
 
-		self.bFullScreenLayerApplied = true
-	end
+        self.bFullScreenLayerApplied = true
+    end
 
-	if self.CreatePlayerSlots then
-		self:CreatePlayerSlots()
-	end
+    if self.CreatePlayerSlots then
+        self:CreatePlayerSlots()
+    end
 
-	-- Guard condition before running this branch.
-	if not self.AutoRefreshTimer then
-		self.AutoRefreshTimer = UGCTimerUtility.CreateLuaTimer(
-			1.0,
-			function()
-				if self:GetVisibility() == ESlateVisibility.Visible then
-					self:CreatePlayerSlots()
-				end
-			end,
-			true,
-			"WB_Team_AutoRefresh_" .. tostring(self)
-		)
-	end
+    if not self.AutoRefreshTimer then
+        self.AutoRefreshTimer = UGCTimerUtility.CreateLuaTimer(
+            1.0,
+            function()
+                if self:GetVisibility() == ESlateVisibility.Visible then
+                    self:CreatePlayerSlots()
+                end
+            end,
+            true,
+            "WB_Team_AutoRefresh_" .. tostring(self)
+        )
+    end
 end
 
 -- Hide.
 function WB_Team:Hide()
-	if self.AutoRefreshTimer then
-		UGCTimerUtility.RemoveLuaTimer(self.AutoRefreshTimer)
-		self.AutoRefreshTimer = nil
-	end
+    if self.AutoRefreshTimer then
+        UGCTimerUtility.RemoveLuaTimer(self.AutoRefreshTimer)
+        self.AutoRefreshTimer = nil
+    end
 
-	self.bHideSelfLeaveThisOpen = false
+    self.bHideSelfLeaveThisOpen = false
 
-	if self.bFullScreenLayerApplied then
-		local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
-		if MainControlPanel then
-			if MainControlPanel.MainControlBaseUI then
-				UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-			end
-			if MainControlPanel.ShootingUIPanel then
-				UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
-			end
-		end
+    if self.bFullScreenLayerApplied then
+        local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
+        if MainControlPanel then
+            if MainControlPanel.MainControlBaseUI then
+                UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+            end
+            if MainControlPanel.ShootingUIPanel then
+                UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+            end
+        end
 
-		local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
-		if SkillPanel then
-			UGCWidgetManagerSystem.SubWidgetHiddenLayer(SkillPanel)
-		end
+        local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
+        if SkillPanel then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(SkillPanel)
+        end
 
-		self.bFullScreenLayerApplied = false
-	end
+        self.bFullScreenLayerApplied = false
+    end
 
-	self:SetVisibility(ESlateVisibility.Collapsed)
+    self:SetVisibility(ESlateVisibility.Collapsed)
 end
 
 -- Create player slots.

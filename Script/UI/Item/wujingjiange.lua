@@ -56,7 +56,7 @@ local FLOOR_STATE_MAP = {
 
 function wujingjiange:Construct()
     self:LuaInit()
-    self:SetVisibility(1)
+    self:SetVisibility(ESlateVisibility.Visible)
 end
 
 function wujingjiange:ApplyFullScreenLayer()
@@ -66,8 +66,12 @@ function wujingjiange:ApplyFullScreenLayer()
 
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
     if MainControlPanel then
-        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        if MainControlPanel.MainControlBaseUI then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        end
+        if MainControlPanel.ShootingUIPanel then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        end
     end
     local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
     if SkillPanel then
@@ -84,8 +88,12 @@ function wujingjiange:ReleaseFullScreenLayer()
 
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
     if MainControlPanel then
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        if MainControlPanel.MainControlBaseUI then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        end
+        if MainControlPanel.ShootingUIPanel then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        end
     end
     local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
     if SkillPanel then
@@ -141,7 +149,7 @@ function wujingjiange:LuaInit()
 end
 
 function wujingjiange:Show()
-    self:SetVisibility(0)
+    self:SetVisibility(ESlateVisibility.Visible)
     self:UpdateFloorText()
     self:RefreshRewardStates()
     self:ApplyFullScreenLayer()
@@ -165,7 +173,7 @@ end
 
 function wujingjiange:OnCancelClicked()
     self:ReleaseFullScreenLayer()
-    self:SetVisibility(2)
+    self:SetVisibility(ESlateVisibility.Collapsed)
 end
 
 function wujingjiange:OnStartClicked()
@@ -254,7 +262,7 @@ function wujingjiange:DoEnterJiange(PC)
     -- Keep this section consistent with the original UI flow.
     UnrealNetwork.CallUnrealRPC(PC, PC, "Server_EnterJiangeInstance")
     -- Configure initial widget visibility.
-    self:SetVisibility(2)
+    self:SetVisibility(ESlateVisibility.Collapsed)
 
     -- Execute the next UI update step.
     self:ReleaseFullScreenLayer()

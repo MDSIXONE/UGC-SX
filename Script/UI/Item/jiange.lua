@@ -117,17 +117,21 @@ function jiange:Construct()
     self:UpdateProgressBar()
     self:UpdateCostDisplay()
     self:RefreshCostDisplayDelayed(0.2)
-    self:SetVisibility(1)
+    self:SetVisibility(ESlateVisibility.Visible)
 end
 
 function jiange:Show()
-    self:SetVisibility(0)
+    self:SetVisibility(ESlateVisibility.Visible)
     self:UpdateCostDisplay()
     self:RefreshCostDisplayDelayed(0.2)
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
     if MainControlPanel then
-        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        if MainControlPanel.MainControlBaseUI then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        end
+        if MainControlPanel.ShootingUIPanel then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        end
     end
     local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
     if SkillPanel then
@@ -138,14 +142,18 @@ end
 function jiange:OnCancelClicked()
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
     if MainControlPanel then
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        if MainControlPanel.MainControlBaseUI then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        end
+        if MainControlPanel.ShootingUIPanel then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        end
     end
     local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
     if SkillPanel then
         UGCWidgetManagerSystem.SubWidgetHiddenLayer(SkillPanel)
     end
-    self:SetVisibility(2)
+    self:SetVisibility(ESlateVisibility.Collapsed)
 end
 
 function jiange:LuaInit()

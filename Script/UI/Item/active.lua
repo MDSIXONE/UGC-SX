@@ -47,14 +47,17 @@ function active:Show()
     self:SetVisibility(ESlateVisibility.Visible)
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
     if MainControlPanel then
-        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        if MainControlPanel.MainControlBaseUI then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        end
+        if MainControlPanel.ShootingUIPanel then
+            UGCWidgetManagerSystem.AddWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        end
     end
     local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
     if SkillPanel then
         UGCWidgetManagerSystem.AddWidgetHiddenLayer(SkillPanel)
     end
-    -- Execute the next UI update step.
     self:SwitchTab(0)
 end
 
@@ -62,8 +65,12 @@ function active:OnCancelClicked()
     self:SetVisibility(ESlateVisibility.Collapsed)
     local MainControlPanel = UGCWidgetManagerSystem.GetMainUI()
     if MainControlPanel then
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
-        UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        if MainControlPanel.MainControlBaseUI then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.MainControlBaseUI)
+        end
+        if MainControlPanel.ShootingUIPanel then
+            UGCWidgetManagerSystem.SubWidgetHiddenLayer(MainControlPanel.ShootingUIPanel)
+        end
     end
     local SkillPanel = UGCWidgetManagerSystem.GetSkillRootPanel()
     if SkillPanel then
