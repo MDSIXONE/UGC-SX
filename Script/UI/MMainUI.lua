@@ -1,4 +1,59 @@
 ---@class MMainUI_C:UUserWidget
+---@field NewAnimation_1 UWidgetAnimation
+---@field active ctive_C
+---@field activebuttun ctivebuttun_C
+---@field addexp ddexp_C
+---@field chuansong chuansong_C
+---@field chuansong_2 chuansong_2_C
+---@field chuansongbuttun chuansongbuttun_C
+---@field chuansongbuttun_2 chuansongbuttun_2_C
+---@field ConfirmPurchase_UIBP ConfirmPurchase_UIBP_C
+---@field FriendList FriendList_C
+---@field help help_C
+---@field huicheng huicheng_C
+---@field Inventorybuttun Inventorybuttun_C
+---@field jiange jiange_C
+---@field jiangebuttun jiangebuttun_C
+---@field jiaocheng1 jiaocheng1_C
+---@field jiaochengbuttun jiaochengbuttun_C
+---@field Numchoose Numchoose_C
+---@field Settlement Settlement_C
+---@field Settlement_2 Settlement_2_C
+---@field SettlementTip SettlementTip_C
+---@field shenyin shenyin_C
+---@field shenyingbuttun shenyingbuttun_C
+---@field shouchongbuttun shouchongbuttun_C
+---@field shoucong shoucong_C
+---@field shouna shouna_C
+---@field TalenTreeButtun TalenTreeButtun_C
+---@field TalentTip TalentTip_C
+---@field TalentTree TalentTree_C
+---@field taskbuttun taskbuttun_C
+---@field teambuttun teambuttun_C
+---@field TestButton TestButton_C
+---@field TextBlock_mobnum UTextBlock
+---@field TextBlock_timeout UTextBlock
+---@field tip tip_C
+---@field touxiang touxiang_C
+---@field touxiangdetail touxiangdetail_C
+---@field tunshi tunshi_C
+---@field tunshitip tunshitip_C
+---@field UGC_RankingList_IngameBut_UIBP UGC_RankingList_IngameBut_UIBP_C
+---@field WB_Inventory WB_Inventory_C
+---@field WB_Team WB_Team_C
+---@field WB_Teamiinvite WB_Teamiinvite_C
+---@field WBP_OpenLotteryButton WBP_OpenLotteryButton_C
+---@field WBP_RankingListBtn WBP_RankingListBtn_C
+---@field wujingbuttun wujingbuttun_C
+---@field wujingjiange wujingjiange_C
+---@field xuemai xuemai_C
+---@field xuzhang xuzhang_C
+---@field zdshiqu zdshiqu_C
+---@field zdtunshi zdtunshi_C
+---@field zhuansheng zhuansheng_C
+---@field zhuanshengbuttun zhuanshengbuttun_C
+--Edit Below--
+---@class MMainUI_C:UUserWidget
 ---
 --- MMainUI 是游戏主界面中央控制器，负责所有 UI 面板的显示/隐藏、按钮状态管理、
 --- Mode1002（战斗模式）的特殊处理、工具栏收放等功能。
